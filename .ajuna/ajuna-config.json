@@ -1,0 +1,13 @@
+{
+   "projects": {
+      "net_api": "Blazscan.NetApiExt",
+      "rest_service": "Blazscan.RestService",
+      "rest_client": "Blazscan.RestClient"
+   },
+   "metadata": {
+      "websocket": "wss://rpc.polkadot.io"
+   },
+   "rest_client_settings": {
+      "service_assembly": "Blazscan.RestService.dll"
+   }
+}

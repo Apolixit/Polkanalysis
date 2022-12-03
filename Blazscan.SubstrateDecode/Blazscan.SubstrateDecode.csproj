@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ajuna.NetApi" Version="0.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blazscan.AjunaExtension\Blazscan.AjunaExtension.csproj" />
+    <ProjectReference Include="..\Blazscan.Domain.Contracts\Blazscan.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Blazscan.NetApiExt\Blazscan.NetApiExt.csproj" />
+  </ItemGroup>
+
+</Project>
