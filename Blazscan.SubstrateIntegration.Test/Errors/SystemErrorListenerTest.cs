@@ -74,7 +74,7 @@ namespace Blazscan.SubstrateIntegration.Test.Errors
                     Value = new PalletErrorDto()
                     {
                         PalletName = "MoneyPot",
-                        EventError = null,
+                        EventName = null,
                         Message = ""
                     }
                 },
@@ -119,7 +119,7 @@ namespace Blazscan.SubstrateIntegration.Test.Errors
                     Value = new PalletErrorDto()
                     {
                         PalletName = "MoneyPot",
-                        EventError = null,
+                        EventName= null,
                         Message = ""
                     }
                 },

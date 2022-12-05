@@ -1,0 +1,7 @@
+﻿@page "/block/{blockId:int}"
+
+<Blazscan.Components.Block.BlockDetails blockId="@blockId" />
+
+@code {
+    [Parameter] public int? blockId { get; set; }
+}

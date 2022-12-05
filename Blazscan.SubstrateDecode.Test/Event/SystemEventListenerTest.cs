@@ -2,6 +2,7 @@
 using Blazscan.Domain.Contracts;
 using Blazscan.NetApiExt.Generated.Model.frame_support.dispatch;
 using Blazscan.SubstrateDecode.Event;
+using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Blazscan.SubstrateDecode.Test.Event
 {

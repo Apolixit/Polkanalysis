@@ -227,7 +227,7 @@ namespace Blazscan.SubstrateDecode.Event
             var result = new PalletErrorDto()
             {
                 PalletName = palletError.Name,
-                EventError = (Enum)palletInstance,//MoneyPot_NetApiExt.Generated.Model.pallet_money_pot.pallet.Error.DoesNotExists,
+                EventName = string.Empty,
                 Message = String.Empty
             };
 

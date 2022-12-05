@@ -97,7 +97,7 @@ namespace Blazscan.SubstrateDecode.Event
             for (int i = 0; i < genericArgs.Length; i++)
             {
                 
-                    IType? currentValue = null;
+                IType? currentValue = null;
                 if (value.GetValue().GetType().IsArray)
                     currentValue = (IType)value.GetValueArray()[i];
                 else

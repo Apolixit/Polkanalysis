@@ -27,4 +27,8 @@
     <ProjectReference Include="..\Blazscan.SubstrateDecode\Blazscan.SubstrateDecode.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

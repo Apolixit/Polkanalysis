@@ -1,4 +1,6 @@
-﻿namespace Blazscan.Domain.Contracts
+﻿using Blazscan.Domain.Contracts.Dto.Block;
+
+namespace Blazscan.Domain.Contracts
 {
     public class EventDto
     {
