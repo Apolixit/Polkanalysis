@@ -15,8 +15,7 @@ namespace Blazscan.Components
 
         public ExampleJsInterop(IJSRuntime jsRuntime)
         {
-            moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-                "import", "./_content/Blazscan.Components/exampleJsInterop.js").AsTask());
+            moduleTask = null; //new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Blazscan.Components/exampleJsInterop.js").AsTask());
         }
 
         public async ValueTask<string> Prompt(string message)

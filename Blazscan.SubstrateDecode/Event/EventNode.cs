@@ -20,6 +20,7 @@ namespace Blazscan.SubstrateDecode.Event
         public bool IsIdentified { get; set; }
         public Type? DataType { get; set; } = null;
         public IType? Data { get; set; } = null;
+        public string Name { get; set; } = string.Empty;
 
         private dynamic? _humanData = null;
         public dynamic? HumanData {
@@ -60,6 +61,12 @@ namespace Blazscan.SubstrateDecode.Event
         {
             Data = data;
             DataType = data.GetType();
+            return this;
+        }
+
+        public EventNode AddName(string name)
+        {
+            Name = name;
             return this;
         }
 

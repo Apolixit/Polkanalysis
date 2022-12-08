@@ -40,6 +40,15 @@ namespace Blazscan.AjunaExtension
                 return null;
         }
 
+        public static object? GetValue(this IType sender, string propName)
+        {
+            var prp = sender.GetType().GetProperty(propName);
+            if (prp != null)
+                return prp.GetValue(sender);
+            else
+                return null;
+        }
+
         public static H256? GetValue(this H256 sender)
         {
             return sender;

@@ -50,7 +50,7 @@ namespace Blazscan.SubstrateDecode.Event
             Elements.Add(new EventMappingElem()
             {
                 Name = "Hash",
-                Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray() }
+                Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray(), new MappingElementArr32U8 (), new MappingElementArr64U8() }
             });
 
             Elements.Add(new EventMappingElem()
@@ -145,11 +145,26 @@ namespace Blazscan.SubstrateDecode.Event
 
     public class MappingElementHash : IMappingElement
     {
-        //[AjunaNodeType(TypeDefEnum.Array)]
         public Type ObjectType => typeof(H256);
         public bool IsIdentified => true;
 
         dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((H256)input).Value.Bytes);
+    }
+
+    public class MappingElementArr32U8 : IMappingElement
+    {
+        public Type ObjectType => typeof(Arr32U8);
+        public bool IsIdentified => true;
+
+        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((Arr32U8)input).Bytes);
+    }
+
+    public class MappingElementArr64U8 : IMappingElement
+    {
+        public Type ObjectType => typeof(Arr64U8);
+        public bool IsIdentified => true;
+
+        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((Arr64U8)input).Bytes);
     }
 
     public class MappingElementHashByteArray : IMappingElement
