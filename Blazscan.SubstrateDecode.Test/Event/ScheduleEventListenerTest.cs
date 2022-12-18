@@ -1,15 +1,18 @@
 ﻿
+using Blazscan.Domain.Contracts.Repository;
+using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Event;
+using NSubstitute;
 
 namespace Blazscan.SubstrateDecode.Test.Event
 {
     public class ScheduleEventListenerTest
     {
-        private readonly IEventListener _eventListener;
+        private readonly ISubstrateDecoding _substrateDecode;
 
         public ScheduleEventListenerTest()
         {
-            _eventListener = new EventListener();
+            _substrateDecode = new SubstrateDecoding(Substitute.For<IMapping>(), Substitute.For<ISubstrateNodeRepository>());
         }
 
         /// <summary>
@@ -24,7 +27,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
         [TestCase("0x00010000000600900100000000000000")]
         public void Scheduler_ScheduleBlock_ShouldBeParsed(string hex)
         {
-            var nodeResult = _eventListener.Read(hex);
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
             var result = EventResult.Create(nodeResult);
             Assert.IsNotNull(result);
 
@@ -60,7 +63,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
         [TestCase("0x020602B40000000000000001A06D6F6E6579706F74396CDBF0A89F28E8FF09A5D97FAE185D3FF9920D8CBCB3CEC50F256865DBE0F10000")]
         public void Scheduler_Dispatched_ShouldBeParsed(string hex)
         {
-            var nodeResult = _eventListener.Read(hex);
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
             var result = EventResult.Create(nodeResult);
             Assert.IsNotNull(result);
 

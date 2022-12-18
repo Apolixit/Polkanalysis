@@ -10,10 +10,14 @@ using Blazscan.NetApiExt.Generated.Model.primitive_types;
 using Blazscan.NetApiExt.Generated.Model.sp_core.crypto;
 using Blazscan.NetApiExt.Generated.Model.sp_runtime;
 using Blazscan.NetApiExt.Generated.Types.Base;
+using Blazscan.SubstrateDecode.Abstract;
+using Blazscan.SubstrateDecode.Abstract.Mapping;
+using Newtonsoft.Json.Linq;
+using Org.BouncyCastle.Math;
 
 namespace Blazscan.SubstrateDecode.Event
 {
-    public class EventMapping
+    public class EventMapping : IMapping
     {
         protected IList<EventMappingElem> Elements { get; set; }
 
@@ -21,7 +25,7 @@ namespace Blazscan.SubstrateDecode.Event
         {
             Elements.Add(new EventMappingElem()
             {
-                Name = "ModuleError",
+                CategoryName = "ModuleError",
                 Mapping = new List<IMappingElement>() { new MappingElementModuleError(metaData) }
             });
         }
@@ -31,36 +35,49 @@ namespace Blazscan.SubstrateDecode.Event
             Elements = new List<EventMappingElem>();
             Elements.Add(new EventMappingElem()
             {
-                Name = "Amount",
+                CategoryName = "Amount",
                 Mapping = new List<IMappingElement>() { 
                     new MappingElementU128(),
                     new MappingElementU64(),
                     new MappingElementU32(),
                     new MappingElementU16(),
                     new MappingElementU8(),
+                    new MappingElementBaseCom<BaseCom<U256>>(),
+                    new MappingElementBaseCom<BaseCom<U128>>(),
+                    new MappingElementBaseCom<BaseCom<U64>>(),
+                    new MappingElementBaseCom<BaseCom<U32>>(),
+                    new MappingElementBaseCom<BaseCom<U16>>(),
+                    new MappingElementBaseCom<BaseCom<U8>>(),
+                    new MappingElementBaseCom<BaseCom<I256>>(),
+                    new MappingElementBaseCom<BaseCom<I128>>(),
+                    new MappingElementBaseCom<BaseCom<I64>>(),
+                    new MappingElementBaseCom<BaseCom<I32>>(),
+                    new MappingElementBaseCom<BaseCom<I16>>(),
+                    new MappingElementBaseCom<BaseCom<I8>>(),
+                    new MappingElementBaseCom<BigInteger>(),
                 }
             });
 
             Elements.Add(new EventMappingElem()
             {
-                Name = "Account",
+                CategoryName = "Account",
                 Mapping = new List<IMappingElement>() { new MappingElementAccount() }
             });
 
             Elements.Add(new EventMappingElem()
             {
-                Name = "Hash",
+                CategoryName = "Hash",
                 Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray(), new MappingElementArr32U8 (), new MappingElementArr64U8() }
             });
 
             Elements.Add(new EventMappingElem()
             {
-                Name = "Result",
+                CategoryName = "Result",
                 Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
             });
             Elements.Add(new EventMappingElem()
             {
-                Name = "DispatchInfo",
+                CategoryName = "DispatchInfo",
                 Mapping = new List<IMappingElement>() { new MappingElementDispatchInfo() }
             });
         }
@@ -78,13 +95,6 @@ namespace Blazscan.SubstrateDecode.Event
 
             return new MappingElementUnknown(searchType);
         }
-    }
-
-    public interface IMappingElement
-    {
-        public Type ObjectType { get; }
-        public bool IsIdentified { get; }
-        public dynamic ToHuman(dynamic input);
     }
 
     public class MappingElementU128 : IMappingElement
@@ -143,6 +153,16 @@ namespace Blazscan.SubstrateDecode.Event
         }
     }
 
+    public class MappingElementBaseCom<T> : IMappingElement
+    {
+        public Type ObjectType => typeof(T);
+        public bool IsIdentified => true;
+        dynamic IMappingElement.ToHuman(dynamic input)
+        {
+            return (ulong)input.Value;
+        }
+    }
+    
     public class MappingElementHash : IMappingElement
     {
         public Type ObjectType => typeof(H256);
@@ -235,9 +255,9 @@ namespace Blazscan.SubstrateDecode.Event
             //moduleError.Index
             //MetaData.CreateModuleDict()
             var palletError = _metaData.NodeMetadata.Modules[moduleError.Index.Value];
-            var fullQualifiedName = $"MoneyPot_NetApiExt.Generated.Storage.{palletError.Name}Errors, MoneyPot_NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
-            Type palletErrorType = Type.GetType(fullQualifiedName);
-            var palletInstance = Activator.CreateInstance(palletErrorType);
+            //var fullQualifiedName = $"MoneyPot_NetApiExt.Generated.Storage.{palletError.Name}Errors, MoneyPot_NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+            //Type palletErrorType = Type.GetType(fullQualifiedName);
+            //var palletInstance = Activator.CreateInstance(palletErrorType);
             
             var result = new PalletErrorDto()
             {
@@ -277,16 +297,16 @@ namespace Blazscan.SubstrateDecode.Event
         public dynamic ToHuman(dynamic input) => input.ToString();
     }
 
-    public class EventMappingElem
+    public class EventMappingElem : IMappingCategory
     {
-        public string Name { get; set; }
+        public string CategoryName { get; set; }
         public IList<IMappingElement> Mapping { get; set; }
 
         public EventDetailsResult ToEventDetailsResult(dynamic input, IMappingElement mapping)
         {
             return new EventDetailsResult()
             {
-                Title = Name,
+                Title = CategoryName,
                 ComponentName = $"Component_{mapping.ObjectType.Name}",
                 Value = mapping.ToHuman(input)
             };

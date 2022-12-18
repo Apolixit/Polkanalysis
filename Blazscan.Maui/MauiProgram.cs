@@ -1,4 +1,7 @@
-﻿using Blazscan.Maui.Data;
+﻿using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Infrastructure.DirectAccess.Repository;
+using Blazscan.SubstrateDecode.Event;
+using Blazscan.Maui.Data;
 using Microsoft.Extensions.Logging;
 
 namespace Blazscan.Maui
@@ -23,6 +26,9 @@ namespace Blazscan.Maui
 #endif
 
             builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddScoped<IEventRepository, EventRepositoryDirectAccess>();
+            builder.Services.AddScoped<ISubstrateNodeRepository, SubstrateNodeRepositoryDirectAccess>();
+            builder.Services.AddScoped<IEventListener, SubstrateDecode>();
 
             return builder.Build();
         }

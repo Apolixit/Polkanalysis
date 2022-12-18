@@ -1,4 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using Blazscan.Domain.Contracts.Repository;
+@inherits LayoutComponentBase
+@inject ISubstrateNodeRepository substrateService;
+@inject ILogger<Program> logger;
 
 <div class="page">
     <div class="sidebar">
@@ -15,3 +18,24 @@
         </article>
     </main>
 </div>
+
+@code {
+    protected bool isCurrentlyConnected = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
+        {
+            if (isCurrentlyConnected != isConnected)
+            {
+                logger.LogInformation($"Is connected : {isConnected}");
+                isCurrentlyConnected = isConnected;
+
+                StateHasChanged();
+            }
+
+        }, CancellationToken.None);
+    }
+
+   
+}

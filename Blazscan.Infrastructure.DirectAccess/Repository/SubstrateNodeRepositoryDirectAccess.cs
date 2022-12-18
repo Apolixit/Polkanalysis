@@ -17,7 +17,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
 
         public SubstrateNodeRepositoryDirectAccess(IConfiguration configuration)
         {
-            _nodeUri = new Uri(configuration["defaultUriEndpoint"]);
+            _nodeUri = new Uri(configuration["defaultEndpoint"]);
         }
 
         public SubstrateClientExt Client

@@ -55,6 +55,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Blazscan.Components\Blazscan.Components.csproj" />
+      <ProjectReference Include="..\Blazscan.Infrastructure.DirectAccess\Blazscan.Infrastructure.DirectAccess.csproj" />
+      <ProjectReference Include="..\Blazscan.SubstrateDecode\Blazscan.SubstrateDecode.csproj" />
     </ItemGroup>
 
 </Project>

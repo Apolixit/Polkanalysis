@@ -1,17 +1,20 @@
 ﻿
 using Blazscan.Domain.Contracts;
+using Blazscan.Domain.Contracts.Repository;
 using Blazscan.NetApiExt.Generated.Model.frame_support.dispatch;
+using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Event;
+using NSubstitute;
 using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Blazscan.SubstrateDecode.Test.Event
 {
     public class SystemEventListenerTest
     {
-        private IEventListener _eventListener;
+        private ISubstrateDecoding _substrateDecode;
         public SystemEventListenerTest()
         {
-            _eventListener = new EventListener();
+            _substrateDecode = new SubstrateDecoding(Substitute.For<IMapping>(), Substitute.For<ISubstrateNodeRepository>());
         }
 
         /// <summary>
@@ -26,7 +29,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
         [TestCase("0x00000000000000001C6C0900000000020000")]
         public void System_ExtrinsicSuccess_ShouldBeParsed(string hex)
         {
-            var nodeResult = _eventListener.Read(hex);
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
             var result = EventResult.Create(nodeResult);
             Assert.IsNotNull(result);
 
@@ -61,7 +64,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
         [TestCase("0x000100000000031CBD2D43530A44705AD088AF313E18F80B53EF16B36177CD4B77B846F2A5F07C00")]
         public void System_NewAccount_ShouldBeParsed(string hex)
         {
-            var nodeResult = _eventListener.Read(hex);
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
             var result = EventResult.Create(nodeResult);
             Assert.IsNotNull(result);
 

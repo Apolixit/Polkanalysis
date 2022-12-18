@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Blazscan.AjunaExtension\Blazscan.AjunaExtension.csproj" />
     <ProjectReference Include="..\Blazscan.Domain.Contracts\Blazscan.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Blazscan.NetApiExt\Blazscan.NetApiExt.csproj" />
+    <ProjectReference Include="..\Blazscan.SubstrateDecode.Abstract\Blazscan.SubstrateDecode.Abstract.csproj" />
   </ItemGroup>
 
 </Project>

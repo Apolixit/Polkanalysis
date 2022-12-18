@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blazscan.SubstrateDecode.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Blazscan.SubstrateDecode.Event
             this.depth = depth;
         }
 
-        public static EventResult Create(EventNode eventNode)
+        public static EventResult Create(INode eventNode)
         {
             var result = new EventResult();
             if (eventNode.IsEmpty || eventNode.HumanData == null || eventNode.IsLeaf) return null;

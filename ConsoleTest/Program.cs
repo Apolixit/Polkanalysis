@@ -75,6 +75,10 @@ public static class Program
                 var eventCore = eventReceived.Event;
                 var eventTopic = eventReceived.Topics;
 
+                if(eventTopic.Value.Length > 0)
+                {
+                    var topicDetails = await client.SystemStorage.EventTopics(eventTopic.Value.First(), CancellationToken.None);
+                }
                 var mainEvent = eventCore.Value;
                 var secondaryEvent = string.Empty;
                 var details = string.Empty;

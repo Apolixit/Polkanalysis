@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using Blazscan.Domain.Contracts.Repository;
+@inherits LayoutComponentBase
+@inject ISubstrateNodeRepository substrateService;
 
 <div class="page">
     <div class="sidebar">
@@ -11,7 +13,33 @@
         </div>
 
         <article class="content px-4">
-            @Body
+            @if(isCurrentlyConnected)
+            {
+                @Body
+            } else
+            {
+                <text>Waiting Blockchain connexion</text>
+            }
         </article>
     </main>
 </div>
+
+@code {
+    protected bool isCurrentlyConnected = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
+        {
+            if (isCurrentlyConnected != isConnected)
+            {
+                isCurrentlyConnected = isConnected;
+
+                StateHasChanged();
+            }
+
+        }, CancellationToken.None);
+    }
+
+
+}

@@ -1,15 +1,18 @@
 ﻿
+using Blazscan.Domain.Contracts.Repository;
+using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Event;
+using NSubstitute;
 
 namespace Blazscan.SubstrateDecode.Test.Event
 {
     public class TransactionPaymentListenerTest
     {
-        private readonly IEventListener _eventListener;
+        private readonly ISubstrateDecoding _substrateDecode;
 
         public TransactionPaymentListenerTest()
         {
-            _eventListener = new EventListener();
+            _substrateDecode = new SubstrateDecoding(Substitute.For<IMapping>(), Substitute.For<ISubstrateNodeRepository>());
         }
 
         /// <summary>
@@ -21,7 +24,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
         [TestCase("0x00010000000700D43593C715FDD31C61141ABD04A99FD6822C8558854CCDE39A5684E7A56DA27D2BCE24050000000000000000000000000000000000000000000000000000000000")]
         public void TransactionPayment_TransactionFeePaid_ShouldBeParsed(string hex)
         {
-            var nodeResult = _eventListener.Read(hex);
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
             var result = EventResult.Create(nodeResult);
             Assert.IsNotNull(result);
 

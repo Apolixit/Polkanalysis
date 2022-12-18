@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
+    <PackageReference Include="NSubstitute" Version="4.4.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.5.0">
@@ -24,7 +25,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blazscan.Domain.Contracts\Blazscan.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Blazscan.Infrastructure.DirectAccess\Blazscan.Infrastructure.DirectAccess.csproj" />
     <ProjectReference Include="..\Blazscan.SubstrateDecode\Blazscan.SubstrateDecode.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

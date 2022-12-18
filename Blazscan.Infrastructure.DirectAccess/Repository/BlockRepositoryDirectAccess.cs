@@ -3,23 +3,22 @@ using Ajuna.NetApi.Model.Types.Base;
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
 using Blazscan.Domain.Contracts.Repository;
-using Blazscan.SubstrateDecode.Extrinsic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Blazscan.SubstrateDecode.Abstract;
 
 namespace Blazscan.Infrastructure.DirectAccess.Repository
 {
     public class BlockRepositoryDirectAccess : IBlockRepository
     {
         private readonly ISubstrateNodeRepository _substrateService;
+        private readonly ISubstrateDecoding _substrateDecode;
         private BlockDto? _lastBlock;
 
-        public BlockRepositoryDirectAccess(ISubstrateNodeRepository substrateNodeRepository)
+        public BlockRepositoryDirectAccess(
+            ISubstrateNodeRepository substrateNodeRepository,
+            ISubstrateDecoding substrateDecode)
         {
             _substrateService = substrateNodeRepository;
+            _substrateDecode = substrateDecode;
         }
 
         public async Task<BlockDetailsDto> GetBlockDetailsAsync(uint blockId)
@@ -34,11 +33,13 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
             var blockModel = new BlockDetailsDto();
             blockModel.Header = new HeaderDto(blockDetails.Block.Header);
 
-            var ex = blockDetails.Block.Extrinsics.Last();
-            //ex.Method
-            //_substrateService.Client.StorageKeyDict
-            var extrinsicDecode = new ExtrinsicDecode(_substrateService);
-            extrinsicDecode.ReadExtrinsic(ex);
+            var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            foreach(var extrinsic in filteredExtrinsic)
+            {
+                var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
+            }
+            
+            //var logDecode = _substrateDecode.DecodeLog(blockDetails.Block.Header.Digest.Logs);
             return new BlockDetailsDto();
         }
 
