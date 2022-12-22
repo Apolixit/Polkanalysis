@@ -8,9 +8,12 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Blazscan.AjunaExtension;
 using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.NetApiExt.Generated.Model.frame_system;
+using Blazscan.NetApiExt.Generated.Model.polkadot_parachain.primitives;
 using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Event;
+using System.Text.RegularExpressions;
 
 namespace Blazscan.SubstrateDecode
 {
@@ -18,11 +21,13 @@ namespace Blazscan.SubstrateDecode
     {
         private readonly IMapping _mapping;
         private readonly ISubstrateNodeRepository _substrateRepository;
+        private readonly IPalletBuilder _palletBuilder;
 
-        public SubstrateDecoding(IMapping mapping, ISubstrateNodeRepository substrateRepository)
+        public SubstrateDecoding(IMapping mapping, ISubstrateNodeRepository substrateRepository, IPalletBuilder palletBuilder)
         {
             _mapping = mapping;
             _substrateRepository = substrateRepository;
+            _palletBuilder = palletBuilder;
         }
 
         /// <summary>
@@ -67,44 +72,75 @@ namespace Blazscan.SubstrateDecode
             return node;
         }
 
-        private void VisitNode(INode node, IType? value)
+        /// <summary>
+        /// Visit the current value
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="value"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        private void VisitNode(INode node, IType value)
         {
-            if (!(value is BaseEnumType))
+            if (value is BaseEnumType baseEnumValue)
             {
-                VisitNodePrimitive(node, value);
-            }
-            else
-            {
-                var val = value.GetValue();
-                var childNode = EventNode.Create().AddData(value).AddHumanData(val);
+                var val = baseEnumValue.GetValue();
+
+                if (val == null) throw new ArgumentNullException($"The value element (enum) from {baseEnumValue.TypeName} is null while visiting node");
+
+                var doc = _palletBuilder.FindDocumentation((Enum)val);
+                var AddDataToNode = (INode node) =>
+                {
+                    node
+                        .AddData(value)
+                        .AddHumanData(val);
+
+                    if (doc != null)
+                        node.AddDocumentation(doc);
+
+                    return node;
+                };
+
+                var childNode = AddDataToNode(EventNode.Create());
+
+                var enumValue2 = baseEnumValue.GetValue2();
+                if (enumValue2 == null)
+                    throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
+
                 if (node.IsEmpty)
                 {
-                    node.AddData(value).AddHumanData(val);
-                    VisitNode(node, ((BaseEnumType)value).GetValue2());
+                    node = AddDataToNode(node);
+                    VisitNode(node, enumValue2);
                 }
                 else
                 {
-                    VisitNode(childNode, ((BaseEnumType)value).GetValue2());
+                    VisitNode(childNode, enumValue2);
                     node.AddChild(childNode);
                 }
-
-                
+            }
+            else
+            {
+                VisitNodePrimitive(node, value);
             }
         }
 
-        private void VisitNodePrimitive(INode node, IType? value)
+        /// <summary>
+        /// Visit node which is not an enum
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="value"></param>
+        private void VisitNodePrimitive(INode node, IType value)
         {
             var mapper = _mapping.Search(value.GetType());
             if (!mapper.IsIdentified && value.GetType().IsGenericType)
             {
-                    VisitNodeGeneric(node, value);
-            } else if(!mapper.IsIdentified && HasComplexeField(value))
+                VisitNodeGeneric(node, value);
+            }
+            else if (!mapper.IsIdentified && HasComplexeField(value))
             {
                 var properties = value.GetType().GetProperties();
-                foreach(var property in properties)
+                foreach (var property in properties)
                 {
                     var prp = value.GetValue(property.Name);
-                    if(prp is IType prpType)
+                    if (prp is IType prpType)
                     {
                         var childNode = EventNode.Create()
                                                 .AddData(prpType)
@@ -117,52 +153,68 @@ namespace Blazscan.SubstrateDecode
             }
             else
             {
-                if(node.IsEmpty)
-                    node.AddContext(mapper)
+                var doc = _palletBuilder.FindDocumentation(value.GetType());
+                var AddDataToNode = (INode node) =>
+                {
+                    node
+                        .AddData(value)
+                        .AddContext(mapper)
                         .AddHumanData(mapper.ToHuman(value));
+
+                    if (doc != null)
+                        node.AddDocumentation(doc);
+
+                    return node;
+                };
+
+                if (node.IsEmpty)
+                    node = AddDataToNode(node);
                 else
-                    node.AddChild(EventNode.Create()
-                                        .AddData(value)
-                                        .AddContext(mapper)
-                                        .AddHumanData(mapper.ToHuman(value)));
+                    node.AddChild(AddDataToNode(EventNode.Create()));
             }
         }
 
-        private bool HasComplexeField(IType? value)
+        private void VisitNodeGeneric(INode node, IType value)
         {
-            var customAttributes = value.GetType().CustomAttributes;
-            if(customAttributes != null && customAttributes.Count() > 0)
+            //var genericArgs = value.GetValue().GetType().IsArray;
+            var valueArray = value.GetValueArray();
+            if (valueArray == null)
+                throw new ArgumentNullException($"{nameof(valueArray)}GetValueArray() is null");
+
+            foreach (IType currentValue in valueArray)
             {
-                var hasCompositeAttribute = customAttributes.Any(attr => attr.AttributeType.Name == "AjunaNodeTypeAttribute" && attr.ConstructorArguments.Any(constr => (int)constr.Value == (int)Ajuna.NetApi.Model.Types.Metadata.V14.TypeDefEnum.Composite));
-                return hasCompositeAttribute;
-            }
-
-            return false;
-        }
-
-        private void VisitNodeGeneric(INode node, IType? value)
-        {
-            var genericArgs = value.GetType().GenericTypeArguments;
-            for (int i = 0; i < genericArgs.Length; i++)
-            {
-                
-                IType? currentValue = null;
-                if (value.GetValue().GetType().IsArray)
-                    currentValue = (IType)value.GetValueArray()[i];
-                else
-                    currentValue = (IType)value.GetValue();
-
-                if (genericArgs[i].IsGenericType)
+                if (currentValue.GetType().IsGenericType)
                 {
                     var childNode = EventNode.Create().AddData(currentValue);
                     node.AddChild(childNode);
 
                     VisitNode(childNode, currentValue);
-                } else
+                }
+                else
                 {
                     VisitNode(node, currentValue);
                 }
             }
+        }
+
+        /// <summary>
+        /// Check if type contain TypeDefEnum.Composite attribute
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private bool HasComplexeField(IType value)
+        {
+            var customAttributes = value.GetType().CustomAttributes;
+            if (customAttributes != null && customAttributes.Count() > 0)
+            {
+                var hasCompositeAttribute =
+                    customAttributes.Any(attr => attr.AttributeType.Name == "AjunaNodeTypeAttribute" && attr.ConstructorArguments.Any(
+                        constr => constr.Value != null &&
+                        (int)constr.Value == (int)Ajuna.NetApi.Model.Types.Metadata.V14.TypeDefEnum.Composite));
+                return hasCompositeAttribute;
+            }
+
+            return false;
         }
 
         public INode DecodeBlock(Block block)
@@ -175,8 +227,47 @@ namespace Blazscan.SubstrateDecode
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get pallet module from name
+        /// </summary>
+        /// <param name="palletName"></param>
+        /// <returns></returns>
+        public PalletModule GetPalletModule(string palletName)
+        {
+            var module = _substrateRepository.Client.MetaData.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
+
+            if (module == null)
+                throw new ArgumentException($"{nameof(palletName)} (= {palletName}) is not found in Metadata");
+
+            return module;
+        }
+
+        /// <summary>
+        /// Get pallet module from index
+        /// </summary>
+        /// <param name="palletIndex"></param>
+        /// <returns></returns>
+        public PalletModule GetPalletModule(byte palletIndex)
+        {
+            var module = _substrateRepository.Client.MetaData.NodeMetadata.Modules[palletIndex];
+            if (module == null)
+                throw new ArgumentException($"{nameof(palletIndex)} (= {palletIndex}) is not found in Metadata");
+
+            return module;
+        }
+
+        public NodeType GetDocumentationFromTypeId(uint TypeId)
+        {
+            var doc = _substrateRepository.Client.MetaData.NodeMetadata.Types[TypeId];
+            if (doc == null)
+                throw new ArgumentException($"{nameof(TypeId)} (= {TypeId}) is not found in Metadata");
+
+            return doc;
+        }
+
         public INode DecodeExtrinsic(Ajuna.NetApi.Model.Extrinsics.Extrinsic extrinsic)
         {
+            //nodeMetadata.Types.Where(x => x.Value.Path != null && x.Value.Path.Count() > 2 && x.Value.Path[0] == "pallet_balances")
             var nodeMetadata = _substrateRepository.Client.MetaData.NodeMetadata;
             var metadataModules = _substrateRepository.Client.MetaData.NodeMetadata.Modules;
             var metadataExtrinsic = _substrateRepository.Client.MetaData.NodeMetadata.Extrinsic;
@@ -184,70 +275,11 @@ namespace Blazscan.SubstrateDecode
 
             var pallet = _substrateRepository.Client.MetaData.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
             var palletCall = nodeMetadata.Types[pallet.Calls.TypeId];
-            
-            var _eventDecode = new SubstrateDecoding(new EventMapping(), _substrateRepository);
 
-            var realCallNew = BuildCall(pallet.Name, extrinsic.Method);
-            var nodeResultNew = _eventDecode.DecodeEvent(realCallNew);
+            var realCallNew = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
+            var nodeResultNew = DecodeEvent(realCallNew);
 
             return nodeResultNew;
-        }
-
-        public byte[] Encode<T>(T enumPallet, byte[] param) where T : Enum
-        {
-            var result = new List<byte>();
-            var r = new byte[] { Convert.ToByte(enumPallet) };
-            result.AddRange(r);
-            result.AddRange(param);
-            return result.ToArray();
-        }
-
-        // TODO: refacto and build dynamically
-        private IType
-            BuildCall(string palletName, Method extrinsicMethod)
-        {
-            IType? call = null;
-            Enum? enumValue = null;
-            switch (palletName)
-            {
-                case "Balances":
-                    call = new Blazscan.NetApiExt.Generated.Model.pallet_balances.pallet.EnumCall();
-                    enumValue = (NetApiExt.Generated.Model.pallet_balances.pallet.Call)Enum.ToObject(typeof(NetApiExt.Generated.Model.pallet_balances.pallet.Call), extrinsicMethod.CallIndex);
-                    call.Create(Encode(enumValue, extrinsicMethod.Parameters));
-
-                    return call;
-
-                case "Timestamp":
-                    call = new Blazscan.NetApiExt.Generated.Model.pallet_timestamp.pallet.EnumCall();
-                    enumValue = (NetApiExt.Generated.Model.pallet_timestamp.pallet.Call)Enum.ToObject(typeof(NetApiExt.Generated.Model.pallet_balances.pallet.Call), extrinsicMethod.CallIndex);
-                    call.Create(Encode(enumValue, extrinsicMethod.Parameters));
-
-                    return call;
-
-                case "System":
-                    call = new Blazscan.NetApiExt.Generated.Model.frame_system.pallet.EnumCall();
-                    enumValue = (NetApiExt.Generated.Model.frame_system.pallet.Call)Enum.ToObject(typeof(NetApiExt.Generated.Model.pallet_balances.pallet.Call), extrinsicMethod.CallIndex);
-                    call.Create(Encode(enumValue, extrinsicMethod.Parameters));
-
-                    return call;
-
-                case "Utility":
-                    call = new Blazscan.NetApiExt.Generated.Model.pallet_utility.pallet.EnumCall();
-                    enumValue = (NetApiExt.Generated.Model.pallet_utility.pallet.Call)Enum.ToObject(typeof(NetApiExt.Generated.Model.pallet_balances.pallet.Call), extrinsicMethod.CallIndex);
-                    call.Create(Encode(enumValue, extrinsicMethod.Parameters));
-
-                    return call;
-
-                case "ParaInherent":
-                    call = new Blazscan.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras_inherent.pallet.EnumCall();
-                    enumValue = (NetApiExt.Generated.Model.polkadot_runtime_parachains.paras_inherent.pallet.Call)Enum.ToObject(typeof(NetApiExt.Generated.Model.pallet_balances.pallet.Call), extrinsicMethod.CallIndex);
-                    call.Create(Encode(enumValue, extrinsicMethod.Parameters));
-
-                    return call;
-
-            }
-            
-            throw new ArgumentException($"{nameof(palletName)} = {palletName} does not exists");
         }
 
         private int DecodeNodeType(NodeType nodeType, int callIndex)
@@ -268,10 +300,10 @@ namespace Blazscan.SubstrateDecode
                 _ => 2,
             };
 
-            if(nodeType is NodeTypeVariant nodeVariant)
+            if (nodeType is NodeTypeVariant nodeVariant)
             {
                 var variant = nodeVariant.Variants[callIndex];
-                
+
             }
 
             return i;

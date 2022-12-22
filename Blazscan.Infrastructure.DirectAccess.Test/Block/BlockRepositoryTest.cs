@@ -2,27 +2,36 @@
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Infrastructure.DirectAccess.Repository;
+using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.SubstrateDecode;
 using Blazscan.SubstrateDecode.Event;
 using NSubstitute;
 
-namespace Blazscan.Infrastructure.DirectAccess.Test
+namespace Blazscan.Infrastructure.DirectAccess.Test.Block
 {
     public class BlockRepositoryTest
     {
         private readonly ISubstrateNodeRepository _substrateRepository;
         private readonly IBlockRepository _blockRepository;
 
-        public BlockRepositoryTest() {
+        public BlockRepositoryTest()
+        {
             _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
             _substrateRepository.Client.Returns(new NetApiExt.Generated.SubstrateClientExt(new Uri("wss://rpc.polkadot.io"), ChargeTransactionPayment.Default()));
-            _blockRepository = new BlockRepositoryDirectAccess(_substrateRepository, new SubstrateDecoding(new EventMapping(), _substrateRepository));
+            _blockRepository = new BlockRepositoryDirectAccess(
+                _substrateRepository,
+                new SubstrateDecoding(
+                    new EventMapping(),
+                    _substrateRepository,
+                    new PalletBuilder(_substrateRepository)
+                    )
+                );
         }
 
         [OneTimeSetUp]
         public async Task Connect()
         {
-            if(!_substrateRepository.Client.IsConnected)
+            if (!_substrateRepository.Client.IsConnected)
             {
                 await _substrateRepository.Client.ConnectAsync();
             }
@@ -78,7 +87,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Test
         public async Task GetExtrinsic_ShouldWork(string extrinsicHash)
         {
             var extrinsic = new Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
-            var _substrateDecode = new SubstrateDecoding(new EventMapping(), _substrateRepository);
+            var _substrateDecode = new SubstrateDecoding(new EventMapping(), _substrateRepository, new PalletBuilder(_substrateRepository));
             var res = _substrateDecode.DecodeExtrinsic(extrinsic);
             Assert.IsTrue(true);
         }

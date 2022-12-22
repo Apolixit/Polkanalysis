@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Blazscan.Infrastructure.DirectAccess\Blazscan.Infrastructure.DirectAccess.csproj" />
     <ProjectReference Include="..\Blazscan.SubstrateDecode.Abstract\Blazscan.SubstrateDecode.Abstract.csproj" />
     <ProjectReference Include="..\Blazscan.SubstrateDecode\Blazscan.SubstrateDecode.csproj" />
   </ItemGroup>

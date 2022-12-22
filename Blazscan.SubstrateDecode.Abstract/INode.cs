@@ -43,6 +43,11 @@ namespace Blazscan.SubstrateDecode.Abstract
         string ComponentName { get; set; }
 
         /// <summary>
+        /// The Rust documentation of current element
+        /// </summary>
+        string Documentation { get; set; }
+
+        /// <summary>
         /// Node sub children
         /// </summary>
         LinkedList<INode> Children { get; set; }
@@ -79,9 +84,18 @@ namespace Blazscan.SubstrateDecode.Abstract
         INode AddContext(IMappingElement mapping);
 
         /// <summary>
+        /// Add documentation to the node
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <returns></returns>
+        INode AddDocumentation(string doc);
+
+        /// <summary>
         /// Add child to the node
         /// </summary>
         /// <param name="eventNode"></param>
         void AddChild(INode eventNode);
+
+
     }
 }

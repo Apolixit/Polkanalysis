@@ -1,6 +1,7 @@
 ﻿
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.NetApiExt.Generated.Model.frame_support.dispatch;
 using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Event;
@@ -14,7 +15,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
         private ISubstrateDecoding _substrateDecode;
         public SystemEventListenerTest()
         {
-            _substrateDecode = new SubstrateDecoding(Substitute.For<IMapping>(), Substitute.For<ISubstrateNodeRepository>());
+            _substrateDecode = new SubstrateDecoding(Substitute.For<IMapping>(), Substitute.For<ISubstrateNodeRepository>(), Substitute.For<IPalletBuilder>());
         }
 
         /// <summary>

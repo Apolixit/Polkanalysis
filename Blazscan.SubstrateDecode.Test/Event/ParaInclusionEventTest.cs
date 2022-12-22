@@ -1,5 +1,6 @@
 ﻿using Blazscan.Domain.Contracts.Dto.Event;
 using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Event;
 using NSubstitute;
@@ -14,7 +15,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
         {
             //IMapping mapping, ISubstrateNodeRepository substrateRepository
 
-            _substrateDecode = new SubstrateDecoding(new EventMapping() , Substitute.For<ISubstrateNodeRepository>());
+            _substrateDecode = new SubstrateDecoding(new EventMapping() , Substitute.For<ISubstrateNodeRepository>(), Substitute.For<IPalletBuilder>());
         }
 
         [Test]

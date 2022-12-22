@@ -2,6 +2,7 @@
 using Ajuna.NetApi.Model.Extrinsics;
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Repository;
 using Blazscan.NetApiExt.Generated;
 using Blazscan.NetApiExt.Generated.Model.frame_support.dispatch;
@@ -27,7 +28,8 @@ namespace Blazscan.SubstrateIntegration.Test.Errors
         {
             _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
             _substrateRepository.Client.Returns(new NetApiExt.Generated.SubstrateClientExt(new Uri("wss://rpc.polkadot.io"), ChargeTransactionPayment.Default()));
-            _substrateDecode = new SubstrateDecode.SubstrateDecoding(Substitute.For<IMapping>(), Substitute.For<ISubstrateNodeRepository>());
+            _substrateDecode = new SubstrateDecode.SubstrateDecoding(Substitute.For<IMapping>(), Substitute.For<ISubstrateNodeRepository>(),
+                Substitute.For<IPalletBuilder>());
         }
         
 

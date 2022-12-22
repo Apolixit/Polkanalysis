@@ -14,6 +14,7 @@ using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Abstract.Mapping;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Math;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Blazscan.SubstrateDecode.Event
 {
@@ -32,62 +33,64 @@ namespace Blazscan.SubstrateDecode.Event
 
         public EventMapping()
         {
-            Elements = new List<EventMappingElem>();
-            Elements.Add(new EventMappingElem()
+            Elements = new List<EventMappingElem>
             {
-                CategoryName = "Amount",
-                Mapping = new List<IMappingElement>() { 
-                    new MappingElementU128(),
-                    new MappingElementU64(),
-                    new MappingElementU32(),
-                    new MappingElementU16(),
-                    new MappingElementU8(),
-                    new MappingElementBaseCom<BaseCom<U256>>(),
-                    new MappingElementBaseCom<BaseCom<U128>>(),
-                    new MappingElementBaseCom<BaseCom<U64>>(),
-                    new MappingElementBaseCom<BaseCom<U32>>(),
-                    new MappingElementBaseCom<BaseCom<U16>>(),
-                    new MappingElementBaseCom<BaseCom<U8>>(),
-                    new MappingElementBaseCom<BaseCom<I256>>(),
-                    new MappingElementBaseCom<BaseCom<I128>>(),
-                    new MappingElementBaseCom<BaseCom<I64>>(),
-                    new MappingElementBaseCom<BaseCom<I32>>(),
-                    new MappingElementBaseCom<BaseCom<I16>>(),
-                    new MappingElementBaseCom<BaseCom<I8>>(),
-                    new MappingElementBaseCom<BigInteger>(),
+                new EventMappingElem()
+                {
+                    CategoryName = "Amount",
+                    Mapping = new List<IMappingElement>() {
+                        new MappingElementU128(),
+                        new MappingElementU64(),
+                        new MappingElementU32(),
+                        new MappingElementU16(),
+                        new MappingElementU8(),
+                        new MappingElementBaseCom<BaseCom<U256>>(),
+                        new MappingElementBaseCom<BaseCom<U128>>(),
+                        new MappingElementBaseCom<BaseCom<U64>>(),
+                        new MappingElementBaseCom<BaseCom<U32>>(),
+                        new MappingElementBaseCom<BaseCom<U16>>(),
+                        new MappingElementBaseCom<BaseCom<U8>>(),
+                        new MappingElementBaseCom<BaseCom<I256>>(),
+                        new MappingElementBaseCom<BaseCom<I128>>(),
+                        new MappingElementBaseCom<BaseCom<I64>>(),
+                        new MappingElementBaseCom<BaseCom<I32>>(),
+                        new MappingElementBaseCom<BaseCom<I16>>(),
+                        new MappingElementBaseCom<BaseCom<I8>>(),
+                        new MappingElementBaseCom<BigInteger>(),
+                    }
+                },
+
+                new EventMappingElem()
+                {
+                    CategoryName = "Account",
+                    Mapping = new List<IMappingElement>() { new MappingElementAccount() }
+                },
+
+                new EventMappingElem()
+                {
+                    CategoryName = "Hash",
+                    Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray(), new MappingElementArr32U8(), new MappingElementArr64U8() }
+                },
+
+                new EventMappingElem()
+                {
+                    CategoryName = "Result",
+                    Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
+                },
+                new EventMappingElem()
+                {
+                    CategoryName = "DispatchInfo",
+                    Mapping = new List<IMappingElement>() { new MappingElementDispatchInfo() }
                 }
-            });
-
-            Elements.Add(new EventMappingElem()
-            {
-                CategoryName = "Account",
-                Mapping = new List<IMappingElement>() { new MappingElementAccount() }
-            });
-
-            Elements.Add(new EventMappingElem()
-            {
-                CategoryName = "Hash",
-                Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray(), new MappingElementArr32U8 (), new MappingElementArr64U8() }
-            });
-
-            Elements.Add(new EventMappingElem()
-            {
-                CategoryName = "Result",
-                Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
-            });
-            Elements.Add(new EventMappingElem()
-            {
-                CategoryName = "DispatchInfo",
-                Mapping = new List<IMappingElement>() { new MappingElementDispatchInfo() }
-            });
+            };
         }
 
         public IMappingElement Search(Type searchType)
         {
-            foreach(var elem in Elements)
+            foreach (var elem in Elements)
             {
                 var mapped = elem.Mapping.FirstOrDefault(x => x.ObjectType == searchType);
-                if(mapped != null)
+                if (mapped != null)
                 {
                     return mapped;
                 }
@@ -162,7 +165,7 @@ namespace Blazscan.SubstrateDecode.Event
             return (ulong)input.Value;
         }
     }
-    
+
     public class MappingElementHash : IMappingElement
     {
         public Type ObjectType => typeof(H256);
@@ -201,7 +204,10 @@ namespace Blazscan.SubstrateDecode.Event
         public Type ObjectType => typeof(AccountId32);
         public bool IsIdentified => true;
 
-        dynamic IMappingElement.ToHuman(dynamic input) => AccountHelper.BuildAddress((AccountId32)input);
+        dynamic IMappingElement.ToHuman(dynamic input) => new {
+            PublicKey = Utils.GetPublicKeyFrom(AccountHelper.BuildAddress((AccountId32)input)),
+            Ss58Address = AccountHelper.BuildAddress((AccountId32)input)
+        };
     }
 
     public class MappingElementEnumResult : IMappingElement
@@ -258,7 +264,7 @@ namespace Blazscan.SubstrateDecode.Event
             //var fullQualifiedName = $"MoneyPot_NetApiExt.Generated.Storage.{palletError.Name}Errors, MoneyPot_NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
             //Type palletErrorType = Type.GetType(fullQualifiedName);
             //var palletInstance = Activator.CreateInstance(palletErrorType);
-            
+
             var result = new PalletErrorDto()
             {
                 PalletName = palletError.Name,

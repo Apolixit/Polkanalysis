@@ -1,4 +1,7 @@
-﻿using Blazscan.Domain.Contracts.Repository;
+﻿using Ajuna.NetApi.Model.Extrinsics;
+using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.SubstrateDecode.Abstract;
 using Blazscan.SubstrateDecode.Event;
 using NSubstitute;
@@ -13,10 +16,33 @@ namespace Blazscan.SubstrateDecode.Test.Event
     public class BalancesEventListenerTest
     {
         private readonly ISubstrateDecoding _substrateDecode;
-
+        private readonly ISubstrateNodeRepository _substrateRepository;
         public BalancesEventListenerTest()
         {
-            _substrateDecode = new SubstrateDecoding(new EventMapping(), Substitute.For<ISubstrateNodeRepository>());
+            _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
+            _substrateRepository.Client.Returns(new NetApiExt.Generated.SubstrateClientExt(new Uri("wss://rpc.polkadot.io"), ChargeTransactionPayment.Default()));
+            _substrateDecode = new SubstrateDecoding(
+                new EventMapping(), 
+                _substrateRepository,
+                new PalletBuilder(_substrateRepository));
+        }
+
+        [OneTimeSetUp]
+        public async Task Connect()
+        {
+            if (!_substrateRepository.Client.IsConnected)
+            {
+                await _substrateRepository.Client.ConnectAsync();
+            }
+        }
+
+        [OneTimeTearDown]
+        public async Task Disconnect()
+        {
+            if (_substrateRepository.Client.IsConnected)
+            {
+                await _substrateRepository.Client.CloseAsync();
+            }
         }
 
         /// <summary>
@@ -139,7 +165,17 @@ namespace Blazscan.SubstrateDecode.Test.Event
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
-        // 0x00020000001306B109518212000000000000000000000000
+        [TestCase("0x0500002444ED1EEDC416E067C35D986F29D28DC3EA9CB07168926DE1D4ACBBDC2EF6C50700386A3F41")]
+        public void Balances_Transfer2_ShouldBeParsed(string hex)
+        {
+            //		currentValue.GetType().FullName	"Blazscan.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
+
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            var result = EventResult.Create(nodeResult);
+            Assert.IsNotNull(result);
+        }
+
+
         [Test]
         [TestCase("0x00020000001306B109518212000000000000000000000000")]
         public void Treasury_Deposit_ShouldBeParsed(string hex)

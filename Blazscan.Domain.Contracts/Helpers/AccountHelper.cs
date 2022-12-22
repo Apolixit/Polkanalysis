@@ -37,7 +37,7 @@ namespace Blazscan.Domain.Contracts.Helpers
         public static AccountId32 BuildAccountId32(AccountDto accountDto)
         {
             var accountId32 = new AccountId32();
-            accountId32.Create(Utils.GetPublicKeyFrom(accountDto.Address));
+            accountId32.Create(Utils.GetPublicKeyFrom(accountDto.Address.Address));
             return accountId32;
         }
 

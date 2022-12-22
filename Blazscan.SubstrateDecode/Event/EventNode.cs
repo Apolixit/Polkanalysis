@@ -44,6 +44,8 @@ namespace Blazscan.SubstrateDecode.Event
         bool INode.IsEmpty => Data == null;
 
         bool INode.IsLeaf => Children == null || Children.Count == 0;
+
+        public string Documentation { get; set; }
         #endregion
 
         protected EventNode() { }
@@ -83,6 +85,12 @@ namespace Blazscan.SubstrateDecode.Event
         public void AddChild(INode eventNode)
         {
             Children.AddLast(eventNode);
+        }
+
+        public INode AddDocumentation(string doc)
+        {
+            Documentation = doc;
+            return this;
         }
     }
 }
