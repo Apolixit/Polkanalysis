@@ -59,7 +59,13 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
                         // Mapping
                         var eventDto = new EventLightDto()
                         {
-                            Block = new Domain.Contracts.Dto.Block.BlockDto(),
+                            Block = new Domain.Contracts.Dto.Block.BlockLightDto()
+                            {
+                                Hash = new Hash(),
+                                Number = 0,
+                                Status = Domain.Contracts.Dto.StatusDto.Broadcasted,
+                                When = TimeSpan.Zero
+                            },
                             PalletName = eventNode.HumanData.ToString(),
                             EventName = eventNode.Children.First().HumanData.ToString(),
                             Description = string.Empty,

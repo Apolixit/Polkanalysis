@@ -3,9 +3,8 @@
       <TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="Ajuna.NetApi" Version="0.2.7" />
+	  <PackageReference Include="Ajuna.NetApi" Version="0.2.7" />
 	</ItemGroup>
 
 </Project>

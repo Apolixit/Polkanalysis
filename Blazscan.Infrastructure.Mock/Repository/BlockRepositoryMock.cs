@@ -9,17 +9,17 @@ namespace Blazscan.Infrastructure.Mock.Repository
 {
     public class BlockRepositoryMock : IBlockRepository
     {
-        public Task<BlockDetailsDto> GetBlockDetailsAsync(uint blockId)
+        public Task<BlockDto> GetBlockDetailsAsync(uint blockId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<BlockDto?> GetLastBlockAsync()
+        public Task<BlockLightDto?> GetLastBlockAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task SubscribeNewBlocksAsync(Action<BlockDto> blockCallback)
+        public Task SubscribeNewBlocksAsync(Action<BlockLightDto> blockCallback)
         {
             throw new NotImplementedException();
         }

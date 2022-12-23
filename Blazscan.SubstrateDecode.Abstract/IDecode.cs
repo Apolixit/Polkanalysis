@@ -14,8 +14,8 @@ namespace Blazscan.SubstrateDecode.Abstract
     /// </summary>
     public interface ISubstrateDecoding
     {
-        INode DecodeBlock(Block block);
-        INode DecodeBlock(BlockData blockData);
+        //INode DecodeBlock(Block block);
+        //INode DecodeBlock(BlockData blockData);
 
         INode DecodeExtrinsic(Extrinsic extrinsic);
 

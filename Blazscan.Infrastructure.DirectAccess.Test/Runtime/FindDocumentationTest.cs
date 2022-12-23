@@ -24,9 +24,9 @@ namespace Blazscan.Infrastructure.DirectAccess.Test.Runtime
         [TestCase(NetApiExt.Generated.Model.pallet_balances.pallet.Event.Endowed)]
         [TestCase(NetApiExt.Generated.Model.pallet_democracy.pallet.Call.cancel_referendum)]
         [TestCase(NetApiExt.Generated.Model.pallet_democracy.pallet.Error.AlreadyCanceled)]
-        public void FindDocumentation_Enum_ShouldSuceed(Enum e)
+        public void FindDocumentation_Enum_ShouldSuceed(Object e)
         {
-            Assert.IsNotNull(_palletBuilder.FindDocumentation(e));
+            Assert.IsNotNull(_palletBuilder.FindDocumentation((Enum)e));
         }
 
         [Test]

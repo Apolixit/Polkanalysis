@@ -35,7 +35,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
 
             var eventDto = new EventLightDto()
             {
-                Block = new Domain.Contracts.Dto.Block.BlockDto(),
+                Block = Substitute.For<Domain.Contracts.Dto.Block.BlockLightDto>(),
                 PalletName = nodeResult.HumanData.ToString(),
                 EventName = nodeResult.Children.First().HumanData.ToString(),
                 Description = ""//nodeResult.Children.First().Children.First().HumanData,

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazscan.Domain.Contracts.Dto.Block
+namespace Blazscan.Domain.Contracts.Dto.Extrinsic
 {
-    public class BlockDetailsDto
+    internal class ExtrinsicLightDto
     {
-        public HeaderDto Header { get; set; }
     }
 }

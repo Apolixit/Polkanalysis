@@ -8,18 +8,18 @@ namespace Blazscan.Domain.Contracts
         /// Allow to subscribe to new generated blocks
         /// </summary>
         /// <param name="blockCallback">Return the new finalized block</param>
-        Task SubscribeNewBlocksAsync(Action<BlockDto> blockCallback);
+        Task SubscribeNewBlocksAsync(Action<BlockLightDto> blockCallback);
 
         /// <summary>
         /// Return the last finalized block
         /// </summary>
         /// <returns></returns>
-        Task<BlockDto?> GetLastBlockAsync();
+        Task<BlockLightDto?> GetLastBlockAsync();
 
         /// <summary>
         /// Get full details for this block
         /// </summary>
         /// <returns></returns>
-        Task<BlockDetailsDto> GetBlockDetailsAsync(uint blockId);
+        Task<BlockDto> GetBlockDetailsAsync(uint blockId);
     }
 }

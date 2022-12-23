@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Blazscan.NetApiExt\Blazscan.NetApiExt.csproj" />
+    <ProjectReference Include="..\Blazscan.SubstrateDecode.Abstract\Blazscan.SubstrateDecode.Abstract.csproj" />
   </ItemGroup>
 
 </Project>

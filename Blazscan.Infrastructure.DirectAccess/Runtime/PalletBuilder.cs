@@ -40,7 +40,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
         }
 
         /// <summary>
-        /// Create and instanciate the call
+        /// Create and instanciate dynamically the call from pallet name and method arguments
         /// </summary>
         /// <param name="dynamicCall"></param>
         /// <param name="dynamicEnum"></param>
@@ -62,18 +62,18 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
             {
                 case TypeBuilder.Call:
                     palletError = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Calls.TypeId];
-                    dynamicCall = $"Blazscan.NetApiExt.Generated.Model.{palletError.Path[0]}.{palletError.Path[1]}.EnumCall";
-                    dynamicEnum = $"Blazscan.NetApiExt.Generated.Model.{palletError.Path[0]}.{palletError.Path[1]}.Call";
+                    dynamicCall = $"{palletError.Path[0]}.{palletError.Path[1]}.EnumCall";
+                    dynamicEnum = $"{palletError.Path[0]}.{palletError.Path[1]}.Call";
                     break;
                 case TypeBuilder.Error:
                     palletError = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Errors.TypeId];
-                    dynamicCall = $"Blazscan.NetApiExt.Generated.Model.{palletError.Path[0]}.{palletError.Path[1]}.EnumError";
-                    dynamicEnum = $"Blazscan.NetApiExt.Generated.Model.{palletError.Path[0]}.{palletError.Path[1]}.Error";
+                    dynamicCall = $"{palletError.Path[0]}.{palletError.Path[1]}.EnumError";
+                    dynamicEnum = $"{palletError.Path[0]}.{palletError.Path[1]}.Error";
                     break;
                 case TypeBuilder.Event:
                     palletError = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Events.TypeId];
-                    dynamicCall = $"Blazscan.NetApiExt.Generated.Model.{palletError.Path[0]}.{palletError.Path[1]}.EnumEvent";
-                    dynamicEnum = $"Blazscan.NetApiExt.Generated.Model.{palletError.Path[0]}.{palletError.Path[1]}.Event";
+                    dynamicCall = $"{palletError.Path[0]}.{palletError.Path[1]}.EnumEvent";
+                    dynamicEnum = $"{palletError.Path[0]}.{palletError.Path[1]}.Event";
                     break;
             }
 
