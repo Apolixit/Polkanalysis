@@ -16,9 +16,4 @@
    <ItemGroup>
       <PackageReference Include="Ajuna.ServiceLayer.Model" Version="0.1.27" />
    </ItemGroup>
-   
-   <ItemGroup>      
-      <ProjectReference Include="..\Blazscan.RestClient\Blazscan.RestClient.csproj" />
-      <ProjectReference Include="..\Blazscan.RestClient.Mockup\Blazscan.RestClient.Mockup.csproj" />
-   </ItemGroup>
 </Project>
