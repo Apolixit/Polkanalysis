@@ -36,6 +36,13 @@ namespace Blazscan.Domain.Contracts.Runtime
         IType BuildError(string palletName, Method method);
 
         /// <summary>
+        /// Generate dynamic namespace base
+        /// </summary>
+        /// <param name="nodeType"></param>
+        /// <returns></returns>
+        public string GenerateDynamicNamespaceBase(IEnumerable<string> nodeTypePath);
+
+        /// <summary>
         /// Try to find the associated NodeType in current Metadata for the given generic type
         /// </summary>
         /// <param name="type"></param>

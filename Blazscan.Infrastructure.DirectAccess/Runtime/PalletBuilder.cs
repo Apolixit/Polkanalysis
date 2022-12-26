@@ -17,10 +17,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
     public class PalletBuilder : IPalletBuilder
     {
         private readonly ISubstrateNodeRepository _substrateRepository;
+        private readonly ICurrentMetaData _currentMetaData;
 
-        public PalletBuilder(ISubstrateNodeRepository substrateRepository)
+        public PalletBuilder(ISubstrateNodeRepository substrateRepository, ICurrentMetaData currentMetaData)
         {
             _substrateRepository = substrateRepository;
+            _currentMetaData = currentMetaData;
         }
 
         private enum TypeBuilder
@@ -28,6 +30,14 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
             Call,
             Error,
             Event,
+        }
+
+        public string GenerateDynamicNamespaceBase(IEnumerable<string> nodeTypePath)
+        {
+            if(nodeTypePath == null)
+                throw new ArgumentNullException($"{nameof(nodeTypePath)} is null");
+
+            return string.Join(".", nodeTypePath.Take(nodeTypePath.Count() - 1));
         }
 
         protected byte[] Encode<T>(T enumPallet, byte[] param) where T : Enum
@@ -47,7 +57,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
         /// <returns></returns>
         private IType BuildGeneric(string palletName, Method method, TypeBuilder typeBuilder)
         {
-            var palletModule = _substrateRepository.Client.MetaData.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
+            var palletModule = _currentMetaData.GetPalletModule(palletName);
 
             if (palletModule == null)
                 throw new ArgumentException($"{nameof(palletModule)} has not been found in current Metadata");
@@ -55,25 +65,30 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
             if (method == null || method.Parameters == null || method.Parameters.Length == 0)
                 throw new ArgumentNullException($"BuildCall parameters are empty");
 
-            NodeType? palletError = null;
+            NodeType? currentType = null;
             string dynamicCall = string.Empty;
             string dynamicEnum = string.Empty;
-            switch(typeBuilder)
+            string namespaceBase = string.Empty;
+
+            switch (typeBuilder)
             {
                 case TypeBuilder.Call:
-                    palletError = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Calls.TypeId];
-                    dynamicCall = $"{palletError.Path[0]}.{palletError.Path[1]}.EnumCall";
-                    dynamicEnum = $"{palletError.Path[0]}.{palletError.Path[1]}.Call";
+                    currentType = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Calls.TypeId];
+                    namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
+                    dynamicCall = $"{namespaceBase}.EnumCall";
+                    dynamicEnum = $"{namespaceBase}.Call";
                     break;
                 case TypeBuilder.Error:
-                    palletError = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Errors.TypeId];
-                    dynamicCall = $"{palletError.Path[0]}.{palletError.Path[1]}.EnumError";
-                    dynamicEnum = $"{palletError.Path[0]}.{palletError.Path[1]}.Error";
+                    currentType = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Errors.TypeId];
+                    namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
+                    dynamicCall = $"{namespaceBase}.EnumError";
+                    dynamicEnum = $"{namespaceBase}.Error";
                     break;
                 case TypeBuilder.Event:
-                    palletError = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Events.TypeId];
-                    dynamicCall = $"{palletError.Path[0]}.{palletError.Path[1]}.EnumEvent";
-                    dynamicEnum = $"{palletError.Path[0]}.{palletError.Path[1]}.Event";
+                    currentType = _substrateRepository.Client.MetaData.NodeMetadata.Types[palletModule.Events.TypeId];
+                    namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
+                    dynamicCall = $"{namespaceBase}.EnumEvent";
+                    dynamicEnum = $"{namespaceBase}.Event";
                     break;
             }
 

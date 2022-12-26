@@ -24,7 +24,7 @@ namespace Blazscan.SubstrateDecode.Test.Event
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(), 
                 _substrateRepository,
-                new PalletBuilder(_substrateRepository));
+                new PalletBuilder(_substrateRepository, Substitute.For<ICurrentMetaData>()));
         }
 
         [OneTimeSetUp]

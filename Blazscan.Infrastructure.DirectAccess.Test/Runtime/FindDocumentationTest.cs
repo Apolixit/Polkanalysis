@@ -13,10 +13,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Test.Runtime
     public class FindDocumentationTest : IntegrationTest
     {
         private readonly IPalletBuilder _palletBuilder;
+        private readonly ICurrentMetaData _currentMetaData;
 
         public FindDocumentationTest()
         {
-            _palletBuilder = new PalletBuilder(_substrateRepository);
+            _currentMetaData = new CurrentMetaData(_substrateRepository);
+            _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
         }
 
         [Test]

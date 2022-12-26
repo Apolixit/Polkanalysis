@@ -3,8 +3,10 @@ using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types.Metadata;
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.NetApiExt.Generated;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,35 +19,62 @@ namespace Blazscan.Infrastructure.DirectAccess.Test.Runtime
     {
         protected readonly ISubstrateNodeRepository _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
+        private readonly ICurrentMetaData _currentMetaData;
 
         public PalletBuilderUnitTest()
         {
             _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
-            _substrateRepository.Client.Returns(
-                new SubstrateClientExt(default, default));
 
-            //_substrateRepository.Client.IsConnected.Returns(true);
-            //_substrateRepository.Client.ConnectAsync().ReturnsForAnyArgs(Task.CompletedTask);
+            //var mockClient = new SubstrateClientExt(default, default);
+            var mockClient = Substitute.For<SubstrateClientExt>(default, default);
+            //mockClient.IsConnected.Returns(true);
+            //mockClient.ConnectAsync().ReturnsForAnyArgs(Task.CompletedTask);
+            //mockClient.MetaData.Returns(Substitute.For<IMetaData>());
 
-            _palletBuilder = Substitute.For<IPalletBuilder>();
+            _substrateRepository.Client.Returns(mockClient);
+
+            _currentMetaData = Substitute.For<ICurrentMetaData>();
+            _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
         }
 
         [Test]
         public void Build_InvalidPalletName_ShouldFailed()
         {
-            //var runtimeMetadata = new RuntimeMetadata();
-            var runtimeMetadata = Substitute.For<RuntimeMetadata>();
-            //var runtimeMetadata = Arg.Any<RuntimeMetadata>();
-            //var metadata = new MetaData(runtimeMetadata, "unknown");
-            var metadata = Substitute.For<MetaData>(runtimeMetadata, "unknown");
-            //_substrateRepository.Client.MetaData.Returns(Substitute.For<MetaData>(Arg.Any<RuntimeMetadata>()));
-            _substrateRepository.Client.MetaData.Returns(metadata);
-            _substrateRepository.Client.MetaData.NodeMetadata.Modules.Returns(new Dictionary<uint, PalletModule>());
-
+            _currentMetaData.GetPalletModule(Arg.Any<string>()).ReturnsNull();
             var mockMethod = Substitute.For<Method>((byte)0, (byte)0);
+
             Assert.Throws<ArgumentException>(() => _palletBuilder.BuildCall("WrongName", mockMethod));
             Assert.Throws<ArgumentException>(() => _palletBuilder.BuildEvent("WrongName", mockMethod));
             Assert.Throws<ArgumentException>(() => _palletBuilder.BuildError("WrongName", mockMethod));
+        }
+
+        [Test]
+        public void Build_InvalidMethodParameter_ShouldFailed()
+        {
+            // Just mock a random pallet module, in order to bypass the if( != null)
+            _currentMetaData.GetPalletModule(Arg.Any<string>()).Returns(new PalletModule());
+
+            var mockMethod = Substitute.For<Method>((byte)0, (byte)0);
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall("Balances", new Method(0, 0)));
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent("Balances", new Method(0, 0)));
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError("Balances", new Method(0, 0)));
+        }
+
+        [Test]
+        [TestCase(new string[] { "xxxx" }, "")]
+        [TestCase(new string[] { "toto", "titi", "tata","xxxx" }, "toto.titi.tata")]
+        public void GenerateDynamicNamespace_WithValidNamespace_ShouldWork(IEnumerable<string> currentNamespace, string result)
+        {
+            Assert.That(_palletBuilder.GenerateDynamicNamespaceBase(currentNamespace), Is.EqualTo(result));
+        }
+
+        [Test]
+        public void GenerateDynamicNamespace_WithInvalidNamespace_ShouldFail()
+        {
+            Assert.That(_palletBuilder.GenerateDynamicNamespaceBase(new List<string>()), Is.EqualTo(string.Empty));
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.GenerateDynamicNamespaceBase(null));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
         }
     }
 }

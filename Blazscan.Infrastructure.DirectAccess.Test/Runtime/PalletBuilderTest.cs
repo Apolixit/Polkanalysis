@@ -20,31 +20,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Test.Runtime
     public class PalletBuilderTest : IntegrationTest
     {
         private readonly IPalletBuilder _palletBuilder;
+        private readonly ICurrentMetaData _currentMetaData;
 
         public PalletBuilderTest()
         {
-            _palletBuilder = new PalletBuilder(_substrateRepository);
-        }
-
-        [Test]
-        public void Build_InvalidPalletName_ShouldFailed()
-        {
-            _substrateRepository.Client.MetaData.Returns(Substitute.For<MetaData>());
-            _substrateRepository.Client.MetaData.NodeMetadata.Modules.Returns(new Dictionary<uint, PalletModule>());
-
-            var mockMethod = Substitute.For<Method>((byte)0, (byte)0);
-            Assert.Throws<ArgumentException>(() => _palletBuilder.BuildCall("WrongName", mockMethod));
-            Assert.Throws<ArgumentException>(() => _palletBuilder.BuildEvent("WrongName", mockMethod));
-            Assert.Throws<ArgumentException>(() => _palletBuilder.BuildError("WrongName", mockMethod));
-        }
-
-        [Test]
-        public void Build_InvalidMethodParameter_ShouldFailed()
-        {
-            var mockMethod = Substitute.For<Method>();
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall("Balances", new Method(0, 0)));
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent("Balances", new Method(0, 0)));
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError("Balances", new Method(0, 0)));
+            _currentMetaData = new CurrentMetaData(_substrateRepository);
+            _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
         }
 
         [Test]
