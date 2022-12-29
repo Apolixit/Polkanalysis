@@ -1,9 +1,4 @@
-﻿using Blazscan.NetApiExt.Generated.Model.frame_support.dispatch;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
 
 namespace Blazscan.Domain.Contracts
 {

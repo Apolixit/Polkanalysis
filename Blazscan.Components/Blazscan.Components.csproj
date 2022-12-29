@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blazscan.Domain.Contracts\Blazscan.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Blazscan.SubstrateDecode\Blazscan.SubstrateDecode.csproj" />
   </ItemGroup>
 
 </Project>

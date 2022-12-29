@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blazscan.NetApiExt\Blazscan.NetApiExt.csproj" />
-    <ProjectReference Include="..\Blazscan.SubstrateDecode.Abstract\Blazscan.SubstrateDecode.Abstract.csproj" />
+    <ProjectReference Include="..\Blazscan.Polkadot.NetApiExt\Blazscan.Polkadot.NetApiExt.csproj" />
   </ItemGroup>
 
 </Project>

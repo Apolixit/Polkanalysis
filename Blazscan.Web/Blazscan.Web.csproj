@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Blazscan.Components\Blazscan.Components.csproj" />
+    <ProjectReference Include="..\Blazscan.Domain\Blazscan.Domain.csproj" />
     <ProjectReference Include="..\Blazscan.Infrastructure.DirectAccess\Blazscan.Infrastructure.DirectAccess.csproj" />
   </ItemGroup>
 

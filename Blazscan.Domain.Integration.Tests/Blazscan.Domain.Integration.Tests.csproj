@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Kusama\" />
+    <Folder Include="Bajun\" />
+    <Folder Include="Polkadot\Event\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSubstitute" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blazscan.Domain\Blazscan.Domain.csproj" />
+    <ProjectReference Include="..\Blazscan.Infrastructure.DirectAccess\Blazscan.Infrastructure.DirectAccess.csproj" />
+    <ProjectReference Include="..\Blazscan.Integration.Tests.Contracts\Blazscan.Integration.Tests.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

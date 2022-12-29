@@ -1,8 +1,7 @@
 using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Domain.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Repository;
-using Blazscan.SubstrateDecode;
-using Blazscan.SubstrateDecode.Abstract;
-using Blazscan.SubstrateDecode.Event;
 using Blazscan.Web;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

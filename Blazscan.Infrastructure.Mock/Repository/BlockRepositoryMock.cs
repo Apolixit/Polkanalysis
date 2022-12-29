@@ -1,9 +1,5 @@
 ﻿using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blazscan.Infrastructure.Mock.Repository
 {

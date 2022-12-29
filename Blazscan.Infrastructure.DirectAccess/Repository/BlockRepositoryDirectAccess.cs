@@ -2,9 +2,8 @@
 using Ajuna.NetApi.Model.Types.Base;
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
-using Blazscan.Domain.Contracts.Exception;
 using Blazscan.Domain.Contracts.Repository;
-using Blazscan.SubstrateDecode.Abstract;
+using Blazscan.Domain.Contracts.Runtime;
 
 namespace Blazscan.Infrastructure.DirectAccess.Repository
 {
@@ -35,7 +34,8 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
             //}
             //blockModel.Header = new HeaderDto(blockDetails.Block.Header);
 
-            var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            //var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            var filteredExtrinsic = blockDetails.Block.Extrinsics;
             foreach(var extrinsic in filteredExtrinsic)
             {
                 var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);

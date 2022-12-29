@@ -1,1 +1,1 @@
-polkadot_runtime
+bajun_runtime

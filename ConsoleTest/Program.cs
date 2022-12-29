@@ -1,13 +1,10 @@
-﻿
-using Ajuna.NetApi;
+﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Blazscan.NetApiExt.Generated;
-using Blazscan.NetApiExt.Generated.Model.frame_system;
-using Blazscan.NetApiExt.Generated.Model.sp_core.crypto;
-using Blazscan.NetApiExt.Generated.Storage;
+using Blazscan.Polkadot.NetApiExt.Generated;
+using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system;
+using Blazscan.Polkadot.NetApiExt.Generated.Storage;
 using System.Diagnostics;
 using System.Net.WebSockets;
 using System.Text;
@@ -84,7 +81,7 @@ public static class Program
                 var details = string.Empty;
 
                 var mainEventString = eventCore.Value.ToString();
-                if (eventCore.Value != Blazscan.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.System)
+                if (eventCore.Value != Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.System)
                 {
                     var hex = Utils.Bytes2HexString(eventReceived.Encode());
                 }

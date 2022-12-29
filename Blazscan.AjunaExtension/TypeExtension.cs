@@ -1,7 +1,6 @@
-﻿
-using Ajuna.NetApi.Model.Types;
+﻿using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Blazscan.NetApiExt.Generated.Model.primitive_types;
+using Blazscan.Polkadot.NetApiExt.Generated.Model.primitive_types;
 
 namespace Blazscan.AjunaExtension
 {

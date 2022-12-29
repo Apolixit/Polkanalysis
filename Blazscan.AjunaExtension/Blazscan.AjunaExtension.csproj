@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blazscan.NetApiExt\Blazscan.NetApiExt.csproj" />
+    <ProjectReference Include="..\Blazscan.Polkadot.NetApiExt\Blazscan.Polkadot.NetApiExt.csproj" />
   </ItemGroup>
 
 </Project>

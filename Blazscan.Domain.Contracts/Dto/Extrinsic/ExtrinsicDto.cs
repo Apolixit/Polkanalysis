@@ -1,11 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Blazscan.Domain.Contracts.Dto.Block;
-using Blazscan.SubstrateDecode.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Blazscan.Domain.Contracts.Runtime;
 
 namespace Blazscan.Domain.Contracts.Dto.Extrinsic
 {

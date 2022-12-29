@@ -1,9 +1,4 @@
-﻿using Blazscan.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Blazscan.Polkadot.NetApiExt.Generated;
 
 namespace Blazscan.Domain.Contracts.Repository
 {

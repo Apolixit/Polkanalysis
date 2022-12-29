@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Blazscan.Domain.Contracts.Repository;
-using Blazscan.NetApiExt.Generated;
+using Blazscan.Polkadot.NetApiExt.Generated;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,10 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
 
         public SubstrateNodeRepositoryDirectAccess(IConfiguration configuration)
         {
-            _nodeUri = new Uri(configuration["endpoint:current"]);
+            var endpoint = configuration["endpoint:current"];
+            if(endpoint == null)
+                throw new ArgumentNullException($"{nameof(endpoint)} configuration is not set");
+            _nodeUri = new Uri(endpoint);
         }
 
         public SubstrateClientExt Client
