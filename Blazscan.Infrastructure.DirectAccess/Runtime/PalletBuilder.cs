@@ -93,10 +93,10 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
             }
 
             Assembly assembly = typeof(Polkadot.NetApiExt.Generated.SubstrateClientExt).Assembly;
-            Type? palletType = assembly.GetType($"Blazscan.NetApiExt.Generated.Model.{dynamicCall}");
+            Type? palletType = assembly.GetType($"Blazscan.Polkadot.NetApiExt.Generated.Model.{dynamicCall}");
             if (palletType == null) throw new FormatException($"Dynamic call to EnumCall for pallet {palletName} has failed");
 
-            Type? enumType = assembly.GetType($"Blazscan.NetApiExt.Generated.Model.{dynamicEnum}");
+            Type? enumType = assembly.GetType($"Blazscan.Polkadot.NetApiExt.Generated.Model.{dynamicEnum}");
             if (enumType == null) throw new FormatException($"Dynamic call to enum for pallet {palletName} has failed");
 
             IType? callInstance = (IType?)Activator.CreateInstance(palletType);

@@ -11,7 +11,6 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {
     public class BlockRepositoryTest : PolkadotIntegrationTest
     {
-        private readonly ISubstrateNodeRepository _substrateRepository;
         private readonly IBlockRepository _blockRepository;
         private readonly ICurrentMetaData _currentMetaData;
         private readonly ISubstrateDecoding _substrateDecoding;
@@ -84,7 +83,9 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         [TestCase(13564726)]
         public async Task GetBlockDetails_ValidBlockNumber_5_1_ShouldWork(int blockId)
         {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId);
+            var b = new BlockRepositoryDirectAccess(_substrateRepository, _substrateDecoding);
+            var blockInfo = await b.GetBlockEvents((uint)blockId);
+            //var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId);
             Assert.IsNull(blockInfo);
         }
 

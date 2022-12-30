@@ -18,6 +18,8 @@ namespace Blazscan.Integration.Tests.Contracts
 
         public IntegrationTest()
         {
+            _substrateEndpoint = GetEndpoint();
+
             if (_substrateEndpoint == null)
                 throw new ArgumentNullException("You must provide a valid Substrate endpoint");
 
@@ -28,6 +30,8 @@ namespace Blazscan.Integration.Tests.Contracts
                 _substrateEndpoint.EndPointUri, 
                 ChargeTransactionPayment.Default()));
         }
+
+        protected abstract SubstrateEndpoint GetEndpoint();
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test

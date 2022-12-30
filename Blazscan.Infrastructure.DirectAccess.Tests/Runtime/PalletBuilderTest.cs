@@ -19,12 +19,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Test.Runtime
         {
             _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
 
-            //var mockClient = new SubstrateClientExt(default, default);
             var mockClient = Substitute.For<SubstrateClientExt>(default, default);
-            //mockClient.IsConnected.Returns(true);
-            //mockClient.ConnectAsync().ReturnsForAnyArgs(Task.CompletedTask);
-            //mockClient.MetaData.Returns(Substitute.For<IMetaData>());
-
             _substrateRepository.Client.Returns(mockClient);
 
             _currentMetaData = Substitute.For<ICurrentMetaData>();

@@ -10,7 +10,11 @@ namespace Blazscan.Integration.Tests.Contracts
     public abstract class PolkadotIntegrationTest : IntegrationTest
     {
         public PolkadotIntegrationTest() {
-            base._substrateEndpoint = new SubstrateEndpoint()
+        }
+
+        protected override SubstrateEndpoint GetEndpoint()
+        {
+            return new SubstrateEndpoint()
             {
                 Name = "Polkadot",
                 Endpoint = "wss://rpc.polkadot.io",

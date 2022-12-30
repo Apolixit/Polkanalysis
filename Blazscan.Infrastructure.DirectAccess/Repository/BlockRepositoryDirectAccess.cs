@@ -1,9 +1,13 @@
-﻿using Ajuna.NetApi.Model.Rpc;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
+using Blake2Core;
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Polkadot.NetApiExt.Generated.Storage;
+using Newtonsoft.Json.Linq;
 
 namespace Blazscan.Infrastructure.DirectAccess.Repository
 {
@@ -34,14 +38,29 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
             //}
             //blockModel.Header = new HeaderDto(blockDetails.Block.Header);
 
-            //var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
-            var filteredExtrinsic = blockDetails.Block.Extrinsics;
+            var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            //var filteredExtrinsic = blockDetails.Block.Extrinsics;
             foreach(var extrinsic in filteredExtrinsic)
             {
                 var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
             }
             
             //var logDecode = _substrateDecode.DecodeLog(blockDetails.Block.Header.Digest.Logs);
+            return null;
+        }
+
+        public async Task<int?> GetBlockEvents(uint blockId)
+        {
+            var blockNumber = new BlockNumber();
+            blockNumber.Create(blockId);
+            var blockHash = await _substrateService.Client.Chain.GetBlockHashAsync(blockNumber);
+            var parameters1 = RequestGenerator.GetStorage("System", "Events", Ajuna.NetApi.Model.Meta.Storage.Type.Plain, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
+                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+                        blockHash});
+            string parameters2 = SystemStorage.EventsParams();
+            var events1 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters1, CancellationToken.None);
+            var events2 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters2, CancellationToken.None);
+
             return null;
         }
 

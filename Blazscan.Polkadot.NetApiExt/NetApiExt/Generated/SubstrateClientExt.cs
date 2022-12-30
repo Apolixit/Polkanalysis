@@ -18,7 +18,7 @@ namespace Blazscan.Polkadot.NetApiExt.Generated
 {
     
     
-    public sealed class SubstrateClientExt : Ajuna.NetApi.SubstrateClient
+    public class SubstrateClientExt : Ajuna.NetApi.SubstrateClient
     {
         
         /// <summary>
