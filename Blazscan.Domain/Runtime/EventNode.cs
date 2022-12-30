@@ -1,6 +1,10 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Contracts.Runtime.Mapping;
+using System.Dynamic;
+using System.Reflection.Emit;
+using System.Reflection;
+using System.Text.Json;
 
 namespace Blazscan.Domain.Runtime
 {
@@ -30,11 +34,9 @@ namespace Blazscan.Domain.Runtime
         public LinkedList<INode> Children { get; set; } = new LinkedList<INode>();
 
         #region Tree props
-        public static EventNode Empty => Create();
+        public bool IsEmpty => Data == null;
 
-        bool INode.IsEmpty => Data == null;
-
-        bool INode.IsLeaf => Children == null || Children.Count == 0;
+        public bool IsLeaf => Children == null || Children.Count == 0;
 
         public string Documentation { get; set; }
         #endregion
@@ -86,7 +88,36 @@ namespace Blazscan.Domain.Runtime
 
         public string ToJson()
         {
-            throw new NotImplementedException();
+            var res = JsonSerializer.Serialize(ToDictionnary());
+            return res;
+        }
+
+        public Dictionary<string, object> ToDictionnary()
+        {
+            var dictionnary = new Dictionary<string, object>();
+
+            if (Children.Count > 0)
+            {
+                dictionnary.Add(
+                    Name, 
+                    Children.Select(x => x.ToDictionnary()));
+            }
+            else
+            {
+                dictionnary.Add(Name, HumanData);
+            }
+
+            return dictionnary;
+        }
+
+        public KeyValuePair<string, object> ToKeyValuePair()
+        {
+            return new KeyValuePair<string, object>(
+                Name,
+                Children.Count > 0 
+                    ? Children.Select(x => x.ToKeyValuePair()) 
+                    : HumanData
+            );
         }
     }
 }

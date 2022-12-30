@@ -50,7 +50,7 @@ namespace Blazscan.Domain.Runtime
             var eventPhase = eventReceived.Phase;
             var eventTopic = eventReceived.Topics;
 
-            var eventNode = EventNode.Empty;
+            var eventNode = EventNode.Create();
             VisitNode(eventNode, eventCore);
 
             //EventNode eventPhaseNode = EventNode.Empty;
@@ -64,7 +64,7 @@ namespace Blazscan.Domain.Runtime
 
         public INode DecodeEvent(IType ev)
         {
-            EventNode node = EventNode.Empty;
+            EventNode node = EventNode.Create();
             VisitNode(node, ev);
 
             return node;

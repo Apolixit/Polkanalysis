@@ -42,5 +42,50 @@ namespace Blazscan.Domain.Tests.Runtime.Event
                 Description = ""//nodeResult.Children.First().Children.First().HumanData,
             };
         }
+
+        /// <summary>
+        /// First ParaInclusion event of block n°13,586,896
+        /// https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer/query/0x2c1fa9cdbce35b82b905c32898d2fe26df58dd4bf26d8d6c84293cbaa7f4384f
+        /// JSON :
+        /// {
+        ///     phase: {
+        ///    ApplyExtrinsic: 1
+        ///  }
+        ///  event: {
+        ///  method: CandidateIncluded
+        ///  section: paraInclusion
+        ///  index: 0x3501
+        ///    data:
+        ///      [
+        ///      {
+        ///      descriptor:
+        ///          {
+        ///          paraId: 1,000
+        ///          relayParent: 0xf370074154a619588d58c268c4cb34a41c84af1638f44ee2e78993d6316f0aa8
+        ///          collator: 0x727b41760c649015e4766b30a6297ebe58312eb79ba73053c816e1139bdde016
+        ///          persistedValidationDataHash: 0x68cb29347675d4638f3ed7542ac00a7103403a5950ea7983ca90cb059e3ad015
+        ///          povHash: 0xe9ab33a6928efbf6fb7d028871bed7df798193bf53b4265121329402d4279c0f
+        ///          erasureRoot: 0x1e36dd22e9f80674cc19ec1c3adfb2321ca3d7e33c1b6223dcda0c630fcd78ac
+        ///          signature: 0x52defcd12e584c8c731e0b4a27689c563b9d05611894773ad3b4b0c44d85f03ce4cbc93a95eb1f84d0bb3659f55f416087e3c95a35cee0238a5f528a01de418a
+        ///          paraHead: 0x27b98686814ce4b1f64dbaa7282968d69011d4bf9a86f5045a3a2db6f081d4d0
+        ///          validationCodeHash: 0x6d3551e75c9d5c3e8641d1b56b6a72273ed9333d86fc0032ac17d0904e1742b1
+        ///        }
+        ///      commitmentsHash: 0x293effec1b705c3c7f2a7ba9486d3740d87266ae0ab616750c0b370e85162860
+        ///      }
+        ///      0xcaf7227ef5f8bd81bbc5e0386ef531ea47b2b5bc61c5b02f173d764f5e7e7d510a22b000bc7ab6cde07b993d260a03e0c0ec4b9b069bda1d1b5f5f1fb38359d7f87fd7843ce902e54e45912c7ac3a05d3c38315b60de67a7bfcdcf980c4ae081ec7ed56f080661757261202e9b4e080000000005617572610101b158e2db125553abc0e2dacb956ef62a29a5b871bb64337be42a6167c7f034ca46bf5bce30ff50c505510814c8313380aebee940da86b4ed144723de22a7a40b
+        ///      0
+        ///      36
+        ///      ]
+        ///    }
+        ///    topics: []
+        ///}
+        /// <param name="hex"></param>
+        [Test]
+        [TestCase("0x00010000003501E8030000F370074154A619588D58C268C4CB34A41C84AF1638F44EE2E78993D6316F0AA8727B41760C649015E4766B30A6297EBE58312EB79BA73053C816E1139BDDE01668CB29347675D4638F3ED7542AC00A7103403A5950EA7983CA90CB059E3AD015E9AB33A6928EFBF6FB7D028871BED7DF798193BF53B4265121329402D4279C0F1E36DD22E9F80674CC19EC1C3ADFB2321CA3D7E33C1B6223DCDA0C630FCD78AC52DEFCD12E584C8C731E0B4A27689C563B9D05611894773AD3B4B0C44D85F03CE4CBC93A95EB1F84D0BB3659F55F416087E3C95A35CEE0238A5F528A01DE418A27B98686814CE4B1F64DBAA7282968D69011D4BF9A86F5045A3A2DB6F081D4D06D3551E75C9D5C3E8641D1B56B6A72273ED9333D86FC0032AC17D0904E1742B1293EFFEC1B705C3C7F2A7BA9486D3740D87266AE0AB616750C0B370E85162860E902CAF7227EF5F8BD81BBC5E0386EF531EA47B2B5BC61C5B02F173D764F5E7E7D510A22B000BC7AB6CDE07B993D260A03E0C0EC4B9B069BDA1D1B5F5F1FB38359D7F87FD7843CE902E54E45912C7AC3A05D3C38315B60DE67A7BFCDCF980C4AE081EC7ED56F080661757261202E9B4E080000000005617572610101B158E2DB125553ABC0E2DACB956EF62A29A5B871BB64337BE42A6167C7F034CA46BF5BCE30FF50C505510814C8313380AEBEE940DA86B4ED144723DE22A7A40B000000002400000000")]
+        public void ParaInclusion_CandidateIncluded_ShouldBeParsed(string hex)
+        {
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            Assert.IsNotNull(nodeResult);
+        }
     }
 }

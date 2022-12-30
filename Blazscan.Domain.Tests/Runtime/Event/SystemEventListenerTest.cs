@@ -20,6 +20,39 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hex"></param>
+        [TestCase("0x00010000000000384A7AFE72000000020000")]
+        public void System_ExtrinsicSuccess_1_ShouldBeParsed(string hex)
+        {
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            Assert.IsTrue(true);
+            //var result = EventResult.Create(nodeResult);
+        //            {
+        //            phase:
+        //                {
+        //                ApplyExtrinsic: 1
+        //            }
+        //    event: {
+        //        method: ExtrinsicSuccess
+        //        section: system
+        //        index: 0x0000
+        //      data:
+        //            {
+        //            dispatchInfo:
+        //                {
+        //                weight: 493,895,699,000
+        //          class: Mandatory
+        //          paysFee: Yes
+        //    }
+        //}
+        //    }
+        //    topics: []
+        //  }
+        }
+
+        /// <summary>
         /// https://github.com/paritytech/substrate/blob/master/frame/system/src/lib.rs#L495
         /// Pallet system
         /// extrinsic success

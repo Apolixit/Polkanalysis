@@ -97,5 +97,12 @@ namespace Blazscan.Domain.Contracts.Runtime
         /// </summary>
         /// <returns></returns>
         string ToJson();
+
+        /// <summary>
+        /// Convert current node to list of dictionnary
+        /// </summary>
+        /// <returns></returns>
+        Dictionary<string, object> ToDictionnary();
+        KeyValuePair<string, object> ToKeyValuePair();
     }
 }
