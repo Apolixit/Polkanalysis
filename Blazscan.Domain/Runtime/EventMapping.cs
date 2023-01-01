@@ -74,11 +74,11 @@ namespace Blazscan.Domain.Runtime
                     CategoryName = "Result",
                     Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
                 },
-                new EventMappingElem()
-                {
-                    CategoryName = "DispatchInfo",
-                    Mapping = new List<IMappingElement>() { new MappingElementDispatchInfo() }
-                }
+                //new EventMappingElem()
+                //{
+                //    CategoryName = "DispatchInfo",
+                //    Mapping = new List<IMappingElement>() { new MappingElementDispatchInfo() }
+                //}
             };
         }
 
@@ -297,7 +297,8 @@ namespace Blazscan.Domain.Runtime
 
         public Type ObjectType => _objectType;
 
-        public dynamic ToHuman(dynamic input) => input.ToString();
+        //public dynamic ToHuman(dynamic input) => input.ToString();
+        public dynamic ToHuman(dynamic input) => input.Value.ToString();
     }
 
     public class EventMappingElem : IMappingCategory

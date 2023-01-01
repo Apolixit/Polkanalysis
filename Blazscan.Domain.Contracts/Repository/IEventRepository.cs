@@ -9,6 +9,11 @@ namespace Blazscan.Domain.Contracts.Repository
 {
     public interface IEventRepository
     {
+        /// <summary>
+        /// Subscribe for new events
+        /// </summary>
+        /// <param name="eventCallback"></param>
+        /// <returns></returns>
         Task SubscribeEventAsync(Action<EventLightDto> eventCallback);
     }
 }

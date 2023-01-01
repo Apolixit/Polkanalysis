@@ -34,21 +34,21 @@ namespace Blazscan.Domain.Contracts.Dto.Block
         public required Hash StateRoot { get; set; }
         public required Hash ExtrinsicsRoot { get; set; }
         public ValidatorDto? Validator { get; set; }
-        public int SpecVersion { get; set; }
+        public uint SpecVersion { get; set; }
 
         /// <summary>
         /// Number of extrinsic linked to this block
         /// </summary>
-        public int NbExtrinsics { get; set; } = 0;
+        public uint NbExtrinsics { get; set; } = 0;
 
         /// <summary>
         /// Number of events linked to this block
         /// </summary>
-        public int NbEvents { get; set; } = 0;
+        public uint NbEvents { get; set; } = 0;
 
         /// <summary>
         /// Number of logs linked to this block
         /// </summary>
-        public int NbLogs { get; set; } = 0;
+        public uint NbLogs { get; set; } = 0;
     }
 }

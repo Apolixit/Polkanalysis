@@ -33,4 +33,8 @@
     <ProjectReference Include="..\Blazscan.Infrastructure.DirectAccess\Blazscan.Infrastructure.DirectAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Runtime\Block\" />
+  </ItemGroup>
+
 </Project>

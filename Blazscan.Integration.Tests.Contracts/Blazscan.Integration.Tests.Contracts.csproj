@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Blazscan.Configuration.Contracts\Blazscan.Configuration.Contracts.csproj" />
     <ProjectReference Include="..\Blazscan.Domain.Contracts\Blazscan.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Blazscan.Infrastructure.DirectAccess\Blazscan.Infrastructure.DirectAccess.csproj" />
   </ItemGroup>
 
 </Project>

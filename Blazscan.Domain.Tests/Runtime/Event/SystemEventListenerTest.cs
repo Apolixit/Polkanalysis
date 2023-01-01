@@ -23,6 +23,7 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         /// 
         /// </summary>
         /// <param name="hex"></param>
+        [Test]
         [TestCase("0x00010000000000384A7AFE72000000020000")]
         public void System_ExtrinsicSuccess_1_ShouldBeParsed(string hex)
         {

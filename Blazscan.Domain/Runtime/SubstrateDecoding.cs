@@ -51,7 +51,7 @@ namespace Blazscan.Domain.Runtime
             var eventTopic = eventReceived.Topics;
 
             var eventNode = EventNode.Create();
-            VisitNode(eventNode, eventCore);
+            VisitNode(eventNode, eventReceived);
 
             //EventNode eventPhaseNode = EventNode.Empty;
             //VisitNode(eventPhaseNode, eventPhase);
@@ -84,11 +84,12 @@ namespace Blazscan.Domain.Runtime
 
                 if (val == null) throw new ArgumentNullException($"The value element (enum) from {baseEnumValue.TypeName} is null while visiting node");
 
-                var doc = _palletBuilder.FindDocumentation((Enum)val);
+                var doc = _palletBuilder.FindDocumentation(val);
                 var AddDataToNode = (INode node) =>
                 {
                     node
                         .AddData(value)
+                        .AddName(val.ToString())
                         .AddHumanData(val);
 
                     if (doc != null)
@@ -165,6 +166,7 @@ namespace Blazscan.Domain.Runtime
                     return node;
                 };
 
+                //node = AddDataToNode(node);
                 if (node.IsEmpty)
                     node = AddDataToNode(node);
                 else

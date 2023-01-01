@@ -1,4 +1,5 @@
-﻿using Blazscan.Domain.Contracts;
+﻿using Ajuna.NetApi.Model.Extrinsics;
+using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
@@ -31,16 +32,16 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         [TestCase(13198574)]
         public async Task GetBlockDetails_ValidBlockNumber_ShouldWork(int blockId)
         {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId);
+            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.IsNull(blockInfo);
 
         }
 
         [Test]
         [TestCase(13210791)]
-        public async Task GetBlockDetails_ValidBlockNumber_2_ShouldWork(int blockId)
+        public async Task GetBlockDetails_ValidBlockNumber_2_ShouldWorkAsync(int blockId)
         {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId);
+            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.IsNull(blockInfo);
 
         }
@@ -49,7 +50,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         [TestCase(13278242)]
         public async Task GetBlockDetails_ValidBlockNumber_3_ShouldWork(int blockId)
         {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId);
+            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.IsNull(blockInfo);
 
         }
@@ -58,7 +59,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         [TestCase(13406835)]
         public async Task GetBlockDetails_ValidBlockNumber_4_ShouldWork(int blockId)
         {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId);
+            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.IsNull(blockInfo);
 
         }
@@ -98,5 +99,15 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         //    var res = _substrateDecoding.DecodeExtrinsic(extrinsic);
         //    Assert.IsTrue(true);
         //}
+
+        [Test]
+        [TestCase("0x280403000b207eba5c8501")]
+        public async Task GetExtrinsic_ShouldWork(string extrinsicHash)
+        {
+            var extrinsic = new Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
+            //var _substrateDecode = new SubstrateDecoding(new EventMapping(), _substrateRepository, new PalletBuilder(_substrateRepository, Substitute.For<ICurrentMetaData>()));
+            var res = _substrateDecoding.DecodeExtrinsic(extrinsic);
+            Assert.IsTrue(true);
+        }
     }
 }

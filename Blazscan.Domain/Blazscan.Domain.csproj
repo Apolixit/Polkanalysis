@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CSharp.OperationResult" Version="0.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Blazscan.AjunaExtension\Blazscan.AjunaExtension.csproj" />
     <ProjectReference Include="..\Blazscan.Domain.Contracts\Blazscan.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Blazscan.Polkadot.NetApiExt\Blazscan.Polkadot.NetApiExt.csproj" />
