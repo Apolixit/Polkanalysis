@@ -6,6 +6,7 @@ using Blazscan.Domain.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Repository;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using System;
@@ -24,14 +25,19 @@ namespace Blazscan.Domain.Tests.Runtime.Extrinsic
 
         public ExtrinsicTimestampTest()
         {
-            _currentMetaData = new CurrentMetaData(_substrateRepository);
+            _currentMetaData = new CurrentMetaData(
+                _substrateRepository,
+                Substitute.For<ILogger<CurrentMetaData>>());
 
             //_substrateDecoding = new SubstrateDecoding(new EventMapping(), _substrateRepository, new PalletBuilder(_substrateRepository, _currentMetaData));
 
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(),
                 _substrateRepository,
-                new PalletBuilder(_substrateRepository, _currentMetaData));
+                new PalletBuilder(
+                    _substrateRepository,
+                    _currentMetaData),
+                Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
         /// <summary>

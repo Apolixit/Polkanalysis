@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Xsl;
+using Ajuna.NetApi.Model.Types;
+using System.Transactions;
 
 namespace Blazscan.Domain.Tests.Node
 {
@@ -19,14 +21,14 @@ namespace Blazscan.Domain.Tests.Node
         [Test]
         public void CreateNode_ShouldBeEmpty()
         {
-            var newNode = EventNode.Create();
+            var newNode = new EventNode();
             Assert.IsTrue(newNode.IsEmpty);
         }
 
         [Test]
         public void CreateNode_WithAmount_ShouldSucceed()
         {
-            var node = EventNode.Create();
+            var node = new EventNode();
             var u32Amount = new U32();
             u32Amount.Create(1000);
 
@@ -61,20 +63,20 @@ namespace Blazscan.Domain.Tests.Node
             var u32Amount = new U32();
             u32Amount.Create(1000);
 
-            var nodeAccount = EventNode.Create();
+            var nodeAccount = new EventNode();
             nodeAccount.AddData(accountId32);
             nodeAccount.AddHumanData(addressAccount);
             nodeAccount.AddName("from");
             Assert.IsTrue(nodeAccount.IsLeaf);
 
-            var nodeAmount = EventNode.Create();
+            var nodeAmount = new EventNode();
             nodeAmount.AddData(u32Amount);
             nodeAmount.AddHumanData(u32Amount.Value);
             nodeAmount.AddName("amount");
             Assert.IsTrue(nodeAmount.IsLeaf);
 
 
-            var masterNode = EventNode.Create();
+            var masterNode = new EventNode();
             Assert.IsEmpty(masterNode.Children);
 
             masterNode.AddChild(nodeAccount);
@@ -82,15 +84,8 @@ namespace Blazscan.Domain.Tests.Node
             masterNode.AddName("transaction");
 
             Assert.IsNotEmpty(masterNode.Children);
-
-            var jsonResult = @"{" +
-                "\"transaction\":[{" +
-                    "\"from\":\"5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY\"" +
-                    "\"amount\":1000" +
-                    "}]" +
-                "}";
+            var jsonResult = @"{""transaction"":[{""from"":""5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY""},{""amount"":1000}]}";
             Assert.That(masterNode.ToJson(), Is.EqualTo(jsonResult));
-
         }
     }
 }

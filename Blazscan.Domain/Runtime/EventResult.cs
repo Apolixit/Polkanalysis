@@ -22,7 +22,6 @@ namespace Blazscan.Domain.Runtime
 
         public static EventResult Create(INode eventNode)
         {
-            var result = new EventResult();
             if (eventNode.IsEmpty || eventNode.HumanData == null || eventNode.IsLeaf) return null;
 
             string palletEventName = eventNode.HumanData.ToString();
@@ -84,7 +83,7 @@ namespace Blazscan.Domain.Runtime
             }
         }
 
-        private IDictionary<int, string> _events = new Dictionary<int, string>();
+        private readonly IDictionary<int, string> _events = new Dictionary<int, string>();
         public IList<EventDetailsResult>? Details { get; set; } = new List<EventDetailsResult>();
 
         public void AddEvent(string ev)

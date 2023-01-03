@@ -287,7 +287,7 @@ namespace Blazscan.Domain.Runtime
 
     public class MappingElementUnknown : IMappingElement
     {
-        private Type _objectType = typeof(object);
+        private readonly Type _objectType = typeof(object);
         public bool IsIdentified => false;
         public MappingElementUnknown() { }
         public MappingElementUnknown(Type unknownType)

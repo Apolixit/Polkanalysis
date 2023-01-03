@@ -2,21 +2,26 @@
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
+using Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace Blazscan.Domain.Tests.Runtime.Event
 {
-    public class ParaInclusionEventTest
+    public class ParaInclusionEventTest : MainEventTest
     {
 
-        private readonly ISubstrateDecoding _substrateDecode;
+        private ISubstrateDecoding _substrateDecode;
 
-        public ParaInclusionEventTest()
+        [SetUp]
+        public void Setup()
         {
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(),
                 Substitute.For<ISubstrateNodeRepository>(),
-                Substitute.For<IPalletBuilder>());
+                Substitute.For<IPalletBuilder>(),
+                Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
         [Test]
@@ -24,7 +29,10 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void ParaInclusion_CandidateBacked_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            Assert.IsNotNull(nodeResult);
+            var eventRes = PrerequisiteEvent(nodeResult);
+
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.ParaInclusion));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.pallet.Event.CandidateBacked));
         }
 
         [Test]
@@ -32,15 +40,10 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void ParaInclusion_CandidateBackedToDto_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            Assert.IsNotNull(nodeResult);
+            var eventRes = PrerequisiteEvent(nodeResult);
 
-            var eventDto = new EventLightDto()
-            {
-                Block = Substitute.For<Domain.Contracts.Dto.Block.BlockLightDto>(),
-                PalletName = nodeResult.HumanData.ToString(),
-                EventName = nodeResult.Children.First().HumanData.ToString(),
-                Description = ""//nodeResult.Children.First().Children.First().HumanData,
-            };
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.ParaInclusion));
+            //Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Withdraw));
         }
 
         /// <summary>
@@ -85,7 +88,10 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void ParaInclusion_CandidateIncluded_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            Assert.IsNotNull(nodeResult);
+            var eventRes = PrerequisiteEvent(nodeResult);
+
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.ParaInclusion));
+            //Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Withdraw));
         }
     }
 }

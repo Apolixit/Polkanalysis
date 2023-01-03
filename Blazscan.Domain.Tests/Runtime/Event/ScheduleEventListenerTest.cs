@@ -2,20 +2,25 @@
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
+using Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace Blazscan.Domain.Tests.Runtime.Event
 {
-    public class ScheduleEventListenerTest
+    public class ScheduleEventListenerTest : MainEventTest
     {
-        private readonly ISubstrateDecoding _substrateDecode;
+        private ISubstrateDecoding _substrateDecode;
 
-        public ScheduleEventListenerTest()
+        [SetUp]
+        public void Setup()
         {
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(),
                 Substitute.For<ISubstrateNodeRepository>(),
-                Substitute.For<IPalletBuilder>());
+                Substitute.For<IPalletBuilder>(),
+                Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
         /// <summary>
@@ -67,32 +72,10 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void Scheduler_Dispatched_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
-            Assert.IsNotNull(result);
+            var eventRes = PrerequisiteEvent(nodeResult);
 
-            //var expectedResult = EventResult.Create("Scheduler", "Dispatched", new List<EventDetailsResult>()
-            //{
-            //    new EventDetailsResult()
-            //    {
-            //        ComponentName = "Component_Unknown",
-            //        Title = "BlockNumber",
-            //        Value = new List<int>() { 180, 0 }
-            //    },
-            //    new EventDetailsResult()
-            //    {
-            //        ComponentName = "",
-            //        Title = "",
-            //        Value = "0xA06D6F6E6579706F74396CDBF0A89F28E8FF09A5D97FAE185D3FF9920D8CBCB3CEC50F256865DBE0F1"
-            //    },
-            //    new EventDetailsResult()
-            //    {
-            //        ComponentName = "",
-            //        Title = "",
-            //        Value = "Ok"
-            //    },
-            //});
-
-            //Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Scheduler));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_scheduler.pallet.Event.Dispatched));
         }
     }
 }

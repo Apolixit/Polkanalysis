@@ -4,19 +4,25 @@ using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
 using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
+using Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
+using NUnit.Framework;
 
 namespace Blazscan.Domain.Tests.Runtime.Event
 {
-    public class SystemEventListenerTest
+    public class SystemEventListenerTest : MainEventTest
     {
         private ISubstrateDecoding _substrateDecode;
-        public SystemEventListenerTest()
+        
+        [SetUp]
+        public void Setup()
         {
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(),
                 Substitute.For<ISubstrateNodeRepository>(),
-                Substitute.For<IPalletBuilder>());
+                Substitute.For<IPalletBuilder>(),
+                Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
         /// <summary>
@@ -28,29 +34,32 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void System_ExtrinsicSuccess_1_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            Assert.IsTrue(true);
+            var eventRes = PrerequisiteEvent(nodeResult);
+
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.frame_system.pallet.Event.ExtrinsicSuccess));
             //var result = EventResult.Create(nodeResult);
-        //            {
-        //            phase:
-        //                {
-        //                ApplyExtrinsic: 1
-        //            }
-        //    event: {
-        //        method: ExtrinsicSuccess
-        //        section: system
-        //        index: 0x0000
-        //      data:
-        //            {
-        //            dispatchInfo:
-        //                {
-        //                weight: 493,895,699,000
-        //          class: Mandatory
-        //          paysFee: Yes
-        //    }
-        //}
-        //    }
-        //    topics: []
-        //  }
+            //            {
+            //            phase:
+            //                {
+            //                ApplyExtrinsic: 1
+            //            }
+            //    event: {
+            //        method: ExtrinsicSuccess
+            //        section: system
+            //        index: 0x0000
+            //      data:
+            //            {
+            //            dispatchInfo:
+            //                {
+            //                weight: 493,895,699,000
+            //          class: Mandatory
+            //          paysFee: Yes
+            //    }
+            //}
+            //    }
+            //    topics: []
+            //  }
         }
 
         /// <summary>
@@ -66,25 +75,10 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void System_ExtrinsicSuccess_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
-            Assert.IsNotNull(result);
+            var eventRes = PrerequisiteEvent(nodeResult);
 
-            var expectedResult = EventResult.Create("System", "ExtrinsicSuccess", new List<EventDetailsResult>()
-            {
-                new EventDetailsResult()
-                {
-                    ComponentName = "Component_DispatchInfo",
-                    Title = "",
-                    Value = new DispatchInfoDto()
-                    {
-                        PaysFee = Pays.Yes,
-                        Class = DispatchClass.Mandatory,
-                        Weight = 158080000
-                    }
-                },
-            });
-
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.frame_system.pallet.Event.ExtrinsicSuccess));
         }
 
         /// <summary>
@@ -101,21 +95,11 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void System_NewAccount_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
-            Assert.IsNotNull(result);
-
+            var eventRes = PrerequisiteEvent(nodeResult);
             //Ferdie SS58 Address: 5CiPPseXPECbkjWCa6MnjNokrgYjMqmKndv2rSnekmSK2DjL
-            var expectedResult = EventResult.Create("System", "NewAccount", new List<EventDetailsResult>()
-            {
-                new EventDetailsResult()
-                {
-                    ComponentName = "Component_AccountId32",
-                    Title = "Account",
-                    Value = "5CiPPseXPECbkjWCa6MnjNokrgYjMqmKndv2rSnekmSK2DjL"
-                },
-            });
 
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.frame_system.pallet.Event.NewAccount));
         }
     }
 }

@@ -4,6 +4,7 @@ using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -18,7 +19,12 @@ namespace Blazscan.Domain.Integration.Tests.Polkadot.Errors
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(), 
                 _substrateRepository,
-                new PalletBuilder(_substrateRepository, new CurrentMetaData(_substrateRepository)));
+                new PalletBuilder(
+                    _substrateRepository, 
+                    new CurrentMetaData(
+                        _substrateRepository, 
+                        Substitute.For<ILogger<CurrentMetaData>>())),
+                Substitute.For<ILogger<SubstrateDecoding>>());
         }
         
         [Test]

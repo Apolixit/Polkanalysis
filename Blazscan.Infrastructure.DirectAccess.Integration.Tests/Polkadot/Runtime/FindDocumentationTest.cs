@@ -3,6 +3,8 @@ using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Runtim
     {
         private readonly IPalletBuilder _palletBuilder;
         private readonly ICurrentMetaData _currentMetaData;
+        private readonly ILogger<CurrentMetaData> _logger;
 
         public FindDocumentationTest()
         {
-            _currentMetaData = new CurrentMetaData(_substrateRepository);
+            _logger = Substitute.For<ILogger<CurrentMetaData>>();
+            _currentMetaData = new CurrentMetaData(_substrateRepository, _logger);
             _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
         }
 
@@ -39,6 +43,11 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Runtim
         {
             Assert.IsNotNull(_palletBuilder.FindDocumentation(e));
         }
+
+        //public void FindDocumentation_Pallet_ShouldSuceed(object e)
+        //{
+        //    Assert.IsNotNull(_palletBuilder.FindDocumentation((Enum)e));
+        //}
 
         [Test]
         public void FindDocumentation_PalletTimestampEventSet_ShouldSuceed()

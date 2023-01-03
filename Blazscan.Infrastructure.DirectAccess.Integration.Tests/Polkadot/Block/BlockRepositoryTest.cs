@@ -6,6 +6,8 @@ using Blazscan.Domain.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Repository;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
@@ -15,49 +17,28 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         private readonly IBlockRepository _blockRepository;
         private readonly ICurrentMetaData _currentMetaData;
         private readonly ISubstrateDecoding _substrateDecoding;
+        private readonly ILogger<CurrentMetaData> _logger;
 
         public BlockRepositoryTest()
         {
-            //_substrateRepository = Substitute.For<ISubstrateNodeRepository>();
-            //_substrateRepository.Client.Returns(new NetApiExt.Generated.SubstrateClientExt(new Uri("wss://rpc.polkadot.io"), ChargeTransactionPayment.Default()));
-
-            _currentMetaData = new CurrentMetaData(_substrateRepository);
-
-            _substrateDecoding = new SubstrateDecoding(new EventMapping(), _substrateRepository, new PalletBuilder(_substrateRepository, _currentMetaData));
-
+            _logger = Substitute.For<ILogger<CurrentMetaData>>();
+            _currentMetaData = new CurrentMetaData(_substrateRepository, _logger);
+            _substrateDecoding = new SubstrateDecoding(
+                new EventMapping(), 
+                _substrateRepository, 
+                new PalletBuilder(
+                    _substrateRepository, 
+                    _currentMetaData),
+                Substitute.For<ILogger<SubstrateDecoding>>());
             _blockRepository = new BlockRepositoryDirectAccess(_substrateRepository, _substrateDecoding);
         }
 
         [Test]
         [TestCase(13198574)]
-        public async Task GetBlockDetails_ValidBlockNumber_ShouldWork(int blockId)
-        {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
-            Assert.IsNull(blockInfo);
-
-        }
-
-        [Test]
         [TestCase(13210791)]
-        public async Task GetBlockDetails_ValidBlockNumber_2_ShouldWorkAsync(int blockId)
-        {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
-            Assert.IsNull(blockInfo);
-
-        }
-
-        [Test]
         [TestCase(13278242)]
-        public async Task GetBlockDetails_ValidBlockNumber_3_ShouldWork(int blockId)
-        {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
-            Assert.IsNull(blockInfo);
-
-        }
-
-        [Test]
         [TestCase(13406835)]
-        public async Task GetBlockDetails_ValidBlockNumber_4_ShouldWork(int blockId)
+        public async Task GetBlockDetails_ValidBlockNumber_ShouldWorkAsync(int blockId)
         {
             var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.IsNull(blockInfo);

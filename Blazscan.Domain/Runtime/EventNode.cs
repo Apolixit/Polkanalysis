@@ -41,13 +41,6 @@ namespace Blazscan.Domain.Runtime
         public string Documentation { get; set; }
         #endregion
 
-        protected EventNode() { }
-
-        public static EventNode Create()
-        {
-            return new EventNode();
-        }
-
         public INode AddData(IType data)
         {
             Data = data;
@@ -86,6 +79,14 @@ namespace Blazscan.Domain.Runtime
             return this;
         }
 
+        public INode AddDocumentation(string[] doc)
+        {
+            if (doc == null)
+                throw new ArgumentNullException($"{nameof(doc)}");
+
+            return AddDocumentation(string.Join("\n", doc));
+        }
+
         public string ToJson()
         {
             var res = JsonSerializer.Serialize(ToDictionnary());
@@ -118,6 +119,11 @@ namespace Blazscan.Domain.Runtime
                     ? Children.Select(x => x.ToKeyValuePair()) 
                     : HumanData
             );
+        }
+
+        public INode Create()
+        {
+            return new EventNode();
         }
     }
 }

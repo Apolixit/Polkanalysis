@@ -9,6 +9,7 @@ using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;
 using Blazscan.Polkadot.NetApiExt.Generated;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using System;
@@ -23,10 +24,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Runtim
     {
         private readonly IPalletBuilder _palletBuilder;
         private readonly ICurrentMetaData _currentMetaData;
+        private readonly ILogger<CurrentMetaData> _logger;
 
         public PalletBuilderTest()
         {
-            _currentMetaData = new CurrentMetaData(_substrateRepository);
+            _logger = Substitute.For<ILogger<CurrentMetaData>>();
+            _currentMetaData = new CurrentMetaData(_substrateRepository, _logger);
             _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
         }
 

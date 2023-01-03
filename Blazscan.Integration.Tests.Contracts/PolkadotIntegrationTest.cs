@@ -1,4 +1,5 @@
-﻿using Blazscan.Configuration.Contract;
+﻿using Blazscan.Configuration.Contracts;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +10,15 @@ namespace Blazscan.Integration.Tests.Contracts
 {
     public abstract class PolkadotIntegrationTest : IntegrationTest
     {
-        public PolkadotIntegrationTest() {
-        }
-
-        protected override SubstrateEndpoint GetEndpoint()
+        protected override ISubstrateEndpoint GetEndpoint()
         {
-            return new SubstrateEndpoint()
-            {
-                Name = "Polkadot",
-                Endpoint = "wss://rpc.polkadot.io",
-            };
+            var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
+
+            substrateConfigurationMock.Name.Returns("Polkadot");
+            substrateConfigurationMock.Endpoint.Returns("wss://rpc.polkadot.io");
+            substrateConfigurationMock.EndPointUri.Returns(new Uri("wss://rpc.polkadot.io"));
+
+            return substrateConfigurationMock;
         }
     }
 }

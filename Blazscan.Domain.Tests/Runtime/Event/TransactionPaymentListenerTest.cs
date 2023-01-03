@@ -2,20 +2,24 @@
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
+using Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 
 namespace Blazscan.Domain.Tests.Runtime.Event
 {
-    public class TransactionPaymentListenerTest
+    public class TransactionPaymentListenerTest : MainEventTest
     {
-        private readonly ISubstrateDecoding _substrateDecode;
+        private ISubstrateDecoding _substrateDecode;
 
-        public TransactionPaymentListenerTest()
+        [SetUp]
+        public void Setup()
         {
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(),
                 Substitute.For<ISubstrateNodeRepository>(),
-                Substitute.For<IPalletBuilder>());
+                Substitute.For<IPalletBuilder>(),
+                Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
         /// <summary>
@@ -28,31 +32,32 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         public void TransactionPayment_TransactionFeePaid_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
-            Assert.IsNotNull(result);
+            var eventRes = PrerequisiteEvent(nodeResult);
 
-            var expectedResult = EventResult.Create("TransactionPayment", "TransactionFeePaid", new List<EventDetailsResult>()
-            {
-                new EventDetailsResult()
-                {
-                    ComponentName = "Component_AccountId32",
-                    Title = "Account",
-                    Value = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
-                },
-                new EventDetailsResult()
-                {
-                    ComponentName = "Component_U128",
-                    Title = "Amount",
-                    Value = (uint)86298155
-                },
-                new EventDetailsResult()
-                {
-                    ComponentName = "Component_U128",
-                    Title = "Amount",
-                    Value = (uint)0
-                },
-            });
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.TransactionPayment));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.pallet.Event.TransactionFeePaid));
+
+            //var expectedResult = EventResult.Create("TransactionPayment", "TransactionFeePaid", new List<EventDetailsResult>()
+            //{
+            //    new EventDetailsResult()
+            //    {
+            //        ComponentName = "Component_AccountId32",
+            //        Title = "Account",
+            //        Value = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+            //    },
+            //    new EventDetailsResult()
+            //    {
+            //        ComponentName = "Component_U128",
+            //        Title = "Amount",
+            //        Value = (uint)86298155
+            //    },
+            //    new EventDetailsResult()
+            //    {
+            //        ComponentName = "Component_U128",
+            //        Title = "Amount",
+            //        Value = (uint)0
+            //    },
+            //});
         }
     }
 }

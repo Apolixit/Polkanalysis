@@ -27,7 +27,9 @@ namespace Blazscan.Domain.Tests.UseCase
         public async Task BlockUseCaseWithNullRequest_ShouldFailedAsync()
         {
             var useCase = new BlockUseCase(_blockRepository, _logger);
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
             var result = await useCase.ExecuteAsync(null, CancellationToken.None);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
 
             Assert.IsTrue(result.IsError);
             Assert.That(result.Value, Is.Null);

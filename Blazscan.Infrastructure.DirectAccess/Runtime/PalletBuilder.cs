@@ -140,7 +140,8 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
             //Let's use the new pattern matching !
             if (splittedNamespace is [
                     string globalProjectName, 
-                    string projectName, 
+                    string projectName,
+                    "NetApiExt",
                     "Generated", 
                     string baseNamespace, 
                     ..

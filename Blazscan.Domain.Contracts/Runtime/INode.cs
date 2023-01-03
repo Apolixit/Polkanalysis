@@ -52,6 +52,12 @@ namespace Blazscan.Domain.Contracts.Runtime
         public bool IsLeaf { get; }
 
         /// <summary>
+        /// Create a new node
+        /// </summary>
+        /// <returns></returns>
+        INode Create();
+
+        /// <summary>
         /// Add Ajuna type Data
         /// </summary>
         /// <param name="data"></param>
@@ -85,6 +91,7 @@ namespace Blazscan.Domain.Contracts.Runtime
         /// <param name="doc"></param>
         /// <returns></returns>
         INode AddDocumentation(string doc);
+        INode AddDocumentation(string[] doc);
 
         /// <summary>
         /// Add child to the node

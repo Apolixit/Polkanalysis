@@ -1,6 +1,10 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Domain.Contracts.Runtime.Mapping;
+using Blazscan.Domain.Runtime;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using System;
@@ -13,18 +17,24 @@ namespace Blazscan.SubstrateDecode.Test.Node
 {
     public class DecodeTest
     {
-        private readonly ISubstrateDecoding _decode;
+        private ISubstrateDecoding _decode;
 
-        public DecodeTest()
+        [SetUp]
+        public void Setup()
         {
-            _decode = Substitute.For<ISubstrateDecoding>();
+            _decode = new SubstrateDecoding(
+                new EventMapping(),
+                Substitute.For<ISubstrateNodeRepository>(),
+                Substitute.For<IPalletBuilder>(),
+                Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
         [Test]
         public void EmptyInput_ShouldThrowException()
         {
             Assert.Throws<ArgumentNullException>(() => _decode.DecodeEvent(string.Empty));
-            Assert.Throws<ArgumentNullException>(() => _decode.DecodeEvent("I am a bad input"));
+            Assert.Throws<InvalidOperationException>(() => _decode.DecodeEvent("0x00"));
+            Assert.Throws<InvalidOperationException>(() => _decode.DecodeEvent("I am a bad input"));
         }
 
         [Test]
@@ -34,7 +44,7 @@ namespace Blazscan.SubstrateDecode.Test.Node
             var node = _decode.DecodeEvent(emptyType);
 
             Assert.That(node, Is.Not.Null);
-            Assert.True(node.IsEmpty);
+            Assert.False(node.IsEmpty);
         }
     }
 }

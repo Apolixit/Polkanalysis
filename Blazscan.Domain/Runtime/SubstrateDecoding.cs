@@ -11,6 +11,7 @@ using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Contracts.Runtime.Mapping;
 using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system;
+using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 
 namespace Blazscan.Domain.Runtime
@@ -20,12 +21,18 @@ namespace Blazscan.Domain.Runtime
         private readonly IMapping _mapping;
         private readonly ISubstrateNodeRepository _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
+        private readonly ILogger<SubstrateDecoding> _logger;
 
-        public SubstrateDecoding(IMapping mapping, ISubstrateNodeRepository substrateRepository, IPalletBuilder palletBuilder)
+        public SubstrateDecoding(
+            IMapping mapping, 
+            ISubstrateNodeRepository substrateRepository, 
+            IPalletBuilder palletBuilder,
+            ILogger<SubstrateDecoding> logger)
         {
             _mapping = mapping;
             _substrateRepository = substrateRepository;
             _palletBuilder = palletBuilder;
+            _logger = logger;
         }
 
         /// <summary>
@@ -38,33 +45,29 @@ namespace Blazscan.Domain.Runtime
         public INode DecodeEvent(string hex)
         {
             if (string.IsNullOrEmpty(hex))
-                throw new ArgumentNullException($"{nameof(hex)} is not set");
+                throw new ArgumentNullException($"{nameof(hex)}");
 
             var eventReceived = new EventRecord();
-            eventReceived.Create(Utils.HexToByteArray(hex));
+            try
+            {
+                eventReceived.Create(Utils.HexToByteArray(hex));
+            } catch(Exception ex)
+            {
+                throw new InvalidOperationException($"{nameof(eventReceived)} has not been instanciate properly, maybe due to invalid hex parameter", ex);
+            }
 
-            if (eventReceived == null)
-                throw new ArgumentNullException($"{nameof(eventReceived)} has not been instanciate properly, maybe due to invalid hex parameter");
+            _logger.LogInformation($"Event hex ({hex}) has been successfully converted to EventRecord");
 
-            var eventCore = eventReceived.Event;
-            var eventPhase = eventReceived.Phase;
-            var eventTopic = eventReceived.Topics;
-
-            var eventNode = EventNode.Create();
+            var eventNode = new EventNode();
             VisitNode(eventNode, eventReceived);
 
-            //EventNode eventPhaseNode = EventNode.Empty;
-            //VisitNode(eventPhaseNode, eventPhase);
-
-            //EventNode eventTopicNode = EventNode.Empty;
-            //VisitNode(eventTopicNode, eventTopic);
-
+            _logger.LogTrace("Node created from EventRecord");
             return eventNode;
         }
 
         public INode DecodeEvent(IType ev)
         {
-            EventNode node = EventNode.Create();
+            EventNode node = new EventNode();
             VisitNode(node, ev);
 
             return node;
@@ -98,7 +101,7 @@ namespace Blazscan.Domain.Runtime
                     return node;
                 };
 
-                var childNode = AddDataToNode(EventNode.Create());
+                var childNode = AddDataToNode(new EventNode());
 
                 var enumValue2 = baseEnumValue.GetValue2();
                 if (enumValue2 == null)
@@ -141,7 +144,7 @@ namespace Blazscan.Domain.Runtime
                     var prp = value.GetValue(property.Name);
                     if (prp is IType prpType)
                     {
-                        var childNode = EventNode.Create()
+                        var childNode = new EventNode()
                                                 .AddData(prpType)
                                                 .AddName(property.Name);
                         node.AddChild(childNode);
@@ -170,7 +173,7 @@ namespace Blazscan.Domain.Runtime
                 if (node.IsEmpty)
                     node = AddDataToNode(node);
                 else
-                    node.AddChild(AddDataToNode(EventNode.Create()));
+                    node.AddChild(AddDataToNode(new EventNode()));
             }
         }
 
@@ -185,7 +188,7 @@ namespace Blazscan.Domain.Runtime
             {
                 if (currentValue.GetType().IsGenericType)
                 {
-                    var childNode = EventNode.Create().AddData(currentValue);
+                    var childNode = new EventNode().AddData(currentValue);
                     node.AddChild(childNode);
 
                     VisitNode(childNode, currentValue);
