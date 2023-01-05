@@ -147,7 +147,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
                     ..
                 ])
             {
-                arguments = splittedNamespace.Skip(4).ToList();
+                arguments = splittedNamespace.Skip(5).ToList();
 
                 var nodeType = _substrateRepository.Client.MetaData.NodeMetadata.Types
                     .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))

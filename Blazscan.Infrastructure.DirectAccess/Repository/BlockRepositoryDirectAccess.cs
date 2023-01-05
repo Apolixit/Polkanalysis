@@ -43,12 +43,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
 
             var currentDate = await GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
 
-            var eventsCount = await _substrateService.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash, cancellationToken);
+            var eventsCount = await _substrateService.Client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
             
-            var blockExecutionPhase = await _substrateService.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash, cancellationToken);
+            var blockExecutionPhase = await _substrateService.Client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
 
             //await _substrateService.Client.AuthorshipStorage.Author(cancellationToken);
-            var blockAuthor = await _substrateService.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash, cancellationToken);
+            var blockAuthor = await _substrateService.Client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
 
             var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
             //var filteredExtrinsic = blockDetails.Block.Extrinsics;
@@ -122,7 +122,11 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
 
         public async Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken)
         {
-            var currentTimestamp = await _substrateService.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), blockHash, cancellationToken);
+            var currentTimestamp = blockHash switch
+            {
+                null => await _substrateService.Client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), cancellationToken),
+                _ => await _substrateService.Client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), blockHash.Value, cancellationToken)
+            };
             
             return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                 .AddMilliseconds(currentTimestamp.Value);

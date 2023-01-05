@@ -6,9 +6,12 @@ using Blazscan.Domain.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Repository;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;
+using Blazscan.Polkadot.NetApiExt.Generated.Storage;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using NSubstitute.Core.Arguments;
 using NUnit.Framework;
+using System.Threading;
 
 namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {
@@ -23,6 +26,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         {
             _logger = Substitute.For<ILogger<CurrentMetaData>>();
             _currentMetaData = new CurrentMetaData(_substrateRepository, _logger);
+
             _substrateDecoding = new SubstrateDecoding(
                 new EventMapping(), 
                 _substrateRepository, 
@@ -41,7 +45,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         public async Task GetBlockDetails_ValidBlockNumber_ShouldWorkAsync(int blockId)
         {
             var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
-            Assert.IsNull(blockInfo);
+            Assert.IsNotNull(blockInfo);
 
         }
 

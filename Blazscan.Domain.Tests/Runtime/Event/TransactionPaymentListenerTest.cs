@@ -28,7 +28,7 @@ namespace Blazscan.Domain.Tests.Runtime.Event
         /// </summary>
         /// <param name="hex"></param>
         [Test]
-        [TestCase("0x00010000000700D43593C715FDD31C61141ABD04A99FD6822C8558854CCDE39A5684E7A56DA27D2BCE24050000000000000000000000000000000000000000000000000000000000")]
+        [TestCase("0x00020000002000B72301EEEF1DCF828B9D361323ADBCE10333AC6A12D7390F5E34659C5DAF702BA1BC82090000000000000000000000000000000000000000000000000000000000")]
         public void TransactionPayment_TransactionFeePaid_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);

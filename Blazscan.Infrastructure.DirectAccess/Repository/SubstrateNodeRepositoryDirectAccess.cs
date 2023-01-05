@@ -66,21 +66,21 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
             }
         }
 
-        public async Task<T> GetStorageAsync<T>(string parameters, Hash? blockHash, CancellationToken token) where T : IType, new()
-        {
-            var paramArgs = new List<object> { parameters };
-            if(blockHash != null)
-            {
-                paramArgs.Add(blockHash.Value);
-            }
-            string text = await Client.InvokeAsync<string>("state_getStorage", paramArgs.ToArray(), token);
-            T result = new T();
-            if (text != null && text.Length > 0)
-            {
-                result.Create(text);
-            }
+        //public async Task<T> GetStorageAsync<T>(string parameters, Hash? blockHash, CancellationToken token) where T : IType, new()
+        //{
+        //    var paramArgs = new List<object> { parameters };
+        //    if(blockHash != null)
+        //    {
+        //        paramArgs.Add(blockHash.Value);
+        //    }
+        //    string text = await Client.InvokeAsync<string>("state_getStorage", paramArgs.ToArray(), token);
+        //    T result = new T();
+        //    if (text != null && text.Length > 0)
+        //    {
+        //        result.Create(text);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }

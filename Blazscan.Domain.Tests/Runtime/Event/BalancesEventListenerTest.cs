@@ -97,8 +97,8 @@ namespace Blazscan.Domain.Tests.Runtime.Event
 
         }
 
-        [TestCase("0x0500002444ED1EEDC416E067C35D986F29D28DC3EA9CB07168926DE1D4ACBBDC2EF6C50700386A3F41")]
-        public void Balances_Transfer2_ShouldBeParsed(string hex)
+        [TestCase("0x000200000005076D6F646C70792F74727372790000000000000000000000000000000000000000840C540600000000000000000000000000")]
+        public void Balances_Deposit_ShouldBeParsed(string hex)
         {
             //		currentValue.GetType().FullName	"Blazscan.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
 
@@ -106,7 +106,19 @@ namespace Blazscan.Domain.Tests.Runtime.Event
             var eventRes = PrerequisiteEvent(nodeResult);
 
             Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Balances));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Transfer));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Deposit));
+        }
+
+        [TestCase("0x000200000005013DEF8519FB4F9A5FA7456D38B97C65B3463A8F0259B45B595AA4CDE5367179FA66A9800500000000000000000000000000")]
+        public void Balances_DustLost_ShouldBeParsed(string hex)
+        {
+            //		currentValue.GetType().FullName	"Blazscan.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
+
+            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            var eventRes = PrerequisiteEvent(nodeResult);
+
+            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Balances));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.DustLost));
         }
 
 
@@ -118,7 +130,7 @@ namespace Blazscan.Domain.Tests.Runtime.Event
             var eventRes = PrerequisiteEvent(nodeResult);
 
             Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Treasury));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Deposit));
+            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_treasury.pallet.Event.Deposit));
         }
     }
 }

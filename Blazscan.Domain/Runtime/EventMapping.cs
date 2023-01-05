@@ -105,7 +105,7 @@ namespace Blazscan.Domain.Runtime
 
         dynamic IMappingElement.ToHuman(dynamic input)
         {
-            return (uint)((U128)input).Value;
+            return ((U128)input).Value;
         }
     }
 

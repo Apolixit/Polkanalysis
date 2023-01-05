@@ -19,7 +19,7 @@ namespace Blazscan.Domain.Contracts.Repository
         /// <param name="parameters"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<T> GetStorageAsync<T>(string parameters, Hash? blockHash, CancellationToken token) where T : IType, new();
+        //public Task<T> GetStorageAsync<T>(string parameters, Hash? blockHash, CancellationToken token) where T : IType, new();
 
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status

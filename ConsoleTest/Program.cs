@@ -81,7 +81,7 @@ public static class Program
                 var details = string.Empty;
 
                 var mainEventString = eventCore.Value.ToString();
-                if (eventCore.Value != Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.System)
+                if (eventCore.Value == Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.Scheduler)
                 {
                     var hex = Utils.Bytes2HexString(eventReceived.Encode());
                 }
