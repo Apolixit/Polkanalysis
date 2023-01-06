@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
+using Ajuna.NetApi.Model.Types.Base;
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
@@ -55,9 +56,25 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         /// <param name="blockId"></param>
         /// <returns></returns>
         [TestCase("0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
-        public async Task GetBlockDetails_ValidBlockNumber_5_ShouldWork(string blockHash)
+        public async Task GetBlockDetails_ValidBlockHash_ShouldWorkAsync(string blockHash)
         {
-            // TODO
+            var blockInfo = await _blockRepository.GetBlockDetailsAsync(blockHash, CancellationToken.None);
+            Assert.IsNotNull(blockInfo);
+        }
+
+        /// <summary>
+        /// https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer/query/0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898
+        /// </summary>
+        /// <param name="blockId"></param>
+        /// <returns></returns>
+        [TestCase("0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
+        public async Task GetBlockDetails_ValidBlockHash_ShouldWorkAsync(string blockString)
+        {
+            var blockHash = new Hash();
+            blockHash.Create(blockString);
+
+            var blockInfo = await _blockRepository.GetBlockDetailsAsync(blockHash, CancellationToken.None);
+            Assert.IsNotNull(blockInfo);
         }
 
         /// <summary>
@@ -67,11 +84,9 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         /// <returns></returns>
         [Test]
         [TestCase(13564726)]
-        public async Task GetBlockDetails_ValidBlockNumber_5_1_ShouldWork(int blockId)
+        public async Task GetEventsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(int blockId)
         {
-            var b = new BlockRepositoryDirectAccess(_substrateRepository, _substrateDecoding);
-            var blockInfo = await b.GetBlockEvents((uint)blockId);
-            //var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId);
+            var blockInfo = await _blockRepository.GetBlockEvents((uint)blockId);
             Assert.IsNull(blockInfo);
         }
 

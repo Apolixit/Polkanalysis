@@ -4,6 +4,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using Blake2Core;
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
+using Blazscan.Domain.Contracts.Dto.Event;
 using Blazscan.Domain.Contracts.Exception;
 using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
@@ -49,6 +50,10 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
 
             //await _substrateService.Client.AuthorshipStorage.Author(cancellationToken);
             var blockAuthor = await _substrateService.Client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
+            var blockAuthor2 = await _substrateService.Client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), cancellationToken);
+            
+            //var staking = await _substrateService.Client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(
+            //    AuthorshipStorage.AuthorParams(), blockhash, cancellationToken);
 
             var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
             //var filteredExtrinsic = blockDetails.Block.Extrinsics;
@@ -93,32 +98,37 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
             return blockDto;
         }
 
-        public async Task<int?> GetBlockEvents(uint blockId)
+        public Task<BlockDto> GetBlockDetailsAsync(string blockHash, CancellationToken cancellationToken)
         {
-            var blockNumber = new BlockNumber();
-            blockNumber.Create(blockId);
-            var blockHash = await _substrateService.Client.Chain.GetBlockHashAsync(blockNumber);
-
-            //0x26AA394EEA5630E07C48AE0C9558CEF780D41E5E16056765BC8461851072C9D7
-            var parameters1 = RequestGenerator.GetStorage("System", "Events", Ajuna.NetApi.Model.Meta.Storage.Type.Plain, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
-                        blockHash});
-
-            var atParameters = new object[2] { SystemStorage.EventsParams(), blockHash.Value };
-            string text = await _substrateService.Client.InvokeAsync<string>("state_getStorage", atParameters, CancellationToken.None);
-            var result = new BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>();
-            if (text != null && text.Length > 0)
-            {
-                result.Create(text);
-            }
-
-
-            string parameters2 = SystemStorage.EventsParams();
-            var events1 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters1, CancellationToken.None);
-            var events2 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters2, CancellationToken.None);
-
-            return null;
+            throw new NotImplementedException();
         }
+
+        //public async Task<int?> GetBlockEvents(uint blockId)
+        //{
+        //    var blockNumber = new BlockNumber();
+        //    blockNumber.Create(blockId);
+        //    var blockHash = await _substrateService.Client.Chain.GetBlockHashAsync(blockNumber);
+
+        //    //0x26AA394EEA5630E07C48AE0C9558CEF780D41E5E16056765BC8461851072C9D7
+        //    var parameters1 = RequestGenerator.GetStorage("System", "Events", Ajuna.NetApi.Model.Meta.Storage.Type.Plain, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
+        //                Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+        //                blockHash});
+
+        //    var atParameters = new object[2] { SystemStorage.EventsParams(), blockHash.Value };
+        //    string text = await _substrateService.Client.InvokeAsync<string>("state_getStorage", atParameters, CancellationToken.None);
+        //    var result = new BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>();
+        //    if (text != null && text.Length > 0)
+        //    {
+        //        result.Create(text);
+        //    }
+
+
+        //    string parameters2 = SystemStorage.EventsParams();
+        //    var events1 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters1, CancellationToken.None);
+        //    var events2 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters2, CancellationToken.None);
+
+        //    return null;
+        //}
 
         public async Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken)
         {
@@ -130,6 +140,38 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
             
             return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                 .AddMilliseconds(currentTimestamp.Value);
+        }
+
+        public async Task<IEnumerable<EventDto>> GetEventsAsync(uint blockId, CancellationToken cancellationToken)
+        {
+            var blockNumber = new BlockNumber();
+            blockNumber.Create(blockId);
+            var blockHash = await _substrateService.Client.Chain.GetBlockHashAsync(blockNumber);
+
+            var events = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(
+                SystemStorage.EventsParams(), blockHash.Value, cancellationToken);
+
+            // To DTO
+
+
+            //string parameters2 = SystemStorage.EventsParams();
+            //var events1 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters1, CancellationToken.None);
+            //var events2 = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters2, CancellationToken.None);
+
+            return null;
+        }
+
+        public Task<IEnumerable<EventDto>> GetExtrinsicsAsync(uint blockId, CancellationToken cancellationToken)
+        {
+            var blockNumber = new BlockNumber();
+            blockNumber.Create(blockId);
+            var blockHash = await _substrateService.Client.Chain.GetBlockHashAsync(blockNumber);
+
+            var blockDetails = await _substrateService.Client.Chain.GetBlockAsync(blockHash, cancellationToken);
+            if (blockDetails == null)
+                throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
+
+            //blockDetails.Block.Extrinsics
         }
 
         public Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken)

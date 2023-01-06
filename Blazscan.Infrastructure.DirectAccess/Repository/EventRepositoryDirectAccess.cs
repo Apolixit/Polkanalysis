@@ -2,8 +2,8 @@
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
 using Blazscan.Domain.Contracts.Dto.Event;
-using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Infrastructure.DirectAccess.Helpers;
 using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system;
 using Blazscan.Polkadot.NetApiExt.Generated.Storage;

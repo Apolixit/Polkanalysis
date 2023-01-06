@@ -1,5 +1,4 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
 using Blazscan.Domain.Contracts.Primary;
 using Serilog;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using OperationResult;
+using Blazscan.Domain.Contracts.Secondary;
 
 namespace Blazscan.Domain.UseCase
 {

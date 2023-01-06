@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
+using Blazscan.Domain.Contracts.Secondary.Repository;
 using Blazscan.Domain.UseCase;
 using Microsoft.Extensions.Logging;
 using NSubstitute;

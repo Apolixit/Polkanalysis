@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Meta;
-using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Domain.Contracts.Secondary.Repository;
 using Microsoft.Extensions.Logging;
 using Org.BouncyCastle.Asn1.Cms;
 using System;

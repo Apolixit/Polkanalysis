@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Dto.Block;
+using Blazscan.Domain.Contracts.Secondary;
 
 namespace Blazscan.Infrastructure.Mock.Repository
 {

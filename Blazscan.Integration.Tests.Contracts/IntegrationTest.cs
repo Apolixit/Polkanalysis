@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Blazscan.Configuration.Contracts;
-using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Infrastructure.DirectAccess.Repository;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;

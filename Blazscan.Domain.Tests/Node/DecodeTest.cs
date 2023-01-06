@@ -1,8 +1,8 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Contracts.Runtime.Mapping;
+using Blazscan.Domain.Contracts.Secondary.Repository;
 using Blazscan.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;

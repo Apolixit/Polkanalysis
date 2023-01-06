@@ -1,8 +1,8 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types;
-using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Domain.Contracts.Secondary.Repository;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

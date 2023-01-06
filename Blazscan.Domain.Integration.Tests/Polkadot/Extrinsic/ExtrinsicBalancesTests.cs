@@ -1,9 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
-using Blazscan.Domain.Contracts;
-using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
-using Blazscan.Infrastructure.DirectAccess.Repository;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
@@ -15,11 +12,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazscan.Domain.Tests.Runtime.Extrinsic
+namespace Blazscan.Domain.Integration.Tests.Polkadot.Extrinsic
 {
-    public class ExtrinsicTimestampTest : PolkadotIntegrationTest
+    public class ExtrinsicBalancesTests : PolkadotIntegrationTest
     {
-
         private ISubstrateDecoding _substrateDecode;
         private ICurrentMetaData _currentMetaData;
 
@@ -40,13 +36,12 @@ namespace Blazscan.Domain.Tests.Runtime.Extrinsic
         }
 
         /// <summary>
-        /// Extrinsic from here : https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/extrinsics/decode/0x280403000b207eba5c8501
+        /// https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/extrinsics/decode/0x4d02840007c12e8b63d2592412cbbde38e96181551234bb57ec8438c1281e212b5bed72b00318754fcfffb692021adf1488e2fc8df0190c1db3ad9090d39ca49b380e562c50f322e97cb0a6606c6fd5e00cdd5d14bf5f9dfe2abdc596cd8b93cde2b8fa7028607b26a040000050300d2272d2d960c438ad1fa6e93a37e510068d9965802a469e941514f3c1bdcb54b0732b905f62f
         /// </summary>
-        /// <param name="extrinsicHash"></param>
-        /// <returns></returns>
+        /// <param name="hex"></param>
         [Test]
-        [TestCase("0x280403000b207eba5c8501")]
-        public void TimestampsExtrinsic_WithTimeSet_ShouldBeParsed(string extrinsicHash)
+        [TestCase("0x4d02840007c12e8b63d2592412cbbde38e96181551234bb57ec8438c1281e212b5bed72b00318754fcfffb692021adf1488e2fc8df0190c1db3ad9090d39ca49b380e562c50f322e97cb0a6606c6fd5e00cdd5d14bf5f9dfe2abdc596cd8b93cde2b8fa7028607b26a040000050300d2272d2d960c438ad1fa6e93a37e510068d9965802a469e941514f3c1bdcb54b0732b905f62f")]
+        public void BalancesExtrinsic_TransferKeepAlice_ShouldWork(string extrinsicHash)
         {
             var extrinsic = new Ajuna.NetApi.Model.Extrinsics.Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
             var res = _substrateDecode.DecodeExtrinsic(extrinsic);
