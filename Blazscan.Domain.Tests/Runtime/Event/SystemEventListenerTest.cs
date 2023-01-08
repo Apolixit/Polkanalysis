@@ -1,7 +1,7 @@
 ﻿
 using Blazscan.Domain.Contracts;
 using Blazscan.Domain.Contracts.Runtime;
-using Blazscan.Domain.Contracts.Secondary.Repository;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Domain.Runtime;
 using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
 using Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;

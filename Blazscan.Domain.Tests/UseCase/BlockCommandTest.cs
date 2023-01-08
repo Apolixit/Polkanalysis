@@ -1,7 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Blazscan.Domain.Contracts.Dto.Block;
-using Blazscan.Domain.Contracts.Secondary.Repository;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Domain.UseCase;
+using Blazscan.Domain.UseCase.Explorer;
+using Blazscan.Domain.UseCase.Explorer.Block;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
@@ -14,19 +16,19 @@ namespace Blazscan.Domain.Tests.UseCase
 {
     public class BlockCommandTest
     {
-        private readonly IBlockRepository _blockRepository;
-        protected readonly ILogger<BlockUseCase> _logger;
+        private readonly IExplorerRepository _blockRepository;
+        protected readonly ILogger<BlockDetailUseCase> _logger;
 
         public BlockCommandTest()
         {
-            _blockRepository = Substitute.For<IBlockRepository>();
-            _logger = Substitute.For<ILogger<BlockUseCase>>();
+            _blockRepository = Substitute.For<IExplorerRepository>();
+            _logger = Substitute.For<ILogger<BlockDetailUseCase>>();
         }
 
         [Test]
         public async Task BlockUseCaseWithNullRequest_ShouldFailedAsync()
         {
-            var useCase = new BlockUseCase(_blockRepository, _logger);
+            var useCase = new BlockDetailUseCase(_blockRepository, _logger);
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
             var result = await useCase.ExecuteAsync(null, CancellationToken.None);
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
@@ -40,7 +42,7 @@ namespace Blazscan.Domain.Tests.UseCase
         [Test]
         public async Task BlockUseCaseReturnNullDto_ShouldFailedAsync()
         {
-            var useCase = new BlockUseCase(_blockRepository, _logger);
+            var useCase = new BlockDetailUseCase(_blockRepository, _logger);
             var result = await useCase.ExecuteAsync(
                 new Contracts.Primary.BlockCommand(1), CancellationToken.None);
 
@@ -53,7 +55,7 @@ namespace Blazscan.Domain.Tests.UseCase
         [Test]
         public async Task BlockUseCaseWithBlockNumber_ShouldSucceedAsync()
         {
-            var useCase = new BlockUseCase(_blockRepository, _logger);
+            var useCase = new BlockDetailUseCase(_blockRepository, _logger);
 
             _blockRepository.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
@@ -67,7 +69,7 @@ namespace Blazscan.Domain.Tests.UseCase
         [Test]
         public async Task BlockUseCaseWithBlockHash_ShouldSucceedAsync()
         {
-            var useCase = new BlockUseCase(_blockRepository, _logger);
+            var useCase = new BlockDetailUseCase(_blockRepository, _logger);
 
             _blockRepository.GetBlockDetailsAsync(Arg.Any<Hash>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 

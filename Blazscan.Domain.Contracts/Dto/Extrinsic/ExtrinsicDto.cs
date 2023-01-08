@@ -6,7 +6,7 @@ namespace Blazscan.Domain.Contracts.Dto.Extrinsic
 {
     public class ExtrinsicDto
     {
-        public required ulong Number { get; set; }
+        public required string Number { get; set; }
         public required BlockLightDto Block { get; set; }
         public IList<BlockLightDto>? Lifetime { get; set; }
         public required Hash Hash { get; set; }

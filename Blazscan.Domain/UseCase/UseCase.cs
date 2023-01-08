@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Blazscan.Domain.UseCase.Explorer;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using OperationResult.Tags;
 using System;
@@ -10,11 +11,11 @@ using static Blazscan.Domain.UseCase.ErrorResult;
 
 namespace Blazscan.Domain.UseCase
 {
-    public abstract class UseCase
+    public abstract class UseCase<T>
     {
-        protected readonly ILogger<BlockUseCase> _logger;
+        protected readonly ILogger<T> _logger;
 
-        protected UseCase(ILogger<BlockUseCase> logger)
+        protected UseCase(ILogger<T> logger)
         {
             _logger = logger;
         }

@@ -11,13 +11,13 @@ using Microsoft.Extensions.Logging;
 using OperationResult;
 using Blazscan.Domain.Contracts.Secondary;
 
-namespace Blazscan.Domain.UseCase
+namespace Blazscan.Domain.UseCase.Explorer.Block
 {
-    public class BlockUseCase : UseCase
+    public class BlockDetailUseCase : UseCase<BlockDetailUseCase>
     {
-        private readonly IBlockRepository _blockRepository;
+        private readonly IExplorerRepository _blockRepository;
 
-        public BlockUseCase(IBlockRepository blockRepository, ILogger<BlockUseCase> logger) : base(logger) 
+        public BlockDetailUseCase(IExplorerRepository blockRepository, ILogger<BlockDetailUseCase> logger) : base(logger)
         {
             _blockRepository = blockRepository;
         }
@@ -28,10 +28,11 @@ namespace Blazscan.Domain.UseCase
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(blockCommand)} is not set");
 
             BlockDto? blockDto = null;
-            if(blockCommand.BlockNumber != null)
+            if (blockCommand.BlockNumber != null)
             {
                 blockDto = await _blockRepository.GetBlockDetailsAsync((uint)blockCommand.BlockNumber, cancellationToken);
-            } else if(!string.IsNullOrEmpty(blockCommand.BlockHash))
+            }
+            else if (!string.IsNullOrEmpty(blockCommand.BlockHash))
             {
                 var blockHash = new Hash();
                 blockHash.Create(blockCommand.BlockHash);

@@ -8,6 +8,7 @@ using Blazscan.Polkadot.NetApiExt.Generated.Storage;
 using System.Diagnostics;
 using System.Net.WebSockets;
 using System.Text;
+using System.Threading;
 
 public static class Program
 {
@@ -32,7 +33,8 @@ public static class Program
         var errors = client.MetaData.NodeMetadata.Modules[9].Errors;
 
        
-        await SubscribeAllEventAsync(client);
+        //await SubscribeAllEventAsync(client);
+        await SubscribeFinalizedBlockAsync(client);
         Console.ReadLine();
     }
 
@@ -90,6 +92,14 @@ public static class Program
         }, CancellationToken.None);
     }
 
+    public static async Task SubscribeFinalizedBlockAsync(SubstrateClientExt client)
+    {
+        await client.Chain.SubscribeFinalizedHeadsAsync((string s, Header h) =>
+        {
+                Console.WriteLine(h.StateRoot);
+            //var blockAuthor = await client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
+        });
+    }
     private static string GetClientConnectionStatus(SubstrateClientExt client)
     {
         return client.IsConnected ? "Connected" : "Not connected";

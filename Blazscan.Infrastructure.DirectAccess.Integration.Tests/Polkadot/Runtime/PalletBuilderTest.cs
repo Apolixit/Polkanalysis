@@ -3,7 +3,7 @@ using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Integration.Tests.Contracts;

@@ -4,7 +4,6 @@ namespace Blazscan.Domain.Contracts.Dto.Event
 {
     public class EventLightDto
     {
-        public required BlockLightDto Block { get; set; }
         public required string PalletName { get; set; }
         public required string EventName { get; set; }
         public string Description { get; set; } = string.Empty;

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazscan.Domain.Contracts.Dto.Extrinsic
+namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {
-    public class ExtrinsicLightDto
+    internal class ExplorerExtrinsicsTests
     {
     }
 }

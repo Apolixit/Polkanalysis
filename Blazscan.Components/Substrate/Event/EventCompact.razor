@@ -1,6 +1,6 @@
-﻿@    using Blazscan.Domain.Contracts.Dto.Event;
-    using Blazscan.Domain.Contracts.Secondary.Repository;
-@inject IEventRepository eventRepository;
+﻿@using Blazscan.Domain.Contracts.Dto.Event;
+@using Blazscan.Domain.Contracts.Secondary;
+@inject IExplorerRepository blockRepository;
 
 @foreach(var ev in Events)
 {
@@ -14,7 +14,8 @@
 
     protected async override Task OnInitializedAsync()
     {
-        await eventRepository.SubscribeEventAsync((EventLightDto newEvent) => {
+        await blockRepository.SubscribeEventAsync((EventLightDto newEvent) =>
+        {
             Events.Add(newEvent);
             StateHasChanged();
         });

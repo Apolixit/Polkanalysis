@@ -4,7 +4,7 @@ using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Blazscan.Domain.Contracts.Runtime;
-using Blazscan.Domain.Contracts.Secondary.Repository;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
 using Blazscan.Polkadot.NetApiExt.Generated;
 using NSubstitute;
@@ -26,7 +26,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Test.Runtime
             _substrateRepository.Client.Returns(mockClient);
 
             _currentMetaData = Substitute.For<ICurrentMetaData>();
-            _palletBuilder = new DirectAccess.Runtime.PalletBuilder(_substrateRepository, _currentMetaData);
+            _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
         }
 
         [Test]

@@ -1,8 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Types.Base;
 using Blazscan.Domain.Contracts;
-using Blazscan.Domain.Contracts.Repository;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Domain.Contracts.Secondary;
+using Blazscan.Domain.Dto;
 using Blazscan.Domain.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Repository;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
@@ -16,17 +17,19 @@ using System.Threading;
 
 namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {
-    public class BlockRepositoryTest : PolkadotIntegrationTest
+    public class ExplorerRepositoryTest : PolkadotIntegrationTest
     {
-        private readonly IBlockRepository _blockRepository;
-        private readonly ICurrentMetaData _currentMetaData;
-        private readonly ISubstrateDecoding _substrateDecoding;
-        private readonly ILogger<CurrentMetaData> _logger;
+        protected IExplorerRepository _blockRepository;
+        protected ICurrentMetaData _currentMetaData;
+        protected ISubstrateDecoding _substrateDecoding;
 
-        public BlockRepositoryTest()
+        // https://polkadot.subscan.io/block/10219793
+        //  Block with extrinsic failed
+        [SetUp]
+        public void Setup()
         {
-            _logger = Substitute.For<ILogger<CurrentMetaData>>();
-            _currentMetaData = new CurrentMetaData(_substrateRepository, _logger);
+            _currentMetaData = new CurrentMetaData(
+                _substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
 
             _substrateDecoding = new SubstrateDecoding(
                 new EventMapping(), 
@@ -35,7 +38,11 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
                     _substrateRepository, 
                     _currentMetaData),
                 Substitute.For<ILogger<SubstrateDecoding>>());
-            _blockRepository = new BlockRepositoryDirectAccess(_substrateRepository, _substrateDecoding);
+            _blockRepository = new ExplorerRepositoryDirectAccess(
+                _substrateRepository, 
+                _substrateDecoding,
+                new ModelBuilder(),
+                Substitute.For<ILogger<ExplorerRepositoryDirectAccess>>());
         }
 
         [Test]
@@ -52,22 +59,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 
         /// <summary>
         /// https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer/query/0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898
-        /// </summary>
-        /// <param name="blockId"></param>
-        /// <returns></returns>
-        [TestCase("0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
-        public async Task GetBlockDetails_ValidBlockHash_ShouldWorkAsync(string blockHash)
-        {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync(blockHash, CancellationToken.None);
-            Assert.IsNotNull(blockInfo);
-        }
-
-        /// <summary>
         /// https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.polkadot.io#/explorer/query/0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898
         /// </summary>
         /// <param name="blockId"></param>
         /// <returns></returns>
         [TestCase("0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
+        [TestCase("0xd2dfa1ad34d76b8f0fac8b6db4f4bf9f6be23c3608029276ee2cb11155547967")]
         public async Task GetBlockDetails_ValidBlockHash_ShouldWorkAsync(string blockString)
         {
             var blockHash = new Hash();
@@ -83,11 +80,26 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         /// <param name="blockId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(13564726)]
-        public async Task GetEventsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(int blockId)
+        [TestCase(13564726, "0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
+        public async Task GetEventsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(
+            int blockId,
+            string blockHash)
         {
-            var blockInfo = await _blockRepository.GetBlockEvents((uint)blockId);
-            Assert.IsNull(blockInfo);
+            var eventInfo = await _blockRepository.GetEventsAsync((uint)blockId, CancellationToken.None);
+            Assert.IsNotNull(eventInfo);
+            Assert.That(eventInfo.Count(), Is.EqualTo(34));
+            
+        }
+
+        [Test]
+        [TestCase(13564726, "0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
+        public async Task GetExtrinsicsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(
+            int blockId,
+            string blockHash)
+        {
+            var extrinsicInfo = await _blockRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
+            Assert.IsNotNull(extrinsicInfo);
+
         }
 
         //[Test]

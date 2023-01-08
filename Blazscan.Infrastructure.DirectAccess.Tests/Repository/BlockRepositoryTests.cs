@@ -1,4 +1,5 @@
 ﻿using Blazscan.Domain.Contracts;
+using Blazscan.Domain.Contracts.Secondary;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ namespace Blazscan.Infrastructure.DirectAccess.Tests.Repository
 {
     internal class BlockRepositoryTests
     {
-        private IBlockRepository _blockRepository;
+        private IExplorerRepository _blockRepository;
 
         [SetUp]
         public void Setup()
         {
-            _blockRepository = Substitute.For<IBlockRepository>();
+            _blockRepository = Substitute.For<IExplorerRepository>();
         }
 
         [Test]

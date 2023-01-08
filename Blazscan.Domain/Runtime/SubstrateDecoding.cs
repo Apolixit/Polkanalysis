@@ -9,7 +9,7 @@ using Ajuna.NetApi.Model.Types.Primitive;
 using Blazscan.AjunaExtension;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Contracts.Runtime.Mapping;
-using Blazscan.Domain.Contracts.Secondary.Repository;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;

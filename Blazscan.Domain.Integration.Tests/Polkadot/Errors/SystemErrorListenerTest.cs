@@ -1,5 +1,5 @@
 ﻿using Blazscan.Domain.Contracts;
-using Blazscan.Domain.Contracts.Repository;
+using Blazscan.Domain.Contracts.Secondary;
 using Blazscan.Domain.Contracts.Runtime;
 using Blazscan.Domain.Runtime;
 using Blazscan.Infrastructure.DirectAccess.Runtime;
