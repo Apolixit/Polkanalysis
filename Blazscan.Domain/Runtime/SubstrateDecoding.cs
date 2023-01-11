@@ -131,6 +131,8 @@ namespace Blazscan.Domain.Runtime
         /// <param name="value"></param>
         private void VisitNodePrimitive(INode node, IType value)
         {
+            if (value is BaseVoid) return;
+
             var mapper = _mapping.Search(value.GetType());
             if (!mapper.IsIdentified && value.GetType().IsGenericType)
             {

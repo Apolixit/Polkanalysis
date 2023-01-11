@@ -9,21 +9,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Blazscan.Domain.Contracts.Runtime;
+using Blazscan.Infrastructure.DirectAccess.Repository;
+using Blazscan.Domain.Contracts.Dto;
+using Microsoft.Extensions.Logging;
 
 namespace Blazscan.Infrastructure.DirectAccess.Tests.Block
 {
     public abstract class ExplorerRepositoryTests
     {
-        protected IExplorerRepository _blockRepository;
+        protected IExplorerRepository _explorerRepository;
         protected ISubstrateNodeRepository _substrateService;
         protected ISubstrateDecoding _substrateDecode;
 
         [SetUp]
         public void Setup()
         {
-            _blockRepository = Substitute.For<IExplorerRepository>();
             _substrateService = Substitute.For<ISubstrateNodeRepository>();
             _substrateDecode = Substitute.For<ISubstrateDecoding>();
+
+            _explorerRepository = new ExplorerRepositoryDirectAccess(
+                _substrateService,
+                _substrateDecode,
+                Substitute.For<IModelBuilder>(),
+                Substitute.For<ILogger<ExplorerRepositoryDirectAccess>>());
+            
+            
         }
 
         

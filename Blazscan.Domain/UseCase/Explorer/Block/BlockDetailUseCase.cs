@@ -13,7 +13,7 @@ using Blazscan.Domain.Contracts.Secondary;
 
 namespace Blazscan.Domain.UseCase.Explorer.Block
 {
-    public class BlockDetailUseCase : UseCase<BlockDetailUseCase>
+    public class BlockDetailUseCase : UseCase<BlockDetailUseCase, BlockDto, BlockCommand>
     {
         private readonly IExplorerRepository _blockRepository;
 
@@ -22,26 +22,21 @@ namespace Blazscan.Domain.UseCase.Explorer.Block
             _blockRepository = blockRepository;
         }
 
-        public async Task<Result<BlockDto, ErrorResult>> ExecuteAsync(BlockCommand blockCommand, CancellationToken cancellationToken)
+        public override async Task<Result<BlockDto, ErrorResult>> ExecuteAsync(BlockCommand blockCommand, CancellationToken cancellationToken)
         {
             if (blockCommand == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(blockCommand)} is not set");
 
             BlockDto? blockDto = null;
             if (blockCommand.BlockNumber != null)
-            {
                 blockDto = await _blockRepository.GetBlockDetailsAsync((uint)blockCommand.BlockNumber, cancellationToken);
-            }
             else if (!string.IsNullOrEmpty(blockCommand.BlockHash))
-            {
-                var blockHash = new Hash();
-                blockHash.Create(blockCommand.BlockHash);
-                blockDto = await _blockRepository.GetBlockDetailsAsync(blockHash, cancellationToken);
-            }
+                blockDto = await _blockRepository.GetBlockDetailsAsync(blockCommand.BlockHash, cancellationToken);
 
             if (blockDto == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"{nameof(blockDto)} is null");
 
+            _logger.LogInformation($"{nameof(blockDto)} has been succesfully created.");
             return Helpers.Ok(blockDto);
         }
     }

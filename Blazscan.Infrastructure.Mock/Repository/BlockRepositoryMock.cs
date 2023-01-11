@@ -29,7 +29,27 @@ namespace Blazscan.Infrastructure.Mock.Repository
             throw new NotImplementedException();
         }
 
+        public Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<BlockLightDto> GetBlockLightAsync(string blockHash, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EventDto> GetEventAsync(uint blockId, uint eventIndex, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<EventDto> GetEventAsync(Hash blockHash, uint eventIndex, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -55,6 +75,16 @@ namespace Blazscan.Infrastructure.Mock.Repository
         }
 
         public Task<IEnumerable<EventDto>?> GetEventsLinkedToExtrinsicsAsync(ExtrinsicDto extrinsicDto, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ExtrinsicDto> GetExtrinsicAsync(Hash blockHash, uint extrinsicIndex, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

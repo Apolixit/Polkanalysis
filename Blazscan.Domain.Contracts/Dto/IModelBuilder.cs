@@ -32,6 +32,14 @@ namespace Blazscan.Domain.Contracts.Dto
         string DisplayElapsedTime(DateTime t1);
 
         /// <summary>
+        /// Create a tupple id
+        /// For example, extrinsics and events are build with (BlockId - EventIndex)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        (uint mainId, uint subId) CreateTuppleIndex(string id);
+
+        /// <summary>
         /// Create a block summary
         /// </summary>
         /// <param name="blockHash"></param>

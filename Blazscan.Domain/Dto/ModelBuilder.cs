@@ -33,20 +33,53 @@ namespace Blazscan.Domain.Dto
 
         public string DisplayElapsedTime(TimeSpan timeSpan)
         {
-            if (timeSpan.TotalMinutes > 1)
+            var roundDown = (double val) => (int)Math.Floor(val);
+            var spelling = (int val, string word) => {
+                return val switch
+                {
+                    > 1 => $"{word}s",
+                    _ => word
+                };
+            };
+
+            if (timeSpan.TotalDays > 1)
             {
-                return $"{timeSpan.TotalMinutes} ago";
+                int days = roundDown(timeSpan.TotalDays);
+                return $"{days} {spelling(days, "day")} ago";
             }
             else if (timeSpan.TotalHours > 1)
             {
-                return $"{timeSpan.TotalHours} ago";
+                int hours = roundDown(timeSpan.TotalHours);
+                return $"{hours} {spelling(hours, "hour")} ago";
             }
-            else if (timeSpan.TotalDays > 1)
+            else if (timeSpan.TotalMinutes > 1)
             {
-                return $"{timeSpan.TotalDays} ago";
+                var minutes = roundDown(timeSpan.TotalMinutes);
+                return $"{minutes} {spelling(minutes, "minute")} ago";
             }
 
             return "few seconds ago";
+        }
+
+        public (uint mainId, uint subId) CreateTuppleIndex(string id)
+        {
+            if (id == null) throw new ArgumentNullException($"{nameof(id)}");
+
+            var splitted = id.Split("-");
+            if (splitted == null || splitted.Length != 2) throw new FormatException("Bad tupple identifier format");
+
+            uint mainNumber = 0;
+            uint secondaryIndex = 0;
+            if (splitted is [string s1, string s2])
+            {
+                if (!uint.TryParse(s1, out mainNumber))
+                    throw new InvalidOperationException("Bad first tupple value format");
+
+                if (!uint.TryParse(s2, out secondaryIndex))
+                    throw new InvalidOperationException("Bad second tupple value format");
+            }
+
+            return (mainNumber, secondaryIndex);
         }
 
         public BlockLightDto BuildBlockLightDto(Hash blockHash, BlockData blockData, DateTime blockDate)

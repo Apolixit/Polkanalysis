@@ -96,7 +96,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
 
             var eventsCount = await _substrateService.Client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
 
-            var blockExecutionPhase = await _substrateService.Client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
+            var blockExecutionPhase = await _substrateService.Client.GetStorageAsync<EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
 
             //await _substrateService.Client.AuthorshipStorage.Author(cancellationToken);
             var blockAuthor = await _substrateService.Client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
@@ -241,7 +241,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
             var extrinsicsDto = new List<ExtrinsicDto>();
-            foreach (var extrinsic in blockDetails.Block.Extrinsics)
+            foreach (var extrinsic in blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54))
             {
                 var encodedExtrinsic = encodeExtrinsic(extrinsic);
                 var hexExtrinsic = Utils.Bytes2HexString(encodedExtrinsic);
@@ -419,6 +419,40 @@ namespace Blazscan.Infrastructure.DirectAccess.Repository
             };
 
             await _substrateService.Client.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
+        }
+
+        public Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<BlockLightDto> GetBlockLightAsync(string blockHash, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<EventDto> GetEventAsync(uint blockId, uint eventIndex, CancellationToken cancellationToken)
+            => await GetEventAsync(await buildHashAsync(blockId, cancellationToken), eventIndex, cancellationToken);
+
+        public async Task<EventDto> GetEventAsync(Hash blockHash, uint eventIndex, CancellationToken cancellationToken)
+        {
+            var events = await _substrateService.Client.GetStorageAsync<BaseVec<EventRecord>>(
+                SystemStorage.EventsParams(), blockHash.Value, cancellationToken);
+
+            var eventNode = _substrateDecode.DecodeEvent(events.Value[eventIndex]);
+
+            return _modelBuilder.BuildEventDto(
+                    await GetBlockLightAsync(blockHash, cancellationToken),
+                    eventNode);
+        }
+
+        public async Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken)
+            => await GetExtrinsicAsync(await buildHashAsync(blockId, cancellationToken), extrinsicIndex, cancellationToken);
+
+        public Task<ExtrinsicDto> GetExtrinsicAsync(Hash blockHash, uint extrinsicIndex, CancellationToken cancellationToken)
+        {
+            //TODO
+            throw new NotImplementedException();
         }
     }
 }

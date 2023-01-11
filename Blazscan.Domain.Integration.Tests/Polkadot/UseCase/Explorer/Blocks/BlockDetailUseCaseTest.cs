@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazscan.Domain.UseCase.Module
+namespace Blazscan.Domain.Integration.Tests.Polkadot.UseCase.Explorer.Blocks
 {
-    public class ModuleDetailUseCase
+    internal class BlockDetailUseCaseTest
     {
     }
 }

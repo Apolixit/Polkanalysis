@@ -55,7 +55,23 @@ namespace Blazscan.Domain.Contracts.Secondary
         /// <param name="blockData"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Get some basic information about block
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<BlockLightDto> GetBlockLightAsync(Hash blockHash, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Get some basic information about block
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<BlockLightDto> GetBlockLightAsync(string blockHash, CancellationToken cancellationToken);
         #endregion
 
         #region Events
@@ -82,6 +98,23 @@ namespace Blazscan.Domain.Contracts.Secondary
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<IEnumerable<EventDto>> GetEventsAsync(Hash blockHash, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Return full event details
+        /// </summary>
+        /// <param name="blockId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<EventDto> GetEventAsync(uint blockId, uint eventIndex, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Return full event details
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <param name="eventIndex"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<EventDto> GetEventAsync(Hash blockHash, uint eventIndex, CancellationToken cancellationToken);
 
         /// <summary>
         /// Return events related to this extrinsic
@@ -132,6 +165,23 @@ namespace Blazscan.Domain.Contracts.Secondary
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(Hash blockHash, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Return full extrinsic details
+        /// </summary>
+        /// <param name="blockId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Return full extrinsic details
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <param name="extrinsicIndex"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<ExtrinsicDto> GetExtrinsicAsync(Hash blockHash, uint extrinsicIndex, CancellationToken cancellationToken);
         #endregion
 
         #region Time

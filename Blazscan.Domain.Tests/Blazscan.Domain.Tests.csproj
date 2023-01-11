@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <Folder Include="Runtime\Block\" />
+    <Folder Include="UseCase\Module\" />
   </ItemGroup>
 
 </Project>

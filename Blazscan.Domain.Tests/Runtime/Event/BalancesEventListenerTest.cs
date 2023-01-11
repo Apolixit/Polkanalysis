@@ -97,6 +97,7 @@ namespace Blazscan.Domain.Tests.Runtime.Event
 
         }
 
+        [Test]
         [TestCase("0x000200000005076D6F646C70792F74727372790000000000000000000000000000000000000000840C540600000000000000000000000000")]
         public void Balances_Deposit_ShouldBeParsed(string hex)
         {

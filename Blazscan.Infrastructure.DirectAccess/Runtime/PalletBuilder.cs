@@ -192,7 +192,8 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
 
             if(nodeType is NodeTypeVariant nodeTypeVariant)
             {
-                var variantType = nodeTypeVariant.Variants[Convert.ToInt32(type)];
+                //var variantType = nodeTypeVariant.Variants[Convert.ToInt32(type)];
+                var variantType = nodeTypeVariant.Variants.Where(x => x.Name == type.ToString()).FirstOrDefault();
                 if(variantType == null || variantType.Docs == null) return null;
 
                 return string.Join("\n", variantType.Docs);

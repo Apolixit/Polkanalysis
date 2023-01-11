@@ -14,6 +14,7 @@ namespace Blazscan.Domain.UseCase
         public enum ErrorType
         {
             EmptyParam,
+            InvalidParam,
             EmptyModel
         }
     }

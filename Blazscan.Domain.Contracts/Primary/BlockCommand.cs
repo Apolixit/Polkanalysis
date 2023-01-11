@@ -12,15 +12,14 @@ namespace Blazscan.Domain.Contracts.Primary
     public class BlockCommand
     {
         public uint? BlockNumber { get; }
+        public string? BlockHash { get; }
 
-        public BlockCommand(uint? blockNumber)
+        public BlockCommand(uint blockNumber)
         {
             BlockNumber = blockNumber;
         }
 
-        public string? BlockHash { get; }
-
-        public BlockCommand(string? blockHash)
+        public BlockCommand(string blockHash)
         {
             BlockHash = blockHash;
         }

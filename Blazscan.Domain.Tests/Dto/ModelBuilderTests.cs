@@ -1,5 +1,7 @@
 ﻿using Blazscan.Domain.Contracts.Dto;
 using Blazscan.Domain.Dto;
+using Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
+using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +21,13 @@ namespace Blazscan.Domain.Tests.Dto
         }
 
         [Test]
-        public void DisplayElapsedTime_WithValidTimes_ShouldWork()
+        [TestCase()]
+        public void DisplayElapsedTime_WithValidTime_ShouldWork()
         {
-            var twoDaysElapsed = TimeSpan.FromDays(2);
-            var dateTwoDaysAgo = DateTime.Now.Subtract(twoDaysElapsed);
-            var display = _modelBuilder.DisplayElapsedTime(dateTwoDaysAgo);
-
-            Assert.That(display, Is.EqualTo("2 days ago"));
+            Assert.That(_modelBuilder.DisplayElapsedTime(DateTime.Now.Subtract(TimeSpan.FromDays(1))), Is.EqualTo("1 day ago"));
+            Assert.That(_modelBuilder.DisplayElapsedTime(DateTime.Now.Subtract(TimeSpan.FromDays(2))), Is.EqualTo("2 days ago"));
+            Assert.That(_modelBuilder.DisplayElapsedTime(DateTime.Now.Subtract(TimeSpan.FromDays(2.5))), Is.EqualTo("2 days ago"));
+            Assert.That(_modelBuilder.DisplayElapsedTime(DateTime.Now.Subtract(TimeSpan.FromDays(12.5))), Is.EqualTo("12 days ago"));
         }
 
         [Test]
@@ -34,6 +36,26 @@ namespace Blazscan.Domain.Tests.Dto
             var t1 = DateTime.Now.AddDays(2);
             Assert.Throws<InvalidOperationException>(() => _modelBuilder.DisplayElapsedTime(t1));
             Assert.Throws<InvalidOperationException>(() => _modelBuilder.DisplayElapsedTime(t1, DateTime.Now));
+        }
+
+        [Test]
+        [TestCase("1-1", 1, 1)]
+        [TestCase("12-4", 12, 4)]
+        public void CreateTuppleIndex_WithValidId_ShouldSuceed(string id, int mainId, int subId)
+        {
+            Assert.That((mainId, subId), Is.EqualTo(_modelBuilder.CreateTuppleIndex(id)));
+        }
+
+        [Test]
+        public void CreateTuppleIndex_WithInvalidId_ShouldFailed()
+        {
+            Assert.Throws<ArgumentNullException>(() => _modelBuilder.CreateTuppleIndex(Arg.Any<string>()));
+            Assert.Throws<FormatException>(() => _modelBuilder.CreateTuppleIndex("1--1"));
+            Assert.Throws<FormatException>(() => _modelBuilder.CreateTuppleIndex(""));
+            Assert.Throws<FormatException>(() => _modelBuilder.CreateTuppleIndex("invalid"));
+            Assert.Throws<InvalidOperationException>(() => _modelBuilder.CreateTuppleIndex("s-1"));
+            Assert.Throws<InvalidOperationException>(() => _modelBuilder.CreateTuppleIndex("1-oooooo"));
+            Assert.Throws<InvalidOperationException>(() => _modelBuilder.CreateTuppleIndex("nop-nop"));
         }
     }
 }

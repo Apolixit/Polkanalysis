@@ -85,9 +85,13 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
             int blockId,
             string blockHash)
         {
-            var eventInfo = await _blockRepository.GetEventsAsync((uint)blockId, CancellationToken.None);
-            Assert.IsNotNull(eventInfo);
-            Assert.That(eventInfo.Count(), Is.EqualTo(34));
+            var eventInfoWithNumber = await _blockRepository.GetEventsAsync((uint)blockId, CancellationToken.None);
+            var eventInfoWithHash = await _blockRepository.GetEventsAsync(blockHash, CancellationToken.None);
+
+            Assert.IsNotNull(eventInfoWithNumber);
+            Assert.IsNotNull(eventInfoWithHash);
+            Assert.That(eventInfoWithNumber.Count(), Is.EqualTo(34));
+            Assert.That(eventInfoWithHash.Count(), Is.EqualTo(34));
             
         }
 
@@ -97,8 +101,11 @@ namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
             int blockId,
             string blockHash)
         {
-            var extrinsicInfo = await _blockRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
-            Assert.IsNotNull(extrinsicInfo);
+            var extrinsicInfoWithNumber = await _blockRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
+            var extrinsicInfoWithHash = await _blockRepository.GetExtrinsicsAsync(blockHash, CancellationToken.None);
+
+            Assert.IsNotNull(extrinsicInfoWithNumber);
+            Assert.IsNotNull(extrinsicInfoWithHash);
 
         }
 

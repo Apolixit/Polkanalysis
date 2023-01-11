@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazscan.Domain.UseCase.Module
+namespace Blazscan.Domain.Tests.UseCase.Validator
 {
-    public class ModuleDetailUseCase
+    internal class ValidatorDetailUseCaseTest
     {
     }
 }

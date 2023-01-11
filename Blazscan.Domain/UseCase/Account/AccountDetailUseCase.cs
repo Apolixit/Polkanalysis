@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blazscan.Domain.UseCase.Account
 {
-    internal class AccountDetailUseCase
+    public class AccountDetailUseCase
     {
     }
 }
