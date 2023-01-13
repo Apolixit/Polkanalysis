@@ -31,11 +31,18 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
         {
             if (string.IsNullOrEmpty(palletName))
             {
-                _logger.LogError($"Param {nameof(palletName)} is not set while requesting pallet information data");
+                //_logger.LogError($"Param {nameof(palletName)} is not set while requesting pallet information data");
                 throw new ArgumentNullException($"{nameof(palletName)}");
             }
 
-            return GetCurrentMetadata().Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
+            var pallet = GetCurrentMetadata().Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
+            if(pallet == null)
+            {
+                //_logger.LogError($"{palletName} does not exists in current metadata");
+                throw new InvalidOperationException($"{nameof(palletName)}");
+            }
+
+            return pallet;
         }
 
         public NodeType GetPalletType(uint typeId)
@@ -45,7 +52,7 @@ namespace Blazscan.Infrastructure.DirectAccess.Runtime
             if (nodeType == null)
             {
                 _logger.LogError($"{nameof(nodeType)} is not found in current metadata type");
-                throw new ArgumentNullException($"{nameof(typeId)}");
+                throw new InvalidOperationException($"{nameof(nodeType)} is not found in current metadata type");
             }
 
             return nodeType;

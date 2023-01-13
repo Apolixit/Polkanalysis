@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace Blazscan.Domain.Contracts.Secondary
 {
-    internal interface IExtrinsicRepository
-    {
-        /// <summary>
-        /// Subscribe for new extrinsic
-        /// </summary>
-        /// <param name="eventCallback"></param>
-        /// <returns></returns>
-        Task SubscribeExtrinsicAsync(Action<ExtrinsicLightDto> eventCallback);
+    //internal interface IExtrinsicRepository
+    //{
+    //    /// <summary>
+    //    /// Subscribe for new extrinsic
+    //    /// </summary>
+    //    /// <param name="eventCallback"></param>
+    //    /// <returns></returns>
+    //    Task SubscribeExtrinsicAsync(Action<ExtrinsicLightDto> eventCallback);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extrinsic"></param>
-        /// <returns></returns>
-        Task<ExtrinsicDto> GetExtrinsic(Extrinsic extrinsic);
-        Task<ExtrinsicLightDto> GetExtrinsicLight(Extrinsic extrinsic);
-    }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="extrinsic"></param>
+    //    /// <returns></returns>
+    //    Task<ExtrinsicDto> GetExtrinsic(Extrinsic extrinsic);
+    //    Task<ExtrinsicLightDto> GetExtrinsicLight(Extrinsic extrinsic);
+    //}
 }

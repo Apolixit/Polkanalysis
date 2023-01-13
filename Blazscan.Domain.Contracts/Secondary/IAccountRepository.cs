@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Blazscan.Domain.Contracts.Secondary
 {
-    internal interface IAccountRepository
+    public interface IAccountRepository
     {
+        /// <summary>
+        /// Get account information
+        /// </summary>
+        /// <param name="accountAddress"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<AccountDto> GetAccountDetailAsync(string accountAddress, CancellationToken cancellationToken);
     }
 }

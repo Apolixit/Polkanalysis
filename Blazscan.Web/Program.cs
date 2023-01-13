@@ -13,7 +13,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddSingleton<ISubstrateNodeRepository, SubstrateNodeRepositoryDirectAccess>();
-builder.Services.AddScoped<IEventRepository, EventRepositoryDirectAccess>();
+//builder.Services.AddScoped<IEventRepository, EventRepositoryDirectAccess>();
 builder.Services.AddScoped<ISubstrateDecoding, SubstrateDecoding>();
 
 var host = builder.Build();

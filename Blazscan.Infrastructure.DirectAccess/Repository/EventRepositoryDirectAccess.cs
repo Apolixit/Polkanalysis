@@ -17,22 +17,22 @@ using System.Threading.Tasks;
 
 namespace Blazscan.Infrastructure.DirectAccess.Repository
 {
-    public class EventRepositoryDirectAccess : IEventRepository
-    {
-        private readonly ISubstrateNodeRepository _substrateService;
-        private readonly ISubstrateDecoding _decode;
-        private readonly ILogger<EventRepositoryDirectAccess> _logger;
+    //public class EventRepositoryDirectAccess : IEventRepository
+    //{
+    //    private readonly ISubstrateNodeRepository _substrateService;
+    //    private readonly ISubstrateDecoding _decode;
+    //    private readonly ILogger<EventRepositoryDirectAccess> _logger;
 
-        public EventRepositoryDirectAccess(
-            ISubstrateNodeRepository substrateService, 
-            ISubstrateDecoding decode,
-            ILogger<EventRepositoryDirectAccess> logger)
-        {
-            _substrateService = substrateService;
-            _decode = decode;
-            _logger = logger;
-        }
+    //    public EventRepositoryDirectAccess(
+    //        ISubstrateNodeRepository substrateService, 
+    //        ISubstrateDecoding decode,
+    //        ILogger<EventRepositoryDirectAccess> logger)
+    //    {
+    //        _substrateService = substrateService;
+    //        _decode = decode;
+    //        _logger = logger;
+    //    }
 
         
-    }
+    //}
 }

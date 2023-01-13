@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blazscan.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
+namespace Blazscan.Infrastructure.DirectAccess.Tests.Repository
 {
-    internal class ExplorerTimeTests
+    internal class ValidatorRepositoryTest
     {
     }
 }

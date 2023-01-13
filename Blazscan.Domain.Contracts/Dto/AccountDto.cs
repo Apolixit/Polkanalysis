@@ -9,8 +9,6 @@ namespace Blazscan.Domain.Contracts
         public string AvatarUrl { get; set; } = string.Empty;
         public double Balance { get; set; }
 
-        public AccountDto() { }
-
         public AccountDto(string name, string ss58Address, string publicKey)
         {
             Name = name;
