@@ -1,0 +1,23 @@
+﻿@using Substats.Domain.Contracts.Dto.Event;
+@using Substats.Domain.Contracts.Secondary;
+@inject IExplorerRepository blockRepository;
+
+@foreach(var ev in Events)
+{
+    <div class="my-2">
+        <span>@ev.PalletName - @ev.EventName - @ev.Description</span>
+    </div>
+}
+
+@code {
+    public IList<EventLightDto> Events { get; set; } = new List<EventLightDto>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await blockRepository.SubscribeEventAsync((EventLightDto newEvent) =>
+        {
+            Events.Add(newEvent);
+            StateHasChanged();
+        });
+    }
+}

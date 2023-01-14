@@ -2,9 +2,9 @@
 using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
-using Blazscan.Polkadot.NetApiExt.Generated;
-using Blazscan.Polkadot.NetApiExt.Generated.Model.frame_system;
-using Blazscan.Polkadot.NetApiExt.Generated.Storage;
+using Substats.Polkadot.NetApiExt.Generated;
+using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
+using Substats.Polkadot.NetApiExt.Generated.Storage;
 using System.Diagnostics;
 using System.Net.WebSockets;
 using System.Text;
@@ -83,7 +83,7 @@ public static class Program
                 var details = string.Empty;
 
                 var mainEventString = eventCore.Value.ToString();
-                if (eventCore.Value == Blazscan.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.Scheduler)
+                if (eventCore.Value == Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.Scheduler)
                 {
                     var hex = Utils.Bytes2HexString(eventReceived.Encode());
                 }
@@ -97,7 +97,7 @@ public static class Program
         await client.Chain.SubscribeFinalizedHeadsAsync((string s, Header h) =>
         {
                 Console.WriteLine(h.StateRoot);
-            //var blockAuthor = await client.GetStorageAsync<Blazscan.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
+            //var blockAuthor = await client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
         });
     }
     private static string GetClientConnectionStatus(SubstrateClientExt client)

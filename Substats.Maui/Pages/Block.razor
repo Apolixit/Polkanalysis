@@ -1,0 +1,7 @@
+﻿@page "/block/{blockId:int}"
+
+<Substats.Components.Substrate.BlockDetails blockId="@blockId" />
+
+@code {
+    [Parameter] public int? blockId { get; set; }
+}

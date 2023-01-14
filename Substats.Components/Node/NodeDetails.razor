@@ -1,0 +1,22 @@
+﻿@using Substats.Domain.Contracts.Runtime;
+<table>
+    <tr>
+        <td>
+            @Tree.Name <br />
+            @Tree.HumanData
+        </td>
+        <td>
+            @Tree.Children.First().Name <br />
+            @Tree.Children.First().HumanData
+        </td>
+    </tr>
+</table>
+
+@code {
+    [Parameter] public INode Tree { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Tree == null) throw new ArgumentNullException($"{nameof(Tree)} (EventNode parameter) is empty !");
+    }
+}

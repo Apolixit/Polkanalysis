@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Substats.Domain.Contracts.Dto.Module
+{
+    public class ModuleStorageDto
+    {
+        public required string Name { get; set; }
+        public required string Type { get; set; }
+        public string? Documentation { get; set; }
+    }
+}

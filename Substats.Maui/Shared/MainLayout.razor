@@ -1,0 +1,45 @@
+﻿@using Substats.Domain.Contracts.Repository;
+@inherits LayoutComponentBase
+@inject ISubstrateNodeRepository substrateService;
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @if(isCurrentlyConnected)
+            {
+                @Body
+            } else
+            {
+                <text>Waiting Blockchain connexion</text>
+            }
+        </article>
+    </main>
+</div>
+
+@code {
+    protected bool isCurrentlyConnected = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
+        {
+            if (isCurrentlyConnected != isConnected)
+            {
+                isCurrentlyConnected = isConnected;
+
+                StateHasChanged();
+            }
+
+        }, CancellationToken.None);
+    }
+
+
+}
