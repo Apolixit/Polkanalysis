@@ -3,7 +3,6 @@ using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Dto;
 using Substats.Domain.Runtime;
 using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Substats.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;

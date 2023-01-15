@@ -1,15 +1,10 @@
 ﻿using Ajuna.NetApi.Model.Meta;
+using Microsoft.Extensions.Logging;
+using Substats.Domain.Contracts.Dto.Module;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
-using Microsoft.Extensions.Logging;
-using Org.BouncyCastle.Asn1.Cms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.DirectAccess.Runtime
+namespace Substats.Domain.Runtime
 {
     public class CurrentMetaData : ICurrentMetaData
     {
@@ -20,6 +15,39 @@ namespace Substats.Infrastructure.DirectAccess.Runtime
         {
             this._substrateNodeRepository = substrateNodeRepository;
             _logger = logger;
+        }
+
+        public string DisplayTypeDetail(uint typeId)
+        {
+            var detailType = GetPalletType(typeId);
+            string fullType = string.Empty;
+
+            if (detailType is NodeTypeVariant detailVariant)
+            {
+                fullType = string.Join(":", detailType.Path);
+            }
+            else if (detailType is NodeTypeCompact detailCompact)
+            {
+                fullType += $"{detailCompact.TypeDef}<{DisplayTypeDetail(detailCompact.TypeId)}>";
+            }
+            else if (detailType is NodeTypePrimitive detailPrimitive)
+            {
+                fullType += detailPrimitive.Primitive;
+            }
+
+            return fullType;
+        }
+        public TypeFieldDto BuildTypeField(NodeTypeField node)
+        {
+            var detailType = GetPalletType(node.TypeId);
+
+            var dto = new TypeFieldDto() { 
+                Name = node.Name,
+                Type = DisplayTypeDetail(node.TypeId),
+                TypeName = node.TypeName,
+            };
+            
+            return dto;
         }
 
         public virtual NodeMetadataV14 GetCurrentMetadata()
@@ -38,7 +66,7 @@ namespace Substats.Infrastructure.DirectAccess.Runtime
             var pallet = GetCurrentMetadata().Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
             if(pallet == null)
             {
-                //_logger.LogError($"{palletName} does not exists in current metadata");
+                _logger.LogError($"{palletName} does not exists in current metadata");
                 throw new InvalidOperationException($"{nameof(palletName)}");
             }
 
@@ -47,8 +75,6 @@ namespace Substats.Infrastructure.DirectAccess.Runtime
 
         public NodeType GetPalletType(uint typeId)
         {
-            //var nodeType = GetCurrentMetadata().Types[typeId];
-
             NodeType? nodeType = null;
             GetCurrentMetadata().Types.TryGetValue(typeId, out nodeType);
 
@@ -58,7 +84,7 @@ namespace Substats.Infrastructure.DirectAccess.Runtime
                 throw new KeyNotFoundException($"{nameof(nodeType)} is not found in current metadata type");
             }
 
-            return nodeType;
+            return (NodeType)nodeType;
         }
     }
 }

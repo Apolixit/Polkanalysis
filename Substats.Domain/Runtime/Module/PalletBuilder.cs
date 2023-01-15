@@ -2,8 +2,8 @@
 using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types;
 using Substats.Domain.Contracts.Runtime;
+using Substats.Domain.Contracts.Runtime.Module;
 using Substats.Domain.Contracts.Secondary;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Substats.Infrastructure.DirectAccess.Runtime
+namespace Substats.Domain.Runtime.Module
 {
     public class PalletBuilder : IPalletBuilder
     {

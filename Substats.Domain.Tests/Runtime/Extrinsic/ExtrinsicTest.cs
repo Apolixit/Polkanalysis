@@ -2,7 +2,6 @@
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Runtime;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
@@ -11,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Contracts.Runtime.Module;
 
 namespace Substats.Domain.Tests.Runtime.Extrinsic
 {

@@ -2,11 +2,11 @@
 using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Runtime;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Substats.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
+using Substats.Domain.Runtime.Module;
 
 namespace Substats.Domain.Integration.Tests.Polkadot.Runtime.Errors
 {

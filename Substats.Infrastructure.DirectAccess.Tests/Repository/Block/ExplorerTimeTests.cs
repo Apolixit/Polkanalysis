@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.DirectAccess.Tests.Block
+namespace Substats.Infrastructure.DirectAccess.Tests.Repository.Block
 {
-    internal class ExplorerExtrinsicsTests
+    internal class ExplorerTimeTests
     {
     }
 }

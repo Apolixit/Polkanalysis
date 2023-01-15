@@ -1,7 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Runtime;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Substats.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -11,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Runtime.Module;
 
 namespace Substats.Domain.Integration.Tests.Polkadot.Runtime.Extrinsic
 {

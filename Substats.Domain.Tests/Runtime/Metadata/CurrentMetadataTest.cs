@@ -1,6 +1,5 @@
 ﻿using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -11,8 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Runtime;
 
-namespace Substats.Domain.Tests.Runtime
+namespace Substats.Domain.Tests.Runtime.Metadata
 {
     public class CurrentMetadataTest
     {
@@ -22,9 +22,11 @@ namespace Substats.Domain.Tests.Runtime
         public void Setup()
         {
             //using var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-            //var logger = loggerFactory.CreateLogger<CalculationService>();
+            //var logger = loggerFactory.CreateLogger<CurrentMetaData>();
+
+
             var logger = Substitute.For<ILogger<CurrentMetaData>>();
-            
+
             _currentMetaData = new CurrentMetaData(
                 Substitute.For<ISubstrateNodeRepository>(),
                 logger
@@ -37,6 +39,6 @@ namespace Substats.Domain.Tests.Runtime
             Assert.Throws<ArgumentNullException>(() => _currentMetaData.GetPalletModule(Arg.Any<string>()));
         }
 
-        
+
     }
 }

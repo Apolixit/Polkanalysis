@@ -12,5 +12,6 @@ namespace Substats.Domain.Contracts.Dto.Module
         public required int Lookup { get; set; }
         public required int NbParameter { get; set; }
         public string? Documentation { get; set; }
+        public IEnumerable<TypeFieldDto>? Arguments { get; set; }
     }
 }

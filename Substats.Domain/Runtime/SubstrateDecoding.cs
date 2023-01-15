@@ -13,6 +13,7 @@ using Substats.Domain.Contracts.Secondary;
 using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
+using Substats.Domain.Contracts.Runtime.Module;
 
 namespace Substats.Domain.Runtime
 {

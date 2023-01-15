@@ -143,6 +143,13 @@ namespace Substats.Domain.Dto
             throw new NotImplementedException();
         }
 
-        
+        public string BuildDocumentation(string[] doc)
+        {
+            if (doc == null)
+                return string.Empty;
+                //throw new ArgumentNullException($"{nameof(doc)}");
+
+            return string.Join("\n", doc);
+        }
     }
 }

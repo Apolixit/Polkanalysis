@@ -4,6 +4,7 @@ using Substats.Domain.Runtime;
 using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Substats.Domain.Contracts.Runtime.Module;
 
 namespace Substats.Domain.Tests.Runtime.Event
 {

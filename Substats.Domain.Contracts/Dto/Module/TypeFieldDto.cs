@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Dto.Module
 {
-    public class ModuleEventsDto
+    public class TypeFieldDto
     {
         public required string Name { get; set; }
-        public required int Lookup { get; set; }
-        public IEnumerable<TypeFieldDto>? Arguments { get; set; }
-        public string? Documentation { get; set; }
+        public required string Type { get; set; }
+        public required string TypeName { get; set; }
     }
 }

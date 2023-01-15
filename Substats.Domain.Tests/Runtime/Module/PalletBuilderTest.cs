@@ -5,10 +5,11 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Substats.Polkadot.NetApiExt.Generated;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
+using Substats.Domain.Contracts.Runtime.Module;
+using Substats.Domain.Runtime.Module;
 
 namespace Substats.Infrastructure.DirectAccess.Test.Runtime
 {

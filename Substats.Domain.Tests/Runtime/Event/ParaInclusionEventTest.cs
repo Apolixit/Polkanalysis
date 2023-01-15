@@ -6,6 +6,7 @@ using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
+using Substats.Domain.Contracts.Runtime.Module;
 
 namespace Substats.Domain.Tests.Runtime.Event
 {

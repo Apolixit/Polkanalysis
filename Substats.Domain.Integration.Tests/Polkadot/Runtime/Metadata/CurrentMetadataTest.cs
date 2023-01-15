@@ -3,7 +3,7 @@ using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
 using Substats.Domain.Contracts.Runtime;
-using Substats.Infrastructure.DirectAccess.Runtime;
+using Substats.Domain.Runtime;
 using Substats.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Integration.Tests.Polkadot.Runtime
+namespace Substats.Domain.Integration.Tests.Polkadot.Runtime.Metadata
 {
     public class CurrentMetadataTest : PolkadotIntegrationTest
     {

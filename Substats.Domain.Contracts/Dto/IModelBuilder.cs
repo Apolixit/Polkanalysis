@@ -75,5 +75,7 @@ namespace Substats.Domain.Contracts.Dto
         /// <returns></returns>
         public ExtrinsicDto BuildExtrinsicDto(Ajuna.NetApi.Model.Extrinsics.Extrinsic extrinsic, BlockLightDto blockLight, INode extrinsicNode, int extrinsicIndex);
         public ExtrinsicLightDto BuildExtrinsicLightDto();
+
+        public string BuildDocumentation(string[] doc);
     }
 }

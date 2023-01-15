@@ -5,7 +5,6 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Contracts.Runtime;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Substats.Integration.Tests.Contracts;
 using Substats.Polkadot.NetApiExt.Generated;
 using Microsoft.Extensions.Configuration;
@@ -18,8 +17,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NSubstitute.ReturnsExtensions;
+using Substats.Domain.Contracts.Runtime.Module;
+using Substats.Domain.Runtime;
+using Substats.Domain.Runtime.Module;
 
-namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Runtime
+namespace Substats.Domain.Integration.Tests.Polkadot.Runtime
 {
     public class PalletBuilderTest : PolkadotIntegrationTest
     {

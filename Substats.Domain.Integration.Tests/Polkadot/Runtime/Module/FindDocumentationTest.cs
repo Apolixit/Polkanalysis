@@ -1,6 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Substats.Domain.Contracts.Runtime;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Substats.Integration.Tests.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -11,8 +10,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Contracts.Runtime.Module;
+using Substats.Domain.Runtime;
+using Substats.Domain.Runtime.Module;
 
-namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Runtime
+namespace Substats.Domain.Integration.Tests.Polkadot.Runtime
 {
     public class FindDocumentationTest : PolkadotIntegrationTest
     {

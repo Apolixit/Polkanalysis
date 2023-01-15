@@ -6,6 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Types;
+using System.Runtime.InteropServices;
 
 namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {

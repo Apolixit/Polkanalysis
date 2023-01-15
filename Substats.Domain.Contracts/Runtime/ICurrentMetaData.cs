@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Meta;
+using Substats.Domain.Contracts.Dto.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,9 @@ namespace Substats.Domain.Contracts.Runtime
         /// <param name="typeId"></param>
         /// <returns></returns>
         public NodeType GetPalletType(uint typeId);
+
+        public TypeFieldDto BuildTypeField(NodeTypeField node);
+
+        public string DisplayTypeDetail(uint typeId);
     }
 }

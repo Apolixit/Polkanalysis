@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Contracts.Runtime.Module;
 
 namespace Substats.Domain.Tests.Runtime.Event
 {

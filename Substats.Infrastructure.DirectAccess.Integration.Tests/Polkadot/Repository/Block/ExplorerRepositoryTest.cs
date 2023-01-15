@@ -6,7 +6,6 @@ using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Dto;
 using Substats.Domain.Runtime;
 using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.Infrastructure.DirectAccess.Runtime;
 using Substats.Integration.Tests.Contracts;
 using Substats.Polkadot.NetApiExt.Generated.Storage;
 using Microsoft.Extensions.Logging;
@@ -14,6 +13,7 @@ using NSubstitute;
 using NSubstitute.Core.Arguments;
 using NUnit.Framework;
 using System.Threading;
+using Substats.Domain.Runtime.Module;
 
 namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {

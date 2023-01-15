@@ -13,7 +13,7 @@ using Substats.Infrastructure.DirectAccess.Repository;
 using Substats.Domain.Contracts.Dto;
 using Microsoft.Extensions.Logging;
 
-namespace Substats.Infrastructure.DirectAccess.Tests.Block
+namespace Substats.Infrastructure.DirectAccess.Tests.Repository.Block
 {
     public abstract class ExplorerRepositoryTests
     {
@@ -32,10 +32,10 @@ namespace Substats.Infrastructure.DirectAccess.Tests.Block
                 _substrateDecode,
                 Substitute.For<IModelBuilder>(),
                 Substitute.For<ILogger<ExplorerRepositoryDirectAccess>>());
-            
-            
+
+
         }
 
-        
+
     }
 }

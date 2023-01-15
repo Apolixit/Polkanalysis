@@ -27,14 +27,14 @@ public static class Program
         // Display Client Connection Status after connecting
         Console.WriteLine(client.IsConnected ? "Client connected successfully" : "Failed to connect to node. Exiting...");
 
+        //var r = client.State.GetStorageHashAtAsync()
 
         var meta = client.MetaData;
 
         var errors = client.MetaData.NodeMetadata.Modules[9].Errors;
 
        
-        //await SubscribeAllEventAsync(client);
-        await SubscribeFinalizedBlockAsync(client);
+        await SubscribeAllEventAsync(client);
         Console.ReadLine();
     }
 
@@ -92,14 +92,6 @@ public static class Program
         }, CancellationToken.None);
     }
 
-    public static async Task SubscribeFinalizedBlockAsync(SubstrateClientExt client)
-    {
-        await client.Chain.SubscribeFinalizedHeadsAsync((string s, Header h) =>
-        {
-                Console.WriteLine(h.StateRoot);
-            //var blockAuthor = await client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
-        });
-    }
     private static string GetClientConnectionStatus(SubstrateClientExt client)
     {
         return client.IsConnected ? "Connected" : "Not connected";
