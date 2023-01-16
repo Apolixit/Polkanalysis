@@ -73,7 +73,8 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Reposi
         [TestCaseSource(nameof(PolkadotModules))]
         public void Module_CheckEveryCurrentRuntimeModule_ShouldWork(string module)
         {
-            Assert.That(_moduleRepository.GetModuleDetail(module), Is.Not.Null);
+            var res = _moduleRepository.GetModuleDetail(module);
+           Assert.That(res, Is.Not.Null);
         }
     }
 }

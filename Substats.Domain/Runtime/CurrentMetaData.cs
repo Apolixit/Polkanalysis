@@ -1,5 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Meta;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic;
 using Substats.Domain.Contracts.Dto.Module;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
@@ -17,33 +18,85 @@ namespace Substats.Domain.Runtime
             _logger = logger;
         }
 
-        public string DisplayTypeDetail(uint typeId)
+        #region Write Type
+        public string WriteType(uint typeId)
         {
             var detailType = GetPalletType(typeId);
-            string fullType = string.Empty;
 
             if (detailType is NodeTypeVariant detailVariant)
-            {
-                fullType = string.Join(":", detailType.Path);
-            }
+                return WriteNodeVariant(detailVariant);
             else if (detailType is NodeTypeCompact detailCompact)
-            {
-                fullType += $"{detailCompact.TypeDef}<{DisplayTypeDetail(detailCompact.TypeId)}>";
-            }
+                return WriteNodeCompact(detailCompact);
             else if (detailType is NodeTypePrimitive detailPrimitive)
+                return WriteNodePrimitive(detailPrimitive);
+            else if (detailType is NodeTypeComposite detailComposite)
+                return WriteNodeComposite(detailComposite);
+            else if (detailType is NodeTypeSequence detailSequence)
+                return WriteNodeSequence(detailSequence);
+            else if (detailType is NodeTypeTuple detailTuple)
+                return WriteNodeTuple(detailTuple);
+            else if (detailType is NodeTypeArray detailArray)
+                return WriteNodeArray(detailArray);
+            else
+                throw new NotSupportedException("Type not supported yet..."); // BitSequence ??
+        }
+
+        public string WriteNodeVariant(NodeTypeVariant nodeType)
+        {
+            string display = string.Join(":", nodeType.Path);
+            if (nodeType.TypeParams != null && nodeType.TypeParams.Length > 0)
             {
-                fullType += detailPrimitive.Primitive;
+                display = $"{display}<{string.Join(",", nodeType.TypeParams.Where(p => p.TypeId != null).Select(p => WriteType((uint)p.TypeId)))}>";
             }
 
-            return fullType;
+            return display;
         }
+
+        public string WriteNodeCompact(NodeTypeCompact nodeType)
+        {
+            return $"{nodeType.TypeDef}<{WriteType(nodeType.TypeId)}>";
+        }
+
+        public string WriteNodePrimitive(NodeTypePrimitive nodeType)
+        {
+            return nodeType.Primitive.ToString();
+        }
+
+        public string WriteNodeComposite(NodeTypeComposite nodeType)
+        {
+            var display = string.Join(":", nodeType.Path);
+            if (nodeType.TypeParams != null && nodeType.TypeParams.Length > 0)
+            {
+                display = $"{display}<{string.Join(",", nodeType.TypeParams.Select(x => x.Name))}>";
+            }
+            return display;
+        }
+
+        public string WriteNodeSequence(NodeTypeSequence nodeType)
+        {
+            return $"Vec<{WriteType(nodeType.TypeId)}>";
+        }
+
+        public string WriteNodeTuple(NodeTypeTuple nodeType)
+        {
+            return $"({string.Join(",", nodeType.TypeIds.Select(WriteType))})";
+        }
+
+        public string WriteNodeArray(NodeTypeArray nodeType)
+        {
+            return $"{WriteType(nodeType.TypeId)}[{nodeType.Length}]";
+        }
+        #endregion
+        public string BuildType(uint typeId)
+        {
+            throw new NotImplementedException();
+        }
+
         public TypeFieldDto BuildTypeField(NodeTypeField node)
         {
-            var detailType = GetPalletType(node.TypeId);
-
             var dto = new TypeFieldDto() { 
                 Name = node.Name,
-                Type = DisplayTypeDetail(node.TypeId),
+                Type = WriteType(node.TypeId),
                 TypeName = node.TypeName,
             };
             

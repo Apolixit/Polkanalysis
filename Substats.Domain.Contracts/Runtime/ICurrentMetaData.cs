@@ -32,6 +32,62 @@ namespace Substats.Domain.Contracts.Runtime
 
         public TypeFieldDto BuildTypeField(NodeTypeField node);
 
-        public string DisplayTypeDetail(uint typeId);
+        /// <summary>
+        /// Build a "to Rust struct" implementation of given type
+        /// </summary>
+        /// <param name="typeId"></param>
+        /// <returns></returns>
+        public string WriteType(uint typeId);
+
+        /// <summary>
+        /// Write node variant type
+        /// A variant type is a struct which can change data depend of context
+        /// For example in Rust : Option enum which can be Option<None> or Option<Some<T>>
+        /// </summary>
+        /// <param name="nodeType"></param>
+        /// <returns></returns>
+        public string WriteNodeVariant(NodeTypeVariant nodeType);
+
+
+        public string WriteNodeCompact(NodeTypeCompact nodeType);
+
+        /// <summary>
+        /// The easiest value. Primitive is like U32, I54, Boolean etc
+        /// </summary>
+        /// <param name="nodeType"></param>
+        /// <returns></returns>
+        public string WriteNodePrimitive(NodeTypePrimitive nodeType);
+
+
+        public string WriteNodeComposite(NodeTypeComposite nodeType);
+
+        /// <summary>
+        /// A list of element
+        /// In Rust it's Vec<T>
+        /// </summary>
+        /// <param name="nodeType"></param>
+        /// <returns></returns>
+        public string WriteNodeSequence(NodeTypeSequence nodeType);
+
+        /// <summary>
+        /// A tuple value (A, B)
+        /// </summary>
+        /// <param name="nodeType"></param>
+        /// <returns></returns>
+        public string WriteNodeTuple(NodeTypeTuple nodeType);
+
+        /// <summary>
+        /// The array type
+        /// </summary>
+        /// <param name="nodeType"></param>
+        /// <returns></returns>
+        public string WriteNodeArray(NodeTypeArray nodeType);
+
+        /// <summary>
+        /// Build a "to Rust struct" implementation of given type
+        /// </summary>
+        /// <param name="typeId"></param>
+        /// <returns></returns>
+        public string BuildType(uint typeId);
     }
 }

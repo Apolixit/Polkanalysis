@@ -40,7 +40,11 @@ namespace Substats.Domain.Runtime.Module
                 if (nodeTypeCalls is NodeTypeVariant moduleCalls)
                 {
                     if (moduleCalls.Variants == null)
-                        throw new InvalidOperationException($"Module variant calls from module {palletModule.Name} are null");
+                    {
+                        // TODO : warning log -> weird behavior
+                        return moduleCallsDto;
+                        //throw new InvalidOperationException($"Module variant calls from module {palletModule.Name} are null");
+                    }
 
                     foreach (var moduleCall in moduleCalls.Variants)
                     {
@@ -49,8 +53,8 @@ namespace Substats.Domain.Runtime.Module
                             Name = moduleCall.Name,
                             Documentation = _modelBuilder.BuildDocumentation(moduleCall.Docs),
                             Lookup = moduleCall.Index,
-                            NbParameter = moduleCall.TypeFields.Length,
-                            Arguments = moduleCall.TypeFields.Select(tf => _currentMetaData.BuildTypeField(tf)).ToList()
+                            NbParameter = moduleCall.TypeFields != null ? moduleCall.TypeFields.Length : 0,
+                            Arguments = moduleCall.TypeFields != null ? moduleCall.TypeFields.Select(_currentMetaData.BuildTypeField).ToList() : null,
                         };
                         moduleCallsDto.Add(callDto);
                     }
@@ -80,7 +84,11 @@ namespace Substats.Domain.Runtime.Module
                 if (nodeTypeEvent is NodeTypeVariant moduleEvents)
                 {
                     if (moduleEvents.Variants == null)
-                        throw new InvalidOperationException($"Module variant events from module {palletModule.Name} are null");
+                    {
+                        // TODO : warning log -> weird behavior
+                        return moduleEventsDto;
+                        //throw new InvalidOperationException($"Module variant events from module {palletModule.Name} are null");
+                    }
 
                     foreach (var moduleEvent in moduleEvents.Variants)
                     {
@@ -89,7 +97,7 @@ namespace Substats.Domain.Runtime.Module
                             Name = moduleEvent.Name,
                             Documentation = _modelBuilder.BuildDocumentation(moduleEvent.Docs),
                             Lookup = moduleEvent.Index,
-                            Arguments = moduleEvent.TypeFields.Select(tf => _currentMetaData.BuildTypeField(tf)).ToList()
+                            Arguments = moduleEvent.TypeFields != null ? moduleEvent.TypeFields.Select(tf => _currentMetaData.BuildTypeField(tf)).ToList() : null
                         };
 
                         moduleEventsDto.Add(callDto);
@@ -122,7 +130,7 @@ namespace Substats.Domain.Runtime.Module
                     var moduleConstant = new ModuleConstantsDto()
                     {
                         Name = constant.Name,
-                        Type = _currentMetaData.DisplayTypeDetail(constant.TypeId),
+                        Type = _currentMetaData.WriteType(constant.TypeId),
                         Documentation = _modelBuilder.BuildDocumentation(constant.Docs),
                         Value = Utils.Bytes2HexString(constant.Value)
                     };
@@ -186,7 +194,11 @@ namespace Substats.Domain.Runtime.Module
                 if (nodeType is NodeTypeVariant nodeTypeVariant)
                 {
                     if (nodeTypeVariant.Variants == null)
-                        throw new InvalidOperationException($"Module variant errors from module {palletModule.Name} are null");
+                    {
+                        // TODO : warning log -> weird behavior
+                        return modulesDto;
+                        //throw new InvalidOperationException($"Module variant errors from module {palletModule.Name} are null");
+                    }
 
                     foreach (var typeVariant in nodeTypeVariant.Variants)
                     {
