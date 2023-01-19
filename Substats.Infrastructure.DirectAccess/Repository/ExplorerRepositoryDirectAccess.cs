@@ -113,7 +113,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             }
 
             //var logDecode = _substrateDecode.DecodeLog(blockDetails.Block.Header.Digest.Logs);
-
+            var res6 = await _substrateService.Client.SystemStorage.Digest(cancellationToken);
 
 
             var blockDto = new BlockDto()
@@ -125,7 +125,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                 StateRoot = blockDetails.Block.Header.StateRoot,
                 Number = blockDetails.Block.Header.Number.Value,
                 Hash = blockHash,
-                Status = Domain.Contracts.Dto.StatusDto.Broadcasted,
+                Status = GlobalStatusDto.BlockStatusDto.Broadcasted,
                 NbExtrinsics = (uint)blockDetails.Block.Extrinsics.Length,
                 NbEvents = eventsCount.Value,
                 NbLogs = (uint)blockDetails.Block.Header.Digest.Logs.Count,

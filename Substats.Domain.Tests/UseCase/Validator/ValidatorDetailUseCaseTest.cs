@@ -1,5 +1,4 @@
-﻿using Substats.Domain.Contracts.Dto;
-using Substats.Domain.Contracts.Primary;
+﻿using Substats.Domain.Contracts.Primary;
 using Substats.Domain.UseCase.Module;
 using Substats.Domain.UseCase.Validator;
 using Microsoft.Extensions.Logging;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Contracts.Dto.User;
 
 namespace Substats.Domain.Tests.UseCase.Validator
 {

@@ -12,6 +12,6 @@ namespace Substats.Domain.Contracts.Dto.Block
         public required ulong Number { get; set; }
         public required Hash Hash { get; set; }
         public required string When { get; set; }
-        public required StatusDto Status { get; set; }
+        public required GlobalStatusDto.BlockStatusDto Status { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using Schnorrkel.Keys;
+using Substats.Domain.Contracts.Dto.User;
 
 namespace Substats.Domain.Contracts.Helpers
 {

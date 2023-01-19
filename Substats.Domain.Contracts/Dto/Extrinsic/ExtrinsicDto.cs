@@ -1,5 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Substats.Domain.Contracts.Dto.Block;
+using Substats.Domain.Contracts.Dto.User;
 using Substats.Domain.Contracts.Runtime;
 
 namespace Substats.Domain.Contracts.Dto.Extrinsic

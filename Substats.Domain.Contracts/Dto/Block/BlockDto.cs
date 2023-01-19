@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Substats.Domain.Contracts.Dto.Block
         /// <summary>
         /// Block status
         /// </summary>
-        public required StatusDto Status { get; set; }
+        public required GlobalStatusDto.BlockStatusDto Status { get; set; }
 
         public required Hash Hash { get; set; }
         public Hash? ParentHash { get; set; }

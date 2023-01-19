@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Dto
 {
-    public enum StatusDto
+    public class GlobalStatusDto
     {
-        Broadcasted,
-        InBlock,
-        Finalized,
-        FinalityTimeout,
-        Retracted,
-        Usurped
+        public enum BlockStatusDto
+        {
+            Broadcasted,
+            InBlock,
+            Finalized,
+            FinalityTimeout,
+            Retracted,
+            Usurped
+        }
+
+        public enum AliveStatusDto
+        {
+            Active,
+            Inactive,
+        }
     }
+    
 }

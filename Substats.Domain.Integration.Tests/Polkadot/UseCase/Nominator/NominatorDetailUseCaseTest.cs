@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto
+namespace Substats.Domain.Integration.Tests.Polkadot.UseCase.Nominator
 {
-    public class ValidatorDto
+    internal class NominatorDetailUseCaseTest
     {
     }
 }

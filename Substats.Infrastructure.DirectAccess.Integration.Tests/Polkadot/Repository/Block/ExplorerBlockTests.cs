@@ -16,6 +16,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         [TestCase(13210791)]
         [TestCase(13278242)]
         [TestCase(13406835)]
+        [TestCase(11062877)]
         public async Task GetBlockDetails_ValidBlockNumber_ShouldWorkAsync(int blockId)
         {
             var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);

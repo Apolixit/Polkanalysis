@@ -1,14 +1,17 @@
-﻿using Substats.Domain.Contracts.Dto;
+﻿using Substats.Domain.Contracts.Dto.Balances;
 
-namespace Substats.Domain.Contracts
+namespace Substats.Domain.Contracts.Dto.User
 {
     public class AccountDto
     {
-        public string Name { get; set; } = string.Empty;
+        public required string Name { get; set; } = string.Empty;
         public AddressDto Address { get; set; }
+        public required BalancesDto Balances { get; set; }
+        public uint AccountIndex { get; set; }
+        public required uint Nonce { get; set; }
         public string AvatarUrl { get; set; } = string.Empty;
-        public double Balance { get; set; }
 
+        public AccountDto() { }
         public AccountDto(string name, string ss58Address, string publicKey)
         {
             Name = name;
@@ -17,13 +20,16 @@ namespace Substats.Domain.Contracts
                 Address = ss58Address,
                 PublicKey = publicKey
             };
-            Balance = 0;
+            Balances = new BalancesDto();
             AvatarUrl = $"/images/avatars/{name.ToLower()}.png";
         }
 
         public AccountDto WithBalance(double balance)
         {
-            Balance = balance;
+            Balances = new BalancesDto()
+            {
+                Transferable = balance,
+            };
             return this;
         }
     }

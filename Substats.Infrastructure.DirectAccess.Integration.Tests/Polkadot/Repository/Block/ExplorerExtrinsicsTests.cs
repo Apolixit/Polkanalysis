@@ -17,6 +17,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
     {
         [Test]
         [TestCase(13564726, "0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
+        [TestCase(11062877, "0xe64c10be69da2b309d88c1d5f18a1d5e9b6766a6e3003fb1f5932d1701f59fd0")]
         public async Task GetExtrinsicsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(
             int blockId,
             string blockHash)

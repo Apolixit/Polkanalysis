@@ -88,7 +88,7 @@ namespace Substats.Domain.Dto
             {
                 Hash = blockHash,
                 Number = blockData.Block.Header.Number.Value,
-                Status = StatusDto.Broadcasted,
+                Status = GlobalStatusDto.BlockStatusDto.Broadcasted,
                 When = DisplayElapsedTime(blockDate)
             };
         }

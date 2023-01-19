@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Substats.Domain.UseCase.Account;
 using Substats.Domain.Contracts.Primary;
-using Substats.Domain.Contracts;
+using Substats.Domain.Contracts.Dto.User;
 
 namespace Substats.Domain.Tests.UseCase.Account
 {

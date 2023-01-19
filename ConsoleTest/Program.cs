@@ -97,4 +97,40 @@ public static class Program
         return client.IsConnected ? "Connected" : "Not connected";
 
     }
+
+    public static async Task XX(SubstrateClientExt client)
+    {
+        //var accountId32 = new AccountId32();
+        //accountId32.Create(Utils.GetPublicKeyFrom(accountAddress));
+
+        //var res = await _substrateNodeRepository.Client.BalancesStorage.Account(accountId32, cancellationToken);
+        //var res1 = await _substrateNodeRepository.Client.BalancesStorage.Locks(accountId32, cancellationToken);
+
+        //var res2 = await _substrateNodeRepository.Client.BalancesStorage.Reserves(accountId32, cancellationToken);
+        //var res3 = await _substrateNodeRepository.Client.BalancesStorage.StorageVersion(cancellationToken);
+        //var res4 = await _substrateNodeRepository.Client.BalancesStorage.TotalIssuance(cancellationToken);
+
+        //var res5 = await _substrateNodeRepository.Client.SystemStorage.Account(accountId32, cancellationToken);
+        //var res6 = await _substrateNodeRepository.Client.SystemStorage.Digest(cancellationToken);
+        //var res7 = await _substrateNodeRepository.Client.SystemStorage.ExecutionPhase(cancellationToken);
+        //var res8 = await _substrateNodeRepository.Client.System.NodeRolesAsync(cancellationToken);
+        //var res9 = await _substrateNodeRepository.Client.System.ChainAsync(cancellationToken);
+        //var res10 = await _substrateNodeRepository.Client.System.NameAsync(cancellationToken);
+        //var res11 = await _substrateNodeRepository.Client.System.ChainTypeAsync(cancellationToken);
+        //var res12 = await _substrateNodeRepository.Client.System.AccountNextIndexAsync(accountAddress, cancellationToken);
+        //var res13 = await _substrateNodeRepository.Client.System.HealthAsync(cancellationToken);
+        //var res14 = await _substrateNodeRepository.Client.System.SyncStateAsync(cancellationToken);
+        //var res15 = await _substrateNodeRepository.Client.System.VersionAsync(cancellationToken);
+        //var res16 = await _substrateNodeRepository.Client.System.NodeRolesAsync(cancellationToken);
+        //var res17 = await _substrateNodeRepository.Client.State.GetRuntimeVersionAsync();
+
+        //var res18 = await _substrateNodeRepository.Client.StakingStorage.Bonded(accountId32, cancellationToken);
+        //var res19 = await _substrateNodeRepository.Client.StakingStorage.BondedEras(cancellationToken);
+        //var res20 = await _substrateNodeRepository.Client.StakingStorage.CurrentEra(cancellationToken);
+        //var res21 = await _substrateNodeRepository.Client.StakingStorage.Nominators(accountId32, cancellationToken);
+        //var res22 = await _substrateNodeRepository.Client.StakingStorage.Payee(accountId32, cancellationToken);
+        //var res23 = await _substrateNodeRepository.Client.StakingStorage.Validators(accountId32, cancellationToken);
+        //var res24 = await _substrateNodeRepository.Client.ParasStorage.Parachains(cancellationToken);
+        //var res25 = await _substrateNodeRepository.Client.IdentityStorage.IdentityOf(accountId32, cancellationToken);
+    }
 }
