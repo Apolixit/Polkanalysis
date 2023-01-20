@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Substats.Domain.Contracts.Dto.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Substats.Domain.Contracts.Secondary
 {
     public interface INominatorRepository
     {
+        public Task <NominatorDto> GetNominatorDetailAsync(string nominatorAddress, CancellationToken cancellationToken);
     }
 }

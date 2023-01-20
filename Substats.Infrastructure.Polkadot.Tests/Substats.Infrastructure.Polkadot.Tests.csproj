@@ -36,7 +36,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Substats.Domain.Contracts\Substats.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Infrastructure.DirectAccess\Substats.Infrastructure.DirectAccess.csproj" />
+    <ProjectReference Include="..\Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj" />
   </ItemGroup>
 
 </Project>

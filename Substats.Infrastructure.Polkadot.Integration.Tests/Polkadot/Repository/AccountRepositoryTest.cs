@@ -18,12 +18,13 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Reposi
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new AccountRepositoryDirectAccess(_substrateRepository);
+            _accountRepository = new PolkadotAccountRepository(_substrateRepository);
         }
 
         [Test]
         [TestCase("5He5uUCWMLXvfJmSWTcD2ZHDerBU4VH91z92SekRcctuGifV", "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")]
         [TestCase("", "124X3VPduasSodAjS6MPd5nEqM8SUdKN5taMUUPtkWqF1fVf")]
+        [TestCase("", "16AjunUasoBZKWkDnHvNEALGUgGuzC92j7LJoLu9qBSUJB2e")]
         public async Task ValidAccount_GetDetails_ShouldWorkAsync(string ss58, string polkadotAdress)
         {
             if(!string.IsNullOrEmpty(ss58))

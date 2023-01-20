@@ -27,11 +27,11 @@ namespace Substats.Infrastructure.DirectAccess.Tests.Repository.Block
             _substrateService = Substitute.For<ISubstrateNodeRepository>();
             _substrateDecode = Substitute.For<ISubstrateDecoding>();
 
-            _explorerRepository = new ExplorerRepositoryDirectAccess(
+            _explorerRepository = new PolkadotExplorerRepository(
                 _substrateService,
                 _substrateDecode,
                 Substitute.For<IModelBuilder>(),
-                Substitute.For<ILogger<ExplorerRepositoryDirectAccess>>());
+                Substitute.For<ILogger<PolkadotExplorerRepository>>());
 
 
         }

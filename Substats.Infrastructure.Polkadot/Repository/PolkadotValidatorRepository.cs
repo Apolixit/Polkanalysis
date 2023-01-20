@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {
-    public class ValidatorRepositoryDirectAccess : IValidatorRepository
+    public class PolkadotValidatorRepository : IValidatorRepository
     {
         private readonly ISubstrateNodeRepository _substrateNodeRepository;
 
-        public ValidatorRepositoryDirectAccess(ISubstrateNodeRepository substrateNodeRepository)
+        public PolkadotValidatorRepository(ISubstrateNodeRepository substrateNodeRepository)
         {
             _substrateNodeRepository = substrateNodeRepository;
         }
@@ -35,11 +35,13 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             if (validator == null)
                 throw new InvalidOperationException($"Address {validatorAddress} is not a validator");
 
+            var chainInfo = await _substrateNodeRepository.Client.Core.System.PropertiesAsync(cancellationToken);
+
             var res1 = await _substrateNodeRepository.Client.SystemStorage.Account(validatorAccount, cancellationToken);
             //var res2 = await _substrateNodeRepository.Client.VestingStorage
-            var res3 = await _substrateNodeRepository.Client.StakingStorage.Bonded(validator, cancellationToken);
-            var boundedAddress = Utils.GetAddressFrom(res3.Bytes);
-            var boundedAddress2 = Utils.GetAddressFrom(res3.Bytes, 0);
+            var bondedAddress = await _substrateNodeRepository.Client.StakingStorage.Bonded(validator, cancellationToken);
+            //var boundedAddress = Utils.GetAddressFrom(res3.Bytes);
+            var boundedAddress = Utils.GetAddressFrom(bondedAddress.Bytes, (short)chainInfo.Ss58Format);
 
             var res4 = await _substrateNodeRepository.Client.StakingStorage.ActiveEra(cancellationToken);
             var res5 = await _substrateNodeRepository.Client.StakingStorage.CurrentEra(cancellationToken);
@@ -47,13 +49,39 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             var res7 = await _substrateNodeRepository.Client.StakingStorage.CounterForValidators(cancellationToken);
             var res8 = await _substrateNodeRepository.Client.StakingStorage.BondedEras(cancellationToken);
 
+            var validatorSettings = await _substrateNodeRepository.Client.StakingStorage.Validators(validator, cancellationToken);
+
             var tuple = new BaseTuple<U32, AccountId32>();
             tuple.Create(res5, validator);
-            var res9 = await _substrateNodeRepository.Client.StakingStorage.ErasStakers(tuple, cancellationToken);
+            var nominators = await _substrateNodeRepository.Client.StakingStorage.ErasStakers(tuple, cancellationToken);
 
+            var nominatorsDto = nominators.Others.Value.Select(n =>
+            {
+                var nominatorAddress = Utils.GetAddressFrom(n.Who.Value.Bytes, (short)chainInfo.Ss58Format);
+                return new NominatorDto()
+                {
+                    ControllerAddress = nominatorAddress,
+                    RewardAddress = nominatorAddress,
+                    StashAddress = nominatorAddress,
+                    Bonded = (double)n.Value.Value.Value / Math.Pow(10, chainInfo.TokenDecimals)
+                };
+            }).ToList();
             //Utils.GetPublicKeyFrom(AccountHelper.BuildAddress((AccountId32)input))
             //var xx = Utils.GetAddressFrom(res1.Value[0].Value.Bytes);
-            return null;
+
+            var validatorDto = new ValidatorDto()
+            {
+                ControllerAddress = boundedAddress,
+                StashAddress = boundedAddress,
+                RewardAddress = validatorAddress,
+                SelfBonded = (double)nominators.Own.Value.Value / Math.Pow(10, chainInfo.TokenDecimals),
+                TotalBonded = (double)nominators.Total.Value.Value / Math.Pow(10, chainInfo.TokenDecimals),
+                Commission = (double)validatorSettings.Commission.Value.Value,
+                Nominators = nominatorsDto,
+                Status = validatorSettings.Blocked.Value ? 
+                    Domain.Contracts.Dto.GlobalStatusDto.AliveStatusDto.Active : Domain.Contracts.Dto.GlobalStatusDto.AliveStatusDto.Inactive
+            };
+            return validatorDto;
         }
     }
 }

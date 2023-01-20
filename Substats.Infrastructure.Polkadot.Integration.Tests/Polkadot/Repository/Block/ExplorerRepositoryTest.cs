@@ -38,11 +38,11 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
                     _substrateRepository, 
                     _currentMetaData),
                 Substitute.For<ILogger<SubstrateDecoding>>());
-            _blockRepository = new ExplorerRepositoryDirectAccess(
+            _blockRepository = new PolkadotExplorerRepository(
                 _substrateRepository, 
                 _substrateDecoding,
                 new ModelBuilder(),
-                Substitute.For<ILogger<ExplorerRepositoryDirectAccess>>());
+                Substitute.For<ILogger<PolkadotExplorerRepository>>());
         }
     }
 }

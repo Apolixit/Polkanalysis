@@ -12,7 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Substats.AjunaExtension\Substats.AjunaExtension.csproj" />
+    <ProjectReference Include="..\Substats.Configuration.Contracts\Substats.Configuration.Contracts.csproj" />
     <ProjectReference Include="..\Substats.Domain.Contracts\Substats.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
   </ItemGroup>
 
 </Project>

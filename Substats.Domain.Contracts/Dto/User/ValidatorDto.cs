@@ -8,7 +8,6 @@ namespace Substats.Domain.Contracts.Dto.User
 {
     public class ValidatorDto
     {
-        public required int Number { get; set; }
         public required string StashAddress { get; set; }
         public required string ControllerAddress { get; set; }
         public required string RewardAddress { get; set; }

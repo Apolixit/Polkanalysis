@@ -17,7 +17,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Reposi
         [SetUp]
         public void Setup()
         {
-            _validatorRepository = new ValidatorRepositoryDirectAccess(_substrateRepository);
+            _validatorRepository = new PolkadotValidatorRepository(_substrateRepository);
         }
 
         [Test]

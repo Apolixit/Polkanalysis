@@ -23,7 +23,8 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
         {
             _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
 
-            var mockClient = Substitute.For<SubstrateClientExt>(default, default);
+            //var mockClient = Substitute.For<SubstrateClientExt>(default, default);
+            var mockClient = Substitute.For<ISubstrateClientRepository>(default, default);
             _substrateRepository.Client.Returns(mockClient);
 
             _currentMetaData = Substitute.For<ICurrentMetaData>();
@@ -89,22 +90,20 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
                 { 0, timestampPalletModule }
             };
 
-            _substrateRepository.Client.Returns(Substitute.For<SubstrateClientExt>());
+            _substrateRepository.Client.Returns(Substitute.For<ISubstrateClientRepository>());
 
-            _substrateRepository.Client.MetaData.NodeMetadata.Modules.Returns(dictionnaryModule);
+            _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules.Returns(dictionnaryModule);
 
-            var timestampType = new Ajuna.NetApi.Model.Meta.NodeTypeVariant()
+            var timestampType = new NodeTypeVariant()
             {
                 Path = new string[] { "pallet_timestamp", "pallet", "call" },
             };
 
-            var dictionnaryType = new Dictionary<uint, Ajuna.NetApi.Model.Meta.NodeType>
+            var dictionnaryType = new Dictionary<uint, NodeType>
             {
                 { 0, timestampType }
             };
-            _substrateRepository.Client.MetaData.NodeMetadata.Types.Returns(dictionnaryType);
-            //_substrateRepository.Client.Returns(new NetApiExt.Generated.SubstrateClientExt(new Uri("wss://rpc.polkadot.io"), ChargeTransactionPayment.Default()));
-            //var callBuilded = _palletBuilder.BuildCall("Timestamp", new Method(3, 0, Utils.HexToByteArray(hex)));
+            _substrateRepository.Client.Core.MetaData.NodeMetadata.Types.Returns(dictionnaryType);
             var callBuilded = _palletBuilder.BuildCall("Timestamp", new Method(3, 0, new byte[] { 1 }));
 
             var timestampSet = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.EnumCall();

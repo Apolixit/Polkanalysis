@@ -4,7 +4,7 @@ namespace Substats.Domain.Contracts.Dto.User
 {
     public class AccountDto
     {
-        public required string Name { get; set; } = string.Empty;
+        public required UserInformationsDto InformationsDto { get; set; } = new UserInformationsDto();
         public AddressDto Address { get; set; }
         public required BalancesDto Balances { get; set; }
         public uint AccountIndex { get; set; }
@@ -14,7 +14,7 @@ namespace Substats.Domain.Contracts.Dto.User
         public AccountDto() { }
         public AccountDto(string name, string ss58Address, string publicKey)
         {
-            Name = name;
+            InformationsDto = new UserInformationsDto() { Name = name };
             Address = new AddressDto()
             {
                 Address = ss58Address,

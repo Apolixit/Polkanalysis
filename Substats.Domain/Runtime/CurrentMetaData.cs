@@ -105,7 +105,7 @@ namespace Substats.Domain.Runtime
 
         public virtual NodeMetadataV14 GetCurrentMetadata()
         {
-            return _substrateNodeRepository.Client.MetaData.NodeMetadata;
+            return _substrateNodeRepository.Client.Core.MetaData.NodeMetadata;
         }
 
         public PalletModule GetPalletModule(string palletName)

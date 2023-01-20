@@ -1,6 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Polkadot.NetApiExt.Generated.Model.primitive_types;
 
 namespace Substats.AjunaExtension
 {
@@ -48,10 +47,10 @@ namespace Substats.AjunaExtension
                 return null;
         }
 
-        public static H256? GetValue(this H256 sender)
-        {
-            return sender;
-        }
+        //public static H256? GetValue(this H256 sender)
+        //{
+        //    return sender;
+        //}
 
         public static object[]? GetValueArray(this IType sender)
         {

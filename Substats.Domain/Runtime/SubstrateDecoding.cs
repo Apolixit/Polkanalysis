@@ -240,7 +240,7 @@ namespace Substats.Domain.Runtime
         /// <returns></returns>
         public PalletModule GetPalletModule(string palletName)
         {
-            var module = _substrateRepository.Client.MetaData.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
+            var module = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
 
             if (module == null)
                 throw new ArgumentException($"{nameof(palletName)} (= {palletName}) is not found in Metadata");
@@ -255,7 +255,7 @@ namespace Substats.Domain.Runtime
         /// <returns></returns>
         public PalletModule GetPalletModule(byte palletIndex)
         {
-            var module = _substrateRepository.Client.MetaData.NodeMetadata.Modules[palletIndex];
+            var module = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules[palletIndex];
             if (module == null)
                 throw new ArgumentException($"{nameof(palletIndex)} (= {palletIndex}) is not found in Metadata");
 
@@ -264,7 +264,7 @@ namespace Substats.Domain.Runtime
 
         public NodeType GetDocumentationFromTypeId(uint TypeId)
         {
-            var doc = _substrateRepository.Client.MetaData.NodeMetadata.Types[TypeId];
+            var doc = _substrateRepository.Client.Core.MetaData.NodeMetadata.Types[TypeId];
             if (doc == null)
                 throw new ArgumentException($"{nameof(TypeId)} (= {TypeId}) is not found in Metadata");
 
@@ -274,45 +274,18 @@ namespace Substats.Domain.Runtime
         public INode DecodeExtrinsic(Ajuna.NetApi.Model.Extrinsics.Extrinsic extrinsic)
         {
             //nodeMetadata.Types.Where(x => x.Value.Path != null && x.Value.Path.Count() > 2 && x.Value.Path[0] == "pallet_balances")
-            var nodeMetadata = _substrateRepository.Client.MetaData.NodeMetadata;
-            var metadataModules = _substrateRepository.Client.MetaData.NodeMetadata.Modules;
-            var metadataExtrinsic = _substrateRepository.Client.MetaData.NodeMetadata.Extrinsic;
+            var nodeMetadata = _substrateRepository.Client.Core.MetaData.NodeMetadata;
+            var metadataModules = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules;
+            var metadataExtrinsic = _substrateRepository.Client.Core.MetaData.NodeMetadata.Extrinsic;
             //var moduleName = metadataModules.FirstOrDefault(x => x.Value.Index == extrinsic.Method.ModuleIndex);
 
-            var pallet = _substrateRepository.Client.MetaData.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
+            var pallet = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
             var palletCall = nodeMetadata.Types[pallet.Calls.TypeId];
 
             var realCallNew = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
             var nodeResultNew = DecodeEvent(realCallNew);
 
             return nodeResultNew;
-        }
-
-        private int DecodeNodeType(NodeType nodeType, int callIndex)
-        {
-            // Si palletCall.Typedef == Variant => Accès aux enum Variants
-            //case TypeDefEnum.Composite: new NodeTypeComposite
-            //TypeDefEnum.Variant => new NodeTypeVariant
-            //TypeDefEnum.Sequence => new NodeTypeSequence
-            //TypeDefEnum.Array => new NodeTypeArray
-            //TypeDefEnum.Tuple => new NodeTypeTuple
-            //TypeDefEnum.Primitive => new NodeTypePrimitive
-            //TypeDefEnum.Compact => new NodeTypeCompact
-            //TypeDefEnum.BitSequence => new NodeTypeBitSequence
-
-            int i = nodeType.TypeDef switch
-            {
-                TypeDefEnum.Variant => 1,
-                _ => 2,
-            };
-
-            if (nodeType is NodeTypeVariant nodeVariant)
-            {
-                var variant = nodeVariant.Variants[callIndex];
-
-            }
-
-            return i;
         }
 
         public INode DecodeLog(IList<string> logs)

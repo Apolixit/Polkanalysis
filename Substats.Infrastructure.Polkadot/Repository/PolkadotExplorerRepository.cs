@@ -25,19 +25,19 @@ using Microsoft.Extensions.Logging;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {
-    public class ExplorerRepositoryDirectAccess : IExplorerRepository
+    public class PolkadotExplorerRepository : IExplorerRepository
     {
         private readonly ISubstrateNodeRepository _substrateService;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IModelBuilder _modelBuilder;
-        private readonly ILogger<ExplorerRepositoryDirectAccess> _logger;
+        private readonly ILogger<PolkadotExplorerRepository> _logger;
         private BlockLightDto? _lastBlock;
 
-        public ExplorerRepositoryDirectAccess(
+        public PolkadotExplorerRepository(
             ISubstrateNodeRepository substrateNodeRepository,
             ISubstrateDecoding substrateDecode,
             IModelBuilder modelBuilder,
-            ILogger<ExplorerRepositoryDirectAccess> logger)
+            ILogger<PolkadotExplorerRepository> logger)
         {
             _substrateService = substrateNodeRepository;
             _substrateDecode = substrateDecode;
@@ -50,7 +50,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             var blockNumber = new BlockNumber();
             blockNumber.Create(blockId);
 
-            var blockHash = await _substrateService.Client.Chain.GetBlockHashAsync(blockNumber, cancellationToken);
+            var blockHash = await _substrateService.Client.Core.Chain.GetBlockHashAsync(blockNumber, cancellationToken);
 
             if (blockHash == null)
                 throw new BlockException($"{nameof(blockHash)} from given blockId (={blockId}) is null");
@@ -71,7 +71,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
         public async Task<BlockLightDto> GetBlockLightAsync(Hash blockHash, CancellationToken cancellationToken)
         {
-            var blockData = await _substrateService.Client.Chain.GetBlockAsync(blockHash, cancellationToken);
+            var blockData = await _substrateService.Client.Core.Chain.GetBlockAsync(blockHash, cancellationToken);
             if (blockData == null)
                 throw new BlockException($"{blockData} for block hash = {blockHash.Value} is null");
 
@@ -88,19 +88,18 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
         public async Task<BlockDto> GetBlockDetailsAsync(Hash blockHash, CancellationToken cancellationToken)
         {
-            var blockDetails = await _substrateService.Client.Chain.GetBlockAsync(blockHash, cancellationToken);
+            var blockDetails = await _substrateService.Client.Core.Chain.GetBlockAsync(blockHash, cancellationToken);
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
             var currentDate = await GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
 
-            var eventsCount = await _substrateService.Client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
+            var eventsCount = await _substrateService.Client.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
 
-            var blockExecutionPhase = await _substrateService.Client.GetStorageAsync<EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
+            var blockExecutionPhase = await _substrateService.Client.Core.GetStorageAsync<EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
 
-            //await _substrateService.Client.AuthorshipStorage.Author(cancellationToken);
-            var blockAuthor = await _substrateService.Client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
-            var blockAuthor2 = await _substrateService.Client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), cancellationToken);
+            var blockAuthor = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
+            var blockAuthor2 = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), cancellationToken);
 
             //var staking = await _substrateService.Client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(
             //    AuthorshipStorage.AuthorParams(), blockhash, cancellationToken);
@@ -129,13 +128,13 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                 NbExtrinsics = (uint)blockDetails.Block.Extrinsics.Length,
                 NbEvents = eventsCount.Value,
                 NbLogs = (uint)blockDetails.Block.Header.Digest.Logs.Count,
-                SpecVersion = _substrateService.Client.RuntimeVersion.SpecVersion,
+                SpecVersion = _substrateService.Client.Core.RuntimeVersion.SpecVersion,
                 Validator = null,
             };
 
-            var a = await _substrateService.Client.State.GetMetaDataAsync();
+            var a = await _substrateService.Client.Core.State.GetMetaDataAsync();
             var b = await _substrateService.Client.StakingStorage.ValidatorCount(CancellationToken.None);
-            var c = await _substrateService.Client.System.LocalListenAddressesAsync(cancellationToken);
+            var c = await _substrateService.Client.Core.System.LocalListenAddressesAsync(cancellationToken);
             var d = await _substrateService.Client.AuthorshipStorage.Author(cancellationToken);
             var e = await _substrateService.Client.AuthorshipStorage.Uncles(cancellationToken);
 
@@ -148,8 +147,8 @@ namespace Substats.Infrastructure.DirectAccess.Repository
         {
             var currentTimestamp = blockHash switch
             {
-                null => await _substrateService.Client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), cancellationToken),
-                _ => await _substrateService.Client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), blockHash.Value, cancellationToken)
+                null => await _substrateService.Client.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), cancellationToken),
+                _ => await _substrateService.Client.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), blockHash.Value, cancellationToken)
             };
 
             return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
@@ -186,7 +185,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                 //_lastBlock = await GetBlockLightAsync(currentHash, cancellationToken);
                 blockCallback(_lastBlock);
             };
-            await _substrateService.Client.Chain.SubscribeAllHeadsAsync(subscribe);
+            await _substrateService.Client.Core.Chain.SubscribeAllHeadsAsync(subscribe);
             //await SubscribeAllHeadsAsync(subscribe);
         }
 
@@ -208,7 +207,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
         public async Task<IEnumerable<EventDto>> GetEventsAsync(Hash blockHash, CancellationToken cancellationToken)
         {
-            var events = await _substrateService.Client.GetStorageAsync<BaseVec<Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(
+            var events = await _substrateService.Client.Core.GetStorageAsync<BaseVec<EventRecord>>(
                 SystemStorage.EventsParams(), blockHash.Value, cancellationToken);
 
             var eventsDto = new List<EventDto>();
@@ -236,7 +235,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
         public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(Hash blockHash, CancellationToken cancellationToken)
         {
-            var blockDetails = await _substrateService.Client.Chain.GetBlockAsync(blockHash, cancellationToken);
+            var blockDetails = await _substrateService.Client.Core.Chain.GetBlockAsync(blockHash, cancellationToken);
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
@@ -271,7 +270,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             ExtrinsicDto extrinsicDto,
             CancellationToken cancellationToken)
         {
-            var blockDetails = await _substrateService.Client.Chain.GetBlockAsync(
+            var blockDetails = await _substrateService.Client.Core.Chain.GetBlockAsync(
                 extrinsicDto.Block.Hash, cancellationToken);
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {extrinsicDto.Block.Hash} is null");
@@ -287,7 +286,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             var blockLight = await GetBlockLightAsync(extrinsicDto.Block.Hash, cancellationToken);
 
             // Return every events linked to this block
-            BaseVec<EventRecord> events = await _substrateService.Client.GetStorageAsync<BaseVec<EventRecord>>(
+            BaseVec<EventRecord> events = await _substrateService.Client.Core.GetStorageAsync<BaseVec<EventRecord>>(
                 SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
 
             // Doc here :
@@ -418,7 +417,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                 }
             };
 
-            await _substrateService.Client.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
+            await _substrateService.Client.Core.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
         }
 
         public Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
@@ -436,7 +435,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
         public async Task<EventDto> GetEventAsync(Hash blockHash, uint eventIndex, CancellationToken cancellationToken)
         {
-            var events = await _substrateService.Client.GetStorageAsync<BaseVec<EventRecord>>(
+            var events = await _substrateService.Client.Core.GetStorageAsync<BaseVec<EventRecord>>(
                 SystemStorage.EventsParams(), blockHash.Value, cancellationToken);
 
             var eventNode = _substrateDecode.DecodeEvent(events.Value[eventIndex]);

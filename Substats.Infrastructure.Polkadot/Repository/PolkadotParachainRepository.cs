@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {
-    public class ParachainRepositoryDirectAccess : IParachainRepository
+    public class PolkadotParachainRepository : IParachainRepository
     {
         private readonly ISubstrateNodeRepository _substrateNodeRepository;
 
-        public ParachainRepositoryDirectAccess(ISubstrateNodeRepository substrateNodeRepository)
+        public PolkadotParachainRepository(ISubstrateNodeRepository substrateNodeRepository)
         {
             _substrateNodeRepository = substrateNodeRepository;
         }
@@ -20,6 +20,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
         public async Task<ParachainDto> GetParachainDetailAsync(string parachainId, CancellationToken cancellationToken)
         {
             var res24 = await _substrateNodeRepository.Client.ParasStorage.Parachains(cancellationToken);
+
 
             return null;
         }

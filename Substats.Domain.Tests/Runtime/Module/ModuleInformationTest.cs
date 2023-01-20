@@ -1,5 +1,4 @@
 ﻿using Substats.Domain.Contracts.Runtime;
-using Substats.Infrastructure.DirectAccess.Repository;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
