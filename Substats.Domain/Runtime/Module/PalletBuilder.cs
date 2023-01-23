@@ -16,10 +16,10 @@ namespace Substats.Domain.Runtime.Module
 {
     public class PalletBuilder : IPalletBuilder
     {
-        private readonly ISubstrateNodeRepository _substrateRepository;
+        private readonly ISubstrateRepository _substrateRepository;
         private readonly ICurrentMetaData _currentMetaData;
 
-        public PalletBuilder(ISubstrateNodeRepository substrateRepository, ICurrentMetaData currentMetaData)
+        public PalletBuilder(ISubstrateRepository substrateRepository, ICurrentMetaData currentMetaData)
         {
             _substrateRepository = substrateRepository;
             _currentMetaData = currentMetaData;

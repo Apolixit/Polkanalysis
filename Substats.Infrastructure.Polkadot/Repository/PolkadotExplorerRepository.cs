@@ -27,14 +27,14 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 {
     public class PolkadotExplorerRepository : IExplorerRepository
     {
-        private readonly ISubstrateNodeRepository _substrateService;
+        private readonly ISubstrateRepository _substrateService;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IModelBuilder _modelBuilder;
         private readonly ILogger<PolkadotExplorerRepository> _logger;
         private BlockLightDto? _lastBlock;
 
         public PolkadotExplorerRepository(
-            ISubstrateNodeRepository substrateNodeRepository,
+            ISubstrateRepository substrateNodeRepository,
             ISubstrateDecoding substrateDecode,
             IModelBuilder modelBuilder,
             ILogger<PolkadotExplorerRepository> logger)
@@ -112,8 +112,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             }
 
             //var logDecode = _substrateDecode.DecodeLog(blockDetails.Block.Header.Digest.Logs);
-            var res6 = await _substrateService.Client.SystemStorage.Digest(cancellationToken);
-
+            var digest = await _substrateService.Client.SystemStorage.Digest(cancellationToken);
 
             var blockDto = new BlockDto()
             {

@@ -15,13 +15,13 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
 {
     public class PalletBuilderTest
     {
-        protected readonly ISubstrateNodeRepository _substrateRepository;
+        protected readonly ISubstrateRepository _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
         private readonly ICurrentMetaData _currentMetaData;
 
         public PalletBuilderTest()
         {
-            _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
+            _substrateRepository = Substitute.For<ISubstrateRepository>();
 
             //var mockClient = Substitute.For<SubstrateClientExt>(default, default);
             var mockClient = Substitute.For<ISubstrateClientRepository>(default, default);

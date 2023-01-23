@@ -25,7 +25,7 @@ namespace Substats.SubstrateDecode.Test.Node
         {
             _decode = new SubstrateDecoding(
                 new EventMapping(),
-                Substitute.For<ISubstrateNodeRepository>(),
+                Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }

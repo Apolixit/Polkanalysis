@@ -25,5 +25,10 @@ namespace Substats.Domain.Contracts.Secondary
         public ParasStorage ParasStorage { get; }
         public CrowdloanStorage CrowdloanStorage { get; }
         public SessionStorage SessionStorage { get; }
+        public ParaSessionInfoStorage ParaSessionInfoStorage { get; }
+
+        public ParasDisputesStorage ParasDisputesStorage { get; }
+
+        public RegistrarStorage RegistrarStorage { get; }
     }
 }

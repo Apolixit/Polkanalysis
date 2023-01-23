@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto
+namespace Substats.Domain.Contracts.Dto.Parachain
 {
     public class ParachainDto
     {

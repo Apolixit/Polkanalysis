@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary
 {
-    public interface IValidatorRepository
+    public interface IRoleMemberRepository
     {
         /// <summary>
         /// Get validator information
@@ -16,5 +16,9 @@ namespace Substats.Domain.Contracts.Secondary
         /// <param name="cancellation"></param>
         /// <returns></returns>
         public Task<ValidatorDto> GetValidatorDetailAsync(string validatorAddress, CancellationToken cancellation);
+
+        public Task<NominatorDto> GetNominatorDetailAsync(string nominatorAddress, CancellationToken cancellationToken);
+
+        public Task<PoolDto> GetPoolDetailAsync(uint poolId, CancellationToken cancellation);
     }
 }

@@ -18,13 +18,13 @@ namespace Substats.Infrastructure.DirectAccess.Tests.Repository.Block
     public abstract class ExplorerRepositoryTests
     {
         protected IExplorerRepository _explorerRepository;
-        protected ISubstrateNodeRepository _substrateService;
+        protected ISubstrateRepository _substrateService;
         protected ISubstrateDecoding _substrateDecode;
 
         [SetUp]
         public void Setup()
         {
-            _substrateService = Substitute.For<ISubstrateNodeRepository>();
+            _substrateService = Substitute.For<ISubstrateRepository>();
             _substrateDecode = Substitute.For<ISubstrateDecoding>();
 
             _explorerRepository = new PolkadotExplorerRepository(

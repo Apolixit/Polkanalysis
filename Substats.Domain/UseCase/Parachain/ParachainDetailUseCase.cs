@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
-using Substats.Domain.Contracts.Dto;
+using Substats.Domain.Contracts.Dto.Parachain;
 using Substats.Domain.Contracts.Primary;
 using Substats.Domain.UseCase.Nominator;
 using System;

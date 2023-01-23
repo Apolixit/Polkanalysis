@@ -28,7 +28,7 @@ namespace Substats.Domain.Tests.Runtime.Metadata
             var logger = Substitute.For<ILogger<CurrentMetaData>>();
 
             _currentMetaData = new CurrentMetaData(
-                Substitute.For<ISubstrateNodeRepository>(),
+                Substitute.For<ISubstrateRepository>(),
                 logger
             );
         }

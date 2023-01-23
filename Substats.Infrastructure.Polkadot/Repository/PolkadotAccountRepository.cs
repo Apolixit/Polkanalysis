@@ -15,9 +15,9 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 {
     public class PolkadotAccountRepository : IAccountRepository
     {
-        private readonly ISubstrateNodeRepository _substrateNodeRepository;
+        private readonly ISubstrateRepository _substrateNodeRepository;
 
-        public PolkadotAccountRepository(ISubstrateNodeRepository substrateNodeRepository)
+        public PolkadotAccountRepository(ISubstrateRepository substrateNodeRepository)
         {
             _substrateNodeRepository = substrateNodeRepository;
         }

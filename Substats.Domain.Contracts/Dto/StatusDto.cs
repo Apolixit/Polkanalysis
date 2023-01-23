@@ -23,6 +23,13 @@ namespace Substats.Domain.Contracts.Dto
             Active,
             Inactive,
         }
+
+        public enum NominationPoolStatusDto
+        {
+            Open = 0,
+            Blocked = 1,
+            Destroying = 2,
+        }
     }
     
 }

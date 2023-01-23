@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {
-    public class PolkadotNodeRepository : ISubstrateNodeRepository
+    public class PolkadotRepository : ISubstrateRepository
     {
         private readonly ISubstrateClientRepository _substrateClientRepository;
 
-        public PolkadotNodeRepository(ISubstrateClientRepository substrateClientRepository)
+        public PolkadotRepository(ISubstrateClientRepository substrateClientRepository)
         {
             _substrateClientRepository = substrateClientRepository;
         }

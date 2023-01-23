@@ -24,7 +24,7 @@ namespace Substats.Domain.Tests.Runtime.Extrinsic
         {
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(),
-                Substitute.For<ISubstrateNodeRepository>(),
+                Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }

@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Pol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Mock", "Substats.Infrastructure.Mock\Substats.Infrastructure.Mock.csproj", "{F812F3DC-7B68-4D6F-802F-CBF2EE4C1869}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Polkadot.Tests", "Substats.Infrastructure.Polkadot.Tests\Substats.Infrastructure.Polkadot.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Tests", "Substats.Infrastructure.Tests\Substats.Infrastructure.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Components.Tests", "Substats.Components.Tests\Substats.Components.Tests.csproj", "{E85B9C73-8F2D-4FFB-A873-8863921DC52E}"
 EndProject
@@ -56,7 +56,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Kusama.NetApiExt",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Domain.Integration.Tests", "Substats.Domain.Integration.Tests\Substats.Domain.Integration.Tests.csproj", "{B46291D1-85C6-47FE-AC87-910C73772ED8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Polkadot.Integration.Tests", "Substats.Infrastructure.Polkadot.Integration.Tests\Substats.Infrastructure.Polkadot.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Integration.Tests", "Substats.Infrastructure.Integration.Tests\Substats.Infrastructure.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Configuration.Contracts", "Substats.Configuration.Contracts\Substats.Configuration.Contracts.csproj", "{3B261EEB-01E2-41D3-AA57-056019BE9629}"
 EndProject

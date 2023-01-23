@@ -14,7 +14,7 @@ namespace Substats.Integration.Tests.Contracts
     public abstract class IntegrationTest
     {
         protected readonly ISubstrateClientRepository _substrateClientRepository;
-        protected readonly ISubstrateNodeRepository _substrateRepository;
+        protected readonly ISubstrateRepository _substrateRepository;
         protected ISubstrateEndpoint _substrateEndpoint;
 
         protected IntegrationTest()
@@ -24,7 +24,7 @@ namespace Substats.Integration.Tests.Contracts
             if (_substrateEndpoint == null)
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
 
-            _substrateRepository = Substitute.For<ISubstrateNodeRepository>();
+            _substrateRepository = Substitute.For<ISubstrateRepository>();
             _substrateClientRepository = new PolkadotSubstrateClientRepository(_substrateEndpoint);
             _substrateRepository.Client.Returns(_substrateClientRepository);
         }

@@ -9,10 +9,10 @@ namespace Substats.Domain.Runtime
 {
     public class CurrentMetaData : ICurrentMetaData
     {
-        public readonly ISubstrateNodeRepository _substrateNodeRepository;
+        public readonly ISubstrateRepository _substrateNodeRepository;
         private readonly ILogger<CurrentMetaData> _logger;
 
-        public CurrentMetaData(ISubstrateNodeRepository substrateNodeRepository, ILogger<CurrentMetaData> logger)
+        public CurrentMetaData(ISubstrateRepository substrateNodeRepository, ILogger<CurrentMetaData> logger)
         {
             this._substrateNodeRepository = substrateNodeRepository;
             _logger = logger;

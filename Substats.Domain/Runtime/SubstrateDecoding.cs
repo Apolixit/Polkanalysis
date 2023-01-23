@@ -20,13 +20,13 @@ namespace Substats.Domain.Runtime
     public class SubstrateDecoding : ISubstrateDecoding
     {
         private readonly IMapping _mapping;
-        private readonly ISubstrateNodeRepository _substrateRepository;
+        private readonly ISubstrateRepository _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
         private readonly ILogger<SubstrateDecoding> _logger;
 
         public SubstrateDecoding(
             IMapping mapping, 
-            ISubstrateNodeRepository substrateRepository, 
+            ISubstrateRepository substrateRepository, 
             IPalletBuilder palletBuilder,
             ILogger<SubstrateDecoding> logger)
         {

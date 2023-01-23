@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary
 {
-    public interface IParachainRepository
+    public interface ICrowdloanRepository
     {
-        public Task<ParachainDto> GetParachainDetailAsync(uint parachainId, CancellationToken cancellationToken);
+        // Slots storage > leases ?
+
+        public Task<CrowdloanDto> GetCrowdloanDetailAsync(string crowdloanId, CancellationToken cancellationToken); 
     }
 }
