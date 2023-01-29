@@ -25,6 +25,7 @@ namespace Substats.Domain.Tests.Runtime.Event
                 new EventMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
+                Substitute.For<ICurrentMetaData>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
@@ -41,7 +42,7 @@ namespace Substats.Domain.Tests.Runtime.Event
             {
                 throw new InvalidOperationException($"{nameof(call)} has not been instanciate properly, maybe due to invalid hex parameter", ex);
             }
-            var nodeResult = _substrateDecode.DecodeEvent(call);
+            var nodeResult = _substrateDecode.Decode(call);
             Assert.That(nodeResult, Is.Not.Null);
 
         }

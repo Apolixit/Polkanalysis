@@ -27,6 +27,7 @@ namespace Substats.SubstrateDecode.Test.Node
                 new EventMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
+                Substitute.For<ICurrentMetaData>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 
@@ -42,7 +43,7 @@ namespace Substats.SubstrateDecode.Test.Node
         public void EmptyType_ShouldHaveEmptyNode()
         {
             IType emptyType = new U32();
-            var node = _decode.DecodeEvent(emptyType);
+            var node = _decode.Decode(emptyType);
 
             Assert.That(node, Is.Not.Null);
             Assert.False(node.IsEmpty);

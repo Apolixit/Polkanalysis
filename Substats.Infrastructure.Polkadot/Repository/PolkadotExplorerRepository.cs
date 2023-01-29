@@ -98,8 +98,8 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
             var blockExecutionPhase = await _substrateService.Client.Core.GetStorageAsync<EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
 
-            var blockAuthor = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
-            var blockAuthor2 = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), cancellationToken);
+            //var blockAuthor = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
+            //var blockAuthor2 = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), cancellationToken);
 
             //var staking = await _substrateService.Client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(
             //    AuthorshipStorage.AuthorParams(), blockhash, cancellationToken);
@@ -111,13 +111,37 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                 var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
             }
 
-            //var logDecode = _substrateDecode.DecodeLog(blockDetails.Block.Header.Digest.Logs);
-            var digest = await _substrateService.Client.SystemStorage.Digest(cancellationToken);
+
+            //var digest = await _substrateService.Client.SystemStorage.Digest(cancellationToken);
+
+            // BaseTuple<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>
+
+            var digest = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(SystemStorage.DigestParams(), blockHash.Value, cancellationToken);
+
+            foreach(var log in blockDetails.Block.Header.Digest.Logs) // TODO Check with Cedric
+            {
+                var buildLogs = new Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.EnumDigestItem();
+                buildLogs.Create(log);
+            }
+            var logDecode = _substrateDecode.DecodeLog(blockDetails.Block.Header.Digest.Logs);
+            var founded1 = logDecode.Has(Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.DigestItem.PreRuntime);
+            var founded = logDecode.Find(Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.DigestItem.PreRuntime);
+
+            //await _substrateService.Client.Core.Author.PendingExtrinsicAsync
+            //var resMagic0 = await _substrateService.Client.Core.Author.PendingExtrinsicAsync(cancellationToken);
+            //var resMagic1 = await _substrateService.Client.BabeStorage.AuthorVrfRandomness(cancellationToken);
+            //var currentSlot = await _substrateService.Client.BabeStorage.CurrentSlot(cancellationToken);
+            //var epochIndex = await _substrateService.Client.BabeStorage.EpochIndex(cancellationToken);
+            //var epochStart = await _substrateService.Client.BabeStorage.EpochStart(cancellationToken);
+            //var initializeMagic = await _substrateService.Client.BabeStorage.Initialized(cancellationToken);
+            //var nextAuthorities = await _substrateService.Client.BabeStorage.NextAuthorities(cancellationToken);
+            //var randomness = await _substrateService.Client.BabeStorage.Randomness(cancellationToken);
+            //var nextEpochConfig = await _substrateService.Client.BabeStorage.NextEpochConfig(cancellationToken);
+            //var resMagic2 = await _substrateService.Client.Core.InvokeAsync<object>("grandpa_proveFinality", new object[1] { blockDetails.Block.Header.Number.Value }, cancellationToken);
 
             var blockDto = new BlockDto()
             {
-                Date = currentDate,
-                When = TimeSpan.FromMilliseconds(DateTime.Now.Millisecond - currentDate.Millisecond),
+                Date = _modelBuilder.BuildDateDto(currentDate),
                 ExtrinsicsRoot = blockDetails.Block.Header.ExtrinsicsRoot,
                 ParentHash = blockDetails.Block.Header.ParentHash,
                 StateRoot = blockDetails.Block.Header.StateRoot,
@@ -130,12 +154,6 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                 SpecVersion = _substrateService.Client.Core.RuntimeVersion.SpecVersion,
                 Validator = null,
             };
-
-            var a = await _substrateService.Client.Core.State.GetMetaDataAsync();
-            var b = await _substrateService.Client.StakingStorage.ValidatorCount(CancellationToken.None);
-            var c = await _substrateService.Client.Core.System.LocalListenAddressesAsync(cancellationToken);
-            var d = await _substrateService.Client.AuthorshipStorage.Author(cancellationToken);
-            var e = await _substrateService.Client.AuthorshipStorage.Uncles(cancellationToken);
 
             return blockDto;
         }
@@ -404,7 +422,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                     {
                         eventCallback(
                             _modelBuilder.BuildEventLightDto(
-                                _substrateDecode.DecodeEvent(eventReceived.Event)
+                                _substrateDecode.DecodeEvent(eventReceived)
                                 )
                             );
                     }

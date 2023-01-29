@@ -53,5 +53,9 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             }
         }
 
+        public bool IsValidAccountAddress(string address)
+        {
+            return true; // TODO
+        }
     }
 }

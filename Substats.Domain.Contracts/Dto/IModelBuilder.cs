@@ -1,6 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
 using Substats.Domain.Contracts.Dto.Block;
+using Substats.Domain.Contracts.Dto.Common;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Dto.Extrinsic;
 using Substats.Domain.Contracts.Runtime;
@@ -9,6 +10,13 @@ namespace Substats.Domain.Contracts.Dto
 {
     public interface IModelBuilder
     {
+        /// <summary>
+        /// Build a date model from given date
+        /// </summary>
+        /// <param name="currentDate"></param>
+        /// <returns></returns>
+        DateDto BuildDateDto(DateTime currentDate);
+
         /// <summary>
         /// Display in human readable time elapsed
         /// </summary>

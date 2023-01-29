@@ -55,5 +55,7 @@ namespace Substats.Infrastructure.Polkadot.Repository
         public ParasDisputesStorage ParasDisputesStorage => Client.ParasDisputesStorage;
 
         public RegistrarStorage RegistrarStorage => Client.RegistrarStorage;
+
+        public BabeStorage BabeStorage => Client.BabeStorage;
     }
 }

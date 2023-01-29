@@ -9,12 +9,14 @@ namespace Substats.Domain.Contracts.Dto.Parachain
 {
     public class ParachainDto
     {
-        public int Id { get; set; }
-        public AccountDto Owner { get; set; }
-        public AccountDto FundAccount { get; set; }
+        public int ParachainId { get; set; }
+        public required UserAddressDto OwnerAccount { get; set; }
+        public required UserAddressDto FundAccount { get; set; }
         public int ValidatorCount { get; set; }
-        public string SlotType { get; set; }
+        public object SlotType { get; set; }
+        public object RegisterStatus { get; set; }
+        public required LeaseDto Lease { get; set; }
 
-        // TODO Timeline
+        public IEnumerable<ParachainTimelineDto> Timeline { get; set; } = Enumerable.Empty<ParachainTimelineDto>();
     }
 }

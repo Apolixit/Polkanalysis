@@ -62,7 +62,7 @@ namespace Substats.Domain.Runtime.Module
             if (palletModule == null)
                 throw new ArgumentException($"{nameof(palletModule)} has not been found in current Metadata");
 
-            if (method == null || method.Parameters == null || method.Parameters.Length == 0)
+            if (method == null || method.Parameters == null)
                 throw new ArgumentNullException($"BuildCall parameters are empty");
 
             NodeType? currentType = null;

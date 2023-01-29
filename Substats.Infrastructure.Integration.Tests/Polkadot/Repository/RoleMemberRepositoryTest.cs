@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Substats.Infrastructure.DirectAccess.Repository;
+using Substats.Domain.Runtime;
 
 namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Repository
 {
@@ -17,7 +18,10 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Reposi
         [SetUp]
         public void Setup()
         {
-            _roleMemberRepository = new PolkadotRoleMemberRepository(_substrateRepository);
+            _roleMemberRepository = new PolkadotRoleMemberRepository(
+                _substrateRepository,
+                new PolkadotAccountRepository(_substrateRepository),
+                new EventNode());
         }
 
         [Test]

@@ -22,6 +22,7 @@ namespace Substats.Domain.Tests.Runtime.Event
                 new EventMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
+                Substitute.For<ICurrentMetaData>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 

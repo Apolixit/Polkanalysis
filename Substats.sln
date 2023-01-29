@@ -42,6 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		Roadmap.md = Roadmap.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Web.Tests", "Substats.Web.Tests\Substats.Web.Tests.csproj", "{214A2068-9758-49FA-ADB6-C3454DF59367}"

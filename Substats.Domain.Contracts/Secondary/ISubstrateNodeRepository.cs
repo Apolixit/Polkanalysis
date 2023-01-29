@@ -16,5 +16,12 @@
         /// <param name="millisecondCheck">Millisecond frequency to check if we are connected and try to reconnect</param>
         /// <returns></returns>
         Task CheckBlockchainStateAsync(Action<bool> isConnectedCallback, CancellationToken cancellationToken, int millisecondCheck = 500);
+
+        /// <summary>
+        /// Check if account address is valid for current Substrate blockchain
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        bool IsValidAccountAddress(string address);
     }
 }

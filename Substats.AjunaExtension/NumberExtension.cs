@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
+using System.Numerics;
 
 namespace Substats.AjunaExtension
 {
@@ -20,5 +21,12 @@ namespace Substats.AjunaExtension
 
             return paraId;
         }
+
+        public static double ToDouble(this BigInteger num, int tokenDecimals)
+        {
+            var divider = new BigInteger(Math.Pow(10, tokenDecimals));
+            return (double)(num / divider);
+        }
+        public static double ToDouble(this U128 num, int tokenDecimals) => ToDouble(num.Value, tokenDecimals);
     }
 }

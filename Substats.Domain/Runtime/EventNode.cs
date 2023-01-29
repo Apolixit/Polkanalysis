@@ -125,5 +125,33 @@ namespace Substats.Domain.Runtime
         {
             return new EventNode();
         }
+
+        public bool Has(object data)
+        {
+            return Find(data).Count() > 0;
+        }
+
+        private IEnumerable<INode> FindInner(List<INode> list, object data)
+        {
+            if (HumanData != null && HumanData?.Equals(data))
+            {
+                list.Add(this);
+            }
+
+            if (Children == null) return list;
+
+            foreach (var child in Children)
+            {
+                list.AddRange(child.Find(data));
+            }
+
+            return list;
+        }
+
+        public IEnumerable<INode> Find(object data)
+        {
+            var nodesFounded = new List<INode>();
+            return FindInner(nodesFounded, data);
+        }
     }
 }

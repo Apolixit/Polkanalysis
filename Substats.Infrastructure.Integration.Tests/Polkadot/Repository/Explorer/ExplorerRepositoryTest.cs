@@ -37,6 +37,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
                 new PalletBuilder(
                     _substrateRepository, 
                     _currentMetaData),
+                _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
             _blockRepository = new PolkadotExplorerRepository(
                 _substrateRepository, 

@@ -16,14 +16,13 @@ namespace Substats.Domain.Integration.Tests.Polkadot.Runtime.Errors
 
         public SystemErrorListenerTest()
         {
+            var currentMetadata = new CurrentMetaData(_substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
+
             _substrateDecode = new SubstrateDecoding(
                 new EventMapping(),
                 _substrateRepository,
-                new PalletBuilder(
-                    _substrateRepository,
-                    new CurrentMetaData(
-                        _substrateRepository,
-                        Substitute.For<ILogger<CurrentMetaData>>())),
+                new PalletBuilder(_substrateRepository, currentMetadata),
+                currentMetadata,
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 

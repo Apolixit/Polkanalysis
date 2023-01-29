@@ -35,6 +35,7 @@ namespace Substats.Domain.Integration.Tests.Polkadot.Runtime.Extrinsic
                 new PalletBuilder(
                     _substrateRepository,
                     _currentMetaData),
+                _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 

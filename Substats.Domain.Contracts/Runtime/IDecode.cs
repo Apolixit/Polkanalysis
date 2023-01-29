@@ -1,6 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types;
+using Ajuna.NetApi.Model.Types.Base;
+using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +17,53 @@ namespace Substats.Domain.Contracts.Runtime
     /// </summary>
     public interface ISubstrateDecoding
     {
-        //INode DecodeBlock(Block block);
-        //INode DecodeBlock(BlockData blockData);
+        /// <summary>
+        /// Build a "friendly" tree from Ajuna IType
+        /// </summary>
+        /// <param name="ev"></param>
+        /// <returns></returns>
+        INode Decode(IType elem);
 
+        /// <summary>
+        /// Build a tree from an event hexadecimal representation
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        INode DecodeEvent(string hex);
+
+        /// <summary>
+        /// Build a tree from an event
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        INode DecodeEvent(EventRecord ev);
+
+        /// <summary>
+        /// Build a tree from an extrinsic hexadecimal representation
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        INode DecodeExtrinsic(string hex);
+
+        /// <summary>
+        /// Build a tree from an extrinsic
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
         INode DecodeExtrinsic(Extrinsic extrinsic);
 
-        INode DecodeEvent(string hex);
-        INode DecodeEvent(IType ev);
+        /// <summary>
+        /// Build a tree from logs strings (hexadecimal)
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        INode DecodeLog(IEnumerable<string> logs);
 
-        INode DecodeLog(IList<string> logs);
+        /// <summary>
+        /// Build a tree from log enum
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        INode DecodeLog(IEnumerable<EnumDigestItem> logs);
     }
 }

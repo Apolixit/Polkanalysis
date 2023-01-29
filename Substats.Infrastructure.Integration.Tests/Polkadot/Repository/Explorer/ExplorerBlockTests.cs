@@ -12,6 +12,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
     public class ExplorerBlockTests : ExplorerRepositoryTest
     {
         [Test]
+        [TestCase(14012677)]
         [TestCase(13198574)]
         [TestCase(13210791)]
         [TestCase(13278242)]

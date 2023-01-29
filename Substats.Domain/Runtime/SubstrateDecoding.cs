@@ -14,6 +14,8 @@ using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using Substats.Domain.Contracts.Runtime.Module;
+using Serilog;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest;
 
 namespace Substats.Domain.Runtime
 {
@@ -22,55 +24,109 @@ namespace Substats.Domain.Runtime
         private readonly IMapping _mapping;
         private readonly ISubstrateRepository _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
+        private readonly ICurrentMetaData _metaData;
         private readonly ILogger<SubstrateDecoding> _logger;
 
         public SubstrateDecoding(
             IMapping mapping, 
             ISubstrateRepository substrateRepository, 
             IPalletBuilder palletBuilder,
+            ICurrentMetaData metaData,
             ILogger<SubstrateDecoding> logger)
         {
             _mapping = mapping;
             _substrateRepository = substrateRepository;
             _palletBuilder = palletBuilder;
+            _metaData = metaData;
             _logger = logger;
         }
 
-        /// <summary>
-        /// Parse the hexadecimal event to a "friendly" tree structure
-        /// </summary>
-        /// <param name="hex">Event hexa</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException">Event hexa is empty</exception>
-        /// <exception cref="NullReferenceException"></exception>
+        public INode Decode(IType elem)
+        {
+            EventNode node = new EventNode();
+            VisitNode(node, elem);
+
+            return node;
+        }
+
         public INode DecodeEvent(string hex)
         {
             if (string.IsNullOrEmpty(hex))
                 throw new ArgumentNullException($"{nameof(hex)}");
 
-            var eventReceived = new EventRecord();
+            var ev = new EventRecord();
             try
             {
-                eventReceived.Create(Utils.HexToByteArray(hex));
+                ev.Create(Utils.HexToByteArray(hex));
             } catch(Exception ex)
             {
-                throw new InvalidOperationException($"{nameof(eventReceived)} has not been instanciate properly, maybe due to invalid hex parameter", ex);
+                throw new InvalidOperationException($"{nameof(ev)} has not been instanciate properly, maybe due to invalid hex parameter", ex);
             }
 
             _logger.LogInformation($"Event hex ({hex}) has been successfully converted to EventRecord");
+            return DecodeEvent(ev);
+        }
 
+        public INode DecodeEvent(EventRecord ev)
+        {
             var eventNode = new EventNode();
-            VisitNode(eventNode, eventReceived);
+            VisitNode(eventNode, ev);
 
             _logger.LogTrace("Node created from EventRecord");
             return eventNode;
         }
 
-        public INode DecodeEvent(IType ev)
+        public INode DecodeExtrinsic(string hex)
+        {
+            if(string.IsNullOrWhiteSpace(hex)) throw new ArgumentNullException($"{nameof(hex)}");
+
+            var extrinsic = new Extrinsic(hex, ChargeTransactionPayment.Default());
+
+            _logger.LogInformation($"Extrinsic {hex} has been converted to a valid extrinsic");
+            return DecodeExtrinsic(extrinsic);
+        }
+
+        public INode DecodeExtrinsic(Extrinsic extrinsic)
+        {
+            var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
+
+            var extrinsicCall = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
+            return Decode(extrinsicCall);
+        }
+
+        public INode DecodeLog(IEnumerable<string> logs)
+        {
+            if (logs == null)
+                throw new ArgumentNullException($"{nameof(logs)}");
+
+            return DecodeLog(logs.Select(log =>
+            {
+                var buildLogs = new EnumDigestItem();
+                buildLogs.Create(log);
+
+                return buildLogs;
+            }));
+        }
+
+        public INode DecodeLog(IEnumerable<EnumDigestItem> logs)
+        {
+            if (logs == null)
+                throw new ArgumentNullException($"{nameof(logs)}");
+
+            EventNode node = new EventNode();
+            foreach (var log in logs)
+            {
+                node.AddChild(VisitNode(log));
+            }
+
+            return node;
+        }
+
+        #region Internal visit tree
+        private INode VisitNode(IType value)
         {
             EventNode node = new EventNode();
-            VisitNode(node, ev);
-
+            VisitNode(node, value);
             return node;
         }
 
@@ -222,75 +278,6 @@ namespace Substats.Domain.Runtime
 
             return false;
         }
-
-        public INode DecodeBlock(Block block)
-        {
-            throw new NotImplementedException();
-        }
-
-        public INode DecodeBlock(BlockData blockData)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Get pallet module from name
-        /// </summary>
-        /// <param name="palletName"></param>
-        /// <returns></returns>
-        public PalletModule GetPalletModule(string palletName)
-        {
-            var module = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
-
-            if (module == null)
-                throw new ArgumentException($"{nameof(palletName)} (= {palletName}) is not found in Metadata");
-
-            return module;
-        }
-
-        /// <summary>
-        /// Get pallet module from index
-        /// </summary>
-        /// <param name="palletIndex"></param>
-        /// <returns></returns>
-        public PalletModule GetPalletModule(byte palletIndex)
-        {
-            var module = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules[palletIndex];
-            if (module == null)
-                throw new ArgumentException($"{nameof(palletIndex)} (= {palletIndex}) is not found in Metadata");
-
-            return module;
-        }
-
-        public NodeType GetDocumentationFromTypeId(uint TypeId)
-        {
-            var doc = _substrateRepository.Client.Core.MetaData.NodeMetadata.Types[TypeId];
-            if (doc == null)
-                throw new ArgumentException($"{nameof(TypeId)} (= {TypeId}) is not found in Metadata");
-
-            return doc;
-        }
-
-        public INode DecodeExtrinsic(Ajuna.NetApi.Model.Extrinsics.Extrinsic extrinsic)
-        {
-            //nodeMetadata.Types.Where(x => x.Value.Path != null && x.Value.Path.Count() > 2 && x.Value.Path[0] == "pallet_balances")
-            var nodeMetadata = _substrateRepository.Client.Core.MetaData.NodeMetadata;
-            var metadataModules = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules;
-            var metadataExtrinsic = _substrateRepository.Client.Core.MetaData.NodeMetadata.Extrinsic;
-            //var moduleName = metadataModules.FirstOrDefault(x => x.Value.Index == extrinsic.Method.ModuleIndex);
-
-            var pallet = _substrateRepository.Client.Core.MetaData.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
-            var palletCall = nodeMetadata.Types[pallet.Calls.TypeId];
-
-            var realCallNew = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
-            var nodeResultNew = DecodeEvent(realCallNew);
-
-            return nodeResultNew;
-        }
-
-        public INode DecodeLog(IList<string> logs)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }

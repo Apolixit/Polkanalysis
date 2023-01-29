@@ -30,6 +30,28 @@ namespace Substats.Domain.Contracts.Dto
             Blocked = 1,
             Destroying = 2,
         }
+
+        public enum CrowdloanStatusDto
+        {
+            Live,
+            Closed,
+        }
+
+        public enum AuctionStatusDto
+        {
+            Active, Inactive,
+        }
+
+        public enum BidCampaignStatusDto
+        {
+            GG
+        }
+
+        public enum ParachainStatusDto
+        {
+            Live,
+            Closed,
+        }
     }
     
 }

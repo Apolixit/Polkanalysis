@@ -22,6 +22,7 @@ namespace Substats.Domain.Contracts.Secondary
         public StakingStorage StakingStorage { get; }
         public AuthorshipStorage AuthorshipStorage { get; }
         public AuctionsStorage AuctionsStorage { get; }
+        public BabeStorage BabeStorage { get; }
         public ParasStorage ParasStorage { get; }
         public CrowdloanStorage CrowdloanStorage { get; }
         public SessionStorage SessionStorage { get; }

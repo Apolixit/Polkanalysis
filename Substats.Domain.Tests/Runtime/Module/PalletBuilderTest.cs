@@ -24,7 +24,7 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
             _substrateRepository = Substitute.For<ISubstrateRepository>();
 
             //var mockClient = Substitute.For<SubstrateClientExt>(default, default);
-            var mockClient = Substitute.For<ISubstrateClientRepository>(default, default);
+            var mockClient = Substitute.For<ISubstrateClientRepository>();
             _substrateRepository.Client.Returns(mockClient);
 
             _currentMetaData = Substitute.For<ICurrentMetaData>();
@@ -49,9 +49,14 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
             _currentMetaData.GetPalletModule(Arg.Any<string>()).Returns(new PalletModule());
 
             var mockMethod = Substitute.For<Method>((byte)0, (byte)0);
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall("Balances", new Method(0, 0)));
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent("Balances", new Method(0, 0)));
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError("Balances", new Method(0, 0)));
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall("Balances", null));
+            //Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall("Balances", new Method(0, 0, null)));
+
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent("Balances", null));
+            //Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent("Balances", new Method(0, 0, null)));
+
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError("Balances", null));
+            //Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError("Balances", new Method(0, 0, null)));
         }
 
         [Test]

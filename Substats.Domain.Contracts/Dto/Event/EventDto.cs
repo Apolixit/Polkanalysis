@@ -8,9 +8,7 @@ namespace Substats.Domain.Contracts.Dto.Event
     /// </summary>
     public class EventDto
     {
-        public required BlockLightDto Block { get; set; }
-        public required string PalletName { get; set; }
-        public required string EventName { get; set; }
+        public required EventLightDto EventSummary { get; set; }
         public required INode Decoded { get; set; }
     }
 }

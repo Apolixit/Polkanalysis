@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Dto.Common;
 using Substats.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,7 @@ namespace Substats.Domain.Contracts.Dto.Block
         /// </summary>
         public required ulong Number { get; set; }
 
-        /// <summary>
-        /// Exact date when block has been started
-        /// </summary>
-        public required DateTime Date { get; set; }
-
-        /// <summary>
-        /// Time from now
-        /// </summary>
-        public required TimeSpan When { get; set; }
+        public required DateDto Date { get; set; }
 
         /// <summary>
         /// Block status

@@ -53,13 +53,8 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
             
             //_substrateNodeRepository.Client.ParasStorage.
-            var freeAmount = (double)(
-                (double)accountInfo.Data.Free.Value / Math.Pow(10, chainInfo.TokenDecimals));
-            var otherAmount = (double)(
-                (
-                    (double)accountInfo.Data.MiscFrozen.Value + 
-                    (double)accountInfo.Data.Reserved.Value) 
-                    / Math.Pow(10, chainInfo.TokenDecimals));
+            var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
+            var otherAmount = (accountInfo.Data.MiscFrozen.Value + accountInfo.Data.Reserved.Value).ToDouble(chainInfo.TokenDecimals);
 
             var userInformation = new UserInformationsDto();
             if(identity != null)
@@ -87,11 +82,54 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                 Balances = new Domain.Contracts.Dto.Balances.BalancesDto()
                 {
                     Transferable = freeAmount,
-                    Stacking = 0,
+                    Stacking = 0, // TODO mapping
                     Others = otherAmount
                 }
             };
             return account;
         }
+
+        public Task<UserAddressDto> GetAccountIdentityAsync
+            (string accountAddress, CancellationToken cancellationToken)
+        {
+            if (accountAddress == null) throw new ArgumentNullException($"{nameof(accountAddress)}");
+
+            return GetAccountIdentityInternalAsync(accountAddress, cancellationToken);
+        }
+
+        public async Task<UserAddressDto> GetAccountIdentityAsync(AccountId32 account, CancellationToken cancellationToken)
+        {
+            var chainInfo = await _substrateNodeRepository.Client.Core.System.PropertiesAsync(cancellationToken);
+            var identity = await _substrateNodeRepository.Client.IdentityStorage.IdentityOf(account, cancellationToken);
+            var blockchainAddress = account.ToStringAddress((short)chainInfo.Ss58Format);
+
+            // Default = it's the basic address
+            string name = blockchainAddress;
+            if(identity != null)
+            {
+                var legalInfo = identity.Info.Legal.GetValue2();
+
+                // If we got a legal identity set, display it
+                if(legalInfo != null) {
+                    name = Encoding.UTF8.GetString(legalInfo.Encode());
+                }
+            }
+
+            return new UserAddressDto()
+            {
+                Name = name,
+                Address = blockchainAddress,
+            };
+        }
+
+        private async Task<UserAddressDto> GetAccountIdentityInternalAsync(string accountAddress, CancellationToken cancellationToken)
+        {
+            var accountId32 = new AccountId32();
+            accountId32.Create(Utils.GetPublicKeyFrom(accountAddress));
+
+            return await GetAccountIdentityAsync(accountId32, cancellationToken);
+        }
+
+        
     }
 }

@@ -100,6 +100,20 @@ namespace Substats.Domain.Contracts.Runtime
         void AddChild(INode eventNode);
 
         /// <summary>
+        /// Check if the current node or his children has this data
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        bool Has(dynamic data);
+
+        /// <summary>
+        /// Return node and children if given data found
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        IEnumerable<INode> Find(object data);
+
+        /// <summary>
         /// Convert current node to Json string
         /// </summary>
         /// <returns></returns>

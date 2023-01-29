@@ -47,9 +47,6 @@ namespace Substats.Domain.Tests.UseCase
             Assert.That(result.Value, Is.Null);
             Assert.That(result.Error, Is.Not.Null);
             Assert.That(result.Error.Status == ErrorResult.ErrorType.EmptyParam);
-
-            // We got an error status result, so we need to log at least one log error
-            //_logger.Received().LogError(Arg.Any<string>());
         }
 
         

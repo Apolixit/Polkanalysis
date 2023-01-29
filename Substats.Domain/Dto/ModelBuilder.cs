@@ -3,6 +3,7 @@ using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
 using Substats.Domain.Contracts.Dto;
 using Substats.Domain.Contracts.Dto.Block;
+using Substats.Domain.Contracts.Dto.Common;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Dto.Extrinsic;
 using Substats.Domain.Contracts.Runtime;
@@ -18,6 +19,16 @@ namespace Substats.Domain.Dto
 {
     public class ModelBuilder : IModelBuilder
     {
+        public DateDto BuildDateDto(DateTime currentDate)
+        {
+            return new DateDto()
+            {
+                Date = currentDate,
+                When = TimeSpan.FromMilliseconds(DateTime.Now.Millisecond - currentDate.Millisecond),
+                DisplayTime = DisplayElapsedTime(currentDate),
+            };
+        }
+
         public string DisplayElapsedTime(DateTime t1)
         {
             return DisplayElapsedTime(t1, DateTime.Now);
@@ -97,9 +108,12 @@ namespace Substats.Domain.Dto
         {
             var eventDto = new EventDto()
             {
-                Block = blockLightDto,
-                EventName = eventNode.HumanData.ToString(),
-                PalletName = eventNode.Children.First().HumanData.ToString(),
+                EventSummary = new EventLightDto()
+                {
+                    Block = blockLightDto,
+                    EventName = eventNode.HumanData.ToString(),
+                    PalletName = eventNode.Children.First().HumanData.ToString(),
+                },                
                 Decoded = eventNode,
             };
 
@@ -151,5 +165,7 @@ namespace Substats.Domain.Dto
 
             return string.Join("\n", doc);
         }
+
+        
     }
 }

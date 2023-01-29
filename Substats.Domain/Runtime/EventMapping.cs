@@ -12,6 +12,7 @@ using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime;
 using Substats.Polkadot.NetApiExt.Generated.Types.Base;
 using System.Numerics;
+using System.Text;
 
 namespace Substats.Domain.Runtime
 {
@@ -74,6 +75,12 @@ namespace Substats.Domain.Runtime
                     CategoryName = "Result",
                     Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
                 },
+                new EventMappingElem()
+                {
+                    CategoryName = "Text",
+                    Mapping = new List<IMappingElement>() { new MappingElementText() }
+                }
+                
                 //new EventMappingElem()
                 //{
                 //    CategoryName = "DispatchInfo",
@@ -218,6 +225,18 @@ namespace Substats.Domain.Runtime
             var enumResult = ((EnumResult)input);
             //enumResult.Value2;
             return (enumResult.Value, enumResult.Value2.ToString());
+        }
+    }
+
+    public class MappingElementText : IMappingElement
+    {
+        public Type ObjectType => typeof(Arr4U8);
+
+        public bool IsIdentified => true;
+
+        public dynamic ToHuman(dynamic input)
+        {
+            return Encoding.UTF8.GetString(((Arr4U8)input).Encode());
         }
     }
 
