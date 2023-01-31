@@ -20,7 +20,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         [TestCase(11062877)]
         public async Task GetBlockDetails_ValidBlockNumber_ShouldWorkAsync(int blockId)
         {
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
+            var blockInfo = await _explorerRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.IsNotNull(blockInfo);
 
         }
@@ -38,7 +38,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
             var blockHash = new Hash();
             blockHash.Create(blockString);
 
-            var blockInfo = await _blockRepository.GetBlockDetailsAsync(blockHash, CancellationToken.None);
+            var blockInfo = await _explorerRepository.GetBlockDetailsAsync(blockHash, CancellationToken.None);
             Assert.IsNotNull(blockInfo);
         }
     }

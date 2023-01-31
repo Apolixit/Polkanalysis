@@ -28,14 +28,26 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
             int blockId,
             string blockHash)
         {
-            var eventInfoWithNumber = await _blockRepository.GetEventsAsync((uint)blockId, CancellationToken.None);
-            var eventInfoWithHash = await _blockRepository.GetEventsAsync(blockHash, CancellationToken.None);
+            var eventInfoWithNumber = await _explorerRepository.GetEventsAsync((uint)blockId, CancellationToken.None);
+            var eventInfoWithHash = await _explorerRepository.GetEventsAsync(blockHash, CancellationToken.None);
 
             Assert.IsNotNull(eventInfoWithNumber);
             Assert.IsNotNull(eventInfoWithHash);
             Assert.That(eventInfoWithNumber.Count(), Is.EqualTo(34));
             Assert.That(eventInfoWithHash.Count(), Is.EqualTo(34));
 
+        }
+
+        [Test]
+        [TestCase(14033244)]
+        public async Task GetEventsAssociatedByExtrinsic_ShouldWorkAsync(int blockId)
+        {
+            var extrinsics = await _explorerRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
+
+            var events = await _explorerRepository.GetEventsLinkedToExtrinsicsAsync(extrinsics.ToList()[1], CancellationToken.None);
+
+            Assert.That(events, Is.Not.Null);
+            Assert.That(events.Count(), Is.EqualTo(9));
         }
     }
 }

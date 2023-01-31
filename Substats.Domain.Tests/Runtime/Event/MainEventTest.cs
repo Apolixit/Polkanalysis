@@ -1,4 +1,5 @@
 ﻿using Substats.Domain.Contracts.Runtime;
+using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Substats.Domain.Tests.Runtime.Event
 
             // 3 children : Phase / Events / Topic
             Assert.That(node.Children.Count, Is.EqualTo(3));
+
+            Assert.That(node.Has(Phase.ApplyExtrinsic));
 
             var runtimeEvent = node.Children.ToList()[1];
             Assert.That(runtimeEvent.Name, Is.EqualTo("Event"));

@@ -91,7 +91,12 @@ namespace Substats.Domain.Runtime
             var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
 
             var extrinsicCall = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
-            return Decode(extrinsicCall);
+            var palletNode = new EventNode();
+            palletNode.Name = pallet.Name;
+            palletNode.AddHumanData(pallet.Name);
+            palletNode.AddChild(Decode(extrinsicCall));
+
+            return palletNode;
         }
 
         public INode DecodeLog(IEnumerable<string> logs)

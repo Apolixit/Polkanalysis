@@ -10,6 +10,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types;
 using System.Runtime.InteropServices;
+using Substats.Polkadot.NetApiExt.Generated.Storage;
 
 namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {
@@ -22,11 +23,17 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
             int blockId,
             string blockHash)
         {
-            var extrinsicInfoWithNumber = await _blockRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
-            var extrinsicInfoWithHash = await _blockRepository.GetExtrinsicsAsync(blockHash, CancellationToken.None);
+            var extrinsicInfoWithNumber = await _explorerRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
+            var extrinsicInfoWithHash = await _explorerRepository.GetExtrinsicsAsync(blockHash, CancellationToken.None);
 
             Assert.IsNotNull(extrinsicInfoWithNumber);
             Assert.IsNotNull(extrinsicInfoWithHash);
+
+            // These two extrinsic should have Timestamp.Set definded
+            Assert.That(
+                extrinsicInfoWithNumber.All(x => 
+                x.Decoded.Has(Substats.Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.Call.set)),
+                Is.True);
 
         }
 
@@ -43,5 +50,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
             var res = _substrateDecoding.DecodeExtrinsic(extrinsic);
             Assert.That(res, Is.Not.Null);
         }
+
+        
     }
 }

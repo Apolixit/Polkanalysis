@@ -19,7 +19,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
 {
     public abstract class ExplorerRepositoryTest : PolkadotIntegrationTest
     {
-        protected IExplorerRepository _blockRepository;
+        protected IExplorerRepository _explorerRepository;
         protected ICurrentMetaData _currentMetaData;
         protected ISubstrateDecoding _substrateDecoding;
 
@@ -39,7 +39,7 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
                     _currentMetaData),
                 _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
-            _blockRepository = new PolkadotExplorerRepository(
+            _explorerRepository = new PolkadotExplorerRepository(
                 _substrateRepository, 
                 _substrateDecoding,
                 new ModelBuilder(),

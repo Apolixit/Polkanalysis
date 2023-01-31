@@ -41,7 +41,7 @@ public static class Program
     
     public static async Task SubscribeAllEventAsync(SubstrateClientExt client)
     {
-        var x = await client.SystemStorage.Events(CancellationToken.None);
+        //var x = await client.SystemStorage.Events(CancellationToken.None);
         var requestEvent = SystemStorage.EventsParams();
         //var requestEvent = RequestGenerator.GetStorage("MoneyPot", "Events", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
         //var requestEvent = RequestGenerator.GetStorage("Balances", "Events", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
@@ -83,7 +83,7 @@ public static class Program
                 var details = string.Empty;
 
                 var mainEventString = eventCore.Value.ToString();
-                if (eventCore.Value == Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.Scheduler)
+                if (eventCore.Value != Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.Scheduler)
                 {
                     var hex = Utils.Bytes2HexString(eventReceived.Encode());
                 }

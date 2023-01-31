@@ -303,8 +303,10 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             var blockLight = await GetBlockLightAsync(extrinsicDto.Block.Hash, cancellationToken);
 
             // Return every events linked to this block
-            BaseVec<EventRecord> events = await _substrateService.Client.Core.GetStorageAsync<BaseVec<EventRecord>>(
-                SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
+            //BaseVec<EventRecord> events = await _substrateService.Client.Core.GetStorageAsync<BaseVec<EventRecord>>(
+            //    SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
+
+            BaseVec<EventRecord> events = await _substrateService.Client.SystemStorage.Events(cancellationToken);
 
             // Doc here :
             // https://polkadot.js.org/docs/api/cookbook/blocks#how-do-i-map-extrinsics-to-their-events

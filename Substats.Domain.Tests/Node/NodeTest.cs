@@ -13,6 +13,13 @@ using System.Threading.Tasks;
 using System.Xml.Xsl;
 using Ajuna.NetApi.Model.Types;
 using System.Transactions;
+using Org.BouncyCastle.Utilities.Encoders;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
+using Substats.Domain.Contracts.Runtime.Module;
+using Substats.Domain.Contracts.Secondary;
+using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
+using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
 
 namespace Substats.Domain.Tests.Node
 {
@@ -86,6 +93,83 @@ namespace Substats.Domain.Tests.Node
             Assert.IsNotEmpty(masterNode.Children);
             var jsonResult = @"{""transaction"":[{""from"":""5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY""},{""amount"":1000}]}";
             Assert.That(masterNode.ToJson(), Is.EqualTo(jsonResult));
+        }
+
+        [Test]
+        [TestCase("0x00010000000000384A7AFE72000000020000")]
+        public void CreateNode_EventTimestamp_ShouldBeParsedToJson(string hex)
+        {
+            var decode = new SubstrateDecoding(
+                new EventMapping(),
+                Substitute.For<ISubstrateRepository>(),
+                Substitute.For<IPalletBuilder>(),
+                Substitute.For<ICurrentMetaData>(),
+                Substitute.For<ILogger<SubstrateDecoding>>());
+
+            //var enumTimestamp = new EnumRuntimeEvent();
+            //enumTimestamp.Create(hex);
+            var ev = new EventRecord();
+            ev.Create(hex);
+            var nodeResult = decode.Decode(ev);
+
+            var json = nodeResult.ToJson();
+            Assert.That(json, Is.Not.Null);
+            //{ "":[{ "Phase":[{ "ApplyExtrinsic":[{ "":1}]}]},{ "Event":[{ "System":[{ "ExtrinsicSuccess":[{ "Weight":[{ "RefTime":[{ "":493895699000}]}]},{ "Class":[{ "":"Mandatory"}]},{ "PaysFee":[{ "":"Yes"}]}]}]}]},{ "Topics":null}]}
+
+            //            {
+            //            phase:
+            //                {
+            //                ApplyExtrinsic: 1
+            //            }
+            //    event: {
+            //        method: ExtrinsicSuccess
+            //        section: system
+            //        index: 0x0000
+            //      data:
+            //            {
+            //            dispatchInfo:
+            //                {
+            //                weight: 493,895,699,000
+            //          class: Mandatory
+            //          paysFee: Yes
+            //    }
+            //}
+            //    }
+            //    topics: []
+            //  }
+        }
+
+        [Test]
+        [TestCase("0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da942a9602fb314fb8ece26eb5e685d5d95e45dda4a3ac186e2ac54d8aed98db9dbdfff54087b96414057ad263ca02bfb96")]
+        public void CreateNode_AccountInfo_ShouldBeParsedToJson(string hex)
+        {
+            var decode = new SubstrateDecoding(
+                new EventMapping(),
+                Substitute.For<ISubstrateRepository>(),
+                Substitute.For<IPalletBuilder>(),
+                Substitute.For<ICurrentMetaData>(),
+                Substitute.For<ILogger<SubstrateDecoding>>());
+
+            var accountInfo = new AccountInfo();
+            accountInfo.Create(hex);
+            var nodeResult = decode.Decode(accountInfo);
+
+            var json = nodeResult.ToJson();
+            Assert.That(json, Is.Not.Null);
+
+            // System.account > FrameSystemAccountInfo
+            //{
+            //        nonce: 1
+            //  consumers: 2
+            //  providers: 1
+            //  sufficients: 0
+            //  data: {
+            //    free: 216,381,979,941
+            //    reserved: 0
+            //    miscFrozen: 200,000,000,000
+            //    feeFrozen: 200,000,000,000
+            //  }
+            //}
         }
     }
 }

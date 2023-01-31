@@ -128,7 +128,7 @@ namespace Substats.Domain.Runtime
 
         public bool Has(object data)
         {
-            return Find(data).Count() > 0;
+            return Find(data)?.Count() > 0;
         }
 
         private IEnumerable<INode> FindInner(List<INode> list, object data)
