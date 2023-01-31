@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primiti
     
     
     /// <summary>
-    /// >> 113 - Composite[polkadot_parachain.primitives.HrmpChannelId]
+    /// >> 112 - Composite[polkadot_parachain.primitives.HrmpChannelId]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class HrmpChannelId : BaseType

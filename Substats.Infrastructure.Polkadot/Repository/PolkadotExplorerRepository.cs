@@ -118,7 +118,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
             var digest = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(SystemStorage.DigestParams(), blockHash.Value, cancellationToken);
 
-            foreach(var log in blockDetails.Block.Header.Digest.Logs) // TODO Check with Cedric
+            foreach (var log in blockDetails.Block.Header.Digest.Logs) // TODO Check with Cedric
             {
                 var buildLogs = new Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.EnumDigestItem();
                 buildLogs.Create(log);
@@ -276,7 +276,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                         extrinsic,
                         blockLight,
                         extrinsicNode,
-                        blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic))
+                        (uint)(blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic)))
                     );
             }
 
@@ -303,36 +303,29 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             var blockLight = await GetBlockLightAsync(extrinsicDto.Block.Hash, cancellationToken);
 
             // Return every events linked to this block
-            //BaseVec<EventRecord> events = await _substrateService.Client.Core.GetStorageAsync<BaseVec<EventRecord>>(
-            //    SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
-
-            BaseVec<EventRecord> events = await _substrateService.Client.SystemStorage.Events(cancellationToken);
+            BaseVec<EventRecord> events = await _substrateService.Client.Core.GetStorageAsync<BaseVec<EventRecord>>(
+                SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
 
             // Doc here :
             // https://polkadot.js.org/docs/api/cookbook/blocks#how-do-i-map-extrinsics-to-their-events
-            for (int i = 0; i < extrinsics.Count(); i++)
+            // Event Phase must be "Apply extrinsic" dans his value must be equal to extrinsic index
+            IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = events.Value.Where(e =>
             {
-                // Event Phase must be "Apply extrinsic" dans his value must be equal to extrinsic index
-                IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = events.Value.Where(e =>
+                if (e.Phase.Value == Phase.ApplyExtrinsic)
                 {
-                    if (e.Phase.Value == Phase.ApplyExtrinsic)
-                    {
-                        var applyExtrinsicIndex = ((Ajuna.NetApi.Model.Types.Primitive.U32)e.Phase.Value2).Value;
-                        return applyExtrinsicIndex == i;
-                    }
-                    return false;
-                });
+                    var applyExtrinsicIndex = ((Ajuna.NetApi.Model.Types.Primitive.U32)e.Phase.Value2).Value;
+                    return applyExtrinsicIndex == extrinsicDto.Index;
+                }
+                return false;
+            });
 
-                var eventsLinked = eventLinkedToCurrentExtrinsic
-                    .Select(ev => _modelBuilder.BuildEventDto(
-                        blockLight,
-                        _substrateDecode.DecodeEvent(ev))
-                    );
+            var eventsLinked = eventLinkedToCurrentExtrinsic
+                .Select(ev => _modelBuilder.BuildEventDto(
+                    blockLight,
+                    _substrateDecode.DecodeEvent(ev))
+                );
 
-                return eventsLinked;
-            }
-
-            return null;
+            return eventsLinked;
         }
 
 

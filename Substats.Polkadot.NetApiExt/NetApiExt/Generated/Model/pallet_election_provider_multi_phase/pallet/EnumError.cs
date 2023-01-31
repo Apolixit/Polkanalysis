@@ -41,10 +41,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
         CallNotAllowed = 10,
         
         FallbackFailed = 11,
+        
+        BoundNotMet = 12,
+        
+        TooManyWinners = 13,
     }
     
     /// <summary>
-    /// >> 610 - Variant[pallet_election_provider_multi_phase.pallet.Error]
+    /// >> 611 - Variant[pallet_election_provider_multi_phase.pallet.Error]
     /// Error of the pallet that can be returned in response to dispatches.
     /// </summary>
     public sealed class EnumError : BaseEnum<Error>

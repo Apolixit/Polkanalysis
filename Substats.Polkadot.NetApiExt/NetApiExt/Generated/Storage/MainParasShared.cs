@@ -45,13 +45,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentSessionIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentSessionIndexDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> CurrentSessionIndex
         ///  The current session index.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CurrentSessionIndex(CancellationToken token)
         {
             string parameters = ParasSharedStorage.CurrentSessionIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -65,6 +75,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ActiveValidatorIndicesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ActiveValidatorIndicesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ActiveValidatorIndices
         ///  All the validators actively participating in parachain consensus.
         ///  Indices are into the broader validator set.
@@ -72,7 +91,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>> ActiveValidatorIndices(CancellationToken token)
         {
             string parameters = ParasSharedStorage.ActiveValidatorIndicesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -86,6 +106,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ActiveValidatorKeysDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ActiveValidatorKeysDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ActiveValidatorKeys
         ///  The parachain attestation keys of the validators actively participating in parachain consensus.
         ///  This should be the same length as `ActiveValidatorIndices`.
@@ -93,11 +122,16 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>> ActiveValidatorKeys(CancellationToken token)
         {
             string parameters = ParasSharedStorage.ActiveValidatorKeysParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>>(parameters, token);
+            return result;
         }
     }
     
     public sealed class ParasSharedCalls
+    {
+    }
+    
+    public sealed class ParasSharedConstants
     {
     }
 }

@@ -48,13 +48,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AuctionCounterDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AuctionCounterDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> AuctionCounter
         ///  Number of auctions started so far.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AuctionCounter(CancellationToken token)
         {
             string parameters = AuctionsStorage.AuctionCounterParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -71,6 +81,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AuctionInfoDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AuctionInfoDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> AuctionInfo
         ///  Information relating to the current auction, if there is one.
         /// 
@@ -81,7 +100,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> AuctionInfo(CancellationToken token)
         {
             string parameters = AuctionsStorage.AuctionInfoParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -97,6 +117,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ReservedAmountsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ReservedAmountsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ReservedAmounts
         ///  Amounts currently reserved in the accounts of the bidders currently winning
         ///  (sub-)ranges.
@@ -104,7 +133,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> ReservedAmounts(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> key, CancellationToken token)
         {
             string parameters = AuctionsStorage.ReservedAmountsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -121,6 +151,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> WinningDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string WinningDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Winning
         ///  The winning bids for each of the 10 ranges at each sample in the final Ending Period of
         ///  the current auction. The map's key is the 0-based index into the Sample Size. The
@@ -129,7 +168,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt> Winning(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = AuctionsStorage.WinningParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt>(parameters, token);
+            return result;
         }
     }
     
@@ -171,6 +211,54 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             return new Method(72, "Auctions", 2, "cancel_auction", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class AuctionsConstants
+    {
+        
+        /// <summary>
+        /// >> EndingPeriod
+        ///  The number of blocks over which an auction may be retroactively ended.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 EndingPeriod()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x40190100");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SampleLength
+        ///  The length of each sample to take during the ending period.
+        /// 
+        ///  `EndingPeriod` / `SampleLength` = Total # of Samples
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SampleLength()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x14000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SlotRangeCount
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SlotRangeCount()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x24000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> LeasePeriodsPerSlot
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 LeasePeriodsPerSlot()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x08000000");
+            return result;
         }
     }
     

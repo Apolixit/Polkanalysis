@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
     
     
     /// <summary>
-    /// >> 623 - Composite[pallet_nomination_pools.RewardPool]
+    /// >> 624 - Composite[pallet_nomination_pools.RewardPool]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class RewardPool : BaseType

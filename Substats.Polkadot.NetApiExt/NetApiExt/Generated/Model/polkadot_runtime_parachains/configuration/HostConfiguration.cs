@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 637 - Composite[polkadot_runtime_parachains.configuration.HostConfiguration]
+    /// >> 638 - Composite[polkadot_runtime_parachains.configuration.HostConfiguration]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class HostConfiguration : BaseType

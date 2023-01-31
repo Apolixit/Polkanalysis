@@ -34,8 +34,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "Bounties"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyDescriptions"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyApprovals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyApprovals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
         }
         
         /// <summary>
@@ -48,13 +48,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BountyCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BountyCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> BountyCount
         ///  Number of bounty proposals that have been made.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> BountyCount(CancellationToken token)
         {
             string parameters = BountiesStorage.BountyCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -69,13 +79,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BountiesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BountiesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Bounties
         ///  Bounties that have been made.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty> Bounties(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = BountiesStorage.BountiesParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -90,13 +110,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BountyDescriptionsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BountyDescriptionsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> BountyDescriptions
         ///  The description of each bounty.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19> BountyDescriptions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25> BountyDescriptions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = BountiesStorage.BountyDescriptionsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -109,13 +139,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BountyApprovalsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BountyApprovalsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> BountyApprovals
         ///  Bounty indices that have been approved but not yet funded.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12> BountyApprovals(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17> BountyApprovals(CancellationToken token)
         {
             string parameters = BountiesStorage.BountyApprovalsParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17>(parameters, token);
+            return result;
         }
     }
     
@@ -224,6 +264,114 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(bounty_id.Encode());
             byteArray.AddRange(remark.Encode());
             return new Method(34, "Bounties", 8, "extend_bounty_expiry", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class BountiesConstants
+    {
+        
+        /// <summary>
+        /// >> BountyDepositBase
+        ///  The amount held on deposit for placing a bounty proposal.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 BountyDepositBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E40B54020000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BountyDepositPayoutDelay
+        ///  The delay period for which a bounty beneficiary need to wait before claim the payout.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 BountyDepositPayoutDelay()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00C20100");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BountyUpdatePeriod
+        ///  Bounty duration in blocks.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 BountyUpdatePeriod()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x80C61300");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> CuratorDepositMultiplier
+        ///  The curator deposit is calculated as a percentage of the curator fee.
+        /// 
+        ///  This deposit has optional upper and lower bounds with `CuratorDepositMax` and
+        ///  `CuratorDepositMin`.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill CuratorDepositMultiplier()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
+            result.Create("0x20A10700");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> CuratorDepositMax
+        ///  Maximum amount of funds that should be placed in a deposit for making a proposal.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128> CuratorDepositMax()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128>();
+            result.Create("0x0100204AA9D10100000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> CuratorDepositMin
+        ///  Minimum amount of funds that should be placed in a deposit for making a proposal.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128> CuratorDepositMin()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128>();
+            result.Create("0x0100E87648170000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BountyValueMinimum
+        ///  Minimum value for a bounty.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 BountyValueMinimum()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E87648170000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> DataDepositPerByte
+        ///  The amount held on deposit per byte within the tip report reason or bounty description.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E1F505000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaximumReasonLength
+        ///  Maximum acceptable reason length.
+        /// 
+        ///  Benchmarks depend on this value, be sure to update weights file when changing this value
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaximumReasonLength()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00400000");
+            return result;
         }
     }
     

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Types.Base
     
     
     /// <summary>
-    /// >> 354 - Array
+    /// >> 353 - Array
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Array)]
     public sealed class Arr12BaseTuple : BaseType

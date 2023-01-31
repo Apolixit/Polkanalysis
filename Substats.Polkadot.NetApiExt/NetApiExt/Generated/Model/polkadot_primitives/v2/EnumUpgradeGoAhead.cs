@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     }
     
     /// <summary>
-    /// >> 675 - Variant[polkadot_primitives.v2.UpgradeGoAhead]
+    /// >> 676 - Variant[polkadot_primitives.v2.UpgradeGoAhead]
     /// </summary>
     public sealed class EnumUpgradeGoAhead : BaseEnum<UpgradeGoAhead>
     {

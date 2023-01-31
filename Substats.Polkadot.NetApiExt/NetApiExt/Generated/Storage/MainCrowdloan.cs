@@ -49,13 +49,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> FundsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string FundsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Funds
         ///  Info on all of the funds.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo> Funds(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = CrowdloanStorage.FundsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -69,6 +79,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NewRaiseDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NewRaiseDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NewRaise
         ///  The funds that have had additional contributions during the last block. This is used
         ///  in order to determine which funds should submit new or updated bids.
@@ -76,7 +95,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> NewRaise(CancellationToken token)
         {
             string parameters = CrowdloanStorage.NewRaiseParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -89,13 +109,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EndingsCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EndingsCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> EndingsCount
         ///  The number of auctions that have entered into their ending period so far.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> EndingsCount(CancellationToken token)
         {
             string parameters = CrowdloanStorage.EndingsCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -108,13 +138,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextFundIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextFundIndexDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> NextFundIndex
         ///  Tracker for the next available fund index
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> NextFundIndex(CancellationToken token)
         {
             string parameters = CrowdloanStorage.NextFundIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
     }
     
@@ -233,6 +273,44 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(index.Encode());
             byteArray.AddRange(signature.Encode());
             return new Method(73, "Crowdloan", 8, "contribute_all", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class CrowdloanConstants
+    {
+        
+        /// <summary>
+        /// >> PalletId
+        ///  `PalletId` for the crowdloan pallet. An appropriate value could be `PalletId(*b"py/cfund")`
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId PalletId()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId();
+            result.Create("0x70792F6366756E64");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MinContribution
+        ///  The minimum amount that may be contributed into a crowdloan. Should almost certainly be at
+        ///  least `ExistentialDeposit`.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 MinContribution()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00743BA40B0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> RemoveKeysLimit
+        ///  Max number of storage keys to remove per extrinsic call.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 RemoveKeysLimit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xE8030000");
+            return result;
         }
     }
     

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 380 - Composite[polkadot_primitives.v2.InherentData]
+    /// >> 379 - Composite[polkadot_primitives.v2.InherentData]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class InherentData : BaseType

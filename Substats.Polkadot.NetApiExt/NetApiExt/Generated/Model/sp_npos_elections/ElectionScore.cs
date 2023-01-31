@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections
     
     
     /// <summary>
-    /// >> 89 - Composite[sp_npos_elections.ElectionScore]
+    /// >> 88 - Composite[sp_npos_elections.ElectionScore]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ElectionScore : BaseType

@@ -64,13 +64,25 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AccountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AccountDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000" +
+                "00000000000000000000000000000000000000000000000000000000000000000000000000000000" +
+                "0";
+        }
+        
+        /// <summary>
         /// >> Account
         ///  The full account information for a particular account ID.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo> Account(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = SystemStorage.AccountParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -83,13 +95,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ExtrinsicCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ExtrinsicCountDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ExtrinsicCount
         ///  Total extrinsics count for the current block.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ExtrinsicCount(CancellationToken token)
         {
             string parameters = SystemStorage.ExtrinsicCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -102,13 +124,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BlockWeightDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BlockWeightDefault()
+        {
+            return "0x000000000000";
+        }
+        
+        /// <summary>
         /// >> BlockWeight
         ///  The current weight for the block.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT1> BlockWeight(CancellationToken token)
         {
             string parameters = SystemStorage.BlockWeightParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT1>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT1>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -121,13 +153,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AllExtrinsicsLenDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AllExtrinsicsLenDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> AllExtrinsicsLen
         ///  Total length (in bytes) for all extrinsics put together, for the current block.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AllExtrinsicsLen(CancellationToken token)
         {
             string parameters = SystemStorage.AllExtrinsicsLenParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -142,13 +184,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BlockHashDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BlockHashDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> BlockHash
         ///  Map of block numbers to block hashes.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256> BlockHash(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = SystemStorage.BlockHashParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -163,13 +215,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ExtrinsicDataDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ExtrinsicDataDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ExtrinsicData
         ///  Extrinsics data for the current block (maps an extrinsic's index to its data).
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> ExtrinsicData(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = SystemStorage.ExtrinsicDataParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -182,13 +244,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NumberDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NumberDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> Number
         ///  The current block number being processed. Set by `execute_block`.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Number(CancellationToken token)
         {
             string parameters = SystemStorage.NumberParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -201,13 +273,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ParentHashDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ParentHashDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> ParentHash
         ///  Hash of the previous block.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256> ParentHash(CancellationToken token)
         {
             string parameters = SystemStorage.ParentHashParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -220,13 +302,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DigestDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DigestDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Digest
         ///  Digest of the current block, also part of the block header.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest> Digest(CancellationToken token)
         {
             string parameters = SystemStorage.DigestParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -245,6 +337,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EventsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EventsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Events
         ///  Events deposited for the current block.
         /// 
@@ -257,7 +358,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>> Events(CancellationToken token)
         {
             string parameters = SystemStorage.EventsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -270,13 +372,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EventCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EventCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> EventCount
         ///  The number of events in the `Events<T>` list.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> EventCount(CancellationToken token)
         {
             string parameters = SystemStorage.EventCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -300,6 +412,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EventTopicsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EventTopicsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> EventTopics
         ///  Mapping between a topic (represented by T::Hash) and a vector of indexes
         ///  of events in the `<Events<T>>` list.
@@ -315,7 +436,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>> EventTopics(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = SystemStorage.EventTopicsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -328,13 +450,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> LastRuntimeUpgradeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string LastRuntimeUpgradeDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> LastRuntimeUpgrade
         ///  Stores the `spec_version` and `spec_name` of when the last runtime upgrade happened.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo> LastRuntimeUpgrade(CancellationToken token)
         {
             string parameters = SystemStorage.LastRuntimeUpgradeParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -347,13 +479,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UpgradedToU32RefCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UpgradedToU32RefCountDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UpgradedToU32RefCount
         ///  True if we have upgraded so that `type RefCount` is `u32`. False (default) if not.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> UpgradedToU32RefCount(CancellationToken token)
         {
             string parameters = SystemStorage.UpgradedToU32RefCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -367,6 +509,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UpgradedToTripleRefCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UpgradedToTripleRefCountDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UpgradedToTripleRefCount
         ///  True if we have upgraded so that AccountInfo contains three types of `RefCount`. False
         ///  (default) if not.
@@ -374,7 +525,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> UpgradedToTripleRefCount(CancellationToken token)
         {
             string parameters = SystemStorage.UpgradedToTripleRefCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -387,29 +539,28 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ExecutionPhaseDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ExecutionPhaseDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ExecutionPhase
         ///  The execution phase of the block.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase> ExecutionPhase(CancellationToken token)
         {
             string parameters = SystemStorage.ExecutionPhaseParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase>(parameters, token);
+            return result;
         }
     }
     
     public sealed class SystemCalls
     {
-        
-        /// <summary>
-        /// >> fill_block
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method FillBlock(Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill ratio)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(ratio.Encode());
-            return new Method(0, "System", 0, "fill_block", byteArray.ToArray());
-        }
         
         /// <summary>
         /// >> remark
@@ -419,7 +570,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(remark.Encode());
-            return new Method(0, "System", 1, "remark", byteArray.ToArray());
+            return new Method(0, "System", 0, "remark", byteArray.ToArray());
         }
         
         /// <summary>
@@ -430,7 +581,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pages.Encode());
-            return new Method(0, "System", 2, "set_heap_pages", byteArray.ToArray());
+            return new Method(0, "System", 1, "set_heap_pages", byteArray.ToArray());
         }
         
         /// <summary>
@@ -441,7 +592,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(code.Encode());
-            return new Method(0, "System", 3, "set_code", byteArray.ToArray());
+            return new Method(0, "System", 2, "set_code", byteArray.ToArray());
         }
         
         /// <summary>
@@ -452,7 +603,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(code.Encode());
-            return new Method(0, "System", 4, "set_code_without_checks", byteArray.ToArray());
+            return new Method(0, "System", 3, "set_code_without_checks", byteArray.ToArray());
         }
         
         /// <summary>
@@ -463,7 +614,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(items.Encode());
-            return new Method(0, "System", 5, "set_storage", byteArray.ToArray());
+            return new Method(0, "System", 4, "set_storage", byteArray.ToArray());
         }
         
         /// <summary>
@@ -474,7 +625,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(keys.Encode());
-            return new Method(0, "System", 6, "kill_storage", byteArray.ToArray());
+            return new Method(0, "System", 5, "kill_storage", byteArray.ToArray());
         }
         
         /// <summary>
@@ -486,7 +637,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(prefix.Encode());
             byteArray.AddRange(subkeys.Encode());
-            return new Method(0, "System", 7, "kill_prefix", byteArray.ToArray());
+            return new Method(0, "System", 6, "kill_prefix", byteArray.ToArray());
         }
         
         /// <summary>
@@ -497,7 +648,83 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(remark.Encode());
-            return new Method(0, "System", 8, "remark_with_event", byteArray.ToArray());
+            return new Method(0, "System", 7, "remark_with_event", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class SystemConstants
+    {
+        
+        /// <summary>
+        /// >> BlockWeights
+        ///  Block & extrinsics weights: base values and limits.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.BlockWeights BlockWeights()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.BlockWeights();
+            result.Create("0x07387FAE5C01000B00204AA9D1010200400182ED501400010BA094CB915801CECCEC00010B0098F" +
+                    "73E5D010200F00001000082ED501400010BA01C1EFCCC01CECC3C01010B00204AA9D101020040010" +
+                    "1070088526A740200500082ED501400000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BlockLength
+        ///  The maximum length of a block (in bytes).
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.BlockLength BlockLength()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.BlockLength();
+            result.Create("0x00003C000000500000005000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BlockHashCount
+        ///  Maximum number of block number to block hash mappings to keep (oldest pruned first).
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 BlockHashCount()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00100000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> DbWeight
+        ///  The weight of runtime database operations the runtime can invoke.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.RuntimeDbWeight DbWeight()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.RuntimeDbWeight();
+            result.Create("0x38CA38010000000098AAF90400000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> Version
+        ///  Get the chain's current version.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_version.RuntimeVersion Version()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_version.RuntimeVersion();
+            result.Create(@"0x20706F6C6B61646F743C7061726974792D706F6C6B61646F74000000007C2400000000000040DF6ACB689907609B0400000037E397FC7C91F5E40100000040FE3AD401F8959A0600000017A6BC0D0062AEB301000000D2BC9897EED08F1503000000F78B278BE53F454C02000000AF2C0297A23E6D3D0200000049EAAF1B548A0CB00100000091D5DF18B0D2CF5801000000ED99C5ACB25EEDF503000000CBCA25E39F14238702000000687AD44AD37F03C201000000AB3C0572291FEB8B01000000BC9D89904F5B923F0100000037C8BB1350A9A2A802000000F3FF14D5AB527059020000001200000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SS58Prefix
+        ///  The designated SS58 prefix of this chain.
+        /// 
+        ///  This replaces the "ss58Format" property declared in the chain spec. Reason is
+        ///  that the runtime should know about the prefix in order to make use of it as
+        ///  an identifier of the chain.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U16 SS58Prefix()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            result.Create("0x0000");
+            return result;
         }
     }
     

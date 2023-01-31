@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.pallet
     }
     
     /// <summary>
-    /// >> 375 - Variant[pallet_fast_unstake.pallet.Call]
+    /// >> 374 - Variant[pallet_fast_unstake.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
     public sealed class EnumCall : BaseEnumExt<Call, BaseVoid, BaseVoid, Ajuna.NetApi.Model.Types.Primitive.U32>

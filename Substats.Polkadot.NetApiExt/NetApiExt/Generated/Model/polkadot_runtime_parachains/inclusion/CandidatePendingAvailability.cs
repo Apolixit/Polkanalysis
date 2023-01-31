@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 644 - Composite[polkadot_runtime_parachains.inclusion.CandidatePendingAvailability]
+    /// >> 645 - Composite[polkadot_runtime_parachains.inclusion.CandidatePendingAvailability]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CandidatePendingAvailability : BaseType

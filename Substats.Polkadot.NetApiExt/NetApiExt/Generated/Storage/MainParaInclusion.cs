@@ -50,13 +50,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AvailabilityBitfieldsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AvailabilityBitfieldsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> AvailabilityBitfields
         ///  The latest bitfield for each validator, referred to by their index in the validator set.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord> AvailabilityBitfields(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex key, CancellationToken token)
         {
             string parameters = ParaInclusionStorage.AvailabilityBitfieldsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -71,13 +81,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PendingAvailabilityDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PendingAvailabilityDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PendingAvailability
         ///  Candidates pending availability by `ParaId`.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability> PendingAvailability(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParaInclusionStorage.PendingAvailabilityParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -92,17 +112,31 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PendingAvailabilityCommitmentsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PendingAvailabilityCommitmentsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PendingAvailabilityCommitments
         ///  The commitments of candidates pending availability, by `ParaId`.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments> PendingAvailabilityCommitments(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParaInclusionStorage.PendingAvailabilityCommitmentsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments>(parameters, token);
+            return result;
         }
     }
     
     public sealed class ParaInclusionCalls
+    {
+    }
+    
+    public sealed class ParaInclusionConstants
     {
     }
     

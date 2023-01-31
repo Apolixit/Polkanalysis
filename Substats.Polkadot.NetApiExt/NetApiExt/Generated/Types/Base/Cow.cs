@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Types.Base
     
     
     /// <summary>
-    /// >> 175 - Composite[Cow]
+    /// >> 173 - Composite[Cow]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Cow : BaseType

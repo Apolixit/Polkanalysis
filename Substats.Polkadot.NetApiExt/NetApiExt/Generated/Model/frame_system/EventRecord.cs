@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system
     
     
     /// <summary>
-    /// >> 17 - Composite[frame_system.EventRecord]
+    /// >> 18 - Composite[frame_system.EventRecord]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class EventRecord : BaseType

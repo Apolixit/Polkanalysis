@@ -50,6 +50,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MembersDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MembersDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Members
         ///  The current elected members.
         /// 
@@ -58,7 +67,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> Members(CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.MembersParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -74,6 +84,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> RunnersUpDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string RunnersUpDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> RunnersUp
         ///  The current reserved runners-up.
         /// 
@@ -83,7 +102,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> RunnersUp(CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.RunnersUpParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -101,6 +121,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CandidatesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CandidatesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Candidates
         ///  The present candidate list. A current member or runner-up can never enter this vector
         ///  and is always implicitly assumed to be a candidate.
@@ -112,7 +141,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>> Candidates(CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.CandidatesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -125,13 +155,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ElectionRoundsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ElectionRoundsDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> ElectionRounds
         ///  The total number of vote rounds that have happened, excluding the upcoming one.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ElectionRounds(CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.ElectionRoundsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -148,6 +188,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> VotingDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string VotingDefault()
+        {
+            return "0x000000000000000000000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> Voting
         ///  Votes and locked stake of a particular voter.
         /// 
@@ -156,7 +205,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter> Voting(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.VotingParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter>(parameters, token);
+            return result;
         }
     }
     
@@ -230,6 +280,121 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(num_voters.Encode());
             byteArray.AddRange(num_defunct.Encode());
             return new Method(17, "PhragmenElection", 5, "clean_defunct_voters", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class PhragmenElectionConstants
+    {
+        
+        /// <summary>
+        /// >> PalletId
+        ///  Identifier for the elections-phragmen pallet's lock
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 PalletId()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8();
+            result.Create("0x706872656C656374");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> CandidacyBond
+        ///  How much should be locked up in order to submit one's candidacy.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 CandidacyBond()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x0010A5D4E80000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> VotingBondBase
+        ///  Base deposit associated with voting.
+        /// 
+        ///  This should be sensibly high to economically ensure the pallet cannot be attacked by
+        ///  creating a gigantic number of votes.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 VotingBondBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x007013B72E0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> VotingBondFactor
+        ///  The amount of bond that need to be locked for each vote (32 bytes).
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 VotingBondFactor()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00D01213000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> DesiredMembers
+        ///  Number of members to elect.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 DesiredMembers()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x0D000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> DesiredRunnersUp
+        ///  Number of runners_up to keep.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 DesiredRunnersUp()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x14000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> TermDuration
+        ///  How long each seat is kept. This defines the next block number at which an election
+        ///  round will happen. If set to zero, no elections are ever triggered and the module will
+        ///  be in passive mode.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 TermDuration()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xC0890100");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxCandidates
+        ///  The maximum number of candidates in a phragmen election.
+        /// 
+        ///  Warning: The election happens onchain, and this value will determine
+        ///  the size of the election. When this limit is reached no more
+        ///  candidates are accepted in the election.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxCandidates()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xE8030000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxVoters
+        ///  The maximum number of voters to allow in a phragmen election.
+        /// 
+        ///  Warning: This impacts the size of the election which is run onchain.
+        ///  When the limit is reached the new voters are ignored.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxVoters()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x10270000");
+            return result;
         }
     }
     

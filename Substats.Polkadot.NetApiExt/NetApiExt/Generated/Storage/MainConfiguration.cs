@@ -45,13 +45,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ActiveConfigDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ActiveConfigDefault()
+        {
+            return @"0x00000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000100000001000000000000000000060000006400000002000000C800000001000000000000000000000000000000000000000700C817A80402004001000200000002000000";
+        }
+        
+        /// <summary>
         /// >> ActiveConfig
         ///  The active configuration for the current session.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration> ActiveConfig(CancellationToken token)
         {
             string parameters = ConfigurationStorage.ActiveConfigParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -70,6 +80,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PendingConfigsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PendingConfigsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PendingConfigs
         ///  Pending configuration changes.
         /// 
@@ -82,7 +101,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>> PendingConfigs(CancellationToken token)
         {
             string parameters = ConfigurationStorage.PendingConfigsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -96,6 +116,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BypassConsistencyCheckDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BypassConsistencyCheckDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> BypassConsistencyCheck
         ///  If this is set, then the configuration setters will bypass the consistency checks. This
         ///  is meant to be used only as the last resort.
@@ -103,7 +132,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> BypassConsistencyCheck(CancellationToken token)
         {
             string parameters = ConfigurationStorage.BypassConsistencyCheckParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return result;
         }
     }
     
@@ -604,6 +634,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(@new.Encode());
             return new Method(51, "Configuration", 44, "set_bypass_consistency_check", byteArray.ToArray());
         }
+    }
+    
+    public sealed class ConfigurationConstants
+    {
     }
     
     public enum ConfigurationErrors

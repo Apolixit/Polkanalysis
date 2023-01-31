@@ -35,8 +35,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "SuperOf"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "SubsOf"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT15>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "Registrars"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT16)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "Registrars"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21)));
         }
         
         /// <summary>
@@ -53,6 +53,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> IdentityOfDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string IdentityOfDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> IdentityOf
         ///  Information that is pertinent to identify the entity behind an account.
         /// 
@@ -61,7 +70,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration> IdentityOf(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = IdentityStorage.IdentityOfParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -77,6 +87,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SuperOfDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SuperOfDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SuperOf
         ///  The super-identity of an alternative "sub" identity together with its name, within that
         ///  context. If the account is not some other account's sub-identity, then just `None`.
@@ -84,7 +103,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>> SuperOf(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = IdentityStorage.SuperOfParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -103,6 +123,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SubsOfDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SubsOfDefault()
+        {
+            return "0x0000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> SubsOf
         ///  Alternative "sub" identities of this account.
         /// 
@@ -110,10 +139,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: OK ��� `AccountId` is a secure hash.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT15>> SubsOf(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20>> SubsOf(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = IdentityStorage.SubsOfParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT15>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -129,16 +159,26 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> RegistrarsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string RegistrarsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Registrars
         ///  The set of registrars. Not expected to get very big as can only be added through a
         ///  special origin (likely a council motion).
         /// 
         ///  The index into this can be cast to `RegistrarIndex` to get a valid value.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT16> Registrars(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21> Registrars(CancellationToken token)
         {
             string parameters = IdentityStorage.RegistrarsParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT16>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21>(parameters, token);
+            return result;
         }
     }
     
@@ -318,6 +358,80 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
     }
     
+    public sealed class IdentityConstants
+    {
+        
+        /// <summary>
+        /// >> BasicDeposit
+        ///  The amount held on deposit for a registered identity
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 BasicDeposit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x007DB52A2F0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> FieldDeposit
+        ///  The amount held on deposit per additional field for a registered identity.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 FieldDeposit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00CD5627000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SubAccountDeposit
+        ///  The amount held on deposit for a registered subaccount. This should account for the fact
+        ///  that one storage item's value will increase by the size of an account ID, and there will
+        ///  be another trie item whose value is the size of an account ID plus 32 bytes.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 SubAccountDeposit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x80F884B02E0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxSubAccounts
+        ///  The maximum number of sub-accounts allowed per identified account.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxSubAccounts()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x64000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxAdditionalFields
+        ///  Maximum number of additional fields that may be stored in an ID. Needed to bound the I/O
+        ///  required to access an identity, but can be pretty high.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxAdditionalFields()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x64000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxRegistrars
+        ///  Maxmimum number of registrars allowed in the system. Needed to bound the complexity
+        ///  of, e.g., updating judgements.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxRegistrars()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x14000000");
+            return result;
+        }
+    }
+    
     public enum IdentityErrors
     {
         
@@ -422,5 +536,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// The provided judgement was for a different identity.
         /// </summary>
         JudgementForDifferentIdentity,
+        
+        /// <summary>
+        /// >> JudgementPaymentFailed
+        /// Error that occurs when there is an issue paying for judgement.
+        /// </summary>
+        JudgementPaymentFailed,
     }
 }

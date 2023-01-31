@@ -48,13 +48,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DownwardMessageQueuesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DownwardMessageQueuesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> DownwardMessageQueues
         ///  The downward messages addressed for a certain para.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>> DownwardMessageQueues(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = DmpStorage.DownwardMessageQueuesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -75,6 +85,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DownwardMessageQueueHeadsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DownwardMessageQueueHeadsDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> DownwardMessageQueueHeads
         ///  A mapping that stores the downward message queue MQC head for each para.
         /// 
@@ -87,11 +106,16 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256> DownwardMessageQueueHeads(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = DmpStorage.DownwardMessageQueueHeadsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            return result;
         }
     }
     
     public sealed class DmpCalls
+    {
+    }
+    
+    public sealed class DmpConstants
     {
     }
 }

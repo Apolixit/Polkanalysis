@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections
     
     
     /// <summary>
-    /// >> 368 - Composite[sp_npos_elections.Support]
+    /// >> 367 - Composite[sp_npos_elections.Support]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Support : BaseType

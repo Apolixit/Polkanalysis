@@ -71,6 +71,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpOpenChannelRequestsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpOpenChannelRequestsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpOpenChannelRequests
         ///  The set of pending HRMP open channel requests.
         /// 
@@ -82,7 +91,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest> HrmpOpenChannelRequests(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpOpenChannelRequestsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -94,12 +104,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpOpenChannelRequestsListDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpOpenChannelRequestsListDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpOpenChannelRequestsList
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>> HrmpOpenChannelRequestsList(CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpOpenChannelRequestsListParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -116,6 +136,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpOpenChannelRequestCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpOpenChannelRequestCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> HrmpOpenChannelRequestCount
         ///  This mapping tracks how many open channel requests are initiated by a given sender para.
         ///  Invariant: `HrmpOpenChannelRequests` should contain the same number of items that has
@@ -124,7 +153,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpOpenChannelRequestCount(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpOpenChannelRequestCountParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -141,6 +171,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpAcceptedChannelRequestCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpAcceptedChannelRequestCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> HrmpAcceptedChannelRequestCount
         ///  This mapping tracks how many open channel requests were accepted by a given recipient para.
         ///  Invariant: `HrmpOpenChannelRequests` should contain the same number of items `(_, X)` with
@@ -149,7 +188,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpAcceptedChannelRequestCount(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpAcceptedChannelRequestCountParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -170,6 +210,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpCloseChannelRequestsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpCloseChannelRequestsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpCloseChannelRequests
         ///  A set of pending HRMP close channel requests that are going to be closed during the session
         ///  change. Used for checking if a given channel is registered for closure.
@@ -182,7 +231,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> HrmpCloseChannelRequests(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpCloseChannelRequestsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -194,12 +244,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpCloseChannelRequestsListDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpCloseChannelRequestsListDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpCloseChannelRequestsList
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>> HrmpCloseChannelRequestsList(CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpCloseChannelRequestsListParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -216,6 +276,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpWatermarksDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpWatermarksDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpWatermarks
         ///  The HRMP watermark associated with each para.
         ///  Invariant:
@@ -224,7 +293,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpWatermarks(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpWatermarksParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -241,6 +311,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpChannelsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpChannelsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpChannels
         ///  HRMP channel data associated with each para.
         ///  Invariant:
@@ -249,7 +328,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel> HrmpChannels(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpChannelsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -276,6 +356,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpIngressChannelsIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpIngressChannelsIndexDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpIngressChannelsIndex
         ///  Ingress/egress indexes allow to find all the senders and receivers given the opposite side.
         ///  I.e.
@@ -294,7 +383,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> HrmpIngressChannelsIndex(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpIngressChannelsIndexParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -308,12 +398,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpEgressChannelsIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpEgressChannelsIndexDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpEgressChannelsIndex
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> HrmpEgressChannelsIndex(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpEgressChannelsIndexParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -329,6 +429,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpChannelContentsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpChannelContentsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpChannelContents
         ///  Storage for the messages for each channel.
         ///  Invariant: cannot be non-empty if the corresponding channel in `HrmpChannels` is `None`.
@@ -336,7 +445,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>> HrmpChannelContents(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpChannelContentsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -356,6 +466,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HrmpChannelDigestsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HrmpChannelDigestsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HrmpChannelDigests
         ///  Maintains a mapping that can be used to answer the question: What paras sent a message at
         ///  the given block number for a given receiver. Invariants:
@@ -367,7 +486,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>> HrmpChannelDigests(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpChannelDigestsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>>(parameters, token);
+            return result;
         }
     }
     
@@ -455,6 +575,24 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(open_requests.Encode());
             return new Method(60, "Hrmp", 6, "hrmp_cancel_open_request", byteArray.ToArray());
         }
+        
+        /// <summary>
+        /// >> force_open_hrmp_channel
+        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// </summary>
+        public static Method ForceOpenHrmpChannel(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id sender, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id recipient, Ajuna.NetApi.Model.Types.Primitive.U32 max_capacity, Ajuna.NetApi.Model.Types.Primitive.U32 max_message_size)
+        {
+            System.Collections.Generic.List<byte> byteArray = new List<byte>();
+            byteArray.AddRange(sender.Encode());
+            byteArray.AddRange(recipient.Encode());
+            byteArray.AddRange(max_capacity.Encode());
+            byteArray.AddRange(max_message_size.Encode());
+            return new Method(60, "Hrmp", 7, "force_open_hrmp_channel", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class HrmpConstants
+    {
     }
     
     public enum HrmpErrors

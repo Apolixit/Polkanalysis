@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
     
     
     /// <summary>
-    /// >> 731 - Composite[frame_system.extensions.check_nonce.CheckNonce]
+    /// >> 735 - Composite[frame_system.extensions.check_nonce.CheckNonce]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CheckNonce : BaseType

@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm
     }
     
     /// <summary>
-    /// >> 152 - Variant[xcm.VersionedMultiAssets]
+    /// >> 150 - Variant[xcm.VersionedMultiAssets]
     /// </summary>
     public sealed class EnumVersionedMultiAssets : BaseEnumExt<VersionedMultiAssets, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset.EnumMultiAsset>, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets>
     {

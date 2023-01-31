@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
     
     
     /// <summary>
-    /// >> 537 - Composite[pallet_democracy.types.Delegations]
+    /// >> 539 - Composite[pallet_democracy.types.Delegations]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Delegations : BaseType

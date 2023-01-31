@@ -49,13 +49,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> StateDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string StateDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> State
         ///  State of the current authority set.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState> State(CancellationToken token)
         {
             string parameters = GrandpaStorage.StateParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -68,13 +78,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PendingChangeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PendingChangeDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PendingChange
         ///  Pending change: (signaled at, scheduled change).
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange> PendingChange(CancellationToken token)
         {
             string parameters = GrandpaStorage.PendingChangeParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -87,13 +107,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextForcedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextForcedDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NextForced
         ///  next block number where we can force a change.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> NextForced(CancellationToken token)
         {
             string parameters = GrandpaStorage.NextForcedParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -106,13 +136,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> StalledDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string StalledDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Stalled
         ///  `true` if we are currently stalled.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> Stalled(CancellationToken token)
         {
             string parameters = GrandpaStorage.StalledParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -126,6 +166,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentSetIdDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentSetIdDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> CurrentSetId
         ///  The number of changes (both in terms of keys and underlying economic responsibilities)
         ///  in the "set" of Grandpa validators from genesis.
@@ -133,7 +182,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> CurrentSetId(CancellationToken token)
         {
             string parameters = GrandpaStorage.CurrentSetIdParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -151,6 +201,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SetIdSessionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SetIdSessionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SetIdSession
         ///  A mapping from grandpa set ID to the index of the *most recent* session for which its
         ///  members were responsible.
@@ -160,7 +219,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SetIdSession(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = GrandpaStorage.SetIdSessionParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
     }
     
@@ -201,6 +261,21 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(delay.Encode());
             byteArray.AddRange(best_finalized_block_number.Encode());
             return new Method(11, "Grandpa", 2, "note_stalled", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class GrandpaConstants
+    {
+        
+        /// <summary>
+        /// >> MaxAuthorities
+        ///  Max Authorities in use
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxAuthorities()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xA0860100");
+            return result;
         }
     }
     

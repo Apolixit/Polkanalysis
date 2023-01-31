@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_bt
     
     
     /// <summary>
-    /// >> 605 - Composite[sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1]
+    /// >> 618 - Composite[sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedBTreeMapT1 : BaseType

@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 667 - Variant[polkadot_runtime_parachains.paras.PvfCheckCause]
+    /// >> 668 - Variant[polkadot_runtime_parachains.paras.PvfCheckCause]
     /// </summary>
     public sealed class EnumPvfCheckCause : BaseEnumExt<PvfCheckCause, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {

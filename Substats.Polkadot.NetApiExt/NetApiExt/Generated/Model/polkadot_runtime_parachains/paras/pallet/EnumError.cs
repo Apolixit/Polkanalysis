@@ -41,10 +41,12 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         PvfCheckSubjectInvalid = 10,
         
         PvfCheckDisabled = 11,
+        
+        CannotUpgradeCode = 12,
     }
     
     /// <summary>
-    /// >> 678 - Variant[polkadot_runtime_parachains.paras.pallet.Error]
+    /// >> 679 - Variant[polkadot_runtime_parachains.paras.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

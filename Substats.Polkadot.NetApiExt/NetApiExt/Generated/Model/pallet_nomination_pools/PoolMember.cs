@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
     
     
     /// <summary>
-    /// >> 616 - Composite[pallet_nomination_pools.PoolMember]
+    /// >> 617 - Composite[pallet_nomination_pools.PoolMember]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PoolMember : BaseType
@@ -42,7 +42,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
         /// <summary>
         /// >> unbonding_eras
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 _unbondingEras;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1 _unbondingEras;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 PoolId
         {
@@ -80,7 +80,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 UnbondingEras
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1 UnbondingEras
         {
             get
             {
@@ -116,7 +116,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
             Points.Decode(byteArray, ref p);
             LastRecordedRewardCounter = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128();
             LastRecordedRewardCounter.Decode(byteArray, ref p);
-            UnbondingEras = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2();
+            UnbondingEras = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1();
             UnbondingEras.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

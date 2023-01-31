@@ -1,11 +1,11 @@
 {
    "projects": {
-      "net_api": "Blazscan.Bajun.NetApiExt",
+      "net_api": "Substats.Polkadot.NetApiExt",
       "rest_service": "Ajuna.RestService",
       "rest_client": "Ajuna.RestClient"
    },
    "metadata": {
-      "websocket": "wss://rpc-parachain.bajun.network"
+      "websocket": "wss://rpc.polkadot.io"
    },
    "rest_client_settings": {
       "service_assembly": "Ajuna.RestService.dll"

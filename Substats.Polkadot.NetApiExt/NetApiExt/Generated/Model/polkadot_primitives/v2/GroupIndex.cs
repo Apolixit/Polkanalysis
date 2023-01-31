@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 107 - Composite[polkadot_primitives.v2.GroupIndex]
+    /// >> 106 - Composite[polkadot_primitives.v2.GroupIndex]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class GroupIndex : BaseType

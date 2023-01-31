@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_thre
     }
     
     /// <summary>
-    /// >> 63 - Variant[pallet_democracy.vote_threshold.VoteThreshold]
+    /// >> 62 - Variant[pallet_democracy.vote_threshold.VoteThreshold]
     /// </summary>
     public sealed class EnumVoteThreshold : BaseEnum<VoteThreshold>
     {

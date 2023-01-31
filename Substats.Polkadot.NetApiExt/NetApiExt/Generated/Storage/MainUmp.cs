@@ -58,6 +58,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> RelayDispatchQueuesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string RelayDispatchQueuesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> RelayDispatchQueues
         ///  The messages waiting to be handled by the relay-chain originating from a certain parachain.
         /// 
@@ -69,7 +78,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>> RelayDispatchQueues(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = UmpStorage.RelayDispatchQueuesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -94,6 +104,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> RelayDispatchQueueSizeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string RelayDispatchQueueSizeDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> RelayDispatchQueueSize
         ///  Size of the dispatch queues. Caches sizes of the queues in `RelayDispatchQueue`.
         /// 
@@ -110,7 +129,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> RelayDispatchQueueSize(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = UmpStorage.RelayDispatchQueueSizeParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -127,6 +147,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NeedsDispatchDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NeedsDispatchDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NeedsDispatch
         ///  The ordered list of `ParaId`s that have a `RelayDispatchQueue` entry.
         /// 
@@ -137,7 +166,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> NeedsDispatch(CancellationToken token)
         {
             string parameters = UmpStorage.NeedsDispatchParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -154,6 +184,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextDispatchRoundStartWithDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextDispatchRoundStartWithDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NextDispatchRoundStartWith
         ///  This is the para that gets will get dispatched first during the next upward dispatchable queue
         ///  execution round.
@@ -164,7 +203,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> NextDispatchRoundStartWith(CancellationToken token)
         {
             string parameters = UmpStorage.NextDispatchRoundStartWithParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -181,6 +221,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> OverweightDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string OverweightDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Overweight
         ///  The messages that exceeded max individual message weight budget.
         /// 
@@ -189,7 +238,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>> Overweight(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = UmpStorage.OverweightParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -203,6 +253,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> OverweightCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string OverweightCountDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> OverweightCount
         ///  The number of overweight messages ever recorded in `Overweight` (and thus the lowest free
         ///  index).
@@ -210,7 +269,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> OverweightCount(CancellationToken token)
         {
             string parameters = UmpStorage.OverweightCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return result;
         }
     }
     
@@ -228,6 +288,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(weight_limit.Encode());
             return new Method(59, "Ump", 0, "service_overweight", byteArray.ToArray());
         }
+    }
+    
+    public sealed class UmpConstants
+    {
     }
     
     public enum UmpErrors

@@ -111,7 +111,9 @@ namespace Substats.Domain.Contracts.Runtime
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        IEnumerable<INode> Find(object data);
+        IEnumerable<INode> Find(object obj);
+        IEnumerable<INode> Find(IType obj);
+        IEnumerable<INode> Find(Type obj);
 
         /// <summary>
         /// Convert current node to Json string

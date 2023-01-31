@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app
     
     
     /// <summary>
-    /// >> 191 - Composite[sp_consensus_babe.app.Public]
+    /// >> 189 - Composite[sp_consensus_babe.app.Public]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Public : BaseType

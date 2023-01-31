@@ -50,6 +50,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AssignmentKeysUnsafeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AssignmentKeysUnsafeDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> AssignmentKeysUnsafe
         ///  Assignment keys for the current session.
         ///  Note that this API is private due to it being prone to 'off-by-one' at session boundaries.
@@ -58,7 +67,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>> AssignmentKeysUnsafe(CancellationToken token)
         {
             string parameters = ParaSessionInfoStorage.AssignmentKeysUnsafeParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -71,13 +81,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EarliestStoredSessionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EarliestStoredSessionDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> EarliestStoredSession
         ///  The earliest session for which previous session info is stored.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> EarliestStoredSession(CancellationToken token)
         {
             string parameters = ParaSessionInfoStorage.EarliestStoredSessionParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -94,6 +114,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SessionsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SessionsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Sessions
         ///  Session information in a rolling window.
         ///  Should have an entry in range `EarliestStoredSession..=CurrentSessionIndex`.
@@ -102,7 +131,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo> Sessions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ParaSessionInfoStorage.SessionsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -117,17 +147,31 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AccountKeysDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AccountKeysDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> AccountKeys
         ///  The validator account keys of the validators actively participating in parachain consensus.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> AccountKeys(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ParaSessionInfoStorage.AccountKeysParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            return result;
         }
     }
     
     public sealed class ParaSessionInfoCalls
+    {
+    }
+    
+    public sealed class ParaSessionInfoConstants
     {
     }
 }

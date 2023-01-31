@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> targets
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 _targets;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT10 _targets;
         
         /// <summary>
         /// >> submitted_in
@@ -39,7 +39,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.Bool _suppressed;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 Targets
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT10 Targets
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Targets = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8();
+            Targets = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT10();
             Targets.Decode(byteArray, ref p);
             SubmittedIn = new Ajuna.NetApi.Model.Types.Primitive.U32();
             SubmittedIn.Decode(byteArray, ref p);

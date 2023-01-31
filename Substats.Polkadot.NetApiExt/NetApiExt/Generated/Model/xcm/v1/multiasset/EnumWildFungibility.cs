@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
     }
     
     /// <summary>
-    /// >> 149 - Variant[xcm.v1.multiasset.WildFungibility]
+    /// >> 147 - Variant[xcm.v1.multiasset.WildFungibility]
     /// </summary>
     public sealed class EnumWildFungibility : BaseEnum<WildFungibility>
     {

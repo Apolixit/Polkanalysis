@@ -20,7 +20,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 377 - Variant[polkadot_runtime_parachains.shared.pallet.Call]
+    /// >> 376 - Variant[polkadot_runtime_parachains.shared.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
     public sealed class EnumCall : BaseEnum<Call>

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.primitive_types
     
     
     /// <summary>
-    /// >> 10 - Composite[primitive_types.H256]
+    /// >> 11 - Composite[primitive_types.H256]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class H256 : BaseType

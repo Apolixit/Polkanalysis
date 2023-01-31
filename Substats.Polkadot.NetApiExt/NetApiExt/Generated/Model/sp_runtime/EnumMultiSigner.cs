@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
     }
     
     /// <summary>
-    /// >> 418 - Variant[sp_runtime.MultiSigner]
+    /// >> 417 - Variant[sp_runtime.MultiSigner]
     /// </summary>
     public sealed class EnumMultiSigner : BaseEnumExt<MultiSigner, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.ed25519.Public, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.ecdsa.Public>
     {

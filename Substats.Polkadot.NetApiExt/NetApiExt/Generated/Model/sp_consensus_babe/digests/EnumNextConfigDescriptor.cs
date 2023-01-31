@@ -22,7 +22,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
     }
     
     /// <summary>
-    /// >> 194 - Variant[sp_consensus_babe.digests.NextConfigDescriptor]
+    /// >> 192 - Variant[sp_consensus_babe.digests.NextConfigDescriptor]
     /// </summary>
     public sealed class EnumNextConfigDescriptor : BaseEnumExt<NextConfigDescriptor, BaseVoid, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>>
     {

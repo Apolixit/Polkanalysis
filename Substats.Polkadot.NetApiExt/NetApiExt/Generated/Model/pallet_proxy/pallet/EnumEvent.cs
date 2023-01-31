@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_proxy.pallet
     }
     
     /// <summary>
-    /// >> 79 - Variant[pallet_proxy.pallet.Event]
+    /// >> 78 - Variant[pallet_proxy.pallet.Event]
     /// 
     ///			The [event](https://docs.substrate.io/main-docs/build/events-errors/) emitted
     ///			by this pallet.

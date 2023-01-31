@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.cr
     }
     
     /// <summary>
-    /// >> 710 - Variant[polkadot_runtime_common.crowdloan.LastContribution]
+    /// >> 713 - Variant[polkadot_runtime_common.crowdloan.LastContribution]
     /// </summary>
     public sealed class EnumLastContribution : BaseEnumExt<LastContribution, BaseVoid, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>
     {

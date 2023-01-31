@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm
     }
     
     /// <summary>
-    /// >> 715 - Variant[xcm.VersionedResponse]
+    /// >> 718 - Variant[xcm.VersionedResponse]
     /// </summary>
     public sealed class EnumVersionedResponse : BaseEnumExt<VersionedResponse, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.EnumResponse, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.EnumResponse, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2.EnumResponse>
     {

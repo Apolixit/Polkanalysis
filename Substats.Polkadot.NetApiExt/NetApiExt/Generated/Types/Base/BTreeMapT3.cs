@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Types.Base
     
     
     /// <summary>
-    /// >> 618 - Composite[BTreeMapT3]
+    /// >> 628 - Composite[BTreeMapT3]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BTreeMapT3 : BaseType
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Types.Base
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool>> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool>> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Types.Base
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool>>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2.traits
     }
     
     /// <summary>
-    /// >> 110 - Variant[xcm.v2.traits.Outcome]
+    /// >> 109 - Variant[xcm.v2.traits.Outcome]
     /// </summary>
     public sealed class EnumOutcome : BaseEnumExt<Outcome, Ajuna.NetApi.Model.Types.Primitive.U64, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>
     {

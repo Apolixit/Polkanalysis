@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.traits
     
     
     /// <summary>
-    /// >> 190 - Composite[sp_runtime.traits.BlakeTwo256]
+    /// >> 188 - Composite[sp_runtime.traits.BlakeTwo256]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BlakeTwo256 : BaseType

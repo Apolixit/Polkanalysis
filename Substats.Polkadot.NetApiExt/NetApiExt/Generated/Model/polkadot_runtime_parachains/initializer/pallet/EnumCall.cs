@@ -22,7 +22,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 407 - Variant[polkadot_runtime_parachains.initializer.pallet.Call]
+    /// >> 406 - Variant[polkadot_runtime_parachains.initializer.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
     public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Primitive.U32>

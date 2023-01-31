@@ -31,9 +31,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Proxies"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17, Ajuna.NetApi.Model.Types.Primitive.U128>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Ajuna.NetApi.Model.Types.Primitive.U128>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Announcements"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT18, Ajuna.NetApi.Model.Types.Primitive.U128>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Ajuna.NetApi.Model.Types.Primitive.U128>)));
         }
         
         /// <summary>
@@ -49,14 +49,24 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ProxiesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ProxiesDefault()
+        {
+            return "0x0000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> Proxies
         ///  The set of account proxies. Maps the account which has delegated to the accounts
         ///  which are being delegated to, together with the amount held on deposit.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17, Ajuna.NetApi.Model.Types.Primitive.U128>> Proxies(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Ajuna.NetApi.Model.Types.Primitive.U128>> Proxies(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ProxyStorage.ProxiesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -71,13 +81,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AnnouncementsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AnnouncementsDefault()
+        {
+            return "0x0000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> Announcements
         ///  The announcements made by the proxy (key).
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT18, Ajuna.NetApi.Model.Types.Primitive.U128>> Announcements(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Ajuna.NetApi.Model.Types.Primitive.U128>> Announcements(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ProxyStorage.AnnouncementsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT18, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            return result;
         }
     }
     
@@ -209,6 +229,89 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(force_proxy_type.Encode());
             byteArray.AddRange(call.Encode());
             return new Method(29, "Proxy", 9, "proxy_announced", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class ProxyConstants
+    {
+        
+        /// <summary>
+        /// >> ProxyDepositBase
+        ///  The base amount of currency needed to reserve for creating a proxy.
+        /// 
+        ///  This is held for an additional storage item whose value size is
+        ///  `sizeof(Balance)` bytes and whose key size is `sizeof(AccountId)` bytes.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 ProxyDepositBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x0084B2952E0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> ProxyDepositFactor
+        ///  The amount of currency needed per proxy added.
+        /// 
+        ///  This is held for adding 32 bytes plus an instance of `ProxyType` more into a
+        ///  pre-existing storage value. Thus, when configuring `ProxyDepositFactor` one should take
+        ///  into account `32 + proxy_type.encode().len()` bytes of data.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 ProxyDepositFactor()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x8066AB13000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxProxies
+        ///  The maximum amount of proxies allowed for a single account.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxProxies()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x20000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxPending
+        ///  The maximum amount of time-delayed announcements that are allowed to be pending.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxPending()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x20000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> AnnouncementDepositBase
+        ///  The base amount of currency needed to reserve for creating an announcement.
+        /// 
+        ///  This is held when a new storage item holding a `Balance` is created (typically 16
+        ///  bytes).
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 AnnouncementDepositBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x0084B2952E0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> AnnouncementDepositFactor
+        ///  The amount of currency needed per announcement made.
+        /// 
+        ///  This is held for adding an `AccountId`, `Hash` and `BlockNumber` (typically 68 bytes)
+        ///  into a pre-existing storage value.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 AnnouncementDepositFactor()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00CD5627000000000000000000000000");
+            return result;
         }
     }
     

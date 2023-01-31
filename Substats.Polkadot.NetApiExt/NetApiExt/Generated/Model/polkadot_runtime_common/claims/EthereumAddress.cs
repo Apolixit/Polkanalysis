@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.cl
     
     
     /// <summary>
-    /// >> 74 - Composite[polkadot_runtime_common.claims.EthereumAddress]
+    /// >> 73 - Composite[polkadot_runtime_common.claims.EthereumAddress]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class EthereumAddress : BaseType

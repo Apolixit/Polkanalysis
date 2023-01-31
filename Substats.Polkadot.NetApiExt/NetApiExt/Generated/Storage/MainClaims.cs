@@ -52,12 +52,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ClaimsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ClaimsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Claims
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Claims(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
         {
             string parameters = ClaimsStorage.ClaimsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -69,12 +79,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> TotalDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string TotalDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> Total
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Total(CancellationToken token)
         {
             string parameters = ClaimsStorage.TotalParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -92,6 +112,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> VestingDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string VestingDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Vesting
         ///  Vesting schedule for a claim.
         ///  First balance is the total amount that should be held for vesting.
@@ -101,7 +130,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>> Vesting(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
         {
             string parameters = ClaimsStorage.VestingParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -116,13 +146,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SigningDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SigningDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Signing
         ///  The statement kind that must be signed, if any.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind> Signing(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
         {
             string parameters = ClaimsStorage.SigningParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -137,13 +177,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PreclaimsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PreclaimsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Preclaims
         ///  Pre-claimed Ethereum accounts, by the Account ID that they are claimed to.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress> Preclaims(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ClaimsStorage.PreclaimsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress>(parameters, token);
+            return result;
         }
     }
     
@@ -211,6 +261,20 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(@new.Encode());
             byteArray.AddRange(maybe_preclaim.Encode());
             return new Method(24, "Claims", 4, "move_claim", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class ClaimsConstants
+    {
+        
+        /// <summary>
+        /// >> Prefix
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> Prefix()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>();
+            result.Create("0x8450617920444F547320746F2074686520506F6C6B61646F74206163636F756E743A");
+            return result;
         }
     }
     

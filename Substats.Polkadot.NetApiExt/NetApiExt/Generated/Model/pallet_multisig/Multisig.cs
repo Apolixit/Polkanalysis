@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
     
     
     /// <summary>
-    /// >> 587 - Composite[pallet_multisig.Multisig]
+    /// >> 588 - Composite[pallet_multisig.Multisig]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Multisig : BaseType
@@ -42,7 +42,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> approvals
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _approvals;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 _approvals;
         
         public Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
         {
@@ -80,7 +80,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Approvals
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 Approvals
         {
             get
             {
@@ -116,7 +116,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
             Deposit.Decode(byteArray, ref p);
             Depositor = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Depositor.Decode(byteArray, ref p);
-            Approvals = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Approvals = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24();
             Approvals.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

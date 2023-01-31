@@ -50,6 +50,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> TipsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string TipsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Tips
         ///  TipsMap that are not yet completed. Keyed by the hash of `(reason, who)` from the value.
         ///  This has the insecure enumerable hash function since the key itself is already
@@ -58,7 +67,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip> Tips(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = TipsStorage.TipsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -74,6 +84,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ReasonsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ReasonsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Reasons
         ///  Simple preimage lookup from the reason's hash to the original data. Again, has an
         ///  insecure enumerable hash since the key is guaranteed to be the result of a secure hash.
@@ -81,7 +100,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> Reasons(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = TipsStorage.ReasonsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);
+            return result;
         }
     }
     
@@ -156,6 +176,67 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());
             return new Method(35, "Tips", 5, "slash_tip", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class TipsConstants
+    {
+        
+        /// <summary>
+        /// >> MaximumReasonLength
+        ///  Maximum acceptable reason length.
+        /// 
+        ///  Benchmarks depend on this value, be sure to update weights file when changing this value
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaximumReasonLength()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00400000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> DataDepositPerByte
+        ///  The amount held on deposit per byte within the tip report reason or bounty description.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E1F505000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> TipCountdown
+        ///  The period for which a tip remains open after is has achieved threshold tippers.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 TipCountdown()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x40380000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> TipFindersFee
+        ///  The percent of the final tip which goes to the original reporter of the tip.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent TipFindersFee()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent();
+            result.Create("0x14");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> TipReportDepositBase
+        ///  The amount held on deposit for placing a tip report.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 TipReportDepositBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E40B54020000000000000000000000");
+            return result;
         }
     }
     

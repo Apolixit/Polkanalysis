@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public CouncilStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "Proposals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT9)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "Proposals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "ProposalOf"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "Voting"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
@@ -50,13 +50,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ProposalsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ProposalsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Proposals
         ///  The hashes of the active proposals.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT9> Proposals(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14> Proposals(CancellationToken token)
         {
             string parameters = CouncilStorage.ProposalsParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT9>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -71,13 +81,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ProposalOfDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ProposalOfDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ProposalOf
         ///  Actual proposal for a given hash, if it's current.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> ProposalOf(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = CouncilStorage.ProposalOfParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -92,13 +112,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> VotingDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string VotingDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Voting
         ///  Votes on a given proposal, if it is ongoing.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective.Votes> Voting(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = CouncilStorage.VotingParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective.Votes>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective.Votes>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -111,13 +141,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ProposalCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ProposalCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> ProposalCount
         ///  Proposals so far.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ProposalCount(CancellationToken token)
         {
             string parameters = CouncilStorage.ProposalCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -130,13 +170,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MembersDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MembersDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Members
         ///  The current members of the collective. This is stored sorted (just by value).
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Members(CancellationToken token)
         {
             string parameters = CouncilStorage.MembersParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -149,13 +199,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PrimeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PrimeDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Prime
         ///  The prime member that helps determine the default vote behavior in case of absentations.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prime(CancellationToken token)
         {
             string parameters = CouncilStorage.PrimeParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return result;
         }
     }
     
@@ -214,17 +274,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
-        /// >> close
+        /// >> close_old_weight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Close(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> proposal_weight_bound, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> length_bound)
+        public static Method CloseOldWeight(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.OldWeight> proposal_weight_bound, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> length_bound)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal_hash.Encode());
             byteArray.AddRange(index.Encode());
             byteArray.AddRange(proposal_weight_bound.Encode());
             byteArray.AddRange(length_bound.Encode());
-            return new Method(15, "Council", 4, "close", byteArray.ToArray());
+            return new Method(15, "Council", 4, "close_old_weight", byteArray.ToArray());
         }
         
         /// <summary>
@@ -237,6 +297,24 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(proposal_hash.Encode());
             return new Method(15, "Council", 5, "disapprove_proposal", byteArray.ToArray());
         }
+        
+        /// <summary>
+        /// >> close
+        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// </summary>
+        public static Method Close(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> index, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight proposal_weight_bound, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> length_bound)
+        {
+            System.Collections.Generic.List<byte> byteArray = new List<byte>();
+            byteArray.AddRange(proposal_hash.Encode());
+            byteArray.AddRange(index.Encode());
+            byteArray.AddRange(proposal_weight_bound.Encode());
+            byteArray.AddRange(length_bound.Encode());
+            return new Method(15, "Council", 6, "close", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class CouncilConstants
+    {
     }
     
     public enum CouncilErrors

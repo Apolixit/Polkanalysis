@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 695 - Composite[polkadot_primitives.v2.SessionInfo]
+    /// >> 696 - Composite[polkadot_primitives.v2.SessionInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SessionInfo : BaseType
@@ -42,7 +42,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> validators
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public> _validators;
+        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.IndexedVecT1 _validators;
         
         /// <summary>
         /// >> discovery_keys
@@ -57,7 +57,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> validator_groups
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>> _validatorGroups;
+        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.IndexedVecT2 _validatorGroups;
         
         /// <summary>
         /// >> n_cores
@@ -125,7 +125,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public> Validators
+        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.IndexedVecT1 Validators
         {
             get
             {
@@ -161,7 +161,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>> ValidatorGroups
+        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.IndexedVecT2 ValidatorGroups
         {
             get
             {
@@ -278,13 +278,13 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             RandomSeed.Decode(byteArray, ref p);
             DisputePeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
             DisputePeriod.Decode(byteArray, ref p);
-            Validators = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>();
+            Validators = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.IndexedVecT1();
             Validators.Decode(byteArray, ref p);
             DiscoveryKeys = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_authority_discovery.app.Public>();
             DiscoveryKeys.Decode(byteArray, ref p);
             AssignmentKeys = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>();
             AssignmentKeys.Decode(byteArray, ref p);
-            ValidatorGroups = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>();
+            ValidatorGroups = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.IndexedVecT2();
             ValidatorGroups.Decode(byteArray, ref p);
             NCores = new Ajuna.NetApi.Model.Types.Primitive.U32();
             NCores.Decode(byteArray, ref p);

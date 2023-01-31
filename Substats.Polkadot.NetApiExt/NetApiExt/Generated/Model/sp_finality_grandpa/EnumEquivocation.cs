@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa
     }
     
     /// <summary>
-    /// >> 219 - Variant[sp_finality_grandpa.Equivocation]
+    /// >> 218 - Variant[sp_finality_grandpa.Equivocation]
     /// </summary>
     public sealed class EnumEquivocation : BaseEnumExt<Equivocation, Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.EquivocationT1, Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.EquivocationT2>
     {

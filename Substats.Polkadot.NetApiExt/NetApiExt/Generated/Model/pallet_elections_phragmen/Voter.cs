@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen
     
     
     /// <summary>
-    /// >> 550 - Composite[pallet_elections_phragmen.Voter]
+    /// >> 551 - Composite[pallet_elections_phragmen.Voter]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Voter : BaseType

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
     
     
     /// <summary>
-    /// >> 221 - Composite[finality_grandpa.Prevote]
+    /// >> 220 - Composite[finality_grandpa.Prevote]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Prevote : BaseType

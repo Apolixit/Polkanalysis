@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support
     
     
     /// <summary>
-    /// >> 558 - Composite[frame_support.PalletId]
+    /// >> 559 - Composite[frame_support.PalletId]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PalletId : BaseType

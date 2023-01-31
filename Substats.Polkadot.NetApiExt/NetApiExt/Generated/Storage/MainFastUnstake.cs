@@ -47,13 +47,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HeadDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HeadDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Head
         ///  The current "head of the queue" being unstaked.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest> Head(CancellationToken token)
         {
             string parameters = FastUnstakeStorage.HeadParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -70,6 +80,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> QueueDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string QueueDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Queue
         ///  The map of all accounts wishing to be unstaked.
         /// 
@@ -78,7 +97,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Queue(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = FastUnstakeStorage.QueueParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -91,13 +111,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CounterForQueueDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CounterForQueueDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> CounterForQueue
         /// Counter for the related counted storage map
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForQueue(CancellationToken token)
         {
             string parameters = FastUnstakeStorage.CounterForQueueParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -115,6 +145,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasToCheckPerBlockDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasToCheckPerBlockDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> ErasToCheckPerBlock
         ///  Number of eras to check per block.
         /// 
@@ -126,7 +165,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ErasToCheckPerBlock(CancellationToken token)
         {
             string parameters = FastUnstakeStorage.ErasToCheckPerBlockParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
     }
     
@@ -162,6 +202,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(unchecked_eras_to_check.Encode());
             return new Method(40, "FastUnstake", 2, "control", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class FastUnstakeConstants
+    {
+        
+        /// <summary>
+        /// >> Deposit
+        ///  Deposit to take for unstaking, to make sure we're able to slash the it in order to cover
+        ///  the costs of resources on unsuccessful unstake.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 Deposit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E40B54020000000000000000000000");
+            return result;
         }
     }
     

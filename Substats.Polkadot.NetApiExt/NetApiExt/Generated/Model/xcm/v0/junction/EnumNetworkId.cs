@@ -28,7 +28,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction
     }
     
     /// <summary>
-    /// >> 127 - Variant[xcm.v0.junction.NetworkId]
+    /// >> 126 - Variant[xcm.v0.junction.NetworkId]
     /// </summary>
     public sealed class EnumNetworkId : BaseEnumExt<NetworkId, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseVoid>
     {

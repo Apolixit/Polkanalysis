@@ -51,13 +51,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ReportsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ReportsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Reports
         ///  The primary structure that holds all offence records keyed by report identifiers.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails> Reports(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = OffencesStorage.ReportsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -72,13 +82,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ConcurrentReportsIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ConcurrentReportsIndexDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ConcurrentReportsIndex
         ///  A vector of reports of the same kind that happened at the same time slot.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>> ConcurrentReportsIndex(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr16U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> key, CancellationToken token)
         {
             string parameters = OffencesStorage.ConcurrentReportsIndexParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -98,6 +118,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ReportsByKindIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ReportsByKindIndexDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ReportsByKindIndex
         ///  Enumerates all reports of a kind along with the time they happened.
         /// 
@@ -109,11 +138,16 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> ReportsByKindIndex(Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr16U8 key, CancellationToken token)
         {
             string parameters = OffencesStorage.ReportsByKindIndexParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);
+            return result;
         }
     }
     
     public sealed class OffencesCalls
+    {
+    }
+    
+    public sealed class OffencesConstants
     {
     }
 }

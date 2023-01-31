@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
     
     
     /// <summary>
-    /// >> 729 - Composite[frame_system.extensions.check_mortality.CheckMortality]
+    /// >> 733 - Composite[frame_system.extensions.check_mortality.CheckMortality]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CheckMortality : BaseType

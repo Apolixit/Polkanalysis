@@ -60,6 +60,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HeartbeatAfterDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HeartbeatAfterDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> HeartbeatAfter
         ///  The block number after which it's ok to send heartbeats in the current
         ///  session.
@@ -76,7 +85,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HeartbeatAfter(CancellationToken token)
         {
             string parameters = ImOnlineStorage.HeartbeatAfterParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -89,13 +99,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> KeysDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string KeysDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Keys
         ///  The current set of keys that may issue a heartbeat.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5> Keys(CancellationToken token)
         {
             string parameters = ImOnlineStorage.KeysParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -111,6 +131,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ReceivedHeartbeatsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ReceivedHeartbeatsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ReceivedHeartbeats
         ///  For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
         ///  `WrapperOpaque<BoundedOpaqueNetworkState>`.
@@ -118,7 +147,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque> ReceivedHeartbeats(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
         {
             string parameters = ImOnlineStorage.ReceivedHeartbeatsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -134,6 +164,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AuthoredBlocksDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AuthoredBlocksDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> AuthoredBlocks
         ///  For each session index, we keep a mapping of `ValidatorId<T>` to the
         ///  number of blocks authored by the given authority.
@@ -141,7 +180,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AuthoredBlocks(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = ImOnlineStorage.AuthoredBlocksParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
     }
     
@@ -158,6 +198,24 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(heartbeat.Encode());
             byteArray.AddRange(signature.Encode());
             return new Method(12, "ImOnline", 0, "heartbeat", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class ImOnlineConstants
+    {
+        
+        /// <summary>
+        /// >> UnsignedPriority
+        ///  A configuration for base priority of unsigned transactions.
+        /// 
+        ///  This is exposed so that it can be tuned for particular runtime, when
+        ///  multiple pallets send unsigned transactions.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U64 UnsignedPriority()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            result.Create("0xFFFFFFFFFFFFFFFF");
+            return result;
         }
     }
     

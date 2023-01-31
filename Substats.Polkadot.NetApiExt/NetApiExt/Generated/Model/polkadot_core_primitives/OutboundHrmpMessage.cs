@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives
     
     
     /// <summary>
-    /// >> 393 - Composite[polkadot_core_primitives.OutboundHrmpMessage]
+    /// >> 392 - Composite[polkadot_core_primitives.OutboundHrmpMessage]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class OutboundHrmpMessage : BaseType

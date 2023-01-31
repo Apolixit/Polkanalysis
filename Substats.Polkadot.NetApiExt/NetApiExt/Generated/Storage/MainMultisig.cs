@@ -33,8 +33,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Multisig", "Multisigs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Multisig)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Multisig", "Calls"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>)));
         }
         
         /// <summary>
@@ -49,32 +47,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MultisigsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MultisigsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Multisigs
         ///  The set of open multisig operations.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Multisig> Multisigs(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> key, CancellationToken token)
         {
             string parameters = MultisigStorage.MultisigsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Multisig>(parameters, token);
-        }
-        
-        /// <summary>
-        /// >> CallsParams
-        /// </summary>
-        public static string CallsParams(Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 key)
-        {
-            return RequestGenerator.GetStorage("Multisig", "Calls", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
-                        key});
-        }
-        
-        /// <summary>
-        /// >> Calls
-        /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>> Calls(Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 key, CancellationToken token)
-        {
-            string parameters = MultisigStorage.CallsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Multisig>(parameters, token);
+            return result;
         }
     }
     
@@ -97,14 +86,13 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> as_multi
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AsMulti(Ajuna.NetApi.Model.Types.Primitive.U16 threshold, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque call, Ajuna.NetApi.Model.Types.Primitive.Bool store_call, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight max_weight)
+        public static Method AsMulti(Ajuna.NetApi.Model.Types.Primitive.U16 threshold, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight max_weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(threshold.Encode());
             byteArray.AddRange(other_signatories.Encode());
             byteArray.AddRange(maybe_timepoint.Encode());
             byteArray.AddRange(call.Encode());
-            byteArray.AddRange(store_call.Encode());
             byteArray.AddRange(max_weight.Encode());
             return new Method(30, "Multisig", 1, "as_multi", byteArray.ToArray());
         }
@@ -136,6 +124,50 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(timepoint.Encode());
             byteArray.AddRange(call_hash.Encode());
             return new Method(30, "Multisig", 3, "cancel_as_multi", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class MultisigConstants
+    {
+        
+        /// <summary>
+        /// >> DepositBase
+        ///  The base amount of currency needed to reserve for creating a multisig execution or to
+        ///  store a dispatch call for later.
+        /// 
+        ///  This is held for an additional storage item whose value size is
+        ///  `4 + sizeof((BlockNumber, Balance, AccountId))` bytes and whose key size is
+        ///  `32 + sizeof(AccountId)` bytes.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 DepositBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x008C61C52E0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> DepositFactor
+        ///  The amount of currency needed per unit threshold when creating a multisig execution.
+        /// 
+        ///  This is held for adding 32 bytes more into a pre-existing storage value.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 DepositFactor()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00D01213000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxSignatories
+        ///  The maximum amount of signatories allowed in the multisig.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxSignatories()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x64000000");
+            return result;
         }
     }
     

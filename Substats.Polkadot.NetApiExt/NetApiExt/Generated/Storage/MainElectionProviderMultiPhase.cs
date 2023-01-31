@@ -37,7 +37,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "DesiredTargets"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SnapshotMetadata"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionNextIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionIndices"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionIndices"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionsMap"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "MinimumUntrustedScore"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore)));
@@ -58,6 +58,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> RoundDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string RoundDefault()
+        {
+            return "0x01000000";
+        }
+        
+        /// <summary>
         /// >> Round
         ///  Internal counter for the number of rounds.
         /// 
@@ -69,7 +78,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Round(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.RoundParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -82,13 +92,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentPhaseDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentPhaseDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> CurrentPhase
         ///  Current phase.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase> CurrentPhase(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -101,13 +121,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> QueuedSolutionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string QueuedSolutionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> QueuedSolution
         ///  Current best solution, signed or unsigned, queued to be returned upon `elect`.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution> QueuedSolution(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -122,6 +152,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SnapshotDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SnapshotDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Snapshot
         ///  Snapshot data of the round.
         /// 
@@ -130,7 +169,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot> Snapshot(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.SnapshotParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -145,6 +185,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DesiredTargetsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DesiredTargetsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> DesiredTargets
         ///  Desired number of targets to elect for this round.
         /// 
@@ -153,7 +202,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> DesiredTargets(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -168,6 +218,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SnapshotMetadataDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SnapshotMetadataDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SnapshotMetadata
         ///  The metadata of the [`RoundSnapshot`]
         /// 
@@ -176,7 +235,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize> SnapshotMetadata(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -197,6 +257,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SignedSubmissionNextIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SignedSubmissionNextIndexDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> SignedSubmissionNextIndex
         ///  The next index to be assigned to an incoming signed submission.
         /// 
@@ -211,13 +280,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SignedSubmissionNextIndex(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
         /// >> SignedSubmissionIndicesParams
-        ///  A sorted, bounded set of `(score, index)`, where each `index` points to a value in
-        ///  `SignedSubmissions`.
+        ///  A sorted, bounded vector of `(score, block_number, index)`, where each `index` points to a
+        ///  value in `SignedSubmissions`.
         /// 
         ///  We never need to process more than a single signed submission at a time. Signed submissions
         ///  can be quite large, so we're willing to pay the cost of multiple database accesses to access
@@ -229,18 +299,28 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SignedSubmissionIndicesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SignedSubmissionIndicesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SignedSubmissionIndices
-        ///  A sorted, bounded set of `(score, index)`, where each `index` points to a value in
-        ///  `SignedSubmissions`.
+        ///  A sorted, bounded vector of `(score, block_number, index)`, where each `index` points to a
+        ///  value in `SignedSubmissions`.
         /// 
         ///  We never need to process more than a single signed submission at a time. Signed submissions
         ///  can be quite large, so we're willing to pay the cost of multiple database accesses to access
         ///  them one at a time instead of reading and decoding all of them at once.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1> SignedSubmissionIndices(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27> SignedSubmissionIndices(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -261,6 +341,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SignedSubmissionsMapDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SignedSubmissionsMapDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SignedSubmissionsMap
         ///  Unchecked, signed solutions.
         /// 
@@ -273,7 +362,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission> SignedSubmissionsMap(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -289,6 +379,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MinimumUntrustedScoreDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MinimumUntrustedScoreDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> MinimumUntrustedScore
         ///  The minimum score that each 'untrusted' solution must attain in order to be considered
         ///  feasible.
@@ -298,7 +397,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore> MinimumUntrustedScore(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore>(parameters, token);
+            return result;
         }
     }
     
@@ -360,6 +460,236 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(maybe_max_voters.Encode());
             byteArray.AddRange(maybe_max_targets.Encode());
             return new Method(36, "ElectionProviderMultiPhase", 4, "governance_fallback", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class ElectionProviderMultiPhaseConstants
+    {
+        
+        /// <summary>
+        /// >> UnsignedPhase
+        ///  Duration of the unsigned phase.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 UnsignedPhase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x58020000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedPhase
+        ///  Duration of the signed phase.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SignedPhase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x58020000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BetterSignedThreshold
+        ///  The minimum amount of improvement to the solution score that defines a solution as
+        ///  "better" in the Signed phase.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill BetterSignedThreshold()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill();
+            result.Create("0x00000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BetterUnsignedThreshold
+        ///  The minimum amount of improvement to the solution score that defines a solution as
+        ///  "better" in the Unsigned phase.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill BetterUnsignedThreshold()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill();
+            result.Create("0x20A10700");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> OffchainRepeat
+        ///  The repeat threshold of the offchain worker.
+        /// 
+        ///  For example, if it is 5, that means that at least 5 blocks will elapse between attempts
+        ///  to submit the worker's solution.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 OffchainRepeat()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x12000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MinerTxPriority
+        ///  The priority of the unsigned transaction submitted in the unsigned-phase
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U64 MinerTxPriority()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            result.Create("0x65666666666666E6");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedMaxSubmissions
+        ///  Maximum number of signed submissions that can be queued.
+        /// 
+        ///  It is best to avoid adjusting this during an election, as it impacts downstream data
+        ///  structures. In particular, `SignedSubmissionIndices<T>` is bounded on this value. If you
+        ///  update this value during an election, you _must_ ensure that
+        ///  `SignedSubmissionIndices.len()` is less than or equal to the new value. Otherwise,
+        ///  attempts to submit new solutions may cause a runtime panic.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SignedMaxSubmissions()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x10000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedMaxWeight
+        ///  Maximum weight of a signed solution.
+        /// 
+        ///  If [`Config::MinerConfig`] is being implemented to submit signed solutions (outside of
+        ///  this pallet), then [`MinerConfig::solution_weight`] is used to compare against
+        ///  this value.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight SignedMaxWeight()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            result.Create("0x0B68151D355701CECCEC00");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedMaxRefunds
+        ///  The maximum amount of unchecked solutions to refund the call fee for.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SignedMaxRefunds()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x04000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedRewardBase
+        ///  Base reward for a signed solution
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedRewardBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E40B54020000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedDepositBase
+        ///  Base deposit for a signed solution.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedDepositBase()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00A0DB215D0000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedDepositByte
+        ///  Per-byte deposit for a signed solution.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedDepositByte()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x787D0100000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SignedDepositWeight
+        ///  Per-weight deposit for a signed solution.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedDepositWeight()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00000000000000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxElectingVoters
+        ///  The maximum number of electing voters to put in the snapshot. At the moment, snapshots
+        ///  are only over a single block, but once multi-block elections are introduced they will
+        ///  take place over multiple blocks.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxElectingVoters()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xE4570000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxElectableTargets
+        ///  The maximum number of electable targets to put in the snapshot.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U16 MaxElectableTargets()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            result.Create("0xFFFF");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxWinners
+        ///  The maximum number of winners that can be elected by this `ElectionProvider`
+        ///  implementation.
+        /// 
+        ///  Note: This must always be greater or equal to `T::DataProvider::desired_targets()`.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxWinners()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xB0040000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MinerMaxLength
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MinerMaxLength()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00003600");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MinerMaxWeight
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight MinerMaxWeight()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            result.Create("0x0B68151D355701CECCEC00");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MinerMaxVotesPerVoter
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MinerMaxVotesPerVoter()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x10000000");
+            return result;
         }
     }
     
@@ -437,5 +767,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// The fallback failed
         /// </summary>
         FallbackFailed,
+        
+        /// <summary>
+        /// >> BoundNotMet
+        /// Some bound not met
+        /// </summary>
+        BoundNotMet,
+        
+        /// <summary>
+        /// >> TooManyWinners
+        /// Submitted solution has too many winners
+        /// </summary>
+        TooManyWinners,
     }
 }

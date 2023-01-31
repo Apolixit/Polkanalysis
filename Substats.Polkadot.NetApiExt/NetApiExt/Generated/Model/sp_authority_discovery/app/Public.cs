@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_authority_discovery.app
     
     
     /// <summary>
-    /// >> 216 - Composite[sp_authority_discovery.app.Public]
+    /// >> 215 - Composite[sp_authority_discovery.app.Public]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Public : BaseType

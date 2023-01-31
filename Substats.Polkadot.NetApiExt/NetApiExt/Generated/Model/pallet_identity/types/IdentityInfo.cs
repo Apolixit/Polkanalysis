@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> additional
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1 _additional;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT2 _additional;
         
         /// <summary>
         /// >> display
@@ -69,7 +69,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         /// </summary>
         private Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData _twitter;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1 Additional
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT2 Additional
         {
             get
             {
@@ -200,7 +200,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Additional = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1();
+            Additional = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT2();
             Additional.Decode(byteArray, ref p);
             Display = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Display.Decode(byteArray, ref p);

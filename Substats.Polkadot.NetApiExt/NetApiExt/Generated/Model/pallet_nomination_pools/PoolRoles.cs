@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
     
     
     /// <summary>
-    /// >> 622 - Composite[pallet_nomination_pools.PoolRoles]
+    /// >> 623 - Composite[pallet_nomination_pools.PoolRoles]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PoolRoles : BaseType

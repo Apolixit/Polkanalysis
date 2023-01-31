@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
     
     
     /// <summary>
-    /// >> 546 - Composite[sp_core.bounded.bounded_vec.BoundedVecT10]
+    /// >> 490 - Composite[sp_core.bounded.bounded_vec.BoundedVecT10]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedVecT10 : BaseType
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 656 - Composite[polkadot_primitives.v2.ParathreadEntry]
+    /// >> 657 - Composite[polkadot_primitives.v2.ParathreadEntry]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ParathreadEntry : BaseType

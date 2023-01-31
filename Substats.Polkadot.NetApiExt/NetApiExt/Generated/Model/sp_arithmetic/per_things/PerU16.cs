@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things
     
     
     /// <summary>
-    /// >> 321 - Composite[sp_arithmetic.per_things.PerU16]
+    /// >> 320 - Composite[sp_arithmetic.per_things.PerU16]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PerU16 : BaseType

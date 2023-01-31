@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.pallet
     }
     
     /// <summary>
-    /// >> 636 - Variant[pallet_fast_unstake.pallet.Error]
+    /// >> 637 - Variant[pallet_fast_unstake.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

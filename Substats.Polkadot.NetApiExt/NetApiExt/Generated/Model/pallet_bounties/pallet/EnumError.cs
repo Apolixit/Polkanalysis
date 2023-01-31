@@ -42,7 +42,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties.pallet
     }
     
     /// <summary>
-    /// >> 593 - Variant[pallet_bounties.pallet.Error]
+    /// >> 594 - Variant[pallet_bounties.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

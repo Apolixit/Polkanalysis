@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 664 - Variant[polkadot_runtime_parachains.scheduler.AssignmentKind]
+    /// >> 665 - Variant[polkadot_runtime_parachains.scheduler.AssignmentKind]
     /// </summary>
     public sealed class EnumAssignmentKind : BaseEnumExt<AssignmentKind, BaseVoid, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {

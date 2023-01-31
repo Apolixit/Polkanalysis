@@ -51,13 +51,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ValidatorsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ValidatorsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Validators
         ///  The current set of validators.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Validators(CancellationToken token)
         {
             string parameters = SessionStorage.ValidatorsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -70,13 +80,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentIndexDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> CurrentIndex
         ///  Current index of the session.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CurrentIndex(CancellationToken token)
         {
             string parameters = SessionStorage.CurrentIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -90,6 +110,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> QueuedChangedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string QueuedChangedDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> QueuedChanged
         ///  True if the underlying economic identities or weighting behind the validators
         ///  has changed in the queued validator set.
@@ -97,7 +126,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> QueuedChanged(CancellationToken token)
         {
             string parameters = SessionStorage.QueuedChangedParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -111,6 +141,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> QueuedKeysDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string QueuedKeysDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> QueuedKeys
         ///  The queued keys for the next session. When the next session begins, these keys
         ///  will be used to determine the validator's session keys.
@@ -118,7 +157,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>> QueuedKeys(CancellationToken token)
         {
             string parameters = SessionStorage.QueuedKeysParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -135,6 +175,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DisabledValidatorsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DisabledValidatorsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> DisabledValidators
         ///  Indices of disabled validators.
         /// 
@@ -145,7 +194,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>> DisabledValidators(CancellationToken token)
         {
             string parameters = SessionStorage.DisabledValidatorsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -160,13 +210,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextKeysDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextKeysDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NextKeys
         ///  The next session keys for a validator.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys> NextKeys(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = SessionStorage.NextKeysParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -181,13 +241,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> KeyOwnerDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string KeyOwnerDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> KeyOwner
         ///  The owner of a key. The key is the `KeyTypeId` + the encoded key.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> KeyOwner(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.KeyTypeId, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> key, CancellationToken token)
         {
             string parameters = SessionStorage.KeyOwnerParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return result;
         }
     }
     
@@ -215,6 +285,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             return new Method(9, "Session", 1, "purge_keys", byteArray.ToArray());
         }
+    }
+    
+    public sealed class SessionConstants
+    {
     }
     
     public enum SessionErrors

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 406 - Composite[polkadot_primitives.v2.PvfCheckStatement]
+    /// >> 405 - Composite[polkadot_primitives.v2.PvfCheckStatement]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PvfCheckStatement : BaseType

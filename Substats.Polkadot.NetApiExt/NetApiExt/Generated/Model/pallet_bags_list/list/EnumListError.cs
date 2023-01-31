@@ -28,7 +28,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list
     }
     
     /// <summary>
-    /// >> 615 - Variant[pallet_bags_list.list.ListError]
+    /// >> 616 - Variant[pallet_bags_list.list.ListError]
     /// </summary>
     public sealed class EnumListError : BaseEnum<ListError>
     {

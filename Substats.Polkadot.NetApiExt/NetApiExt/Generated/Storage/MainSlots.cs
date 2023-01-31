@@ -61,6 +61,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> LeasesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string LeasesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Leases
         ///  Amounts held on deposit for each (possibly future) leased parachain.
         /// 
@@ -82,7 +91,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>> Leases(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = SlotsStorage.LeasesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>>(parameters, token);
+            return result;
         }
     }
     
@@ -124,6 +134,32 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
             return new Method(71, "Slots", 2, "trigger_onboard", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class SlotsConstants
+    {
+        
+        /// <summary>
+        /// >> LeasePeriod
+        ///  The number of blocks over which a single period lasts.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 LeasePeriod()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00751200");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> LeaseOffset
+        ///  The number of blocks to offset each lease period by.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 LeaseOffset()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00100E00");
+            return result;
         }
     }
     

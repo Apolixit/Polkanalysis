@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     
     
     /// <summary>
-    /// >> 312 - Composite[pallet_election_provider_multi_phase.RawSolution]
+    /// >> 311 - Composite[pallet_election_provider_multi_phase.RawSolution]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class RawSolution : BaseType

@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction
     }
     
     /// <summary>
-    /// >> 131 - Variant[xcm.v0.junction.BodyPart]
+    /// >> 129 - Variant[xcm.v0.junction.BodyPart]
     /// </summary>
     public sealed class EnumBodyPart : BaseEnumExt<BodyPart, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>>>
     {

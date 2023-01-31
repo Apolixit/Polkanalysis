@@ -92,6 +92,33 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(calls.Encode());
             return new Method(26, "Utility", 4, "force_batch", byteArray.ToArray());
         }
+        
+        /// <summary>
+        /// >> with_weight
+        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// </summary>
+        public static Method WithWeight(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight weight)
+        {
+            System.Collections.Generic.List<byte> byteArray = new List<byte>();
+            byteArray.AddRange(call.Encode());
+            byteArray.AddRange(weight.Encode());
+            return new Method(26, "Utility", 5, "with_weight", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class UtilityConstants
+    {
+        
+        /// <summary>
+        /// >> batched_calls_limit
+        ///  The limit on the number of batched calls.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 batched_calls_limit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xAA2A0000");
+            return result;
+        }
     }
     
     public enum UtilityErrors

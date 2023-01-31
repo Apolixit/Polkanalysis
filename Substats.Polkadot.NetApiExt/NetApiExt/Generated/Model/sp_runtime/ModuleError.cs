@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
     
     
     /// <summary>
-    /// >> 24 - Composite[sp_runtime.ModuleError]
+    /// >> 25 - Composite[sp_runtime.ModuleError]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ModuleError : BaseType

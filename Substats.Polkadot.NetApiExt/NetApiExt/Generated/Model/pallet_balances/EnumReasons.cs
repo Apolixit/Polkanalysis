@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
     }
     
     /// <summary>
-    /// >> 471 - Variant[pallet_balances.Reasons]
+    /// >> 472 - Variant[pallet_balances.Reasons]
     /// </summary>
     public sealed class EnumReasons : BaseEnum<Reasons>
     {

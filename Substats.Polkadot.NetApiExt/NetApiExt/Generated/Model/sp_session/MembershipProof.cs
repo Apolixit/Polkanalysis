@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_session
     
     
     /// <summary>
-    /// >> 193 - Composite[sp_session.MembershipProof]
+    /// >> 191 - Composite[sp_session.MembershipProof]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class MembershipProof : BaseType

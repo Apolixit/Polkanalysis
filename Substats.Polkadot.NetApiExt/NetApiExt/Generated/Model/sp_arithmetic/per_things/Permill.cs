@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things
     
     
     /// <summary>
-    /// >> 556 - Composite[sp_arithmetic.per_things.Permill]
+    /// >> 557 - Composite[sp_arithmetic.per_things.Permill]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Permill : BaseType

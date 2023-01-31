@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties
     
     
     /// <summary>
-    /// >> 594 - Composite[pallet_child_bounties.ChildBounty]
+    /// >> 595 - Composite[pallet_child_bounties.ChildBounty]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ChildBounty : BaseType

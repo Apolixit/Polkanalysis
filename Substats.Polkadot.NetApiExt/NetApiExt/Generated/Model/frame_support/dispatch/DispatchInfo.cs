@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
     
     
     /// <summary>
-    /// >> 20 - Composite[frame_support.dispatch.DispatchInfo]
+    /// >> 21 - Composite[frame_support.dispatch.DispatchInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class DispatchInfo : BaseType

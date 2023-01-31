@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 390 - Composite[polkadot_primitives.v2.CommittedCandidateReceipt]
+    /// >> 389 - Composite[polkadot_primitives.v2.CommittedCandidateReceipt]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CommittedCandidateReceipt : BaseType

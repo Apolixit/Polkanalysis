@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.pa
     
     
     /// <summary>
-    /// >> 700 - Composite[polkadot_runtime_common.paras_registrar.ParaInfo]
+    /// >> 703 - Composite[polkadot_runtime_common.paras_registrar.ParaInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ParaInfo : BaseType

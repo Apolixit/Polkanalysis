@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multilocation
     
     
     /// <summary>
-    /// >> 123 - Composite[xcm.v1.multilocation.MultiLocation]
+    /// >> 122 - Composite[xcm.v1.multilocation.MultiLocation]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class MultiLocation : BaseType

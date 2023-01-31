@@ -26,16 +26,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.pa
         
         swap = 3,
         
-        force_remove_lock = 4,
+        remove_lock = 4,
         
         reserve = 5,
+        
+        add_lock = 6,
+        
+        schedule_code_upgrade = 7,
+        
+        set_current_head = 8,
     }
     
     /// <summary>
-    /// >> 412 - Variant[polkadot_runtime_common.paras_registrar.pallet.Call]
+    /// >> 411 - Variant[polkadot_runtime_common.paras_registrar.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseVoid>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData>>
     {
     }
 }

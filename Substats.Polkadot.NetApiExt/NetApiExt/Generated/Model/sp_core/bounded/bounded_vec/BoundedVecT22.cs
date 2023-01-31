@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
     
     
     /// <summary>
-    /// >> 718 - Composite[sp_core.bounded.bounded_vec.BoundedVecT22]
+    /// >> 579 - Composite[sp_core.bounded.bounded_vec.BoundedVecT22]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedVecT22 : BaseType
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Primitive.U32>> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Primitive.U32>> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Primitive.U32>>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

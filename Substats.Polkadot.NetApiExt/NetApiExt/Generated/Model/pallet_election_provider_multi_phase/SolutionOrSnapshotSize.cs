@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     
     
     /// <summary>
-    /// >> 364 - Composite[pallet_election_provider_multi_phase.SolutionOrSnapshotSize]
+    /// >> 363 - Composite[pallet_election_provider_multi_phase.SolutionOrSnapshotSize]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SolutionOrSnapshotSize : BaseType

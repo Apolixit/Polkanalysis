@@ -40,7 +40,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextAuthorities"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "SegmentIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "UnderConstruction"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Initialized"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "AuthorVrfRandomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochStart"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
@@ -59,13 +59,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EpochIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EpochIndexDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> EpochIndex
         ///  Current epoch index.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> EpochIndex(CancellationToken token)
         {
             string parameters = BabeStorage.EpochIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -78,13 +88,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AuthoritiesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AuthoritiesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Authorities
         ///  Current epoch authorities.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> Authorities(CancellationToken token)
         {
             string parameters = BabeStorage.AuthoritiesParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -98,6 +118,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> GenesisSlotDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string GenesisSlotDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> GenesisSlot
         ///  The slot at which the first epoch actually started. This is 0
         ///  until the first block of the chain.
@@ -105,7 +134,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> GenesisSlot(CancellationToken token)
         {
             string parameters = BabeStorage.GenesisSlotParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -118,13 +148,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentSlotDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentSlotDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> CurrentSlot
         ///  Current slot number.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> CurrentSlot(CancellationToken token)
         {
             string parameters = BabeStorage.CurrentSlotParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -146,6 +186,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> RandomnessDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string RandomnessDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> Randomness
         ///  The epoch randomness for the *current* epoch.
         /// 
@@ -161,7 +210,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> Randomness(CancellationToken token)
         {
             string parameters = BabeStorage.RandomnessParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -174,13 +224,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PendingEpochConfigChangeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PendingEpochConfigChangeDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PendingEpochConfigChange
         ///  Pending epoch configuration change that will be applied when the next epoch is enacted.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor> PendingEpochConfigChange(CancellationToken token)
         {
             string parameters = BabeStorage.PendingEpochConfigChangeParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -193,13 +253,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextRandomnessDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextRandomnessDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> NextRandomness
         ///  Next epoch randomness.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> NextRandomness(CancellationToken token)
         {
             string parameters = BabeStorage.NextRandomnessParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -212,13 +282,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextAuthoritiesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextAuthoritiesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NextAuthorities
         ///  Next epoch authorities.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> NextAuthorities(CancellationToken token)
         {
             string parameters = BabeStorage.NextAuthoritiesParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -239,6 +319,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SegmentIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SegmentIndexDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> SegmentIndex
         ///  Randomness under construction.
         /// 
@@ -253,7 +342,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SegmentIndex(CancellationToken token)
         {
             string parameters = BabeStorage.SegmentIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -268,13 +358,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UnderConstructionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UnderConstructionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UnderConstruction
         ///  TWOX-NOTE: `SegmentIndex` is an increasing integer, so this is okay.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3> UnderConstruction(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5> UnderConstruction(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = BabeStorage.UnderConstructionParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -288,6 +388,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> InitializedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string InitializedDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Initialized
         ///  Temporary value (cleared at block finalization) which is `Some`
         ///  if per-block initialization has already been called for current block.
@@ -295,7 +404,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>> Initialized(CancellationToken token)
         {
             string parameters = BabeStorage.InitializedParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -311,6 +421,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AuthorVrfRandomnessDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AuthorVrfRandomnessDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> AuthorVrfRandomness
         ///  This field should always be populated during block processing unless
         ///  secondary plain slots are enabled (which don't contain a VRF output).
@@ -320,7 +439,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>> AuthorVrfRandomness(CancellationToken token)
         {
             string parameters = BabeStorage.AuthorVrfRandomnessParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -337,6 +457,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EpochStartDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EpochStartDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> EpochStart
         ///  The block numbers when the last and current epoch have started, respectively `N-1` and
         ///  `N`.
@@ -347,7 +476,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> EpochStart(CancellationToken token)
         {
             string parameters = BabeStorage.EpochStartParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -364,6 +494,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> LatenessDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string LatenessDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> Lateness
         ///  How late the current block is compared to its parent.
         /// 
@@ -374,7 +513,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Lateness(CancellationToken token)
         {
             string parameters = BabeStorage.LatenessParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -388,6 +528,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> EpochConfigDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string EpochConfigDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> EpochConfig
         ///  The configuration for the current epoch. Should never be `None` as it is initialized in
         ///  genesis.
@@ -395,7 +544,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> EpochConfig(CancellationToken token)
         {
             string parameters = BabeStorage.EpochConfigParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -409,6 +559,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextEpochConfigDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextEpochConfigDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NextEpochConfig
         ///  The configuration for the next epoch, `None` if the config will not change
         ///  (you can fallback to `EpochConfig` instead in that case).
@@ -416,7 +575,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> NextEpochConfig(CancellationToken token)
         {
             string parameters = BabeStorage.NextEpochConfigParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
+            return result;
         }
     }
     
@@ -456,6 +616,49 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(config.Encode());
             return new Method(2, "Babe", 2, "plan_config_change", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class BabeConstants
+    {
+        
+        /// <summary>
+        /// >> EpochDuration
+        ///  The amount of time, in slots, that each epoch should last.
+        ///  NOTE: Currently it is not possible to change the epoch duration after
+        ///  the chain has started. Attempting to do so will brick block production.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U64 EpochDuration()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            result.Create("0x6009000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> ExpectedBlockTime
+        ///  The expected average block time at which BABE should be creating
+        ///  blocks. Since BABE is probabilistic it is not trivial to figure out
+        ///  what the expected average block time should be based on the slot
+        ///  duration and the security parameter `c` (where `1 - c` represents
+        ///  the probability of a slot being empty).
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U64 ExpectedBlockTime()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            result.Create("0x7017000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxAuthorities
+        ///  Max number of authorities allowed
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxAuthorities()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0xA0860100");
+            return result;
         }
     }
     

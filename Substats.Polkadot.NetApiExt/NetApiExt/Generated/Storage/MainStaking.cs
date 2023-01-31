@@ -93,7 +93,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         
         /// <summary>
         /// >> ValidatorCountParams
-        ///  The ideal number of staking participants.
+        ///  The ideal number of active validators.
         /// </summary>
         public static string ValidatorCountParams()
         {
@@ -101,13 +101,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ValidatorCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ValidatorCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> ValidatorCount
-        ///  The ideal number of staking participants.
+        ///  The ideal number of active validators.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ValidatorCount(CancellationToken token)
         {
             string parameters = StakingStorage.ValidatorCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -120,13 +130,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MinimumValidatorCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MinimumValidatorCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> MinimumValidatorCount
         ///  Minimum number of staking participants before emergency conditions are imposed.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> MinimumValidatorCount(CancellationToken token)
         {
             string parameters = StakingStorage.MinimumValidatorCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -141,6 +161,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> InvulnerablesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string InvulnerablesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Invulnerables
         ///  Any validators that may never be slashed or forcibly kicked. It's a Vec since they're
         ///  easy to initialize and the performance hit is minimal (we expect no more than four
@@ -149,7 +178,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Invulnerables(CancellationToken token)
         {
             string parameters = StakingStorage.InvulnerablesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -164,13 +194,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BondedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BondedDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Bonded
         ///  Map from all locked "stash" accounts to the controller account.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Bonded(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.BondedParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -183,13 +223,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MinNominatorBondDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MinNominatorBondDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> MinNominatorBond
         ///  The minimum active bond to become and maintain the role of a nominator.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> MinNominatorBond(CancellationToken token)
         {
             string parameters = StakingStorage.MinNominatorBondParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -202,13 +252,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MinValidatorBondDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MinValidatorBondDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> MinValidatorBond
         ///  The minimum active bond to become and maintain the role of a validator.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> MinValidatorBond(CancellationToken token)
         {
             string parameters = StakingStorage.MinValidatorBondParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -223,6 +283,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MinCommissionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MinCommissionDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> MinCommission
         ///  The minimum amount of commission that validators can set.
         /// 
@@ -231,7 +300,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> MinCommission(CancellationToken token)
         {
             string parameters = StakingStorage.MinCommissionParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -246,13 +316,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> LedgerDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string LedgerDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Ledger
         ///  Map from all (unlocked) "controller" accounts to the info regarding the staking.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger> Ledger(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.LedgerParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -267,13 +347,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PayeeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PayeeDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Payee
         ///  Where the reward payment should be made. Keyed by stash.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination> Payee(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.PayeeParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -288,13 +378,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ValidatorsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ValidatorsDefault()
+        {
+            return "0x0000";
+        }
+        
+        /// <summary>
         /// >> Validators
         ///  The map from (wannabe) validator stash key to the preferences of that validator.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs> Validators(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.ValidatorsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -307,13 +407,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CounterForValidatorsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CounterForValidatorsDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> CounterForValidators
         /// Counter for the related counted storage map
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForValidators(CancellationToken token)
         {
             string parameters = StakingStorage.CounterForValidatorsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -328,6 +438,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MaxValidatorsCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MaxValidatorsCountDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> MaxValidatorsCount
         ///  The maximum validator count before we stop allowing new validators to join.
         /// 
@@ -336,7 +455,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> MaxValidatorsCount(CancellationToken token)
         {
             string parameters = StakingStorage.MaxValidatorsCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -366,6 +486,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NominatorsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NominatorsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Nominators
         ///  The map from nominator stash key to their nomination preferences, namely the validators that
         ///  they wish to support.
@@ -387,7 +516,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations> Nominators(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.NominatorsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -400,13 +530,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CounterForNominatorsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CounterForNominatorsDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> CounterForNominators
         /// Counter for the related counted storage map
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForNominators(CancellationToken token)
         {
             string parameters = StakingStorage.CounterForNominatorsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -421,6 +561,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MaxNominatorsCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MaxNominatorsCountDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> MaxNominatorsCount
         ///  The maximum nominator count before we stop allowing new validators to join.
         /// 
@@ -429,7 +578,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> MaxNominatorsCount(CancellationToken token)
         {
             string parameters = StakingStorage.MaxNominatorsCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -445,6 +595,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentEraDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentEraDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> CurrentEra
         ///  The current era index.
         /// 
@@ -454,7 +613,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CurrentEra(CancellationToken token)
         {
             string parameters = StakingStorage.CurrentEraParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -470,6 +630,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ActiveEraDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ActiveEraDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ActiveEra
         ///  The active era information, it holds index and start.
         /// 
@@ -479,7 +648,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo> ActiveEra(CancellationToken token)
         {
             string parameters = StakingStorage.ActiveEraParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -497,6 +667,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasStartSessionIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasStartSessionIndexDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ErasStartSessionIndex
         ///  The session index at which the era start for the last `HISTORY_DEPTH` eras.
         /// 
@@ -506,7 +685,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ErasStartSessionIndex(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasStartSessionIndexParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -526,6 +706,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasStakersDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasStakersDefault()
+        {
+            return "0x000000";
+        }
+        
+        /// <summary>
         /// >> ErasStakers
         ///  Exposure of validator at era.
         /// 
@@ -537,7 +726,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure> ErasStakers(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasStakersParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -562,6 +752,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasStakersClippedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasStakersClippedDefault()
+        {
+            return "0x000000";
+        }
+        
+        /// <summary>
         /// >> ErasStakersClipped
         ///  Clipped Exposure of validator at era.
         /// 
@@ -578,7 +777,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure> ErasStakersClipped(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasStakersClippedParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -597,6 +797,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasValidatorPrefsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasValidatorPrefsDefault()
+        {
+            return "0x0000";
+        }
+        
+        /// <summary>
         /// >> ErasValidatorPrefs
         ///  Similar to `ErasStakers`, this holds the preferences of validators.
         /// 
@@ -607,7 +816,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs> ErasValidatorPrefs(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasValidatorPrefsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -624,6 +834,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasValidatorRewardDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasValidatorRewardDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ErasValidatorReward
         ///  The total validator era payout for the last `HISTORY_DEPTH` eras.
         /// 
@@ -632,7 +851,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> ErasValidatorReward(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasValidatorRewardParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -648,6 +868,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasRewardPointsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasRewardPointsDefault()
+        {
+            return "0x0000000000";
+        }
+        
+        /// <summary>
         /// >> ErasRewardPoints
         ///  Rewards for the last `HISTORY_DEPTH` eras.
         ///  If reward hasn't been set or has been removed then 0 reward is returned.
@@ -655,7 +884,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints> ErasRewardPoints(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasRewardPointsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -671,6 +901,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ErasTotalStakeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ErasTotalStakeDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> ErasTotalStake
         ///  The total amount staked for the last `HISTORY_DEPTH` eras.
         ///  If total hasn't been set or has been removed then 0 stake is returned.
@@ -678,7 +917,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> ErasTotalStake(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasTotalStakeParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -691,13 +931,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ForceEraDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ForceEraDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ForceEra
         ///  Mode of era forcing.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing> ForceEra(CancellationToken token)
         {
             string parameters = StakingStorage.ForceEraParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -712,6 +962,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SlashRewardFractionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SlashRewardFractionDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> SlashRewardFraction
         ///  The percentage of the slash that is distributed to reporters.
         /// 
@@ -720,7 +979,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> SlashRewardFraction(CancellationToken token)
         {
             string parameters = StakingStorage.SlashRewardFractionParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -734,6 +994,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CanceledSlashPayoutDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CanceledSlashPayoutDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> CanceledSlashPayout
         ///  The amount of currency given to reporters of a slash event which was
         ///  canceled by extraordinary circumstances (e.g. governance).
@@ -741,7 +1010,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> CanceledSlashPayout(CancellationToken token)
         {
             string parameters = StakingStorage.CanceledSlashPayoutParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -756,13 +1026,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UnappliedSlashesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UnappliedSlashesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UnappliedSlashes
         ///  All unapplied slashes that are queued for later.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>> UnappliedSlashes(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = StakingStorage.UnappliedSlashesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -778,6 +1058,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BondedErasDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BondedErasDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> BondedEras
         ///  A mapping from still-bonded eras to the first session index of that era.
         /// 
@@ -787,7 +1076,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>> BondedEras(CancellationToken token)
         {
             string parameters = StakingStorage.BondedErasParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -803,6 +1093,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ValidatorSlashInEraDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ValidatorSlashInEraDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ValidatorSlashInEra
         ///  All slashing events on validators, mapped by era to the highest slash proportion
         ///  and slash value of the era.
@@ -810,7 +1109,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>> ValidatorSlashInEra(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ValidatorSlashInEraParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -825,13 +1125,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NominatorSlashInEraDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NominatorSlashInEraDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> NominatorSlashInEra
         ///  All slashing events on nominators, mapped by era to the highest slash value of the era.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> NominatorSlashInEra(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.NominatorSlashInEraParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -846,13 +1156,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SlashingSpansDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SlashingSpansDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SlashingSpans
         ///  Slashing spans for stash accounts.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans> SlashingSpans(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.SlashingSpansParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -868,6 +1188,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SpanSlashDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SpanSlashDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> SpanSlash
         ///  Records information about the maximum slash of a stash within a slashing span,
         ///  as well as how much reward has been paid out.
@@ -875,7 +1204,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord> SpanSlash(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
         {
             string parameters = StakingStorage.SpanSlashParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -890,6 +1220,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentPlannedSessionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentPlannedSessionDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> CurrentPlannedSession
         ///  The last planned session scheduled by the session pallet.
         /// 
@@ -898,7 +1237,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CurrentPlannedSession(CancellationToken token)
         {
             string parameters = StakingStorage.CurrentPlannedSessionParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -919,6 +1259,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> OffendingValidatorsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string OffendingValidatorsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> OffendingValidators
         ///  Indices of validators that have offended in the active era and whether they are currently
         ///  disabled.
@@ -933,7 +1282,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.Bool>>> OffendingValidators(CancellationToken token)
         {
             string parameters = StakingStorage.OffendingValidatorsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.Bool>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.Bool>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -949,6 +1299,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> StorageVersionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string StorageVersionDefault()
+        {
+            return "0x0A";
+        }
+        
+        /// <summary>
         /// >> StorageVersion
         ///  True if network has been upgraded to this version.
         ///  Storage version of the pallet.
@@ -958,7 +1317,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases> StorageVersion(CancellationToken token)
         {
             string parameters = StakingStorage.StorageVersionParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -973,6 +1333,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ChillThresholdDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ChillThresholdDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ChillThreshold
         ///  The threshold for when users can start calling `chill_other` for other validators /
         ///  nominators. The threshold is compared to the actual number of validators / nominators
@@ -981,7 +1350,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent> ChillThreshold(CancellationToken token)
         {
             string parameters = StakingStorage.ChillThresholdParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent>(parameters, token);
+            return result;
         }
     }
     
@@ -1271,6 +1641,121 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
     }
     
+    public sealed class StakingConstants
+    {
+        
+        /// <summary>
+        /// >> MaxNominations
+        ///  Maximum number of nominations per nominator.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxNominations()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x10000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> HistoryDepth
+        ///  Number of eras to keep in history.
+        /// 
+        ///  Following information is kept for eras in `[current_era -
+        ///  HistoryDepth, current_era]`: `ErasStakers`, `ErasStakersClipped`,
+        ///  `ErasValidatorPrefs`, `ErasValidatorReward`, `ErasRewardPoints`,
+        ///  `ErasTotalStake`, `ErasStartSessionIndex`,
+        ///  `StakingLedger.claimed_rewards`.
+        /// 
+        ///  Must be more than the number of eras delayed by session.
+        ///  I.e. active era must always be in history. I.e. `active_era >
+        ///  current_era - history_depth` must be guaranteed.
+        /// 
+        ///  If migrating an existing pallet from storage value to config value,
+        ///  this should be set to same value or greater as in storage.
+        /// 
+        ///  Note: `HistoryDepth` is used as the upper bound for the `BoundedVec`
+        ///  item `StakingLedger.claimed_rewards`. Setting this value lower than
+        ///  the existing value can lead to inconsistencies in the
+        ///  `StakingLedger` and will need to be handled properly in a migration.
+        ///  The test `reducing_history_depth_abrupt` shows this effect.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 HistoryDepth()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x54000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SessionsPerEra
+        ///  Number of sessions per era.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SessionsPerEra()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x06000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> BondingDuration
+        ///  Number of eras that staked funds must remain bonded for.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 BondingDuration()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x1C000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SlashDeferDuration
+        ///  Number of eras that slashes are deferred by, after computation.
+        /// 
+        ///  This should be less than the bonding duration. Set to 0 if slashes
+        ///  should be applied immediately, without opportunity for intervention.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SlashDeferDuration()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x1B000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxNominatorRewardedPerValidator
+        ///  The maximum number of nominators rewarded for each validator.
+        /// 
+        ///  For each validator only the `$MaxNominatorRewardedPerValidator` biggest stakers can
+        ///  claim their reward. This used to limit the i/o cost for the nominator payout.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxNominatorRewardedPerValidator()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00020000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxUnlockingChunks
+        ///  The maximum number of `unlocking` chunks a [`StakingLedger`] can
+        ///  have. Effectively determines how many unique eras a staker may be
+        ///  unbonding in.
+        /// 
+        ///  Note: `MaxUnlockingChunks` is used as the upper bound for the
+        ///  `BoundedVec` item `StakingLedger.unlocking`. Setting this value
+        ///  lower than the existing value can lead to inconsistencies in the
+        ///  `StakingLedger` and will need to be handled properly in a runtime
+        ///  migration. The test `reducing_max_unlocking_chunks_abrupt` shows
+        ///  this effect.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxUnlockingChunks()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x20000000");
+            return result;
+        }
+    }
+    
     public enum StakingErrors
     {
         
@@ -1411,8 +1896,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         
         /// <summary>
         /// >> TooManyValidators
-        /// There are too many validators in the system. Governance needs to adjust the staking
-        /// settings to keep things safe for the runtime.
+        /// There are too many validator candidates in the system. Governance needs to adjust the
+        /// staking settings to keep things safe for the runtime.
         /// </summary>
         TooManyValidators,
         

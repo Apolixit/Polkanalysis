@@ -33,7 +33,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "ProposalCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Proposals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Inactive"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
         }
         
         /// <summary>
@@ -46,13 +47,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ProposalCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ProposalCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> ProposalCount
         ///  Number of proposals that have been made.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ProposalCount(CancellationToken token)
         {
             string parameters = TreasuryStorage.ProposalCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -67,13 +78,52 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ProposalsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ProposalsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Proposals
         ///  Proposals that have been made.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal> Proposals(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = TreasuryStorage.ProposalsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal>(parameters, token);
+            return result;
+        }
+        
+        /// <summary>
+        /// >> InactiveParams
+        ///  The amount which has been reported as inactive to Currency.
+        /// </summary>
+        public static string InactiveParams()
+        {
+            return RequestGenerator.GetStorage("Treasury", "Inactive", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+        }
+        
+        /// <summary>
+        /// >> InactiveDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string InactiveDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
+        /// >> Inactive
+        ///  The amount which has been reported as inactive to Currency.
+        /// </summary>
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Inactive(CancellationToken token)
+        {
+            string parameters = TreasuryStorage.InactiveParams();
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -86,13 +136,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ApprovalsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ApprovalsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Approvals
         ///  Proposal indices that have been approved but not yet awarded.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12> Approvals(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17> Approvals(CancellationToken token)
         {
             string parameters = TreasuryStorage.ApprovalsParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17>(parameters, token);
+            return result;
         }
     }
     
@@ -154,6 +214,90 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal_id.Encode());
             return new Method(19, "Treasury", 4, "remove_approval", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class TreasuryConstants
+    {
+        
+        /// <summary>
+        /// >> ProposalBond
+        ///  Fraction of a proposal's value that should be bonded in order to place the proposal.
+        ///  An accepted proposal gets these back. A rejected proposal does not.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill ProposalBond()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
+            result.Create("0x50C30000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> ProposalBondMinimum
+        ///  Minimum amount of funds that should be placed in a deposit for making a proposal.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 ProposalBondMinimum()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x0010A5D4E80000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> ProposalBondMaximum
+        ///  Maximum amount of funds that should be placed in a deposit for making a proposal.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128> ProposalBondMaximum()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128>();
+            result.Create("0x01005039278C0400000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> SpendPeriod
+        ///  Period between successive spends.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 SpendPeriod()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00460500");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> Burn
+        ///  Percentage of spare funds (if any) that are burnt per spend period.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill Burn()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
+            result.Create("0x10270000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> PalletId
+        ///  The treasury's pallet id, used for deriving its sovereign account ID.
+        /// </summary>
+        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId PalletId()
+        {
+            var result = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId();
+            result.Create("0x70792F7472737279");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxApprovals
+        ///  The maximum number of approvals that can wait in the spending queue.
+        /// 
+        ///  NOTE: This parameter is also used within the Bounties Pallet extension if enabled.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxApprovals()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x64000000");
+            return result;
         }
     }
     

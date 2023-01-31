@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.pallet
     }
     
     /// <summary>
-    /// >> 178 - Variant[frame_system.pallet.Error]
+    /// >> 176 - Variant[frame_system.pallet.Error]
     /// Error for the System pallet
     /// </summary>
     public sealed class EnumError : BaseEnum<Error>

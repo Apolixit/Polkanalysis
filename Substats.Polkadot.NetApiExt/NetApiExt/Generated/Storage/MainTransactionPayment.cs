@@ -43,12 +43,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextFeeMultiplierDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextFeeMultiplierDefault()
+        {
+            return "0x000064A7B3B6E00D0000000000000000";
+        }
+        
+        /// <summary>
         /// >> NextFeeMultiplier
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128> NextFeeMultiplier(CancellationToken token)
         {
             string parameters = TransactionPaymentStorage.NextFeeMultiplierParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -60,16 +70,61 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> StorageVersionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string StorageVersionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> StorageVersion
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases> StorageVersion(CancellationToken token)
         {
             string parameters = TransactionPaymentStorage.StorageVersionParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases>(parameters, token);
+            return result;
         }
     }
     
     public sealed class TransactionPaymentCalls
     {
+    }
+    
+    public sealed class TransactionPaymentConstants
+    {
+        
+        /// <summary>
+        /// >> OperationalFeeMultiplier
+        ///  A fee mulitplier for `Operational` extrinsics to compute "virtual tip" to boost their
+        ///  `priority`
+        /// 
+        ///  This value is multipled by the `final_fee` to obtain a "virtual tip" that is later
+        ///  added to a tip component in regular `priority` calculations.
+        ///  It means that a `Normal` transaction can front-run a similarly-sized `Operational`
+        ///  extrinsic (with no tip), by including a tip value greater than the virtual tip.
+        /// 
+        ///  ```rust,ignore
+        ///  // For `Normal`
+        ///  let priority = priority_calc(tip);
+        /// 
+        ///  // For `Operational`
+        ///  let virtual_tip = (inclusion_fee + tip) * OperationalFeeMultiplier;
+        ///  let priority = priority_calc(tip + virtual_tip);
+        ///  ```
+        /// 
+        ///  Note that since we use `final_fee` the multiplier applies also to the regular `tip`
+        ///  sent with the transaction. So, not only does the transaction get a priority bump based
+        ///  on the `inclusion_fee`, but we also amplify the impact of tips applied to `Operational`
+        ///  transactions.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U8 OperationalFeeMultiplier()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U8();
+            result.Create("0x05");
+            return result;
+        }
     }
 }

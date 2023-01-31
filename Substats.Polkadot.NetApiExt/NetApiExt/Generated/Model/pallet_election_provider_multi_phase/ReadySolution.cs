@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     
     
     /// <summary>
-    /// >> 601 - Composite[pallet_election_provider_multi_phase.ReadySolution]
+    /// >> 602 - Composite[pallet_election_provider_multi_phase.ReadySolution]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ReadySolution : BaseType
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
         /// <summary>
         /// >> supports
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>> _supports;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26 _supports;
         
         /// <summary>
         /// >> score
@@ -39,7 +39,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
         /// </summary>
         private Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute _compute;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>> Supports
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26 Supports
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Supports = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>>();
+            Supports = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26();
             Supports.Decode(byteArray, ref p);
             Score = new Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore();
             Score.Decode(byteArray, ref p);

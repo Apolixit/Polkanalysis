@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa
     
     
     /// <summary>
-    /// >> 218 - Composite[sp_finality_grandpa.EquivocationProof]
+    /// >> 217 - Composite[sp_finality_grandpa.EquivocationProof]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class EquivocationProof : BaseType

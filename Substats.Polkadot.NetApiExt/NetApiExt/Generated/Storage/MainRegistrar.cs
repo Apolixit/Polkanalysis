@@ -49,13 +49,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PendingSwapDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PendingSwapDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PendingSwap
         ///  Pending swap operations.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> PendingSwap(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = RegistrarStorage.PendingSwapParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -73,6 +83,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ParasDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ParasDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Paras
         ///  Amount held on deposit for each para and the original depositor.
         /// 
@@ -82,7 +101,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo> Paras(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = RegistrarStorage.ParasParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -95,13 +115,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NextFreeParaIdDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextFreeParaIdDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> NextFreeParaId
         ///  The next free `ParaId`.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> NextFreeParaId(CancellationToken token)
         {
             string parameters = RegistrarStorage.NextFreeParaIdParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            return result;
         }
     }
     
@@ -160,14 +190,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
-        /// >> force_remove_lock
+        /// >> remove_lock
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceRemoveLock(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        public static Method RemoveLock(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
-            return new Method(70, "Registrar", 4, "force_remove_lock", byteArray.ToArray());
+            return new Method(70, "Registrar", 4, "remove_lock", byteArray.ToArray());
         }
         
         /// <summary>
@@ -178,6 +208,68 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             return new Method(70, "Registrar", 5, "reserve", byteArray.ToArray());
+        }
+        
+        /// <summary>
+        /// >> add_lock
+        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// </summary>
+        public static Method AddLock(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        {
+            System.Collections.Generic.List<byte> byteArray = new List<byte>();
+            byteArray.AddRange(para.Encode());
+            return new Method(70, "Registrar", 6, "add_lock", byteArray.ToArray());
+        }
+        
+        /// <summary>
+        /// >> schedule_code_upgrade
+        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// </summary>
+        public static Method ScheduleCodeUpgrade(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code)
+        {
+            System.Collections.Generic.List<byte> byteArray = new List<byte>();
+            byteArray.AddRange(para.Encode());
+            byteArray.AddRange(new_code.Encode());
+            return new Method(70, "Registrar", 7, "schedule_code_upgrade", byteArray.ToArray());
+        }
+        
+        /// <summary>
+        /// >> set_current_head
+        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// </summary>
+        public static Method SetCurrentHead(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData new_head)
+        {
+            System.Collections.Generic.List<byte> byteArray = new List<byte>();
+            byteArray.AddRange(para.Encode());
+            byteArray.AddRange(new_head.Encode());
+            return new Method(70, "Registrar", 8, "set_current_head", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class RegistrarConstants
+    {
+        
+        /// <summary>
+        /// >> ParaDeposit
+        ///  The deposit to be paid to run a parathread.
+        ///  This should include the cost for storing the genesis head and validation code.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 ParaDeposit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x0010A5D4E80000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> DataDepositPerByte
+        ///  The deposit to be paid per byte stored on chain.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x80969800000000000000000000000000");
+            return result;
         }
     }
     

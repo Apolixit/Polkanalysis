@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.a
     
     
     /// <summary>
-    /// >> 234 - Composite[pallet_im_online.sr25519.app_sr25519.Signature]
+    /// >> 233 - Composite[pallet_im_online.sr25519.app_sr25519.Signature]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Signature : BaseType

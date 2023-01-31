@@ -80,6 +80,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PvfActiveVoteMapDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PvfActiveVoteMapDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PvfActiveVoteMap
         ///  All currently active PVF pre-checking votes.
         /// 
@@ -89,7 +98,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.PvfCheckActiveVoteState> PvfActiveVoteMap(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key, CancellationToken token)
         {
             string parameters = ParasStorage.PvfActiveVoteMapParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.PvfCheckActiveVoteState>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.PvfCheckActiveVoteState>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -102,13 +112,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PvfActiveVoteListDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PvfActiveVoteListDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PvfActiveVoteList
         ///  The list of all currently active PVF votes. Auxiliary to `PvfActiveVoteMap`.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>> PvfActiveVoteList(CancellationToken token)
         {
             string parameters = ParasStorage.PvfActiveVoteListParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -123,6 +143,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ParachainsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ParachainsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Parachains
         ///  All parachains. Ordered ascending by `ParaId`. Parathreads are not included.
         /// 
@@ -131,7 +160,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> Parachains(CancellationToken token)
         {
             string parameters = ParasStorage.ParachainsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -146,13 +176,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ParaLifecyclesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ParaLifecyclesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ParaLifecycles
         ///  The current lifecycle of a all known Para IDs.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle> ParaLifecycles(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.ParaLifecyclesParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -167,13 +207,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HeadsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HeadsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Heads
         ///  The head-data of every registered para.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData> Heads(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.HeadsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -190,6 +240,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentCodeHashDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentCodeHashDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> CurrentCodeHash
         ///  The validation code hash of every live para.
         /// 
@@ -198,7 +257,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash> CurrentCodeHash(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.CurrentCodeHashParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -216,6 +276,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PastCodeHashDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PastCodeHashDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PastCodeHash
         ///  Actual past code hash, indicated by the para id as well as the block number at which it
         ///  became outdated.
@@ -225,14 +294,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash> PastCodeHash(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
         {
             string parameters = ParasStorage.PastCodeHashParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(parameters, token);
+            return result;
         }
         
         /// <summary>
         /// >> PastCodeMetaParams
         ///  Past code of parachains. The parachains themselves may not be registered anymore,
         ///  but we also keep their code on-chain for the same amount of time as outdated code
-        ///  to keep it available for secondary checkers.
+        ///  to keep it available for approval checkers.
         /// </summary>
         public static string PastCodeMetaParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
@@ -242,15 +312,25 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PastCodeMetaDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PastCodeMetaDefault()
+        {
+            return "0x0000";
+        }
+        
+        /// <summary>
         /// >> PastCodeMeta
         ///  Past code of parachains. The parachains themselves may not be registered anymore,
         ///  but we also keep their code on-chain for the same amount of time as outdated code
-        ///  to keep it available for secondary checkers.
+        ///  to keep it available for approval checkers.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaPastCodeMeta> PastCodeMeta(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.PastCodeMetaParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaPastCodeMeta>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaPastCodeMeta>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -268,6 +348,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PastCodePruningDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PastCodePruningDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> PastCodePruning
         ///  Which paras have past code that needs pruning and the relay-chain block at which the code was replaced.
         ///  Note that this is the actual height of the included block, not the expected height at which the
@@ -279,7 +368,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>> PastCodePruning(CancellationToken token)
         {
             string parameters = ParasStorage.PastCodePruningParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -296,6 +386,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> FutureCodeUpgradesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string FutureCodeUpgradesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> FutureCodeUpgrades
         ///  The block number at which the planned code change is expected for a para.
         ///  The change will be applied after the first parablock for this ID included which executes
@@ -304,7 +403,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> FutureCodeUpgrades(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.FutureCodeUpgradesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -321,6 +421,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> FutureCodeHashDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string FutureCodeHashDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> FutureCodeHash
         ///  The actual future code hash of a para.
         /// 
@@ -329,7 +438,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash> FutureCodeHash(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.FutureCodeHashParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -352,6 +462,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UpgradeGoAheadSignalDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UpgradeGoAheadSignalDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UpgradeGoAheadSignal
         ///  This is used by the relay-chain to communicate to a parachain a go-ahead with in the upgrade procedure.
         /// 
@@ -366,7 +485,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeGoAhead> UpgradeGoAheadSignal(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.UpgradeGoAheadSignalParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeGoAhead>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeGoAhead>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -389,6 +509,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UpgradeRestrictionSignalDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UpgradeRestrictionSignalDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UpgradeRestrictionSignal
         ///  This is used by the relay-chain to communicate that there are restrictions for performing
         ///  an upgrade for this parachain.
@@ -403,7 +532,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction> UpgradeRestrictionSignal(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.UpgradeRestrictionSignalParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -418,6 +548,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UpgradeCooldownsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UpgradeCooldownsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UpgradeCooldowns
         ///  The list of parachains that are awaiting for their upgrade restriction to cooldown.
         /// 
@@ -426,7 +565,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>> UpgradeCooldowns(CancellationToken token)
         {
             string parameters = ParasStorage.UpgradeCooldownsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -442,6 +582,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UpcomingUpgradesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UpcomingUpgradesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UpcomingUpgrades
         ///  The list of upcoming code upgrades. Each item is a pair of which para performs a code
         ///  upgrade and at which relay-chain block it is expected at.
@@ -451,7 +600,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>> UpcomingUpgrades(CancellationToken token)
         {
             string parameters = ParasStorage.UpcomingUpgradesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -466,13 +616,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ActionsQueueDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ActionsQueueDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ActionsQueue
         ///  The actions to perform during the start of a specific session index.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ActionsQueue(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ParasStorage.ActionsQueueParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -490,6 +650,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UpcomingParasGenesisDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UpcomingParasGenesisDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> UpcomingParasGenesis
         ///  Upcoming paras instantiation arguments.
         /// 
@@ -499,7 +668,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs> UpcomingParasGenesis(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.UpcomingParasGenesisParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -514,13 +684,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CodeByHashRefsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CodeByHashRefsDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> CodeByHashRefs
         ///  The number of reference on the validation code in [`CodeByHash`] storage.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CodeByHashRefs(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key, CancellationToken token)
         {
             string parameters = ParasStorage.CodeByHashRefsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -538,6 +718,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CodeByHashDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CodeByHashDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> CodeByHash
         ///  Validation code stored by its hash.
         /// 
@@ -547,7 +736,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode> CodeByHash(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key, CancellationToken token)
         {
             string parameters = ParasStorage.CodeByHashParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>(parameters, token);
+            return result;
         }
     }
     
@@ -649,6 +839,20 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
     }
     
+    public sealed class ParasConstants
+    {
+        
+        /// <summary>
+        /// >> UnsignedPriority
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U64 UnsignedPriority()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            result.Create("0xFFFFFFFFFFFFFFFF");
+            return result;
+        }
+    }
+    
     public enum ParasErrors
     {
         
@@ -724,5 +928,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// is disabled.
         /// </summary>
         PvfCheckDisabled,
+        
+        /// <summary>
+        /// >> CannotUpgradeCode
+        /// Parachain cannot currently schedule a code upgrade.
+        /// </summary>
+        CannotUpgradeCode,
     }
 }

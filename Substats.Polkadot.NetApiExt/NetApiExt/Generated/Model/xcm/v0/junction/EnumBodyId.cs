@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction
     }
     
     /// <summary>
-    /// >> 130 - Variant[xcm.v0.junction.BodyId]
+    /// >> 128 - Variant[xcm.v0.junction.BodyId]
     /// </summary>
     public sealed class EnumBodyId : BaseEnumExt<BodyId, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseVoid, BaseVoid, BaseVoid, BaseVoid>
     {

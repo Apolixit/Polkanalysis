@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.pallet
     }
     
     /// <summary>
-    /// >> 310 - Variant[pallet_tips.pallet.Call]
+    /// >> 309 - Variant[pallet_tips.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
     public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress>, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 383 - Composite[polkadot_primitives.v2.AvailabilityBitfield]
+    /// >> 382 - Composite[polkadot_primitives.v2.AvailabilityBitfield]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class AvailabilityBitfield : BaseType

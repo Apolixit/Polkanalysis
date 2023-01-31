@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 687 - Composite[polkadot_runtime_parachains.hrmp.HrmpChannel]
+    /// >> 688 - Composite[polkadot_runtime_parachains.hrmp.HrmpChannel]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class HrmpChannel : BaseType

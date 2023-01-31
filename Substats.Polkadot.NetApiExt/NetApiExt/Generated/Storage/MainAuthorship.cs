@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public AuthorshipStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Authorship", "Uncles"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Authorship", "Uncles"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Authorship", "Author"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Authorship", "DidSetUncles"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
         }
@@ -45,13 +45,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> UnclesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string UnclesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Uncles
         ///  Uncles
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5> Uncles(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7> Uncles(CancellationToken token)
         {
             string parameters = AuthorshipStorage.UnclesParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -64,13 +74,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AuthorDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AuthorDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Author
         ///  Author of current block.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Author(CancellationToken token)
         {
             string parameters = AuthorshipStorage.AuthorParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -83,13 +103,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DidSetUnclesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DidSetUnclesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> DidSetUncles
         ///  Whether uncles were already set in this block.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> DidSetUncles(CancellationToken token)
         {
             string parameters = AuthorshipStorage.DidSetUnclesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return result;
         }
     }
     
@@ -105,6 +135,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(new_uncles.Encode());
             return new Method(6, "Authorship", 0, "set_uncles", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class AuthorshipConstants
+    {
+        
+        /// <summary>
+        /// >> UncleGenerations
+        ///  The number of blocks back we should accept uncles.
+        ///  This means that we will deal with uncle-parents that are
+        ///  `UncleGenerations + 1` before `now`.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 UncleGenerations()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x00000000");
+            return result;
         }
     }
     

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated
 {
     
     
-    public class SubstrateClientExt : Ajuna.NetApi.SubstrateClient
+    public sealed class SubstrateClientExt : Ajuna.NetApi.SubstrateClient
     {
         
         /// <summary>

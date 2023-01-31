@@ -27,9 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2
         /// <summary>
         /// >> ref_time
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _refTime;
+        private Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64> _refTime;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 RefTime
+        /// <summary>
+        /// >> proof_size
+        /// </summary>
+        private Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64> _proofSize;
+        
+        public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64> RefTime
         {
             get
             {
@@ -38,6 +43,18 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2
             set
             {
                 this._refTime = value;
+            }
+        }
+        
+        public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64> ProofSize
+        {
+            get
+            {
+                return this._proofSize;
+            }
+            set
+            {
+                this._proofSize = value;
             }
         }
         
@@ -50,14 +67,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2
         {
             var result = new List<byte>();
             result.AddRange(RefTime.Encode());
+            result.AddRange(ProofSize.Encode());
             return result.ToArray();
         }
         
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            RefTime = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            RefTime = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64>();
             RefTime.Decode(byteArray, ref p);
+            ProofSize = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64>();
+            ProofSize.Decode(byteArray, ref p);
             TypeSize = p - start;
         }
     }

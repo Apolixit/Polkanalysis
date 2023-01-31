@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet
     }
     
     /// <summary>
-    /// >> 722 - Variant[pallet_xcm.pallet.Error]
+    /// >> 726 - Variant[pallet_xcm.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

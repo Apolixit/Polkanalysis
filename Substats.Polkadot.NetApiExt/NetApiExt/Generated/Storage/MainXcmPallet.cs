@@ -45,7 +45,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionNotifyTargets"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionDiscoveryQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionDiscoveryQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT31)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "CurrentMigration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage)));
         }
         
@@ -59,13 +59,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> QueryCounterDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string QueryCounterDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> QueryCounter
         ///  The latest available query index.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> QueryCounter(CancellationToken token)
         {
             string parameters = XcmPalletStorage.QueryCounterParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -80,13 +90,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> QueriesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string QueriesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Queries
         ///  The ongoing queries.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus> Queries(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.QueriesParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -104,6 +124,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AssetTrapsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AssetTrapsDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> AssetTraps
         ///  The existing asset traps.
         /// 
@@ -113,7 +142,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AssetTraps(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.AssetTrapsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -127,6 +157,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SafeXcmVersionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SafeXcmVersionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SafeXcmVersion
         ///  Default version to encode XCM when latest version of destination is unknown. If `None`,
         ///  then the destinations whose XCM version is unknown are considered unreachable.
@@ -134,7 +173,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SafeXcmVersion(CancellationToken token)
         {
             string parameters = XcmPalletStorage.SafeXcmVersionParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -149,13 +189,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SupportedVersionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SupportedVersionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SupportedVersion
         ///  The Latest versions that we know various locations support.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SupportedVersion(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.SupportedVersionParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -170,13 +220,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> VersionNotifiersDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string VersionNotifiersDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> VersionNotifiers
         ///  All locations that we have requested version notifications from.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> VersionNotifiers(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionNotifiersParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -192,6 +252,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> VersionNotifyTargetsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string VersionNotifyTargetsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> VersionNotifyTargets
         ///  The target locations that are subscribed to our version changes, as well as the most recent
         ///  of our versions we informed them of.
@@ -199,7 +268,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>> VersionNotifyTargets(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionNotifyTargetsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -214,15 +284,25 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> VersionDiscoveryQueueDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string VersionDiscoveryQueueDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> VersionDiscoveryQueue
         ///  Destinations whose latest XCM version we would like to know. Duplicates not allowed, and
         ///  the `u32` counter is the number of times that a send to the destination has been attempted,
         ///  which is used as a prioritization.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22> VersionDiscoveryQueue(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT31> VersionDiscoveryQueue(CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionDiscoveryQueueParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT31>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -235,13 +315,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> CurrentMigrationDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CurrentMigrationDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> CurrentMigration
         ///  The current migration's stage, if any.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage> CurrentMigration(CancellationToken token)
         {
             string parameters = XcmPalletStorage.CurrentMigrationParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage>(parameters, token);
+            return result;
         }
     }
     
@@ -292,7 +382,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> execute
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Execute(Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight max_weight)
+        public static Method Execute(Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Ajuna.NetApi.Model.Types.Primitive.U64 max_weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(message.Encode());
@@ -374,6 +464,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(weight_limit.Encode());
             return new Method(99, "XcmPallet", 9, "limited_teleport_assets", byteArray.ToArray());
         }
+    }
+    
+    public sealed class XcmPalletConstants
+    {
     }
     
     public enum XcmPalletErrors

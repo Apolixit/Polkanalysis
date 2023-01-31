@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
     
     
     /// <summary>
-    /// >> 561 - Composite[sp_core.bounded.bounded_vec.BoundedVecT13]
+    /// >> 536 - Composite[sp_core.bounded.bounded_vec.BoundedVecT13]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedVecT13 : BaseType
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.vesting_info.VestingInfo> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote>> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.vesting_info.VestingInfo> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote>> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.vesting_info.VestingInfo>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote>>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

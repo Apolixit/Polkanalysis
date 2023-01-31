@@ -51,6 +51,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> HasInitializedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string HasInitializedDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> HasInitialized
         ///  Whether the parachains modules have been initialized within this block.
         /// 
@@ -64,7 +73,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> HasInitialized(CancellationToken token)
         {
             string parameters = InitializerStorage.HasInitializedParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -83,6 +93,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> BufferedSessionChangesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BufferedSessionChangesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> BufferedSessionChanges
         ///  Buffered session changes along with the block number at which they should be applied.
         /// 
@@ -95,7 +114,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>> BufferedSessionChanges(CancellationToken token)
         {
             string parameters = InitializerStorage.BufferedSessionChangesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>>(parameters, token);
+            return result;
         }
     }
     
@@ -112,5 +132,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(up_to.Encode());
             return new Method(57, "Initializer", 0, "force_approve", byteArray.ToArray());
         }
+    }
+    
+    public sealed class InitializerConstants
+    {
     }
 }

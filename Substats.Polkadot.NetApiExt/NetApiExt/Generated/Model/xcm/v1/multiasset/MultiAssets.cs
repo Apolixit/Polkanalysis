@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
     
     
     /// <summary>
-    /// >> 135 - Composite[xcm.v1.multiasset.MultiAssets]
+    /// >> 133 - Composite[xcm.v1.multiasset.MultiAssets]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class MultiAssets : BaseType

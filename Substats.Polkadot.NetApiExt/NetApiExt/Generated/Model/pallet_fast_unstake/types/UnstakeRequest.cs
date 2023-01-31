@@ -18,40 +18,35 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
     
     
     /// <summary>
-    /// >> 633 - Composite[pallet_fast_unstake.types.UnstakeRequest]
+    /// >> 634 - Composite[pallet_fast_unstake.types.UnstakeRequest]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class UnstakeRequest : BaseType
     {
         
         /// <summary>
-        /// >> stash
+        /// >> stashes
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _stash;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 _stashes;
         
         /// <summary>
         /// >> checked
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21 _checked;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30 _checked;
         
-        /// <summary>
-        /// >> deposit
-        /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _deposit;
-        
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Stash
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 Stashes
         {
             get
             {
-                return this._stash;
+                return this._stashes;
             }
             set
             {
-                this._stash = value;
+                this._stashes = value;
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21 Checked
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30 Checked
         {
             get
             {
@@ -63,18 +58,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Deposit
-        {
-            get
-            {
-                return this._deposit;
-            }
-            set
-            {
-                this._deposit = value;
-            }
-        }
-        
         public override string TypeName()
         {
             return "UnstakeRequest";
@@ -83,21 +66,18 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
         public override byte[] Encode()
         {
             var result = new List<byte>();
-            result.AddRange(Stash.Encode());
+            result.AddRange(Stashes.Encode());
             result.AddRange(Checked.Encode());
-            result.AddRange(Deposit.Encode());
             return result.ToArray();
         }
         
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Stash = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
-            Stash.Decode(byteArray, ref p);
-            Checked = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21();
+            Stashes = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29();
+            Stashes.Decode(byteArray, ref p);
+            Checked = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30();
             Checked.Decode(byteArray, ref p);
-            Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
-            Deposit.Decode(byteArray, ref p);
             TypeSize = p - start;
         }
     }

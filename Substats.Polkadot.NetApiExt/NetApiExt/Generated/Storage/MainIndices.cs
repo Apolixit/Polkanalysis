@@ -46,13 +46,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AccountsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AccountsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Accounts
         ///  The lookup from index to account.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.Bool>> Accounts(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = IndicesStorage.AccountsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.Bool>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.Bool>>(parameters, token);
+            return result;
         }
     }
     
@@ -115,6 +125,21 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
             return new Method(4, "Indices", 4, "freeze", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class IndicesConstants
+    {
+        
+        /// <summary>
+        /// >> Deposit
+        ///  The deposit needed for reserving an index.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 Deposit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E87648170000000000000000000000");
+            return result;
         }
     }
     

@@ -32,31 +32,19 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.pallet
         
         Cancelled = 6,
         
-        Executed = 7,
+        Delegated = 7,
         
-        Delegated = 8,
+        Undelegated = 8,
         
-        Undelegated = 9,
+        Vetoed = 9,
         
-        Vetoed = 10,
+        Blacklisted = 10,
         
-        PreimageNoted = 11,
+        Voted = 11,
         
-        PreimageUsed = 12,
+        Seconded = 12,
         
-        PreimageInvalid = 13,
-        
-        PreimageMissing = 14,
-        
-        PreimageReaped = 15,
-        
-        Blacklisted = 16,
-        
-        Voted = 17,
-        
-        Seconded = 18,
-        
-        ProposalCanceled = 19,
+        ProposalCanceled = 13,
     }
     
     /// <summary>
@@ -66,7 +54,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.pallet
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>, BaseVoid, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseVoid, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32>, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>, Ajuna.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

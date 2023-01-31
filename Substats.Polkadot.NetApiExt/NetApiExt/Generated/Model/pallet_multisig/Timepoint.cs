@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
     
     
     /// <summary>
-    /// >> 83 - Composite[pallet_multisig.Timepoint]
+    /// >> 82 - Composite[pallet_multisig.Timepoint]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Timepoint : BaseType

@@ -37,7 +37,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.ChildBounty)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ChildBounties", "ChildBountyDescriptions"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ChildBounties", "ChildrenCuratorFees"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
         }
@@ -52,13 +52,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ChildBountyCountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ChildBountyCountDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> ChildBountyCount
         ///  Number of total child bounties.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ChildBountyCount(CancellationToken token)
         {
             string parameters = ChildBountiesStorage.ChildBountyCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -74,6 +84,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ParentChildBountiesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ParentChildBountiesDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> ParentChildBounties
         ///  Number of child bounties per parent bounty.
         ///  Map of parent bounty index to number of child bounties.
@@ -81,7 +100,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ParentChildBounties(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ChildBountiesStorage.ParentChildBountiesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -96,13 +116,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ChildBountiesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ChildBountiesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ChildBounties
         ///  Child bounties that have been added.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.ChildBounty> ChildBounties(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
         {
             string parameters = ChildBountiesStorage.ChildBountiesParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.ChildBounty>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.ChildBounty>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -117,13 +147,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ChildBountyDescriptionsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ChildBountyDescriptionsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ChildBountyDescriptions
         ///  The description of each child-bounty.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19> ChildBountyDescriptions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25> ChildBountyDescriptions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ChildBountiesStorage.ChildBountyDescriptionsParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -138,13 +178,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ChildrenCuratorFeesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ChildrenCuratorFeesDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> ChildrenCuratorFees
         ///  The cumulative child-bounty curator fee for each parent bounty.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> ChildrenCuratorFees(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ChildBountiesStorage.ChildrenCuratorFeesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
     }
     
@@ -237,6 +287,32 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(parent_bounty_id.Encode());
             byteArray.AddRange(child_bounty_id.Encode());
             return new Method(38, "ChildBounties", 6, "close_child_bounty", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class ChildBountiesConstants
+    {
+        
+        /// <summary>
+        /// >> MaxActiveChildBountyCount
+        ///  Maximum number of child bounties that can be added to a parent bounty.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxActiveChildBountyCount()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x64000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> ChildBountyValueMinimum
+        ///  Minimum value for a child-bounty.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 ChildBountyValueMinimum()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E40B54020000000000000000000000");
+            return result;
         }
     }
     

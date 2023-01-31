@@ -36,4 +36,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
     public sealed class ParachainsOriginCalls
     {
     }
+    
+    public sealed class ParachainsOriginConstants
+    {
+    }
 }

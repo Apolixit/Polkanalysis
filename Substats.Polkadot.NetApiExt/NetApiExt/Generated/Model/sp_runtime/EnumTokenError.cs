@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
     }
     
     /// <summary>
-    /// >> 25 - Variant[sp_runtime.TokenError]
+    /// >> 26 - Variant[sp_runtime.TokenError]
     /// </summary>
     public sealed class EnumTokenError : BaseEnum<TokenError>
     {

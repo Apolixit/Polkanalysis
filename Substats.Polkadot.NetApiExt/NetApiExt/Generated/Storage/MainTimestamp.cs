@@ -44,13 +44,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> NowDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NowDefault()
+        {
+            return "0x0000000000000000";
+        }
+        
+        /// <summary>
         /// >> Now
         ///  Current time for the current block.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> Now(CancellationToken token)
         {
             string parameters = TimestampStorage.NowParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -63,13 +73,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DidUpdateDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DidUpdateDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> DidUpdate
         ///  Did the timestamp get updated in this block?
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> DidUpdate(CancellationToken token)
         {
             string parameters = TimestampStorage.DidUpdateParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return result;
         }
     }
     
@@ -85,6 +105,24 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(now.Encode());
             return new Method(3, "Timestamp", 0, "set", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class TimestampConstants
+    {
+        
+        /// <summary>
+        /// >> MinimumPeriod
+        ///  The minimum period between blocks. Beware that this is different to the *expected*
+        ///  period that the block production apparatus provides. Your chosen consensus system will
+        ///  generally work with this to determine a sensible block time. e.g. For Aura, it will be
+        ///  double this period on default settings.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U64 MinimumPeriod()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            result.Create("0xB80B000000000000");
+            return result;
         }
     }
 }

@@ -31,13 +31,13 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Balances", "TotalIssuance"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Balances", "InactiveIssuance"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Balances", "Account"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Balances", "Locks"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT3)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Balances", "Reserves"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT4)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Balances", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReleases)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6)));
         }
         
         /// <summary>
@@ -50,13 +50,52 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> TotalIssuanceDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string TotalIssuanceDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> TotalIssuance
         ///  The total units issued in the system.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> TotalIssuance(CancellationToken token)
         {
             string parameters = BalancesStorage.TotalIssuanceParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
+        }
+        
+        /// <summary>
+        /// >> InactiveIssuanceParams
+        ///  The total units of outstanding deactivated balance in the system.
+        /// </summary>
+        public static string InactiveIssuanceParams()
+        {
+            return RequestGenerator.GetStorage("Balances", "InactiveIssuance", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+        }
+        
+        /// <summary>
+        /// >> InactiveIssuanceDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string InactiveIssuanceDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
+        /// >> InactiveIssuance
+        ///  The total units of outstanding deactivated balance in the system.
+        /// </summary>
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> InactiveIssuance(CancellationToken token)
+        {
+            string parameters = BalancesStorage.InactiveIssuanceParams();
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -94,6 +133,16 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AccountDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AccountDefault()
+        {
+            return "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000" +
+                "0000000000000000000000000000000000000000000000000";
+        }
+        
+        /// <summary>
         /// >> Account
         ///  The Balances pallet example of storing the balance of an account.
         /// 
@@ -123,7 +172,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData> Account(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = BalancesStorage.AccountParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -139,6 +189,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> LocksDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string LocksDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Locks
         ///  Any liquidity locks on some account balances.
         ///  NOTE: Should only be accessed when setting, changing and freeing a lock.
@@ -146,7 +205,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT3> Locks(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = BalancesStorage.LocksParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT3>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT3>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -161,36 +221,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ReservesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ReservesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Reserves
         ///  Named reserves on some account balances.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT4> Reserves(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6> Reserves(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = BalancesStorage.ReservesParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT4>(parameters, token);
-        }
-        
-        /// <summary>
-        /// >> StorageVersionParams
-        ///  Storage version of the pallet.
-        /// 
-        ///  This is set to v2.0.0 for new networks.
-        /// </summary>
-        public static string StorageVersionParams()
-        {
-            return RequestGenerator.GetStorage("Balances", "StorageVersion", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
-        }
-        
-        /// <summary>
-        /// >> StorageVersion
-        ///  Storage version of the pallet.
-        /// 
-        ///  This is set to v2.0.0 for new networks.
-        /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReleases> StorageVersion(CancellationToken token)
-        {
-            string parameters = BalancesStorage.StorageVersionParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReleases>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6>(parameters, token);
+            return result;
         }
     }
     
@@ -272,6 +319,44 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
     }
     
+    public sealed class BalancesConstants
+    {
+        
+        /// <summary>
+        /// >> ExistentialDeposit
+        ///  The minimum amount required to keep an account open.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 ExistentialDeposit()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E40B54020000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxLocks
+        ///  The maximum number of locks that should exist on an account.
+        ///  Not strictly enforced, but used for weight estimation.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxLocks()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x32000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxReserves
+        ///  The maximum number of named reserves that can exist on an account.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxReserves()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x32000000");
+            return result;
+        }
+    }
+    
     public enum BalancesErrors
     {
         
@@ -289,7 +374,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         
         /// <summary>
         /// >> InsufficientBalance
-        /// Balance too low to send value
+        /// Balance too low to send value.
         /// </summary>
         InsufficientBalance,
         

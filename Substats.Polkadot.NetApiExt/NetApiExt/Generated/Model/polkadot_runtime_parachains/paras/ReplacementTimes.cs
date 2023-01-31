@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 673 - Composite[polkadot_runtime_parachains.paras.ReplacementTimes]
+    /// >> 674 - Composite[polkadot_runtime_parachains.paras.ReplacementTimes]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ReplacementTimes : BaseType

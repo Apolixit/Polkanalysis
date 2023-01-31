@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
     }
     
     /// <summary>
-    /// >> 26 - Variant[sp_runtime.ArithmeticError]
+    /// >> 27 - Variant[sp_runtime.ArithmeticError]
     /// </summary>
     public sealed class EnumArithmeticError : BaseEnum<ArithmeticError>
     {

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primiti
     
     
     /// <summary>
-    /// >> 395 - Composite[polkadot_parachain.primitives.ValidationCode]
+    /// >> 394 - Composite[polkadot_parachain.primitives.ValidationCode]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ValidationCode : BaseType

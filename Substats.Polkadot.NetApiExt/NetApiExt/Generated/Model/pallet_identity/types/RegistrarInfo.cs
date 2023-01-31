@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
     
     
     /// <summary>
-    /// >> 574 - Composite[pallet_identity.types.RegistrarInfo]
+    /// >> 575 - Composite[pallet_identity.types.RegistrarInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class RegistrarInfo : BaseType

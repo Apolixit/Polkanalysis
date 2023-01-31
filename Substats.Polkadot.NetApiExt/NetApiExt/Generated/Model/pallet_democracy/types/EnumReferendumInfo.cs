@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
     }
     
     /// <summary>
-    /// >> 531 - Variant[pallet_democracy.types.ReferendumInfo]
+    /// >> 532 - Variant[pallet_democracy.types.ReferendumInfo]
     /// </summary>
     public sealed class EnumReferendumInfo : BaseEnumExt<ReferendumInfo, Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.ReferendumStatus, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.Bool, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {

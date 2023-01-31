@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
     
     
     /// <summary>
-    /// >> 566 - Composite[pallet_identity.types.Registration]
+    /// >> 567 - Composite[pallet_identity.types.Registration]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Registration : BaseType
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> judgements
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14 _judgements;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19 _judgements;
         
         /// <summary>
         /// >> deposit
@@ -39,7 +39,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         /// </summary>
         private Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo _info;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14 Judgements
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19 Judgements
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Judgements = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14();
+            Judgements = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19();
             Judgements.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.cr
     
     
     /// <summary>
-    /// >> 709 - Composite[polkadot_runtime_common.crowdloan.FundInfo]
+    /// >> 712 - Composite[polkadot_runtime_common.crowdloan.FundInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class FundInfo : BaseType

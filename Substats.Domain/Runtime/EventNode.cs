@@ -131,9 +131,9 @@ namespace Substats.Domain.Runtime
             return Find(data)?.Count() > 0;
         }
 
-        private IEnumerable<INode> FindInner(List<INode> list, object data)
+        private IEnumerable<INode> FindInner(List<INode> list, object obj)
         {
-            if (HumanData != null && HumanData?.Equals(data))
+            if (HumanData != null && HumanData?.Equals(obj))
             {
                 list.Add(this);
             }
@@ -142,16 +142,64 @@ namespace Substats.Domain.Runtime
 
             foreach (var child in Children)
             {
-                list.AddRange(child.Find(data));
+                list.AddRange(child.Find(obj));
             }
 
             return list;
         }
 
-        public IEnumerable<INode> Find(object data)
+        private IEnumerable<INode> FindInner(List<INode> list, Type obj)
+        {
+            if (DataType != null && DataType.FullName.Equals(obj.FullName))
+            {
+                list.Add(this);
+            }
+
+            if (Children == null) return list;
+
+            foreach (var child in Children)
+            {
+                list.AddRange(child.Find(obj));
+            }
+
+            return list;
+        }
+
+        private IEnumerable<INode> FindInner(List<INode> list, IType obj)
+        {
+            if (Data != null && Data.Equals(obj))
+            {
+                list.Add(this);
+            }
+
+            if (Children == null) return list;
+
+            foreach (var child in Children)
+            {
+                list.AddRange(child.Find(obj));
+            }
+
+            return list;
+        }
+
+        public IEnumerable<INode> Find(object obj)
         {
             var nodesFounded = new List<INode>();
-            return FindInner(nodesFounded, data);
+            return FindInner(nodesFounded, obj);
         }
+
+        public IEnumerable<INode> Find(Type obj)
+        {
+            var nodesFounded = new List<INode>();
+            return FindInner(nodesFounded, obj);
+        }
+
+        public IEnumerable<INode> Find(IType obj)
+        {
+            var nodesFounded = new List<INode>();
+            return FindInner(nodesFounded, obj);
+        }
+
+        
     }
 }

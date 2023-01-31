@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
     
     
     /// <summary>
-    /// >> 470 - Composite[pallet_balances.BalanceLock]
+    /// >> 471 - Composite[pallet_balances.BalanceLock]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BalanceLock : BaseType

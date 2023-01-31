@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 669 - Variant[polkadot_runtime_parachains.paras.ParaLifecycle]
+    /// >> 670 - Variant[polkadot_runtime_parachains.paras.ParaLifecycle]
     /// </summary>
     public sealed class EnumParaLifecycle : BaseEnum<ParaLifecycle>
     {

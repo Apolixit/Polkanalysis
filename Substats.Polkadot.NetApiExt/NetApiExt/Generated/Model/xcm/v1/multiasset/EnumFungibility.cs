@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
     }
     
     /// <summary>
-    /// >> 139 - Variant[xcm.v1.multiasset.Fungibility]
+    /// >> 137 - Variant[xcm.v1.multiasset.Fungibility]
     /// </summary>
     public sealed class EnumFungibility : BaseEnumExt<Fungibility, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetInstance>
     {

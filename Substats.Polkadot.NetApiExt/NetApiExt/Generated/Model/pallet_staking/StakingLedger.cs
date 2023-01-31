@@ -42,12 +42,12 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> unlocking
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6 _unlocking;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 _unlocking;
         
         /// <summary>
         /// >> claimed_rewards
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7 _claimedRewards;
+        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT9 _claimedRewards;
         
         public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Stash
         {
@@ -85,7 +85,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6 Unlocking
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 Unlocking
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7 ClaimedRewards
+        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT9 ClaimedRewards
         {
             get
             {
@@ -134,9 +134,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
             Total.Decode(byteArray, ref p);
             Active = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>();
             Active.Decode(byteArray, ref p);
-            Unlocking = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6();
+            Unlocking = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8();
             Unlocking.Decode(byteArray, ref p);
-            ClaimedRewards = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7();
+            ClaimedRewards = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT9();
             ClaimedRewards.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

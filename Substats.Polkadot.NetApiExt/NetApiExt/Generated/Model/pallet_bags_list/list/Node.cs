@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list
     
     
     /// <summary>
-    /// >> 611 - Composite[pallet_bags_list.list.Node]
+    /// >> 612 - Composite[pallet_bags_list.list.Node]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Node : BaseType

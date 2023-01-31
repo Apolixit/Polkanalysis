@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
     
     
     /// <summary>
-    /// >> 461 - Composite[sp_consensus_babe.digests.PrimaryPreDigest]
+    /// >> 463 - Composite[sp_consensus_babe.digests.PrimaryPreDigest]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PrimaryPreDigest : BaseType

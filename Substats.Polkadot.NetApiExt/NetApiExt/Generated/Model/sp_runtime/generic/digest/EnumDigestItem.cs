@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest
     }
     
     /// <summary>
-    /// >> 14 - Variant[sp_runtime.generic.digest.DigestItem]
+    /// >> 15 - Variant[sp_runtime.generic.digest.DigestItem]
     /// </summary>
     public sealed class EnumDigestItem : BaseEnumExt<DigestItem, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, BaseVoid, BaseVoid, BaseVoid, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseVoid, BaseVoid>
     {

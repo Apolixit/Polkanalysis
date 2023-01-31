@@ -31,7 +31,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Vesting", "Vesting"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT13)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT18)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Vesting", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.EnumReleases)));
         }
         
@@ -47,13 +47,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> VestingDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string VestingDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Vesting
         ///  Information regarding the vesting of a given account.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT13> Vesting(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT18> Vesting(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = VestingStorage.VestingParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT13>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT18>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -68,6 +78,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> StorageVersionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string StorageVersionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> StorageVersion
         ///  Storage version of the pallet.
         /// 
@@ -76,7 +95,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.EnumReleases> StorageVersion(CancellationToken token)
         {
             string parameters = VestingStorage.StorageVersionParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.EnumReleases>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.EnumReleases>(parameters, token);
+            return result;
         }
     }
     
@@ -139,6 +159,31 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(schedule1_index.Encode());
             byteArray.AddRange(schedule2_index.Encode());
             return new Method(25, "Vesting", 4, "merge_schedules", byteArray.ToArray());
+        }
+    }
+    
+    public sealed class VestingConstants
+    {
+        
+        /// <summary>
+        /// >> MinVestedTransfer
+        ///  The minimum amount transferred to call `vested_transfer`.
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U128 MinVestedTransfer()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            result.Create("0x00E40B54020000000000000000000000");
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MaxVestingSchedules
+        /// </summary>
+        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxVestingSchedules()
+        {
+            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            result.Create("0x1C000000");
+            return result;
         }
     }
     

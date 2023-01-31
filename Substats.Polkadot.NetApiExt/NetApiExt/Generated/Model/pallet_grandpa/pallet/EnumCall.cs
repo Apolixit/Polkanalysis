@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.pallet
     }
     
     /// <summary>
-    /// >> 217 - Variant[pallet_grandpa.pallet.Call]
+    /// >> 216 - Variant[pallet_grandpa.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
     public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.EquivocationProof, Substats.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.EquivocationProof, Substats.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>

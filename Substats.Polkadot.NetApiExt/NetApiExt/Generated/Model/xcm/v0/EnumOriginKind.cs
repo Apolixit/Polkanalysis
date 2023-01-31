@@ -28,7 +28,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0
     }
     
     /// <summary>
-    /// >> 145 - Variant[xcm.v0.OriginKind]
+    /// >> 143 - Variant[xcm.v0.OriginKind]
     /// </summary>
     public sealed class EnumOriginKind : BaseEnum<OriginKind>
     {

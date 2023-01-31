@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public TechnicalMembershipStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TechnicalMembership", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT11)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TechnicalMembership", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT16)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("TechnicalMembership", "Prime"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
         }
         
@@ -44,13 +44,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> MembersDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MembersDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Members
         ///  The current membership, stored as an ordered Vec.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT11> Members(CancellationToken token)
+        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT16> Members(CancellationToken token)
         {
             string parameters = TechnicalMembershipStorage.MembersParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT11>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT16>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -63,13 +73,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> PrimeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PrimeDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Prime
         ///  The current prime member, if one exists.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prime(CancellationToken token)
         {
             string parameters = TechnicalMembershipStorage.PrimeParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return result;
         }
     }
     
@@ -152,6 +172,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             return new Method(18, "TechnicalMembership", 6, "clear_prime", byteArray.ToArray());
         }
+    }
+    
+    public sealed class TechnicalMembershipConstants
+    {
     }
     
     public enum TechnicalMembershipErrors

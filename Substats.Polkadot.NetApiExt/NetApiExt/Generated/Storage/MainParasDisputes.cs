@@ -53,6 +53,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> LastPrunedSessionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string LastPrunedSessionDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> LastPrunedSession
         ///  The last pruned session, if any. All data stored by this module
         ///  references sessions.
@@ -60,7 +69,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> LastPrunedSession(CancellationToken token)
         {
             string parameters = ParasDisputesStorage.LastPrunedSessionParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -75,13 +85,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> DisputesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DisputesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Disputes
         ///  All ongoing or concluded disputes for the last several sessions.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState> Disputes(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
         {
             string parameters = ParasDisputesStorage.DisputesParams(key);
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -97,6 +117,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> IncludedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string IncludedDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Included
         ///  All included blocks on the chain, as well as the block number in this chain that
         ///  should be reverted back to if the candidate is disputed and determined to be invalid.
@@ -104,7 +133,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Included(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
         {
             string parameters = ParasDisputesStorage.IncludedParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -123,6 +153,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SpamSlotsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SpamSlotsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> SpamSlots
         ///  Maps session indices to a vector indicating the number of potentially-spam disputes
         ///  each validator is participating in. Potentially-spam disputes are remote disputes which have
@@ -133,7 +172,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>> SpamSlots(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ParasDisputesStorage.SpamSlotsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -149,6 +189,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> FrozenDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string FrozenDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Frozen
         ///  Whether the chain is frozen. Starts as `None`. When this is `Some`,
         ///  the chain will not accept any new parachain blocks for backing or inclusion,
@@ -158,7 +207,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>> Frozen(CancellationToken token)
         {
             string parameters = ParasDisputesStorage.FrozenParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return result;
         }
     }
     
@@ -174,6 +224,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             return new Method(62, "ParasDisputes", 0, "force_unfreeze", byteArray.ToArray());
         }
+    }
+    
+    public sealed class ParasDisputesConstants
+    {
     }
     
     public enum ParasDisputesErrors

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 653 - Composite[polkadot_runtime_parachains.scheduler.ParathreadClaimQueue]
+    /// >> 654 - Composite[polkadot_runtime_parachains.scheduler.ParathreadClaimQueue]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ParathreadClaimQueue : BaseType

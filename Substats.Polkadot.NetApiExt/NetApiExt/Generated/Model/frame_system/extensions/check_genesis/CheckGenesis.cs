@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
     
     
     /// <summary>
-    /// >> 728 - Composite[frame_system.extensions.check_genesis.CheckGenesis]
+    /// >> 732 - Composite[frame_system.extensions.check_genesis.CheckGenesis]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CheckGenesis : BaseType

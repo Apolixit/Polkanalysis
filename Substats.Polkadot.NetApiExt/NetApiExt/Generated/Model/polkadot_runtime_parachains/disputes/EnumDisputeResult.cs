@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 117 - Variant[polkadot_runtime_parachains.disputes.DisputeResult]
+    /// >> 116 - Variant[polkadot_runtime_parachains.disputes.DisputeResult]
     /// </summary>
     public sealed class EnumDisputeResult : BaseEnum<DisputeResult>
     {

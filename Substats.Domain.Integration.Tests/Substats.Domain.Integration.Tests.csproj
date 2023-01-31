@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Substats.Domain\Substats.Domain.csproj" />
-    <ProjectReference Include="..\Substats.Infrastructure.DirectAccess\Substats.Infrastructure.DirectAccess.csproj" />
+    <ProjectReference Include="..\Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj" />
     <ProjectReference Include="..\Substats.Integration.Tests.Contracts\Substats.Integration.Tests.Contracts.csproj" />
     <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
   </ItemGroup>

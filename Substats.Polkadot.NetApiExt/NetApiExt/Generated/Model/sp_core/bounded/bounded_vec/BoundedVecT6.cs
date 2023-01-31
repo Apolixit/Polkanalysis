@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
     
     
     /// <summary>
-    /// >> 485 - Composite[sp_core.bounded.bounded_vec.BoundedVecT6]
+    /// >> 474 - Composite[sp_core.bounded.bounded_vec.BoundedVecT6]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedVecT6 : BaseType
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnlockChunk> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.ReserveData> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnlockChunk> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.ReserveData> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnlockChunk>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.ReserveData>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

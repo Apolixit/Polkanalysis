@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
     }
     
     /// <summary>
-    /// >> 27 - Variant[sp_runtime.TransactionalError]
+    /// >> 28 - Variant[sp_runtime.TransactionalError]
     /// </summary>
     public sealed class EnumTransactionalError : BaseEnum<TransactionalError>
     {

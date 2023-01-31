@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order
     
     
     /// <summary>
-    /// >> 385 - Composite[bitvec.order.Lsb0]
+    /// >> 384 - Composite[bitvec.order.Lsb0]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Lsb0 : BaseType

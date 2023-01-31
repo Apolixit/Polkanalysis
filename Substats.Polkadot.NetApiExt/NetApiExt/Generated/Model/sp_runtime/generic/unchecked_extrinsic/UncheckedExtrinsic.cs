@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.uncheck
     
     
     /// <summary>
-    /// >> 723 - Composite[sp_runtime.generic.unchecked_extrinsic.UncheckedExtrinsic]
+    /// >> 727 - Composite[sp_runtime.generic.unchecked_extrinsic.UncheckedExtrinsic]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class UncheckedExtrinsic : BaseType

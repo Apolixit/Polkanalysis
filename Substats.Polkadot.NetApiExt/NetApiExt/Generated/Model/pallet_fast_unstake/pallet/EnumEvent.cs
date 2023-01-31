@@ -22,18 +22,18 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.pallet
         
         Slashed = 1,
         
-        Checking = 2,
+        InternalError = 2,
         
-        Errored = 3,
+        BatchChecked = 3,
         
-        InternalError = 4,
+        BatchFinished = 4,
     }
     
     /// <summary>
-    /// >> 94 - Variant[pallet_fast_unstake.pallet.Event]
+    /// >> 93 - Variant[pallet_fast_unstake.pallet.Event]
     /// The events of this pallet.
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>>, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseVoid>
     {
     }
 }

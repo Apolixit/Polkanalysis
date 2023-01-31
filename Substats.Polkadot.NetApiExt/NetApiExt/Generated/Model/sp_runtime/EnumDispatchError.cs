@@ -37,12 +37,18 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
         Arithmetic = 8,
         
         Transactional = 9,
+        
+        Exhausted = 10,
+        
+        Corruption = 11,
+        
+        Unavailable = 12,
     }
     
     /// <summary>
-    /// >> 23 - Variant[sp_runtime.DispatchError]
+    /// >> 24 - Variant[sp_runtime.DispatchError]
     /// </summary>
-    public sealed class EnumDispatchError : BaseEnumExt<DispatchError, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.ModuleError, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTokenError, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumArithmeticError, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTransactionalError>
+    public sealed class EnumDispatchError : BaseEnumExt<DispatchError, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.ModuleError, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTokenError, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumArithmeticError, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTransactionalError, BaseVoid, BaseVoid, BaseVoid>
     {
     }
 }

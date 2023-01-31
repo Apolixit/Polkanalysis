@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
     }
     
     /// <summary>
-    /// >> 22 - Variant[frame_support.dispatch.Pays]
+    /// >> 23 - Variant[frame_support.dispatch.Pays]
     /// </summary>
     public sealed class EnumPays : BaseEnum<Pays>
     {

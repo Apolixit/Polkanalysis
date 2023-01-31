@@ -9,6 +9,7 @@ using Substats.Domain.Contracts.Dto.Extrinsic;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Runtime;
 using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
+using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,13 +107,17 @@ namespace Substats.Domain.Dto
 
         public EventDto BuildEventDto(BlockLightDto blockLightDto, INode eventNode)
         {
+            var enumEvent = eventNode.Find(typeof(EnumRuntimeEvent));
+            if (enumEvent == null || enumEvent.First().Children.Count == 0) throw new InvalidOperationException("Try to build event dto while node parameter is not a valid event.");
+
+            var pallet = enumEvent.First().Children.First();
             var eventDto = new EventDto()
             {
                 EventSummary = new EventLightDto()
                 {
                     Block = blockLightDto,
-                    EventName = eventNode.HumanData.ToString(),
-                    PalletName = eventNode.Children.First().HumanData.ToString(),
+                    EventName = pallet.Children.First().HumanData.ToString(),
+                    PalletName = pallet.HumanData.ToString(),
                 },                
                 Decoded = eventNode,
             };
@@ -136,7 +141,7 @@ namespace Substats.Domain.Dto
             Extrinsic extrinsic,
             BlockLightDto blockLight,
             INode extrinsicNode,
-            int extrinsicIndex)
+            uint extrinsicIndex)
         {
             // TODO: for extrinsic Hash, need extrinsic.Encode()
             var extrinsicDto = new ExtrinsicDto()
@@ -144,7 +149,8 @@ namespace Substats.Domain.Dto
                 Block = blockLight,
                 Hash = new Hash(),
                 Decoded = extrinsicNode,
-                Number = $"{blockLight.Number}-{extrinsicIndex}",
+                ExtrinsicId = $"{blockLight.Number}-{extrinsicIndex}",
+                Index = extrinsicIndex,
                 PalletCall = extrinsicNode.HumanData.ToString(),
                 PalletName = extrinsicNode.Children.First().HumanData.ToString(),
             };

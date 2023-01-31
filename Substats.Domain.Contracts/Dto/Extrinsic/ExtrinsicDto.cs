@@ -7,7 +7,8 @@ namespace Substats.Domain.Contracts.Dto.Extrinsic
 {
     public class ExtrinsicDto
     {
-        public required string Number { get; set; }
+        public required string ExtrinsicId { get; set; }
+        public required uint Index { get; set; }
         public required BlockLightDto Block { get; set; }
         public IList<BlockLightDto>? Lifetime { get; set; }
         public required Hash Hash { get; set; }

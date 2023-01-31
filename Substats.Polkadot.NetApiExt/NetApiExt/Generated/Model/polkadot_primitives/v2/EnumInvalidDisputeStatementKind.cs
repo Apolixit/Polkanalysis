@@ -22,7 +22,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     }
     
     /// <summary>
-    /// >> 404 - Variant[polkadot_primitives.v2.InvalidDisputeStatementKind]
+    /// >> 403 - Variant[polkadot_primitives.v2.InvalidDisputeStatementKind]
     /// </summary>
     public sealed class EnumInvalidDisputeStatementKind : BaseEnum<InvalidDisputeStatementKind>
     {

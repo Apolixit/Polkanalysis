@@ -49,6 +49,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> IncludedDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string IncludedDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Included
         ///  Whether the paras inherent was included within this block.
         /// 
@@ -60,7 +69,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> Included(CancellationToken token)
         {
             string parameters = ParaInherentStorage.IncludedParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -73,13 +83,23 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> OnChainVotesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string OnChainVotesDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> OnChainVotes
         ///  Scraped on chain data for extracting resolved disputes as well as backing votes.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes> OnChainVotes(CancellationToken token)
         {
             string parameters = ParaInherentStorage.OnChainVotesParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes>(parameters, token);
+            return result;
         }
     }
     
@@ -96,6 +116,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             byteArray.AddRange(data.Encode());
             return new Method(54, "ParaInherent", 0, "enter", byteArray.ToArray());
         }
+    }
+    
+    public sealed class ParaInherentConstants
+    {
     }
     
     public enum ParaInherentErrors

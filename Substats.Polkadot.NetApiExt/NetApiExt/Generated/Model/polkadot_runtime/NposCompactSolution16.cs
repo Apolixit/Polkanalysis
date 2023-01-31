@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime
     
     
     /// <summary>
-    /// >> 313 - Composite[polkadot_runtime.NposCompactSolution16]
+    /// >> 312 - Composite[polkadot_runtime.NposCompactSolution16]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class NposCompactSolution16 : BaseType

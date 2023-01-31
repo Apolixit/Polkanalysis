@@ -44,7 +44,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset
     }
     
     /// <summary>
-    /// >> 154 - Variant[xcm.v0.multi_asset.MultiAsset]
+    /// >> 152 - Variant[xcm.v0.multi_asset.MultiAsset]
     /// </summary>
     public sealed class EnumMultiAsset : BaseEnumExt<MultiAsset, BaseVoid, BaseVoid, BaseVoid, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetInstance>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetInstance>>
     {

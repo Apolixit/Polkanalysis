@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm
     }
     
     /// <summary>
-    /// >> 157 - Variant[xcm.VersionedMultiLocation]
+    /// >> 155 - Variant[xcm.VersionedMultiLocation]
     /// </summary>
     public sealed class EnumVersionedMultiLocation : BaseEnumExt<VersionedMultiLocation, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation>
     {

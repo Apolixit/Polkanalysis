@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Types.Base
     }
     
     /// <summary>
-    /// >> 31 - Variant[Result]
+    /// >> 32 - Variant[Result]
     /// </summary>
     public sealed class EnumResult : BaseEnumExt<Result, Ajuna.NetApi.Model.Types.Base.BaseTuple, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError>
     {

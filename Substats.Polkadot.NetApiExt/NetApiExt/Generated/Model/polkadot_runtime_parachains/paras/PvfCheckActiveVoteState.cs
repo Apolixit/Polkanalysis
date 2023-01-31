@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 665 - Composite[polkadot_runtime_parachains.paras.PvfCheckActiveVoteState]
+    /// >> 666 - Composite[polkadot_runtime_parachains.paras.PvfCheckActiveVoteState]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PvfCheckActiveVoteState : BaseType

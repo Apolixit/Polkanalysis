@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
     
     
     /// <summary>
-    /// >> 726 - Composite[frame_system.extensions.check_spec_version.CheckSpecVersion]
+    /// >> 730 - Composite[frame_system.extensions.check_spec_version.CheckSpecVersion]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CheckSpecVersion : BaseType

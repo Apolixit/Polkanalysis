@@ -53,6 +53,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ValidatorGroupsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ValidatorGroupsDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ValidatorGroups
         ///  All the validator groups. One for each core. Indices are into `ActiveValidators` - not the
         ///  broader set of Polkadot validators, but instead just the subset used for parachains during
@@ -64,7 +73,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>> ValidatorGroups(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ValidatorGroupsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -80,6 +90,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ParathreadQueueDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ParathreadQueueDefault()
+        {
+            return "0x0000000000";
+        }
+        
+        /// <summary>
         /// >> ParathreadQueue
         ///  A queue of upcoming claims and which core they should be mapped onto.
         /// 
@@ -89,7 +108,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue> ParathreadQueue(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ParathreadQueueParams();
-            return await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue>(parameters, token);
+            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -109,6 +129,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> AvailabilityCoresDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string AvailabilityCoresDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> AvailabilityCores
         ///  One entry for each availability core. Entries are `None` if the core is not currently occupied. Can be
         ///  temporarily `Some` if scheduled but not occupied.
@@ -122,7 +151,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>> AvailabilityCores(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.AvailabilityCoresParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -138,6 +168,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ParathreadClaimIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ParathreadClaimIndexDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> ParathreadClaimIndex
         ///  An index used to ensure that only one claim on a parathread exists in the queue or is
         ///  currently being handled by an occupied core.
@@ -147,7 +186,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ParathreadClaimIndex(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ParathreadClaimIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -165,6 +205,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> SessionStartBlockDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SessionStartBlockDefault()
+        {
+            return "0x00000000";
+        }
+        
+        /// <summary>
         /// >> SessionStartBlock
         ///  The block number where the session start occurred. Used to track how many group rotations have occurred.
         /// 
@@ -176,7 +225,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SessionStartBlock(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.SessionStartBlockParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return result;
         }
         
         /// <summary>
@@ -194,6 +244,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
+        /// >> ScheduledDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ScheduledDefault()
+        {
+            return "0x00";
+        }
+        
+        /// <summary>
         /// >> Scheduled
         ///  Currently scheduled cores - free but up to be occupied.
         /// 
@@ -205,11 +264,16 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>> Scheduled(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ScheduledParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>>(parameters, token);
+            return result;
         }
     }
     
     public sealed class ParaSchedulerCalls
+    {
+    }
+    
+    public sealed class ParaSchedulerConstants
     {
     }
 }

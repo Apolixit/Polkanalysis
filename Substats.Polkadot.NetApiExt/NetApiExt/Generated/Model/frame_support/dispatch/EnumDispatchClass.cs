@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
     }
     
     /// <summary>
-    /// >> 21 - Variant[frame_support.dispatch.DispatchClass]
+    /// >> 22 - Variant[frame_support.dispatch.DispatchClass]
     /// </summary>
     public sealed class EnumDispatchClass : BaseEnum<DispatchClass>
     {

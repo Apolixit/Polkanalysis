@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
     }
     
     /// <summary>
-    /// >> 147 - Variant[xcm.v1.multiasset.MultiAssetFilter]
+    /// >> 145 - Variant[xcm.v1.multiasset.MultiAssetFilter]
     /// </summary>
     public sealed class EnumMultiAssetFilter : BaseEnumExt<MultiAssetFilter, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumWildMultiAsset>
     {

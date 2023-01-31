@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 677 - Composite[polkadot_runtime_parachains.paras.ParaGenesisArgs]
+    /// >> 678 - Composite[polkadot_runtime_parachains.paras.ParaGenesisArgs]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ParaGenesisArgs : BaseType
@@ -35,9 +35,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode _validationCode;
         
         /// <summary>
-        /// >> parachain
+        /// >> para_kind
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.Bool _parachain;
+        private Ajuna.NetApi.Model.Types.Primitive.Bool _paraKind;
         
         public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData GenesisHead
         {
@@ -63,15 +63,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.Bool Parachain
+        public Ajuna.NetApi.Model.Types.Primitive.Bool ParaKind
         {
             get
             {
-                return this._parachain;
+                return this._paraKind;
             }
             set
             {
-                this._parachain = value;
+                this._paraKind = value;
             }
         }
         
@@ -85,7 +85,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             var result = new List<byte>();
             result.AddRange(GenesisHead.Encode());
             result.AddRange(ValidationCode.Encode());
-            result.AddRange(Parachain.Encode());
+            result.AddRange(ParaKind.Encode());
             return result.ToArray();
         }
         
@@ -96,8 +96,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             GenesisHead.Decode(byteArray, ref p);
             ValidationCode = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode();
             ValidationCode.Decode(byteArray, ref p);
-            Parachain = new Ajuna.NetApi.Model.Types.Primitive.Bool();
-            Parachain.Decode(byteArray, ref p);
+            ParaKind = new Ajuna.NetApi.Model.Types.Primitive.Bool();
+            ParaKind.Decode(byteArray, ref p);
             TypeSize = p - start;
         }
     }

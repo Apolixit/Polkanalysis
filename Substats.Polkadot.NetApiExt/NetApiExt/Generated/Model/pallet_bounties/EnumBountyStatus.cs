@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties
     }
     
     /// <summary>
-    /// >> 591 - Variant[pallet_bounties.BountyStatus]
+    /// >> 592 - Variant[pallet_bounties.BountyStatus]
     /// </summary>
     public sealed class EnumBountyStatus : BaseEnumExt<BountyStatus, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {

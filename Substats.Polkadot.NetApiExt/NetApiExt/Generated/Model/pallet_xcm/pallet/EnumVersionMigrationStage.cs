@@ -28,7 +28,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet
     }
     
     /// <summary>
-    /// >> 721 - Variant[pallet_xcm.pallet.VersionMigrationStage]
+    /// >> 724 - Variant[pallet_xcm.pallet.VersionMigrationStage]
     /// </summary>
     public sealed class EnumVersionMigrationStage : BaseEnumExt<VersionMigrationStage, BaseVoid, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseVoid>
     {

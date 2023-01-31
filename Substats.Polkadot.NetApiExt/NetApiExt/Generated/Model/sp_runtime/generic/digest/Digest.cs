@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest
     
     
     /// <summary>
-    /// >> 12 - Composite[sp_runtime.generic.digest.Digest]
+    /// >> 13 - Composite[sp_runtime.generic.digest.Digest]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Digest : BaseType

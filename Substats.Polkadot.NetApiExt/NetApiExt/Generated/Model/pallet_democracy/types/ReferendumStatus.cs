@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
     
     
     /// <summary>
-    /// >> 532 - Composite[pallet_democracy.types.ReferendumStatus]
+    /// >> 533 - Composite[pallet_democracy.types.ReferendumStatus]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ReferendumStatus : BaseType
@@ -30,9 +30,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
         private Ajuna.NetApi.Model.Types.Primitive.U32 _end;
         
         /// <summary>
-        /// >> proposal_hash
+        /// >> proposal
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 _proposalHash;
+        private Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded _proposal;
         
         /// <summary>
         /// >> threshold
@@ -61,15 +61,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 ProposalHash
+        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded Proposal
         {
             get
             {
-                return this._proposalHash;
+                return this._proposal;
             }
             set
             {
-                this._proposalHash = value;
+                this._proposal = value;
             }
         }
         
@@ -118,7 +118,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
         {
             var result = new List<byte>();
             result.AddRange(End.Encode());
-            result.AddRange(ProposalHash.Encode());
+            result.AddRange(Proposal.Encode());
             result.AddRange(Threshold.Encode());
             result.AddRange(Delay.Encode());
             result.AddRange(Tally.Encode());
@@ -130,8 +130,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
             var start = p;
             End = new Ajuna.NetApi.Model.Types.Primitive.U32();
             End.Decode(byteArray, ref p);
-            ProposalHash = new Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256();
-            ProposalHash.Decode(byteArray, ref p);
+            Proposal = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded();
+            Proposal.Decode(byteArray, ref p);
             Threshold = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold();
             Threshold.Decode(byteArray, ref p);
             Delay = new Ajuna.NetApi.Model.Types.Primitive.U32();

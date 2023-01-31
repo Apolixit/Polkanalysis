@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
     
     
     /// <summary>
-    /// >> 167 - Composite[frame_system.limits.BlockWeights]
+    /// >> 165 - Composite[frame_system.limits.BlockWeights]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BlockWeights : BaseType

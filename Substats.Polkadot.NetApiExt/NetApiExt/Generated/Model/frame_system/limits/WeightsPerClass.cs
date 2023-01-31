@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
     
     
     /// <summary>
-    /// >> 169 - Composite[frame_system.limits.WeightsPerClass]
+    /// >> 167 - Composite[frame_system.limits.WeightsPerClass]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class WeightsPerClass : BaseType
