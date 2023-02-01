@@ -8,5 +8,7 @@ namespace Substats.Infrastructure.DirectAccess.Tests.Repository.Block
 {
     internal class ExplorerTimeTests
     {
+
+        
     }
 }

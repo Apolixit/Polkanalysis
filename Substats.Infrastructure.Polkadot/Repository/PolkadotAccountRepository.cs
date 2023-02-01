@@ -111,7 +111,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
                 // If we got a legal identity set, display it
                 if(legalInfo != null) {
-                    name = Encoding.UTF8.GetString(legalInfo.Encode());
+                    name = legalInfo.Encode().ToHuman();
                 }
             }
 

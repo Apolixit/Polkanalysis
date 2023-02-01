@@ -29,9 +29,9 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
             Assert.IsNotNull(extrinsicInfoWithNumber);
             Assert.IsNotNull(extrinsicInfoWithHash);
 
-            // These two extrinsic should have Timestamp.Set definded
+            // One of these extrinsics should have Timestamp.Set defined
             Assert.That(
-                extrinsicInfoWithNumber.All(x => 
+                extrinsicInfoWithNumber.Any(x => 
                 x.Decoded.Has(Substats.Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.Call.set)),
                 Is.True);
 

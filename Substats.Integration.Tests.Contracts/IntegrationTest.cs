@@ -25,6 +25,8 @@ namespace Substats.Integration.Tests.Contracts
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
 
             _substrateRepository = Substitute.For<ISubstrateRepository>();
+            _substrateRepository.IsValidAccountAddress(Arg.Any<string>()).Returns(true);
+
             _substrateClientRepository = new PolkadotSubstrateClientRepository(_substrateEndpoint);
             _substrateRepository.Client.Returns(_substrateClientRepository);
         }

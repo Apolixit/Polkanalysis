@@ -22,6 +22,7 @@ using Substats.Domain.Contracts.Dto;
 using Substats.Infrastructure.DirectAccess.Helpers;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using Substats.Domain.Contracts.Dto.User;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {
@@ -158,6 +159,18 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             return blockDto;
         }
 
+        ///// <summary>
+        ///// Typscript implementation here : https://github.com/polkadot-js/api/blob/ed426108f276daaef7e940b8cc773239c05c9b06/packages/api-derive/src/chain/util.ts#L28
+        ///// </summary>
+        ///// <param name="cancellationToken"></param>
+        ///// <returns></returns>
+        //private async Task<ValidatorDto> GetBlockAuthor(Hash blockHash, CancellationToken cancellationToken)
+        //{
+        //    // Get current list of validators
+        //    var validators = await _substrateService.Client.SessionStorage.Validators(cancellationToken);
+
+        //    return 
+        //}
 
 
         public async Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken)

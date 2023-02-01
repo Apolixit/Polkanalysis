@@ -193,6 +193,9 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             var chainInfo = await _substrateNodeRepository.Client.Core.System.PropertiesAsync(cancellationToken);
 
             var poolMetadata = await _substrateNodeRepository.Client.NominationPoolsStorage.Metadata(poolNumber, cancellationToken);
+            // Pool name is integrated in metadata
+            var poolName = poolMetadata.Bytes.ToHuman();
+            
             var rewardPool = await _substrateNodeRepository.Client.NominationPoolsStorage.RewardPools(poolNumber, cancellationToken);
 
             // Get pool id associated to account
@@ -212,7 +215,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
             var poolDto = new PoolDto()
             {
-                Name = (await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken)).Name, // TODO change with real stash account
+                Name = poolName,
                 PoolGlobalSettings = poolGlobalSettings,
                 CreatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken),
                 NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken),

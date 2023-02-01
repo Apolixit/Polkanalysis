@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Substats.Infrastructure.DirectAccess.Repository;
 using Substats.Domain.Runtime;
+using NSubstitute;
 
 namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Repository
 {
@@ -18,11 +19,15 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Reposi
         [SetUp]
         public void Setup()
         {
+            
+
             _roleMemberRepository = new PolkadotRoleMemberRepository(
                 _substrateRepository,
                 new PolkadotAccountRepository(_substrateRepository),
                 new EventNode());
         }
+
+        
 
         [Test]
         [TestCase("5C4i2nwtkzX3ANCq1dsgLcbW8bCfKJJHVHBzk776JAbqoRRw")]
