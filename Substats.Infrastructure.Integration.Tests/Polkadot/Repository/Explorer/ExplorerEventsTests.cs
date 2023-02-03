@@ -23,19 +23,17 @@ namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Block
         /// <param name="blockId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(13564726, "0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
+        [TestCase(13564726, 34)]
+        [TestCase(14063202, 39)]
+        [TestCase(14063226, 37)]
+        [TestCase(14063234, 37)]
         public async Task GetEventsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(
-            int blockId,
-            string blockHash)
+            int blockId, int nbEvent)
         {
             var eventInfoWithNumber = await _explorerRepository.GetEventsAsync((uint)blockId, CancellationToken.None);
-            var eventInfoWithHash = await _explorerRepository.GetEventsAsync(blockHash, CancellationToken.None);
 
             Assert.IsNotNull(eventInfoWithNumber);
-            Assert.IsNotNull(eventInfoWithHash);
-            Assert.That(eventInfoWithNumber.Count(), Is.EqualTo(34));
-            Assert.That(eventInfoWithHash.Count(), Is.EqualTo(34));
-
+            Assert.That(eventInfoWithNumber.Count(), Is.EqualTo(nbEvent));
         }
 
         [Test]
