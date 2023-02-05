@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Adapter\" />
-    <Folder Include="Secondary\Storage\" />
   </ItemGroup>
 
   <ItemGroup>

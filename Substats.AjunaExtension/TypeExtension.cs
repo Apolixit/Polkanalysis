@@ -5,6 +5,11 @@ namespace Substats.AjunaExtension
 {
     public static class TypeExtension
     {
+        //public static T CreateExt<T>(this BaseType sender, byte[] val) where T : BaseType
+        //{
+        //    sender.cre
+        //}
+
         public static Enum? GetValue(this BaseEnumType sender)
         {
             var prp = sender.GetType().GetProperty("Value");

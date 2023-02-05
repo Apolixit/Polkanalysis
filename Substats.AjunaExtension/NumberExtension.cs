@@ -12,6 +12,13 @@ namespace Substats.AjunaExtension
 {
     public static class NumberExtension
     {
+        public static BigInteger ToBigInteger(this U128? num)
+        {
+            if (num == null) return BigInteger.Zero;
+
+            return num.Value;
+        }
+
         public static Id ToParachainId(this uint id)
         {
             var paraId = new Id();
