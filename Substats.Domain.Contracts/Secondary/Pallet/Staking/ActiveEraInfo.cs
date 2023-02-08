@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
 {
-    internal class ActiveEraInfo
+    public class ActiveEraInfo
     {
+        public uint Index { get; set; }
+        public ulong Start { get; set; }
     }
 }
