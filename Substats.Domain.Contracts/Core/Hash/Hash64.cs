@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.ParasDisputes
+namespace Substats.Domain.Contracts.Core.Hash
 {
-    internal interface IParasDisputesStorage
+    internal class Hash64
     {
     }
 }

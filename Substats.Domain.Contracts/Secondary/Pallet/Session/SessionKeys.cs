@@ -9,10 +9,11 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
 {
     public class SessionKeys
     {
-        public PublicEd25519 Grandpa { get; set; }
-        public PublicSr25519 Babe{ get; set; }
-        public PublicSr25519 ImOnline { get; set; }
-        public PublicSr25519 ParaValidator { get; set; }
-        public PublicSr25519 ParaAssignment { get; set; }
+        public Public Grandpa { get; set; }
+        public Public Babe { get; set; }
+        public Public ImOnline { get; set; }
+        public Public ParaValidator { get; set; }
+        public Public ParaAssignment { get; set; }
+        public Public AuthorityDiscovery { get; set; }
     }
 }

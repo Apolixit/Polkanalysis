@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
 {
-    internal class ParaGenesisArgs
+    public class ParaGenesisArgs
     {
+        public byte[] GenesisHead { get; set; } = new byte[0];
+        public byte[] ValidationCode { get; set; } = new byte[0];
+        public bool ParaKind { get; set; }
     }
 }

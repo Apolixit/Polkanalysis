@@ -52,8 +52,6 @@ namespace Substats.Infrastructure.Polkadot.Repository
 
         public ParaSessionInfoStorage ParaSessionInfoStorage => Client.ParaSessionInfoStorage;
 
-        public ParasDisputesStorage ParasDisputesStorage => Client.ParasDisputesStorage;
-
         public RegistrarStorage RegistrarStorage => Client.RegistrarStorage;
 
         public BabeStorage BabeStorage => Client.BabeStorage;

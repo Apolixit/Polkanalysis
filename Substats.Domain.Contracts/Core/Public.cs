@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Core
 {
-    public class PublicSr25519 : Public
+    public abstract class Public : Hash
     {
     }
 }
