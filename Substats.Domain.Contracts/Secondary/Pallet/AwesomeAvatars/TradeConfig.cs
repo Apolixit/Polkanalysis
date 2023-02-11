@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Hash
+namespace Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
 {
-    public class Hash64
+    public class TradeConfig
     {
-        public required string Value { get; set; }
+        public bool Open { get; set; }
     }
 }

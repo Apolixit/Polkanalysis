@@ -55,5 +55,7 @@ namespace Substats.Infrastructure.Polkadot.Repository
         public RegistrarStorage RegistrarStorage => Client.RegistrarStorage;
 
         public BabeStorage BabeStorage => Client.BabeStorage;
+
+        //public AwesomeAvatarsStorage? AwesomeAvatarsStorage => null;
     }
 }
