@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.AjunaExtension;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -9,10 +11,10 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
 {
     public class AccountData
     {
-        public BigInteger Free { get; set; } = BigInteger.Zero;
-        public BigInteger Reserved { get; set; } = BigInteger.Zero;
-        public BigInteger MiscFrozen { get; set; } = BigInteger.Zero;
-        public BigInteger FeeFrozen { get; set; } = BigInteger.Zero;
+        public U128 Free { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 Reserved { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 MiscFrozen { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 FeeFrozen { get; set; } = new U128().With(BigInteger.Zero);
 
     }
 }

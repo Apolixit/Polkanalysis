@@ -1,6 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types;
+using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Hash;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
 {
-    public class PrimaryPreDigest
+    public class PrimaryPreDigest : IType
     {
-        public uint AuthorityIndex { get; set; }
-        public ulong Slot { get; set; }
+        public U32 AuthorityIndex { get; set; }
+        public U64 Slot { get; set; }
         public Hash VrfOutput { get; set; }
         public Hash64 VrfProof { get; set; }
         public int TypeSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

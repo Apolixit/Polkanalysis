@@ -12,24 +12,24 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary
 {
-    public interface ISubstrateClientRepository
-    {
-        public SubstrateClient Core { get; }
-        public BalancesStorage BalancesStorage { get; }
-        public IdentityStorage IdentityStorage { get; }
-        public NominationPoolsStorage NominationPoolsStorage { get; }
-        public SystemStorage SystemStorage { get; }
-        public StakingStorage StakingStorage { get; }
-        public AuthorshipStorage AuthorshipStorage { get; }
-        public AuctionsStorage AuctionsStorage { get; }
-        public BabeStorage BabeStorage { get; }
-        public ParasStorage ParasStorage { get; }
-        public CrowdloanStorage CrowdloanStorage { get; }
-        public SessionStorage SessionStorage { get; }
-        public ParaSessionInfoStorage ParaSessionInfoStorage { get; }
+    //public interface ISubstrateClientRepository
+    //{
+    //    public SubstrateClient Core { get; }
+    //    public BalancesStorage BalancesStorage { get; }
+    //    public IdentityStorage IdentityStorage { get; }
+    //    public NominationPoolsStorage NominationPoolsStorage { get; }
+    //    public SystemStorage SystemStorage { get; }
+    //    public StakingStorage StakingStorage { get; }
+    //    public AuthorshipStorage AuthorshipStorage { get; }
+    //    public AuctionsStorage AuctionsStorage { get; }
+    //    public BabeStorage BabeStorage { get; }
+    //    public ParasStorage ParasStorage { get; }
+    //    public CrowdloanStorage CrowdloanStorage { get; }
+    //    public SessionStorage SessionStorage { get; }
+    //    public ParaSessionInfoStorage ParaSessionInfoStorage { get; }
 
-        public ParasDisputesStorage ParasDisputesStorage { get; }
+    //    public ParasDisputesStorage ParasDisputesStorage { get; }
 
-        public RegistrarStorage RegistrarStorage { get; }
-    }
+    //    public RegistrarStorage RegistrarStorage { get; }
+    //}
 }

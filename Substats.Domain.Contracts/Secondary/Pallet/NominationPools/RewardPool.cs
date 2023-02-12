@@ -1,16 +1,13 @@
-﻿using Org.BouncyCastle.Math;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.AjunaExtension;
+using System.Numerics;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
 {
     public class RewardPool
     {
-        public BigInteger LastRecordedRewardCounter { get; set; } = BigInteger.Zero;
-        public BigInteger LastRecordedTotalPayouts { get; set; } = BigInteger.Zero;
-        public BigInteger TotalRewardsClaimed { get; set; } = BigInteger.Zero;
+        public U128 LastRecordedRewardCounter { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 LastRecordedTotalPayouts { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 TotalRewardsClaimed { get; set; } = new U128().With(BigInteger.Zero);
     }
 }

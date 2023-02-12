@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
 {
     public class EraRewardPoints
     {
-        public uint Total { get; set; }
-        public IDictionary<SubstrateAccount, uint> Individual { get; set; } = new Dictionary<SubstrateAccount, uint>();
+        public U32 Total { get; set; }
+        public IDictionary<SubstrateAccount, U32> Individual { get; set; } = new Dictionary<SubstrateAccount, U32>();
     }
 }

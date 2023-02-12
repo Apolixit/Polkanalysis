@@ -73,19 +73,19 @@ namespace Substats.Domain.Runtime.Module
             switch (typeBuilder)
             {
                 case TypeBuilder.Call:
-                    currentType = _substrateRepository.Client.Core.MetaData.NodeMetadata.Types[palletModule.Calls.TypeId];
+                    currentType = _substrateRepository.Api.Core.MetaData.NodeMetadata.Types[palletModule.Calls.TypeId];
                     namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
                     dynamicCall = $"{namespaceBase}.EnumCall";
                     dynamicEnum = $"{namespaceBase}.Call";
                     break;
                 case TypeBuilder.Error:
-                    currentType = _substrateRepository.Client.Core.MetaData.NodeMetadata.Types[palletModule.Errors.TypeId];
+                    currentType = _substrateRepository.Api.Core.MetaData.NodeMetadata.Types[palletModule.Errors.TypeId];
                     namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
                     dynamicCall = $"{namespaceBase}.EnumError";
                     dynamicEnum = $"{namespaceBase}.Error";
                     break;
                 case TypeBuilder.Event:
-                    currentType = _substrateRepository.Client.Core.MetaData.NodeMetadata.Types[palletModule.Events.TypeId];
+                    currentType = _substrateRepository.Api.Core.MetaData.NodeMetadata.Types[palletModule.Events.TypeId];
                     namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
                     dynamicCall = $"{namespaceBase}.EnumEvent";
                     dynamicEnum = $"{namespaceBase}.Event";
@@ -149,7 +149,7 @@ namespace Substats.Domain.Runtime.Module
             {
                 arguments = splittedNamespace.Skip(5).ToList();
 
-                var nodeType = _substrateRepository.Client.Core.MetaData.NodeMetadata.Types
+                var nodeType = _substrateRepository.Api.Core.MetaData.NodeMetadata.Types
                     .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))
                     .FirstOrDefault().Value;
 

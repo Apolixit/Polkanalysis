@@ -28,7 +28,7 @@ namespace Substats.Integration.Tests.Contracts
             _substrateRepository.IsValidAccountAddress(Arg.Any<string>()).Returns(true);
 
             _substrateClientRepository = new PolkadotSubstrateClientRepository(_substrateEndpoint);
-            _substrateRepository.Client.Returns(_substrateClientRepository);
+            _substrateRepository.Api.Returns(_substrateClientRepository);
         }
 
         protected abstract ISubstrateEndpoint GetEndpoint();
@@ -40,11 +40,11 @@ namespace Substats.Integration.Tests.Contracts
         [OneTimeSetUp]
         public virtual async Task ConnectAsync()
         {
-            if (_substrateRepository.Client != null && !_substrateRepository.Client.Core.IsConnected)
+            if (_substrateRepository.Api != null && !_substrateRepository.Api.Core.IsConnected)
             {
                 try
                 {
-                    await _substrateRepository.Client.Core.ConnectAsync();
+                    await _substrateRepository.Api.Core.ConnectAsync();
                 }
                 catch (Exception)
                 {
@@ -60,9 +60,9 @@ namespace Substats.Integration.Tests.Contracts
         [OneTimeTearDown]
         public virtual async Task DisconnectAsync()
         {
-            if (_substrateRepository.Client != null && _substrateRepository.Client.Core.IsConnected)
+            if (_substrateRepository.Api != null && _substrateRepository.Api.Core.IsConnected)
             {
-                await _substrateRepository.Client.Core.CloseAsync();
+                await _substrateRepository.Api.Core.CloseAsync();
             }
         }
     }

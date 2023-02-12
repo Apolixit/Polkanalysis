@@ -1,5 +1,7 @@
-﻿using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Hash;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
 {
-    public interface IBabeStorage
+    public interface IBabeStorage : IPalletStorage
     {
         /// <summary>
         /// Current epoch index.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<ulong> EpochIndexAsync(CancellationToken token);
+        public Task<U64> EpochIndexAsync(CancellationToken token);
 
         /// <summary>
         /// Current epoch authorities.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<Public, ulong>> AuthoritiesAsync(CancellationToken token);
+        public Task<IDictionary<Public, U64>> AuthoritiesAsync(CancellationToken token);
 
         /// <summary>
         ///  The slot at which the first epoch actually started. This is 0
@@ -30,14 +32,14 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<ulong> GenesisSlotAsync(CancellationToken token);
+        public Task<U64> GenesisSlotAsync(CancellationToken token);
 
         /// <summary>
         /// Current slot number.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<ulong> CurrentSlotAsync(CancellationToken token);
+        public Task<U64> CurrentSlotAsync(CancellationToken token);
 
         /// <summary>
         ///  The epoch randomness for the *current* epoch.
@@ -74,7 +76,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<Public, ulong>> NextAuthoritiesAsync(CancellationToken token);
+        public Task<IDictionary<Public, U64>> NextAuthoritiesAsync(CancellationToken token);
 
         /// <summary>
         ///  Randomness under construction.
@@ -89,7 +91,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> SegmentIndexAsync(CancellationToken token);
+        public Task<U32> SegmentIndexAsync(CancellationToken token);
 
         /// <summary>
         /// TWOX-NOTE: `SegmentIndex` is an increasing integer, so this is okay.
@@ -97,7 +99,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Hash>> UnderConstructionAsync(uint key, CancellationToken token);
+        public Task<IEnumerable<Hash>> UnderConstructionAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  Temporary value (cleared at block finalization) which is `Some`
@@ -126,7 +128,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<(uint, uint)> EpochStartAsync(CancellationToken token);
+        public Task<(U32, U32)> EpochStartAsync(CancellationToken token);
 
         /// <summary>
         ///  How late the current block is compared to its parent.
@@ -137,7 +139,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> LatenessAsync(CancellationToken token);
+        public Task<U32> LatenessAsync(CancellationToken token);
 
         /// <summary>
         ///  The configuration for the current epoch. Should never be `None` as it is initialized in

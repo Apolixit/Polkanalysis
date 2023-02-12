@@ -12,11 +12,22 @@ namespace Substats.AjunaExtension
 {
     public static class NumberExtension
     {
-        public static BigInteger ToBigInteger(this U128? num)
+        public static U128 With(this U128 prim, BigInteger num)
         {
-            if (num == null) return BigInteger.Zero;
+            prim.Create(num);
+            return prim;
+        }
 
-            return num.Value;
+        public static U64 With(this U64 prim, ulong num)
+        {
+            prim.Create(num);
+            return prim;
+        }
+
+        public static U32 With(this U32 prim, uint num)
+        {
+            prim.Create(num);
+            return prim;
         }
 
         public static Id ToParachainId(this uint id)

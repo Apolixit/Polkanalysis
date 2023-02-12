@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
     public class ValidatorPrefs
     {
         public Perbill Commission { get; set; }
-        public bool Blocked { get; set; }
+        public Bool Blocked { get; set; }
     }
 }

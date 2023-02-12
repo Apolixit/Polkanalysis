@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
     /// >> 668 - Variant[polkadot_runtime_parachains.paras.PvfCheckCause]
     /// </summary>
     public sealed class EnumPvfCheckCause : BaseEnumExt<PvfCheckCause, Id, 
-        BaseTuple<Id, Ajuna.NetApi.Model.Types.Primitive.U32>>
+        BaseTuple<Id, U32>>
     {
     }
 }

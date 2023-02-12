@@ -1,5 +1,7 @@
-﻿using Org.BouncyCastle.Math;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
 {
-    public interface IStakingStorage
+    public interface IStakingStorage : IPalletStorage
     {
         /// <summary>
         /// The ideal number of active validators.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> ValidatorCountAsync(CancellationToken token);
+        public Task<U32> ValidatorCountAsync(CancellationToken token);
 
         /// <summary>
         /// Minimum number of staking participants before emergency conditions are imposed.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> MinimumValidatorCountAsync(CancellationToken token);
+        public Task<U32> MinimumValidatorCountAsync(CancellationToken token);
 
         /// <summary>
         ///  Any validators that may never be slashed or forcibly kicked. It's a Vec since they're
@@ -46,14 +48,14 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> MinNominatorBondAsync(CancellationToken token);
+        public Task<U128> MinNominatorBondAsync(CancellationToken token);
 
         /// <summary>
         /// The minimum active bond to become and maintain the role of a validator.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> MinValidatorBondAsync(CancellationToken token);
+        public Task<U128> MinValidatorBondAsync(CancellationToken token);
 
         /// <summary>
         ///  The minimum amount of commission that validators can set.
@@ -93,7 +95,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> CounterForValidatorsAsync(CancellationToken token);
+        public Task<U32> CounterForValidatorsAsync(CancellationToken token);
 
         /// <summary>
         ///  The maximum validator count before we stop allowing new validators to join.
@@ -102,7 +104,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> MaxValidatorsCountAsync(CancellationToken token);
+        public Task<U32> MaxValidatorsCountAsync(CancellationToken token);
 
         /// <summary>
         ///  The map from nominator stash key to their nomination preferences, namely the validators that
@@ -132,7 +134,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> CounterForNominatorsAsync(CancellationToken token);
+        public Task<U32> CounterForNominatorsAsync(CancellationToken token);
 
         /// <summary>
         ///  The maximum nominator count before we stop allowing new validators to join.
@@ -141,7 +143,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> MaxNominatorsCountAsync(CancellationToken token);
+        public Task<U32> MaxNominatorsCountAsync(CancellationToken token);
 
         /// <summary>
         ///  The current era index.
@@ -151,7 +153,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> CurrentEraAsync(CancellationToken token);
+        public Task<U32> CurrentEraAsync(CancellationToken token);
 
         /// <summary>
         ///  The active era information, it holds index and start.
@@ -172,7 +174,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> ErasStartSessionIndexAsync(uint key, CancellationToken token);
+        public Task<U32> ErasStartSessionIndexAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  Exposure of validator at era.
@@ -185,7 +187,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Exposure> ErasStakersAsync((uint, SubstrateAccount) key, CancellationToken token);
+        public Task<Exposure> ErasStakersAsync((U32, SubstrateAccount) key, CancellationToken token);
 
         /// <summary>
         ///  Clipped Exposure of validator at era.
@@ -203,7 +205,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Exposure> ErasStakersClippedAsync((uint, SubstrateAccount) key, CancellationToken token);
+        public Task<Exposure> ErasStakersClippedAsync((U32, SubstrateAccount) key, CancellationToken token);
 
         /// <summary>
         ///  Similar to `ErasStakers`, this holds the preferences of validators.
@@ -215,7 +217,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<ValidatorPrefs> ErasValidatorPrefsAsync((uint, SubstrateAccount) key, CancellationToken token);
+        public Task<ValidatorPrefs> ErasValidatorPrefsAsync((U32, SubstrateAccount) key, CancellationToken token);
 
         /// <summary>
         ///  The total validator era payout for the last `HISTORY_DEPTH` eras.
@@ -225,7 +227,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> ErasValidatorRewardAsync(uint key, CancellationToken token);
+        public Task<U128> ErasValidatorRewardAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  Rewards for the last `HISTORY_DEPTH` eras.
@@ -234,7 +236,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<EraRewardPoints> ErasRewardPointsAsync(uint key, CancellationToken token);
+        public Task<EraRewardPoints> ErasRewardPointsAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  The total amount staked for the last `HISTORY_DEPTH` eras.
@@ -243,7 +245,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> ErasTotalStakeAsync(uint key, CancellationToken token);
+        public Task<U128> ErasTotalStakeAsync(U32 key, CancellationToken token);
 
         /// <summary>
         /// Mode of era forcing.
@@ -266,7 +268,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> CanceledSlashPayoutAsync(CancellationToken token);
+        public Task<U128> CanceledSlashPayoutAsync(CancellationToken token);
 
         /// <summary>
         /// All unapplied slashes that are queued for later.
@@ -274,7 +276,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<UnappliedSlash>> UnappliedSlashesAsync(uint key, CancellationToken token);
+        public Task<IEnumerable<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  A mapping from still-bonded eras to the first session index of that era.
@@ -284,7 +286,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<uint, uint>> BondedErasAsync(CancellationToken token);
+        public Task<IDictionary<U32, U32>> BondedErasAsync(CancellationToken token);
 
         /// <summary>
         ///  All slashing events on validators, mapped by era to the highest slash proportion
@@ -293,7 +295,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<(Perbill, BigInteger)> ValidatorSlashInEraAsync((uint, SubstrateAccount) key, CancellationToken token);
+        public Task<(Perbill, U128)> ValidatorSlashInEraAsync((U32, SubstrateAccount) key, CancellationToken token);
 
         /// <summary>
         /// All slashing events on nominators, mapped by era to the highest slash value of the era.
@@ -301,7 +303,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> NominatorSlashInEraAsync((uint, SubstrateAccount) key, CancellationToken token);
+        public Task<U128> NominatorSlashInEraAsync((U32, SubstrateAccount) key, CancellationToken token);
 
         /// <summary>
         /// Slashing spans for stash accounts.
@@ -318,7 +320,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SpanRecord> SpanSlashAsync((SubstrateAccount, uint) key, CancellationToken token);
+        public Task<SpanRecord> SpanSlashAsync((SubstrateAccount, U32) key, CancellationToken token);
 
         /// <summary>
         ///  The last planned session scheduled by the session pallet.
@@ -327,7 +329,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> CurrentPlannedSessionAsync(CancellationToken token);
+        public Task<U32> CurrentPlannedSessionAsync(CancellationToken token);
 
         /// <summary>
         ///  Indices of validators that have offended in the active era and whether they are currently
@@ -342,7 +344,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<uint, bool>> OffendingValidatorsAsync(CancellationToken token);
+        public Task<IDictionary<U32, Bool>> OffendingValidatorsAsync(CancellationToken token);
 
         /// <summary>
         ///  True if network has been upgraded to this version.

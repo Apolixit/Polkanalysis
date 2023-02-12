@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Hash
+namespace Substats.Domain.Contracts.Core
 {
-    public class Hash
-    {
-        public required string Value { get; set; }
+    //public class Hash
+    //{
+    //    public required string Value { get; set; }
 
-        public Ajuna.NetApi.Model.Types.Base.Hash AjunaHash { get; set; }
-    }
+    //    public Ajuna.NetApi.Model.Types.Base.Hash AjunaHash { get; set; }
+    //}
 }

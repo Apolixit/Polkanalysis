@@ -1,4 +1,6 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Authorship
 {
-    public interface IAuthorshipStorage
+    public interface IAuthorshipStorage : IPalletStorage
     {
         /// <summary>
         /// Uncles
@@ -28,6 +30,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Authorship
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<bool> DidSetUnclesAsync(CancellationToken token);
+        public Task<Bool> DidSetUnclesAsync(CancellationToken token);
     }
 }

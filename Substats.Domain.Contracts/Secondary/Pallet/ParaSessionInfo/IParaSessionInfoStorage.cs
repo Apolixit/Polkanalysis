@@ -1,4 +1,6 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
 {
-    public interface IParaSessionInfoStorage
+    public interface IParaSessionInfoStorage : IPalletStorage
     {
         /// <summary>
         ///  Assignment keys for the current session.
@@ -23,7 +25,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> EarliestStoredSessionAsync(CancellationToken token);
+        public Task<U32> EarliestStoredSessionAsync(CancellationToken token);
 
         /// <summary>
         ///  Session information in a rolling window.
@@ -33,7 +35,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SessionInfo> SessionsAsync(uint key, CancellationToken token);
+        public Task<SessionInfo> SessionsAsync(U32 key, CancellationToken token);
 
         /// <summary>
         /// The validator account keys of the validators actively participating in parachain consensus.
@@ -41,6 +43,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<SubstrateAccount>> AccountKeysAsync(uint key, CancellationToken token);
+        public Task<IEnumerable<SubstrateAccount>> AccountKeysAsync(U32 key, CancellationToken token);
     }
 }

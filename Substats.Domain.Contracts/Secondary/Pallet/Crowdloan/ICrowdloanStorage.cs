@@ -1,5 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
 {
-    public interface ICrowdloanStorage
+    public interface ICrowdloanStorage : IPalletStorage
     {
         /// <summary>
         /// Info on all of the funds.
@@ -31,6 +32,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> EndingsCountAsync(CancellationToken token);
+        public Task<U32> EndingsCountAsync(CancellationToken token);
     }
 }

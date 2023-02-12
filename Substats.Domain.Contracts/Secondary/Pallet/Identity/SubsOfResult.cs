@@ -1,16 +1,13 @@
-﻿using Org.BouncyCastle.Math;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
 {
     public class SubsOfResult
     {
-        public required BigInteger Number { get; set; } = BigInteger.Zero;
+        public required U128 Number { get; set; } = new U128().With(BigInteger.Zero);
         public required IEnumerable<SubstrateAccount> Accounts { get; set; }
     }
 }

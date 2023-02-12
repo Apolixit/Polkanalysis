@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Repository;
 using Substats.Infrastructure.DirectAccess.Repository;
 using Substats.Integration.Tests.Contracts;
 using System;

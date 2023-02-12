@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
     public sealed class EnumJudgement : BaseEnumExt<
             Judgement,
             BaseVoid,
-            Ajuna.NetApi.Model.Types.Primitive.U128,
+            U128,
             BaseVoid,
             BaseVoid,
             BaseVoid,

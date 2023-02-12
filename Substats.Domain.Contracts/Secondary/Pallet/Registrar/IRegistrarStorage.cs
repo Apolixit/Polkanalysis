@@ -1,4 +1,5 @@
 ﻿using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Registrar
 {
-    public interface IRegistrarStorage
+    public interface IRegistrarStorage : IPalletStorage
     {
         /// <summary>
         /// Pending swap operations.

@@ -1,6 +1,8 @@
-﻿using Org.BouncyCastle.Math;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
+using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Hash;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
 {
-    public interface IAwesomeAvatarsStorage
+    public interface IAwesomeAvatarsStorage : IPalletStorage
     {
         public Task<SubstrateAccount> OrganizerAsync(CancellationToken token);
 
         public Task<ushort> CurrentSeasonIdAsync(CancellationToken token);
 
-        public Task<bool> IsSeasonActiveAsync(CancellationToken token);
+        public Task<Bool> IsSeasonActiveAsync(CancellationToken token);
 
         /// <summary>
         /// Storage for the seasons.
@@ -31,9 +33,9 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
 
         public Task<IEnumerable<Hash>> OwnersAsync(SubstrateAccount key, CancellationToken token);
 
-        public Task<uint> LastMintedBlockNumbersAsync(SubstrateAccount key, CancellationToken token);
+        public Task<U32> LastMintedBlockNumbersAsync(SubstrateAccount key, CancellationToken token);
         public Task<ushort> FreeMintsAsync(SubstrateAccount key, CancellationToken token);
 
-        public Task<BigInteger> TradeAsync(Hash key, CancellationToken token);
+        public Task<U128> TradeAsync(Hash key, CancellationToken token);
     }
 }

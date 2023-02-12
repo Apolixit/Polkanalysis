@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Secondary.Pallet.Balances;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Secondary.Pallet.Balances;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
 {
     public class AccountInfo
     {
-        public uint Nonce { get; set; }
-        public uint Consumers { get; set; }
-        public uint Providers { get; set; }
-        public uint Sufficients { get; set; }
+        public U32 Nonce { get; set; }
+        public U32 Consumers { get; set; }
+        public U32 Providers { get; set; }
+        public U32 Sufficients { get; set; }
         public AccountData Data { get; set; } = new AccountData();
 
     }

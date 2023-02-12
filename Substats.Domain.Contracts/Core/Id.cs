@@ -1,4 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types;
+using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.AjunaExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,13 @@ namespace Substats.Domain.Contracts.Core
     /// </summary>
     public class Id : IType
     {
-        public uint Value { get; set; }
+        public Id() { }
+        public Id(uint value)
+        {
+            Value = new U32().With(value);
+        }
+
+        public U32 Value { get; set; }
         public int TypeSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void Create(string str)

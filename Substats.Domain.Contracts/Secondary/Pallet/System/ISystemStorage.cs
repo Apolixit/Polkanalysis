@@ -1,5 +1,7 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Core.Hash;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.System
 {
-    public interface ISystemStorage
+    public interface ISystemStorage : IPalletStorage
     {
         /// <summary>
         /// The full account information for a particular account ID.
@@ -23,7 +25,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> ExtrinsicCountAsync(CancellationToken token);
+        public Task<U32> ExtrinsicCountAsync(CancellationToken token);
 
         /// <summary>
         /// The current weight for the block.
@@ -37,7 +39,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> AllExtrinsicsLenAsync(CancellationToken token);
+        public Task<U32> AllExtrinsicsLenAsync(CancellationToken token);
 
         /// <summary>
         /// Map of block numbers to block hashes.
@@ -45,7 +47,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// <param name="blockId"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hash> BlockHashAsync(uint blockId, CancellationToken token);
+        public Task<Hash> BlockHashAsync(U32 blockId, CancellationToken token);
 
         /// <summary>
         /// Extrinsics data for the current block (maps an extrinsic's index to its data).
@@ -53,14 +55,14 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// <param name="extrinsicId"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<byte[]> ExtrinsicDataAsync(uint extrinsicId, CancellationToken token);
+        public Task<byte[]> ExtrinsicDataAsync(U32 extrinsicId, CancellationToken token);
 
         /// <summary>
         /// The current block number being processed. Set by `execute_block`.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> NumberAsync(CancellationToken token);
+        public Task<U32> NumberAsync(CancellationToken token);
 
         /// <summary>
         /// Hash of the previous block.
@@ -94,7 +96,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> EventCountAsync(CancellationToken token);
+        public Task<U32> EventCountAsync(CancellationToken token);
 
         /// <summary>
         ///  Mapping between a topic (represented by T::Hash) and a vector of indexes
@@ -111,7 +113,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<(uint, uint)>> EventTopicsAsync(Hash key, CancellationToken token);
+        public Task<IEnumerable<(U32, U32)>> EventTopicsAsync(Hash key, CancellationToken token);
 
         /// <summary>
         /// Stores the `spec_version` and `spec_name` of when the last runtime upgrade happened.
@@ -125,7 +127,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<bool> UpgradedToU32RefCountAsync(CancellationToken token);
+        public Task<Bool> UpgradedToU32RefCountAsync(CancellationToken token);
 
         /// <summary>
         ///  True if we have upgraded so that AccountInfo contains three types of `RefCount`. False
@@ -133,7 +135,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<bool> UpgradedToTripleRefCountAsync(CancellationToken token);
+        public Task<Bool> UpgradedToTripleRefCountAsync(CancellationToken token);
 
         /// <summary>
         /// The execution phase of the block.

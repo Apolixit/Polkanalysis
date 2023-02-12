@@ -17,9 +17,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         SecondaryVRF = 3,
     }
 
-    /// <summary>
-    /// >> 462 - Variant[sp_consensus_babe.digests.PreDigest]
-    /// </summary>
     public sealed class EnumPreDigest : BaseEnumExt<PreDigest, BaseVoid, PrimaryPreDigest, SecondaryPlainPreDigest, SecondaryVRFPreDigest>
     {
     }

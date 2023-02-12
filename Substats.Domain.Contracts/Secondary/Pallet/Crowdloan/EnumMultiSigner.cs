@@ -17,9 +17,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
         Ecdsa = 2,
     }
 
-    /// <summary>
-    /// >> 417 - Variant[sp_runtime.MultiSigner]
-    /// </summary>
     public sealed class EnumMultiSigner : BaseEnumExt<MultiSigner, Hash, Hash, Hash>
     {
     }

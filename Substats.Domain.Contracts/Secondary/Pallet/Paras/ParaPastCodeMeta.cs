@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
     public class ParaPastCodeMeta
     {
         public IEnumerable<ReplacementTimes> UpgradeTimes { get; set; } = Enumerable.Empty<ReplacementTimes>();
-        public uint? LastPruned { get; set; }
+        public U32? LastPruned { get; set; }
     }
 }

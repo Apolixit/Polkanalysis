@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
 {
     public class BabeEpochConfiguration
     {
-        public (ulong, ulong) c { get; set; }
+        public (U64, U64) c { get; set; }
         public EnumAllowedSlots AllowedSlots { get; set; }
     }
 }

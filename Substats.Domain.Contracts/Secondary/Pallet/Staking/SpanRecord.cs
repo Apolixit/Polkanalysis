@@ -1,16 +1,13 @@
-﻿using Org.BouncyCastle.Math;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.AjunaExtension;
+using System.Numerics;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
 {
     public class SpanRecord
     {
-        public BigInteger Slashed { get; set; } = BigInteger.Zero;
-        public BigInteger PaidOut { get; set; } = BigInteger.Zero;
+        public U128 Slashed { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 PaidOut { get; set; } = new U128().With(BigInteger.Zero);
 
     }
 }

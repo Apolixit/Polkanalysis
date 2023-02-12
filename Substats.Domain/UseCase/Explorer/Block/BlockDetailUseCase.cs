@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using OperationResult;
-using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Repository;
 
 namespace Substats.Domain.UseCase.Explorer.Block
 {

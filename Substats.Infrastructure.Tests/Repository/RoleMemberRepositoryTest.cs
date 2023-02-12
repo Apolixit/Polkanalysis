@@ -2,6 +2,7 @@
 using Substats.Domain.Contracts.Exception;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Repository;
 using Substats.Infrastructure.DirectAccess.Repository;
 using System;
 using System.Collections.Generic;

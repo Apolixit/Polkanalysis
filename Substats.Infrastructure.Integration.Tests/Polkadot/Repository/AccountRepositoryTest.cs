@@ -1,5 +1,4 @@
-﻿using Substats.Domain.Contracts.Secondary;
-using Substats.Integration.Tests.Contracts;
+﻿using Substats.Integration.Tests.Contracts;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Substats.Infrastructure.DirectAccess.Repository;
 using Ajuna.NetApi;
+using Substats.Domain.Contracts.Secondary.Repository;
 
 namespace Substats.Infrastructure.DirectAccess.Integration.Tests.Polkadot.Repository
 {

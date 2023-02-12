@@ -2,7 +2,6 @@
 using Substats.Domain.Contracts.Dto.Block;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Primary;
-using Substats.Domain.Contracts.Secondary;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using System;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Contracts.Secondary.Repository;
 
 namespace Substats.Domain.UseCase.Explorer.Block
 {

@@ -18,7 +18,7 @@ namespace Substats.Infrastructure.DirectAccess.Tests.Repository.Block
             Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetEventsAsync("invalidBlockHash", CancellationToken.None));
             Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetExtrinsicsAsync("invalidBlockHash", CancellationToken.None));
 
-            _substrateService.Client.Core.InvokeAsync<Hash>("chain_getBlockHash", Arg.Any<object>(), CancellationToken.None).Returns(new Hash());
+            _substrateService.Api.Core.InvokeAsync<Hash>("chain_getBlockHash", Arg.Any<object>(), CancellationToken.None).Returns(new Hash());
 
             Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetBlockDetailsAsync(100, CancellationToken.None));
             Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetEventsAsync(100, CancellationToken.None));

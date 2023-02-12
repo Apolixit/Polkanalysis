@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
     {
         public byte[] GenesisHead { get; set; } = new byte[0];
         public byte[] ValidationCode { get; set; } = new byte[0];
-        public bool ParaKind { get; set; }
+        public Bool ParaKind { get; set; }
     }
 }

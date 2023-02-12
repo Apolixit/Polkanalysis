@@ -1,4 +1,5 @@
 ﻿using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
 {
-    public interface IIdentityStorage
+    public interface IIdentityStorage : IPalletStorage
     {
         /// <summary>
         /// Information that is pertinent to identify the entity behind an account.

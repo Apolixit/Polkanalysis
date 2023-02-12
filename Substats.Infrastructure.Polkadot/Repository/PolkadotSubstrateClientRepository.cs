@@ -14,48 +14,48 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository
 {
-    public class PolkadotSubstrateClientRepository : ISubstrateClientRepository
-    {
-        private readonly ISubstrateEndpoint _substrateconfiguration;
-        private SubstrateClientExt? _client;
-        public PolkadotSubstrateClientRepository(ISubstrateEndpoint substrateconfiguration)
-        {
-            _substrateconfiguration = substrateconfiguration;
-        }
+    //public class PolkadotSubstrateClientRepository : ISubstrateClientRepository
+    //{
+    //    private readonly ISubstrateEndpoint _substrateconfiguration;
+    //    private SubstrateClientExt? _client;
+    //    public PolkadotSubstrateClientRepository(ISubstrateEndpoint substrateconfiguration)
+    //    {
+    //        _substrateconfiguration = substrateconfiguration;
+    //    }
 
-        private SubstrateClientExt Client
-        {
-            get
-            {
-                if (_client == null)
-                {
-                    _client = new SubstrateClientExt(_substrateconfiguration.EndPointUri, ChargeTransactionPayment.Default());
-                }
-                return _client;
-            }
-        }
+    //    private SubstrateClientExt Client
+    //    {
+    //        get
+    //        {
+    //            if (_client == null)
+    //            {
+    //                _client = new SubstrateClientExt(_substrateconfiguration.EndPointUri, ChargeTransactionPayment.Default());
+    //            }
+    //            return _client;
+    //        }
+    //    }
 
-        public SubstrateClient Core => Client;
-        public MetaData MetaData => Client.MetaData;
-        public BalancesStorage BalancesStorage => Client.BalancesStorage;
-        public IdentityStorage IdentityStorage => Client.IdentityStorage;
-        public NominationPoolsStorage NominationPoolsStorage => Client.NominationPoolsStorage;
-        public SystemStorage SystemStorage => Client.SystemStorage;
-        public StakingStorage StakingStorage => Client.StakingStorage;
-        public AuthorshipStorage AuthorshipStorage => Client.AuthorshipStorage;
-        public AuctionsStorage AuctionsStorage => Client.AuctionsStorage;
-        public CrowdloanStorage CrowdloanStorage => Client.CrowdloanStorage;
+    //    public SubstrateClient Core => Client;
+    //    public MetaData MetaData => Client.MetaData;
+    //    public BalancesStorage BalancesStorage => Client.BalancesStorage;
+    //    public IdentityStorage IdentityStorage => Client.IdentityStorage;
+    //    public NominationPoolsStorage NominationPoolsStorage => Client.NominationPoolsStorage;
+    //    public SystemStorage SystemStorage => Client.SystemStorage;
+    //    public StakingStorage StakingStorage => Client.StakingStorage;
+    //    public AuthorshipStorage AuthorshipStorage => Client.AuthorshipStorage;
+    //    public AuctionsStorage AuctionsStorage => Client.AuctionsStorage;
+    //    public CrowdloanStorage CrowdloanStorage => Client.CrowdloanStorage;
 
-        public ParasStorage ParasStorage => Client.ParasStorage;
+    //    public ParasStorage ParasStorage => Client.ParasStorage;
 
-        public SessionStorage SessionStorage => Client.SessionStorage;
+    //    public SessionStorage SessionStorage => Client.SessionStorage;
 
-        public ParaSessionInfoStorage ParaSessionInfoStorage => Client.ParaSessionInfoStorage;
+    //    public ParaSessionInfoStorage ParaSessionInfoStorage => Client.ParaSessionInfoStorage;
 
-        public RegistrarStorage RegistrarStorage => Client.RegistrarStorage;
+    //    public RegistrarStorage RegistrarStorage => Client.RegistrarStorage;
 
-        public BabeStorage BabeStorage => Client.BabeStorage;
+    //    public BabeStorage BabeStorage => Client.BabeStorage;
 
-        //public AwesomeAvatarsStorage? AwesomeAvatarsStorage => null;
-    }
+    //    //public AwesomeAvatarsStorage? AwesomeAvatarsStorage => null;
+    //}
 }

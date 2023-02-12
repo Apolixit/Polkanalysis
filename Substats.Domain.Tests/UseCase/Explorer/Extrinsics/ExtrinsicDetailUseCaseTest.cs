@@ -4,12 +4,12 @@ using Substats.Domain.Contracts.Dto.Block;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Dto.Extrinsic;
 using Substats.Domain.Contracts.Primary;
-using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.UseCase;
 using Substats.Domain.UseCase.Explorer.Extrinsics;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
+using Substats.Domain.Contracts.Secondary.Repository;
 
 namespace Substats.Domain.Tests.UseCase.Explorer.Extrinsics
 {

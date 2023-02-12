@@ -1,4 +1,6 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Session
 {
-    public interface ISessionStorage
+    public interface ISessionStorage : IPalletStorage
     {
         /// <summary>
         /// The current set of validators.
@@ -21,7 +23,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> CurrentIndexAsync(CancellationToken token);
+        public Task<U32> CurrentIndexAsync(CancellationToken token);
 
         /// <summary>
         ///  True if the underlying economic identities or weighting behind the validators
@@ -29,7 +31,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<bool> QueuedChangedAsync(CancellationToken token);
+        public Task<Bool> QueuedChangedAsync(CancellationToken token);
 
         /// <summary>
         ///  The queued keys for the next session. When the next session begins, these keys
@@ -48,7 +50,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<uint>> DisabledValidatorsAsync(CancellationToken token);
+        public Task<IEnumerable<U32>> DisabledValidatorsAsync(CancellationToken token);
 
         /// <summary>
         /// The next session keys for a validator.

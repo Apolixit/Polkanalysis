@@ -1,10 +1,7 @@
-﻿using Org.BouncyCastle.Math;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
 {
@@ -12,13 +9,13 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
     {
         public required SubstrateAccount Depositor { get; set; }
         public EnumMultiSigner? Verifier { get; set; }
-        public BigInteger Deposit { get; set; } = BigInteger.Zero;
-        public BigInteger Raised { get; set; } = BigInteger.Zero;
-        public uint End { get; set; }
-        public BigInteger Cap { get; set; } = BigInteger.Zero;
+        public U128 Deposit { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 Raised { get; set; } = new U128().With(BigInteger.Zero);
+        public U32 End { get; set; }
+        public U128 Cap { get; set; } = new U128().With(BigInteger.Zero);
         public EnumLastContribution? LastContribution { get; set; }
-        public uint FirstPeriod { get; set; }
-        public uint LastPeriod { get; set; }
-        public uint FundIndex { get; set; }
+        public U32 FirstPeriod { get; set; }
+        public U32 LastPeriod { get; set; }
+        public U32 FundIndex { get; set; }
     }
 }

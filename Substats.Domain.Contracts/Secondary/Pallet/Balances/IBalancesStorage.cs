@@ -1,5 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
 {
-    public interface IBalancesStorage
+    public interface IBalancesStorage : IPalletStorage
     {
         /// <summary>
         ///  The total units issued in the system.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> TotalIssuanceAsync(CancellationToken token);
+        public Task<U128> TotalIssuanceAsync(CancellationToken token);
 
         /// <summary>
         /// The total units of outstanding deactivated balance in the system.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> InactiveIssuanceAsync(CancellationToken token);
+        public Task<U128> InactiveIssuanceAsync(CancellationToken token);
 
         /// <summary>
         ///  The Balances pallet example of storing the balance of an account.

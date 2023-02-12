@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
     {
         public object VotesAccept { get; set; }
         public object VotesReject { get; set; }
-        public uint Age { get; set; }
-        public uint CreatedAt { get; set; }
+        public U32 Age { get; set; }
+        public U32 CreatedAt { get; set; }
         public EnumPvfCheckCause Causes { get; set; }
     }
 }

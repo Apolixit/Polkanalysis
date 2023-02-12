@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
 {
     public class SlashingSpans
     {
-        public uint SpanIndex { get; set; }
-        public uint LastStart { get; set; }
-        public uint LastNonzeroSlash { get; set; }
-        public IEnumerable<uint> Prior { get; set; } = Enumerable.Empty<uint>();
+        public U32 SpanIndex { get; set; }
+        public U32 LastStart { get; set; }
+        public U32 LastNonzeroSlash { get; set; }
+        public IEnumerable<U32> Prior { get; set; } = Enumerable.Empty<U32>();
 
     }
 }

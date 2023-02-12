@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Substats.Domain.Contracts.Dto;
-using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Repository;
 using Substats.Domain.Dto;
 using Substats.Infrastructure.DirectAccess.Repository;
 using Substats.Integration.Tests.Contracts;

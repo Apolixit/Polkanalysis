@@ -9,9 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Substats.Domain.Contracts.Runtime;
-using Substats.Infrastructure.DirectAccess.Repository;
 using Substats.Domain.Contracts.Dto;
 using Microsoft.Extensions.Logging;
+using Substats.Domain.Contracts.Secondary.Repository;
+using Substats.Infrastructure.Polkadot.Repository.Repository;
 
 namespace Substats.Infrastructure.DirectAccess.Tests.Repository.Block
 {

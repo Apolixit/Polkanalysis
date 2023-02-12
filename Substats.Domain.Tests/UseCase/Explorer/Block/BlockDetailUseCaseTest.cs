@@ -1,7 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Substats.Domain.Contracts.Dto.Block;
 using Substats.Domain.Contracts.Primary;
-using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.UseCase;
 using Substats.Domain.UseCase.Explorer;
 using Substats.Domain.UseCase.Explorer.Block;
@@ -13,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substats.Domain.Contracts.Secondary.Repository;
 
 namespace Substats.Domain.Tests.UseCase.Explorer.Block
 {

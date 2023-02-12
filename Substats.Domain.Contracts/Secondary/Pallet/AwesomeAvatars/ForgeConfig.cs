@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
 {
     public class ForgeConfig
     {
-        public bool Open { get; set; }
-        public byte MinSacrifices { get; set; }
-        public byte MaxSacrifices { get; set; }
+        public Bool Open { get; set; }
+        public U8 MinSacrifices { get; set; }
+        public U8 MaxSacrifices { get; set; }
 
     }
 }

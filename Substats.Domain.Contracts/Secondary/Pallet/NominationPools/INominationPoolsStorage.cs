@@ -1,5 +1,7 @@
-﻿using Org.BouncyCastle.Math;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +13,14 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
     /// <summary>
     /// https://docs.rs/pallet-nomination-pools/latest/pallet_nomination_pools/
     /// </summary>
-    public interface INominationPoolsStorage
+    public interface INominationPoolsStorage : IPalletStorage
     {
         /// <summary>
         /// Minimum amount to bond to join a pool.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> MinJoinBondAsync(CancellationToken token);
+        public Task<U128> MinJoinBondAsync(CancellationToken token);
 
         /// <summary>
         ///  Minimum bond required to create a pool.
@@ -31,7 +33,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BigInteger> MinCreateBondAsync(CancellationToken token);
+        public Task<U128> MinCreateBondAsync(CancellationToken token);
 
         /// <summary>
         ///  Maximum number of nomination pools that can exist. If `None`, then an unbounded number of
@@ -39,7 +41,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> MaxPoolsAsync(CancellationToken token);
+        public Task<U32> MaxPoolsAsync(CancellationToken token);
 
         /// <summary>
         ///  Maximum number of members that can exist in the system. If `None`, then the count
@@ -47,7 +49,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> MaxPoolMembersAsync(CancellationToken token);
+        public Task<U32> MaxPoolMembersAsync(CancellationToken token);
 
         /// <summary>
         ///  Maximum number of members that may belong to pool. If `None`, then the count of
@@ -55,21 +57,21 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> MaxPoolMembersPerPoolAsync(CancellationToken token);
+        public Task<U32> MaxPoolMembersPerPoolAsync(CancellationToken token);
 
         /// <summary>
         /// Counter for the related counted storage map
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> CounterForPoolMembersAsync(CancellationToken token);
+        public Task<U32> CounterForPoolMembersAsync(CancellationToken token);
 
         /// <summary>
         /// Counter for the related counted storage map
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<uint> CounterForBondedPoolsAsync(CancellationToken token);
+        public Task<U32> CounterForBondedPoolsAsync(CancellationToken token);
 
         /// <summary>
         ///  Active members.
@@ -85,7 +87,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="poolId"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BondedPoolInner> BondedPoolsAsync(uint poolId, CancellationToken token);
+        public Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token);
 
         /// <summary>
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout
@@ -94,6 +96,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="poolId"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<RewardPool> RewardPoolsAsync(uint poolId, CancellationToken token);
+        public Task<RewardPool> RewardPoolsAsync(U32 poolId, CancellationToken token);
     }
 }

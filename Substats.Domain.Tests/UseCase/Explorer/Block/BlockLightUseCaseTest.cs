@@ -1,6 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.UseCase.Explorer.Block;
 using Substats.Domain.UseCase;
 using Microsoft.Extensions.Logging;
@@ -12,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NSubstitute.ReturnsExtensions;
 using Substats.Domain.Contracts.Primary;
+using Substats.Domain.Contracts.Secondary.Repository;
 
 namespace Substats.Domain.Tests.UseCase.Explorer.Block
 {

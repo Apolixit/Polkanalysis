@@ -1,5 +1,4 @@
-﻿using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.UseCase.Explorer.Block;
+﻿using Substats.Domain.UseCase.Explorer.Block;
 using Substats.Domain.UseCase;
 using Substats.Domain.UseCase.Explorer.Events;
 using Substats.Domain.UseCase.Explorer.Extrinsics;
@@ -8,6 +7,7 @@ using NSubstitute;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Primary;
 using NSubstitute.ReturnsExtensions;
+using Substats.Domain.Contracts.Secondary.Repository;
 
 namespace Substats.Domain.Tests.UseCase.Explorer.Events
 {

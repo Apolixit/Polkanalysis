@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
     public class Nominations
     {
         public IEnumerable<SubstrateAccount> Targets { get; set; } = Enumerable.Empty<SubstrateAccount>();
-        public uint SubmittedIn { get; set; }
-        public bool Suppressed { get; set; }
+        public U32 SubmittedIn { get; set; }
+        public Bool Suppressed { get; set; }
     }
 }

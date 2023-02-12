@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Core.Hash;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Core.Hash;
 using System;
 using System.Collections.Generic;
 using System.Linq;

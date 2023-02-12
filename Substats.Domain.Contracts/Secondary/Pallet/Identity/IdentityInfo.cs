@@ -16,5 +16,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
         public string PgpFingerprint { get; set; } = string.Empty;
         public string Twitter { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
+        public string Additional { get; set; } = string.Empty;
     }
 }

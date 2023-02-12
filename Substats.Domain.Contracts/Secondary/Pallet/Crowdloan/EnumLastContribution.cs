@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
         Ending = 2,
     }
 
-    public sealed class EnumLastContribution : BaseEnumExt<LastContribution, BaseVoid, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumLastContribution : BaseEnumExt<LastContribution, BaseVoid, U32, U32>
     {
     }
 }
