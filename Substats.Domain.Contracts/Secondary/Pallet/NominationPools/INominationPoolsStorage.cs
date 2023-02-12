@@ -97,5 +97,68 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<RewardPool> RewardPoolsAsync(U32 poolId, CancellationToken token);
+
+        /// <summary>
+        /// Counter for the related counted storage map
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<U32> CounterForRewardPoolsAsync(CancellationToken token);
+
+        /// <summary>
+        ///  Groups of unbonding pools. Each group of unbonding pools belongs to a bonded pool,
+        ///  hence the name sub-pools. Keyed by the bonded pools account.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<SubPools> SubPoolsStorageAsync(U32 key, CancellationToken token);
+
+        /// <summary>
+        /// Counter for the related counted storage map
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<U32> CounterForSubPoolsStorageAsync(CancellationToken token);
+
+        /// <summary>
+        /// Metadata for the pool.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<U8>> MetadataAsync(U32 key, CancellationToken token);
+
+        /// <summary>
+        /// Counter for the related counted storage map
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<U32> CounterForMetadataAsync(CancellationToken token);
+
+        /// <summary>
+        /// Ever increasing number of all pools created so far.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<U32> LastPoolIdAsync(CancellationToken token);
+
+        /// <summary>
+        ///  A reverse lookup from the pool's account id to its id.
+        /// 
+        ///  This is only used for slashing. In all other instances, the pool id is used, and the
+        ///  accounts are deterministically derived from it.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token);
+
+        /// <summary>
+        /// Counter for the related counted storage map
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<U32> CounterForReversePoolIdLookupAsync(CancellationToken token);
     }
 }

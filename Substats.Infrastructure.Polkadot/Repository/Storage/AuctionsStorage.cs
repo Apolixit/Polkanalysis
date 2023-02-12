@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Math;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
 using Substats.Polkadot.NetApiExt.Generated;
@@ -17,7 +18,25 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             _client = client;
         }
-        
-        
+
+        public Task<U32> AuctionCounterAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<(U32, U32)> AuctionInfoAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<U128> ReservedAmountsAsync((SubstrateAccount, Id) key, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<(SubstrateAccount, Id, U128)?> WinningAsync(U32 key, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

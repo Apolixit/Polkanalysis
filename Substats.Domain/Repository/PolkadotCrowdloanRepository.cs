@@ -28,7 +28,7 @@ namespace Substats.Domain.Repository
         {
             var ids = _modelBuilder.CreateTuppleIndex(crowdloanId);
 
-            var crowdloanDetail = await _substrateNodeRepository.Api.Storage.Crowdloan.FundsAsync(new Contracts.Core.Id(ids.subId), token);
+            var crowdloanDetail = await _substrateNodeRepository.Storage.Crowdloan.FundsAsync(new Contracts.Core.Id(ids.subId), token);
 
             return null;
         }

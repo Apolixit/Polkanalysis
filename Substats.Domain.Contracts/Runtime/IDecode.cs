@@ -2,8 +2,7 @@
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest;
+using Substats.Domain.Contracts.Secondary.Pallet.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;

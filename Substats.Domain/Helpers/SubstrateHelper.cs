@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.DirectAccess.Helpers
+namespace Substats.Domain.Contracts.Helpers
 {
     public class SubstrateHelper
     {
@@ -15,7 +15,7 @@ namespace Substats.Infrastructure.DirectAccess.Helpers
                     || storageChangeSet.Changes.Length == 0
                     || storageChangeSet.Changes[0].Length < 2)
             {
-                throw new Exception("Couldn't update account information. Please check 'CallBackAccountChange'");
+                throw new System.Exception("Couldn't update account information. Please check 'CallBackAccountChange'");
             }
 
 

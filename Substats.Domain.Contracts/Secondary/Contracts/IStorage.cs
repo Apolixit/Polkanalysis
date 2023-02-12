@@ -12,6 +12,7 @@ using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
 using Substats.Domain.Contracts.Secondary.Pallet.Session;
 using Substats.Domain.Contracts.Secondary.Pallet.Staking;
 using Substats.Domain.Contracts.Secondary.Pallet.System;
+using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,5 +37,6 @@ namespace Substats.Domain.Contracts.Secondary.Contracts
         public ISessionStorage Session { get; }
         public IStakingStorage Staking { get; }
         public ISystemStorage System { get; }
+        public ITimestampStorage Timestamp { get; }
     }
 }

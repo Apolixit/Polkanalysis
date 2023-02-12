@@ -36,10 +36,10 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
 
             var accountData = new AccountData()
             {
-                Free = res.Free.ToBigInteger(),
-                FeeFrozen = res.FeeFrozen.ToBigInteger(),
-                MiscFrozen = res.MiscFrozen.ToBigInteger(),
-                Reserved = res.Reserved.ToBigInteger()
+                Free = res.Free,
+                FeeFrozen = res.FeeFrozen,
+                MiscFrozen = res.MiscFrozen,
+                Reserved = res.Reserved
             };
 
             return accountData;

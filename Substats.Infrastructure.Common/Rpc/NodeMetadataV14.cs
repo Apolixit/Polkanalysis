@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Meta;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Meta;
 using Substats.Domain.Contracts.Secondary.Common;
 using Substats.Polkadot.NetApiExt.Generated;
 using System;
@@ -7,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Common
+namespace Substats.Infrastructure.Common.Rpc
 {
     public class NodeMetadataV14 : INodeMetadataV14
     {
-        private readonly SubstrateClientExt _client;
-        public NodeMetadataV14(SubstrateClientExt client)
+        private readonly SubstrateClient _client;
+        public NodeMetadataV14(SubstrateClient client)
         {
             _client = client;
         }

@@ -1,17 +1,17 @@
-﻿using Substats.Domain.Contracts.Secondary.Common;
-using Substats.Polkadot.NetApiExt.Generated;
+﻿using Ajuna.NetApi;
+using Substats.Domain.Contracts.Secondary.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Common
+namespace Substats.Infrastructure.Common.Rpc
 {
     public class RuntimeMetadata : IMetadata
     {
-        private readonly SubstrateClientExt _client;
-        public RuntimeMetadata(SubstrateClientExt client)
+        private readonly SubstrateClient _client;
+        public RuntimeMetadata(SubstrateClient client)
         {
             _client = client;
         }
@@ -20,7 +20,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Common
         public string Magic => _client.MetaData.Magic;
         public byte Version => _client.MetaData.Version;
 
-        private INodeMetadataV14 _nodeMetadataV14;
+        private INodeMetadataV14? _nodeMetadataV14;
         public INodeMetadataV14 NodeMetadata {
             get
             {

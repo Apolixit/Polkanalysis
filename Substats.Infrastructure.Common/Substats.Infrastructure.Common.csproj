@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Substats.Domain.Contracts\Substats.Domain.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
 </Project>

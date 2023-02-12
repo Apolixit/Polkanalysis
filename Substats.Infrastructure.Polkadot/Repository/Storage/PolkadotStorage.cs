@@ -13,6 +13,7 @@ using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
 using Substats.Domain.Contracts.Secondary.Pallet.Session;
 using Substats.Domain.Contracts.Secondary.Pallet.Staking;
 using Substats.Domain.Contracts.Secondary.Pallet.System;
+using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
 using Substats.Polkadot.NetApiExt.Generated;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
@@ -41,6 +42,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         private ISessionStorage? _sessionStorage = null;
         private IStakingStorage? _stakingStorage = null;
         private ISystemStorage? _systemStorage = null;
+        private ITimestampStorage? _timestampStorage = null;
 
         public IAuctionsStorage Auctions {
             get
@@ -201,6 +203,17 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                     _systemStorage = new SystemStorage(_polkadotClient);
 
                 return _systemStorage;
+            }
+        }
+
+        public ITimestampStorage Timestamp
+        {
+            get
+            {
+                if (_timestampStorage == null)
+                    _timestampStorage = new TimestampStorage(_polkadotClient);
+
+                return _timestampStorage;
             }
         }
     }

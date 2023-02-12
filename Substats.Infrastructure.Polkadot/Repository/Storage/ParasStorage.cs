@@ -1,4 +1,6 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Core.Hash;
 using Substats.Domain.Contracts.Secondary.Pallet.Paras;
 using Substats.Polkadot.NetApiExt.Generated;
@@ -17,7 +19,8 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             _client = client;
         }
-        public Task<IEnumerable<Id>> ActionsQueueAsync(uint key, CancellationToken token)
+
+        public Task<IEnumerable<Id>> ActionsQueueAsync(U32 key, CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -27,7 +30,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
-        public Task<uint> CodeByHashRefs(Hash key, CancellationToken token)
+        public Task<U32> CodeByHashRefs(Hash key, CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -42,7 +45,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
-        public Task<uint> FutureCodeUpgradesAsync(Id key, CancellationToken token)
+        public Task<U32> FutureCodeUpgradesAsync(Id key, CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -62,7 +65,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
-        public Task<Hash> PastCodeHashAsync((Id, uint) key, CancellationToken token)
+        public Task<Hash> PastCodeHashAsync((Id, U32) key, CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -72,7 +75,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
-        public Task<IDictionary<Id, uint>> PastCodePruningAsync(CancellationToken token)
+        public Task<IDictionary<Id, U32>> PastCodePruningAsync(CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -92,12 +95,12 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
-        public Task<IDictionary<Id, uint>> UpcomingUpgradesAsync(CancellationToken token)
+        public Task<IDictionary<Id, U32>> UpcomingUpgradesAsync(CancellationToken token)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IDictionary<Id, uint>> UpgradeCooldownsAsync(CancellationToken token)
+        public Task<IDictionary<Id, U32>> UpgradeCooldownsAsync(CancellationToken token)
         {
             throw new NotImplementedException();
         }

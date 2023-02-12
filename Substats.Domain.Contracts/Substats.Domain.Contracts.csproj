@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Adapter\" />
+    <ProjectReference Include="..\Substats.AjunaExtension\Substats.AjunaExtension.csproj" />
+    <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Substats.AjunaExtension\Substats.AjunaExtension.csproj" />
-    <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
+    <Folder Include="Core\Encoding\" />
   </ItemGroup>
 
 </Project>

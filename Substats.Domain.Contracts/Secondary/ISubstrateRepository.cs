@@ -2,9 +2,11 @@
 using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Adapter.Block;
 using Substats.Domain.Contracts.Secondary.Common;
 using Substats.Domain.Contracts.Secondary.Contracts;
+using Substats.Domain.Contracts.Secondary.Rpc;
 
 namespace Substats.Domain.Contracts.Secondary
 {
@@ -15,7 +17,12 @@ namespace Substats.Domain.Contracts.Secondary
         public IMetadata RuntimeMetadata { get; }
         public IRuntimeVersion RuntimeVersion { get; }
 
-        public ITimeQueryable At(IBlockParameterLike param);
+        public ITimeQueryable At(U32 blockNumber);
+        public ITimeQueryable At(BlockNumber blockNumber);
+        public ITimeQueryable At(uint blockNumber);
+        public ITimeQueryable At(Hash blockHash);
+        public ITimeQueryable At(string blockHash);
+
         public IRpc Rpc { get; }
         public IConstants Constants { get; }
         public ICalls Calls { get; }

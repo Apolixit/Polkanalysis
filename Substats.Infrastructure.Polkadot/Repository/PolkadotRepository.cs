@@ -15,6 +15,7 @@ using Substats.Domain.Contracts.Secondary.Contracts;
 using Substats.Infrastructure.Polkadot.Repository.Storage;
 using Substats.Domain.Contracts.Secondary.Common;
 using Substats.Infrastructure.Polkadot.Repository.Common;
+using Substats.Domain.Contracts.Secondary.Rpc;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {

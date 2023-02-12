@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>

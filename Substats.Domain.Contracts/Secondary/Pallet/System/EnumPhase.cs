@@ -17,9 +17,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         Initialization = 2,
     }
 
-    /// <summary>
-    /// >> 156 - Variant[frame_system.Phase]
-    /// </summary>
     public sealed class EnumPhase : BaseEnumExt<Phase, Ajuna.NetApi.Model.Types.Primitive.U32, BaseVoid, BaseVoid>
     {
     }

@@ -3,17 +3,15 @@ using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.AjunaExtension;
+using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Dto.Era;
 using Substats.Domain.Contracts.Dto.Staking;
 using Substats.Domain.Contracts.Dto.User;
 using Substats.Domain.Contracts.Exception;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Pallet.Staking;
 using Substats.Domain.Contracts.Secondary.Repository;
-using Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list;
-using Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools;
-using Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using static Substats.Domain.Contracts.Dto.GlobalStatusDto;
 
 namespace Substats.Domain.Repository
@@ -51,46 +49,43 @@ namespace Substats.Domain.Repository
 
         public async Task<ValidatorDto> GetValidatorDetailInternalAsync(string validatorAddress, CancellationToken cancellationToken)
         {
-            var validator = new AccountId32();
-            validator.Create(Utils.GetPublicKeyFrom(validatorAddress));
+            var validator = new SubstrateAccount(validatorAddress);
 
             // Is my account a validator ?
-            var validatorSessionKey = await _substrateNodeRepository.Api.SessionStorage.NextKeys(validator, cancellationToken);
+            var validatorSessionKey = await _substrateNodeRepository.Storage.Session.NextKeysAsync(validator, cancellationToken);
 
             // If validator session key is not set => account is not a validator
             if (validatorSessionKey == null)
                 throw new InvalidOperationException($"Address {validatorAddress} is not a validator");
 
             // Get list of currently active validator in session pallet
-            var activeValidators = await _substrateNodeRepository.Api.SessionStorage.Validators(cancellationToken);
-            var isValidatorActive = activeValidators != null && activeValidators.Value.Any(x => x.IsEqual(validator));
+            var activeValidators = await _substrateNodeRepository.Storage.Session.ValidatorsAsync(cancellationToken);
+            var isValidatorActive = activeValidators != null && activeValidators.Any(x => x.IsEqual(validator));
 
-            var chainInfo = await _substrateNodeRepository.Api.Core.System.PropertiesAsync(cancellationToken);
+            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
             // Controller account
-            var boundedAccount = await _substrateNodeRepository.Api.StakingStorage.Bonded(validator, cancellationToken);
+            var boundedAccount = await _substrateNodeRepository.Storage.Staking.BondedAsync(validator, cancellationToken);
 
-            var currentEra = await _substrateNodeRepository.Api.StakingStorage.CurrentEra(cancellationToken);
-            var eraRewardPoints = await _substrateNodeRepository.Api.StakingStorage.ErasRewardPoints(currentEra, cancellationToken); // Reward for each validators (need to find my validator in this list)
-            var validatorCount = await _substrateNodeRepository.Api.StakingStorage.CounterForValidators(cancellationToken);
-            var bondedEras = await _substrateNodeRepository.Api.StakingStorage.BondedEras(cancellationToken);
-            var validatorSettings = await _substrateNodeRepository.Api.StakingStorage.Validators(validator, cancellationToken);
+            var currentEra = await _substrateNodeRepository.Storage.Staking.CurrentEraAsync(cancellationToken);
+            var eraRewardPoints = await _substrateNodeRepository.Storage.Staking.ErasRewardPointsAsync(currentEra, cancellationToken); // Reward for each validators (need to find my validator in this list)
+            var validatorCount = await _substrateNodeRepository.Storage.Staking.CounterForValidatorsAsync(cancellationToken);
+            var bondedEras = await _substrateNodeRepository.Storage.Staking.BondedErasAsync(cancellationToken);
+            var validatorSettings = await _substrateNodeRepository.Storage.Staking.ValidatorsAsync(validator, cancellationToken);
 
             // Era stakers will return something if my validator is currently active in this current Era
-            var tuple = new BaseTuple<U32, AccountId32>();
-            tuple.Create(currentEra, validator);
-            var nominators = await _substrateNodeRepository.Api.StakingStorage.ErasStakers(tuple, cancellationToken);
+            var nominators = await _substrateNodeRepository.Storage.Staking.ErasStakersAsync((currentEra, validator), cancellationToken);
 
-            var nominatorsDto = nominators.Others.Value.Select(n =>
+            var nominatorsDto = nominators.Others.Select(n =>
             {
-                var controllerAccount = _substrateNodeRepository.Api.StakingStorage.Bonded(n.Who, cancellationToken).Result;
+                var controllerAccount = _substrateNodeRepository.Storage.Staking.BondedAsync(n.Who, cancellationToken).Result;
 
                 return new NominatorDto()
                 {
                     StashAccount = _accountRepository.GetAccountIdentityAsync(n.Who, cancellationToken).Result,
                     ControllerAccount = _accountRepository.GetAccountIdentityAsync(controllerAccount, cancellationToken).Result,
                     RewardAccount = PayeeAccountAsync(n.Who, cancellationToken).Result,
-                    Bonded = n.Value.Value.Value.ToDouble(chainInfo.TokenDecimals)
+                    Bonded = n.Value.Value.ToDouble(chainInfo.TokenDecimals)
                 };
             }).ToList();
 
@@ -99,9 +94,9 @@ namespace Substats.Domain.Repository
                 ControllerAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
                 StashAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
                 RewardAddress = await _accountRepository.GetAccountIdentityAsync(validator, cancellationToken),
-                SelfBonded = nominators.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
-                TotalBonded = nominators.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
-                Commission = (double)validatorSettings.Commission.Value.Value,
+                SelfBonded = nominators.Own.ToDouble(chainInfo.TokenDecimals),
+                TotalBonded = nominators.Total.ToDouble(chainInfo.TokenDecimals),
+                Commission = (double)validatorSettings.Commission.Value,
                 SessionKey = _node.Create().AddData(validatorSessionKey),
                 Status = isValidatorActive ? AliveStatusDto.Active : AliveStatusDto.Inactive,
                 Nominators = nominatorsDto,
@@ -111,16 +106,16 @@ namespace Substats.Domain.Repository
             return validatorDto;
         }
 
-        public async Task<UserAddressDto?> PayeeAccountAsync(AccountId32 stashAccount, CancellationToken cancellationToken)
+        public async Task<UserAddressDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken)
         {
-            var rewardAccount = await _substrateNodeRepository.Api.StakingStorage.Payee(stashAccount, cancellationToken);
+            var rewardAccount = await _substrateNodeRepository.Storage.Staking.PayeeAsync(stashAccount, cancellationToken);
 
             var account = rewardAccount.Value switch
             {
                 RewardDestination.Staked => stashAccount,
-                RewardDestination.Controller => await _substrateNodeRepository.Api.StakingStorage.Bonded(stashAccount, cancellationToken),
+                RewardDestination.Controller => await _substrateNodeRepository.Storage.Staking.BondedAsync(stashAccount, cancellationToken),
                 RewardDestination.Stash => stashAccount,
-                RewardDestination.Account => (AccountId32)rewardAccount.Value2,
+                RewardDestination.Account => (SubstrateAccount)rewardAccount.Value2,
                 RewardDestination.None => null,
             };
 
@@ -135,17 +130,16 @@ namespace Substats.Domain.Repository
         }
         private async Task<NominatorDto> GetNominatorDetailInternalAsync(string nominatorAddress, CancellationToken cancellationToken)
         {
-            var nominatorAccount = new AccountId32();
-            nominatorAccount.Create(Utils.GetPublicKeyFrom(nominatorAddress));
+            var nominatorAccount = new SubstrateAccount(nominatorAddress);
 
             // Is my account a nominator ?
-            var nominatorSettings = await _substrateNodeRepository.Api.StakingStorage.Nominators(nominatorAccount, cancellationToken);
+            var nominatorSettings = await _substrateNodeRepository.Storage.Staking.NominatorsAsync(nominatorAccount, cancellationToken);
             if (nominatorSettings == null)
                 throw new InvalidOperationException($"Address {nominatorAddress} is not a nominator");
 
             // Check for Event<Rewarded>
 
-            var controllerAccount = await _substrateNodeRepository.Api.StakingStorage.Bonded(nominatorAccount, cancellationToken);
+            var controllerAccount = await _substrateNodeRepository.Storage.Staking.BondedAsync(nominatorAccount, cancellationToken);
             var rewardAccount = await PayeeAccountAsync(nominatorAccount, cancellationToken);
 
             // currentNominators.Targets = current validators whe ave voted for
@@ -154,10 +148,10 @@ namespace Substats.Domain.Repository
 
 
 
-            var targetAccountReward = await _substrateNodeRepository.Api.StakingStorage.Payee(nominatorAccount, cancellationToken);
-            var numberNominator = await _substrateNodeRepository.Api.StakingStorage.CounterForNominators(cancellationToken);
-            var maxNumberNominator = await _substrateNodeRepository.Api.StakingStorage.MaxNominatorsCount(cancellationToken);
-            var minimumNominatorBound = await _substrateNodeRepository.Api.StakingStorage.MinNominatorBond(cancellationToken);
+            var targetAccountReward = await _substrateNodeRepository.Storage.Staking.PayeeAsync(nominatorAccount, cancellationToken);
+            var numberNominator = await _substrateNodeRepository.Storage.Staking.CounterForNominatorsAsync(cancellationToken);
+            var maxNumberNominator = await _substrateNodeRepository.Storage.Staking.MaxNominatorsCountAsync(cancellationToken);
+            var minimumNominatorBound = await _substrateNodeRepository.Storage.Staking.MinNominatorBondAsync(cancellationToken);
 
             var nominatorDto = new NominatorDto()
             {
@@ -178,37 +172,37 @@ namespace Substats.Domain.Repository
             poolNumber.Create(poolId);
 
             // Get nb pools created
-            var lastPoolId = await _substrateNodeRepository.Api.NominationPoolsStorage.LastPoolId(cancellationToken);
+            var lastPoolId = await _substrateNodeRepository.Storage.NominationPools.LastPoolIdAsync(cancellationToken);
 
             // Check if pool exists 
             if (poolNumber.Value > lastPoolId.Value)
                 throw new InvalidOperationException($"Nomination pool num {poolId} does not exists");
 
             // Get informations about this pool
-            var bondedPool = await _substrateNodeRepository.Api.NominationPoolsStorage.BondedPools(poolNumber, cancellationToken);
+            var bondedPool = await _substrateNodeRepository.Storage.NominationPools.BondedPoolsAsync(poolNumber, cancellationToken);
 
             // Should never happened because we previously check pool counter
             if (bondedPool == null)
                 throw new InvalidOperationException($"Pool number {poolNumber} does not exists.");
 
-            var chainInfo = await _substrateNodeRepository.Api.Core.System.PropertiesAsync(cancellationToken);
+            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
-            var poolMetadata = await _substrateNodeRepository.Api.NominationPoolsStorage.Metadata(poolNumber, cancellationToken);
+            var poolMetadata = await _substrateNodeRepository.Storage.NominationPools.MetadataAsync(poolNumber, cancellationToken);
             // Pool name is integrated in metadata
-            var poolName = poolMetadata.Bytes.ToHuman();
+            var poolName = poolMetadata == null ? string.Empty : poolMetadata.ToHuman();
 
-            var rewardPool = await _substrateNodeRepository.Api.NominationPoolsStorage.RewardPools(poolNumber, cancellationToken);
+            var rewardPool = await _substrateNodeRepository.Storage.NominationPools.RewardPoolsAsync(poolNumber, cancellationToken);
 
             // Get pool id associated to account
             //var reverseAccount = await _substrateNodeRepository.Client.NominationPoolsStorage.ReversePoolIdLookup(poolNumber, cancellationToken);
 
             var poolGlobalSettings = new PoolGlobalSettingsDto()
             {
-                ActivePoolNumber = (await _substrateNodeRepository.Api.NominationPoolsStorage.CounterForBondedPools(cancellationToken)).Value,
-                MinimumJoinPool = (await _substrateNodeRepository.Api.NominationPoolsStorage.MinJoinBond(cancellationToken)).ToDouble(chainInfo.TokenDecimals),
-                MaximumMemberPerPool = (await _substrateNodeRepository.Api.NominationPoolsStorage.MaxPoolMembersPerPool(cancellationToken))?.Value,
-                MinimumCreatePool = (await _substrateNodeRepository.Api.NominationPoolsStorage.MinCreateBond(cancellationToken)).ToDouble(chainInfo.TokenDecimals),
-                MaximumPoolNumber = (await _substrateNodeRepository.Api.NominationPoolsStorage.MaxPools(cancellationToken))?.Value
+                ActivePoolNumber = (await _substrateNodeRepository.Storage.NominationPools.CounterForBondedPoolsAsync(cancellationToken)).Value,
+                MinimumJoinPool = (await _substrateNodeRepository.Storage.NominationPools.MinJoinBondAsync(cancellationToken)).ToDouble(chainInfo.TokenDecimals),
+                MaximumMemberPerPool = (await _substrateNodeRepository.Storage.NominationPools.MaxPoolMembersPerPoolAsync(cancellationToken))?.Value,
+                MinimumCreatePool = (await _substrateNodeRepository.Storage.NominationPools.MinCreateBondAsync(cancellationToken)).ToDouble(chainInfo.TokenDecimals),
+                MaximumPoolNumber = (await _substrateNodeRepository.Storage.NominationPools.MaxPoolsAsync(cancellationToken))?.Value
             };
 
 
@@ -219,16 +213,16 @@ namespace Substats.Domain.Repository
                 Name = poolName,
                 PoolGlobalSettings = poolGlobalSettings,
                 CreatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken),
-                NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken),
-                RewardAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken), // TODO change with real stash account
-                StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken), // TODO change with real stash account
-                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken),
-                RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken),
-                Metadata = Utils.Bytes2HexString(poolMetadata.Value.Bytes),
+                NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator, cancellationToken),
+                RewardAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken), // TODO change with real stash account
+                StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken), // TODO change with real stash account
+                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.lue, cancellationToken),
+                RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken),
+                Metadata = Utils.Bytes2HexString(poolMetadata.ToBytes()),
                 MemberCount = bondedPool.MemberCounter.Value,
                 TotalBonded = bondedPool.Points.Value,
                 RewardPool = 0,
-                Status = bondedPool.State.Value switch
+                Status = bondedPool.State switch
                 {
                     PoolState.Open => NominationPoolStatusDto.Open,
                     PoolState.Blocked => NominationPoolStatusDto.Blocked,

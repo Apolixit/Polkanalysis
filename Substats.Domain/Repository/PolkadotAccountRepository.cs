@@ -23,9 +23,9 @@ namespace Substats.Domain.Repository
         }
 
         public IEnumerable<IPalletStorage?> RequiredStorage => new List<IPalletStorage?>() {
-            _substrateNodeRepository.Api.Storage.Balances,
-            _substrateNodeRepository.Api.Storage.Identity,
-            _substrateNodeRepository.Api.Storage.System
+            _substrateNodeRepository.Storage.Balances,
+            _substrateNodeRepository.Storage.Identity,
+            _substrateNodeRepository.Storage.System
         };
 
         public Task<AccountDto> GetAccountDetailAsync(string accountAddress, CancellationToken cancellationToken)
@@ -37,25 +37,25 @@ namespace Substats.Domain.Repository
 
         private async Task<AccountDto> GetAccountDetailInternalAsync(SubstrateAccount account, CancellationToken token)
         {
-            var locks = await _substrateNodeRepository.Api.Storage.Balances.LocksAsync(account, token);
-            var reserves = await _substrateNodeRepository.Api.Storage.Balances.ReservesAsync(account, token);
+            var locks = await _substrateNodeRepository.Storage.Balances.LocksAsync(account, token);
+            var reserves = await _substrateNodeRepository.Storage.Balances.ReservesAsync(account, token);
 
-            var identity = await _substrateNodeRepository.Api.Storage.Identity.IdentityOfAsync(account, token);
-            var identity2 = await _substrateNodeRepository.Api.Storage.Identity.SubsOfAsync(account, token);
-            var identity3 = await _substrateNodeRepository.Api.Storage.Identity.SuperOfAsync(account, token);
+            var identity = await _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, token);
+            var identity2 = await _substrateNodeRepository.Storage.Identity.SubsOfAsync(account, token);
+            var identity3 = await _substrateNodeRepository.Storage.Identity.SuperOfAsync(account, token);
 
-            var isAccountPoolMember = await _substrateNodeRepository.Api.Storage.NominationPools.PoolMembersAsync(account, token);
+            var isAccountPoolMember = await _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, token);
 
-            var accountInfo = await _substrateNodeRepository.Api.Storage.System.AccountAsync(account, token);
-            var accountNextindex = await _substrateNodeRepository.Api.Client.System.AccountNextIndexAsync(account.Address
+            var accountInfo = await _substrateNodeRepository.Storage.System.AccountAsync(account, token);
+            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.Address
                 , token);
-            var chainInfo = await _substrateNodeRepository.Api.Client.System.PropertiesAsync(token);
+            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(token);
             if (chainInfo == null)
                 throw new InvalidOperationException($"{chainInfo}");
 
             //_substrateNodeRepository.Client.ParasStorage.
             var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
-            var otherAmount = (accountInfo.Data.MiscFrozen + accountInfo.Data.Reserved).ToDouble(chainInfo.TokenDecimals);
+            var otherAmount = (accountInfo.Data.MiscFrozen.Value + accountInfo.Data.Reserved.Value).ToDouble(chainInfo.TokenDecimals);
 
             var userInformation = new UserInformationsDto();
             if (identity != null)
@@ -79,7 +79,7 @@ namespace Substats.Domain.Repository
                     Address = account.Address
                 },
                 AccountIndex = accountNextindex,
-                Nonce = accountInfo.Nonce,
+                Nonce = accountInfo.Nonce.Value,
                 Balances = new Contracts.Dto.Balances.BalancesDto()
                 {
                     Transferable = freeAmount,
@@ -100,8 +100,8 @@ namespace Substats.Domain.Repository
 
         public async Task<UserAddressDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken)
         {
-            var chainInfo = await _substrateNodeRepository.Api.Client.System.PropertiesAsync(cancellationToken);
-            var identity = await _substrateNodeRepository.Api.Storage.Identity.IdentityOfAsync(account, cancellationToken);
+            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
+            var identity = await _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, cancellationToken);
             var blockchainAddress = account.ToStringAddress((short)chainInfo.Ss58Format);
 
             // Default = it's the basic address

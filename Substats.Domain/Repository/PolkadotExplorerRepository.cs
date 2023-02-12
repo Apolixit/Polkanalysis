@@ -8,7 +8,6 @@ using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Exception;
 using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Contracts.Runtime;
-using Substats.Polkadot.NetApiExt.Generated.Storage;
 using Newtonsoft.Json.Linq;
 using Microsoft.VisualStudio.Threading;
 using System;
@@ -17,13 +16,14 @@ using Substats.Domain.Contracts.Dto.Extrinsic;
 using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Types;
 using System.Runtime.InteropServices;
-using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
 using Substats.Domain.Contracts.Dto;
-using Substats.Infrastructure.DirectAccess.Helpers;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Dto.User;
 using Substats.Domain.Contracts.Secondary.Repository;
+using Substats.Domain.Adapter.Block;
+using Substats.Domain.Contracts.Secondary.Pallet.System;
+using Substats.Domain.Contracts.Helpers;
 
 namespace Substats.Domain.Repository
 {
@@ -52,7 +52,7 @@ namespace Substats.Domain.Repository
             var blockNumber = new BlockNumber();
             blockNumber.Create(blockId);
 
-            var blockHash = await _substrateService.Api.Client.Chain.GetBlockHashAsync(blockNumber, cancellationToken);
+            var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(blockNumber, cancellationToken);
 
             if (blockHash == null)
                 throw new BlockException($"{nameof(blockHash)} from given blockId (={blockId}) is null");
@@ -71,9 +71,18 @@ namespace Substats.Domain.Repository
             return blockHash;
         }
 
-        public async Task<BlockLightDto> GetBlockLightAsync(Hash blockHash, CancellationToken cancellationToken)
+        public Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
+            => GetBlockLightAsync(new BlockParameterLike(blockId), cancellationToken);
+
+        public Task<BlockLightDto> GetBlockLightAsync(string blockHash, CancellationToken cancellationToken)
+            => GetBlockLightAsync(new BlockParameterLike(blockHash), cancellationToken);
+
+        public Task<BlockLightDto> GetBlockLightAsync(Hash blockHash, CancellationToken cancellationToken)
+            => GetBlockLightAsync(new BlockParameterLike(blockHash), cancellationToken);
+        protected async Task<BlockLightDto> GetBlockLightAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockData = await _substrateService.Api.Core.Chain.GetBlockAsync(blockHash, cancellationToken);
+            var blockHash = block.ToBlockHash();
+            var blockData = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
             if (blockData == null)
                 throw new BlockException($"{blockData} for block hash = {blockHash.Value} is null");
 
@@ -82,23 +91,29 @@ namespace Substats.Domain.Repository
             return _modelBuilder.BuildBlockLightDto(blockHash, blockData, blockDate);
         }
 
-        public async Task<BlockDto> GetBlockDetailsAsync(uint blockId, CancellationToken cancellationToken)
-            => await GetBlockDetailsAsync(await buildHashAsync(blockId, cancellationToken), cancellationToken);
+        public Task<BlockDto> GetBlockDetailsAsync(uint blockId, CancellationToken cancellationToken)
+            => GetBlockDetailsAsync(new BlockParameterLike(blockId), cancellationToken);
 
-        public async Task<BlockDto> GetBlockDetailsAsync(string blockHash, CancellationToken cancellationToken)
-            => await GetBlockDetailsAsync(buildHash(blockHash), cancellationToken);
+        public Task<BlockDto> GetBlockDetailsAsync(string blockHash, CancellationToken cancellationToken)
+            => GetBlockDetailsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
-        public async Task<BlockDto> GetBlockDetailsAsync(Hash blockHash, CancellationToken cancellationToken)
+        public Task<BlockDto> GetBlockDetailsAsync(Hash blockHash, CancellationToken cancellationToken)
+            => GetBlockDetailsAsync(new BlockParameterLike(blockHash), cancellationToken);
+
+        protected async Task<BlockDto> GetBlockDetailsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockDetails = await _substrateService.Api.Core.Chain.GetBlockAsync(blockHash, cancellationToken);
+            var blockHash = block.ToBlockHash();
+            var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
             var currentDate = await GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
 
-            var eventsCount = await _substrateService.Api.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
+            //var eventsCount = await _substrateService.Api.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
+            var eventsCount = await _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
 
-            var blockExecutionPhase = await _substrateService.Api.Core.GetStorageAsync<EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
+            //var blockExecutionPhase = await _substrateService.Api.Core.GetStorageAsync<EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
+            var blockExecutionPhase = await _substrateService.At(blockHash).Storage.System.ExecutionPhaseAsync(cancellationToken);
 
             //var blockAuthor = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), blockHash.Value, cancellationToken);
             //var blockAuthor2 = await _substrateService.Client.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorage.AuthorParams(), cancellationToken);
@@ -118,16 +133,17 @@ namespace Substats.Domain.Repository
 
             // BaseTuple<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>
 
-            var digest = await _substrateService.Api.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(SystemStorage.DigestParams(), blockHash.Value, cancellationToken);
+            //var digest = await _substrateService.Api.Core.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(SystemStorage.DigestParams(), blockHash.Value, cancellationToken);
+            var digest = await _substrateService.At(blockHash).Storage.System.DigestAsync(cancellationToken);
 
             foreach (var log in blockDetails.Block.Header.Digest.Logs) // TODO Check with Cedric
             {
-                var buildLogs = new Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.EnumDigestItem();
+                var buildLogs = new EnumDigestItem();
                 buildLogs.Create(log);
             }
             var logDecode = _substrateDecode.DecodeLog(blockDetails.Block.Header.Digest.Logs);
-            var founded1 = logDecode.Has(Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.DigestItem.PreRuntime);
-            var founded = logDecode.Find(Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.DigestItem.PreRuntime);
+            var founded1 = logDecode.Has(DigestItem.PreRuntime);
+            var founded = logDecode.Find(DigestItem.PreRuntime);
 
             //await _substrateService.Client.Core.Author.PendingExtrinsicAsync
             //var resMagic0 = await _substrateService.Client.Core.Author.PendingExtrinsicAsync(cancellationToken);
@@ -153,7 +169,7 @@ namespace Substats.Domain.Repository
                 NbExtrinsics = (uint)blockDetails.Block.Extrinsics.Length,
                 NbEvents = eventsCount.Value,
                 NbLogs = (uint)blockDetails.Block.Header.Digest.Logs.Count,
-                SpecVersion = _substrateService.Api.Core.RuntimeVersion.SpecVersion,
+                SpecVersion = _substrateService.RuntimeVersion.SpecVersion,
                 Validator = null,
             };
 
@@ -178,17 +194,13 @@ namespace Substats.Domain.Repository
         {
             var currentTimestamp = blockHash switch
             {
-                null => await _substrateService.Api.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), cancellationToken),
-                _ => await _substrateService.Api.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(TimestampStorage.NowParams(), blockHash.Value, cancellationToken)
+                null => await _substrateService.Storage.Timestamp.NowAsync(cancellationToken),
+                _ => await _substrateService.At(blockHash).Storage.Timestamp.NowAsync(cancellationToken)
             };
 
             return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                 .AddMilliseconds(currentTimestamp.Value);
         }
-
-
-
-
 
         public Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken)
         {
@@ -216,7 +228,7 @@ namespace Substats.Domain.Repository
                 //_lastBlock = await GetBlockLightAsync(currentHash, cancellationToken);
                 blockCallback(_lastBlock);
             };
-            await _substrateService.Api.Core.Chain.SubscribeAllHeadsAsync(subscribe);
+            await _substrateService.Rpc.Chain.SubscribeAllHeadsAsync(subscribe);
             //await SubscribeAllHeadsAsync(subscribe);
         }
 
@@ -230,20 +242,23 @@ namespace Substats.Domain.Repository
         //    _client.Listener.RegisterCallBackHandler(text, callback);
         //    return text;
         //}
-        public async Task<IEnumerable<EventDto>> GetEventsAsync(string blockHash, CancellationToken cancellationToken)
-            => await GetEventsAsync(buildHash(blockHash), cancellationToken);
+        public Task<IEnumerable<EventDto>> GetEventsAsync(string blockHash, CancellationToken cancellationToken)
+            => GetEventsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
-        public async Task<IEnumerable<EventDto>> GetEventsAsync(uint blockId, CancellationToken cancellationToken)
-            => await GetEventsAsync(await buildHashAsync(blockId, cancellationToken), cancellationToken);
+        public Task<IEnumerable<EventDto>> GetEventsAsync(uint blockId, CancellationToken cancellationToken)
+            => GetEventsAsync(new BlockParameterLike(blockId), cancellationToken);
 
-        public async Task<IEnumerable<EventDto>> GetEventsAsync(Hash blockHash, CancellationToken cancellationToken)
+        public Task<IEnumerable<EventDto>> GetEventsAsync(Hash blockHash, CancellationToken cancellationToken)
+            => GetEventsAsync(new BlockParameterLike(blockHash), cancellationToken);
+
+        protected async Task<IEnumerable<EventDto>> GetEventsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var events = await _substrateService.Api.Core.GetStorageAsync<BaseVec<EventRecord>>(
-                SystemStorage.EventsParams(), blockHash.Value, cancellationToken);
+            var blockHash = block.ToBlockHash();
+            var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
 
             var eventsDto = new List<EventDto>();
 
-            foreach (var ev in events.Value)
+            foreach (var ev in events)
             {
                 var eventNode = _substrateDecode.DecodeEvent(ev);
 
@@ -258,15 +273,19 @@ namespace Substats.Domain.Repository
         }
 
 
-        public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(string blockHash, CancellationToken cancellationToken)
-            => await GetExtrinsicsAsync(buildHash(blockHash), cancellationToken);
+        public Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(string blockHash, CancellationToken cancellationToken)
+            => GetExtrinsicsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
-        public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(uint blockId, CancellationToken cancellationToken)
-            => await GetExtrinsicsAsync(await buildHashAsync(blockId, cancellationToken), cancellationToken);
+        public Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(uint blockId, CancellationToken cancellationToken)
+            => GetExtrinsicsAsync(new BlockParameterLike(blockId), cancellationToken);
 
-        public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(Hash blockHash, CancellationToken cancellationToken)
+        public Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(Hash blockHash, CancellationToken cancellationToken)
+            => GetExtrinsicsAsync(new BlockParameterLike(blockHash), cancellationToken);
+
+        public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockDetails = await _substrateService.Api.Core.Chain.GetBlockAsync(blockHash, cancellationToken);
+            var blockHash = block.ToBlockHash();
+            var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
@@ -301,7 +320,7 @@ namespace Substats.Domain.Repository
             ExtrinsicDto extrinsicDto,
             CancellationToken cancellationToken)
         {
-            var blockDetails = await _substrateService.Api.Core.Chain.GetBlockAsync(
+            var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(
                 extrinsicDto.Block.Hash, cancellationToken);
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {extrinsicDto.Block.Hash} is null");
@@ -317,13 +336,14 @@ namespace Substats.Domain.Repository
             var blockLight = await GetBlockLightAsync(extrinsicDto.Block.Hash, cancellationToken);
 
             // Return every events linked to this block
-            BaseVec<EventRecord> events = await _substrateService.Api.Core.GetStorageAsync<BaseVec<EventRecord>>(
-                SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
+            //BaseVec<EventRecord> events = await _substrateService.Api.Core.GetStorageAsync<BaseVec<EventRecord>>(
+            //    SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
+            var events = await _substrateService.At(extrinsicDto.Block.Hash).Storage.System.EventsAsync(cancellationToken);
 
             // Doc here :
             // https://polkadot.js.org/docs/api/cookbook/blocks#how-do-i-map-extrinsics-to-their-events
             // Event Phase must be "Apply extrinsic" dans his value must be equal to extrinsic index
-            IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = events.Value.Where(e =>
+            IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = events.Where(e =>
             {
                 if (e.Phase.Value == Phase.ApplyExtrinsic)
                 {
@@ -443,39 +463,44 @@ namespace Substats.Domain.Repository
                 }
             };
 
-            await _substrateService.Api.Core.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
+            await _substrateService.Rpc.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
         }
 
-        public Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
+        
+
+        public Task<EventDto> GetEventAsync(uint blockId, uint eventIndex, CancellationToken cancellationToken)
+            => GetEventAsync(new BlockParameterLike(blockId), eventIndex, cancellationToken);
+
+        public Task<EventDto> GetEventAsync(string blockHash, uint eventIndex, CancellationToken cancellationToken)
+            => GetEventAsync(new BlockParameterLike(blockHash), eventIndex, cancellationToken);
+
+        public Task<EventDto> GetEventAsync(Hash blockHash, uint eventIndex, CancellationToken cancellationToken)
+            => GetEventAsync(new BlockParameterLike(blockHash), eventIndex, cancellationToken);
+
+        public async Task<EventDto> GetEventAsync(BlockParameterLike block, uint eventIndex, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            var blockHash = block.ToBlockHash();
+            var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
 
-        public Task<BlockLightDto> GetBlockLightAsync(string blockHash, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<EventDto> GetEventAsync(uint blockId, uint eventIndex, CancellationToken cancellationToken)
-            => await GetEventAsync(await buildHashAsync(blockId, cancellationToken), eventIndex, cancellationToken);
-
-        public async Task<EventDto> GetEventAsync(Hash blockHash, uint eventIndex, CancellationToken cancellationToken)
-        {
-            var events = await _substrateService.Api.Core.GetStorageAsync<BaseVec<EventRecord>>(
-                SystemStorage.EventsParams(), blockHash.Value, cancellationToken);
-
-            var eventNode = _substrateDecode.DecodeEvent(events.Value[eventIndex]);
+            var eventNode = _substrateDecode.DecodeEvent(events.ToList()[(int)eventIndex]);
 
             return _modelBuilder.BuildEventDto(
                     await GetBlockLightAsync(blockHash, cancellationToken),
                     eventNode);
         }
 
-        public async Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken)
-            => await GetExtrinsicAsync(await buildHashAsync(blockId, cancellationToken), extrinsicIndex, cancellationToken);
+        public Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken)
+            => GetExtrinsicAsync(new BlockParameterLike(blockId), extrinsicIndex, cancellationToken);
+
+        public Task<ExtrinsicDto> GetExtrinsicAsync(string blockHash, uint extrinsicIndex, CancellationToken cancellationToken)
+            => GetExtrinsicAsync(new BlockParameterLike(blockHash), extrinsicIndex, cancellationToken);
 
         public Task<ExtrinsicDto> GetExtrinsicAsync(Hash blockHash, uint extrinsicIndex, CancellationToken cancellationToken)
+            => GetExtrinsicAsync(new BlockParameterLike(blockHash), extrinsicIndex, cancellationToken);
+
+        public Task<ExtrinsicDto> GetExtrinsicAsync(BlockParameterLike block, uint extrinsicIndex, CancellationToken cancellationToken)
         {
+            var blockHash = block.ToBlockHash();
             //TODO
             throw new NotImplementedException();
         }
