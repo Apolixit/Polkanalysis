@@ -2,6 +2,7 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.System;
+using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
 using Substats.Polkadot.NetApiExt.Generated;
 using System;
 using System.Collections.Generic;

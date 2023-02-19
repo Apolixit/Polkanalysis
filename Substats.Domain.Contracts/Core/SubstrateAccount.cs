@@ -2,6 +2,7 @@
 using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,16 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Core
 {
-    public class SubstrateAccount : IType
+    public class SubstrateAccount : BaseType
     {
-        public SubstrateAccount(string address)
+        public SubstrateAccount() {
+            Address = new Hash();
+            Bytes = new byte[0];
+            TypeSize = 32;
+        }
+        public SubstrateAccount(string address) : this()
         {
-            Address = address;
+            Address.Create(address);
             Bytes = Utils.GetPublicKeyFrom(address);
         }
 
@@ -23,38 +29,23 @@ namespace Substats.Domain.Contracts.Core
 
         }
         // From AccountId32
-        public string Address { get; set; }
+        public Hash Address { get; set; }
         public byte[] Bytes { get; set; }
-        public int TypeSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int TypeSize { get; set; }
 
-        public void Create(string str)
+        public override byte[] Encode()
         {
-            throw new NotImplementedException();
+            var result = new List<byte>();
+            result.AddRange(Address.Encode());
+            return result.ToArray();
         }
 
-        public void Create(byte[] byteArray)
+        public override void Decode(byte[] byteArray, ref int p)
         {
-            throw new NotImplementedException();
-        }
-
-        public void CreateFromJson(string str)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Decode(byte[] byteArray, ref int p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public byte[] Encode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IType New()
-        {
-            throw new NotImplementedException();
+            var start = p;
+            Address = new Hash();
+            Address.Decode(byteArray, ref p);
+            TypeSize = p - start;
         }
 
         public string ToStringAddress(int ss58 = 42)
@@ -64,9 +55,6 @@ namespace Substats.Domain.Contracts.Core
             return Utils.GetAddressFrom(Bytes, ss58);
         }
 
-        public string TypeName()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

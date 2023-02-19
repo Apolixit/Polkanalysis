@@ -22,8 +22,8 @@ using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Dto.User;
 using Substats.Domain.Contracts.Secondary.Repository;
 using Substats.Domain.Adapter.Block;
-using Substats.Domain.Contracts.Secondary.Pallet.System;
 using Substats.Domain.Contracts.Helpers;
+using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
 
 namespace Substats.Domain.Repository
 {

@@ -1,7 +1,8 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Hash;
 using Substats.Domain.Contracts.Secondary.Contracts;
+using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

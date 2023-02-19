@@ -1,7 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Hash;
 using Substats.Domain.Contracts.Secondary.Pallet.Paras;
 using Substats.Polkadot.NetApiExt.Generated;
 using System;

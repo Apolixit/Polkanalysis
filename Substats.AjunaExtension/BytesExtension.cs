@@ -12,7 +12,7 @@ namespace Substats.AjunaExtension
     {
         public static byte[] ToBytes(this IEnumerable<U8> bytes)
         {
-            if (bytes == null) byte[0];
+            if (bytes == null) return new byte[0];
 
             return bytes.Select(x => x.Value).ToArray();
         }
