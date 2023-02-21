@@ -16,6 +16,8 @@ using static Substats.Infrastructure.Polkadot.Mapper.SubstrateMapper;
 using Substats.Domain.Contracts.Core.Display;
 using Substats.Polkadot.NetApiExt.Generated.Model.primitive_types;
 using Ajuna.NetApi;
+using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
 
 namespace Substats.Infrastructure.Polkadot.Mapper
 {
@@ -40,7 +42,8 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             new MapperConfiguration(cfg =>
         {
             cfg.CreateMap<SubstrateAccount, AccountId32>().ConvertUsing(new SubstrateAccountConverter());
-            cfg.CreateMap<H256, Hash>().ConvertUsing(new HashConverter());
+            cfg.CreateMap<H256, Hash>().ConvertUsing(new H256Converter());
+            cfg.CreateMap<ValidationCodeHash, Hash>().ConvertUsing(new ValidationCodeHashConverter());
 
 
             cfg.CreateMap(typeof(BaseOpt<>), typeof(Nullable<>)).ConvertUsing(typeof(BaseOptConverter<>));
@@ -85,6 +88,7 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             cfg.CreateMap<Arr32U8, Nameable>().ConvertUsing(new NameableConverter());
             cfg.CreateMap<Arr32U8, Nameable>().ConvertUsing(new NameableConverter());
             cfg.CreateMap<Arr32U8, Nameable>().ConvertUsing(new NameableConverter());
+            cfg.CreateMap<WeakBoundedVecT1, Nameable>().ConvertUsing(new NameableConverter());
 
         });
         
@@ -152,13 +156,21 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             }
         }
 
-        public class HashConverter : ITypeConverter<H256, Hash>
+        public class H256Converter : ITypeConverter<H256, Hash>
         {
             public Hash Convert(H256 source, Hash destination, ResolutionContext context)
             {
                 destination.Create(Utils.Bytes2HexString(source.Value.Encode()));
 
                 return destination;
+            }
+        }
+
+        public class ValidationCodeHashConverter : ITypeConverter<ValidationCodeHash, Hash>
+        {
+            public Hash Convert(ValidationCodeHash source, Hash destination, ResolutionContext context)
+            {
+                return context.Mapper.Map<Hash>(source.Value);
             }
         }
     }

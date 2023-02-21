@@ -1,26 +1,15 @@
-﻿using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.AjunaExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core
+namespace Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachain
 {
-    /// <summary>
-    /// Model.polkadot_parachain.primitives.Id
-    /// </summary>
-    public class Id : BaseType
+    public class GroupIndex : BaseType
     {
-        public Id() { }
-        public Id(uint value)
-        {
-            Value = new U32().With(value);
-        }
-
         public U32 Value { get; set; }
 
         public override byte[] Encode()

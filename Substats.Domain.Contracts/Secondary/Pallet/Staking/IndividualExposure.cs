@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
 using System.Numerics;
