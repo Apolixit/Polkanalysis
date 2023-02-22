@@ -463,7 +463,7 @@ namespace Substats.Domain.Repository
                 }
             };
 
-            await _substrateService.Rpc.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
+            //await _substrateService.Rpc.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
         }
 
         

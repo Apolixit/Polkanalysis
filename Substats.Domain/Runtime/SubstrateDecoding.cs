@@ -10,12 +10,9 @@ using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Runtime.Mapping;
 using Substats.Domain.Contracts.Secondary;
-using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
 using Microsoft.Extensions.Logging;
-using System.Text.RegularExpressions;
 using Substats.Domain.Contracts.Runtime.Module;
-using Serilog;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest;
+using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
 
 namespace Substats.Domain.Runtime
 {
@@ -283,6 +280,8 @@ namespace Substats.Domain.Runtime
 
             return false;
         }
+
+        
         #endregion
     }
 }

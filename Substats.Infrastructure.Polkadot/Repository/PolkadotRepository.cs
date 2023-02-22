@@ -14,8 +14,11 @@ using Substats.Configuration.Contracts;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using Substats.Infrastructure.Polkadot.Repository.Storage;
 using Substats.Domain.Contracts.Secondary.Common;
-using Substats.Infrastructure.Polkadot.Repository.Common;
 using Substats.Domain.Contracts.Secondary.Rpc;
+using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Infrastructure.Common.Rpc;
+using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {
@@ -23,9 +26,13 @@ namespace Substats.Infrastructure.DirectAccess.Repository
     {
         private SubstrateClientExt? _polkadotClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
-        public PolkadotRepository(ISubstrateEndpoint substrateconfiguration)
+        private readonly IMapper _mapper;
+        private readonly ILogger _logger;
+        public PolkadotRepository(ISubstrateEndpoint substrateconfiguration, IMapper mapper, ILogger logger)
         {
             _substrateconfiguration = substrateconfiguration;
+            _mapper = mapper;
+            _logger = logger;
         }
 
         private SubstrateClientExt PolkadotClient
@@ -48,7 +55,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             get
             {
                 if (_polkadotStorage == null)
-                    _polkadotStorage = new PolkadotStorage(PolkadotClient);
+                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _mapper, _logger);
 
                 return _polkadotStorage;
             }
@@ -73,6 +80,8 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             {
                 if (_runtimeMetadata == null)
                     _runtimeMetadata = new RuntimeMetadata(PolkadotClient);
+
+                return _runtimeMetadata;
             }
         }
 
@@ -122,5 +131,36 @@ namespace Substats.Infrastructure.DirectAccess.Repository
         {
             return true; // TODO
         }
+
+        public ITimeQueryable At(U32 blockNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITimeQueryable At(BlockNumber blockNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITimeQueryable At(uint blockNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITimeQueryable At(Hash blockHash)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITimeQueryable At(string blockHash)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsConnected() => PolkadotClient.IsConnected;
+
+        public Task ConnectAsync() => PolkadotClient.ConnectAsync();
+
+        public Task CloseAsync() => PolkadotClient.CloseAsync();
     }
 }

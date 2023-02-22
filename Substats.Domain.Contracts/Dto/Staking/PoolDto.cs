@@ -1,7 +1,6 @@
 ﻿using Microsoft;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Dto.User;
-using Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools;
 using System;
 using System.Collections.Generic;
 using System.Linq;

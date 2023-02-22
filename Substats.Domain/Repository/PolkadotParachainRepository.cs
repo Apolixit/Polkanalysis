@@ -24,10 +24,9 @@ namespace Substats.Domain.Repository
             //if(_substrateNodeRepository.Api.Storage.ParasStorage == null)
             var res24 = await _substrateNodeRepository.Storage.Paras.ParachainsAsync(cancellationToken);
 
-            var paraId = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             var paraU32 = new U32();
             paraU32.Create(parachainId);
-            paraId.Value = paraU32;
+            var paraId = new Contracts.Core.Id(paraU32.Value);
 
             var accountRegistar = await _substrateNodeRepository.Storage.Registrar.ParasAsync(paraId, cancellationToken);
             //var accountRegistar = await _substrateNodeRepository.Client.RegistrarStorage.PendingSwap(paraId, cancellationToken);

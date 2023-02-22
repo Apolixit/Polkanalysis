@@ -1,4 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Core.Display;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System.Enums
         RuntimeEnvironmentUpdated = 8,
     }
 
-    public sealed class EnumDigestItem : BaseEnumExt<DigestItem, BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, BaseVoid, BaseVoid, BaseVoid, BaseTuple<Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseTuple<Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseTuple<Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseVoid, BaseVoid>
+    public sealed class EnumDigestItem : BaseEnumExt<DigestItem, BaseVec<U8>, BaseVoid, BaseVoid, BaseVoid, BaseTuple<Nameable, BaseVec<U8>>, BaseTuple<Nameable, BaseVec<U8>>, BaseTuple<Nameable, BaseVec<U8>>, BaseVoid, BaseVoid>
     {
     }
 }

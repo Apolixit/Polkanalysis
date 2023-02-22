@@ -17,5 +17,11 @@ namespace Substats.Infrastructure.Common.Rpc
         public Author Author => throw new NotImplementedException();
 
         public ISystem System => throw new NotImplementedException();
+
+        Ajuna.NetApi.Modules.Chain IRpc.Chain => throw new NotImplementedException();
+
+        State IRpc.State => throw new NotImplementedException();
+
+        Ajuna.NetApi.Modules.System IRpc.System => throw new NotImplementedException();
     }
 }

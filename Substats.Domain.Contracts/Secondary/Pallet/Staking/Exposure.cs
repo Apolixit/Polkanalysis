@@ -29,7 +29,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
             Own = new U128();
             Own.Decode(byteArray, ref p);
 
-            Others = EnumerableEncodingHelper.Decode<IndividualExposure>(byteArray, p);
+            Others = EnumerableEncodingHelper.Decode<IndividualExposure>(byteArray, ref p);
             TypeSize = p - start;
         }
     }

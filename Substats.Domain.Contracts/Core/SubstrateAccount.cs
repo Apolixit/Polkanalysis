@@ -13,6 +13,7 @@ namespace Substats.Domain.Contracts.Core
 {
     public class SubstrateAccount : BaseType
     {
+        // TODO : override Equals !
         public SubstrateAccount() {
             Address = new Hash();
             Bytes = new byte[0];

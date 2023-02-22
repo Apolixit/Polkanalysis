@@ -4,6 +4,7 @@ using Microsoft.VisualBasic;
 using Substats.Domain.Contracts.Dto.Module;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Common;
 
 namespace Substats.Domain.Runtime
 {
@@ -103,9 +104,9 @@ namespace Substats.Domain.Runtime
             return dto;
         }
 
-        public virtual NodeMetadataV14 GetCurrentMetadata()
+        public virtual INodeMetadataV14 GetCurrentMetadata()
         {
-            return _substrateNodeRepository.Api.Core.MetaData.NodeMetadata;
+            return _substrateNodeRepository.RuntimeMetadata.NodeMetadata;
         }
 
         public PalletModule GetPalletModule(string palletName)

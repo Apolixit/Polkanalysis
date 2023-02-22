@@ -4,7 +4,6 @@ using Ajuna.NetApi.Model.Types.Base;
 using Substats.Domain.Contracts.Dto.Block;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Dto.Extrinsic;
-using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
 
 namespace Substats.Domain.Contracts.Secondary.Repository
 {

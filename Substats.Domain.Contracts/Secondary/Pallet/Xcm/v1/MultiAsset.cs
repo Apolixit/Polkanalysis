@@ -24,9 +24,9 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.v1
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId();
+            Id = new EnumAssetId();
             Id.Decode(byteArray, ref p);
-            Fun = new Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumFungibility();
+            Fun = new EnumFungibility();
             Fun.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

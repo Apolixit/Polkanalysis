@@ -1,16 +1,12 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Meta;
+using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.AjunaExtension;
 using Substats.Domain.Contracts;
 using Substats.Domain.Contracts.Helpers;
 using Substats.Domain.Contracts.Runtime.Mapping;
-using Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
-using Substats.Polkadot.NetApiExt.Generated.Model.primitive_types;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime;
-using Substats.Polkadot.NetApiExt.Generated.Types.Base;
 using System.Numerics;
 using System.Text;
 
@@ -22,11 +18,11 @@ namespace Substats.Domain.Runtime
 
         public EventMapping(MetaData metaData) : this()
         {
-            Elements.Add(new EventMappingElem()
-            {
-                CategoryName = "ModuleError",
-                Mapping = new List<IMappingElement>() { new MappingElementModuleError(metaData) }
-            });
+            //Elements.Add(new EventMappingElem()
+            //{
+            //    CategoryName = "ModuleError",
+            //    Mapping = new List<IMappingElement>() { new MappingElementModuleError(metaData) }
+            //});
         }
 
         public EventMapping()
@@ -58,28 +54,28 @@ namespace Substats.Domain.Runtime
                     }
                 },
 
-                new EventMappingElem()
-                {
-                    CategoryName = "Account",
-                    Mapping = new List<IMappingElement>() { new MappingElementAccount() }
-                },
+                //new EventMappingElem()
+                //{
+                //    CategoryName = "Account",
+                //    Mapping = new List<IMappingElement>() { new MappingElementAccount() }
+                //},
 
-                new EventMappingElem()
-                {
-                    CategoryName = "Hash",
-                    Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray(), new MappingElementArr32U8(), new MappingElementArr64U8() }
-                },
+                //new EventMappingElem()
+                //{
+                //    CategoryName = "Hash",
+                //    Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray(), new MappingElementArr32U8(), new MappingElementArr64U8() }
+                //},
 
-                new EventMappingElem()
-                {
-                    CategoryName = "Result",
-                    Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
-                },
-                new EventMappingElem()
-                {
-                    CategoryName = "Text",
-                    Mapping = new List<IMappingElement>() { new MappingElementText() }
-                }
+                //new EventMappingElem()
+                //{
+                //    CategoryName = "Result",
+                //    Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
+                //},
+                //new EventMappingElem()
+                //{
+                //    CategoryName = "Text",
+                //    Mapping = new List<IMappingElement>() { new MappingElementText() }
+                //}
                 
                 //new EventMappingElem()
                 //{
@@ -170,127 +166,139 @@ namespace Substats.Domain.Runtime
         }
     }
 
-    public class MappingElementHash : IMappingElement
-    {
-        public Type ObjectType => typeof(H256);
-        public bool IsIdentified => true;
+    //public class MappingElementHash : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(H256);
+    //    public bool IsIdentified => true;
 
-        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((H256)input).Value.Bytes);
-    }
+    //    dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((H256)input).Value.Bytes);
+    //}
 
-    public class MappingElementArr32U8 : IMappingElement
-    {
-        public Type ObjectType => typeof(Arr32U8);
-        public bool IsIdentified => true;
+    //public class MappingElementArr32U8 : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(Arr32U8);
+    //    public bool IsIdentified => true;
 
-        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((Arr32U8)input).Bytes);
-    }
+    //    dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((Arr32U8)input).Bytes);
+    //}
 
-    public class MappingElementArr64U8 : IMappingElement
-    {
-        public Type ObjectType => typeof(Arr64U8);
-        public bool IsIdentified => true;
+    //public class MappingElementArr64U8 : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(Arr64U8);
+    //    public bool IsIdentified => true;
 
-        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((Arr64U8)input).Bytes);
-    }
+    //    dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((Arr64U8)input).Bytes);
+    //}
 
-    public class MappingElementHashByteArray : IMappingElement
-    {
-        //[AjunaNodeType(TypeDefEnum.Array)]
-        public Type ObjectType => typeof(BaseVec<U8>);
-        public bool IsIdentified => true;
+    //public class MappingElementHashByteArray : IMappingElement
+    //{
+    //    //[AjunaNodeType(TypeDefEnum.Array)]
+    //    public Type ObjectType => typeof(BaseVec<U8>);
+    //    public bool IsIdentified => true;
 
-        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((BaseVec<U8>)input).Bytes);
-    }
+    //    dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((BaseVec<U8>)input).Bytes);
+    //}
 
-    public class MappingElementAccount : IMappingElement
-    {
-        public Type ObjectType => typeof(AccountId32);
-        public bool IsIdentified => true;
+    //public class MappingElementAccount : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(AccountId32);
+    //    public bool IsIdentified => true;
 
-        dynamic IMappingElement.ToHuman(dynamic input) => new {
-            PublicKey = Utils.GetPublicKeyFrom(AccountHelper.BuildAddress((AccountId32)input)),
-            Ss58Address = AccountHelper.BuildAddress((AccountId32)input)
-        };
-    }
+    //    dynamic IMappingElement.ToHuman(dynamic input) => new {
+    //        PublicKey = Utils.GetPublicKeyFrom(AccountHelper.BuildAddress((AccountId32)input)),
+    //        Ss58Address = AccountHelper.BuildAddress((AccountId32)input)
+    //    };
+    //}
 
-    public class MappingElementEnumResult : IMappingElement
-    {
-        public Type ObjectType => typeof(EnumResult);
+    //public class MappingElementAccount : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(Contracts.Core.SubstrateAccount);
+    //    public bool IsIdentified => true;
 
-        public bool IsIdentified => true;
+    //    dynamic IMappingElement.ToHuman(dynamic input) => new
+    //    {
+    //        PublicKey = Utils.GetPublicKeyFrom(Utils.GetAddressFrom((Contracts.Core.SubstrateAccount)input.Bytes)),
+    //        Ss58Address = Utils.GetAddressFrom((Contracts.Core.SubstrateAccount)input.Bytes)
+    //    };
+    //}
 
-        dynamic IMappingElement.ToHuman(dynamic input)
-        {
-            var enumResult = ((EnumResult)input);
-            //enumResult.Value2;
-            return (enumResult.Value, enumResult.Value2.ToString());
-        }
-    }
+    //public class MappingElementEnumResult : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(EnumResult);
 
-    public class MappingElementText : IMappingElement
-    {
-        public Type ObjectType => typeof(Arr4U8);
+    //    public bool IsIdentified => true;
 
-        public bool IsIdentified => true;
+    //    dynamic IMappingElement.ToHuman(dynamic input)
+    //    {
+    //        var enumResult = ((EnumResult)input);
+    //        //enumResult.Value2;
+    //        return (enumResult.Value, enumResult.Value2.ToString());
+    //    }
+    //}
 
-        public dynamic ToHuman(dynamic input)
-        {
-            return Encoding.UTF8.GetString(((Arr4U8)input).Encode());
-        }
-    }
+    //public class MappingElementText : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(Arr4U8);
 
-    public class MappingElementDispatchInfo : IMappingElement
-    {
-        public Type ObjectType => typeof(DispatchInfo);
-        public bool IsIdentified => true;
+    //    public bool IsIdentified => true;
 
-        dynamic IMappingElement.ToHuman(dynamic input)
-        {
-            var dispatchInfo = (DispatchInfo)input;
+    //    public dynamic ToHuman(dynamic input)
+    //    {
+    //        return Encoding.UTF8.GetString(((Arr4U8)input).Encode());
+    //    }
+    //}
 
-            // Maybe better to use automapper ?
+    //public class MappingElementDispatchInfo : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(DispatchInfo);
+    //    public bool IsIdentified => true;
 
-            var dispatchInfoDto = new DispatchInfoDto();
-            dispatchInfoDto.PaysFee = dispatchInfo.PaysFee.Value;
-            dispatchInfoDto.Class = dispatchInfo.Class.Value;
-            dispatchInfoDto.Weight = dispatchInfo.Weight.RefTime.Value;
+    //    dynamic IMappingElement.ToHuman(dynamic input)
+    //    {
+    //        var dispatchInfo = (DispatchInfo)input;
 
-            return dispatchInfoDto;
-        }
-    }
+    //        // Maybe better to use automapper ?
 
-    public class MappingElementModuleError : IMappingElement
-    {
-        private readonly MetaData _metaData;
+    //        var dispatchInfoDto = new DispatchInfoDto();
+    //        dispatchInfoDto.PaysFee = dispatchInfo.PaysFee.Value;
+    //        dispatchInfoDto.Class = dispatchInfo.Class.Value;
+    //        dispatchInfoDto.Weight = dispatchInfo.Weight.RefTime.Value;
 
-        public MappingElementModuleError(MetaData metaData)
-        {
-            _metaData = metaData;
-        }
-        public Type ObjectType => typeof(ModuleError);
-        public bool IsIdentified => true;
+    //        return dispatchInfoDto;
+    //    }
+    //}
 
-        dynamic IMappingElement.ToHuman(dynamic input)
-        {
-            var moduleError = (ModuleError)input;
-            //moduleError.Index
-            //MetaData.CreateModuleDict()
-            var palletError = _metaData.NodeMetadata.Modules[moduleError.Index.Value];
-            //var fullQualifiedName = $"MoneyPot_NetApiExt.Generated.Storage.{palletError.Name}Errors, MoneyPot_NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
-            //Type palletErrorType = Type.GetType(fullQualifiedName);
-            //var palletInstance = Activator.CreateInstance(palletErrorType);
+    //public class MappingElementModuleError : IMappingElement
+    //{
+    //    private readonly MetaData _metaData;
 
-            var result = new PalletErrorDto()
-            {
-                PalletName = palletError.Name,
-                EventName = string.Empty,
-                Message = String.Empty
-            };
+    //    public MappingElementModuleError(MetaData metaData)
+    //    {
+    //        _metaData = metaData;
+    //    }
+    //    public Type ObjectType => typeof(ModuleError);
+    //    public bool IsIdentified => true;
 
-            return result;
-        }
-    }
+    //    dynamic IMappingElement.ToHuman(dynamic input)
+    //    {
+    //        var moduleError = (ModuleError)input;
+    //        //moduleError.Index
+    //        //MetaData.CreateModuleDict()
+    //        var palletError = _metaData.NodeMetadata.Modules[moduleError.Index.Value];
+    //        //var fullQualifiedName = $"MoneyPot_NetApiExt.Generated.Storage.{palletError.Name}Errors, MoneyPot_NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+    //        //Type palletErrorType = Type.GetType(fullQualifiedName);
+    //        //var palletInstance = Activator.CreateInstance(palletErrorType);
+
+    //        var result = new PalletErrorDto()
+    //        {
+    //            PalletName = palletError.Name,
+    //            EventName = string.Empty,
+    //            Message = String.Empty
+    //        };
+
+    //        return result;
+    //    }
+    //}
 
     public class MappingElementEnumExt : IMappingElement
     {

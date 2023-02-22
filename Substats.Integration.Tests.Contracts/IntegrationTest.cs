@@ -13,7 +13,7 @@ namespace Substats.Integration.Tests.Contracts
     /// </summary>
     public abstract class IntegrationTest
     {
-        protected readonly ISubstrateClientRepository _substrateClientRepository;
+        //protected readonly ISubstrateClientRepository _substrateClientRepository;
         protected readonly ISubstrateRepository _substrateRepository;
         protected ISubstrateEndpoint _substrateEndpoint;
 
@@ -27,8 +27,8 @@ namespace Substats.Integration.Tests.Contracts
             _substrateRepository = Substitute.For<ISubstrateRepository>();
             _substrateRepository.IsValidAccountAddress(Arg.Any<string>()).Returns(true);
 
-            _substrateClientRepository = new PolkadotSubstrateClientRepository(_substrateEndpoint);
-            _substrateRepository.Api.Returns(_substrateClientRepository);
+            //_substrateClientRepository = new PolkadotSubstrateClientRepository(_substrateEndpoint);
+            //_substrateRepository.Api.Returns(_substrateClientRepository);
         }
 
         protected abstract ISubstrateEndpoint GetEndpoint();
@@ -40,11 +40,11 @@ namespace Substats.Integration.Tests.Contracts
         [OneTimeSetUp]
         public virtual async Task ConnectAsync()
         {
-            if (_substrateRepository.Api != null && !_substrateRepository.Api.Core.IsConnected)
+            if (_substrateRepository != null && !_substrateRepository.IsConnected())
             {
                 try
                 {
-                    await _substrateRepository.Api.Core.ConnectAsync();
+                    await _substrateRepository.ConnectAsync();
                 }
                 catch (Exception)
                 {
@@ -60,9 +60,9 @@ namespace Substats.Integration.Tests.Contracts
         [OneTimeTearDown]
         public virtual async Task DisconnectAsync()
         {
-            if (_substrateRepository.Api != null && _substrateRepository.Api.Core.IsConnected)
+            if (_substrateRepository != null && _substrateRepository.IsConnected())
             {
-                await _substrateRepository.Api.Core.CloseAsync();
+                await _substrateRepository.CloseAsync();
             }
         }
     }

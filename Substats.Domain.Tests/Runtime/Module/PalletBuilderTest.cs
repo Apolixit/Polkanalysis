@@ -24,8 +24,8 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
             _substrateRepository = Substitute.For<ISubstrateRepository>();
 
             //var mockClient = Substitute.For<SubstrateClientExt>(default, default);
-            var mockClient = Substitute.For<ISubstrateClientRepository>();
-            _substrateRepository.Api.Returns(mockClient);
+            //var mockClient = Substitute.For<ISubstrateClientRepository>();
+            //_substrateRepository.Api.Returns(mockClient);
 
             _currentMetaData = Substitute.For<ICurrentMetaData>();
             _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
@@ -95,9 +95,9 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
                 { 0, timestampPalletModule }
             };
 
-            _substrateRepository.Api.Returns(Substitute.For<ISubstrateClientRepository>());
+            //_substrateRepository.Api.Returns(Substitute.For<ISubstrateClientRepository>());
 
-            _substrateRepository.Api.Core.MetaData.NodeMetadata.Modules.Returns(dictionnaryModule);
+            _substrateRepository.RuntimeMetadata.NodeMetadata.Modules.Returns(dictionnaryModule);
 
             var timestampType = new NodeTypeVariant()
             {
@@ -108,7 +108,7 @@ namespace Substats.Infrastructure.DirectAccess.Test.Runtime
             {
                 { 0, timestampType }
             };
-            _substrateRepository.Api.Core.MetaData.NodeMetadata.Types.Returns(dictionnaryType);
+            _substrateRepository.RuntimeMetadata.NodeMetadata.Types.Returns(dictionnaryType);
             var callBuilded = _palletBuilder.BuildCall("Timestamp", new Method(3, 0, new byte[] { 1 }));
 
             var timestampSet = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.EnumCall();

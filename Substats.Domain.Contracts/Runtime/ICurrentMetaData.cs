@@ -1,5 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Meta;
 using Substats.Domain.Contracts.Dto.Module;
+using Substats.Domain.Contracts.Secondary.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Substats.Domain.Contracts.Runtime
         /// Return current MetaData
         /// </summary>
         /// <returns></returns>
-        public NodeMetadataV14 GetCurrentMetadata();
+        public INodeMetadataV14 GetCurrentMetadata();
 
         /// <summary>
         /// Get current MetaData pallet module from pallet name

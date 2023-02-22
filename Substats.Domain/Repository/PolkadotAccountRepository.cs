@@ -6,7 +6,6 @@ using Substats.Domain.Contracts.Exception;
 using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using Substats.Domain.Contracts.Secondary.Repository;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 
 namespace Substats.Domain.Repository
 {
@@ -47,7 +46,7 @@ namespace Substats.Domain.Repository
             var isAccountPoolMember = await _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, token);
 
             var accountInfo = await _substrateNodeRepository.Storage.System.AccountAsync(account, token);
-            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.Address
+            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.Address.Value
                 , token);
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(token);
             if (chainInfo == null)
@@ -76,7 +75,7 @@ namespace Substats.Domain.Repository
                 InformationsDto = userInformation,
                 Address = new AddressDto()
                 {
-                    Address = account.Address
+                    Address = account.Address.Value
                 },
                 AccountIndex = accountNextindex,
                 Nonce = accountInfo.Nonce.Value,

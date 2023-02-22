@@ -1,4 +1,6 @@
-﻿using Substats.Domain.Contracts.Secondary.Contracts;
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
+using Substats.Domain.Contracts.Secondary.Contracts;
 using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
 using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
 using Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars;
@@ -21,11 +23,15 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
     public class PolkadotStorage : IStorage
     {
         private SubstrateClientExt _polkadotClient;
+        private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public PolkadotStorage(SubstrateClientExt polkadotClient)
+        public PolkadotStorage(SubstrateClientExt polkadotClient, IMapper mapper, ILogger logger)
         {
             _polkadotClient = polkadotClient;
-        }
+            _mapper = mapper;
+            _logger = logger;
+    }
 
         private IAuctionsStorage? _auctionsStorages = null;
         private IAuthorshipStorage? _authorshipStorages = null;
@@ -35,7 +41,6 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         private ICrowdloanStorage? _crowdloanStorage = null;
         private IIdentityStorage? _identityStorage = null;
         private INominationPoolsStorage? _nominationPoolsStorage = null;
-        private IIdentityStorage? _identityStorage = null;
         private IParasStorage? _parasStorage = null;
         private IParaSessionInfoStorage? _paraSessionInfoStorage = null;
         private IRegistrarStorage? _registrarStorage = null;
@@ -48,7 +53,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             get
             {
                 if (_auctionsStorages == null)
-                    _auctionsStorages = new AuctionsStorage(_polkadotClient);
+                    _auctionsStorages = new AuctionsStorage(_polkadotClient, _mapper);
 
                 return _auctionsStorages;
             }
@@ -59,7 +64,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             get
             {
                 if (_authorshipStorages == null)
-                    _authorshipStorages = new AuthorshipStorage(_polkadotClient);
+                    _authorshipStorages = new AuthorshipStorage(_polkadotClient, _mapper, _logger);
 
                 return _authorshipStorages;
             }

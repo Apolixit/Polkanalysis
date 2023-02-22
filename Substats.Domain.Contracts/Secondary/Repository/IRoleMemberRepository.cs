@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Dto.Staking;
+﻿using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Dto.Staking;
 using Substats.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,6 @@ namespace Substats.Domain.Contracts.Secondary.Repository
 
         public Task<PoolDto> GetPoolDetailAsync(uint poolId, CancellationToken cancellationToken);
 
-        public Task<UserAddressDto?> PayeeAccountAsync(Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 stashAccount, CancellationToken cancellationToken);
+        public Task<UserAddressDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken);
     }
 }

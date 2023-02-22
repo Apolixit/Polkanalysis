@@ -1,4 +1,5 @@
-﻿using Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
+﻿
+using Substats.Domain.Contracts.Core.DispatchInfo;
 
 namespace Substats.Domain.Contracts
 {

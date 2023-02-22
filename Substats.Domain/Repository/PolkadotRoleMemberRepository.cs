@@ -10,6 +10,8 @@ using Substats.Domain.Contracts.Dto.User;
 using Substats.Domain.Contracts.Exception;
 using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
+using Substats.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using Substats.Domain.Contracts.Secondary.Pallet.Staking;
 using Substats.Domain.Contracts.Secondary.Repository;
 using static Substats.Domain.Contracts.Dto.GlobalStatusDto;
@@ -60,7 +62,7 @@ namespace Substats.Domain.Repository
 
             // Get list of currently active validator in session pallet
             var activeValidators = await _substrateNodeRepository.Storage.Session.ValidatorsAsync(cancellationToken);
-            var isValidatorActive = activeValidators != null && activeValidators.Any(x => x.IsEqual(validator));
+            var isValidatorActive = activeValidators != null && activeValidators.Any(x => x.Equals(validator));
 
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
@@ -96,7 +98,7 @@ namespace Substats.Domain.Repository
                 RewardAddress = await _accountRepository.GetAccountIdentityAsync(validator, cancellationToken),
                 SelfBonded = nominators.Own.ToDouble(chainInfo.TokenDecimals),
                 TotalBonded = nominators.Total.ToDouble(chainInfo.TokenDecimals),
-                Commission = (double)validatorSettings.Commission.Value,
+                Commission = (double)validatorSettings.Commission.Value.Value,
                 SessionKey = _node.Create().AddData(validatorSessionKey),
                 Status = isValidatorActive ? AliveStatusDto.Active : AliveStatusDto.Inactive,
                 Nominators = nominatorsDto,
@@ -216,7 +218,7 @@ namespace Substats.Domain.Repository
                 NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator, cancellationToken),
                 RewardAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken), // TODO change with real stash account
                 StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken), // TODO change with real stash account
-                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.lue, cancellationToken),
+                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler, cancellationToken),
                 RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken),
                 Metadata = Utils.Bytes2HexString(poolMetadata.ToBytes()),
                 MemberCount = bondedPool.MemberCounter.Value,

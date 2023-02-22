@@ -29,7 +29,32 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
+        public Task<U32> CounterForMetadataAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<U32> CounterForPoolMembersAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<U32> CounterForReversePoolIdLookupAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<U32> CounterForRewardPoolsAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<U32> CounterForSubPoolsStorageAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<U32> LastPoolIdAsync(CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -49,6 +74,11 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<U8>> MetadataAsync(U32 key, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<U128> MinCreateBondAsync(CancellationToken token)
         {
             throw new NotImplementedException();
@@ -64,7 +94,17 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
+        public Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<RewardPool> RewardPoolsAsync(U32 poolId, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<SubPools> SubPoolsStorageAsync(U32 key, CancellationToken token)
         {
             throw new NotImplementedException();
         }

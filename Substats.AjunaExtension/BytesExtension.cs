@@ -21,14 +21,14 @@ namespace Substats.AjunaExtension
         {
             if (bytes == null) return string.Empty;
 
-            return Encoding.UTF8.GetString(bytes);
+            return System.Text.Encoding.UTF8.GetString(bytes);
         }
 
         public static string ToHuman(this IEnumerable<U8> bytes)
         {
             if (bytes == null) return string.Empty;
 
-            return Encoding.UTF8.GetString(bytes.Select(x => x.Value).ToArray());
+            return System.Text.Encoding.UTF8.GetString(bytes.Select(x => x.Value).ToArray());
         }
     }
 }

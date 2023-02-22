@@ -37,17 +37,17 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Grandpa = new Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public();
+            Grandpa = new PublicEd25519();
             Grandpa.Decode(byteArray, ref p);
-            Babe = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public();
+            Babe = new PublicSr25519();
             Babe.Decode(byteArray, ref p);
-            ImOnline = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public();
+            ImOnline = new PublicSr25519();
             ImOnline.Decode(byteArray, ref p);
-            ParaValidator = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public();
+            ParaValidator = new PublicSr25519();
             ParaValidator.Decode(byteArray, ref p);
-            ParaAssignment = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public();
+            ParaAssignment = new PublicSr25519();
             ParaAssignment.Decode(byteArray, ref p);
-            AuthorityDiscovery = new Substats.Polkadot.NetApiExt.Generated.Model.sp_authority_discovery.app.Public();
+            AuthorityDiscovery = new PublicSr25519();
             AuthorityDiscovery.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

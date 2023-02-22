@@ -27,7 +27,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Aura = new Substats.Bajun.NetApiExt.Generated.Model.sp_consensus_aura.sr25519.app_sr25519.Public();
+            Aura = new PublicSr25519();
             Aura.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

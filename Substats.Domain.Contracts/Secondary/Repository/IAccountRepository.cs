@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Dto.User;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 
 namespace Substats.Domain.Contracts.Secondary.Repository
 {

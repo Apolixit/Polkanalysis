@@ -22,7 +22,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Encoded = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>();
+            Encoded = new BaseVec<U8>();
             Encoded.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

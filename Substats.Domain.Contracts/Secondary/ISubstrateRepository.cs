@@ -29,6 +29,9 @@ namespace Substats.Domain.Contracts.Secondary
         public IEvents Events { get; }
         public IErrors Errors { get; }
 
+        public bool IsConnected();
+        public Task ConnectAsync();
+        public Task CloseAsync();
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status
         /// If we are not connected, try to reconnect

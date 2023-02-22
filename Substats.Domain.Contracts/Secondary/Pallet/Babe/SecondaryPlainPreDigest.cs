@@ -28,7 +28,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
             var start = p;
             AuthorityIndex = new Ajuna.NetApi.Model.Types.Primitive.U32();
             AuthorityIndex.Decode(byteArray, ref p);
-            Slot = new Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
+            Slot = new U64();
             Slot.Decode(byteArray, ref p);
             TypeSize = p - start;
         }
