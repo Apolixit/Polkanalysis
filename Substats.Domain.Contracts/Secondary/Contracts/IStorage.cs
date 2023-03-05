@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
 using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
 using Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars;
 using Substats.Domain.Contracts.Secondary.Pallet.Babe;
@@ -23,6 +24,7 @@ namespace Substats.Domain.Contracts.Secondary.Contracts
 {
     public interface IStorage
     {
+        public string BlockHash { get; set; }
         public IAuctionsStorage Auctions { get; }
         public IAuthorshipStorage Authorship { get; }
         public IAwesomeAvatarsStorage AwesomeAvatars { get; }

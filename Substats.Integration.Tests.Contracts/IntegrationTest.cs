@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using NUnit.Framework;
 using Substats.Infrastructure.Polkadot.Repository;
+using Substats.Infrastructure.DirectAccess.Repository;
+using Substats.Infrastructure.Polkadot.Mapper;
+using Microsoft.Extensions.Logging;
 
 namespace Substats.Integration.Tests.Contracts
 {
@@ -24,8 +27,12 @@ namespace Substats.Integration.Tests.Contracts
             if (_substrateEndpoint == null)
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
 
-            _substrateRepository = Substitute.For<ISubstrateRepository>();
-            _substrateRepository.IsValidAccountAddress(Arg.Any<string>()).Returns(true);
+            _substrateRepository = new PolkadotRepository(
+                _substrateEndpoint,
+                Substitute.For<ILogger<PolkadotRepository>>()
+                );
+            //_substrateRepository = Substitute.For<ISubstrateRepository>();
+            //_substrateRepository.IsValidAccountAddress(Arg.Any<string>()).Returns(true);
 
             //_substrateClientRepository = new PolkadotSubstrateClientRepository(_substrateEndpoint);
             //_substrateRepository.Api.Returns(_substrateClientRepository);

@@ -1,95 +1,71 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Display;
 using Substats.Domain.Contracts.Secondary.Pallet.Balances;
 using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using Substats.Polkadot.NetApiExt.Generated.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using static Substats.Domain.Contracts.Secondary.Pallet.Balances.BalanceLock;
+using BalancesStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.BalancesStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class BalancesStorage : IBalancesStorage
+    /// <summary>
+    /// Balances storage mapping from Polkadot blockchain to Domain
+    /// Mapping is define from <see cref="SubstrateMapper.BalancesStorageProfile"/>
+    /// </summary>
+    public class BalancesStorage : MainStorage, IBalancesStorage
     {
-        private readonly SubstrateClientExt _client;
-
-        public BalancesStorage(SubstrateClientExt client)
+        public BalancesStorage(SubstrateClientExt client, ILogger logger) : base(client, logger)
         {
-            _client = client;
         }
 
         public async Task<AccountData> AccountAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
-            var res = await _client.BalancesStorage.Account(accountId32, token);
+            var res = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData>(BalancesStorageExt.AccountParams(accountId32), token);
 
-            if (res == null)
-                throw new InvalidOperationException($"BalancesStorage.Account return null value for account address {account.Address}");
-
-            var accountData = new AccountData()
-            {
-                Free = res.Free,
-                FeeFrozen = res.FeeFrozen,
-                MiscFrozen = res.MiscFrozen,
-                Reserved = res.Reserved
-            };
-
-            return accountData;
+            return SubstrateMapper.Instance.Map<
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData, 
+                AccountData>(res);
         }
 
         public async Task<U128> InactiveIssuanceAsync(CancellationToken token)
         {
-            return await _client.BalancesStorage.InactiveIssuance(token);
+            return await GetStorageAsync<U128>(BalancesStorageExt.InactiveIssuanceParams(), token);
         }
 
-        public async Task<IEnumerable<BalanceLock>> LocksAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<BaseVec<BalanceLock>> LocksAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
-            var res = await _client.BalancesStorage.Locks(accountId32, token);
 
-            if (res == null || res.Value == null) 
-                return Enumerable.Empty<BalanceLock>();
+            var res = await GetStorageAsync<WeakBoundedVecT3>(
+                BalancesStorageExt.LocksParams(accountId32), token);
 
-            return res.Value.Value.Select(x =>
-            {
-                return new BalanceLock()
-                {
-                    Id = SubstrateMapper.Instance.Map<Arr8U8, string>(x.Id),
-                    Amount = x.Amount,
-                    Reason = SubstrateMapper.Instance.Map<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.Reasons, ReasonType>(x.Reasons.Value)
-                };
-            });
+            //if (res == null || res.Value == null)
+            //    return new BaseVec<BalanceLock>();
+            
+            return SubstrateMapper.Instance.Map<WeakBoundedVecT3, BaseVec<BalanceLock>>(res);
         }
 
-        public async Task<IEnumerable<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
-            var res = await _client.BalancesStorage.Reserves(accountId32, token);
+            
+            var res = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6>(BalancesStorageExt.ReservesParams(accountId32), token);
 
-            if (res == null)
-                return Enumerable.Empty<ReserveData>();
-
-            return res.Value.Value.Select(x =>
-            {
-                return new ReserveData()
-                {
-                    Id = SubstrateMapper.Instance.Map<Arr8U8, string>(x.Id),
-                    Amount = x.Amount,
-                };
-            });
+            return SubstrateMapper.Instance.Map<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6, BaseVec<ReserveData>>(res);
         }
 
         public async Task<U128> TotalIssuanceAsync(CancellationToken token)
         {
-            return await _client.BalancesStorage.TotalIssuance(token);
+            return await GetStorageAsync<U128>(
+                BalancesStorageExt.TotalIssuanceParams(), token);
         }
     }
 }

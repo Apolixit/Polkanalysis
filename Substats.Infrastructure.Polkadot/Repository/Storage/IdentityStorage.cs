@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Microsoft.Extensions.Logging;
+using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Identity;
 using Substats.Polkadot.NetApiExt.Generated;
 using System;
@@ -9,13 +10,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class IdentityStorage : IIdentityStorage
+    public class IdentityStorage : MainStorage, IIdentityStorage
     {
-        private readonly SubstrateClientExt _client;
-        public IdentityStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public IdentityStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<Registration> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {

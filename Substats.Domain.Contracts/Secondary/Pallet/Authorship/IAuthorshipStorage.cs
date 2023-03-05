@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
@@ -16,7 +17,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Authorship
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<EnumUncleEntryItem>> UnclesAsync(CancellationToken token);
+        public Task<BaseVec<EnumUncleEntryItem>> UnclesAsync(CancellationToken token);
 
         /// <summary>
         /// Author of current block.

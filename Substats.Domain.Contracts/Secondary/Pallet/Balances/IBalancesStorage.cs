@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types;
+using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
@@ -65,7 +66,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
         /// <param name="account"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<BalanceLock>> LocksAsync(SubstrateAccount account, CancellationToken token);
+        public Task<BaseVec<BalanceLock>> LocksAsync(SubstrateAccount account, CancellationToken token);
 
         /// <summary>
         /// Named reserves on some account balances.
@@ -73,6 +74,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
         /// <param name="account"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token);
+        public Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token);
     };
 }

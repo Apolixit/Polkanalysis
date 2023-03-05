@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
 using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
@@ -11,13 +12,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class NominationPoolsStorage : INominationPoolsStorage
+    public class NominationPoolsStorage : MainStorage, INominationPoolsStorage
     {
-        private readonly SubstrateClientExt _client;
-        public NominationPoolsStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public NominationPoolsStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token)
         {

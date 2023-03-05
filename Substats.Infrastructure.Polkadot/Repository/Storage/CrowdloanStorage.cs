@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Substats.Polkadot.NetApiExt.Generated;
@@ -10,13 +11,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class CrowdloanStorage : ICrowdloanStorage
+    public class CrowdloanStorage : MainStorage, ICrowdloanStorage
     {
-        private readonly SubstrateClientExt _client;
-        public CrowdloanStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public CrowdloanStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<U32> EndingsCountAsync(CancellationToken token)
         {

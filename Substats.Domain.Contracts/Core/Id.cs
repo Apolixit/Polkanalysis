@@ -18,7 +18,7 @@ namespace Substats.Domain.Contracts.Core
         public Id() { }
         public Id(uint value)
         {
-            Value = new U32().With(value);
+            Create(BitConverter.GetBytes(value));
         }
 
         public U32 Value { get; set; }

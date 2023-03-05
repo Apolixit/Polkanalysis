@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
 using Substats.Polkadot.NetApiExt.Generated;
 using System;
@@ -9,13 +10,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class TimestampStorage : ITimestampStorage
+    public class TimestampStorage : MainStorage, ITimestampStorage
     {
-        private readonly SubstrateClientExt _client;
-        public TimestampStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public TimestampStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<Bool> DidUpdateAsync(CancellationToken token)
         {

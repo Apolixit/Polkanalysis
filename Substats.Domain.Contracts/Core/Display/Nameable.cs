@@ -1,10 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.AjunaExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Core.Display
@@ -22,9 +24,13 @@ namespace Substats.Domain.Contracts.Core.Display
             Create(elem.Bytes);
         }
 
-        public string Display { get; } = string.Empty;
+        public virtual string Display()
+        {
+            return System.Text.Encoding.Default.GetString(Value.ToBytes());
+        }
+
         public U8[] Value { get; set; }
-        private int IntegerSize;
+        protected int IntegerSize;
 
         public override int TypeSize
         {

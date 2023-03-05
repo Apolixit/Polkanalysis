@@ -1,4 +1,5 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Microsoft.Extensions.Logging;
+using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
 using Substats.Polkadot.NetApiExt.Generated;
 using System;
@@ -9,13 +10,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class RegistrarStorage : IRegistrarStorage
+    public class RegistrarStorage : MainStorage, IRegistrarStorage
     {
-        private readonly SubstrateClientExt _client;
-        public RegistrarStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public RegistrarStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<Id> NextFreeParaIdAsync(CancellationToken token)
         {

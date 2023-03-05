@@ -1,5 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.System;
 using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
@@ -12,13 +13,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class SystemStorage : ISystemStorage
+    public class SystemStorage : MainStorage, ISystemStorage
     {
-        private readonly SubstrateClientExt _client;
-        public SystemStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public SystemStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
         {

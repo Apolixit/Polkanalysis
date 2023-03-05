@@ -2,7 +2,10 @@
 using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Newtonsoft.Json.Linq;
+using Substats.AjunaExtension;
+using Substats.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,33 +22,35 @@ namespace Substats.Domain.Contracts.Core
             Bytes = new byte[0];
             TypeSize = 32;
         }
-        public SubstrateAccount(string address) : this()
+        public SubstrateAccount(string address) : this(Utils.GetPublicKeyFrom(address))
         {
-            Address.Create(address);
-            Bytes = Utils.GetPublicKeyFrom(address);
+            //Address.Create(address);
+            //Bytes = Utils.GetPublicKeyFrom(address);
+            
         }
 
-        public SubstrateAccount(Hash address) : this(address.Value)
+        public SubstrateAccount(U8[] value) : this(value.ToBytes()) { }
+        protected SubstrateAccount(byte[] value) : this()
         {
-
+            Create(value);
         }
+
         // From AccountId32
+        public Hexa Value { get; set; }
         public Hash Address { get; set; }
-        public byte[] Bytes { get; set; }
-        public int TypeSize { get; set; }
 
         public override byte[] Encode()
         {
             var result = new List<byte>();
-            result.AddRange(Address.Encode());
+            result.AddRange(Value.Encode());
             return result.ToArray();
         }
 
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Address = new Hash();
-            Address.Decode(byteArray, ref p);
+            Value = new Hexa();
+            Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Session;
 using Substats.Polkadot.NetApiExt.Generated;
@@ -10,13 +11,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class SessionStorage : ISessionStorage
+    public class SessionStorage : MainStorage, ISessionStorage
     {
-        private readonly SubstrateClientExt _client;
-        public SessionStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public SessionStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<U32> CurrentIndexAsync(CancellationToken token)
         {

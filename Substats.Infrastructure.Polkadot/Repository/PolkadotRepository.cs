@@ -19,6 +19,8 @@ using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Infrastructure.Common.Rpc;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using Substats.Infrastructure.Polkadot.Mapper;
+using Ajuna.NetApi;
 
 namespace Substats.Infrastructure.DirectAccess.Repository
 {
@@ -26,16 +28,17 @@ namespace Substats.Infrastructure.DirectAccess.Repository
     {
         private SubstrateClientExt? _polkadotClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
-        private readonly IMapper _mapper;
-        private readonly ILogger _logger;
-        public PolkadotRepository(ISubstrateEndpoint substrateconfiguration, IMapper mapper, ILogger logger)
+        //private readonly SubstrateMapper _mapper;
+        private readonly ILogger<PolkadotRepository> _logger;
+        public PolkadotRepository(ISubstrateEndpoint substrateconfiguration, ILogger<PolkadotRepository> logger)
         {
             _substrateconfiguration = substrateconfiguration;
-            _mapper = mapper;
             _logger = logger;
         }
 
-        private SubstrateClientExt PolkadotClient
+        public virtual SubstrateClient AjunaClient => PolkadotClient;
+
+        public SubstrateClientExt PolkadotClient
         {
             get
             {
@@ -44,6 +47,11 @@ namespace Substats.Infrastructure.DirectAccess.Repository
                     _polkadotClient = new SubstrateClientExt(_substrateconfiguration.EndPointUri, ChargeTransactionPayment.Default());
                 }
                 return _polkadotClient;
+            }
+
+            set
+            {
+                _polkadotClient = value;
             }
         }
 
@@ -55,7 +63,7 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             get
             {
                 if (_polkadotStorage == null)
-                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _mapper, _logger);
+                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _logger);
 
                 return _polkadotStorage;
             }
@@ -149,12 +157,14 @@ namespace Substats.Infrastructure.DirectAccess.Repository
 
         public ITimeQueryable At(Hash blockHash)
         {
-            throw new NotImplementedException();
+            Storage.BlockHash = blockHash.Value;
+            return this;
         }
 
         public ITimeQueryable At(string blockHash)
         {
-            throw new NotImplementedException();
+            Storage.BlockHash = blockHash;
+            return this;
         }
 
         public bool IsConnected() => PolkadotClient.IsConnected;

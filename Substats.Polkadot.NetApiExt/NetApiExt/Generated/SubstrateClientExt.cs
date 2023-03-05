@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated
 {
     
     
-    public sealed class SubstrateClientExt : Ajuna.NetApi.SubstrateClient
+    public class SubstrateClientExt : Ajuna.NetApi.SubstrateClient
     {
         
         /// <summary>
@@ -290,7 +290,7 @@ namespace Substats.Polkadot.NetApiExt.Generated
         /// XcmPalletStorage storage calls.
         /// </summary>
         public XcmPalletStorage XcmPalletStorage;
-        
+
         public SubstrateClientExt(System.Uri uri, Ajuna.NetApi.Model.Extrinsics.ChargeType chargeType) : 
                 base(uri, chargeType)
         {

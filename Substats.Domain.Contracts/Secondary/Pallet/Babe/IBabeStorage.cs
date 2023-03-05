@@ -1,6 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Random;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<Public, U64>> AuthoritiesAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<PublicSr25519, U64>>> AuthoritiesAsync(CancellationToken token);
 
         /// <summary>
         ///  The slot at which the first epoch actually started. This is 0
@@ -55,7 +56,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hash> RandomnessAsync(CancellationToken token);
+        public Task<Hexa> RandomnessAsync(CancellationToken token);
 
         /// <summary>
         /// Pending epoch configuration change that will be applied when the next epoch is enacted.
@@ -69,14 +70,14 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hash> NextRandomnessAsync(CancellationToken token);
+        public Task<Hexa> NextRandomnessAsync(CancellationToken token);
 
         /// <summary>
         /// Next epoch authorities.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<Public, U64>> NextAuthoritiesAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<PublicSr25519, U64>>> NextAuthoritiesAsync(CancellationToken token);
 
         /// <summary>
         ///  Randomness under construction.
@@ -99,7 +100,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Hash>> UnderConstructionAsync(U32 key, CancellationToken token);
+        public Task<BaseVec<Hexa>> UnderConstructionAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  Temporary value (cleared at block finalization) which is `Some`
@@ -107,7 +108,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<EnumPreDigest?> InitializedAsync(CancellationToken token);
+        public Task<BaseOpt<EnumPreDigest>> InitializedAsync(CancellationToken token);
 
         /// <summary>
         ///  This field should always be populated during block processing unless
@@ -117,7 +118,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hash?> AuthorVrfRandomnessAsync(CancellationToken token);
+        public Task<BaseOpt<Hexa>> AuthorVrfRandomnessAsync(CancellationToken token);
 
         /// <summary>
         ///  The block numbers when the last and current epoch have started, respectively `N-1` and
@@ -128,7 +129,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<(U32, U32)> EpochStartAsync(CancellationToken token);
+        public Task<BaseTuple<U32, U32>> EpochStartAsync(CancellationToken token);
 
         /// <summary>
         ///  How late the current block is compared to its parent.

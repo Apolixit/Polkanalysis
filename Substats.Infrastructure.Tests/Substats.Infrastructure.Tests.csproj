@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Ajuna.NetApi\Ajuna.NetApi\Ajuna.NetApi.csproj" />
     <ProjectReference Include="..\Substats.Domain.Contracts\Substats.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj" />
   </ItemGroup>

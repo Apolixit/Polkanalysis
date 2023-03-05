@@ -1,53 +1,40 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
+using AuthorshipStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.AuthorshipStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class AuthorshipStorage : IAuthorshipStorage
+    /// <summary>
+    /// Authorship storage mapping from Polkadot blockchain to Domain
+    /// Mapping is define from <see cref="SubstrateMapper.AuthorshipStorageProfile"/>
+    /// </summary>
+    public class AuthorshipStorage : MainStorage, IAuthorshipStorage
     {
-        private readonly SubstrateClientExt _client;
-        private readonly IMapper _mapper;
-        private readonly ILogger _logger;
-        public AuthorshipStorage(SubstrateClientExt client, IMapper mapper, ILogger logger)
-        {
-            _client = client;
-            _mapper = mapper;
-            _logger = logger;
-        }
+        public AuthorshipStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public async Task<SubstrateAccount> AuthorAsync(CancellationToken token)
         {
-            var author = await _client.AuthorshipStorage.Author(token);
-            _logger.LogTrace($"Received {nameof(_client.AuthorshipStorage.Author)} call");
+            var author = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorageExt.AuthorParams(), token);
 
-            return _mapper.Map<SubstrateAccount>(author);
+            return SubstrateMapper.Instance.Map<SubstrateAccount>(author);
         }
 
         public async Task<Bool> DidSetUnclesAsync(CancellationToken token)
         {
-            var response = await _client.AuthorshipStorage.DidSetUncles(token);
-            _logger.LogTrace($"Received {nameof(_client.AuthorshipStorage.DidSetUncles)} call");
-
-            return response;
+            return await GetStorageAsync<Bool>(AuthorshipStorageExt.DidSetUnclesParams(), token);
         }
 
-        public async Task<IEnumerable<EnumUncleEntryItem>> UnclesAsync(CancellationToken token)
+        public async Task<BaseVec<EnumUncleEntryItem>> UnclesAsync(CancellationToken token)
         {
-            var response = await _client.AuthorshipStorage.Uncles(token);
-            _logger.LogTrace($"Received {nameof(_client.AuthorshipStorage.Uncles)} call");
+            var res = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7>(AuthorshipStorageExt.UnclesParams(), token);
 
-            return _mapper.Map<IEnumerable<EnumUncleEntryItem>>(response.Value);
+            return SubstrateMapper.Instance.Map<BaseVec<EnumUncleEntryItem>>(res.Value);
         }
     }
 }

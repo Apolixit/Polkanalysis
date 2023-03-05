@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
 using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Staking;
@@ -11,13 +12,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class StakingStorage : IStakingStorage
+    public class StakingStorage : MainStorage, IStakingStorage
     {
-        private readonly SubstrateClientExt _client;
-        public StakingStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public StakingStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<ActiveEraInfo> ActiveEraAsync(CancellationToken token)
         {

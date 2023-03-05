@@ -194,7 +194,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<U32> CodeByHashRefs(Hash key, CancellationToken token);
+        public Task<U32> CodeByHashRefsAsync(Hash key, CancellationToken token);
 
         /// <summary>
         ///  Validation code stored by its hash.

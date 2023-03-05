@@ -11,8 +11,13 @@ namespace Substats.Domain.Contracts.Core
 {
     public abstract class Public : BaseType
     {
-        public IEnumerable<U8> Value { get; set; }
+        public U8[] Value { get; set; }
         public abstract KeyType Key { get; }
+
+        protected Public(U8[] value)
+        {
+            Value = value;
+        }
 
         public override void Decode(byte[] byteArray, ref int p)
         {

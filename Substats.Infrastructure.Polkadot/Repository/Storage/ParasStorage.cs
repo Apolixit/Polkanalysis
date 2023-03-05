@@ -1,5 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Paras;
 using Substats.Polkadot.NetApiExt.Generated;
@@ -11,13 +12,9 @@ using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class ParasStorage : IParasStorage
+    public class ParasStorage : MainStorage, IParasStorage
     {
-        private readonly SubstrateClientExt _client;
-        public ParasStorage(SubstrateClientExt client)
-        {
-            _client = client;
-        }
+        public ParasStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
         public Task<IEnumerable<Id>> ActionsQueueAsync(U32 key, CancellationToken token)
         {
@@ -29,7 +26,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             throw new NotImplementedException();
         }
 
-        public Task<U32> CodeByHashRefs(Hash key, CancellationToken token)
+        public Task<U32> CodeByHashRefsAsync(Hash key, CancellationToken token)
         {
             throw new NotImplementedException();
         }

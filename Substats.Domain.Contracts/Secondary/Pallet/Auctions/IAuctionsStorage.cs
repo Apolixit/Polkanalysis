@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
@@ -28,7 +29,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Auctions
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<(U32, U32)> AuctionInfoAsync(CancellationToken token);
+        public Task<BaseTuple<U32, U32>> AuctionInfoAsync(CancellationToken token);
 
         /// <summary>
         ///  Amounts currently reserved in the accounts of the bidders currently winning
@@ -37,7 +38,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Auctions
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<U128> ReservedAmountsAsync((SubstrateAccount, Id) key, CancellationToken token);
+        public Task<U128> ReservedAmountsAsync(BaseTuple<SubstrateAccount, Id> key, CancellationToken token);
 
         /// <summary>
         ///  The winning bids for each of the 10 ranges at each sample in the final Ending Period of
@@ -47,6 +48,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Auctions
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<(SubstrateAccount, Id, U128)?> WinningAsync(U32 key, CancellationToken token);
+        public Task<BaseOpt<BaseTuple<SubstrateAccount, Id, U128>>[]> WinningAsync(U32 key, CancellationToken token);
     }
 }

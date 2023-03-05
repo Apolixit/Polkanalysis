@@ -1,102 +1,152 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.Threading;
+using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Random;
 using Substats.Domain.Contracts.Secondary.Pallet.Babe;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
+using Substats.Polkadot.NetApiExt.Generated.Types.Base;
+using BabeStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.BabeStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
-    public class BabeStorage : IBabeStorage
+    /// <summary>
+    /// Babe storage mapping from Polkadot blockchain to Domain
+    /// Mapping is define from <see cref="SubstrateMapper.AuthorshipStorageProfile"/>
+    /// </summary>
+    public class BabeStorage : MainStorage, IBabeStorage
     {
-        private readonly SubstrateClientExt _client;
-        public BabeStorage(SubstrateClientExt client)
+        public BabeStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+
+        public async Task<BaseVec<BaseTuple<PublicSr25519, U64>>> AuthoritiesAsync(CancellationToken token)
         {
-            _client = client;
+            var result = await GetStorageAsync<WeakBoundedVecT2>(BabeStorageExt.AuthoritiesParams(), token);
+
+            if (result == null) return new BaseVec<BaseTuple<PublicSr25519, U64>>();
+
+            return SubstrateMapper.Instance.Map<WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>(result);
         }
 
-        public Task<IDictionary<Public, U64>> AuthoritiesAsync(CancellationToken token)
+        public async Task<BaseOpt<Hexa>> AuthorVrfRandomnessAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<BaseOpt<Arr32U8>>(BabeStorageExt.AuthorVrfRandomnessParams(), token);
+            
+            if(result == null) return new BaseOpt<Hexa>();
+            return SubstrateMapper.Instance.Map<BaseOpt<Arr32U8>, BaseOpt<Hexa>>(result);
         }
 
-        public Task<Hash?> AuthorVrfRandomnessAsync(CancellationToken token)
+        public async Task<U64> CurrentSlotAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U64>(BabeStorageExt.CurrentSlotParams(), token) ?? new U64();
         }
 
-        public Task<U64> CurrentSlotAsync(CancellationToken token)
+        public async Task<BabeEpochConfiguration> EpochConfigAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(BabeStorageExt.EpochConfigParams(), token);
+
+            if (result == null) return new BabeEpochConfiguration();
+
+            return SubstrateMapper.Instance.Map<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(result);
         }
 
-        public Task<BabeEpochConfiguration> EpochConfigAsync(CancellationToken token)
+        public async Task<U64> EpochIndexAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U64>(BabeStorageExt.EpochIndexParams(), token) ?? new U64();
         }
 
-        public Task<U64> EpochIndexAsync(CancellationToken token)
+        public async Task<BaseTuple<U32, U32>> EpochStartAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<BaseTuple<U32, U32>>(BabeStorageExt.EpochStartParams(), token) 
+                ?? new BaseTuple<U32, U32>();
         }
 
-        public Task<(U32, U32)> EpochStartAsync(CancellationToken token)
+        public async Task<U64> GenesisSlotAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U64>(BabeStorageExt.GenesisSlotParams(), token) ?? new U64();
         }
 
-        public Task<U64> GenesisSlotAsync(CancellationToken token)
+        public async Task<BaseOpt<EnumPreDigest>> InitializedAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(BabeStorageExt.InitializedParams(), token);
+
+            if (result == null) return new BaseOpt<EnumPreDigest>();
+
+            return SubstrateMapper.Instance.Map<
+                BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>, BaseOpt<EnumPreDigest>>
+                (result);
         }
 
-        public Task<EnumPreDigest?> InitializedAsync(CancellationToken token)
+        public async Task<U32> LatenessAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(BabeStorageExt.LatenessParams(), token) ?? new U32();
         }
 
-        public Task<U32> LatenessAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<PublicSr25519, U64>>> NextAuthoritiesAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<WeakBoundedVecT2>(BabeStorageExt.NextAuthoritiesParams(), token);
+
+            if (result == null) return new BaseVec<BaseTuple<PublicSr25519, U64>>();
+
+            return SubstrateMapper.Instance.Map<WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>(result);
         }
 
-        public Task<IDictionary<Public, U64>> NextAuthoritiesAsync(CancellationToken token)
+        public async Task<BabeEpochConfiguration> NextEpochConfigAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(BabeStorageExt.NextEpochConfigParams(), token);
+
+            if (result == null) return new BabeEpochConfiguration();
+
+            return SubstrateMapper.Instance.Map<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(result);
         }
 
-        public Task<BabeEpochConfiguration> NextEpochConfigAsync(CancellationToken token)
+        public async Task<Hexa> NextRandomnessAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<Arr32U8>(BabeStorageExt.NextRandomnessParams(), token);
+
+            if (result == null) return new Hexa();
+
+            return SubstrateMapper.Instance.Map<Arr32U8, Hexa>(result);
         }
 
-        public Task<Hash> NextRandomnessAsync(CancellationToken token)
+        public async Task<EnumNextConfigDescriptor> PendingEpochConfigChangeAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>(BabeStorageExt.PendingEpochConfigChangeParams(), token);
+
+            if (result == null) return new EnumNextConfigDescriptor();
+
+            return SubstrateMapper.Instance.Map<
+                Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor, EnumNextConfigDescriptor>
+                (result);
         }
 
-        public Task<EnumNextConfigDescriptor> PendingEpochConfigChangeAsync(CancellationToken token)
+        public async Task<Hexa> RandomnessAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            var result = await GetStorageAsync<Arr32U8>(BabeStorageExt.RandomnessParams(), token);
+
+            if (result == null) return new Hexa();
+
+            return SubstrateMapper.Instance.Map<Arr32U8, Hexa>(result);
         }
 
-        public Task<Hash> RandomnessAsync(CancellationToken token)
+        public async Task<U32> SegmentIndexAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(BabeStorageExt.SegmentIndexParams(), token) ?? new U32();
         }
 
-        public Task<U32> SegmentIndexAsync(CancellationToken token)
+        public async Task<BaseVec<Hexa>> UnderConstructionAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
-        }
+            var result = await GetStorageAsync<BoundedVecT5>(BabeStorageExt.UnderConstructionParams(key), token);
 
-        public Task<IEnumerable<Hash>> UnderConstructionAsync(U32 key, CancellationToken token)
-        {
-            throw new NotImplementedException();
+            if (result == null) return new BaseVec<Hexa>();
+            var hex = result.Value.TakeAndEncode(2);
+
+            return SubstrateMapper.Instance.Map<BoundedVecT5, BaseVec<Hexa>>(result);
         }
     }
 }
