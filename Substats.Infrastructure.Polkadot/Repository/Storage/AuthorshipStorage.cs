@@ -6,6 +6,7 @@ using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
 using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using AuthorshipStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.AuthorshipStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
@@ -20,21 +21,27 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<SubstrateAccount> AuthorAsync(CancellationToken token)
         {
-            var author = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(AuthorshipStorageExt.AuthorParams(), token);
-
-            return SubstrateMapper.Instance.Map<SubstrateAccount>(author);
+            return await GetStorageAsync<
+                    Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32,
+                    SubstrateAccount>
+                (AuthorshipStorageExt.AuthorParams, token);
         }
 
         public async Task<Bool> DidSetUnclesAsync(CancellationToken token)
         {
-            return await GetStorageAsync<Bool>(AuthorshipStorageExt.DidSetUnclesParams(), token);
+            return await GetStorageAsync<Bool>(AuthorshipStorageExt.DidSetUnclesParams, token);
         }
 
         public async Task<BaseVec<EnumUncleEntryItem>> UnclesAsync(CancellationToken token)
         {
-            var res = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7>(AuthorshipStorageExt.UnclesParams(), token);
+            return await GetStorageAsync<BoundedVecT7, BaseVec<EnumUncleEntryItem>>(AuthorshipStorageExt.UnclesParams, token);
 
-            return SubstrateMapper.Instance.Map<BaseVec<EnumUncleEntryItem>>(res.Value);
+            //var res = await GetStorageAsync<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7,
+            //    BaseVec<EnumUncleEntryItem>>
+            //    (AuthorshipStorageExt.UnclesParams, token);
+
+            //return SubstrateMapper.Instance.Map<BaseVec<EnumUncleEntryItem>>(res.Value);
         }
     }
 }

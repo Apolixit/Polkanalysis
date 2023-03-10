@@ -2,14 +2,14 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.System;
-using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
+using Substats.Polkadot.NetApiExt.Generated.Model.primitive_types;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using SystemStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.SystemStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
@@ -17,84 +17,162 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
     {
         public SystemStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
-        public Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo,
+                AccountInfo>
+                (accountId32, SystemStorageExt.AccountParams, token);
+
+            //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo>(SystemStorageExt.AccountParams(SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account)), token);
+
+            //if (result == null) return new AccountInfo();
+
+            //return SubstrateMapper.Instance.Map<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo, AccountInfo>(result);
         }
 
-        public Task<U32> AllExtrinsicsLenAsync(CancellationToken token)
+        public async Task<U32> AllExtrinsicsLenAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(SystemStorageExt.AllExtrinsicsLenParams, token);
         }
 
-        public Task<Hash> BlockHashAsync(U32 blockId, CancellationToken token)
+        public async Task<Hash> BlockHashAsync(U32 blockId, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<U32, H256, Hash>(blockId, SystemStorageExt.BlockHashParams, token);
+
+            //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(SystemStorageExt.BlockHashParams(blockId), token);
+
+            //if (result == null) return new Hash();
+
+            //return SubstrateMapper.Instance.Map<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Hash>(result);
         }
 
-        public Task<FrameSupportDispatchPerDispatchClassWeight> BlockWeightAsync(CancellationToken token)
+        public async Task<FrameSupportDispatchPerDispatchClassWeight> BlockWeightAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                PerDispatchClassT1, 
+                FrameSupportDispatchPerDispatchClassWeight>(SystemStorageExt.BlockWeightParams, token);
+
+            //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT1>(SystemStorageExt.BlockWeightParams(), token);
+
+            //if (result == null) return new FrameSupportDispatchPerDispatchClassWeight();
+
+            //return SubstrateMapper.Instance.Map<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>(result);
         }
 
-        public Task<Digest> DigestAsync(CancellationToken token)
+        public async Task<Digest> DigestAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest, Digest>(SystemStorageExt.DigestParams, token);
+
+            //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(SystemStorageExt.DigestParams(), token);
+
+            //if (result == null) return new Digest();
+
+            //return SubstrateMapper.Instance.Map<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest, Digest>(result);
         }
 
-        public Task<U32> EventCountAsync(CancellationToken token)
+        public async Task<U32> EventCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(SystemStorageExt.EventCountParams, token);
         }
 
-        public Task<IEnumerable<EventRecord>> EventsAsync(CancellationToken token)
+        public async Task<BaseVec<EventRecord>> EventsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>,
+                BaseVec<EventRecord>>(SystemStorageExt.EventsParams, token);
+
+            //var result = await GetStorageAsync< BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(SystemStorageExt.EventsParams(), token);
+
+            //if (result == null) return new BaseVec<EventRecord>();
+
+            //return SubstrateMapper.Instance.Map<
+            //    BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>, BaseVec<EventRecord>>(result);
         }
 
-        public Task<IEnumerable<(U32, U32)>> EventTopicsAsync(Hash key, CancellationToken token)
+        public async Task<BaseVec<BaseTuple<U32, U32>>> EventTopicsAsync(Hash key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            var param = SubstrateMapper.Instance.Map<Hash, H256>(key);
+
+            return await GetStorageWithParamsAsync<
+                H256,
+                BaseVec<BaseTuple<U32, U32>>,
+                BaseVec<BaseTuple<U32, U32>>>
+                (param, SystemStorageExt.EventTopicsParams, token);
+
+            //return await GetStorageAsync<BaseVec<BaseTuple<U32, U32>>>(
+            //    SystemStorageExt.EventTopicsParams(SubstrateMapper.Instance.Map<Hash, H256>(key)), 
+            //    token) ?? new BaseVec<BaseTuple<U32, U32>>();
         }
 
-        public Task<EnumPhase> ExecutionPhaseAsync(CancellationToken token)
+        public async Task<EnumPhase> ExecutionPhaseAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, EnumPhase> (SystemStorageExt.ExecutionPhaseParams, token);
+
+            //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase>(SystemStorageExt.ExecutionPhaseParams(), token);
+
+            //if (result == null) return new EnumPhase();
+
+            //return SubstrateMapper.Instance.Map<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, EnumPhase>(result);
         }
 
-        public Task<U32> ExtrinsicCountAsync(CancellationToken token)
+        public async Task<U32> ExtrinsicCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(SystemStorageExt.ExtrinsicCountParams, token);
         }
 
-        public Task<byte[]> ExtrinsicDataAsync(U32 extrinsicId, CancellationToken token)
+        public async Task<BaseVec<U8>> ExtrinsicDataAsync(U32 extrinsicId, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                BaseVec<U8>,
+                BaseVec<U8>>
+                (extrinsicId, SystemStorageExt.ExtrinsicDataParams, token);
+
+            //return await GetStorageAsync<BaseVec<U8>>(
+            //    SystemStorageExt.ExtrinsicDataParams(extrinsicId), token) ?? new BaseVec<U8>();
         }
 
-        public Task<LastRuntimeUpgradeInfo> LastRuntimeUpgradeAsync(CancellationToken token)
+        public async Task<LastRuntimeUpgradeInfo> LastRuntimeUpgradeAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo, LastRuntimeUpgradeInfo>(SystemStorageExt.LastRuntimeUpgradeParams, token);
+
+            //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo>(SystemStorageExt.LastRuntimeUpgradeParams(), token);
+
+            //if (result == null) return new LastRuntimeUpgradeInfo();
+
+            //return SubstrateMapper.Instance.Map<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, LastRuntimeUpgradeInfo>(result);
         }
 
-        public Task<U32> NumberAsync(CancellationToken token)
+        public async Task<U32> NumberAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(SystemStorageExt.NumberParams, token);
         }
 
-        public Task<Hash> ParentHashAsync(CancellationToken token)
+        public async Task<Hash> ParentHashAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<H256, Hash>(SystemStorageExt.ParentHashParams, token);
         }
 
-        public Task<Bool> UpgradedToTripleRefCountAsync(CancellationToken token)
+        public async Task<Bool> UpgradedToTripleRefCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<Bool>(SystemStorageExt.UpgradedToTripleRefCountParams, token);
         }
 
-        public Task<Bool> UpgradedToU32RefCountAsync(CancellationToken token)
+        public async Task<Bool> UpgradedToU32RefCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<Bool>(SystemStorageExt.UpgradedToU32RefCountParams, token);
         }
     }
 }

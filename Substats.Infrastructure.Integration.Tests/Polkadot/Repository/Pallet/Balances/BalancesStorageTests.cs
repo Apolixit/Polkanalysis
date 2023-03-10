@@ -41,7 +41,6 @@ namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.B
         {
             var testAccount = new SubstrateAccount("13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY");
             var res = await _substrateRepository.Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
-
             Assert.That(res, Is.Not.Null);
         }
 

@@ -1,4 +1,11 @@
-﻿using NSubstitute;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
+using NSubstitute;
+using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,37 +19,59 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Authorship
         [Test]
         public async Task Uncles_ShouldWorkAsync()
         {
-            Assert.Fail();
+            var coreResult = new BoundedVecT7();
+            var uncleEnum = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem();
+            uncleEnum.Create(Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.UncleEntryItem.InclusionHeight, new U32(10));
+            coreResult.Create(Utils.Bytes2HexString(new BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem>(new[]
+            {
+                uncleEnum
+            }).Encode()));
+
+            var uncleEnumExpected = new EnumUncleEntryItem();
+            uncleEnumExpected.Create(UncleEntryItem.InclusionHeight, new U32(10));
+            var expectedResult = new BaseVec<EnumUncleEntryItem>(new[]
+            {
+                uncleEnumExpected
+            });
+
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Authorship.UnclesAsync);
         }
 
         [Test]
         public async Task UnclesNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync<BoundedVecT7, BaseVec<EnumUncleEntryItem>>(_substrateRepository.Storage.Authorship.UnclesAsync);
         }
 
         [Test]
         public async Task Author_ShouldWorkAsync()
         {
-            Assert.Fail();
+            var coreResult = new AccountId32();
+            coreResult.Create(Utils.GetPublicKeyFrom(MockAddress));
+
+            var expectedResult = new SubstrateAccount(MockAddress);
+
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Authorship.AuthorAsync);
         }
 
         [Test]
         public async Task AuthorNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync<AccountId32, SubstrateAccount>(_substrateRepository.Storage.Authorship.AuthorAsync);
         }
 
         [Test]
-        public async Task DidSetUncles_ShouldWorkAsync()
+        [TestCase(true)]
+        [TestCase(false)]
+        public async Task DidSetUncles_ShouldWorkAsync(bool expectedResult)
         {
-            Assert.Fail();
+            await MockStorageCallAsync(new Bool(expectedResult), _substrateRepository.Storage.Authorship.DidSetUnclesAsync);
         }
 
         [Test]
         public async Task DidSetUnclesNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Authorship.DidSetUnclesAsync);
         }
     }
 }

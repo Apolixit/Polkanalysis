@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.System.Enums
+namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 {
     public class EventRecord : BaseType
     {

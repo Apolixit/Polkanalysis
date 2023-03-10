@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.System.Enums
+namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 {
     public enum RuntimeEvent
     {
@@ -95,7 +95,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System.Enums
     /// >> 19 - Variant[polkadot_runtime.RuntimeEvent]
     /// </summary>
     public sealed class EnumRuntimeEvent : BaseEnumExt<RuntimeEvent,
-        System.Enums.EnumEvent,
+        SystemCore.Enums.EnumEvent,
         Scheduler.Enums.EnumEvent,
         BaseVoid,
         BaseVoid,

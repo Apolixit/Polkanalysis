@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Modules;
+using Ajuna.NetApi.Modules.Contracts;
 using Substats.Domain.Contracts.Secondary.Common;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,9 @@ namespace Substats.Domain.Contracts.Secondary.Rpc
 {
     public interface IRpc
     {
-        //public IChain Chain { get; }
-        //public IState State { get; }
-        //public IAuthor Author { get; }
-        //public ISystem System { get; }
-
-        public Chain Chain { get; }
-        public State State { get; }
-        public Author Author { get; }
-        public Ajuna.NetApi.Modules.System System { get; }
+        public IChain Chain { get; }
+        public IState State { get; }
+        public IAuthor Author { get; }
+        public ISystem System { get; }
     }
 }

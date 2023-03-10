@@ -7,6 +7,7 @@ using NSubstitute.ReturnsExtensions;
 using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary;
+using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
 using Substats.Infrastructure.DirectAccess.Repository;
 using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated.Types.Base;
@@ -21,23 +22,6 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
 {
     public class AuctionsStorageTests : PolkadotRepositoryMock
     {
-
-        [Test]
-        public async Task BlockHashFilled_ShouldWorkAsync()
-        {
-            var expectedResult = new U32(10);
-
-            _substrateRepository.PolkadotClient.GetStorageAsync<U32>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), Arg.Is(CancellationToken.None)).Returns(expectedResult);
-
-            var resWithoutBlockHash = await _substrateRepository.Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
-
-            Assert.That(resWithoutBlockHash, Is.Null);
-
-            var resWithBlockHash = await _substrateRepository.Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
-
-            Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
-        }
-
         [Test]
         [TestCaseSource(nameof(U32TestCase))]
         public async Task AuctionCounter_ShouldWorkAsync(U32 expectedResult)
@@ -48,11 +32,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
         [Test]
         public async Task AuctionCounterNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<U32>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
-
-            var res = await _substrateRepository.Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
-
-            Assert.That(res.Value, Is.EqualTo(0));
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Auctions.AuctionCounterAsync);
         }
 
         [Test]
@@ -70,10 +50,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
         [Test]
         public async Task AuctionInfoNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<BaseTuple<U32, U32>>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
-
-            var res = await _substrateRepository.Storage.Auctions.AuctionInfoAsync(CancellationToken.None);
-            Assert.That(res, Is.EqualTo(new BaseTuple<U32, U32>()));
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Auctions.AuctionInfoAsync);
         }
 
         [Test]
@@ -90,10 +67,8 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
         [Test]
         public async Task ReservedAmountsNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<U128>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
-
-            var res = await _substrateRepository.Storage.Auctions.ReservedAmountsAsync(new BaseTuple<SubstrateAccount, Id>(new SubstrateAccount(MockAddress), new Id(1)), CancellationToken.None);
-            Assert.That(res, Is.EqualTo(new U128()));
+            await MockStorageCallNullWithInputAsync(
+                new BaseTuple<SubstrateAccount, Id>(new SubstrateAccount(MockAddress), new Id(1)), _substrateRepository.Storage.Auctions.ReservedAmountsAsync);
         }
 
         [Test]
@@ -117,22 +92,16 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
 
             var res = await _substrateRepository.Storage.Auctions.WinningAsync(new U32(1), CancellationToken.None);
 
-            //await MockStorageCallAsync(new U32(1), extResult, _substrateRepository.Storage.Auctions.ReservedAmountsAsync);
-
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.Length, Is.EqualTo(1));
-            Assert.That(res.First().OptionFlag, Is.True);
+            Assert.That(res.Value.Length, Is.EqualTo(1));
+            Assert.That(res.Value.First().OptionFlag, Is.True);
         }
 
         [Test]
         public async Task WinningNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<Arr36BaseOpt>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
-
-            var res = await _substrateRepository.Storage.Auctions.WinningAsync(new U32(1), CancellationToken.None);
-
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.Length, Is.EqualTo(0));
+            await MockStorageCallNullWithInputAsync<U32, Arr36BaseOpt, Winning>
+                (new U32(1), _substrateRepository.Storage.Auctions.WinningAsync);
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
     {
         public U32 AuthorityIndex { get; set; }
         public U64 Slot { get; set; }
-        public int TypeSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override byte[] Encode()
         {
@@ -26,7 +25,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Babe
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            AuthorityIndex = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            AuthorityIndex = new U32();
             AuthorityIndex.Decode(byteArray, ref p);
             Slot = new U64();
             Slot.Decode(byteArray, ref p);

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.System.Enums
+namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 {
     public enum Phase
     {

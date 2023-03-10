@@ -74,16 +74,36 @@ namespace Substats.Infrastructure.Tests.Polkadot.Mapping
             Assert.That(dest, Is.Not.Null);
         }
 
-        [Test]
-        public void PublicEd25519_ShouldWork()
-        {
-            Assert.Fail();
-        }
+        //[Test]
+        //public void PublicEd25519_ShouldWork()
+        //{
+        //    var publicEd = new PublicEd25519();
+        //    Assert.Fail();
+        //}
+
+        //[Test]
+        //public void PublicSr25519_ShouldWork()
+        //{
+        //    Assert.Fail();
+        //}
 
         [Test]
-        public void PublicSr25519_ShouldWork()
+        public void BaseCom_ShouldWork()
         {
-            Assert.Fail();
+            var targetValue = new U64(10);
+
+            var baseCom = new BaseCom<U64>();
+            baseCom.Create(new CompactInteger(targetValue));
+
+            var u64 = new U64();
+            u64.Create(baseCom.Value.Value.ToByteArray());
+
+            var mapU64 = SubstrateMapper.Instance.Map<BaseCom<U64>, U64>(baseCom);
+
+            Assert.That(targetValue, Is.EqualTo(u64));
+            Assert.That(targetValue, Is.EqualTo(mapU64));
+            
+            
         }
     }
 }

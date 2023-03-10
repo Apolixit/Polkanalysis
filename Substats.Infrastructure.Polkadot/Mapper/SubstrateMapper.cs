@@ -25,6 +25,13 @@ using Org.BouncyCastle.Math.EC.Rfc7748;
 using static Substats.Infrastructure.Polkadot.Mapper.SubstrateMapper.AuctionsStorageProfile;
 using Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519;
 using Substats.Domain.Contracts.Core.Random;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
+using Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
+using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Org.BouncyCastle.Asn1.X509.Qualified;
+using System.Numerics;
+using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
 
 namespace Substats.Infrastructure.Polkadot.Mapper
 {
@@ -57,13 +64,14 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             cfg.AddProfile<BabeStorageProfile>();
             cfg.AddProfile<ParachainStorageProfile>();
             cfg.AddProfile<SchedulerStorageProfile>();
+            cfg.AddProfile<SystemStorageProfile>();
 
             //cfg.CreateMap<Arr8U8, string>().ConvertUsing((i, o) => o.ToString());
             //cfg.CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.Reasons, Substats.Domain.Contracts.Secondary.Pallet.Balances.Enums.Reasons>().ConvertUsingEnumMapping(opt => opt.MapByName());
             //cfg.CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem, Domain.Contracts.Secondary.Pallet.Authorship.EnumUncleEntryItem>().ConvertUsingEnumMapping(opt => opt.MapByName());
 
             
-            //cfg.CreateMap<BoundedVecT7, BaseVec<EnumUncleEntryItem>>().ConvertUsing(opt => opt.Value);
+            
             
 
             
@@ -104,6 +112,37 @@ namespace Substats.Infrastructure.Polkadot.Mapper
                 CreateMap(typeof(BaseTuple<,>), typeof(BaseTuple<,>)).ConvertUsing(typeof(BaseTupleConverter<,,,>));
                 CreateMap(typeof(BaseTuple<,,>), typeof(BaseTuple<,,>)).ConvertUsing(typeof(BaseTupleConverter<,,,,,>));
                 CreateMap(typeof(BaseVec<>), typeof(BaseVec<>)).ConvertUsing(typeof(BaseVecConverter<,>));
+
+                BaseComMapping<I8>();
+                BaseComMapping<I16>();
+                BaseComMapping<I32>();
+                BaseComMapping<I64>();
+                BaseComMapping<I128>();
+                BaseComMapping<I256>();
+                BaseComMapping<U8>();
+                BaseComMapping<U16>();
+                BaseComMapping<U32>();
+                BaseComMapping<U64>();
+                BaseComMapping<U128>();
+                BaseComMapping<U256>();
+            }
+
+            private void BaseComMapping<T>()
+                where T : IType, new()
+                => CreateMap<BaseCom<T>, T>().ConvertUsing(new BaseComConverter<T>());
+
+            public class BaseComConverter<T> : ITypeConverter<BaseCom<T>, T>
+                where T : IType, new()
+            {
+                public T Convert(BaseCom<T> source, T destination, ResolutionContext context)
+                {
+                    destination = new T();
+                    if (source == null) return destination;
+
+                    destination.Create(source.Value.Value.ToByteArray());
+
+                    return destination;
+                }
             }
         }
 
@@ -153,21 +192,25 @@ namespace Substats.Infrastructure.Polkadot.Mapper
         {
             public AuthorshipStorageProfile()
             {
-                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem, Domain.Contracts.Secondary.Pallet.Authorship.EnumUncleEntryItem>();
+                CreateMap<BoundedVecT7, BaseVec<EnumUncleEntryItem>>()
+                    .ConvertUsing(x => Instance.Map<BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem>, BaseVec<EnumUncleEntryItem>>(x.Value));
+
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem, EnumUncleEntryItem>();
             }
         }
         public class AuctionsStorageProfile : Profile
         {
             public AuctionsStorageProfile()
             {
-                CreateMap<Arr36BaseOpt, BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>[]>().ConvertUsing(typeof(Arr36BaseOptConverter));
+                CreateMap<Arr36BaseOpt, Winning>().ConvertUsing(typeof(Arr36BaseOptConverter));
             }
 
-            public class Arr36BaseOptConverter : ITypeConverter<Arr36BaseOpt, BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>[]>
+            public class Arr36BaseOptConverter : ITypeConverter<Arr36BaseOpt, Winning>
             {
-                public BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>[] Convert(Arr36BaseOpt source, BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>[] destination, ResolutionContext context)
+                public Winning Convert(Arr36BaseOpt source, Winning destination, ResolutionContext context)
                 {
-                    destination = new BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>[0];
+                    //BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>[] destination
+                    destination = new Winning();
                     if (source == null || source.Value == null) return destination;
 
                     var conversions = new List<BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>>();
@@ -178,7 +221,8 @@ namespace Substats.Infrastructure.Polkadot.Mapper
                             BaseOpt<BaseTuple<SubstrateAccount, Domain.Contracts.Core.Id, U128>>>(item));
                     }
 
-                    return conversions.ToArray();
+                    destination.Create(conversions.ToArray());
+                    return destination;
                 }
             }
         }
@@ -269,9 +313,33 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             }
         }
 
+        public class SystemStorageProfile : Profile
+        {
+            public SystemStorageProfile()
+            {
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo, AccountInfo>();
+                //CreateMap<PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>().ConvertUsing(new PerDispatchClassT1Converter());
+                CreateMap<PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight, Weight>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest, Digest>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord, EventRecord>();
+            }
+        }
+
         /// <summary>
         /// Conversion from SubstrateAccount to AccountId32
         /// </summary>
+        public class PerDispatchClassT1Converter : ITypeConverter<PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>
+        {
+            public FrameSupportDispatchPerDispatchClassWeight Convert(PerDispatchClassT1 source, FrameSupportDispatchPerDispatchClassWeight destination, ResolutionContext context)
+            {
+                destination = new FrameSupportDispatchPerDispatchClassWeight();
+                if (source == null) return destination;
+
+                destination.Create(source.Bytes);
+                return destination;
+            }
+        }
         public class SubstrateAccountConverter : ITypeConverter<SubstrateAccount, AccountId32>
         {
             public AccountId32 Convert(SubstrateAccount source, AccountId32 destination, ResolutionContext context)
@@ -426,6 +494,7 @@ namespace Substats.Infrastructure.Polkadot.Mapper
         {
             public Hash Convert(H256 source, Hash destination, ResolutionContext context)
             {
+                destination = new Hash();
                 destination.Create(Utils.Bytes2HexString(source.Value.Encode()));
 
                 return destination;

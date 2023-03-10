@@ -12,7 +12,7 @@ using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
 using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
 using Substats.Domain.Contracts.Secondary.Pallet.Session;
 using Substats.Domain.Contracts.Secondary.Pallet.Staking;
-using Substats.Domain.Contracts.Secondary.Pallet.System;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
 using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
 using System;
 using System.Collections.Generic;

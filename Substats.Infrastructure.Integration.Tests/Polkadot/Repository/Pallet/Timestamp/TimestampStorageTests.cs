@@ -1,4 +1,5 @@
-﻿using Substats.Integration.Tests.Contracts;
+﻿using NUnit.Framework;
+using Substats.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,19 @@ namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.T
 {
     public class TimestampStorageTests : PolkadotIntegrationTest
     {
+        [Test]
+        public async Task Now_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.Timestamp.NowAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+
+        [Test]
+        public async Task DidUpdate_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.Timestamp.DidUpdateAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
     }
 }

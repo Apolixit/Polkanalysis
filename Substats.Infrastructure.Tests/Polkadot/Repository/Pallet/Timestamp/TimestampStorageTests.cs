@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ajuna.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,27 +10,30 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Timestamp
     public class TimestampStorageTests : PolkadotRepositoryMock
     {
         [Test]
-        public async Task Now_ShouldWorkAsync()
+        [TestCaseSource(nameof(U64TestCase))]
+        public async Task Now_ShouldWorkAsync(U64 expectedResult)
         {
-            Assert.Fail();
+            await MockStorageCallAsync(expectedResult, _substrateRepository.Storage.Timestamp.NowAsync);
         }
 
         [Test]
         public async Task NowNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Timestamp.NowAsync);
         }
 
         [Test]
-        public async Task DidUpdate_ShouldWorkAsync()
+        [TestCase(true)]
+        [TestCase(false)]
+        public async Task DidUpdate_ShouldWorkAsync(bool expectedResult)
         {
-            Assert.Fail();
+            await MockStorageCallAsync(new Bool(expectedResult), _substrateRepository.Storage.Timestamp.DidUpdateAsync);
         }
 
         [Test]
         public async Task DidUpdateNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Timestamp.DidUpdateAsync);
         }
     }
 }

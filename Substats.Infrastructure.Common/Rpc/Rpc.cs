@@ -1,4 +1,6 @@
-﻿using Ajuna.NetApi.Modules;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Modules;
+using Ajuna.NetApi.Modules.Contracts;
 using Substats.Domain.Contracts.Secondary.Rpc;
 using System;
 using System.Collections.Generic;
@@ -10,18 +12,19 @@ namespace Substats.Infrastructure.Common.Rpc
 {
     public class Rpc : IRpc
     {
-        public IChain Chain => throw new NotImplementedException();
+        private readonly SubstrateClient _client;
 
-        public IState State => throw new NotImplementedException();
+        public Rpc(SubstrateClient client)
+        {
+            _client = client;
+        }
 
-        public Author Author => throw new NotImplementedException();
+        public IChain Chain => _client.Chain;
 
-        public ISystem System => throw new NotImplementedException();
+        public IState State => _client.State;
 
-        Ajuna.NetApi.Modules.Chain IRpc.Chain => throw new NotImplementedException();
+        public IAuthor Author => _client.Author;
 
-        State IRpc.State => throw new NotImplementedException();
-
-        Ajuna.NetApi.Modules.System IRpc.System => throw new NotImplementedException();
+        public ISystem System => _client.System;
     }
 }

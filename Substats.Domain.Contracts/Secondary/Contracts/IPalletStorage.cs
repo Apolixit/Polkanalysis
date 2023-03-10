@@ -2,5 +2,6 @@
 {
     public interface IPalletStorage
     {
+        public string? BlockHash { get; set; }
     }
 }

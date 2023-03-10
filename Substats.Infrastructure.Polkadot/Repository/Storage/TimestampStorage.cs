@@ -2,11 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TimestampStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.TimestampStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
@@ -14,14 +10,14 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
     {
         public TimestampStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
-        public Task<Bool> DidUpdateAsync(CancellationToken token)
+        public async Task<Bool> DidUpdateAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<Bool>(TimestampStorageExt.DidUpdateParams, token);
         }
 
-        public Task<U64> NowAsync(CancellationToken token)
+        public async Task<U64> NowAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U64>(TimestampStorageExt.NowParams, token);
         }
     }
 }

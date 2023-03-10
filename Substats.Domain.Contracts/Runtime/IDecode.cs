@@ -2,7 +2,7 @@
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

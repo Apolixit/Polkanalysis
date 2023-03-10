@@ -2,14 +2,14 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
-using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.System
+namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
 {
     public interface ISystemStorage : IPalletStorage
     {
@@ -56,7 +56,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// <param name="extrinsicId"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<byte[]> ExtrinsicDataAsync(U32 extrinsicId, CancellationToken token);
+        public Task<BaseVec<U8>> ExtrinsicDataAsync(U32 extrinsicId, CancellationToken token);
 
         /// <summary>
         /// The current block number being processed. Set by `execute_block`.
@@ -90,7 +90,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<EventRecord>> EventsAsync(CancellationToken token);
+        public Task<BaseVec<EventRecord>> EventsAsync(CancellationToken token);
 
         /// <summary>
         /// The number of events in the `Events<T>` list.
@@ -114,7 +114,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.System
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<(U32, U32)>> EventTopicsAsync(Hash key, CancellationToken token);
+        public Task<BaseVec<BaseTuple<U32, U32>>> EventTopicsAsync(Hash key, CancellationToken token);
 
         /// <summary>
         /// Stores the `spec_version` and `spec_name` of when the last runtime upgrade happened.

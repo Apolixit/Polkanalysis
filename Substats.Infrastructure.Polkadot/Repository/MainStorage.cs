@@ -1,6 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,77 @@ namespace Substats.Infrastructure.Polkadot.Repository
         }
 
         /// <summary>
+        /// Call storage with input parameter and return same type as Ajuna SDK
+        /// Handle null value by returning empty class
+        /// </summary>
+        /// <typeparam name="I"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="input"></param>
+        /// <param name="funcParams"></param>
+        /// <param name="token"></param>
+        /// <param name="callerName"></param>
+        /// <returns></returns>
+        protected async Task<T> GetStorageWithParamsAsync<I, T>(
+            I input,
+            Func<I, string> funcParams,
+            CancellationToken token,
+            [CallerMemberName] string callerName = "")
+            where T : IType, new()
+        {
+            return await GetStorageAsync<T>(funcParams(input), token, callerName) ?? new T();
+        }
+
+        /// <summary>
+        /// Call storage with input parameter and convert Ajuna SDK to Domain class
+        /// Handle null value by returning empty class
+        /// </summary>
+        /// <typeparam name="I"></typeparam>
+        /// <typeparam name="R"></typeparam>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="input"></param>
+        /// <param name="funcParams"></param>
+        /// <param name="token"></param>
+        /// <param name="callerName"></param>
+        /// <returns></returns>
+        protected async Task<T> GetStorageWithParamsAsync<I, R, T>(
+        I input,
+        Func<I, string> funcParams,
+        CancellationToken token,
+        [CallerMemberName] string callerName = "")
+        where R : IType, new()
+        where T : IType, new()
+        {
+            var result = await GetStorageAsync<R>(funcParams(input), token, callerName);
+
+            if (result == null) return new T();
+
+            return SubstrateMapper.Instance.Map<R, T>(result);
+        }
+
+        protected async Task<T> GetStorageAsync<T>(
+            Func<string> funcParams,
+            CancellationToken token,
+            [CallerMemberName] string callerName = "")
+            where T : IType, new()
+        {
+            return await GetStorageAsync<T>(funcParams(), token, callerName) ?? new T();
+        }
+
+        protected async Task<T> GetStorageAsync<R, T>(
+        Func<string> funcParams,
+        CancellationToken token,
+        [CallerMemberName] string callerName = "")
+        where R : IType, new()
+        where T : IType, new()
+        {
+            var result = await GetStorageAsync<R>(funcParams(), token, callerName);
+
+            if (result == null) return new T();
+
+            return SubstrateMapper.Instance.Map<R, T>(result);
+        }
+
+        /// <summary>
         /// Just a simple wrapper to <see cref="Ajuna.NetApi.SubstrateClient.GetStorageAsync"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -31,16 +103,16 @@ namespace Substats.Infrastructure.Polkadot.Repository
         /// <param name="blockhash"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        protected async Task<T?> GetStorageAsync<T>(
-            string parameters, 
-            CancellationToken token, 
-            [CallerMemberName] string callerName = "") 
+        private async Task<T?> GetStorageAsync<T>(
+            string parameters,
+            CancellationToken token,
+            [CallerMemberName] string callerName = "")
             where T : IType, new()
         {
             _logger.LogTrace($"Storage call from {callerName} with parameters = {parameters}");
             var res = await _client.GetStorageAsync<T>(parameters, BlockHash, token);
-            
-            if(res == null)
+
+            if (res == null)
             {
                 _logger.LogTrace($"Storage call response is null");
             }

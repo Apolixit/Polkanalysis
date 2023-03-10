@@ -40,9 +40,23 @@ namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.B
         }
 
         [Test]
+        public async Task PendingEpochConfigChange_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.Babe.PendingEpochConfigChangeAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
         public async Task EpochConfig_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Babe.EpochConfigAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task NextEpochConfig_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.Babe.NextEpochConfigAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 

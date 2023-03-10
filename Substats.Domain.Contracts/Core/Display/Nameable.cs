@@ -1,5 +1,7 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Org.BouncyCastle.Utilities.Encoders;
 using Substats.AjunaExtension;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,20 @@ namespace Substats.Domain.Contracts.Core.Display
     /// </summary>
     public class Nameable : BaseType
     {
-        public Nameable() { }
+        public Nameable()
+        {
+        }
+
+        public Nameable(string hex)
+        {
+            Create(Utils.HexToByteArray(hex).Select(x => new U8(x)).ToArray());
+        }
+
+        public Nameable(U8[] data)
+        {
+            Create(data);
+        }
+
         public Nameable(BaseType elem)
         {
             IntegerSize = elem.TypeSize;
@@ -62,6 +77,16 @@ namespace Substats.Domain.Contracts.Core.Display
         {
             Value = array;
             Bytes = Encode();
+            IntegerSize = Bytes.Length;
+
+            Create(Bytes);
         }
+
+        //public virtual void Create(string str)
+        //{
+
+        //    Create(Encode());
+        //    Create(Utils.HexToByteArray(str));
+        //}
     }
 }

@@ -12,7 +12,7 @@ using Substats.Domain.Contracts.Runtime.Mapping;
 using Substats.Domain.Contracts.Secondary;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Runtime.Module;
-using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 
 namespace Substats.Domain.Runtime
 {

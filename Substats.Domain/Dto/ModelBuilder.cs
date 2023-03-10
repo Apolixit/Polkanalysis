@@ -7,7 +7,7 @@ using Substats.Domain.Contracts.Dto.Common;
 using Substats.Domain.Contracts.Dto.Event;
 using Substats.Domain.Contracts.Dto.Extrinsic;
 using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Substats.Domain.Runtime;
 using System;
 using System.Collections.Generic;

@@ -23,7 +23,7 @@ using Substats.Domain.Contracts.Dto.User;
 using Substats.Domain.Contracts.Secondary.Repository;
 using Substats.Domain.Adapter.Block;
 using Substats.Domain.Contracts.Helpers;
-using Substats.Domain.Contracts.Secondary.Pallet.System.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 
 namespace Substats.Domain.Repository
 {
@@ -258,7 +258,7 @@ namespace Substats.Domain.Repository
 
             var eventsDto = new List<EventDto>();
 
-            foreach (var ev in events)
+            foreach (var ev in events.Value)
             {
                 var eventNode = _substrateDecode.DecodeEvent(ev);
 
@@ -343,7 +343,7 @@ namespace Substats.Domain.Repository
             // Doc here :
             // https://polkadot.js.org/docs/api/cookbook/blocks#how-do-i-map-extrinsics-to-their-events
             // Event Phase must be "Apply extrinsic" dans his value must be equal to extrinsic index
-            IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = events.Where(e =>
+            IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = events.Value.Where(e =>
             {
                 if (e.Phase.Value == Phase.ApplyExtrinsic)
                 {
@@ -482,7 +482,7 @@ namespace Substats.Domain.Repository
             var blockHash = block.ToBlockHash();
             var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
 
-            var eventNode = _substrateDecode.DecodeEvent(events.ToList()[(int)eventIndex]);
+            var eventNode = _substrateDecode.DecodeEvent(events.Value[(int)eventIndex]);
 
             return _modelBuilder.BuildEventDto(
                     await GetBlockLightAsync(blockHash, cancellationToken),

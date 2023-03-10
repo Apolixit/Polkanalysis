@@ -47,6 +47,14 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository
                new U32(100),
                new U32(1000000)
         };
+
+        public static IList<U128> U128TestCase => new List<U128>() {
+               new U128(0),
+               new U128(1),
+               new U128(10),
+               new U128(100),
+               new U128(1000000)
+        };
         #endregion
 
         [SetUp]
@@ -126,6 +134,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository
         /// <param name="storageCall">Storage function to call</param>
         /// <returns></returns>
         protected async Task MockStorageCallWithInputAsync<I,T>(I input, T expectedResult, Func<I, CancellationToken, Task<T>> storageCall)
+            where I : IType, new()
             where T : IType, new()
         {
             _substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(expectedResult);
@@ -152,6 +161,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository
             R storageResult, 
             T expectedResult, 
             Func<I, CancellationToken, Task<T>> storageCall)
+            where I : IType, new()
             where R : IType, new()
             where T : IType, new()
         {
@@ -170,30 +180,64 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository
         /// <param name="storageCall">Function to call</param>
         /// <returns></returns>
 
-        protected async Task MockStorageCallNullAsync<T>(Func<CancellationToken, Task<T>> storageCall)
+        protected async Task<T> MockStorageCallNullAsync<T>(Func<CancellationToken, Task<T>> storageCall)
             where T : IType, new()
         {
-            //_substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            _substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(default(T));
 
             var res = await storageCall(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res, Is.EqualTo(new T()));
+
+            return res;
         }
 
-        protected async Task MockStorageCallNullWithInputAsync<I, T>(I input, Func<I, CancellationToken, Task<T>> storageCall)
+        protected async Task<T> MockStorageCallNullAsync<R, T>(Func<CancellationToken, Task<T>> storageCall)
+            where R : IType, new()
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<T>(
+            _substrateRepository.AjunaClient.GetStorageAsync<R>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(default(R));
+
+            var res = await storageCall(CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res, Is.EqualTo(new T()));
+
+            return res;
+        }
+
+        protected async Task<T> MockStorageCallNullWithInputAsync<I, R, T>(I input, Func<I, CancellationToken, Task<T>> storageCall)
+            where I : IType, new()
+            where R : IType, new()
+            where T : IType, new()
+        {
+            _substrateRepository.AjunaClient.GetStorageAsync<R>(
                 Arg.Any<string>(),
                 Arg.Any<string>(),
-                CancellationToken.None).ReturnsNull();
+                CancellationToken.None).Returns(default(R));
 
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res, Is.EqualTo(new T()));
 
+            return res;
+        }
+        protected async Task<T> MockStorageCallNullWithInputAsync<I, T>(I input, Func<I, CancellationToken, Task<T>> storageCall)
+            where T : IType, new()
+        {
+            _substrateRepository.AjunaClient.GetStorageAsync<T>(
+                Arg.Any<string>(),
+                Arg.Any<string>(),
+                CancellationToken.None).Returns(default(T));
+
+            var res = await storageCall(input, CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res, Is.EqualTo(new T()));
+
+            return res;
         }
     }
 }

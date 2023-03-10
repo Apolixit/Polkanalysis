@@ -69,7 +69,15 @@ namespace Substats.Infrastructure.DirectAccess.Repository
             }
         }
 
-        public IRpc Rpc => throw new NotImplementedException();
+        private IRpc? _rpc = null;
+        public IRpc Rpc {
+            get {
+                if (_rpc == null)
+                    _rpc = new Rpc(PolkadotClient);
+                
+                return _rpc;
+            }
+        }
 
         public IConstants Constants => throw new NotImplementedException();
 

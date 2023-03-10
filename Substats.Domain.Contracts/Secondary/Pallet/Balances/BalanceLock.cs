@@ -14,6 +14,16 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
 {
     public class BalanceLock : BaseType
     {
+        public BalanceLock() { }
+
+        public BalanceLock(Nameable id, U128 amount, EnumReasons reasons) {
+            this.Id = id;
+            this.Amount = amount;
+            this.Reasons = reasons;
+
+            Create(Encode());
+        }
+
         public Nameable Id { get; set; }
         public U128 Amount { get; set; } = new U128().With(BigInteger.Zero);
         public EnumReasons Reasons { get; set; }
@@ -32,7 +42,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
             var start = p;
             Id = new Nameable();
             Id.Decode(byteArray, ref p);
-            Amount = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Amount = new U128();
             Amount.Decode(byteArray, ref p);
             Reasons = new EnumReasons();
             Reasons.Decode(byteArray, ref p);

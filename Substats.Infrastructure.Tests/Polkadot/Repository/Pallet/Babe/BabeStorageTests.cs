@@ -29,7 +29,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task EpochIndexNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.EpochIndexAsync);
         }
@@ -55,7 +55,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task AuthoritiesNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<WeakBoundedVecT2>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<WeakBoundedVecT2>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.AuthoritiesAsync);
         }
@@ -70,7 +70,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task GenesisSlotNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.GenesisSlotAsync);
         }
@@ -85,7 +85,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task CurrentSlotNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.CurrentSlotAsync);
         }
@@ -105,7 +105,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task RandomnessNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<Arr32U8>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<Arr32U8>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.RandomnessAsync);
         }
@@ -113,27 +113,34 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task PendingEpochConfigChange_ShouldWorkAsync()
         {
-            var extResult = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
-            extResult.Create(Utils.HexToByteArray("0x0100000000000000040000000000000002"));
+            var extAllowedSlot = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots();
+            extAllowedSlot.Create(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.AllowedSlots.PrimarySlots);
+            var extResult = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor();
+            extResult.Create(
+                Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.NextConfigDescriptor.V1,
+                new BaseTuple<BaseTuple<U64, U64>, Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>(
+                    new BaseTuple<U64, U64>(new U64(2), new U64(4)), extAllowedSlot));
 
-            var expectedResult = new BabeEpochConfiguration();
-            expectedResult.C = new BaseTuple<U64, U64>(new U64(1), new U64(4));
-            expectedResult.AllowedSlots = new EnumAllowedSlots();
-            expectedResult.AllowedSlots.Create(AllowedSlots.PrimaryAndSecondaryVRFSlots);
+            var allowedSlot = new EnumAllowedSlots();
+            extAllowedSlot.Create(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.AllowedSlots.PrimarySlots);
+            var expectedResult = new EnumNextConfigDescriptor();
+            expectedResult.Create(NextConfigDescriptor.V1, 
+                new BaseTuple<BaseTuple<U64, U64>, EnumAllowedSlots>(
+                    new BaseTuple<U64, U64>(new U64(2), new U64(4)), allowedSlot));
 
-            await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.EpochConfigAsync);
+            await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.PendingEpochConfigChangeAsync);
         }
 
         [Test]
         public async Task PendingEpochConfigChangeNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>
-                (Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>
+            //    (Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.EpochConfigAsync);
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.PendingEpochConfigChangeAsync);
         }
-        
+
         [Test]
         public async Task NextRandomness_ShouldWorkAsync()
         {
@@ -149,7 +156,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task NextRandomnessNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<Arr32U8>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<Arr32U8>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.NextRandomnessAsync);
         }
@@ -175,7 +182,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task NextAuthoritiesNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<WeakBoundedVecT2>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<WeakBoundedVecT2>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.NextAuthoritiesAsync);
         }
@@ -190,7 +197,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task SegmentIndexNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<U32>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<U32>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.SegmentIndexAsync);
         }
@@ -208,25 +215,28 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
             });
 
             await MockStorageCallWithInputAsync(
-                new U32(0), 
-                extResult, 
-                expectedResult, 
+                new U32(0),
+                extResult,
+                expectedResult,
                 _substrateRepository.Storage.Babe.UnderConstructionAsync);
         }
 
         [Test]
         public async Task UnderConstructionNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<BoundedVecT5>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<BoundedVecT5>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
             await MockStorageCallNullWithInputAsync(new U32(0), _substrateRepository.Storage.Babe.UnderConstructionAsync);
         }
 
         [Test]
+        [Ignore("Find a good test case")]
         public async Task Initialized_ShouldWorkAsync()
         {
+            //var enumPreDigestExt = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest();
+            //enumPreDigestExt.Create(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.PreDigest.Primary, )
             //var extResult = new BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>();
-
+            //extResult.Create();
             //var expectedResult = new EnumPreDigest();
             //var expectedEnumData = new PrimaryPreDigest();
 
@@ -237,23 +247,26 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task InitializedNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.InitializedAsync);
         }
 
         [Test]
         public async Task AuthorVrfRandomness_ShouldWorkAsync()
         {
-            //var res = await _substrateRepository.Storage.Babe.AuthorVrfRandomnessAsync(CancellationToken.None);
-            //Assert.That(res, Is.Not.Null);
+            var resCore = new BaseOpt<Arr32U8>();
+            var extSubRes = new Arr32U8();
+            extSubRes.Create(Utils.HexToByteArray("0xD95389AB38F371D4B960865243B283E995BA3E199F95FDB65E481ECB8A1C951A"));
+            resCore.Create(extSubRes);
+
+            var expectedResult = new BaseOpt<Hexa>(new Hexa("0xD95389AB38F371D4B960865243B283E995BA3E199F95FDB65E481ECB8A1C951A"));
+            
+            await MockStorageCallAsync(resCore, expectedResult, _substrateRepository.Storage.Babe.AuthorVrfRandomnessAsync);
         }
 
         [Test]
         public async Task AuthorVrfRandomnessNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<BaseOpt<Arr32U8>>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
-
-            var res = await _substrateRepository.Storage.Babe.AuthorVrfRandomnessAsync(CancellationToken.None);
-            Assert.That(res, Is.EqualTo(new BaseOpt<Hexa>()));
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.AuthorVrfRandomnessAsync);
         }
 
         [Test]
@@ -266,48 +279,67 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task EpochStartNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.EpochStartAsync);
         }
 
         [Test]
-        public async Task Lateness_ShouldWorkAsync()
+        [TestCaseSource(nameof(U32TestCase))]
+        public async Task Lateness_ShouldWorkAsync(U32 param)
         {
-            Assert.Fail();
+            await MockStorageCallAsync(param, _substrateRepository.Storage.Babe.LatenessAsync);
         }
 
         [Test]
         public async Task LatenessNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.LatenessAsync);
         }
 
         [Test]
         public async Task EpochConfig_ShouldWorkAsync()
         {
-            //var res = await _substrateRepository.Storage.Babe.EpochConfigAsync(CancellationToken.None);
-            //Assert.That(res, Is.Not.Null);
+
+            var extResult = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
+            extResult.Create("0x0100000000000000040000000000000002");
+
+            var expectedResult = new BabeEpochConfiguration();
+            expectedResult.C = new BaseTuple<U64, U64>(new U64(1), new U64(4));
+            expectedResult.AllowedSlots = new EnumAllowedSlots();
+            expectedResult.AllowedSlots.Create(AllowedSlots.PrimaryAndSecondaryVRFSlots);
+
+            await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.EpochConfigAsync);
         }
 
         [Test]
         public async Task EpochConfigNull_ShouldWorkAsync()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            //_substrateRepository.AjunaClient.GetStorageAsync<
+            //    Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
-            var res = await _substrateRepository.Storage.Babe.EpochConfigAsync(CancellationToken.None);
-            Assert.That(res, Is.EqualTo(new BabeEpochConfiguration()));
+            //var res = await _substrateRepository.Storage.Babe.EpochConfigAsync(CancellationToken.None);
+            //Assert.That(res, Is.EqualTo(new BabeEpochConfiguration()));
+
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.EpochConfigAsync);
         }
 
         [Test]
         public async Task NextEpochConfig_ShouldWorkAsync()
         {
-            Assert.Fail();
+            var extResult = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
+            extResult.Create("0x0100000000000000040000000000000002");
+
+            var expectedResult = new BabeEpochConfiguration();
+            expectedResult.C = new BaseTuple<U64, U64>(new U64(1), new U64(4));
+            expectedResult.AllowedSlots = new EnumAllowedSlots();
+            expectedResult.AllowedSlots.Create(AllowedSlots.PrimaryAndSecondaryVRFSlots);
+
+            await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.NextEpochConfigAsync);
         }
 
         [Test]
         public async Task NextEpochConfigNull_ShouldWorkAsync()
         {
-            Assert.Fail();
+            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.NextEpochConfigAsync);
         }
     }
 }

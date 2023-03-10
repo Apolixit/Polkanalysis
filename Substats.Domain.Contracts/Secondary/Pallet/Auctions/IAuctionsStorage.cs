@@ -48,6 +48,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Auctions
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BaseOpt<BaseTuple<SubstrateAccount, Id, U128>>[]> WinningAsync(U32 key, CancellationToken token);
+        public Task<Winning> WinningAsync(U32 key, CancellationToken token);
     }
 }

@@ -15,7 +15,7 @@ using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
 using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
 using Substats.Domain.Contracts.Secondary.Pallet.Session;
 using Substats.Domain.Contracts.Secondary.Pallet.Staking;
-using Substats.Domain.Contracts.Secondary.Pallet.System;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
 using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
 using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
@@ -58,7 +58,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_auctionsStorages == null)
                     _auctionsStorages = new AuctionsStorage(_polkadotClient, _logger);
 
-                //_auctionsStorages.BlockHash = BlockHash;
+                _auctionsStorages.BlockHash = BlockHash;
                 return _auctionsStorages;
             }
         }
@@ -70,6 +70,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_authorshipStorages == null)
                     _authorshipStorages = new AuthorshipStorage(_polkadotClient, _logger);
 
+                _authorshipStorages.BlockHash = BlockHash;
                 return _authorshipStorages;
             }
         }
@@ -89,6 +90,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_babeStorages == null)
                     _babeStorages = new BabeStorage(_polkadotClient, _logger);
 
+                _babeStorages.BlockHash = BlockHash;
                 return _babeStorages;
             }
         }
@@ -100,6 +102,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_balancesStorages == null)
                     _balancesStorages = new BalancesStorage(_polkadotClient, _logger);
 
+                _balancesStorages.BlockHash = BlockHash;
                 return _balancesStorages;
             }
         }
@@ -111,6 +114,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_crowdloanStorage == null)
                     _crowdloanStorage = new CrowdloanStorage(_polkadotClient, _logger);
 
+                _crowdloanStorage.BlockHash = BlockHash;
                 return _crowdloanStorage;
             }
         }
@@ -122,6 +126,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_identityStorage == null)
                     _identityStorage = new IdentityStorage(_polkadotClient, _logger);
 
+                _identityStorage.BlockHash = BlockHash;
                 return _identityStorage;
             }
         }
@@ -133,6 +138,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_nominationPoolsStorage == null)
                     _nominationPoolsStorage = new NominationPoolsStorage(_polkadotClient, _logger);
 
+                _nominationPoolsStorage.BlockHash = BlockHash;
                 return _nominationPoolsStorage;
             }
         }
@@ -144,6 +150,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_parasStorage == null)
                     _parasStorage = new ParasStorage(_polkadotClient, _logger);
 
+                _parasStorage.BlockHash = BlockHash;
                 return _parasStorage;
             }
         }
@@ -155,6 +162,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_paraSessionInfoStorage == null)
                     _paraSessionInfoStorage = new ParaSessionInfoStorage(_polkadotClient, _logger);
 
+                _paraSessionInfoStorage.BlockHash = BlockHash;
                 return _paraSessionInfoStorage;
             }
         }
@@ -166,6 +174,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_registrarStorage == null)
                     _registrarStorage = new RegistrarStorage(_polkadotClient, _logger);
 
+                _registrarStorage.BlockHash = BlockHash;
                 return _registrarStorage;
             }
         }
@@ -177,6 +186,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_sessionStorage == null)
                     _sessionStorage = new SessionStorage(_polkadotClient, _logger);
 
+                _sessionStorage.BlockHash = BlockHash;
                 return _sessionStorage;
             }
         }
@@ -188,6 +198,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_stakingStorage == null)
                     _stakingStorage = new StakingStorage(_polkadotClient, _logger);
 
+                _stakingStorage.BlockHash = BlockHash;
                 return _stakingStorage;
             }
         }
@@ -199,6 +210,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_systemStorage == null)
                     _systemStorage = new SystemStorage(_polkadotClient, _logger);
 
+                _systemStorage.BlockHash = BlockHash;
                 return _systemStorage;
             }
         }
@@ -210,6 +222,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 if (_timestampStorage == null)
                     _timestampStorage = new TimestampStorage(_polkadotClient, _logger);
 
+                _timestampStorage.BlockHash = BlockHash;
                 return _timestampStorage;
             }
         }
