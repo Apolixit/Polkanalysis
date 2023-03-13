@@ -1,5 +1,7 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.AjunaExtension;
+using Substats.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,53 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
 {
-    public class BondedPoolInner
+    public class BondedPoolInner : BaseType
     {
-        public U128 Points { get; set; } = new U128().With(BigInteger.Zero);
-        public Enums.PoolState State { get; set; }
+        public U128 Points { get; set; } = new U128();
+        public EnumPoolState State { get; set; }
         public U32 MemberCounter { get; set; }
-        public PoolRoles Roles { get; set; } = new PoolRoles();
+        public PoolRoles Roles { get; set; }
+
+        public BondedPoolInner() { }
+
+        public BondedPoolInner(U128 points, EnumPoolState state, U32 memberCounter, PoolRoles roles)
+        {
+            Create(points, state, memberCounter, roles);
+        }
+
+        public void Create(U128 points, EnumPoolState state, U32 memberCounter, PoolRoles roles)
+        {
+            Points = points;
+            State = state;
+            MemberCounter = memberCounter;
+            Roles = roles;
+
+            Bytes = Encode();
+            TypeSize = Points.TypeSize + State.TypeSize + MemberCounter.TypeSize + Roles.TypeSize;
+        }
+
+        public override byte[] Encode()
+        {
+            var result = new List<byte>();
+            result.AddRange(Points.Encode());
+            result.AddRange(State.Encode());
+            result.AddRange(MemberCounter.Encode());
+            result.AddRange(Roles.Encode());
+            return result.ToArray();
+        }
+
+        public override void Decode(byte[] byteArray, ref int p)
+        {
+            var start = p;
+            Points = new U128();
+            Points.Decode(byteArray, ref p);
+            State = new EnumPoolState();
+            State.Decode(byteArray, ref p);
+            MemberCounter = new U32();
+            MemberCounter.Decode(byteArray, ref p);
+            Roles = new PoolRoles();
+            Roles.Decode(byteArray, ref p);
+            TypeSize = p - start;
+        }
     }
 }

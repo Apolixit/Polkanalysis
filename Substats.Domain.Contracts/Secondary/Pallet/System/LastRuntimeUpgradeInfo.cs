@@ -10,7 +10,24 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
 {
     public class LastRuntimeUpgradeInfo : BaseType
     {
-        public U32 SpecVersion { get; set; }
+        public LastRuntimeUpgradeInfo() { }
+
+        public LastRuntimeUpgradeInfo(U32 specVersion, Str specName)
+        {
+            Create(new BaseCom<U32>(new Ajuna.NetApi.CompactInteger(specVersion)), specName);
+        }
+
+        public void Create(BaseCom<U32> specVersion, Str specName)
+        {
+            SpecVersion = specVersion;
+            SpecName = specName;
+
+            Bytes = Encode();
+
+            TypeSize = specVersion.TypeSize + specName.TypeSize;
+        }
+
+        public BaseCom<U32> SpecVersion { get; set; }
         public Str SpecName { get; set; }
 
         public override byte[] Encode()
@@ -24,7 +41,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            SpecVersion = new U32();
+            SpecVersion = new BaseCom<U32>();
             SpecVersion.Decode(byteArray, ref p);
             SpecName = new Str();
             SpecName.Decode(byteArray, ref p);

@@ -61,6 +61,12 @@ namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.B
         }
 
         [Test]
+        public async Task Randomness_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.Babe.RandomnessAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+        [Test]
         public async Task NextRandomness_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Babe.NextRandomnessAsync(CancellationToken.None);

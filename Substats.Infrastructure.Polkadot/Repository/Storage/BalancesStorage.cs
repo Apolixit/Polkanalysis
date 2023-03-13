@@ -35,13 +35,6 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
                 AccountData>
                 (accountId32, BalancesStorageExt.AccountParams, token);
-
-            
-            //var res = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData>(BalancesStorageExt.AccountParams(accountId32), token);
-
-            //return SubstrateMapper.Instance.Map<
-            //    Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData, 
-            //    AccountData>(res);
         }
 
         public async Task<U128> InactiveIssuanceAsync(CancellationToken token)
@@ -58,14 +51,6 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 WeakBoundedVecT3,
                 BaseVec<BalanceLock>>
                 (accountId32, BalancesStorageExt.LocksParams, token);
-
-            //var res = await GetStorageAsync<WeakBoundedVecT3>(
-            //    BalancesStorageExt.LocksParams(accountId32), token);
-
-            ////if (res == null || res.Value == null)
-            ////    return new BaseVec<BalanceLock>();
-            
-            //return SubstrateMapper.Instance.Map<WeakBoundedVecT3, BaseVec<BalanceLock>>(res);
         }
 
         public async Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token)

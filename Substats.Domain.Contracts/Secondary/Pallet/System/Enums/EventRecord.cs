@@ -4,6 +4,23 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 {
     public class EventRecord : BaseType
     {
+        public EventRecord() { }
+
+        public EventRecord(EnumPhase phase, EnumRuntimeEvent @event, BaseVec<Hash> topics)
+        {
+            Create(phase, @event, topics);
+        }
+
+        public void Create(EnumPhase phase, EnumRuntimeEvent @event, BaseVec<Hash> topics)
+        {
+            Phase = phase;
+            Event = @event;
+            Topics = topics;
+
+            Bytes = Encode();
+            TypeSize = Phase.TypeSize + Event.TypeSize + Topics.TypeSize;
+        }
+
         public EnumPhase Phase { get; set; }
         public EnumRuntimeEvent Event { get; set; }
         public BaseVec<Hash> Topics { get; set; }

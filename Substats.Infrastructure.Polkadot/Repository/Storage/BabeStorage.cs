@@ -30,11 +30,6 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 WeakBoundedVecT2,
                 BaseVec<BaseTuple<PublicSr25519, U64>>>
                 (BabeStorageExt.AuthoritiesParams, token);
-            //var result = await GetStorageAsync<WeakBoundedVecT2>(BabeStorageExt.AuthoritiesParams(), token);
-
-            //if (result == null) return new BaseVec<BaseTuple<PublicSr25519, U64>>();
-
-            //return SubstrateMapper.Instance.Map<WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>(result);
         }
 
         public async Task<BaseOpt<Hexa>> AuthorVrfRandomnessAsync(CancellationToken token)

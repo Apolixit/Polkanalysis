@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
@@ -18,7 +19,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Public>> AssignmentKeysUnsafeAsync(CancellationToken token);
+        public Task<BaseVec<PublicSr25519>> AssignmentKeysUnsafeAsync(CancellationToken token);
 
         /// <summary>
         /// The earliest session for which previous session info is stored.
@@ -43,6 +44,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<SubstrateAccount>> AccountKeysAsync(U32 key, CancellationToken token);
+        public Task<BaseVec<SubstrateAccount>> AccountKeysAsync(U32 key, CancellationToken token);
     }
 }

@@ -14,19 +14,19 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
 {
     public class BalanceLock : BaseType
     {
-        public BalanceLock() { }
+        public Nameable Id { get; set; }
+        public U128 Amount { get; set; } = new U128().With(BigInteger.Zero);
+        public EnumReasons Reasons { get; set; }
 
-        public BalanceLock(Nameable id, U128 amount, EnumReasons reasons) {
+        public void Create(Nameable id, U128 amount, EnumReasons reasons)
+        {
             this.Id = id;
             this.Amount = amount;
             this.Reasons = reasons;
 
-            Create(Encode());
+            Bytes = Encode();
+            TypeSize = Id.TypeSize + Amount.TypeSize + Reasons.TypeSize;
         }
-
-        public Nameable Id { get; set; }
-        public U128 Amount { get; set; } = new U128().With(BigInteger.Zero);
-        public EnumReasons Reasons { get; set; }
 
         public override byte[] Encode()
         {

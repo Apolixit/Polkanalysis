@@ -9,9 +9,25 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
 {
     public class FrameSupportDispatchPerDispatchClassWeight : BaseType
     {
+        public FrameSupportDispatchPerDispatchClassWeight() { }
+        public FrameSupportDispatchPerDispatchClassWeight(Weight normal, Weight operational, Weight mandatory)
+        {
+            Create(normal, operational, mandatory);
+        }
+
         public Weight Normal { get; set; } = new Weight();
         public Weight Operational { get; set; } = new Weight();
         public Weight Mandatory { get; set; } = new Weight();
+
+        public void Create(Weight normal, Weight operational, Weight mandatory)
+        {
+            Normal = normal;
+            Operational = operational;
+            Mandatory = mandatory;
+
+            Bytes = Encode();
+            TypeSize = Normal.TypeSize + Operational.TypeSize + mandatory.TypeSize;
+        }
 
         public override byte[] Encode()
         {

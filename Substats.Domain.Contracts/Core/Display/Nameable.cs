@@ -3,6 +3,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Org.BouncyCastle.Utilities.Encoders;
 using Substats.AjunaExtension;
+using Substats.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,25 +20,57 @@ namespace Substats.Domain.Contracts.Core.Display
     /// </summary>
     public class Nameable : BaseType
     {
-        public Nameable()
+        public Nameable() : this(string.Empty)
         {
         }
 
         public Nameable(string hex)
         {
-            Create(Utils.HexToByteArray(hex).Select(x => new U8(x)).ToArray());
+            //Create(Utils.HexToByteArray(hex).Select(x => new U8(x)).ToArray());
+            FromHexa(hex);
         }
 
         public Nameable(U8[] data)
         {
-            Create(data);
+            //Create(data);
+            FromU8(data);
         }
 
         public Nameable(BaseType elem)
         {
+            //IntegerSize = elem.TypeSize;
+            //Create(elem.Bytes);
+            FromBaseType(elem);
+        }
+
+        #region Builder
+        public Nameable FromText(string text)
+        {
+            Create(Utils.Bytes2HexString(Encoding.Default.GetBytes(text)));
+            return this;
+        }
+        public Nameable FromHexa(string hexa)
+        {
+            Create(Utils.HexToByteArray(hexa).Select(x => new U8(x)).ToArray());
+            return this;
+        }
+        public Nameable FromBytes(byte[] bytes)
+        {
+            Create(bytes.Select(x => new U8(x)).ToArray());
+            return this;
+        }
+        public Nameable FromU8(U8[] u8s)
+        {
+            Create(u8s);
+            return this;
+        }
+        public Nameable FromBaseType(BaseType elem)
+        {
             IntegerSize = elem.TypeSize;
             Create(elem.Bytes);
+            return this;
         }
+        #endregion
 
         public virtual string Display()
         {

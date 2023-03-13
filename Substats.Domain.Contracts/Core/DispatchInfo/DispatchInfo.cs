@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,26 @@ namespace Substats.Domain.Contracts.Core.DispatchInfo
 {
     public class DispatchInfo : BaseType
     {
+        public DispatchInfo() { }
+
+        public DispatchInfo(Weight weight, EnumDispatchClass @class, EnumPays paysFee)
+        {
+            Create(weight, @class, paysFee);
+        }
+
         public Weight Weight { get; set; }
         public EnumDispatchClass Class { get; set; }
         public EnumPays PaysFee { get; set; }
+
+        public void Create(Weight weight, EnumDispatchClass @class, EnumPays paysFee)
+        {
+            Weight = weight;
+            Class = @class;
+            PaysFee = paysFee;
+
+            Bytes = Encode();
+            TypeSize = Weight.TypeSize + Class.TypeSize + PaysFee.TypeSize;
+        }
 
         public override byte[] Encode()
         {

@@ -1,14 +1,14 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Display;
 using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using NominationStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.NominationPoolsStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
@@ -16,94 +16,117 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
     {
         public NominationPoolsStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
-        public Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token)
+        public async Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner,
+                BondedPoolInner>
+                (poolId, NominationStorageExt.BondedPoolsParams, token);
         }
 
-        public Task<U32> CounterForBondedPoolsAsync(CancellationToken token)
+        public async Task<U32> CounterForBondedPoolsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.CounterForBondedPoolsParams, token);
         }
 
-        public Task<U32> CounterForMetadataAsync(CancellationToken token)
+        public async Task<U32> CounterForMetadataAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.CounterForMetadataParams, token);
         }
 
-        public Task<U32> CounterForPoolMembersAsync(CancellationToken token)
+        public async Task<U32> CounterForPoolMembersAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.CounterForPoolMembersParams, token);
         }
 
-        public Task<U32> CounterForReversePoolIdLookupAsync(CancellationToken token)
+        public async Task<U32> CounterForReversePoolIdLookupAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.CounterForReversePoolIdLookupParams, token);
         }
 
-        public Task<U32> CounterForRewardPoolsAsync(CancellationToken token)
+        public async Task<U32> CounterForRewardPoolsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.CounterForRewardPoolsParams, token);
         }
 
-        public Task<U32> CounterForSubPoolsStorageAsync(CancellationToken token)
+        public async Task<U32> CounterForSubPoolsStorageAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.CounterForSubPoolsStorageParams, token);
         }
 
-        public Task<U32> LastPoolIdAsync(CancellationToken token)
+        public async Task<U32> LastPoolIdAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.LastPoolIdParams, token);
         }
 
-        public Task<U32> MaxPoolMembersAsync(CancellationToken token)
+        public async Task<U32> MaxPoolMembersAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.MaxPoolMembersParams, token);
         }
 
-        public Task<U32> MaxPoolMembersPerPoolAsync(CancellationToken token)
+        public async Task<U32> MaxPoolMembersPerPoolAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.MaxPoolMembersPerPoolParams, token);
         }
 
-        public Task<U32> MaxPoolsAsync(CancellationToken token)
+        public async Task<U32> MaxPoolsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(NominationStorageExt.MaxPoolsParams, token);
         }
 
-        public Task<IEnumerable<U8>> MetadataAsync(U32 key, CancellationToken token)
+        public async Task<Nameable> MetadataAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                BoundedVecT28,
+                Nameable>
+                (key, NominationStorageExt.MetadataParams, token);
         }
 
-        public Task<U128> MinCreateBondAsync(CancellationToken token)
+        public async Task<U128> MinCreateBondAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U128>(NominationStorageExt.MinCreateBondParams, token);
         }
 
-        public Task<U128> MinJoinBondAsync(CancellationToken token)
+        public async Task<U128> MinJoinBondAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U128>(NominationStorageExt.MinJoinBondParams, token);
         }
 
-        public Task<PoolMember> PoolMembersAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<PoolMember> PoolMembersAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
+                PoolMember>
+                (SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account),
+                NominationStorageExt.PoolMembersParams, token);
         }
 
-        public Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<AccountId32, U32>
+                (SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account), 
+                NominationStorageExt.ReversePoolIdLookupParams, token);
         }
 
-        public Task<RewardPool> RewardPoolsAsync(U32 poolId, CancellationToken token)
+        public async Task<RewardPool> RewardPoolsAsync(U32 poolId, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool,
+                RewardPool>
+                (poolId, NominationStorageExt.RewardPoolsParams, token);
         }
 
-        public Task<SubPools> SubPoolsStorageAsync(U32 key, CancellationToken token)
+        public async Task<SubPools> SubPoolsStorageAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools,
+                SubPools>
+                (key, NominationStorageExt.SubPoolsStorageParams, token);
         }
     }
 }

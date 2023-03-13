@@ -15,7 +15,19 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
         public U32 Consumers { get; set; }
         public U32 Providers { get; set; }
         public U32 Sufficients { get; set; }
-        public AccountData Data { get; set; } = new AccountData();
+        public AccountData Data { get; set; }
+
+        public void Create(U32 nonce, U32 consumers, U32 providers, U32 sufficients, AccountData data)
+        {
+            Nonce = nonce;
+            Consumers = consumers;
+            Providers = providers;
+            Sufficients = sufficients;
+            Data = data;
+
+            Bytes = Encode();
+            TypeSize = Nonce.TypeSize + Consumers.TypeSize + Providers.TypeSize + Sufficients.TypeSize + Data.TypeSize;
+        }
 
         public override byte[] Encode()
         {

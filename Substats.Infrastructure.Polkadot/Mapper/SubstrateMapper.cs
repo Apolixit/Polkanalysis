@@ -32,6 +32,15 @@ using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Org.BouncyCastle.Asn1.X509.Qualified;
 using System.Numerics;
 using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
+using Substats.Domain.Contracts.Secondary.Pallet.Babe;
+using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using static Substats.Infrastructure.Polkadot.Mapper.SubstrateMapper.IdentityStorageProfile;
+using Substats.Domain.Contracts.Secondary.Pallet.Identity;
+using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
+using Substats.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
+using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2;
+using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
 
 namespace Substats.Infrastructure.Polkadot.Mapper
 {
@@ -61,8 +70,12 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             cfg.AddProfile<AuctionsStorageProfile>();
             cfg.AddProfile<AuthorshipStorageProfile>();
             cfg.AddProfile<BalancesStorageProfile>();
+            cfg.AddProfile<IdentityStorageProfile>();
+            cfg.AddProfile<NominationPoolsStorageProfile>();
             cfg.AddProfile<BabeStorageProfile>();
+            cfg.AddProfile<ParaSessionInfoStorageProfile>();
             cfg.AddProfile<ParachainStorageProfile>();
+            cfg.AddProfile<RegistarStorageProfile>();
             cfg.AddProfile<SchedulerStorageProfile>();
             cfg.AddProfile<SystemStorageProfile>();
 
@@ -92,6 +105,7 @@ namespace Substats.Infrastructure.Polkadot.Mapper
                 CreateMap<AccountId32, SubstrateAccount>().ConvertUsing(new AccountId32Converter());
 
                 CreateMap<H256, Hash>().ConvertUsing(new H256Converter());
+                CreateMap<Hash, H256>().ConvertUsing(new HashConverter());
                 CreateMap<ValidationCodeHash, Hash>().ConvertUsing(new ValidationCodeHashConverter());
                 
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public, PublicSr25519>().ConvertUsing(x => new PublicSr25519(x.Value.Value));
@@ -262,11 +276,12 @@ namespace Substats.Infrastructure.Polkadot.Mapper
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public, PublicSr25519>().ConvertUsing(x => Instance.Map<
                     Substats.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public, PublicSr25519>(x.Value));
                 CreateMap<WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>().ConvertUsing(typeof(WeakBoundedVecT2Converter));
-                CreateMap<BoundedVecT5, BaseVec<Hexa>>().ConvertUsing(typeof(WeakBoundedVecT2Converter));
+                CreateMap<BoundedVecT5, BaseVec<Hexa>>().ConvertUsing(typeof(BoundedVecT5Converter));
 
-
-                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, Domain.Contracts.Secondary.Pallet.Babe.BabeEpochConfiguration>();
-                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots, Domain.Contracts.Secondary.Pallet.Babe.EnumAllowedSlots>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots, EnumAllowedSlots>();
+                CreateMap<
+                    Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor, EnumNextConfigDescriptor>();
             }
 
             public class BoundedVecT5Converter : ITypeConverter<BoundedVecT5, BaseVec<Hexa>>
@@ -296,12 +311,141 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             }
         }
 
+        public class IdentityStorageProfile : Profile
+        {
+            public IdentityStorageProfile()
+            {
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData, EnumData>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement, EnumJudgement>();
+                CreateMap<BoundedVecT2, BaseVec<BaseTuple<EnumData, EnumData>>>().ConvertUsing(new BoundedVecT2Converter());
+                CreateMap<BoundedVecT19, BaseVec<BaseTuple<U32, EnumJudgement>>>().ConvertUsing(new BoundedVecT19Converter());
+                CreateMap<BoundedVecT21, BaseVec<BaseOpt<RegistrarInfo>>>().ConvertUsing(new BoundedVecT21Converter());
+                CreateMap<BoundedVecT20, BaseVec<SubstrateAccount>>().ConvertUsing(new BoundedVecT20Converter());
+                CreateMap<BaseTuple<U128, BoundedVecT20>, SubsOfResult>();
+            }
+
+            public class BoundedVecT20Converter : ITypeConverter<BoundedVecT20, BaseVec<SubstrateAccount>>
+            {
+                public BaseVec<SubstrateAccount> Convert(BoundedVecT20 source, BaseVec<SubstrateAccount> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<SubstrateAccount>();
+                    if (source == null) return destination;
+
+                    destination = context.Mapper.Map<BaseVec<SubstrateAccount>>(source.Value);
+                    return destination;
+                }
+            }
+
+            public class BoundedVecT21Converter : ITypeConverter<BoundedVecT21, BaseVec<BaseOpt<RegistrarInfo>>>
+            {
+                public BaseVec<BaseOpt<RegistrarInfo>> Convert(BoundedVecT21 source, BaseVec<BaseOpt<RegistrarInfo>> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<BaseOpt<RegistrarInfo>>();
+                    if (source == null) return destination;
+
+                    destination = context.Mapper.Map<BaseVec<BaseOpt<RegistrarInfo>>>(source.Value);
+                    return destination;
+                }
+            }
+
+            public class BoundedVecT19Converter : ITypeConverter<BoundedVecT19, BaseVec<BaseTuple<U32, EnumJudgement>>>
+            {
+                public BaseVec<BaseTuple<U32, EnumJudgement>> Convert(BoundedVecT19 source, BaseVec<BaseTuple<U32, EnumJudgement>> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<BaseTuple<U32, EnumJudgement>>();
+                    if (source == null) return destination;
+
+                    destination = context.Mapper.Map<BaseVec<BaseTuple<U32, EnumJudgement>>>(source.Value);
+                    return destination;
+                }
+            }
+
+            public class BoundedVecT2Converter : ITypeConverter<BoundedVecT2, BaseVec<BaseTuple<EnumData, EnumData>>>
+            {
+                public BaseVec<BaseTuple<EnumData, EnumData>> Convert(BoundedVecT2 source, BaseVec<BaseTuple<EnumData, EnumData>> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<BaseTuple<EnumData, EnumData>>();
+                    if (source == null) return destination;
+
+                    destination = context.Mapper.Map<BaseVec<BaseTuple<EnumData, EnumData>>>(source.Value);
+                    return destination;
+                }
+            }
+        }
+
+        public class NominationPoolsStorageProfile : Profile
+        {
+            public NominationPoolsStorageProfile()
+            {
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner, BondedPoolInner>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState, EnumPoolState>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles, PoolRoles>();
+                CreateMap<BoundedVecT28, Nameable>().ConvertUsing(x => new Nameable().FromU8(x.Value.Value));
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128, U128>().ConvertUsing(x => x.Value);
+                CreateMap<
+                    Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1, BaseVec<BaseTuple<U32, U128>>>().ConvertUsing(x => x.Value.Value);
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember, PoolMember>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool, RewardPool>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools, SubPools>();
+                CreateMap<
+                    Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2, BaseVec<BaseTuple<U32, UnbondPool>>>().ConvertUsing(new BoundedBTreeMapT2Converter());
+            }
+
+            public class BoundedBTreeMapT2Converter : ITypeConverter<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2, BaseVec<BaseTuple<U32, UnbondPool>>>
+            {
+                public BaseVec<BaseTuple<U32, UnbondPool>> Convert(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 source, BaseVec<BaseTuple<U32, UnbondPool>> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<BaseTuple<U32, UnbondPool>>();
+                    if (source == null) return destination;
+
+                    destination = context.Mapper.Map<BaseVec<BaseTuple<U32, UnbondPool>>>(source.Value.Value);
+                    return destination;
+                }
+            }
+        }
+
+        public class ParaSessionInfoStorageProfile : Profile
+        {
+            public ParaSessionInfoStorageProfile()
+            {
+                CreateMap<BaseVec<
+                        Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>, BaseVec<PublicSr25519>>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo, Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo.SessionInfo>();
+                CreateMap<ValidatorIndex, U32>().ConvertUsing(x => x.Value);
+
+                CreateMap<IndexedVecT1, BaseVec<PublicSr25519>>();
+                CreateMap<ValidatorIndex, U32>().ConvertUsing(x => x.Value);
+                CreateMap<IndexedVecT2, BaseVec<BaseVec<U32>>>().ConvertUsing(new IndexedVecT2Converter());
+            }
+
+            public class IndexedVecT2Converter : ITypeConverter<IndexedVecT2, BaseVec<BaseVec<U32>>>
+            {
+                public BaseVec<BaseVec<U32>> Convert(IndexedVecT2 source, BaseVec<BaseVec<U32>> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<BaseVec<U32>>();
+                    if (source == null) return destination;
+
+                    destination = context.Mapper.Map<BaseVec<BaseVec<U32>>>(source.Value);
+                    return destination;
+                }
+            }
+        }
+
         public class ParachainStorageProfile : Profile
         {
             public ParachainStorageProfile()
             {
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Domain.Contracts.Core.Id>().ConvertUsing((s, d) => new Domain.Contracts.Core.Id(s.Value.Value));
                 CreateMap<Domain.Contracts.Core.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>();
+            }
+        }
+
+        public class RegistarStorageProfile : Profile
+        {
+            public RegistarStorageProfile()
+            {
+                CreateMap<
+                    Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo, ParaInfo>();
             }
         }
 
@@ -322,7 +466,11 @@ namespace Substats.Infrastructure.Polkadot.Mapper
                 CreateMap<PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>();
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight, Weight>();
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest, Digest>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.EnumDigestItem, EnumDigestItem>();
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord, EventRecord>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, EnumPhase>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo, LastRuntimeUpgradeInfo>();
             }
         }
 
@@ -496,6 +644,17 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             {
                 destination = new Hash();
                 destination.Create(Utils.Bytes2HexString(source.Value.Encode()));
+
+                return destination;
+            }
+        }
+
+        public class HashConverter : ITypeConverter<Hash, H256>
+        {
+            public H256 Convert(Hash source, H256 destination, ResolutionContext context)
+            {
+                destination = new H256();
+                destination.Create(source.Encode());
 
                 return destination;
             }

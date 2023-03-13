@@ -17,7 +17,7 @@ namespace Substats.Domain.Contracts.Core.Random
             IntegerSize = 32;
         }
 
-        public Hexa(string hex) {
+        public Hexa(string hex) : this() {
             Create(Utils.HexToByteArray(hex));
         }
         public Hexa(BaseType value) : base(value) { }

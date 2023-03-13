@@ -1,5 +1,7 @@
-﻿using Substats.Domain.Contracts.Core;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
+using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
         /// <param name="account"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SuperOfResult?> SuperOfAsync(SubstrateAccount account, CancellationToken token);
+        public Task<BaseTuple<SubstrateAccount, EnumData>> SuperOfAsync(SubstrateAccount account, CancellationToken token);
 
         /// <summary>
         ///  Alternative "sub" identities of this account.
@@ -35,7 +37,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
         /// <param name="account"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SubsOfResult?> SubsOfAsync(SubstrateAccount account, CancellationToken token);
+        public Task<SubsOfResult> SubsOfAsync(SubstrateAccount account, CancellationToken token);
 
         /// <summary>
         ///  The set of registrars. Not expected to get very big as can only be added through a
@@ -45,6 +47,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<RegistarInfo> RegistrarsAsync(CancellationToken token);
+        public Task<BaseVec<BaseOpt<RegistrarInfo>>> RegistrarsAsync(CancellationToken token);
     }
 }

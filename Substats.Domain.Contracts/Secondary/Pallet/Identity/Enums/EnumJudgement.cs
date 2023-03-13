@@ -26,8 +26,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums
         Erroneous = 6,
     }
 
-    public sealed class EnumJudgement : BaseEnumExt<
-            Judgement,
+    public sealed class EnumJudgement : BaseEnumExt<Judgement,
             BaseVoid,
             U128,
             BaseVoid,

@@ -1,13 +1,11 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CrowdloanStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.CrowdloanStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
@@ -15,19 +13,27 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
     {
         public CrowdloanStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
-        public Task<U32> EndingsCountAsync(CancellationToken token)
+        public async Task<U32> EndingsCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(CrowdloanStorageExt.EndingsCountParams, token);
         }
 
-        public Task<FundInfo> FundsAsync(Id key, CancellationToken token)
+        public async Task<FundInfo> FundsAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            var id = SubstrateMapper.Instance.Map<Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key);
+
+            return await GetStorageWithParamsAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
+                FundInfo>
+                (id, CrowdloanStorageExt.FundsParams, token);
         }
 
-        public Task<IEnumerable<Id>> NewRaiseAsync(CancellationToken token)
+        public async Task<BaseVec<Id>> NewRaiseAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
+                BaseVec<Id>>(CrowdloanStorageExt.NewRaiseParams, token);
         }
     }
 }

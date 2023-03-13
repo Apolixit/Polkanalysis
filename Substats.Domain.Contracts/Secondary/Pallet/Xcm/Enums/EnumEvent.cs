@@ -1,6 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core.DispatchInfo;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
 using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v1;
 using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v2;
 using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums;

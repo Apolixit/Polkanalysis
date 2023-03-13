@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
 {
-    public class SuperOfResult
-    {
-        public required SubstrateAccount Account { get; set; }
-        public required string Raw { get; set; }
-    }
+    //public class SuperOfResult
+    //{
+    //    public SubstrateAccount Account { get; set; }
+    //    public string Raw { get; set; }
+    //}
 }
 

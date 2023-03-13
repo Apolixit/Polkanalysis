@@ -1,6 +1,8 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Display;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
@@ -127,7 +129,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<U8>> MetadataAsync(U32 key, CancellationToken token);
+        public Task<Nameable> MetadataAsync(U32 key, CancellationToken token);
 
         /// <summary>
         /// Counter for the related counted storage map

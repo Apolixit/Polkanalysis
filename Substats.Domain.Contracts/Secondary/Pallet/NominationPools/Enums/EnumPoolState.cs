@@ -22,5 +22,11 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools.Enums
     /// </summary>
     public sealed class EnumPoolState : BaseEnum<PoolState>
     {
+        public EnumPoolState() { }
+
+        public EnumPoolState(PoolState value)
+        {
+            Create(value);
+        }
     }
 }

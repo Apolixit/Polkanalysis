@@ -191,7 +191,7 @@ namespace Substats.Domain.Repository
 
             var poolMetadata = await _substrateNodeRepository.Storage.NominationPools.MetadataAsync(poolNumber, cancellationToken);
             // Pool name is integrated in metadata
-            var poolName = poolMetadata == null ? string.Empty : poolMetadata.ToHuman();
+            var poolName = poolMetadata == null ? string.Empty : poolMetadata.Value.ToHuman();
 
             var rewardPool = await _substrateNodeRepository.Storage.NominationPools.RewardPoolsAsync(poolNumber, cancellationToken);
 
@@ -215,16 +215,16 @@ namespace Substats.Domain.Repository
                 Name = poolName,
                 PoolGlobalSettings = poolGlobalSettings,
                 CreatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken),
-                NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator, cancellationToken),
-                RewardAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken), // TODO change with real stash account
-                StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken), // TODO change with real stash account
-                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler, cancellationToken),
-                RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root, cancellationToken),
-                Metadata = Utils.Bytes2HexString(poolMetadata.ToBytes()),
+                NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken),
+                RewardAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken), // TODO change with real stash account
+                StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken), // TODO change with real stash account
+                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken),
+                RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken),
+                Metadata = Utils.Bytes2HexString(poolMetadata.Value.ToBytes()),
                 MemberCount = bondedPool.MemberCounter.Value,
                 TotalBonded = bondedPool.Points.Value,
                 RewardPool = 0,
-                Status = bondedPool.State switch
+                Status = bondedPool.State.Value switch
                 {
                     PoolState.Open => NominationPoolStatusDto.Open,
                     PoolState.Blocked => NominationPoolStatusDto.Blocked,

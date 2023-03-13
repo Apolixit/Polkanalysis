@@ -107,7 +107,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet
         [Test]
         public async Task IdentityStorage_BlockHashFilled_ShouldWorkAsync()
         {
-            var expectedResult = new RegistarInfo()
+            var expectedResult = new RegistrarInfo()
             {
                 Account = new Domain.Contracts.Core.SubstrateAccount(MockAddress),
                 Fee = new U128(new BigInteger(10)),

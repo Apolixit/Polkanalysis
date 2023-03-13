@@ -10,7 +10,22 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
 {
     public class Digest : BaseType
     {
+        public Digest() { }
+
+        public Digest(BaseVec<EnumDigestItem> logs)
+        {
+            Create(logs);
+        }
+
         public BaseVec<EnumDigestItem> Logs { get; set; }
+
+        public void Create(BaseVec<EnumDigestItem> logs)
+        {
+            Logs = logs;
+            Bytes = Encode();
+
+            TypeSize = Logs.TypeSize;
+        }
 
         public override byte[] Encode()
         {

@@ -71,7 +71,7 @@ namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.S
         [Test]
         public async Task EventTopics_ShouldWorkAsync()
         {
-            //var res = await _substrateRepository.Storage.System.EventTopics(CancellationToken.None);
+            //var res = await _substrateRepository.Storage.System.EventTopicsAsync(CancellationToken.None);
 
             //Assert.That(res, Is.Not.Null);
         }

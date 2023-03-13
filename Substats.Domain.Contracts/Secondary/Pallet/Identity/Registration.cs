@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using System;
@@ -10,10 +11,46 @@ using System.Threading.Tasks;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
 {
-    public class Registration
+    public class Registration : BaseType
     {
-        public required IdentityInfo Info { get; set; } = new IdentityInfo();
-        public required U128 Deposit { get; set; } = new U128().With(BigInteger.Zero);
-        public required EnumJudgement Judgement { get; set; }
+        public Registration() { }
+
+        public Registration(IdentityInfo info, U128 deposit, BaseVec<BaseTuple<U32, EnumJudgement>> judgements)
+        {
+            Create(info, deposit, judgements);
+        }
+        public void Create(IdentityInfo info, U128 deposit, BaseVec<BaseTuple<U32, EnumJudgement>> judgements)
+        {
+            Info = info;
+            Deposit = deposit;
+            Judgements = judgements;
+
+            Bytes = Encode();
+        }
+
+        public IdentityInfo Info { get; set; }
+        public U128 Deposit { get; set; } = new U128();
+        public BaseVec<BaseTuple<U32, EnumJudgement>> Judgements { get; set; }
+
+        public override byte[] Encode()
+        {
+            var result = new List<byte>();
+            result.AddRange(Judgements.Encode());
+            result.AddRange(Deposit.Encode());
+            result.AddRange(Info.Encode());
+            return result.ToArray();
+        }
+
+        public override void Decode(byte[] byteArray, ref int p)
+        {
+            var start = p;
+            Judgements = new BaseVec<BaseTuple<U32, EnumJudgement>>();
+            Judgements.Decode(byteArray, ref p);
+            Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Deposit.Decode(byteArray, ref p);
+            Info = new IdentityInfo();
+            Info.Decode(byteArray, ref p);
+            TypeSize = p - start;
+        }
     }
 }

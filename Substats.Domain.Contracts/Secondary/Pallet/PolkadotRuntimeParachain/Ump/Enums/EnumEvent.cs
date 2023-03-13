@@ -4,6 +4,7 @@ using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Core.DispatchInfo;
 using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachain.Ump.Enums
 {

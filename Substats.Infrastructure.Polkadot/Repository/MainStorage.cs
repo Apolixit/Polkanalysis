@@ -47,7 +47,7 @@ namespace Substats.Infrastructure.Polkadot.Repository
 
         /// <summary>
         /// Call storage with input parameter and convert Ajuna SDK to Domain class
-        /// Handle null value by returning empty class
+        /// Handle null value by returning empty class instance
         /// </summary>
         /// <typeparam name="I"></typeparam>
         /// <typeparam name="R"></typeparam>

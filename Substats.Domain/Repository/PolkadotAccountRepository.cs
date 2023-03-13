@@ -59,14 +59,14 @@ namespace Substats.Domain.Repository
             var userInformation = new UserInformationsDto();
             if (identity != null)
             {
-                userInformation.Name = identity.Info.Display;
-                userInformation.Website = identity.Info.Web;
-                userInformation.Email = identity.Info.Email;
-                userInformation.Twitter = identity.Info.Twitter;
-                userInformation.Legal = identity.Info.Legal;
-                userInformation.Matrix = identity.Info.Riot;
-                userInformation.Image = identity.Info.Image;
-                userInformation.Other = identity.Info.Additional;
+                //userInformation.Name = identity.Info.Display;
+                //userInformation.Website = identity.Info.Web;
+                //userInformation.Email = identity.Info.Email;
+                //userInformation.Twitter = identity.Info.Twitter;
+                //userInformation.Legal = identity.Info.Legal;
+                //userInformation.Matrix = identity.Info.Riot;
+                //userInformation.Image = identity.Info.Image;
+                //userInformation.Other = identity.Info.Additional;
             }
 
 
@@ -108,10 +108,10 @@ namespace Substats.Domain.Repository
             if (identity != null)
             {
                 // If we got a legal identity set, display it
-                if (!string.IsNullOrEmpty(identity.Info.Legal))
-                {
-                    name = identity.Info.Legal;
-                }
+                //if (!string.IsNullOrEmpty(identity.Info.Legal.Value2))
+                //{
+                //    name = identity.Info.Legal;
+                //}
             }
 
             return new UserAddressDto()

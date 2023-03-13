@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
@@ -25,7 +26,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Id>> NewRaiseAsync(CancellationToken token);
+        public Task<BaseVec<Id>> NewRaiseAsync(CancellationToken token);
 
         /// <summary>
         /// The number of auctions that have entered into their ending period so far.

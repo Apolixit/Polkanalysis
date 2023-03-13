@@ -12,10 +12,21 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Balances
 {
     public class AccountData : BaseType
     {
-        public U128 Free { get; set; } = new U128().With(BigInteger.Zero);
-        public U128 Reserved { get; set; } = new U128().With(BigInteger.Zero);
-        public U128 MiscFrozen { get; set; } = new U128().With(BigInteger.Zero);
-        public U128 FeeFrozen { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 Free { get; set; } = new U128();
+        public U128 Reserved { get; set; } = new U128();
+        public U128 MiscFrozen { get; set; } = new U128();
+        public U128 FeeFrozen { get; set; } = new U128();
+
+        public void Create(U128 free, U128 reserved, U128 miscFrozen, U128 feeFrozen)
+        {
+            this.Free = free;
+            this.Reserved = reserved;
+            this.MiscFrozen = miscFrozen;
+            this.FeeFrozen = feeFrozen;
+
+            Bytes = Encode();
+            TypeSize = Free.TypeSize + Reserved.TypeSize + MiscFrozen.TypeSize + FeeFrozen.TypeSize;
+        }
 
         public override byte[] Encode()
         {
