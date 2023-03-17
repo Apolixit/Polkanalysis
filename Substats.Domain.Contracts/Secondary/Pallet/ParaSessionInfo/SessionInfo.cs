@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Public;
 using Substats.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;

@@ -31,7 +31,6 @@ using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
 using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Org.BouncyCastle.Asn1.X509.Qualified;
 using System.Numerics;
-using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
 using Substats.Domain.Contracts.Secondary.Pallet.Babe;
 using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using static Substats.Infrastructure.Polkadot.Mapper.SubstrateMapper.IdentityStorageProfile;
@@ -41,6 +40,20 @@ using Substats.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
 using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2;
 using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
+using Substats.Domain.Contracts.Secondary.Pallet.Session;
+using Substats.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Substats.Domain.Contracts.Core.Empty;
+using Substats.Domain.Contracts.Secondary.Pallet.Staking;
+using Substats.Domain.Contracts.Core.Enum.FrameSupport;
+using Substats.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.Babe.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.Democracy;
+using Substats.Domain.Contracts.Secondary.Pallet.Democracy.Enums;
+using Substats.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Substats.Polkadot.NetApiExt.Generated.Model.xcm.double_encoded;
+using Substats.AjunaExtension;
+using Substats.Domain.Contracts.Core.Public;
+using Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 
 namespace Substats.Infrastructure.Polkadot.Mapper
 {
@@ -66,10 +79,12 @@ namespace Substats.Infrastructure.Polkadot.Mapper
         {
             cfg.AddProfile<BaseTypeProfile>();
             cfg.AddProfile<CommonProfile>();
+            cfg.AddProfile<EnumProfile>();
             cfg.AddProfile<BytesProfile>();
             cfg.AddProfile<AuctionsStorageProfile>();
             cfg.AddProfile<AuthorshipStorageProfile>();
             cfg.AddProfile<BalancesStorageProfile>();
+            cfg.AddProfile<DemocracyStorageProfile>();
             cfg.AddProfile<IdentityStorageProfile>();
             cfg.AddProfile<NominationPoolsStorageProfile>();
             cfg.AddProfile<BabeStorageProfile>();
@@ -78,6 +93,8 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             cfg.AddProfile<RegistarStorageProfile>();
             cfg.AddProfile<SchedulerStorageProfile>();
             cfg.AddProfile<SystemStorageProfile>();
+            cfg.AddProfile<StakingStorageProfile>();
+            cfg.AddProfile<XcmStorageProfile>();
 
             //cfg.CreateMap<Arr8U8, string>().ConvertUsing((i, o) => o.ToString());
             //cfg.CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.Reasons, Substats.Domain.Contracts.Secondary.Pallet.Balances.Enums.Reasons>().ConvertUsingEnumMapping(opt => opt.MapByName());
@@ -113,9 +130,36 @@ namespace Substats.Infrastructure.Polkadot.Mapper
                 
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.ed25519.Public, PublicEd25519>().ConvertUsing(x => new PublicEd25519(x.Value.Value));
                 CreateMap<PublicEd25519, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.ed25519.Public>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0, Lsb0>();
             }
         }
 
+        public class EnumProfile : Profile
+        {
+            public EnumProfile()
+            {
+                CreateMap<BoundedVecT3, BaseVec<U8>>().ConvertUsing(x => x.Value);
+
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, EnumBounded>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumLookupError, EnumLookupError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums.EnumError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.Authorship.Enums.EnumError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_babe.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.Babe.Enums.EnumError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.EnumListError, Substats.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumListError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent, Substats.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Substats.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReleases, Substats.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumReleases>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus, Substats.Domain.Contracts.Secondary.Pallet.Bounties.Enums.EnumBountyStatus>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bounties.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.Bounties.Enums.EnumError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus, Substats.Domain.Contracts.Secondary.Pallet.ChildBounties.Enums.EnumChildBountyStatus>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.ChildBounties.Enums.EnumError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.Collective.Enums.EnumError>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective.EnumRawOrigin, Substats.Domain.Contracts.Secondary.Pallet.Collective.Enums.EnumRawOrigin>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction, Substats.Domain.Contracts.Secondary.Pallet.Democracy.Enums.EnumConviction>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.pallet.EnumError, Substats.Domain.Contracts.Secondary.Pallet.Democracy.Enums.EnumError>();
+            }
+        }
         public class BaseTypeProfile : Profile
         {
             public BaseTypeProfile()
@@ -311,6 +355,31 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             }
         }
 
+        public class DemocracyStorageProfile : Profile
+        {
+            public DemocracyStorageProfile()
+            {
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.ReferendumStatus, ReferendumStatus>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.EnumReferendumInfo, EnumReferendumInfo>();
+                CreateMap<BoundedVecT13, BaseVec<BaseTuple<U32, EnumAccountVote>>>().ConvertUsing(new BoundedVecT13Converter());
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote, EnumAccountVote>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Delegations>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock, PriorLock>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumVoting, EnumVoting>();
+            }
+
+            public class BoundedVecT13Converter : ITypeConverter<BoundedVecT13, BaseVec<BaseTuple<U32, EnumAccountVote>>>
+            {
+                public BaseVec<BaseTuple<U32, EnumAccountVote>> Convert(BoundedVecT13 source, BaseVec<BaseTuple<U32, EnumAccountVote>> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<BaseTuple<U32, EnumAccountVote>>();
+                    if (source == null) return destination;
+
+                    destination = context.Mapper.Map<BaseVec<BaseTuple<U32, EnumAccountVote>>>(source.Value);
+                    return destination;
+                }
+            }
+        }
         public class IdentityStorageProfile : Profile
         {
             public IdentityStorageProfile()
@@ -437,6 +506,12 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             {
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Domain.Contracts.Core.Id>().ConvertUsing((s, d) => new Domain.Contracts.Core.Id(s.Value.Value));
                 CreateMap<Domain.Contracts.Core.Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>();
+
+                CreateMap<ValidationCode, Hexa>().ConvertUsing(x => new Hexa(x)); // TODO Inverse
+                CreateMap<HeadData, Hexa>().ConvertUsing(x => new Hexa(x)); // TODO Inverse
+                
+                CreateMap<
+                    Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle, EnumParaLifecycle>();
             }
         }
 
@@ -446,6 +521,41 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             {
                 CreateMap<
                     Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo, ParaInfo>();
+            }
+        }
+
+        public class SessionStorageProfile : Profile
+        {
+            public SessionStorageProfile()
+            {
+                CreateMap<KeyTypeId, Nameable >().ConvertUsing(new KeyTypeIdConverter());
+                CreateMap<Nameable, KeyTypeId>().ConvertUsing(new KeyTypeIdReverseConverter());
+                CreateMap<Hexa, BaseVec<U8>>().ConvertUsing(x => new BaseVec<U8>(x.Value));
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys, SessionKeysPolka>();
+            }
+
+            public class KeyTypeIdConverter : ITypeConverter<KeyTypeId, Nameable>
+            {
+                public Nameable Convert(KeyTypeId source, Nameable destination, ResolutionContext context)
+                {
+                    destination = new Nameable();
+                    if (source == null) return destination;
+
+                    context.Mapper.Map<Nameable>(source.Value);
+                    return destination;
+                }
+            }
+
+            public class KeyTypeIdReverseConverter : ITypeConverter<Nameable, KeyTypeId>
+            {
+                public KeyTypeId Convert(Nameable source, KeyTypeId destination, ResolutionContext context)
+                {
+                    destination = new KeyTypeId();
+                    if (source == null) return destination;
+
+                    destination.Create(source.Encode());
+                    return destination;
+                }
             }
         }
 
@@ -462,7 +572,6 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             public SystemStorageProfile()
             {
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo, AccountInfo>();
-                //CreateMap<PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>().ConvertUsing(new PerDispatchClassT1Converter());
                 CreateMap<PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>();
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight, Weight>();
                 CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest, Digest>();
@@ -474,9 +583,60 @@ namespace Substats.Infrastructure.Polkadot.Mapper
             }
         }
 
-        /// <summary>
-        /// Conversion from SubstrateAccount to AccountId32
-        /// </summary>
+        public class StakingStorageProfile : Profile
+        {
+            public StakingStorageProfile()
+            {
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent, Percent>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints, EraRewardPoints>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure, Exposure>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs, ValidatorPrefs>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing, EnumForcing>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger, StakingLedger>();
+                CreateMap<BoundedVecT8, BaseVec<UnlockChunk>>().ConvertUsing(new BoundedVecT8Converter());
+                CreateMap<BoundedVecT10, BaseVec<SubstrateAccount>>().ConvertUsing(new BoundedVecT10Converter());
+                CreateMap<BoundedVecT9, BaseVec<U32>>().ConvertUsing(x => x.Value);
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnlockChunk, UnlockChunk>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations, Nominations>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination, EnumRewardDestination>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans, SlashingSpans>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord, SpanRecord>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases, Domain.Contracts.Secondary.Pallet.Staking.Enums.EnumReleases>();
+                CreateMap<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash, UnappliedSlash>();
+            }
+
+            public class BoundedVecT8Converter : ITypeConverter<BoundedVecT8, BaseVec<UnlockChunk>>
+            {
+                public BaseVec<UnlockChunk> Convert(BoundedVecT8 source, BaseVec<UnlockChunk> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<UnlockChunk>();
+                    if (source == null) return destination;
+
+                    context.Mapper.Map<BaseVec<UnlockChunk>>(source.Value);
+                    return destination;
+                }
+            }
+
+            public class BoundedVecT10Converter : ITypeConverter<BoundedVecT10, BaseVec<SubstrateAccount>>
+            {
+                public BaseVec<SubstrateAccount> Convert(BoundedVecT10 source, BaseVec<SubstrateAccount> destination, ResolutionContext context)
+                {
+                    destination = new BaseVec<SubstrateAccount>();
+                    if (source == null) return destination;
+
+                    context.Mapper.Map<BaseVec<SubstrateAccount>>(source.Value);
+                    return destination;
+                }
+            }
+        }
+
+        public class XcmStorageProfile : Profile
+        {
+            public XcmStorageProfile()
+            {
+                CreateMap<DoubleEncodedT2, BaseVec<U8>>().ConvertUsing(x => x.Encoded);
+            }
+        }
         public class PerDispatchClassT1Converter : ITypeConverter<PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>
         {
             public FrameSupportDispatchPerDispatchClassWeight Convert(PerDispatchClassT1 source, FrameSupportDispatchPerDispatchClassWeight destination, ResolutionContext context)

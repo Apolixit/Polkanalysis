@@ -1,5 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
+using Substats.Domain.Contracts.Secondary.Pallet.Babe.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

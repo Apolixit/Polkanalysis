@@ -1,5 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;

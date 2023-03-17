@@ -12,7 +12,7 @@ using Substats.Domain.Contracts.Runtime;
 using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
 using Substats.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
-using Substats.Domain.Contracts.Secondary.Pallet.Staking;
+using Substats.Domain.Contracts.Secondary.Pallet.Staking.Enums;
 using Substats.Domain.Contracts.Secondary.Repository;
 using static Substats.Domain.Contracts.Dto.GlobalStatusDto;
 
@@ -62,7 +62,7 @@ namespace Substats.Domain.Repository
 
             // Get list of currently active validator in session pallet
             var activeValidators = await _substrateNodeRepository.Storage.Session.ValidatorsAsync(cancellationToken);
-            var isValidatorActive = activeValidators != null && activeValidators.Any(x => x.Equals(validator));
+            var isValidatorActive = activeValidators != null && activeValidators.Value.Any(x => x.Equals(validator));
 
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
@@ -76,7 +76,7 @@ namespace Substats.Domain.Repository
             var validatorSettings = await _substrateNodeRepository.Storage.Staking.ValidatorsAsync(validator, cancellationToken);
 
             // Era stakers will return something if my validator is currently active in this current Era
-            var nominators = await _substrateNodeRepository.Storage.Staking.ErasStakersAsync((currentEra, validator), cancellationToken);
+            var nominators = await _substrateNodeRepository.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(currentEra, validator), cancellationToken);
 
             var nominatorsDto = nominators.Others.Select(n =>
             {

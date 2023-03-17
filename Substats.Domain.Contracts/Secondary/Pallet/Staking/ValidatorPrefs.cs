@@ -11,8 +11,25 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
 {
     public class ValidatorPrefs : BaseType
     {
-        public Perbill Commission { get; set; }
+        public BaseCom<Perbill> Commission { get; set; }
         public Bool Blocked { get; set; }
+
+        public ValidatorPrefs() { }
+
+        public ValidatorPrefs(BaseCom<Perbill> commission, Bool blocked)
+        {
+            Commission = commission;
+            Blocked = blocked;
+        }
+
+        public void Create(BaseCom<Perbill> commission, Bool blocked)
+        {
+            Commission = commission;
+            Blocked = blocked;
+
+            Bytes = Encode();
+            TypeSize = Commission.TypeSize + Blocked.TypeSize;
+        }
 
         public override byte[] Encode()
         {
@@ -25,9 +42,9 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Commission = new Perbill();
+            Commission = new BaseCom<Perbill>();
             Commission.Decode(byteArray, ref p);
-            Blocked = new Ajuna.NetApi.Model.Types.Primitive.Bool();
+            Blocked = new Bool();
             Blocked.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

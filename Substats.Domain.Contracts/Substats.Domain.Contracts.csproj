@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Secondary\Pallet\NominationPools\Enums\EnumBondExtra.cs~RF339b5b3d.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Ajuna.NetApi" Version="0.3.3" />
     <PackageReference Include="System.Runtime" Version="4.3.1" />
   </ItemGroup>
@@ -18,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Core\Encoding\" />
+    <Folder Include="Core\Sp\" />
   </ItemGroup>
 
 </Project>

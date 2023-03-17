@@ -1,7 +1,9 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
+using Substats.Domain.Contracts.Secondary.Pallet.Staking.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +35,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<SubstrateAccount>> InvulnerablesAsync(CancellationToken token);
+        public Task<BaseVec<SubstrateAccount>> InvulnerablesAsync(CancellationToken token);
 
         /// <summary>
         /// Map from all locked "stash" accounts to the controller account.
@@ -187,7 +189,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Exposure> ErasStakersAsync((U32, SubstrateAccount) key, CancellationToken token);
+        public Task<Exposure> ErasStakersAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
 
         /// <summary>
         ///  Clipped Exposure of validator at era.
@@ -205,7 +207,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Exposure> ErasStakersClippedAsync((U32, SubstrateAccount) key, CancellationToken token);
+        public Task<Exposure> ErasStakersClippedAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
 
         /// <summary>
         ///  Similar to `ErasStakers`, this holds the preferences of validators.
@@ -217,7 +219,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<ValidatorPrefs> ErasValidatorPrefsAsync((U32, SubstrateAccount) key, CancellationToken token);
+        public Task<ValidatorPrefs> ErasValidatorPrefsAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
 
         /// <summary>
         ///  The total validator era payout for the last `HISTORY_DEPTH` eras.
@@ -252,7 +254,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Forcing> ForceEraAsync(CancellationToken token);
+        public Task<EnumForcing> ForceEraAsync(CancellationToken token);
 
         /// <summary>
         ///  The percentage of the slash that is distributed to reporters.
@@ -276,7 +278,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token);
+        public Task<BaseVec<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  A mapping from still-bonded eras to the first session index of that era.
@@ -286,7 +288,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<U32, U32>> BondedErasAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<U32, U32>>> BondedErasAsync(CancellationToken token);
 
         /// <summary>
         ///  All slashing events on validators, mapped by era to the highest slash proportion
@@ -295,7 +297,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<(Perbill, U128)> ValidatorSlashInEraAsync((U32, SubstrateAccount) key, CancellationToken token);
+        public Task<BaseTuple<Perbill, U128>> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
 
         /// <summary>
         /// All slashing events on nominators, mapped by era to the highest slash value of the era.
@@ -303,7 +305,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<U128> NominatorSlashInEraAsync((U32, SubstrateAccount) key, CancellationToken token);
+        public Task<U128> NominatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
 
         /// <summary>
         /// Slashing spans for stash accounts.
@@ -320,7 +322,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SpanRecord> SpanSlashAsync((SubstrateAccount, U32) key, CancellationToken token);
+        public Task<SpanRecord> SpanSlashAsync(BaseTuple<SubstrateAccount, U32> key, CancellationToken token);
 
         /// <summary>
         ///  The last planned session scheduled by the session pallet.
@@ -344,7 +346,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<U32, Bool>> OffendingValidatorsAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<U32, Bool>>> OffendingValidatorsAsync(CancellationToken token);
 
         /// <summary>
         ///  True if network has been upgraded to this version.
@@ -354,7 +356,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Releases> StorageVersionAsync(CancellationToken token);
+        public Task<EnumReleases> StorageVersionAsync(CancellationToken token);
 
         /// <summary>
         ///  The threshold for when users can start calling `chill_other` for other validators /

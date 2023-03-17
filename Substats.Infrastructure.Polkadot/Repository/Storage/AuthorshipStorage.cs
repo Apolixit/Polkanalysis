@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
+using Substats.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
 using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;

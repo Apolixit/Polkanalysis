@@ -1,14 +1,15 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Org.BouncyCastle.Math;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Secondary.Pallet.Session;
 using Substats.Domain.Contracts.Secondary.Pallet.Staking;
+using Substats.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using StakingStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.StakingStorage;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
@@ -16,189 +17,252 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
     {
         public StakingStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
-        public Task<ActiveEraInfo> ActiveEraAsync(CancellationToken token)
+        public async Task<ActiveEraInfo> ActiveEraAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo,
+                ActiveEraInfo>
+                (StakingStorageExt.ActiveEraParams, token);
         }
 
-        public Task<SubstrateAccount> BondedAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<SubstrateAccount> BondedAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                AccountId32,
+                SubstrateAccount>(SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.BondedParams, token);
         }
 
-        public Task<IDictionary<U32, U32>> BondedErasAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<U32, U32>>> BondedErasAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<BaseTuple<U32, U32>>>
+                (StakingStorageExt.BondedErasParams, token);
         }
 
-        public Task<U128> CanceledSlashPayoutAsync(CancellationToken token)
+        public async Task<U128> CanceledSlashPayoutAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U128>(StakingStorageExt.CanceledSlashPayoutParams, token);
         }
 
-        public Task<Percent> ChillThresholdAsync(CancellationToken token)
+        public async Task<Percent> ChillThresholdAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent,
+                Percent>(StakingStorageExt.ChillThresholdParams, token);
         }
 
-        public Task<U32> CounterForNominatorsAsync(CancellationToken token)
+        public async Task<U32> CounterForNominatorsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.CounterForNominatorsParams, token);
         }
 
-        public Task<U32> CounterForValidatorsAsync(CancellationToken token)
+        public async Task<U32> CounterForValidatorsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.CounterForValidatorsParams, token);
         }
 
-        public Task<U32> CurrentEraAsync(CancellationToken token)
+        public async Task<U32> CurrentEraAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.CurrentEraParams, token);
         }
 
-        public Task<U32> CurrentPlannedSessionAsync(CancellationToken token)
+        public async Task<U32> CurrentPlannedSessionAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.CurrentPlannedSessionParams, token);
         }
 
-        public Task<EraRewardPoints> ErasRewardPointsAsync(U32 key, CancellationToken token)
+        public async Task<EraRewardPoints> ErasRewardPointsAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints,
+                EraRewardPoints>(key, StakingStorageExt.ErasRewardPointsParams, token);
         }
 
-        public Task<Exposure> ErasStakersAsync((U32, SubstrateAccount) key, CancellationToken token)
+        public async Task<Exposure> ErasStakersAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+               BaseTuple<U32, AccountId32>,
+               Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
+               Exposure>(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasStakersParams, token);
         }
 
-        public Task<Exposure> ErasStakersClippedAsync((U32, SubstrateAccount) key, CancellationToken token)
+        public async Task<Exposure> ErasStakersClippedAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+               BaseTuple<U32, AccountId32>,
+               Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
+               Exposure>(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasStakersClippedParams, token);
         }
 
-        public Task<U32> ErasStartSessionIndexAsync(U32 key, CancellationToken token)
+        public async Task<U32> ErasStartSessionIndexAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<U32, U32>(key, StakingStorageExt.ErasStartSessionIndexParams, token);
         }
 
-        public Task<U128> ErasTotalStakeAsync(U32 key, CancellationToken token)
+        public async Task<U128> ErasTotalStakeAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<U32, U128>(key, StakingStorageExt.ErasTotalStakeParams, token);
         }
 
-        public Task<ValidatorPrefs> ErasValidatorPrefsAsync((U32, SubstrateAccount) key, CancellationToken token)
+        public async Task<ValidatorPrefs> ErasValidatorPrefsAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+               BaseTuple<U32, AccountId32>,
+               Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
+               ValidatorPrefs>(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasValidatorPrefsParams, token);
         }
 
-        public Task<U128> ErasValidatorRewardAsync(U32 key, CancellationToken token)
+        public async Task<U128> ErasValidatorRewardAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<U32, U128>(key, StakingStorageExt.ErasValidatorRewardParams, token);
         }
 
-        public Task<Forcing> ForceEraAsync(CancellationToken token)
+        public async Task<EnumForcing> ForceEraAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing, EnumForcing>(StakingStorageExt.ForceEraParams, token);
         }
 
-        public Task<IEnumerable<SubstrateAccount>> InvulnerablesAsync(CancellationToken token)
+        public async Task<BaseVec<SubstrateAccount>> InvulnerablesAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<AccountId32>, BaseVec<SubstrateAccount>>(StakingStorageExt.InvulnerablesParams, token);
         }
 
-        public Task<StakingLedger> LedgerAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<StakingLedger> LedgerAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger, 
+                StakingLedger>(SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.LedgerParams, token);
         }
 
-        public Task<U32> MaxNominatorsCountAsync(CancellationToken token)
+        public async Task<U32> MaxNominatorsCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.MaxNominatorsCountParams, token);
         }
 
-        public Task<U32> MaxValidatorsCountAsync(CancellationToken token)
+        public async Task<U32> MaxValidatorsCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.MaxValidatorsCountParams, token);
         }
 
-        public Task<Perbill> MinCommissionAsync(CancellationToken token)
+        public async Task<Perbill> MinCommissionAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
+                >(StakingStorageExt.MinCommissionParams, token);
         }
 
-        public Task<U32> MinimumValidatorCountAsync(CancellationToken token)
+        public async Task<U32> MinimumValidatorCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.MinimumValidatorCountParams, token);
         }
 
-        public Task<U128> MinNominatorBondAsync(CancellationToken token)
+        public async Task<U128> MinNominatorBondAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U128>(StakingStorageExt.MinNominatorBondParams, token);
         }
 
-        public Task<U128> MinValidatorBondAsync(CancellationToken token)
+        public async Task<U128> MinValidatorBondAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U128>(StakingStorageExt.MinValidatorBondParams, token);
         }
 
-        public Task<Nominations> NominatorsAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<Nominations> NominatorsAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations,
+                Nominations>(SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.NominatorsParams, token);
         }
 
-        public Task<U128> NominatorSlashInEraAsync((U32, SubstrateAccount) key, CancellationToken token)
+        public async Task<U128> NominatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                BaseTuple<U32, AccountId32>,
+                U128>(
+                SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.NominatorSlashInEraParams, token);
         }
 
-        public Task<IDictionary<U32, Bool>> OffendingValidatorsAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<U32, Bool>>> OffendingValidatorsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<BaseTuple<U32, Bool>>>(StakingStorageExt.OffendingValidatorsDefault, token);
         }
 
-        public Task<EnumRewardDestination> PayeeAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<EnumRewardDestination> PayeeAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination,
+                EnumRewardDestination>(
+                SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.PayeeParams, token);
         }
 
-        public Task<SlashingSpans> SlashingSpansAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<SlashingSpans> SlashingSpansAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans,
+                SlashingSpans>(
+                SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.SlashingSpansParams, token);
         }
 
-        public Task<Perbill> SlashRewardFractionAsync(CancellationToken token)
+        public async Task<Perbill> SlashRewardFractionAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
+                >(StakingStorageExt.SlashRewardFractionParams, token);
         }
 
-        public Task<SpanRecord> SpanSlashAsync((SubstrateAccount, U32) key, CancellationToken token)
+        public async Task<SpanRecord> SpanSlashAsync(BaseTuple<SubstrateAccount, U32> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                BaseTuple<AccountId32, U32>,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord,
+                SpanRecord>(
+                SubstrateMapper.Instance.Map<BaseTuple<AccountId32, U32>>(key), StakingStorageExt.SpanSlashParams, token);
         }
 
-        public Task<Releases> StorageVersionAsync(CancellationToken token)
+        public async Task<EnumReleases> StorageVersionAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases,
+                EnumReleases>(StakingStorageExt.StorageVersionParams, token);
         }
 
-        public Task<IEnumerable<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token)
+        public async Task<BaseVec<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>,
+                BaseVec<UnappliedSlash>>(key, StakingStorageExt.UnappliedSlashesParams, token);
         }
 
-        public Task<U32> ValidatorCountAsync(CancellationToken token)
+        public async Task<U32> ValidatorCountAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<U32>(StakingStorageExt.ValidatorCountParams, token);
         }
 
-        public Task<ValidatorPrefs> ValidatorsAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<ValidatorPrefs> ValidatorsAsync(SubstrateAccount account, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                AccountId32,
+                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
+                ValidatorPrefs
+                >(SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.ValidatorsParams, token);
         }
 
-        public Task<(Perbill, U128)> ValidatorSlashInEraAsync((U32, SubstrateAccount) key, CancellationToken token)
+        public async Task<BaseTuple<Perbill, U128>> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                BaseTuple<U32, AccountId32>,
+                BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, U128>,
+                BaseTuple<Perbill, U128>
+                >(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ValidatorSlashInEraParams, token);
         }
     }
 }

@@ -2,13 +2,13 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Random;
 using Substats.Domain.Contracts.Secondary.Pallet.Paras;
+using Substats.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ParasStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.ParasStorage;
+using IdExt = Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id;
 
 namespace Substats.Infrastructure.Polkadot.Repository.Storage
 {
@@ -16,99 +16,174 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
     {
         public ParasStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
 
-        public Task<IEnumerable<Id>> ActionsQueueAsync(U32 key, CancellationToken token)
+        public async Task<BaseVec<Id>> ActionsQueueAsync(U32 key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                U32,
+                BaseVec<IdExt>,
+                BaseVec<Id>>
+                (key, ParasStorageExt.ActionsQueueParams, token);
         }
 
-        public Task<byte[]?> CodeByHashAsync(Hash key, CancellationToken token)
+        public async Task<Hexa> CodeByHashAsync(Hash key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode,
+                Hexa>
+                (SubstrateMapper.Instance.Map<
+                    Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.CodeByHashParams, token);
         }
 
-        public Task<U32> CodeByHashRefsAsync(Hash key, CancellationToken token)
+        public async Task<U32> CodeByHashRefsAsync(Hash key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, 
+                 U32>
+                 (SubstrateMapper.Instance.Map<
+                     Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.CodeByHashRefsParams, token);
         }
 
-        public Task<Hash> CurrentCodeHashAsync(Id key, CancellationToken token)
+        public async Task<Hash> CurrentCodeHashAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                 IdExt,
+                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
+                 Hash>
+                 (SubstrateMapper.Instance.Map<
+                     IdExt>(key), ParasStorageExt.CurrentCodeHashParams, token);
         }
 
-        public Task<Hash> FutureCodeHashAsync(Id key, CancellationToken token)
+        public async Task<Hash> FutureCodeHashAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                 IdExt,
+                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
+                 Hash>
+                 (SubstrateMapper.Instance.Map<
+                     IdExt>(key), ParasStorageExt.FutureCodeHashParams, token);
         }
 
-        public Task<U32> FutureCodeUpgradesAsync(Id key, CancellationToken token)
+        public async Task<U32> FutureCodeUpgradesAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                 IdExt,
+                 U32>
+                 (SubstrateMapper.Instance.Map<
+                     IdExt>(key), ParasStorageExt.FutureCodeUpgradesParams, token);
         }
 
-        public Task<byte[]> HeadsAsync(Id key, CancellationToken token)
+        public async Task<Hexa> HeadsAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                 IdExt,
+                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData,
+                 Hexa>
+                 (SubstrateMapper.Instance.Map<
+                     IdExt>(key), ParasStorageExt.HeadsParams, token);
         }
 
-        public Task<IEnumerable<Id>> ParachainsAsync(CancellationToken token)
+        public async Task<BaseVec<Id>> ParachainsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                 BaseVec<IdExt>,
+                 BaseVec<Id>>
+                 (ParasStorageExt.ParachainsParams, token);
         }
 
-        public Task<ParaLifecycle> ParaLifecyclesAsync(Id key, CancellationToken token)
+        public async Task<EnumParaLifecycle> ParaLifecyclesAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                 IdExt,
+                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle,
+                 EnumParaLifecycle>
+                 (SubstrateMapper.Instance.Map<
+                     IdExt>(key), ParasStorageExt.ParaLifecyclesParams, token);
         }
 
-        public Task<Hash> PastCodeHashAsync((Id, U32) key, CancellationToken token)
+        public async Task<Hash> PastCodeHashAsync(BaseTuple<Id, U32> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                BaseTuple<IdExt, U32>,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
+                Hash>
+                (SubstrateMapper.Instance.Map<BaseTuple<IdExt, U32>>(key), ParasStorageExt.PastCodeHashParams, token);
         }
 
-        public Task<ParaPastCodeMeta> PastCodeMetaAsync(Id key, CancellationToken token)
+        public async Task<ParaPastCodeMeta> PastCodeMetaAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                IdExt,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaPastCodeMeta,
+                ParaPastCodeMeta>
+                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.PastCodeMetaParams, token);
         }
 
-        public Task<IDictionary<Id, U32>> PastCodePruningAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<Id, U32>>> PastCodePruningAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<BaseTuple<IdExt, U32>>,
+                BaseVec<BaseTuple<Id, U32>>>
+                (ParasStorageExt.PastCodePruningParams, token);
         }
 
-        public Task<IEnumerable<Hash>> PvfActiveVoteListAsync(CancellationToken token)
+        public async Task<BaseVec<Hash>> PvfActiveVoteListAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<
+                    Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>,
+                BaseVec<Hash>>
+                (ParasStorageExt.PvfActiveVoteListParams, token);
         }
 
-        public Task<PvfCheckActiveVoteState> PvfActiveVoteMapAsync(Hash key, CancellationToken token)
+        public async Task<PvfCheckActiveVoteState> PvfActiveVoteMapAsync(Hash key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.PvfCheckActiveVoteState,
+                PvfCheckActiveVoteState>     (SubstrateMapper.Instance.Map<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.PvfActiveVoteMapParams, token);
         }
 
-        public Task<ParaGenesisArgs> UpcomingParasGenesisAsync(Id key, CancellationToken token)
+        public async Task<ParaGenesisArgs> UpcomingParasGenesisAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                IdExt,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs,
+                ParaGenesisArgs>
+                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.UpcomingParasGenesisParams, token);
         }
 
-        public Task<IDictionary<Id, U32>> UpcomingUpgradesAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<Id, U32>>> UpcomingUpgradesAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<BaseTuple<IdExt, U32>>,
+                BaseVec<BaseTuple<Id, U32>>
+                >(ParasStorageExt.UpcomingUpgradesParams, token);
         }
 
-        public Task<IDictionary<Id, U32>> UpgradeCooldownsAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<Id, U32>>> UpgradeCooldownsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageAsync<
+                BaseVec<BaseTuple<IdExt, U32>>,
+                BaseVec<BaseTuple<Id, U32>>
+                >(ParasStorageExt.UpgradeCooldownsParams, token);
         }
 
-        public Task<UpgradeGoAhead> UpgradeGoAheadSignalAsync(Id key, CancellationToken token)
+        public async Task<EnumUpgradeGoAhead> UpgradeGoAheadSignalAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                IdExt, 
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeGoAhead,
+                EnumUpgradeGoAhead>
+                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.UpgradeGoAheadSignalParams, token);
         }
 
-        public Task<UpgradeRestriction> UpgradeRestrictionSignalAsync(Id key, CancellationToken token)
+        public async Task<EnumUpgradeRestriction> UpgradeRestrictionSignalAsync(Id key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await GetStorageWithParamsAsync<
+                IdExt,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction,
+                EnumUpgradeRestriction>
+                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.UpgradeRestrictionSignalParams, token);
         }
     }
 }

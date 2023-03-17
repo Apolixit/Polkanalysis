@@ -87,14 +87,8 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageAsync<
                 BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>,
-                BaseVec<EventRecord>>(SystemStorageExt.EventsParams, token);
-
-            //var result = await GetStorageAsync< BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>>(SystemStorageExt.EventsParams(), token);
-
-            //if (result == null) return new BaseVec<EventRecord>();
-
-            //return SubstrateMapper.Instance.Map<
-            //    BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>, BaseVec<EventRecord>>(result);
+                BaseVec<EventRecord>>
+                (SystemStorageExt.EventsParams, token);
         }
 
         public async Task<BaseVec<BaseTuple<U32, U32>>> EventTopicsAsync(Hash key, CancellationToken token)
@@ -106,10 +100,6 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 BaseVec<BaseTuple<U32, U32>>,
                 BaseVec<BaseTuple<U32, U32>>>
                 (param, SystemStorageExt.EventTopicsParams, token);
-
-            //return await GetStorageAsync<BaseVec<BaseTuple<U32, U32>>>(
-            //    SystemStorageExt.EventTopicsParams(SubstrateMapper.Instance.Map<Hash, H256>(key)), 
-            //    token) ?? new BaseVec<BaseTuple<U32, U32>>();
         }
 
         public async Task<EnumPhase> ExecutionPhaseAsync(CancellationToken token)

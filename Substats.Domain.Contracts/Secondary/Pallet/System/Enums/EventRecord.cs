@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 {

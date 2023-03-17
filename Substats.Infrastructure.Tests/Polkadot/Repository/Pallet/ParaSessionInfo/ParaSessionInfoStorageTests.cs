@@ -2,6 +2,7 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Public;
 using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 

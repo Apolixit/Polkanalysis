@@ -2,6 +2,7 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Domain.Contracts.Secondary.Contracts;
+using Substats.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,8 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Ajuna.NetApi.Model.Types.Base;
+using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Display;
+using Substats.Domain.Contracts.Core.Random;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
@@ -16,7 +19,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<SubstrateAccount>> ValidatorsAsync(CancellationToken token);
+        public Task<BaseVec<SubstrateAccount>> ValidatorsAsync(CancellationToken token);
 
         /// <summary>
         /// Current index of the session.
@@ -39,7 +42,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<SubstrateAccount, SessionKeys>> QueuedKeysAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>> QueuedKeysAsync(CancellationToken token);
 
         /// <summary>
         ///  Indices of disabled validators.
@@ -50,7 +53,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<U32>> DisabledValidatorsAsync(CancellationToken token);
+        public Task<BaseVec<U32>> DisabledValidatorsAsync(CancellationToken token);
 
         /// <summary>
         /// The next session keys for a validator.
@@ -58,7 +61,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SessionKeys> NextKeysAsync(SubstrateAccount account, CancellationToken token);
+        public Task<SessionKeysPolka> NextKeysAsync(SubstrateAccount account, CancellationToken token);
 
         /// <summary>
         /// The owner of a key. The key is the `KeyTypeId` + the encoded key.
@@ -66,7 +69,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Session
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SubstrateAccount> KeyOwnerAsync((string, byte[]) key, CancellationToken token);
-
+        public Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<Nameable, Hexa> key, CancellationToken token);
     }
 }

@@ -11,6 +11,7 @@ using Substats.Domain.Contracts.Core.DispatchInfo;
 using Substats.Domain.Contracts.Core.Display;
 using Substats.Domain.Contracts.Secondary;
 using Substats.Domain.Contracts.Secondary.Pallet.Balances;
+using Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
 using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Substats.Polkadot.NetApiExt.Generated.Model.primitive_types;

@@ -3,7 +3,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
+using Substats.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;

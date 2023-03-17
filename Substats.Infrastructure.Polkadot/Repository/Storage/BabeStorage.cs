@@ -4,9 +4,10 @@ using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.Threading;
 using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Public;
 using Substats.Domain.Contracts.Core.Random;
 using Substats.Domain.Contracts.Secondary.Pallet.Babe;
+using Substats.Domain.Contracts.Secondary.Pallet.Babe.Enums;
 using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Polkadot.NetApiExt.Generated;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
@@ -177,13 +178,6 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<BaseVec<Hexa>> UnderConstructionAsync(U32 key, CancellationToken token)
         {
             return await GetStorageWithParamsAsync<U32, BoundedVecT5, BaseVec<Hexa>>(key, BabeStorageExt.UnderConstructionParams, token);
-
-            //var result = await GetStorageAsync<BoundedVecT5>(BabeStorageExt.UnderConstructionParams(key), token);
-
-            //if (result == null) return new BaseVec<Hexa>();
-            //var hex = result.Value.TakeAndEncode(2);
-
-            //return SubstrateMapper.Instance.Map<BoundedVecT5, BaseVec<Hexa>>(result);
         }
     }
 }

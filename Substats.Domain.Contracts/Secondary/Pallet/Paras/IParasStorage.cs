@@ -1,7 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Random;
 using Substats.Domain.Contracts.Secondary.Contracts;
+using Substats.Domain.Contracts.Secondary.Pallet.Paras.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Hash>> PvfActiveVoteListAsync(CancellationToken token);
+        public Task<BaseVec<Hash>> PvfActiveVoteListAsync(CancellationToken token);
 
         /// <summary>
         ///  All parachains. Ordered ascending by `ParaId`. Parathreads are not included.
@@ -37,7 +39,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Id>> ParachainsAsync(CancellationToken token);
+        public Task<BaseVec<Id>> ParachainsAsync(CancellationToken token);
 
         /// <summary>
         /// The current lifecycle of a all known Para IDs.
@@ -45,7 +47,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<ParaLifecycle> ParaLifecyclesAsync(Id key, CancellationToken token);
+        public Task<EnumParaLifecycle> ParaLifecyclesAsync(Id key, CancellationToken token);
 
         /// <summary>
         /// The head-data of every registered para.
@@ -53,7 +55,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<byte[]> HeadsAsync(Id key, CancellationToken token);
+        public Task<Hexa> HeadsAsync(Id key, CancellationToken token);
 
         /// <summary>
         ///  The validation code hash of every live para.
@@ -74,7 +76,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hash> PastCodeHashAsync((Id, U32) key, CancellationToken token);
+        public Task<Hash> PastCodeHashAsync(BaseTuple<Id, U32> key, CancellationToken token);
 
         /// <summary>
         ///  Past code of parachains. The parachains themselves may not be registered anymore,
@@ -96,7 +98,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<Id, U32>> PastCodePruningAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<Id, U32>>> PastCodePruningAsync(CancellationToken token);
 
         /// <summary>
         ///  The block number at which the planned code change is expected for a para.
@@ -132,7 +134,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<UpgradeGoAhead> UpgradeGoAheadSignalAsync(Id key, CancellationToken token);
+        public Task<EnumUpgradeGoAhead> UpgradeGoAheadSignalAsync(Id key, CancellationToken token);
 
         /// <summary>
         ///  This is used by the relay-chain to communicate that there are restrictions for performing
@@ -148,7 +150,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<UpgradeRestriction> UpgradeRestrictionSignalAsync(Id key, CancellationToken token);
+        public Task<EnumUpgradeRestriction> UpgradeRestrictionSignalAsync(Id key, CancellationToken token);
 
         /// <summary>
         ///  The list of parachains that are awaiting for their upgrade restriction to cooldown.
@@ -157,7 +159,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<Id, U32>> UpgradeCooldownsAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<Id, U32>>> UpgradeCooldownsAsync(CancellationToken token);
 
         /// <summary>
         ///  The list of upcoming code upgrades. Each item is a pair of which para performs a code
@@ -167,7 +169,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IDictionary<Id, U32>> UpcomingUpgradesAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<Id, U32>>> UpcomingUpgradesAsync(CancellationToken token);
 
         /// <summary>
         /// The actions to perform during the start of a specific session index.
@@ -175,7 +177,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<IEnumerable<Id>> ActionsQueueAsync(U32 key, CancellationToken token);
+        public Task<BaseVec<Id>> ActionsQueueAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  Upcoming paras instantiation arguments.
@@ -205,6 +207,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<byte[]?> CodeByHashAsync(Hash key, CancellationToken token);
+        public Task<Hexa> CodeByHashAsync(Hash key, CancellationToken token);
     }
 }
