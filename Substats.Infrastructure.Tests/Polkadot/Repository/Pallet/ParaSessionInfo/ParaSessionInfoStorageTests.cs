@@ -31,7 +31,8 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionIn
         [Test]
         public async Task AssignmentKeysUnsafeNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
+            await MockStorageCallNullAsync<BaseVec<
+                        Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>, BaseVec<PublicSr25519>>(_substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
         }
 
         [Test]
@@ -145,7 +146,10 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionIn
         [Test]
         public async Task SessionsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new U32(1), _substrateRepository.Storage.ParaSessionInfo.SessionsAsync);
+            await MockStorageCallNullWithInputAsync<
+                U32,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo,
+                SessionInfo>(new U32(1), _substrateRepository.Storage.ParaSessionInfo.SessionsAsync);
         }
 
         [Test]
@@ -168,7 +172,9 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionIn
         [Test]
         public async Task AccountKeysNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new U32(1), _substrateRepository.Storage.ParaSessionInfo.AccountKeysAsync);
+            await MockStorageCallNullWithInputAsync<U32,
+                BaseVec<AccountId32>,
+                BaseVec<SubstrateAccount>>(new U32(1), _substrateRepository.Storage.ParaSessionInfo.AccountKeysAsync);
         }
     }
 }

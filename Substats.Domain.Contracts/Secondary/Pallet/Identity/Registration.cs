@@ -26,6 +26,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
             Judgements = judgements;
 
             Bytes = Encode();
+            TypeSize = Info.TypeSize + Deposit.TypeSize + Judgements.TypeSize;
         }
 
         public IdentityInfo Info { get; set; }

@@ -14,12 +14,15 @@ namespace Substats.Domain.Contracts.Core.Public
     {
         public override KeyType Key => KeyType.Sr25519;
 
-        public PublicSr25519() : this(new U8[] { }) { }
+        public PublicSr25519() : this(new U8[] { }) {}
+
         public PublicSr25519(U8[] value) : base(value)
         {
+            Bytes = Encode();
+            TypeSize = Value.Count();
         }
 
-        public PublicSr25519(string hex) : base(Utils.HexToByteArray(hex).Select(x => new U8(x)).ToArray())
+        public PublicSr25519(string hex) : this(Utils.HexToByteArray(hex).Select(x => new U8(x)).ToArray())
         {
         }
     }

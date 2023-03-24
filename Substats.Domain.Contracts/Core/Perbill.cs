@@ -12,6 +12,21 @@ namespace Substats.Domain.Contracts.Core
     {
         public U32 Value { get; set; }
 
+        public Perbill() { }
+
+        public Perbill(U32 value)
+        {
+            Create(value);
+        }
+
+        public void Create(U32 value)
+        {
+            Value = value;
+
+            Bytes = Encode();
+            TypeSize = Value.TypeSize;
+        }
+
         public override byte[] Encode()
         {
             var result = new List<byte>();

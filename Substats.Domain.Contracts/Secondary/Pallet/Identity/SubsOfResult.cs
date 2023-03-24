@@ -9,6 +9,9 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
 {
     public class SubsOfResult : BaseType
     {
+        public U128 Number { get; set; } = new U128();
+        public BaseVec<SubstrateAccount> Accounts { get; set; }
+
         public SubsOfResult() { }
 
         public SubsOfResult(U128 number, BaseVec<SubstrateAccount> accounts)
@@ -20,10 +23,10 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
         {
             Number = number;
             Accounts = accounts;
-        }
 
-        public U128 Number { get; set; } = new U128();
-        public BaseVec<SubstrateAccount> Accounts { get; set; }
+            Bytes = Encode();
+            TypeSize = Number.TypeSize + Accounts.TypeSize;
+        }
 
         public override byte[] Encode()
         {

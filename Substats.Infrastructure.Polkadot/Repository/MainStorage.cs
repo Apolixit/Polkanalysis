@@ -40,6 +40,7 @@ namespace Substats.Infrastructure.Polkadot.Repository
             Func<I, string> funcParams,
             CancellationToken token,
             [CallerMemberName] string callerName = "")
+            where I : IType, new()
             where T : IType, new()
         {
             return await GetStorageAsync<T>(funcParams(input), token, callerName) ?? new T();
@@ -62,9 +63,12 @@ namespace Substats.Infrastructure.Polkadot.Repository
         Func<I, string> funcParams,
         CancellationToken token,
         [CallerMemberName] string callerName = "")
+        where I : IType, new()
         where R : IType, new()
         where T : IType, new()
         {
+            if(input == null) throw new ArgumentNullException("input");
+            
             var result = await GetStorageAsync<R>(funcParams(input), token, callerName);
 
             if (result == null) return new T();

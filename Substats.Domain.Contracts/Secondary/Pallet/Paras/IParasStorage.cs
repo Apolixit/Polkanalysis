@@ -55,7 +55,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hexa> HeadsAsync(Id key, CancellationToken token);
+        public Task<DataCode> HeadsAsync(Id key, CancellationToken token);
 
         /// <summary>
         ///  The validation code hash of every live para.
@@ -207,6 +207,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Hexa> CodeByHashAsync(Hash key, CancellationToken token);
+        public Task<DataCode> CodeByHashAsync(Hash key, CancellationToken token);
     }
 }

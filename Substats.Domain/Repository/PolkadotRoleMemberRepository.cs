@@ -78,7 +78,7 @@ namespace Substats.Domain.Repository
             // Era stakers will return something if my validator is currently active in this current Era
             var nominators = await _substrateNodeRepository.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(currentEra, validator), cancellationToken);
 
-            var nominatorsDto = nominators.Others.Select(n =>
+            var nominatorsDto = nominators.Others.Value.Select(n =>
             {
                 var controllerAccount = _substrateNodeRepository.Storage.Staking.BondedAsync(n.Who, cancellationToken).Result;
 
@@ -87,7 +87,7 @@ namespace Substats.Domain.Repository
                     StashAccount = _accountRepository.GetAccountIdentityAsync(n.Who, cancellationToken).Result,
                     ControllerAccount = _accountRepository.GetAccountIdentityAsync(controllerAccount, cancellationToken).Result,
                     RewardAccount = PayeeAccountAsync(n.Who, cancellationToken).Result,
-                    Bonded = n.Value.Value.ToDouble(chainInfo.TokenDecimals)
+                    Bonded = n.Value.Value.Value.ToDouble(chainInfo.TokenDecimals)
                 };
             }).ToList();
 
@@ -96,8 +96,8 @@ namespace Substats.Domain.Repository
                 ControllerAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
                 StashAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
                 RewardAddress = await _accountRepository.GetAccountIdentityAsync(validator, cancellationToken),
-                SelfBonded = nominators.Own.ToDouble(chainInfo.TokenDecimals),
-                TotalBonded = nominators.Total.ToDouble(chainInfo.TokenDecimals),
+                SelfBonded = nominators.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
+                TotalBonded = nominators.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 Commission = (double)validatorSettings.Commission.Value.Value,
                 SessionKey = _node.Create().AddData(validatorSessionKey),
                 Status = isValidatorActive ? AliveStatusDto.Active : AliveStatusDto.Inactive,

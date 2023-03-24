@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.AjunaExtension;
 using Substats.Domain.Contracts.Core;
@@ -37,7 +38,9 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Session
         [Test]
         public async Task ValidatorsNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Session.ValidatorsAsync);
+            await MockStorageCallNullAsync<
+                BaseVec<AccountId32>,
+                BaseVec<SubstrateAccount>>(_substrateRepository.Storage.Session.ValidatorsAsync);
         }
 
         [Test]
@@ -107,7 +110,9 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Session
         [Test]
         public async Task QueuedKeysNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Session.QueuedKeysAsync);
+            await MockStorageCallNullAsync<
+                BaseVec<BaseTuple<AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>,
+                BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>(_substrateRepository.Storage.Session.QueuedKeysAsync);
         }
 
         [Test]
@@ -143,30 +148,32 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Session
         [Test]
         public async Task NextKeysNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Session.NextKeysAsync);
+            await MockStorageCallNullWithInputAsync<
+                SubstrateAccount,
+                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys,
+                SessionKeysPolka>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Session.NextKeysAsync);
         }
 
         [Test]
         public async Task KeyOwner_ShouldWorkAsync()
         {
             var input = new BaseTuple<Nameable, Hexa>();
-            input.Create(new Nameable("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
-
+            input.Create(new Nameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
+            
             var coreResult = new AccountId32();
-            coreResult.Create("13p9kJiRnfy8QSjFoovHzatuE7SW5xdddxDvk9mXtERueo9E");
+            coreResult.Create("0x17316829C406A05CD9CDB8D5DE5FB23D26B3672F8CBCA1FCC6538833589A121A");
 
-            var expectedResult = new SubstrateAccount("13p9kJiRnfy8QSjFoovHzatuE7SW5xdddxDvk9mXtERueo9E");
+            var expectedResult = new SubstrateAccount("1XQn94kWaMVJG16AWPKGmYFERfttsjZq4ompSTz2jxHK6uL");
 
-            await MockStorageCallWithInputAsync<
-                BaseTuple<Nameable, Hexa>, 
-                AccountId32, 
-                SubstrateAccount>(input, coreResult, expectedResult, _substrateRepository.Storage.Session.KeyOwnerAsync);
+            await MockStorageCallWithInputAsync(input, coreResult, expectedResult, _substrateRepository.Storage.Session.KeyOwnerAsync);
         }
 
         [Test]
         public async Task KeyOwnerNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync(new BaseTuple<Nameable, Hexa>(), _substrateRepository.Storage.Session.KeyOwnerAsync);
+            await MockStorageCallNullWithInputAsync<
+                BaseTuple<Nameable, Hexa>, AccountId32, SubstrateAccount>(
+                new BaseTuple<Nameable, Hexa>(new Nameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b")), _substrateRepository.Storage.Session.KeyOwnerAsync);
         }
     }
 }

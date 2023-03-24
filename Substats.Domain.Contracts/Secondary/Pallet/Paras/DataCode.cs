@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
         public BaseVec<U8> Value { get; set; }
 
         public DataCode() { }
+
+        public DataCode(string str) {
+            Create(Utils.HexToByteArray(str));
+        }
 
         public DataCode(BaseVec<U8> value)
         {

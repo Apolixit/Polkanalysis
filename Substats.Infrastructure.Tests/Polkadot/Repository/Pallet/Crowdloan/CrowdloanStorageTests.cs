@@ -47,8 +47,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Crowdloan
                 new U32(18),
                 new U32(55));
 
-            await MockStorageCallWithInputAsync<Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
-                FundInfo>(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Crowdloan.FundsAsync);
+            await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Crowdloan.FundsAsync);
         }
 
         [Test]

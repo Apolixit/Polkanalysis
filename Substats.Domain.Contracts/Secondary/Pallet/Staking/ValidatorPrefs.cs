@@ -18,8 +18,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
 
         public ValidatorPrefs(BaseCom<Perbill> commission, Bool blocked)
         {
-            Commission = commission;
-            Blocked = blocked;
+            Create(commission, blocked);
         }
 
         public void Create(BaseCom<Perbill> commission, Bool blocked)

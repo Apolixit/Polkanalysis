@@ -9,7 +9,23 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
     public class IndividualExposure : BaseType
     {
         public SubstrateAccount Who { get; set; }
-        public U128 Value { get; set; } = new U128().With(BigInteger.Zero);
+        public BaseCom<U128> Value { get; set; }
+
+        public IndividualExposure() { }
+
+        public IndividualExposure(SubstrateAccount who, BaseCom<U128> value)
+        {
+            Create(who, value);
+        }
+
+        public void Create(SubstrateAccount who, BaseCom<U128> value)
+        {
+            Who = who;
+            Value = value;
+
+            Bytes = Encode();
+            TypeSize = Who.TypeSize + Value.TypeSize;
+        }
 
         public override byte[] Encode()
         {
@@ -24,7 +40,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
             var start = p;
             Who = new SubstrateAccount();
             Who.Decode(byteArray, ref p);
-            Value = new U128();
+            Value = new BaseCom<U128>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

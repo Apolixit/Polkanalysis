@@ -25,7 +25,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
             TotalRewardsClaimed = totalRewardsClaimed;
 
             Bytes = Encode();
-            TypeSize = LastRecordedRewardCounter.TypeSize = LastRecordedTotalPayouts.TypeSize + TotalRewardsClaimed.TypeSize;
+            TypeSize = LastRecordedRewardCounter.TypeSize + LastRecordedTotalPayouts.TypeSize + TotalRewardsClaimed.TypeSize;
         }
 
         public override byte[] Encode()

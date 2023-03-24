@@ -8,6 +8,17 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
 {
     public class FundInfo : BaseType
     {
+        public SubstrateAccount Depositor { get; set; }
+        public BaseOpt<EnumMultiSigner> Verifier { get; set; }
+        public U128 Deposit { get; set; } = new U128();
+        public U128 Raised { get; set; } = new U128();
+        public U32 End { get; set; }
+        public U128 Cap { get; set; } = new U128();
+        public EnumLastContribution LastContribution { get; set; }
+        public U32 FirstPeriod { get; set; }
+        public U32 LastPeriod { get; set; }
+        public U32 FundIndex { get; set; }
+
         public FundInfo() { }
 
         public FundInfo(
@@ -24,17 +35,6 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Crowdloan
         {
             Create(depositor, verifier, deposit, raised, end, cap, lastContribution, firstPeriod, lastPeriod, fundIndex);
         }
-
-        public SubstrateAccount Depositor { get; set; }
-        public BaseOpt<EnumMultiSigner> Verifier { get; set; }
-        public U128 Deposit { get; set; } = new U128();
-        public U128 Raised { get; set; } = new U128();
-        public U32 End { get; set; }
-        public U128 Cap { get; set; } = new U128();
-        public EnumLastContribution LastContribution { get; set; }
-        public U32 FirstPeriod { get; set; }
-        public U32 LastPeriod { get; set; }
-        public U32 FundIndex { get; set; }
 
         public void Create(SubstrateAccount depositor,
             BaseOpt<EnumMultiSigner> verifier,

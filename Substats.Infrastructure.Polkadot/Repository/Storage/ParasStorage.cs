@@ -25,20 +25,19 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 (key, ParasStorageExt.ActionsQueueParams, token);
         }
 
-        public async Task<Hexa> CodeByHashAsync(Hash key, CancellationToken token)
+        public async Task<DataCode> CodeByHashAsync(Hash key, CancellationToken token)
         {
             return await GetStorageWithParamsAsync<
                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode,
-                Hexa>
+                DataCode>
                 (SubstrateMapper.Instance.Map<
                     Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.CodeByHashParams, token);
         }
 
         public async Task<U32> CodeByHashRefsAsync(Hash key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, 
+            return await GetStorageWithParamsAsync<                 Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, 
                  U32>
                  (SubstrateMapper.Instance.Map<
                      Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.CodeByHashRefsParams, token);
@@ -73,12 +72,12 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                      IdExt>(key), ParasStorageExt.FutureCodeUpgradesParams, token);
         }
 
-        public async Task<Hexa> HeadsAsync(Id key, CancellationToken token)
+        public async Task<DataCode> HeadsAsync(Id key, CancellationToken token)
         {
             return await GetStorageWithParamsAsync<
                  IdExt,
                  Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData,
-                 Hexa>
+                 DataCode>
                  (SubstrateMapper.Instance.Map<
                      IdExt>(key), ParasStorageExt.HeadsParams, token);
         }

@@ -16,12 +16,6 @@ namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.B
     public class BalancesStorageTests : PolkadotIntegrationTest
     {
         [Test]
-        public void BalanceMapping_ShouldBeValid()
-        {
-            SubstrateMapper.Instance.ConfigurationProvider.AssertConfigurationIsValid();
-        }
-
-        [Test]
         public async Task InactiveIssuance_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Balances.InactiveIssuanceAsync(CancellationToken.None);

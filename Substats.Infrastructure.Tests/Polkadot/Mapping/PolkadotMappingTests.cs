@@ -4,19 +4,19 @@ using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
 using Substats.Infrastructure.Polkadot.Mapper;
 using Substats.Infrastructure.Tests.Polkadot.Repository;
-using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
 using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Substats.Infrastructure.Tests.Polkadot.Mapping
 {
     public class PolkadotMappingTests : PolkadotRepositoryMock
     {
+        [Test]
+        [Ignore("Todo: debug")]
+        public void PolkadotMapping_ShouldBeValid()
+        {
+            SubstrateMapper.Instance.ConfigurationProvider.AssertConfigurationIsValid();
+        }
+
         [Test]
         public void SubstrateAccount_ToAccountId32_ShouldWork()
         {
@@ -36,6 +36,17 @@ namespace Substats.Infrastructure.Tests.Polkadot.Mapping
             var substrateAccount = SubstrateMapper.Instance.Map<AccountId32, SubstrateAccount>(accountId32);
 
             Assert.That(Utils.GetAddressFrom(substrateAccount.Bytes), Is.EqualTo(Utils.GetAddressFrom(accountId32.Value.Encode())));
+        }
+
+        [Test]
+        public void Perbill_ShouldWork()
+        {
+            var p1 = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill();
+            p1.Create("0x00000000");
+
+            var p2 = new Perbill(new U32(0));
+
+            Assert.That(p2, Is.EqualTo(SubstrateMapper.Instance.Map<Perbill>(p1)));
         }
 
         [Test]

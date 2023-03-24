@@ -46,7 +46,7 @@ namespace Substats.Domain.Contracts.Core.Display
         #region Builder
         public Nameable FromText(string text)
         {
-            Create(Utils.Bytes2HexString(Encoding.Default.GetBytes(text)));
+            Create(Encoding.Default.GetBytes(text).Select(x => new U8(x)).ToArray());
             return this;
         }
         public Nameable FromHexa(string hexa)
@@ -98,7 +98,7 @@ namespace Substats.Domain.Contracts.Core.Display
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            var array = new U8[TypeSize];
+            var array = new U8[byteArray.Length];
             for (var i = 0; i < array.Length; i++) { var t = new U8(); t.Decode(byteArray, ref p); array[i] = t; };
             var bytesLength = p - start;
             Bytes = new byte[bytesLength];
