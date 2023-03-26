@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preim
     }
     
     /// <summary>
-    /// >> 180 - Variant[frame_support.traits.preimages.Bounded]
+    /// >> 183 - Variant[frame_support.traits.preimages.Bounded]
     /// </summary>
     public sealed class EnumBounded : BaseEnumExt<Bounded, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {

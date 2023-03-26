@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system
     
     
     /// <summary>
-    /// >> 159 - Composite[frame_system.LastRuntimeUpgradeInfo]
+    /// >> 162 - Composite[frame_system.LastRuntimeUpgradeInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class LastRuntimeUpgradeInfo : BaseType

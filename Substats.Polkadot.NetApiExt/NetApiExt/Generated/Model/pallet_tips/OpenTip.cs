@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
     
     
     /// <summary>
-    /// >> 598 - Composite[pallet_tips.OpenTip]
+    /// >> 599 - Composite[pallet_tips.OpenTip]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class OpenTip : BaseType

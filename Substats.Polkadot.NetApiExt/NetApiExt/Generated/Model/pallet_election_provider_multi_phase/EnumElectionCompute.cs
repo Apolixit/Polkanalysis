@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     }
     
     /// <summary>
-    /// >> 87 - Variant[pallet_election_provider_multi_phase.ElectionCompute]
+    /// >> 88 - Variant[pallet_election_provider_multi_phase.ElectionCompute]
     /// </summary>
     public sealed class EnumElectionCompute : BaseEnum<ElectionCompute>
     {

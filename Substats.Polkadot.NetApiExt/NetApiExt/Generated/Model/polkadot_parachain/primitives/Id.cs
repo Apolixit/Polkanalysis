@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primiti
     
     
     /// <summary>
-    /// >> 98 - Composite[polkadot_parachain.primitives.Id]
+    /// >> 101 - Composite[polkadot_parachain.primitives.Id]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Id : BaseType

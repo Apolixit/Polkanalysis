@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship
     }
     
     /// <summary>
-    /// >> 481 - Variant[pallet_authorship.UncleEntryItem]
+    /// >> 484 - Variant[pallet_authorship.UncleEntryItem]
     /// </summary>
     public sealed class EnumUncleEntryItem : BaseEnumExt<UncleEntryItem, Ajuna.NetApi.Model.Types.Primitive.U32, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>>
     {

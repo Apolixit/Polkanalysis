@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
     
     
     /// <summary>
-    /// >> 534 - Composite[pallet_democracy.types.Tally]
+    /// >> 535 - Composite[pallet_democracy.types.Tally]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Tally : BaseType

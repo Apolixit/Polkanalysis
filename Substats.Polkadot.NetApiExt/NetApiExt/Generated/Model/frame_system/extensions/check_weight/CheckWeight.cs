@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
     
     
     /// <summary>
-    /// >> 736 - Composite[frame_system.extensions.check_weight.CheckWeight]
+    /// >> 735 - Composite[frame_system.extensions.check_weight.CheckWeight]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CheckWeight : BaseType

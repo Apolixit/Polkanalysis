@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.pallet.pall
     }
     
     /// <summary>
-    /// >> 210 - Variant[pallet_staking.pallet.pallet.ConfigOp]
+    /// >> 213 - Variant[pallet_staking.pallet.pallet.ConfigOp]
     /// </summary>
     public sealed class EnumConfigOp : BaseEnumExt<ConfigOp, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, BaseVoid>
     {

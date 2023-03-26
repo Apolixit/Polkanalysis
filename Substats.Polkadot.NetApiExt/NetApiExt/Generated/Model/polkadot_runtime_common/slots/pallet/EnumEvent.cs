@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.sl
     }
     
     /// <summary>
-    /// >> 118 - Variant[polkadot_runtime_common.slots.pallet.Event]
+    /// >> 121 - Variant[polkadot_runtime_common.slots.pallet.Event]
     /// 
     ///			The [event](https://docs.substrate.io/main-docs/build/events-errors/) emitted
     ///			by this pallet.

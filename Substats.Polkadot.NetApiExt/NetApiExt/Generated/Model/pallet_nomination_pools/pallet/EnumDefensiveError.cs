@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.pa
     }
     
     /// <summary>
-    /// >> 633 - Variant[pallet_nomination_pools.pallet.DefensiveError]
+    /// >> 632 - Variant[pallet_nomination_pools.pallet.DefensiveError]
     /// </summary>
     public sealed class EnumDefensiveError : BaseEnum<DefensiveError>
     {

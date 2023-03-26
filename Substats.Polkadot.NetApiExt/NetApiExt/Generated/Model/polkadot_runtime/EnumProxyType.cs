@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime
     }
     
     /// <summary>
-    /// >> 79 - Variant[polkadot_runtime.ProxyType]
+    /// >> 80 - Variant[polkadot_runtime.ProxyType]
     /// </summary>
     public sealed class EnumProxyType : BaseEnum<ProxyType>
     {

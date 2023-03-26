@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header
     
     
     /// <summary>
-    /// >> 187 - Composite[sp_runtime.generic.header.Header]
+    /// >> 190 - Composite[sp_runtime.generic.header.Header]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Header : BaseType

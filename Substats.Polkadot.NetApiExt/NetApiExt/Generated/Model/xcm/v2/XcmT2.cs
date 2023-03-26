@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2
     
     
     /// <summary>
-    /// >> 445 - Composite[xcm.v2.XcmT2]
+    /// >> 448 - Composite[xcm.v2.XcmT2]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class XcmT2 : BaseType

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_ve
     
     
     /// <summary>
-    /// >> 547 - Composite[sp_core.bounded.bounded_vec.BoundedVecT15]
+    /// >> 548 - Composite[sp_core.bounded.bounded_vec.BoundedVecT15]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedVecT15 : BaseType

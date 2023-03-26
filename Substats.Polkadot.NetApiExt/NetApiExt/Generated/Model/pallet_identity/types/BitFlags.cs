@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
     
     
     /// <summary>
-    /// >> 300 - Composite[pallet_identity.types.BitFlags]
+    /// >> 303 - Composite[pallet_identity.types.BitFlags]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BitFlags : BaseType

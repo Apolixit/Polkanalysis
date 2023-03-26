@@ -66,7 +66,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.pallet
     }
     
     /// <summary>
-    /// >> 543 - Variant[pallet_democracy.pallet.Error]
+    /// >> 544 - Variant[pallet_democracy.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

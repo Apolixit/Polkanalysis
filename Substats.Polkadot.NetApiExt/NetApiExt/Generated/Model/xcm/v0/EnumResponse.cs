@@ -22,7 +22,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0
     }
     
     /// <summary>
-    /// >> 429 - Variant[xcm.v0.Response]
+    /// >> 432 - Variant[xcm.v0.Response]
     /// </summary>
     public sealed class EnumResponse : BaseEnumExt<Response, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset.EnumMultiAsset>>
     {

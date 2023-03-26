@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 678 - Composite[polkadot_runtime_parachains.paras.ParaGenesisArgs]
+    /// >> 677 - Composite[polkadot_runtime_parachains.paras.ParaGenesisArgs]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ParaGenesisArgs : BaseType

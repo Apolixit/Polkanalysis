@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 638 - Composite[polkadot_runtime_parachains.configuration.HostConfiguration]
+    /// >> 637 - Composite[polkadot_runtime_parachains.configuration.HostConfiguration]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class HostConfiguration : BaseType
@@ -183,11 +183,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// >> dispute_post_conclusion_acceptance_period
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _disputePostConclusionAcceptancePeriod;
-        
-        /// <summary>
-        /// >> dispute_max_spam_slots
-        /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _disputeMaxSpamSlots;
         
         /// <summary>
         /// >> dispute_conclusion_by_time_out_period
@@ -623,18 +618,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 DisputeMaxSpamSlots
-        {
-            get
-            {
-                return this._disputeMaxSpamSlots;
-            }
-            set
-            {
-                this._disputeMaxSpamSlots = value;
-            }
-        }
-        
         public Ajuna.NetApi.Model.Types.Primitive.U32 DisputeConclusionByTimeOutPeriod
         {
             get
@@ -795,7 +778,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             result.AddRange(MaxValidators.Encode());
             result.AddRange(DisputePeriod.Encode());
             result.AddRange(DisputePostConclusionAcceptancePeriod.Encode());
-            result.AddRange(DisputeMaxSpamSlots.Encode());
             result.AddRange(DisputeConclusionByTimeOutPeriod.Encode());
             result.AddRange(NoShowSlots.Encode());
             result.AddRange(NDelayTranches.Encode());
@@ -876,8 +858,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             DisputePeriod.Decode(byteArray, ref p);
             DisputePostConclusionAcceptancePeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
             DisputePostConclusionAcceptancePeriod.Decode(byteArray, ref p);
-            DisputeMaxSpamSlots = new Ajuna.NetApi.Model.Types.Primitive.U32();
-            DisputeMaxSpamSlots.Decode(byteArray, ref p);
             DisputeConclusionByTimeOutPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
             DisputeConclusionByTimeOutPeriod.Decode(byteArray, ref p);
             NoShowSlots = new Ajuna.NetApi.Model.Types.Primitive.U32();

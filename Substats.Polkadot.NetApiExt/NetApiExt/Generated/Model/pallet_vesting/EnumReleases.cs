@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting
     }
     
     /// <summary>
-    /// >> 564 - Variant[pallet_vesting.Releases]
+    /// >> 565 - Variant[pallet_vesting.Releases]
     /// </summary>
     public sealed class EnumReleases : BaseEnum<Releases>
     {

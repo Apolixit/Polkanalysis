@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
     
     
     /// <summary>
-    /// >> 190 - Composite[sp_consensus_slots.Slot]
+    /// >> 193 - Composite[sp_consensus_slots.Slot]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Slot : BaseType

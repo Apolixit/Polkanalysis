@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime
     
     
     /// <summary>
-    /// >> 739 - Composite[polkadot_runtime.Runtime]
+    /// >> 738 - Composite[polkadot_runtime.Runtime]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Runtime : BaseType

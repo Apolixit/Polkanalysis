@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.
     }
     
     /// <summary>
-    /// >> 67 - Variant[pallet_elections_phragmen.pallet.Event]
+    /// >> 68 - Variant[pallet_elections_phragmen.pallet.Event]
     /// 
     ///			The [event](https://docs.substrate.io/main-docs/build/events-errors/) emitted
     ///			by this pallet.

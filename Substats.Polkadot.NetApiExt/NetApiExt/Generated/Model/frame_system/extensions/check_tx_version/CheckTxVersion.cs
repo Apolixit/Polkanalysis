@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
     
     
     /// <summary>
-    /// >> 731 - Composite[frame_system.extensions.check_tx_version.CheckTxVersion]
+    /// >> 730 - Composite[frame_system.extensions.check_tx_version.CheckTxVersion]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CheckTxVersion : BaseType

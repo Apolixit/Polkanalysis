@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_weights
     
     
     /// <summary>
-    /// >> 171 - Composite[sp_weights.RuntimeDbWeight]
+    /// >> 174 - Composite[sp_weights.RuntimeDbWeight]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class RuntimeDbWeight : BaseType

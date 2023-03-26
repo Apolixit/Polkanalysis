@@ -28,13 +28,13 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         
         DuplicateStatement = 4,
         
-        PotentialSpam = 5,
+        SingleSidedDispute = 5,
         
-        SingleSidedDispute = 6,
+        UnconfirmedDispute = 6,
     }
     
     /// <summary>
-    /// >> 702 - Variant[polkadot_runtime_parachains.disputes.pallet.Error]
+    /// >> 701 - Variant[polkadot_runtime_parachains.disputes.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

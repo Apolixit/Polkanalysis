@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system
     }
     
     /// <summary>
-    /// >> 156 - Variant[frame_system.Phase]
+    /// >> 159 - Variant[frame_system.Phase]
     /// </summary>
     public sealed class EnumPhase : BaseEnumExt<Phase, Ajuna.NetApi.Model.Types.Primitive.U32, BaseVoid, BaseVoid>
     {

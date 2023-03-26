@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 672 - Composite[polkadot_runtime_parachains.paras.ParaPastCodeMeta]
+    /// >> 671 - Composite[polkadot_runtime_parachains.paras.ParaPastCodeMeta]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ParaPastCodeMeta : BaseType

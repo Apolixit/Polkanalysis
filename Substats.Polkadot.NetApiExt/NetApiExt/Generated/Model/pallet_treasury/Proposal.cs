@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury
     
     
     /// <summary>
-    /// >> 555 - Composite[pallet_treasury.Proposal]
+    /// >> 556 - Composite[pallet_treasury.Proposal]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Proposal : BaseType

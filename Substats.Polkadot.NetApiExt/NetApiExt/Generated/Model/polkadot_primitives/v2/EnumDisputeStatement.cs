@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     }
     
     /// <summary>
-    /// >> 401 - Variant[polkadot_primitives.v2.DisputeStatement]
+    /// >> 404 - Variant[polkadot_primitives.v2.DisputeStatement]
     /// </summary>
     public sealed class EnumDisputeStatement : BaseEnumExt<DisputeStatement, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidDisputeStatementKind, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumInvalidDisputeStatementKind>
     {

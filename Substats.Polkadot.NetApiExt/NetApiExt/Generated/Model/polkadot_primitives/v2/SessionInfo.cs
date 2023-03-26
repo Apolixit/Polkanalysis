@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 696 - Composite[polkadot_primitives.v2.SessionInfo]
+    /// >> 695 - Composite[polkadot_primitives.v2.SessionInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SessionInfo : BaseType

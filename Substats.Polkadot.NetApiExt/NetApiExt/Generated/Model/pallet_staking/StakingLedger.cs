@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 484 - Composite[pallet_staking.StakingLedger]
+    /// >> 487 - Composite[pallet_staking.StakingLedger]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class StakingLedger : BaseType

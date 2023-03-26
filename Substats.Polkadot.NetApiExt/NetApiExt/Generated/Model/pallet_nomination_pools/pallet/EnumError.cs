@@ -66,7 +66,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.pa
     }
     
     /// <summary>
-    /// >> 632 - Variant[pallet_nomination_pools.pallet.Error]
+    /// >> 631 - Variant[pallet_nomination_pools.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

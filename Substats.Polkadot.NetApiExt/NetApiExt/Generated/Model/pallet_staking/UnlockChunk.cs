@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 486 - Composite[pallet_staking.UnlockChunk]
+    /// >> 489 - Composite[pallet_staking.UnlockChunk]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class UnlockChunk : BaseType

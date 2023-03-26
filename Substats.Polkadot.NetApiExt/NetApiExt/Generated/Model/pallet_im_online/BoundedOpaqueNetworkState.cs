@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
     
     
     /// <summary>
-    /// >> 522 - Composite[pallet_im_online.BoundedOpaqueNetworkState]
+    /// >> 523 - Composite[pallet_im_online.BoundedOpaqueNetworkState]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedOpaqueNetworkState : BaseType

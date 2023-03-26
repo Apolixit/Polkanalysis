@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen
     
     
     /// <summary>
-    /// >> 550 - Composite[pallet_elections_phragmen.SeatHolder]
+    /// >> 551 - Composite[pallet_elections_phragmen.SeatHolder]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SeatHolder : BaseType

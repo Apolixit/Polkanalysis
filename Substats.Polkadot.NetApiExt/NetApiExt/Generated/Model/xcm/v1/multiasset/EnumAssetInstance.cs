@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
     }
     
     /// <summary>
-    /// >> 138 - Variant[xcm.v1.multiasset.AssetInstance]
+    /// >> 141 - Variant[xcm.v1.multiasset.AssetInstance]
     /// </summary>
     public sealed class EnumAssetInstance : BaseEnumExt<AssetInstance, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr16U8, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>
     {

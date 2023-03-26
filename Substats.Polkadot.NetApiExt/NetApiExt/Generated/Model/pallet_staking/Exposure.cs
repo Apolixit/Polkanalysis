@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 57 - Composite[pallet_staking.Exposure]
+    /// >> 58 - Composite[pallet_staking.Exposure]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Exposure : BaseType

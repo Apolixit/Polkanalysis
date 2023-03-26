@@ -48,7 +48,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     }
     
     /// <summary>
-    /// >> 611 - Variant[pallet_election_provider_multi_phase.pallet.Error]
+    /// >> 610 - Variant[pallet_election_provider_multi_phase.pallet.Error]
     /// Error of the pallet that can be returned in response to dispatches.
     /// </summary>
     public sealed class EnumError : BaseEnum<Error>

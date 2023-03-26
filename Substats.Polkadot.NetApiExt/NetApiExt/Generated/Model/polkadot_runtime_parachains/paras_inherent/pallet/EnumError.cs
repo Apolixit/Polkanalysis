@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 652 - Variant[polkadot_runtime_parachains.paras_inherent.pallet.Error]
+    /// >> 651 - Variant[polkadot_runtime_parachains.paras_inherent.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

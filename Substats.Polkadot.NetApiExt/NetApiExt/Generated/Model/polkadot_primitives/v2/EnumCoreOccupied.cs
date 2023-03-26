@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     }
     
     /// <summary>
-    /// >> 661 - Variant[polkadot_primitives.v2.CoreOccupied]
+    /// >> 660 - Variant[polkadot_primitives.v2.CoreOccupied]
     /// </summary>
     public sealed class EnumCoreOccupied : BaseEnumExt<CoreOccupied, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry, BaseVoid>
     {

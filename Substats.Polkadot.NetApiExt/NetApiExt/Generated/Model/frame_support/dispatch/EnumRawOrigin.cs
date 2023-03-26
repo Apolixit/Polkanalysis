@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
     }
     
     /// <summary>
-    /// >> 257 - Variant[frame_support.dispatch.RawOrigin]
+    /// >> 260 - Variant[frame_support.dispatch.RawOrigin]
     /// </summary>
     public sealed class EnumRawOrigin : BaseEnumExt<RawOrigin, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
     {

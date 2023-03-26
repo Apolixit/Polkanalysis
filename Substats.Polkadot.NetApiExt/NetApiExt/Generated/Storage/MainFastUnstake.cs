@@ -71,6 +71,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The map of all accounts wishing to be unstaked.
         /// 
         ///  Keeps track of `AccountId` wishing to unstake and it's corresponding deposit.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public static string QueueParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
@@ -93,6 +95,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The map of all accounts wishing to be unstaked.
         /// 
         ///  Keeps track of `AccountId` wishing to unstake and it's corresponding deposit.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Queue(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {

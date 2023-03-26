@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 489 - Composite[pallet_staking.Nominations]
+    /// >> 492 - Composite[pallet_staking.Nominations]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Nominations : BaseType

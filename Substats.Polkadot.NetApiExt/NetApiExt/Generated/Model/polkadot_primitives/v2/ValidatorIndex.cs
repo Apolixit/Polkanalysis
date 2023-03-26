@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 385 - Composite[polkadot_primitives.v2.ValidatorIndex]
+    /// >> 388 - Composite[polkadot_primitives.v2.ValidatorIndex]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ValidatorIndex : BaseType

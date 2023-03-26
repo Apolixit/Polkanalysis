@@ -273,6 +273,13 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         public Task<U128> CanceledSlashPayoutAsync(CancellationToken token);
 
         /// <summary>
+        /// The minimum active nominator stake of the last successful election.
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<U128> MinimumActiveStakeAsync(CancellationToken token);
+
+        /// <summary>
         /// All unapplied slashes that are queued for later.
         /// </summary>
         /// <param name="key"></param>
@@ -356,7 +363,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<EnumReleases> StorageVersionAsync(CancellationToken token);
+        //public Task<EnumReleases> StorageVersionAsync(CancellationToken token);
 
         /// <summary>
         ///  The threshold for when users can start calling `chill_other` for other validators /

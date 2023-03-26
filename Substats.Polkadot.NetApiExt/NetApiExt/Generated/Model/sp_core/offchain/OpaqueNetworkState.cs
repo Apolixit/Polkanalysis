@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain
     
     
     /// <summary>
-    /// >> 229 - Composite[sp_core.offchain.OpaqueNetworkState]
+    /// >> 232 - Composite[sp_core.offchain.OpaqueNetworkState]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class OpaqueNetworkState : BaseType

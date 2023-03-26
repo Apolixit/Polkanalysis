@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet
     }
     
     /// <summary>
-    /// >> 261 - Variant[pallet_xcm.pallet.Origin]
+    /// >> 264 - Variant[pallet_xcm.pallet.Origin]
     /// </summary>
     public sealed class EnumOrigin : BaseEnumExt<Origin, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation>
     {

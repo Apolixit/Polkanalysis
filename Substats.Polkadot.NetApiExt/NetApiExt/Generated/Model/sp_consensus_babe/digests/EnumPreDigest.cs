@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
     }
     
     /// <summary>
-    /// >> 462 - Variant[sp_consensus_babe.digests.PreDigest]
+    /// >> 465 - Variant[sp_consensus_babe.digests.PreDigest]
     /// </summary>
     public sealed class EnumPreDigest : BaseEnumExt<PreDigest, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.PrimaryPreDigest, Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.SecondaryPlainPreDigest, Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.SecondaryVRFPreDigest>
     {

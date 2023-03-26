@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa
     
     
     /// <summary>
-    /// >> 516 - Composite[pallet_grandpa.StoredPendingChange]
+    /// >> 517 - Composite[pallet_grandpa.StoredPendingChange]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class StoredPendingChange : BaseType

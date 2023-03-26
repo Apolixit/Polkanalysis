@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
     
     
     /// <summary>
-    /// >> 626 - Composite[pallet_nomination_pools.UnbondPool]
+    /// >> 625 - Composite[pallet_nomination_pools.UnbondPool]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class UnbondPool : BaseType

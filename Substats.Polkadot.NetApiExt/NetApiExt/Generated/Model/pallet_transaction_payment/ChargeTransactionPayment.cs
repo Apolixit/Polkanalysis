@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment
     
     
     /// <summary>
-    /// >> 737 - Composite[pallet_transaction_payment.ChargeTransactionPayment]
+    /// >> 736 - Composite[pallet_transaction_payment.ChargeTransactionPayment]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ChargeTransactionPayment : BaseType

@@ -72,7 +72,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2.traits
     }
     
     /// <summary>
-    /// >> 110 - Variant[xcm.v2.traits.Error]
+    /// >> 113 - Variant[xcm.v2.traits.Error]
     /// </summary>
     public sealed class EnumError : BaseEnumExt<Error, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, Ajuna.NetApi.Model.Types.Primitive.U64, BaseVoid, Ajuna.NetApi.Model.Types.Primitive.U64, BaseVoid, BaseVoid>
     {

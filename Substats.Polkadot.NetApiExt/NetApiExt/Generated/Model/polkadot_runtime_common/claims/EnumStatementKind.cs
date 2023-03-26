@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.cl
     }
     
     /// <summary>
-    /// >> 251 - Variant[polkadot_runtime_common.claims.StatementKind]
+    /// >> 254 - Variant[polkadot_runtime_common.claims.StatementKind]
     /// </summary>
     public sealed class EnumStatementKind : BaseEnum<StatementKind>
     {

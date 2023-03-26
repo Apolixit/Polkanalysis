@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.double_encoded
     
     
     /// <summary>
-    /// >> 144 - Composite[xcm.double_encoded.DoubleEncodedT1]
+    /// >> 147 - Composite[xcm.double_encoded.DoubleEncodedT1]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class DoubleEncodedT1 : BaseType

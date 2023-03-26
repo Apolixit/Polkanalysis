@@ -11,26 +11,24 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.ump.pallet
+namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic
 {
     
     
-    public enum Error
+    public enum ArithmeticError
     {
         
-        UnknownMessageIndex = 0,
+        Underflow = 0,
         
-        WeightOverLimit = 1,
+        Overflow = 1,
+        
+        DivisionByZero = 2,
     }
     
     /// <summary>
-    /// >> 684 - Variant[polkadot_runtime_parachains.ump.pallet.Error]
-    /// 
-    ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
-    ///			of this pallet.
-    ///			
+    /// >> 27 - Variant[sp_arithmetic.ArithmeticError]
     /// </summary>
-    public sealed class EnumError : BaseEnum<Error>
+    public sealed class EnumArithmeticError : BaseEnum<ArithmeticError>
     {
     }
 }

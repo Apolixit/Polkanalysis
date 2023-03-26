@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_proxy
     
     
     /// <summary>
-    /// >> 580 - Composite[pallet_proxy.ProxyDefinition]
+    /// >> 581 - Composite[pallet_proxy.ProxyDefinition]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ProxyDefinition : BaseType

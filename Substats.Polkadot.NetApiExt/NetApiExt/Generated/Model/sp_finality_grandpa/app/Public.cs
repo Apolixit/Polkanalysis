@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app
     
     
     /// <summary>
-    /// >> 50 - Composite[sp_finality_grandpa.app.Public]
+    /// >> 51 - Composite[sp_finality_grandpa.app.Public]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Public : BaseType

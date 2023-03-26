@@ -22,7 +22,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_session.pallet
     }
     
     /// <summary>
-    /// >> 46 - Variant[pallet_session.pallet.Event]
+    /// >> 47 - Variant[pallet_session.pallet.Event]
     /// 
     ///			The [event](https://docs.substrate.io/main-docs/build/events-errors/) emitted
     ///			by this pallet.

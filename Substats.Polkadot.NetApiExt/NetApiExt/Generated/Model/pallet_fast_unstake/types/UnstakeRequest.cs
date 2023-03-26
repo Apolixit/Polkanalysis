@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
     
     
     /// <summary>
-    /// >> 634 - Composite[pallet_fast_unstake.types.UnstakeRequest]
+    /// >> 633 - Composite[pallet_fast_unstake.types.UnstakeRequest]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class UnstakeRequest : BaseType

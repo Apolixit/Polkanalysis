@@ -22,7 +22,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 260 - Variant[polkadot_runtime_parachains.origin.pallet.Origin]
+    /// >> 263 - Variant[polkadot_runtime_parachains.origin.pallet.Origin]
     /// </summary>
     public sealed class EnumOrigin : BaseEnumExt<Origin, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>
     {

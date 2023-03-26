@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime
     
     
     /// <summary>
-    /// >> 212 - Composite[polkadot_runtime.SessionKeys]
+    /// >> 215 - Composite[polkadot_runtime.SessionKeys]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SessionKeys : BaseType

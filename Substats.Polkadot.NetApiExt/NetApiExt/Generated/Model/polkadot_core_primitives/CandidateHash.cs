@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives
     
     
     /// <summary>
-    /// >> 114 - Composite[polkadot_core_primitives.CandidateHash]
+    /// >> 117 - Composite[polkadot_core_primitives.CandidateHash]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CandidateHash : BaseType

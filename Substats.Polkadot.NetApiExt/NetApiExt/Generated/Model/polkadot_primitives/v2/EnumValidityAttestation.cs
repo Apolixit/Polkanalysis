@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     }
     
     /// <summary>
-    /// >> 396 - Variant[polkadot_primitives.v2.ValidityAttestation]
+    /// >> 399 - Variant[polkadot_primitives.v2.ValidityAttestation]
     /// </summary>
     public sealed class EnumValidityAttestation : BaseEnumExt<ValidityAttestation, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>
     {

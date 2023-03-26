@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.col
     
     
     /// <summary>
-    /// >> 99 - Composite[polkadot_primitives.v2.collator_app.Public]
+    /// >> 102 - Composite[polkadot_primitives.v2.collator_app.Public]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Public : BaseType

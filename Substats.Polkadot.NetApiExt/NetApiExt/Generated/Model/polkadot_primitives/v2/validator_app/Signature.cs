@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.val
     
     
     /// <summary>
-    /// >> 386 - Composite[polkadot_primitives.v2.validator_app.Signature]
+    /// >> 389 - Composite[polkadot_primitives.v2.validator_app.Signature]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Signature : BaseType

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 699 - Composite[polkadot_primitives.v2.IndexedVecT2]
+    /// >> 698 - Composite[polkadot_primitives.v2.IndexedVecT2]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class IndexedVecT2 : BaseType

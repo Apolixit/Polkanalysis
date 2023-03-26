@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
     }
     
     /// <summary>
-    /// >> 302 - Variant[pallet_identity.types.Judgement]
+    /// >> 305 - Variant[pallet_identity.types.Judgement]
     /// </summary>
     public sealed class EnumJudgement : BaseEnumExt<Judgement, BaseVoid, Ajuna.NetApi.Model.Types.Primitive.U128, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid>
     {

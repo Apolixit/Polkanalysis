@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
     
     
     /// <summary>
-    /// >> 228 - Composite[pallet_im_online.Heartbeat]
+    /// >> 231 - Composite[pallet_im_online.Heartbeat]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Heartbeat : BaseType

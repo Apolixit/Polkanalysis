@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.convictio
     }
     
     /// <summary>
-    /// >> 235 - Variant[pallet_democracy.conviction.Conviction]
+    /// >> 238 - Variant[pallet_democracy.conviction.Conviction]
     /// </summary>
     public sealed class EnumConviction : BaseEnum<Conviction>
     {

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types
     
     
     /// <summary>
-    /// >> 533 - Composite[pallet_democracy.types.ReferendumStatus]
+    /// >> 534 - Composite[pallet_democracy.types.ReferendumStatus]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ReferendumStatus : BaseType

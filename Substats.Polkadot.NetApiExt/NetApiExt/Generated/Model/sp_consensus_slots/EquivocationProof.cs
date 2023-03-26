@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
     
     
     /// <summary>
-    /// >> 186 - Composite[sp_consensus_slots.EquivocationProof]
+    /// >> 189 - Composite[sp_consensus_slots.EquivocationProof]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class EquivocationProof : BaseType

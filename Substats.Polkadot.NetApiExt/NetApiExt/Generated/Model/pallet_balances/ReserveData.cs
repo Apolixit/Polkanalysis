@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
     
     
     /// <summary>
-    /// >> 475 - Composite[pallet_balances.ReserveData]
+    /// >> 478 - Composite[pallet_balances.ReserveData]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ReserveData : BaseType

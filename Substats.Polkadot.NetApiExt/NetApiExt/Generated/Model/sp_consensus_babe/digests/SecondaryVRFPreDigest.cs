@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
     
     
     /// <summary>
-    /// >> 465 - Composite[sp_consensus_babe.digests.SecondaryVRFPreDigest]
+    /// >> 468 - Composite[sp_consensus_babe.digests.SecondaryVRFPreDigest]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SecondaryVRFPreDigest : BaseType

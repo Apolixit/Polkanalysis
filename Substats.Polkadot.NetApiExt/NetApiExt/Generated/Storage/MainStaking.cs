@@ -37,6 +37,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinNominatorBond"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinValidatorBond"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinimumActiveStake"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinCommission"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Ledger"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger)));
@@ -87,7 +88,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "CurrentPlannedSession"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "OffendingValidators"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.Bool>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ChillThreshold"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent)));
         }
         
@@ -185,6 +185,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> BondedParams
         ///  Map from all locked "stash" accounts to the controller account.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public static string BondedParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
@@ -205,6 +207,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Bonded
         ///  Map from all locked "stash" accounts to the controller account.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Bonded(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
@@ -267,6 +271,35 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> MinValidatorBond(CancellationToken token)
         {
             string parameters = StakingStorage.MinValidatorBondParams();
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return result;
+        }
+        
+        /// <summary>
+        /// >> MinimumActiveStakeParams
+        ///  The minimum active nominator stake of the last successful election.
+        /// </summary>
+        public static string MinimumActiveStakeParams()
+        {
+            return RequestGenerator.GetStorage("Staking", "MinimumActiveStake", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+        }
+        
+        /// <summary>
+        /// >> MinimumActiveStakeDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string MinimumActiveStakeDefault()
+        {
+            return "0x00000000000000000000000000000000";
+        }
+        
+        /// <summary>
+        /// >> MinimumActiveStake
+        ///  The minimum active nominator stake of the last successful election.
+        /// </summary>
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> MinimumActiveStake(CancellationToken token)
+        {
+            string parameters = StakingStorage.MinimumActiveStakeParams();
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
             return result;
         }
@@ -338,6 +371,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> PayeeParams
         ///  Where the reward payment should be made. Keyed by stash.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public static string PayeeParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
@@ -358,6 +393,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Payee
         ///  Where the reward payment should be made. Keyed by stash.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination> Payee(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
@@ -369,6 +406,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> ValidatorsParams
         ///  The map from (wannabe) validator stash key to the preferences of that validator.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public static string ValidatorsParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
@@ -389,6 +428,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Validators
         ///  The map from (wannabe) validator stash key to the preferences of that validator.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs> Validators(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
@@ -477,6 +518,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
         ///  [`Call::chill_other`] dispatchable by anyone.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public static string NominatorsParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
@@ -512,6 +555,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
         ///  [`Call::chill_other`] dispatchable by anyone.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations> Nominators(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
@@ -1287,41 +1332,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
-        /// >> StorageVersionParams
-        ///  True if network has been upgraded to this version.
-        ///  Storage version of the pallet.
-        /// 
-        ///  This is set to v7.0.0 for new networks.
-        /// </summary>
-        public static string StorageVersionParams()
-        {
-            return RequestGenerator.GetStorage("Staking", "StorageVersion", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
-        }
-        
-        /// <summary>
-        /// >> StorageVersionDefault
-        /// Default value as hex string
-        /// </summary>
-        public static string StorageVersionDefault()
-        {
-            return "0x0A";
-        }
-        
-        /// <summary>
-        /// >> StorageVersion
-        ///  True if network has been upgraded to this version.
-        ///  Storage version of the pallet.
-        /// 
-        ///  This is set to v7.0.0 for new networks.
-        /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases> StorageVersion(CancellationToken token)
-        {
-            string parameters = StakingStorage.StorageVersionParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases>(parameters, token);
-            return result;
-        }
-        
-        /// <summary>
         /// >> ChillThresholdParams
         ///  The threshold for when users can start calling `chill_other` for other validators /
         ///  nominators. The threshold is compared to the actual number of validators / nominators
@@ -1638,6 +1648,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(validator_stash.Encode());
             return new Method(7, "Staking", 24, "force_apply_min_commission", byteArray.ToArray());
+        }
+        
+        /// <summary>
+        /// >> set_min_commission
+        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// </summary>
+        public static Method SetMinCommission(Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill @new)
+        {
+            System.Collections.Generic.List<byte> byteArray = new List<byte>();
+            byteArray.AddRange(@new.Encode());
+            return new Method(7, "Staking", 25, "set_min_commission", byteArray.ToArray());
         }
     }
     

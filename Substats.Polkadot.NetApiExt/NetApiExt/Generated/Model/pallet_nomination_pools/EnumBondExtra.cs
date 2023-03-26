@@ -24,7 +24,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
     }
     
     /// <summary>
-    /// >> 370 - Variant[pallet_nomination_pools.BondExtra]
+    /// >> 373 - Variant[pallet_nomination_pools.BondExtra]
     /// </summary>
     public sealed class EnumBondExtra : BaseEnumExt<BondExtra, Ajuna.NetApi.Model.Types.Primitive.U128, BaseVoid>
     {

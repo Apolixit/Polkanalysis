@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things
     
     
     /// <summary>
-    /// >> 42 - Composite[sp_arithmetic.per_things.Perbill]
+    /// >> 40 - Composite[sp_arithmetic.per_things.Perbill]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Perbill : BaseType

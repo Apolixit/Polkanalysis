@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe
     
     
     /// <summary>
-    /// >> 466 - Composite[sp_consensus_babe.BabeEpochConfiguration]
+    /// >> 469 - Composite[sp_consensus_babe.BabeEpochConfiguration]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BabeEpochConfiguration : BaseType

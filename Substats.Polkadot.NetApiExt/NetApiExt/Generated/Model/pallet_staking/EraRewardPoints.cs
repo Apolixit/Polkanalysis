@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 494 - Composite[pallet_staking.EraRewardPoints]
+    /// >> 497 - Composite[pallet_staking.EraRewardPoints]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class EraRewardPoints : BaseType

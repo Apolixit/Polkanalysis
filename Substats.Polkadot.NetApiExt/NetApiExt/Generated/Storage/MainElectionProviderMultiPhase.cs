@@ -565,7 +565,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight SignedMaxWeight()
         {
             var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
-            result.Create("0x0B68151D355701CECCEC00");
+            result.Create("0x0BC05B07B7560113A3703D0AD7A370BD");
             return result;
         }
         
@@ -678,7 +678,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight MinerMaxWeight()
         {
             var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
-            result.Create("0x0B68151D355701CECCEC00");
+            result.Create("0x0BC05B07B7560113A3703D0AD7A370BD");
             return result;
         }
         

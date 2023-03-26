@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 398 - Composite[polkadot_primitives.v2.DisputeStatementSet]
+    /// >> 401 - Composite[polkadot_primitives.v2.DisputeStatementSet]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class DisputeStatementSet : BaseType

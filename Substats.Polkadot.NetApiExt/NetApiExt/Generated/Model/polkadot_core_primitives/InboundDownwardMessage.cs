@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives
     
     
     /// <summary>
-    /// >> 683 - Composite[polkadot_core_primitives.InboundDownwardMessage]
+    /// >> 682 - Composite[polkadot_core_primitives.InboundDownwardMessage]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class InboundDownwardMessage : BaseType

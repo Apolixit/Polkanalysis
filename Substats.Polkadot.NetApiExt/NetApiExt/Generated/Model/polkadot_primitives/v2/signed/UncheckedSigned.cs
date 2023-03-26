@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.sig
     
     
     /// <summary>
-    /// >> 381 - Composite[polkadot_primitives.v2.signed.UncheckedSigned]
+    /// >> 384 - Composite[polkadot_primitives.v2.signed.UncheckedSigned]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class UncheckedSigned : BaseType

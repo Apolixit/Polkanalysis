@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote
     
     
     /// <summary>
-    /// >> 540 - Composite[pallet_democracy.vote.PriorLock]
+    /// >> 541 - Composite[pallet_democracy.vote.PriorLock]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PriorLock : BaseType

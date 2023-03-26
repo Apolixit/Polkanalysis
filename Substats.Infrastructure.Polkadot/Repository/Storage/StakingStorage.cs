@@ -227,11 +227,17 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 SubstrateMapper.Instance.Map<BaseTuple<AccountId32, U32>>(key), StakingStorageExt.SpanSlashParams, token);
         }
 
-        public async Task<EnumReleases> StorageVersionAsync(CancellationToken token)
+        // Add versionning ?
+        //public async Task<EnumReleases> StorageVersionAsync(CancellationToken token)
+        //{
+        //    return await GetStorageAsync<
+        //        Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases,
+        //        EnumReleases>(StakingStorageExt.StorageVersionParams, token);
+        //}
+
+        public async Task<U128> MinimumActiveStakeAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases,
-                EnumReleases>(StakingStorageExt.StorageVersionParams, token);
+            return await GetStorageAsync<U128>(StakingStorageExt.MinimumActiveStakeParams, token);
         }
 
         public async Task<BaseVec<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token)

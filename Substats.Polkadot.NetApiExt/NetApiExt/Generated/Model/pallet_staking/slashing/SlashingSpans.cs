@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing
     
     
     /// <summary>
-    /// >> 502 - Composite[pallet_staking.slashing.SlashingSpans]
+    /// >> 504 - Composite[pallet_staking.slashing.SlashingSpans]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SlashingSpans : BaseType

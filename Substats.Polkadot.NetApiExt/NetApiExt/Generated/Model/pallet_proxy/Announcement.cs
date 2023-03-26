@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_proxy
     
     
     /// <summary>
-    /// >> 584 - Composite[pallet_proxy.Announcement]
+    /// >> 585 - Composite[pallet_proxy.Announcement]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Announcement : BaseType

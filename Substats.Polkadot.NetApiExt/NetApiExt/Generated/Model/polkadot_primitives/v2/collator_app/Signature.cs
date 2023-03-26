@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.col
     
     
     /// <summary>
-    /// >> 100 - Composite[polkadot_primitives.v2.collator_app.Signature]
+    /// >> 103 - Composite[polkadot_primitives.v2.collator_app.Signature]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Signature : BaseType

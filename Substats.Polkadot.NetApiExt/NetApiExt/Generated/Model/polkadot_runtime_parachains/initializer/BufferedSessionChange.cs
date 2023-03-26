@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 681 - Composite[polkadot_runtime_parachains.initializer.BufferedSessionChange]
+    /// >> 680 - Composite[polkadot_runtime_parachains.initializer.BufferedSessionChange]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class BufferedSessionChange : BaseType

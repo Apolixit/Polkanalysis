@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet
     }
     
     /// <summary>
-    /// >> 715 - Variant[pallet_xcm.pallet.QueryStatus]
+    /// >> 714 - Variant[pallet_xcm.pallet.QueryStatus]
     /// </summary>
     public sealed class EnumQueryStatus : BaseEnumExt<QueryStatus, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U8, Ajuna.NetApi.Model.Types.Primitive.U8>>, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Primitive.Bool>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedResponse, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {

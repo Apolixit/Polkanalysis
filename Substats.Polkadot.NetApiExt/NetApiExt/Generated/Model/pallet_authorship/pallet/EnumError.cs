@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.pallet
     }
     
     /// <summary>
-    /// >> 483 - Variant[pallet_authorship.pallet.Error]
+    /// >> 486 - Variant[pallet_authorship.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

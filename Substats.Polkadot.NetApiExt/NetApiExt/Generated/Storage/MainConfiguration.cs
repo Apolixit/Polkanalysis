@@ -50,7 +50,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ActiveConfigDefault()
         {
-            return @"0x00000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000100000001000000000000000000060000006400000002000000C800000001000000000000000000000000000000000000000700C817A80402004001000200000002000000";
+            return @"0x000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000010000000000000000000600000064000000C800000001000000000000000000000000000000000000000700C817A80402004001000200000002000000";
         }
         
         /// <summary>
@@ -314,17 +314,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
             return new Method(51, "Configuration", 15, "set_dispute_post_conclusion_acceptance_period", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_dispute_max_spam_slots
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetDisputeMaxSpamSlots(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 16, "set_dispute_max_spam_slots", byteArray.ToArray());
         }
         
         /// <summary>

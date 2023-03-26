@@ -267,16 +267,16 @@ namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.S
             Assert.That(res, Is.Not.Null);
         }
 
-        [Test]
-        [Ignore("Todo debug")]
-        public async Task StorageVersion_ShouldWorkAsync()
-        {
-            var res = await _substrateRepository.Storage.Staking.StorageVersionAsync(CancellationToken.None);
+        //[Test]
+        //[Ignore("Todo debug")]
+        //public async Task StorageVersion_ShouldWorkAsync()
+        //{
+        //    var res = await _substrateRepository.Storage.Staking.StorageVersionAsync(CancellationToken.None);
             
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.Bytes, Is.Not.Null);
-            Assert.That(res.Bytes.Length, Is.GreaterThan(0));
-        }
+        //    Assert.That(res, Is.Not.Null);
+        //    Assert.That(res.Bytes, Is.Not.Null);
+        //    Assert.That(res.Bytes.Length, Is.GreaterThan(0));
+        //}
 
         [Test]
         public async Task ChillThreshold_ShouldWorkAsync()

@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     }
     
     /// <summary>
-    /// >> 95 - Variant[polkadot_runtime_parachains.inclusion.pallet.Event]
+    /// >> 98 - Variant[polkadot_runtime_parachains.inclusion.pallet.Event]
     /// 
     ///			The [event](https://docs.substrate.io/main-docs/build/events-errors/) emitted
     ///			by this pallet.

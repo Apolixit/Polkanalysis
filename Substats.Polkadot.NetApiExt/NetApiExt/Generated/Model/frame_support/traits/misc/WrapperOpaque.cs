@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc
     
     
     /// <summary>
-    /// >> 521 - Composite[frame_support.traits.misc.WrapperOpaque]
+    /// >> 522 - Composite[frame_support.traits.misc.WrapperOpaque]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class WrapperOpaque : BaseType

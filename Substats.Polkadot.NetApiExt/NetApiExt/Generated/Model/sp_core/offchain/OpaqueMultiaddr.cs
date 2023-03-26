@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain
     
     
     /// <summary>
-    /// >> 232 - Composite[sp_core.offchain.OpaqueMultiaddr]
+    /// >> 235 - Composite[sp_core.offchain.OpaqueMultiaddr]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class OpaqueMultiaddr : BaseType

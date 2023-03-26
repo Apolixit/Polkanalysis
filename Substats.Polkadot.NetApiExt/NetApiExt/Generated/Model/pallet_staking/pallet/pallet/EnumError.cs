@@ -70,7 +70,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.pallet.pall
     }
     
     /// <summary>
-    /// >> 507 - Variant[pallet_staking.pallet.pallet.Error]
+    /// >> 508 - Variant[pallet_staking.pallet.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

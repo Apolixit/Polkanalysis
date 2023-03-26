@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 40 - Composite[pallet_staking.ValidatorPrefs]
+    /// >> 41 - Composite[pallet_staking.ValidatorPrefs]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ValidatorPrefs : BaseType

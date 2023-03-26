@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe
     }
     
     /// <summary>
-    /// >> 194 - Variant[sp_consensus_babe.AllowedSlots]
+    /// >> 197 - Variant[sp_consensus_babe.AllowedSlots]
     /// </summary>
     public sealed class EnumAllowedSlots : BaseEnum<AllowedSlots>
     {

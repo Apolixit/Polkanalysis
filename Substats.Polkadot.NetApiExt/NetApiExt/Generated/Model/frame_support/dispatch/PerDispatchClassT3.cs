@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
     
     
     /// <summary>
-    /// >> 170 - Composite[frame_support.dispatch.PerDispatchClassT3]
+    /// >> 173 - Composite[frame_support.dispatch.PerDispatchClassT3]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PerDispatchClassT3 : BaseType

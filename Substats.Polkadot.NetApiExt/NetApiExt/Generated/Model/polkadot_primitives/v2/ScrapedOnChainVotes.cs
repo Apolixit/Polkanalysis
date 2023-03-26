@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     
     
     /// <summary>
-    /// >> 647 - Composite[polkadot_primitives.v2.ScrapedOnChainVotes]
+    /// >> 646 - Composite[polkadot_primitives.v2.ScrapedOnChainVotes]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ScrapedOnChainVotes : BaseType

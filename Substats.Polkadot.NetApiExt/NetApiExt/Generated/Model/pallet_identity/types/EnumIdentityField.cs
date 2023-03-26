@@ -36,7 +36,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
     }
     
     /// <summary>
-    /// >> 301 - Variant[pallet_identity.types.IdentityField]
+    /// >> 304 - Variant[pallet_identity.types.IdentityField]
     /// </summary>
     public sealed class EnumIdentityField : BaseEnum<IdentityField>
     {

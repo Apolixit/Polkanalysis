@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519
     
     
     /// <summary>
-    /// >> 54 - Composite[sp_core.sr25519.Public]
+    /// >> 55 - Composite[sp_core.sr25519.Public]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Public : BaseType

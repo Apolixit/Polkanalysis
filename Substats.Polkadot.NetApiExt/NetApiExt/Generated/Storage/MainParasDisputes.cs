@@ -37,8 +37,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Included"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash>), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "SpamSlots"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Frozen"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>)));
         }
         
@@ -138,45 +136,6 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
-        /// >> SpamSlotsParams
-        ///  Maps session indices to a vector indicating the number of potentially-spam disputes
-        ///  each validator is participating in. Potentially-spam disputes are remote disputes which have
-        ///  fewer than `byzantine_threshold + 1` validators.
-        /// 
-        ///  The i'th entry of the vector corresponds to the i'th validator in the session.
-        /// </summary>
-        public static string SpamSlotsParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
-        {
-            return RequestGenerator.GetStorage("ParasDisputes", "SpamSlots", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
-                        key});
-        }
-        
-        /// <summary>
-        /// >> SpamSlotsDefault
-        /// Default value as hex string
-        /// </summary>
-        public static string SpamSlotsDefault()
-        {
-            return "0x00";
-        }
-        
-        /// <summary>
-        /// >> SpamSlots
-        ///  Maps session indices to a vector indicating the number of potentially-spam disputes
-        ///  each validator is participating in. Potentially-spam disputes are remote disputes which have
-        ///  fewer than `byzantine_threshold + 1` validators.
-        /// 
-        ///  The i'th entry of the vector corresponds to the i'th validator in the session.
-        /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>> SpamSlots(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
-        {
-            string parameters = ParasDisputesStorage.SpamSlotsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
-            return result;
-        }
-        
-        /// <summary>
         /// >> FrozenParams
         ///  Whether the chain is frozen. Starts as `None`. When this is `Some`,
         ///  the chain will not accept any new parachain blocks for backing or inclusion,
@@ -264,15 +223,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         DuplicateStatement,
         
         /// <summary>
-        /// >> PotentialSpam
-        /// Too many spam slots used by some specific validator.
-        /// </summary>
-        PotentialSpam,
-        
-        /// <summary>
         /// >> SingleSidedDispute
         /// A dispute where there are only votes on one side.
         /// </summary>
         SingleSidedDispute,
+        
+        /// <summary>
+        /// >> UnconfirmedDispute
+        /// Unconfirmed dispute statement sets provided
+        /// </summary>
+        UnconfirmedDispute,
     }
 }

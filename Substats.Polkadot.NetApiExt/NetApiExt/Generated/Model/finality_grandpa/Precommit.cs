@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
     
     
     /// <summary>
-    /// >> 225 - Composite[finality_grandpa.Precommit]
+    /// >> 228 - Composite[finality_grandpa.Precommit]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Precommit : BaseType

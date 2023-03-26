@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing
     
     
     /// <summary>
-    /// >> 503 - Composite[pallet_staking.slashing.SpanRecord]
+    /// >> 505 - Composite[pallet_staking.slashing.SpanRecord]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SpanRecord : BaseType

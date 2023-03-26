@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.cl
     
     
     /// <summary>
-    /// >> 738 - Composite[polkadot_runtime_common.claims.PrevalidateAttests]
+    /// >> 737 - Composite[polkadot_runtime_common.claims.PrevalidateAttests]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class PrevalidateAttests : BaseType

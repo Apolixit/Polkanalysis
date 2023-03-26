@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_version
     
     
     /// <summary>
-    /// >> 172 - Composite[sp_version.RuntimeVersion]
+    /// >> 175 - Composite[sp_version.RuntimeVersion]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class RuntimeVersion : BaseType

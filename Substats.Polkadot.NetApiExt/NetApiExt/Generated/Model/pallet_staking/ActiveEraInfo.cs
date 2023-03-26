@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 491 - Composite[pallet_staking.ActiveEraInfo]
+    /// >> 494 - Composite[pallet_staking.ActiveEraInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class ActiveEraInfo : BaseType

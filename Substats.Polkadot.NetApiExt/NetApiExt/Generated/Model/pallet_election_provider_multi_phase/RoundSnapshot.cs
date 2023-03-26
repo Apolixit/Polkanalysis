@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     
     
     /// <summary>
-    /// >> 604 - Composite[pallet_election_provider_multi_phase.RoundSnapshot]
+    /// >> 603 - Composite[pallet_election_provider_multi_phase.RoundSnapshot]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class RoundSnapshot : BaseType

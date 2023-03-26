@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core
     
     
     /// <summary>
-    /// >> 230 - Composite[sp_core.OpaquePeerId]
+    /// >> 233 - Composite[sp_core.OpaquePeerId]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class OpaquePeerId : BaseType

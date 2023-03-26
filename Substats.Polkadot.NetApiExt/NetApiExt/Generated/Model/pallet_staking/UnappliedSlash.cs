@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
     
     
     /// <summary>
-    /// >> 500 - Composite[pallet_staking.UnappliedSlash]
+    /// >> 502 - Composite[pallet_staking.UnappliedSlash]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class UnappliedSlash : BaseType

@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.ed25519
     
     
     /// <summary>
-    /// >> 222 - Composite[sp_core.ed25519.Signature]
+    /// >> 225 - Composite[sp_core.ed25519.Signature]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Signature : BaseType

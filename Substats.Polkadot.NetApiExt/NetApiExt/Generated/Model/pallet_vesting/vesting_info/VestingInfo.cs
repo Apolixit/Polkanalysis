@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_vesting.vesting_inf
     
     
     /// <summary>
-    /// >> 253 - Composite[pallet_vesting.vesting_info.VestingInfo]
+    /// >> 256 - Composite[pallet_vesting.vesting_info.VestingInfo]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class VestingInfo : BaseType

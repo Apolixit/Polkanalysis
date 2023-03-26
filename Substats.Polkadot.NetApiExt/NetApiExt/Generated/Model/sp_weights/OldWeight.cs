@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_weights
     
     
     /// <summary>
-    /// >> 239 - Composite[sp_weights.OldWeight]
+    /// >> 242 - Composite[sp_weights.OldWeight]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class OldWeight : BaseType

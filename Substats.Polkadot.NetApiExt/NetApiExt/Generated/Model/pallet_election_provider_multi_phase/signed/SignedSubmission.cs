@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     
     
     /// <summary>
-    /// >> 610 - Composite[pallet_election_provider_multi_phase.signed.SignedSubmission]
+    /// >> 609 - Composite[pallet_election_provider_multi_phase.signed.SignedSubmission]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class SignedSubmission : BaseType

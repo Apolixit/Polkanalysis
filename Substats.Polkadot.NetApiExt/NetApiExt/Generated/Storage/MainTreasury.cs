@@ -33,7 +33,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "ProposalCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Proposals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Inactive"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Deactivated"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
         }
         
@@ -98,30 +98,30 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         }
         
         /// <summary>
-        /// >> InactiveParams
+        /// >> DeactivatedParams
         ///  The amount which has been reported as inactive to Currency.
         /// </summary>
-        public static string InactiveParams()
+        public static string DeactivatedParams()
         {
-            return RequestGenerator.GetStorage("Treasury", "Inactive", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Treasury", "Deactivated", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
-        /// >> InactiveDefault
+        /// >> DeactivatedDefault
         /// Default value as hex string
         /// </summary>
-        public static string InactiveDefault()
+        public static string DeactivatedDefault()
         {
             return "0x00000000000000000000000000000000";
         }
         
         /// <summary>
-        /// >> Inactive
+        /// >> Deactivated
         ///  The amount which has been reported as inactive to Currency.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Inactive(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Deactivated(CancellationToken token)
         {
-            string parameters = TreasuryStorage.InactiveParams();
+            string parameters = TreasuryStorage.DeactivatedParams();
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
             return result;
         }

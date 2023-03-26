@@ -34,7 +34,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.au
     }
     
     /// <summary>
-    /// >> 711 - Variant[polkadot_runtime_common.auctions.pallet.Error]
+    /// >> 710 - Variant[polkadot_runtime_common.auctions.pallet.Error]
     /// 
     ///			Custom [dispatch errors](https://docs.substrate.io/main-docs/build/events-errors/)
     ///			of this pallet.

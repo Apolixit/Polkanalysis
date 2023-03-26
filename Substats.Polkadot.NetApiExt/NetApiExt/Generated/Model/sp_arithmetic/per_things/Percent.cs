@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things
     
     
     /// <summary>
-    /// >> 205 - Composite[sp_arithmetic.per_things.Percent]
+    /// >> 208 - Composite[sp_arithmetic.per_things.Percent]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Percent : BaseType

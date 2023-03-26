@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     
     
     /// <summary>
-    /// >> 664 - Composite[polkadot_runtime_parachains.scheduler.CoreAssignment]
+    /// >> 663 - Composite[polkadot_runtime_parachains.scheduler.CoreAssignment]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class CoreAssignment : BaseType

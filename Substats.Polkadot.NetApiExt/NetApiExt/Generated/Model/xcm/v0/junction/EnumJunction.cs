@@ -40,7 +40,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction
     }
     
     /// <summary>
-    /// >> 154 - Variant[xcm.v0.junction.Junction]
+    /// >> 157 - Variant[xcm.v0.junction.Junction]
     /// </summary>
     public sealed class EnumJunction : BaseEnumExt<Junction, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64>>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr20U8>, Ajuna.NetApi.Model.Types.Primitive.U8, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyId, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyPart>>
     {

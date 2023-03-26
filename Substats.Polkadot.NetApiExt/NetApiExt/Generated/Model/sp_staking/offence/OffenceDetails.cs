@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_staking.offence
     
     
     /// <summary>
-    /// >> 508 - Composite[sp_staking.offence.OffenceDetails]
+    /// >> 509 - Composite[sp_staking.offence.OffenceDetails]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class OffenceDetails : BaseType

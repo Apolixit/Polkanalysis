@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto
     
     
     /// <summary>
-    /// >> 513 - Composite[sp_core.crypto.KeyTypeId]
+    /// >> 514 - Composite[sp_core.crypto.KeyTypeId]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class KeyTypeId : BaseType

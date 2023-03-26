@@ -222,6 +222,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> PoolMembersParams
         ///  Active members.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public static string PoolMembersParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
@@ -242,6 +244,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> PoolMembers
         ///  Active members.
+        /// 
+        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
         public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember> PoolMembers(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {

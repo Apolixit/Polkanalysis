@@ -18,7 +18,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
     
     
     /// <summary>
-    /// >> 179 - Composite[pallet_scheduler.Scheduled]
+    /// >> 182 - Composite[pallet_scheduler.Scheduled]
     /// </summary>
     [AjunaNodeType(TypeDefEnum.Composite)]
     public sealed class Scheduled : BaseType
