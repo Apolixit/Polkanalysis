@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.dispatch
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.dispatch
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.dispatch
     /// <summary>
     /// >> 176 - Variant[frame_support.dispatch.RawOrigin]
     /// </summary>
-    public sealed class EnumRawOrigin : BaseEnumExt<RawOrigin, BaseVoid, Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
+    public sealed class EnumRawOrigin : BaseEnumExt<RawOrigin, BaseVoid, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
     {
     }
 }

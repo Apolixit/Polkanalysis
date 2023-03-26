@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -30,12 +30,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         public ParaSessionInfoStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaSessionInfo", "AssignmentKeysUnsafe"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaSessionInfo", "AssignmentKeysUnsafe"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaSessionInfo", "EarliestStoredSession"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaSessionInfo", "Sessions"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaSessionInfo", "AccountKeys"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>)));
         }
         
         /// <summary>
@@ -55,10 +55,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Note that this API is private due to it being prone to 'off-by-one' at session boundaries.
         ///  When in doubt, use `Sessions` API instead.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>> AssignmentKeysUnsafe(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>> AssignmentKeysUnsafe(CancellationToken token)
         {
             string parameters = ParaSessionInfoStorage.AssignmentKeysUnsafeParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>>(parameters, token);
         }
         
         /// <summary>
@@ -99,10 +99,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Should have an entry in range `EarliestStoredSession..=CurrentSessionIndex`.
         ///  Does not have any entries before the session index in the first session change notification.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo> Sessions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo> Sessions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ParaSessionInfoStorage.SessionsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo>(parameters, token);
         }
         
         /// <summary>
@@ -120,10 +120,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> AccountKeys
         ///  The validator account keys of the validators actively participating in parachain consensus.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> AccountKeys(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> AccountKeys(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ParaSessionInfoStorage.AccountKeysParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
         }
     }
     

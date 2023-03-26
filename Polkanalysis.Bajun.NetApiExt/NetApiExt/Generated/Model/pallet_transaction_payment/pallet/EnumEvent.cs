@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_transaction_payment.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_transaction_payment.pallet
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_transaction_payment.pa
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128>>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128>>
     {
     }
 }

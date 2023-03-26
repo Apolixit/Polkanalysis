@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.ump.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.ump.pallet
 {
     
     
@@ -25,7 +25,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     /// >> 411 - Variant[polkadot_runtime_parachains.ump.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
     {
     }
 }

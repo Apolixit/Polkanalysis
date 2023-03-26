@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.pallet
 {
     
     
@@ -33,7 +33,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.pallet
     /// >> 469 - Variant[pallet_fast_unstake.pallet.Event]
     /// The events of this pallet.
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Kusama.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseVoid>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseVoid>
     {
     }
 }

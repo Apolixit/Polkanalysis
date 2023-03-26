@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
         /// <summary>
         /// >> maybe_id
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> _maybeId;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> _maybeId;
         
         /// <summary>
         /// >> priority
@@ -37,7 +37,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
         /// <summary>
         /// >> call
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded _call;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded _call;
         
         /// <summary>
         /// >> maybe_periodic
@@ -47,9 +47,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
         /// <summary>
         /// >> origin
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller _origin;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller _origin;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> MaybeId
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> MaybeId
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded Call
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded Call
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller Origin
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller Origin
         {
             get
             {
@@ -128,15 +128,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_scheduler
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            MaybeId = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>();
+            MaybeId = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>();
             MaybeId.Decode(byteArray, ref p);
             Priority = new Ajuna.NetApi.Model.Types.Primitive.U8();
             Priority.Decode(byteArray, ref p);
-            Call = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded();
+            Call = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded();
             Call.Decode(byteArray, ref p);
             MaybePeriodic = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>();
             MaybePeriodic.Decode(byteArray, ref p);
-            Origin = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller();
+            Origin = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller();
             Origin.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

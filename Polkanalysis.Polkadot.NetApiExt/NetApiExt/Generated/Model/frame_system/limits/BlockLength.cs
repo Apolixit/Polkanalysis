@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
         /// <summary>
         /// >> max
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT3 _max;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT3 _max;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT3 Max
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT3 Max
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Max = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT3();
+            Max = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT3();
             Max.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

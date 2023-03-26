@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
         /// <summary>
         /// >> peer_id
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT6 _peerId;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT6 _peerId;
         
         /// <summary>
         /// >> external_addresses
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT7 _externalAddresses;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT7 _externalAddresses;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT6 PeerId
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT6 PeerId
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT7 ExternalAddresses
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT7 ExternalAddresses
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            PeerId = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT6();
+            PeerId = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT6();
             PeerId.Decode(byteArray, ref p);
-            ExternalAddresses = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT7();
+            ExternalAddresses = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT7();
             ExternalAddresses.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

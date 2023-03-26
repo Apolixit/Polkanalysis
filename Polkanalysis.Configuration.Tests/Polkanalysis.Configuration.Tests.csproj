@@ -45,8 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Substats.Configuration.Contracts\Substats.Configuration.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Configuration.Extentions\Substats.Configuration.Extentions.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Configuration.Extentions\Polkanalysis.Configuration.Extentions.csproj" />
   </ItemGroup>
 
 </Project>

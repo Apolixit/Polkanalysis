@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.pallet
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex>>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex>>
     {
     }
 }

@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v0.junction
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v0.junction
 {
     
     
@@ -36,7 +36,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v0.junction
     /// <summary>
     /// >> 162 - Variant[xcm.v0.junction.BodyId]
     /// </summary>
-    public sealed class EnumBodyId : BaseEnumExt<BodyId, BaseVoid, Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseVoid, BaseVoid, BaseVoid, BaseVoid>
+    public sealed class EnumBodyId : BaseEnumExt<BodyId, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseVoid, BaseVoid, BaseVoid, BaseVoid>
     {
     }
 }

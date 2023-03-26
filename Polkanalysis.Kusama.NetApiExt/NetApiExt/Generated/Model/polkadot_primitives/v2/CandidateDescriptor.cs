@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,49 +27,49 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> para_id
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _paraId;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _paraId;
         
         /// <summary>
         /// >> relay_parent
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _relayParent;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _relayParent;
         
         /// <summary>
         /// >> collator
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public _collator;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public _collator;
         
         /// <summary>
         /// >> persisted_validation_data_hash
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _persistedValidationDataHash;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _persistedValidationDataHash;
         
         /// <summary>
         /// >> pov_hash
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _povHash;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _povHash;
         
         /// <summary>
         /// >> erasure_root
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _erasureRoot;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _erasureRoot;
         
         /// <summary>
         /// >> signature
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Signature _signature;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Signature _signature;
         
         /// <summary>
         /// >> para_head
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _paraHead;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _paraHead;
         
         /// <summary>
         /// >> validation_code_hash
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash _validationCodeHash;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash _validationCodeHash;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id ParaId
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id ParaId
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 RelayParent
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 RelayParent
         {
             get
             {
@@ -93,7 +93,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public Collator
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public Collator
         {
             get
             {
@@ -105,7 +105,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 PersistedValidationDataHash
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 PersistedValidationDataHash
         {
             get
             {
@@ -117,7 +117,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 PovHash
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 PovHash
         {
             get
             {
@@ -129,7 +129,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ErasureRoot
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ErasureRoot
         {
             get
             {
@@ -141,7 +141,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Signature Signature
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Signature Signature
         {
             get
             {
@@ -153,7 +153,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ParaHead
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ParaHead
         {
             get
             {
@@ -165,7 +165,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash ValidationCodeHash
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash ValidationCodeHash
         {
             get
             {
@@ -200,23 +200,23 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ParaId = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            ParaId = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             ParaId.Decode(byteArray, ref p);
-            RelayParent = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            RelayParent = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             RelayParent.Decode(byteArray, ref p);
-            Collator = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public();
+            Collator = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public();
             Collator.Decode(byteArray, ref p);
-            PersistedValidationDataHash = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            PersistedValidationDataHash = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             PersistedValidationDataHash.Decode(byteArray, ref p);
-            PovHash = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            PovHash = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             PovHash.Decode(byteArray, ref p);
-            ErasureRoot = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            ErasureRoot = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             ErasureRoot.Decode(byteArray, ref p);
-            Signature = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Signature();
+            Signature = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Signature();
             Signature.Decode(byteArray, ref p);
-            ParaHead = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            ParaHead = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             ParaHead.Decode(byteArray, ref p);
-            ValidationCodeHash = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash();
+            ValidationCodeHash = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash();
             ValidationCodeHash.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

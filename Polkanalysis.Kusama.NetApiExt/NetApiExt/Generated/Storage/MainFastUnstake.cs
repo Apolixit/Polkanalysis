@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -30,9 +30,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         public FastUnstakeStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "Head"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "Head"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "Queue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "CounterForQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "ErasToCheckPerBlock"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
         }
@@ -50,10 +50,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Head
         ///  The current "head of the queue" being unstaked.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest> Head(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest> Head(CancellationToken token)
         {
             string parameters = FastUnstakeStorage.HeadParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest>(parameters, token);
         }
         
         /// <summary>
@@ -62,7 +62,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Keeps track of `AccountId` wishing to unstake and it's corresponding deposit.
         /// </summary>
-        public static string QueueParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string QueueParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("FastUnstake", "Queue", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -75,7 +75,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Keeps track of `AccountId` wishing to unstake and it's corresponding deposit.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Queue(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Queue(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = FastUnstakeStorage.QueueParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);

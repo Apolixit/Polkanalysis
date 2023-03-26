@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -30,8 +30,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public TransactionPaymentStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "NextFeeMultiplier"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "NextFeeMultiplier"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases)));
         }
         
         /// <summary>
@@ -54,10 +54,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> NextFeeMultiplier
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128> NextFeeMultiplier(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128> NextFeeMultiplier(CancellationToken token)
         {
             string parameters = TransactionPaymentStorage.NextFeeMultiplierParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128>(parameters, token);
             return result;
         }
         
@@ -81,10 +81,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> StorageVersion
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases> StorageVersion(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases> StorageVersion(CancellationToken token)
         {
             string parameters = TransactionPaymentStorage.StorageVersionParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases>(parameters, token);
             return result;
         }
     }

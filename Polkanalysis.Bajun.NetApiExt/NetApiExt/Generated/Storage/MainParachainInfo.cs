@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -30,7 +30,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         public ParachainInfoStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainInfo", "ParachainId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainInfo", "ParachainId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
         }
         
         /// <summary>
@@ -44,10 +44,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> ParachainId
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> ParachainId(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> ParachainId(CancellationToken token)
         {
             string parameters = ParachainInfoStorage.ParachainIdParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
         }
     }
     

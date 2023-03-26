@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing
 {
     
     

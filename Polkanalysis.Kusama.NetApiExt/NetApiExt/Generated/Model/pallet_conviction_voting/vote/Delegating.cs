@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote
 {
     
     
@@ -32,22 +32,22 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
         /// <summary>
         /// >> target
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _target;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _target;
         
         /// <summary>
         /// >> conviction
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.conviction.EnumConviction _conviction;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.conviction.EnumConviction _conviction;
         
         /// <summary>
         /// >> delegations
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Delegations _delegations;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Delegations _delegations;
         
         /// <summary>
         /// >> prior
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.PriorLock _prior;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.PriorLock _prior;
         
         public Ajuna.NetApi.Model.Types.Primitive.U128 Balance
         {
@@ -61,7 +61,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Target
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Target
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.conviction.EnumConviction Conviction
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.conviction.EnumConviction Conviction
         {
             get
             {
@@ -85,7 +85,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Delegations Delegations
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Delegations Delegations
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.PriorLock Prior
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.PriorLock Prior
         {
             get
             {
@@ -130,13 +130,13 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
             var start = p;
             Balance = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Balance.Decode(byteArray, ref p);
-            Target = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Target = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Target.Decode(byteArray, ref p);
-            Conviction = new Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.conviction.EnumConviction();
+            Conviction = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.conviction.EnumConviction();
             Conviction.Decode(byteArray, ref p);
-            Delegations = new Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Delegations();
+            Delegations = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Delegations();
             Delegations.Decode(byteArray, ref p);
-            Prior = new Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.PriorLock();
+            Prior = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.PriorLock();
             Prior.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

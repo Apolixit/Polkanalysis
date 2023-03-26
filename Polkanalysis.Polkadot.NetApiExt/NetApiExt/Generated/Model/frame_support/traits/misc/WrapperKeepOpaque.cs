@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc
         /// <summary>
         /// >> T
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall _t;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall _t;
         
         public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> Value0
         {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall T
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall T
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc
             var start = p;
             Value0 = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>();
             Value0.Decode(byteArray, ref p);
-            T = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall();
+            T = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall();
             T.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

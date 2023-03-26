@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Dto.Common;
-using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Dto.Extrinsic;
-using Substats.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Dto.Common;
+using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Runtime;
 
-namespace Substats.Domain.Contracts.Dto
+namespace Polkanalysis.Domain.Contracts.Dto
 {
     public interface IModelBuilder
     {

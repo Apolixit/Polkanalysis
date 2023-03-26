@@ -1,9 +1,9 @@
-﻿using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Dto;
-using Substats.Domain.Runtime;
-using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.Integration.Tests.Contracts;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Dto;
+using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Integration.Tests.Repository.Explorer
+namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
     public class ExplorerEventsTests : ExplorerRepositoryTest
     {

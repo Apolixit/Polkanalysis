@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Types.Base
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Types.Base
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Types.Base
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Types.Base
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Infrastructure.Tests.Polkadot.Repository;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Infrastructure.Tests.Polkadot.Repository;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Mapping
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
 {
     public class PolkadotMappingTests : PolkadotRepositoryMock
     {
@@ -41,7 +41,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Mapping
         [Test]
         public void Perbill_ShouldWork()
         {
-            var p1 = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill();
+            var p1 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill();
             p1.Create("0x00000000");
 
             var p2 = new Perbill(new U32(0));
@@ -52,11 +52,11 @@ namespace Substats.Infrastructure.Tests.Polkadot.Mapping
         [Test]
         public void ParachainId_ShouldWork()
         {
-            var s1 = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            var s1 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             s1.Create("0x01000000");
 
             var d1 = SubstrateMapper.Instance.Map<
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
                 Domain.Contracts.Core.Id>(s1);
 
             Assert.That(s1.Value, Is.EqualTo(d1.Value));
@@ -66,7 +66,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Mapping
 
             var d2 = SubstrateMapper.Instance.Map<
                 Domain.Contracts.Core.Id,
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(s2);
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(s2);
 
             Assert.That(s2.Value, Is.EqualTo(d2.Value));
         }

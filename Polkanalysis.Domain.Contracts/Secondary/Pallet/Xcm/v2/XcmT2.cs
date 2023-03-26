@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.v2
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v2
 {
     public class XcmT2 : BaseType
     {

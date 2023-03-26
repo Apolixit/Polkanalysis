@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -30,8 +30,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public ConfigurationStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "ActiveConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "PendingConfigs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "ActiveConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "PendingConfigs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "BypassConsistencyCheck"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
         }
         
@@ -57,10 +57,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> ActiveConfig
         ///  The active configuration for the current session.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration> ActiveConfig(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration> ActiveConfig(CancellationToken token)
         {
             string parameters = ConfigurationStorage.ActiveConfigParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>(parameters, token);
             return result;
         }
         
@@ -98,10 +98,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The list is sorted ascending by session index. Also, this list can only contain at most
         ///  2 items: for the next session and for the `scheduled_session`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>> PendingConfigs(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>> PendingConfigs(CancellationToken token)
         {
             string parameters = ConfigurationStorage.PendingConfigsParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>>(parameters, token);
             return result;
         }
         
@@ -419,7 +419,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> set_ump_service_total_weight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetUmpServiceTotalWeight(Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight @new)
+        public static Method SetUmpServiceTotalWeight(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -573,7 +573,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> set_ump_max_individual_weight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetUmpMaxIndividualWeight(Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight @new)
+        public static Method SetUmpMaxIndividualWeight(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());

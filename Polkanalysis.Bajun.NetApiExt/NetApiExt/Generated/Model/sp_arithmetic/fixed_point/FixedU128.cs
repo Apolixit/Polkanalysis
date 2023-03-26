@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.sp_arithmetic.fixed_point
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_arithmetic.fixed_point
 {
     
     

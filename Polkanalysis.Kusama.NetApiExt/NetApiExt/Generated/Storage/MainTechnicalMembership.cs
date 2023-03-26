@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -30,8 +30,8 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         public TechnicalMembershipStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TechnicalMembership", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TechnicalMembership", "Prime"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TechnicalMembership", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TechnicalMembership", "Prime"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
         }
         
         /// <summary>
@@ -47,10 +47,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Members
         ///  The current membership, stored as an ordered Vec.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14> Members(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14> Members(CancellationToken token)
         {
             string parameters = TechnicalMembershipStorage.MembersParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14>(parameters, token);
         }
         
         /// <summary>
@@ -66,10 +66,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Prime
         ///  The current prime member, if one exists.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prime(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prime(CancellationToken token)
         {
             string parameters = TechnicalMembershipStorage.PrimeParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
         }
     }
     
@@ -80,7 +80,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> add_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AddMember(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
+        public static Method AddMember(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -91,7 +91,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> remove_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveMember(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
+        public static Method RemoveMember(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -102,7 +102,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> swap_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SwapMember(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress remove, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress add)
+        public static Method SwapMember(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress remove, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress add)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(remove.Encode());
@@ -114,7 +114,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> reset_members
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ResetMembers(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> members)
+        public static Method ResetMembers(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> members)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(members.Encode());
@@ -125,7 +125,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> change_key
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ChangeKey(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new)
+        public static Method ChangeKey(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -136,7 +136,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_prime
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetPrime(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
+        public static Method SetPrime(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());

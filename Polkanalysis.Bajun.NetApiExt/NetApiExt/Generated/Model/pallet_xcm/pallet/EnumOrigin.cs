@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_xcm.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_xcm.pallet
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_xcm.pallet
     /// <summary>
     /// >> 177 - Variant[pallet_xcm.pallet.Origin]
     /// </summary>
-    public sealed class EnumOrigin : BaseEnumExt<Origin, Substats.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation, Substats.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation>
+    public sealed class EnumOrigin : BaseEnumExt<Origin, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation>
     {
     }
 }

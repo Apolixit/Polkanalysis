@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet
     /// <summary>
     /// >> 833 - Variant[pallet_xcm.pallet.QueryStatus]
     /// </summary>
-    public sealed class EnumQueryStatus : BaseEnumExt<QueryStatus, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U8, Ajuna.NetApi.Model.Types.Primitive.U8>>, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Primitive.Bool>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedResponse, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumQueryStatus : BaseEnumExt<QueryStatus, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U8, Ajuna.NetApi.Model.Types.Primitive.U8>>, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation, Ajuna.NetApi.Model.Types.Primitive.Bool>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedResponse, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

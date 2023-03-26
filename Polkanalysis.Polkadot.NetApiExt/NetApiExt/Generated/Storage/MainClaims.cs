@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,20 +31,20 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Claims"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Total"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Vesting"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Signing"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Preclaims"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress)));
         }
         
         /// <summary>
         /// >> ClaimsParams
         /// </summary>
-        public static string ClaimsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
+        public static string ClaimsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
         {
             return RequestGenerator.GetStorage("Claims", "Claims", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Claims
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Claims(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Claims(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
         {
             string parameters = ClaimsStorage.ClaimsParams(key);
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
@@ -104,7 +104,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Second balance is how much should be unlocked per block.
         ///  The block number is when the vesting should start.
         /// </summary>
-        public static string VestingParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
+        public static string VestingParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
         {
             return RequestGenerator.GetStorage("Claims", "Vesting", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -127,7 +127,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Second balance is how much should be unlocked per block.
         ///  The block number is when the vesting should start.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>> Vesting(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>> Vesting(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
         {
             string parameters = ClaimsStorage.VestingParams(key);
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
@@ -138,7 +138,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> SigningParams
         ///  The statement kind that must be signed, if any.
         /// </summary>
-        public static string SigningParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
+        public static string SigningParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
         {
             return RequestGenerator.GetStorage("Claims", "Signing", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -158,10 +158,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> Signing
         ///  The statement kind that must be signed, if any.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind> Signing(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind> Signing(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
         {
             string parameters = ClaimsStorage.SigningParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind>(parameters, token);
             return result;
         }
         
@@ -169,7 +169,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PreclaimsParams
         ///  Pre-claimed Ethereum accounts, by the Account ID that they are claimed to.
         /// </summary>
-        public static string PreclaimsParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string PreclaimsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Claims", "Preclaims", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -189,10 +189,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> Preclaims
         ///  Pre-claimed Ethereum accounts, by the Account ID that they are claimed to.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress> Preclaims(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress> Preclaims(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ClaimsStorage.PreclaimsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress>(parameters, token);
             return result;
         }
     }
@@ -204,7 +204,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> claim
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Claim(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EcdsaSignature ethereum_signature)
+        public static Method Claim(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EcdsaSignature ethereum_signature)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -216,7 +216,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> mint_claim
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method MintClaim(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress who, Ajuna.NetApi.Model.Types.Primitive.U128 value, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>> vesting_schedule, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind> statement)
+        public static Method MintClaim(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress who, Ajuna.NetApi.Model.Types.Primitive.U128 value, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U32>> vesting_schedule, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind> statement)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -230,7 +230,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> claim_attest
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ClaimAttest(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EcdsaSignature ethereum_signature, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> statement)
+        public static Method ClaimAttest(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EcdsaSignature ethereum_signature, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> statement)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -254,7 +254,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> move_claim
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method MoveClaim(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress old, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress @new, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> maybe_preclaim)
+        public static Method MoveClaim(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress old, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress @new, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> maybe_preclaim)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(old.Encode());

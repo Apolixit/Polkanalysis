@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         /// <summary>
         /// >> bitfield
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield _bitfield;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield _bitfield;
         
         /// <summary>
         /// >> submitted_at
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _submittedAt;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield Bitfield
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield Bitfield
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Bitfield = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield();
+            Bitfield = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield();
             Bitfield.Decode(byteArray, ref p);
             SubmittedAt = new Ajuna.NetApi.Model.Types.Primitive.U32();
             SubmittedAt.Decode(byteArray, ref p);

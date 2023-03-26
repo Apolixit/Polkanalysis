@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
         /// <summary>
         /// >> actual_weight
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> _actualWeight;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> _actualWeight;
         
         /// <summary>
         /// >> pays_fee
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays _paysFee;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays _paysFee;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> ActualWeight
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> ActualWeight
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays PaysFee
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays PaysFee
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ActualWeight = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>();
+            ActualWeight = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>();
             ActualWeight.Decode(byteArray, ref p);
-            PaysFee = new Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays();
+            PaysFee = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays();
             PaysFee.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof
         /// <summary>
         /// >> trie_nodes
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeSet _trieNodes;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeSet _trieNodes;
         
-        public Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeSet TrieNodes
+        public Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeSet TrieNodes
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            TrieNodes = new Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeSet();
+            TrieNodes = new Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeSet();
             TrieNodes.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

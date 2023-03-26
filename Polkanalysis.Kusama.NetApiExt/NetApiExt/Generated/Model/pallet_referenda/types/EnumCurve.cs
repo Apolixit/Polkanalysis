@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
     /// <summary>
     /// >> 634 - Variant[pallet_referenda.types.Curve]
     /// </summary>
-    public sealed class EnumCurve : BaseEnumExt<Curve, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedI64, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedI64, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedI64>>
+    public sealed class EnumCurve : BaseEnumExt<Curve, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedI64, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedI64, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedI64>>
     {
     }
 }

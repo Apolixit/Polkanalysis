@@ -1,26 +1,26 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
-using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
-using Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars;
-using Substats.Domain.Contracts.Secondary.Pallet.Babe;
-using Substats.Domain.Contracts.Secondary.Pallet.Balances;
-using Substats.Domain.Contracts.Secondary.Pallet.Crowdloan;
-using Substats.Domain.Contracts.Secondary.Pallet.Identity;
-using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
-using Substats.Domain.Contracts.Secondary.Pallet.Paras;
-using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
-using Substats.Domain.Contracts.Secondary.Pallet.Registrar;
-using Substats.Domain.Contracts.Secondary.Pallet.Session;
-using Substats.Domain.Contracts.Secondary.Pallet.Staking;
-using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
-using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.AwesomeAvatars;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Registrar;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Timestamp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Contracts
+namespace Polkanalysis.Domain.Contracts.Secondary.Contracts
 {
     public interface IStorage
     {

@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -32,8 +32,8 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "ProposalCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Proposals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT20)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT20)));
         }
         
         /// <summary>
@@ -70,10 +70,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> Proposals
         ///  Proposals that have been made.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury.Proposal> Proposals(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_treasury.Proposal> Proposals(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = TreasuryStorage.ProposalsParams(key);
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury.Proposal>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_treasury.Proposal>(parameters, token);
         }
         
         /// <summary>
@@ -89,10 +89,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> Approvals
         ///  Proposal indices that have been approved but not yet awarded.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT20> Approvals(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT20> Approvals(CancellationToken token)
         {
             string parameters = TreasuryStorage.ApprovalsParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT20>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT20>(parameters, token);
         }
     }
     
@@ -103,7 +103,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> propose_spend
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ProposeSpend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
+        public static Method ProposeSpend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(value.Encode());
@@ -137,7 +137,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> spend
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Spend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
+        public static Method Spend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());

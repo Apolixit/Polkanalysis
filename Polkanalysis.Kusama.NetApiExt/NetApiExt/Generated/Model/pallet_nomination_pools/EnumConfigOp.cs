@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
     /// <summary>
     /// >> 330 - Variant[pallet_nomination_pools.ConfigOp]
     /// </summary>
-    public sealed class EnumConfigOp : BaseEnumExt<ConfigOp, BaseVoid, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
+    public sealed class EnumConfigOp : BaseEnumExt<ConfigOp, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
     {
     }
 }

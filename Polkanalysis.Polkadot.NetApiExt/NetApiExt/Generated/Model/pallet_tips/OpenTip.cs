@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips
 {
     
     
@@ -27,17 +27,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
         /// <summary>
         /// >> reason
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 _reason;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 _reason;
         
         /// <summary>
         /// >> who
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
         
         /// <summary>
         /// >> finder
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _finder;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _finder;
         
         /// <summary>
         /// >> deposit
@@ -52,14 +52,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
         /// <summary>
         /// >> tips
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>> _tips;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>> _tips;
         
         /// <summary>
         /// >> finders_fee
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.Bool _findersFee;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 Reason
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 Reason
         {
             get
             {
@@ -71,7 +71,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
         {
             get
             {
@@ -83,7 +83,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Finder
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Finder
         {
             get
             {
@@ -119,7 +119,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>> Tips
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>> Tips
         {
             get
             {
@@ -164,17 +164,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Reason = new Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256();
+            Reason = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256();
             Reason.Decode(byteArray, ref p);
-            Who = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Who = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);
-            Finder = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Finder = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Finder.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
             Closes = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>();
             Closes.Decode(byteArray, ref p);
-            Tips = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>();
+            Tips = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>();
             Tips.Decode(byteArray, ref p);
             FindersFee = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             FindersFee.Decode(byteArray, ref p);

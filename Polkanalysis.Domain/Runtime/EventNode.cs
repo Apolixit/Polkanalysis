@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Runtime.Mapping;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using System.Dynamic;
 using System.Reflection.Emit;
 using System.Reflection;
 using System.Text.Json;
 
-namespace Substats.Domain.Runtime
+namespace Polkanalysis.Domain.Runtime
 {
     public class EventNode : INode
     {

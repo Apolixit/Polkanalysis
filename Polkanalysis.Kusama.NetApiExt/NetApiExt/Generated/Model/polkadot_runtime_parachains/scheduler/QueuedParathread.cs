@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         /// <summary>
         /// >> claim
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry _claim;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry _claim;
         
         /// <summary>
         /// >> core_offset
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _coreOffset;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry Claim
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry Claim
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Claim = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry();
+            Claim = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry();
             Claim.Decode(byteArray, ref p);
             CoreOffset = new Ajuna.NetApi.Model.Types.Primitive.U32();
             CoreOffset.Decode(byteArray, ref p);

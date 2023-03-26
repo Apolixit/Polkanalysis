@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,18 +31,18 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInclusion", "AvailabilityBitfields"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInclusion", "PendingAvailability"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInclusion", "PendingAvailabilityCommitments"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments)));
         }
         
         /// <summary>
         /// >> AvailabilityBitfieldsParams
         ///  The latest bitfield for each validator, referred to by their index in the validator set.
         /// </summary>
-        public static string AvailabilityBitfieldsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex key)
+        public static string AvailabilityBitfieldsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex key)
         {
             return RequestGenerator.GetStorage("ParaInclusion", "AvailabilityBitfields", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -62,10 +62,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> AvailabilityBitfields
         ///  The latest bitfield for each validator, referred to by their index in the validator set.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord> AvailabilityBitfields(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord> AvailabilityBitfields(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex key, CancellationToken token)
         {
             string parameters = ParaInclusionStorage.AvailabilityBitfieldsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord>(parameters, token);
             return result;
         }
         
@@ -73,7 +73,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PendingAvailabilityParams
         ///  Candidates pending availability by `ParaId`.
         /// </summary>
-        public static string PendingAvailabilityParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string PendingAvailabilityParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("ParaInclusion", "PendingAvailability", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -93,10 +93,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PendingAvailability
         ///  Candidates pending availability by `ParaId`.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability> PendingAvailability(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability> PendingAvailability(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParaInclusionStorage.PendingAvailabilityParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.CandidatePendingAvailability>(parameters, token);
             return result;
         }
         
@@ -104,7 +104,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PendingAvailabilityCommitmentsParams
         ///  The commitments of candidates pending availability, by `ParaId`.
         /// </summary>
-        public static string PendingAvailabilityCommitmentsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string PendingAvailabilityCommitmentsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("ParaInclusion", "PendingAvailabilityCommitments", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -124,10 +124,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PendingAvailabilityCommitments
         ///  The commitments of candidates pending availability, by `ParaId`.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments> PendingAvailabilityCommitments(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments> PendingAvailabilityCommitments(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParaInclusionStorage.PendingAvailabilityCommitmentsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments>(parameters, token);
             return result;
         }
     }

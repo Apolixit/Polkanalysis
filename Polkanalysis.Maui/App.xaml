@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Substats.Maui"
-             x:Class="Substats.Maui.App">
+             xmlns:local="clr-namespace:Polkanalysis.Maui"
+             x:Class="Polkanalysis.Maui.App">
     <Application.Resources>
         <ResourceDictionary>
 

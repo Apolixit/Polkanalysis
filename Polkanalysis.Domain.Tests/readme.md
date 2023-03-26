@@ -1,6 +1,6 @@
 # Domain tests
 
-Unit test project of Substats.Domain implementation
+Unit test project of Polkanalysis.Domain implementation
 
 ## Dependencies
 - (NUnit)[https://nunit.org]

@@ -2,8 +2,8 @@
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Org.BouncyCastle.Utilities.Encoders;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core.Random;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Display
+namespace Polkanalysis.Domain.Contracts.Core.Display
 {
     /// <summary>
     /// This class represent something which can be displayed.

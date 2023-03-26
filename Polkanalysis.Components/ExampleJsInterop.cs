@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
 
-namespace Substats.Components
+namespace Polkanalysis.Components
 {
     // This class provides an example of how JavaScript functionality can be wrapped
     // in a .NET class for easy consumption. The associated JavaScript module is
@@ -15,7 +15,7 @@ namespace Substats.Components
 
         public ExampleJsInterop(IJSRuntime jsRuntime)
         {
-            moduleTask = null; //new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Substats.Components/exampleJsInterop.js").AsTask());
+            moduleTask = null; //new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/Polkanalysis.Components/exampleJsInterop.js").AsTask());
         }
 
         public async ValueTask<string> Prompt(string message)

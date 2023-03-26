@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_collective
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_collective
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_collective
     /// <summary>
     /// >> 152 - Variant[pallet_collective.RawOrigin]
     /// </summary>
-    public sealed class EnumRawOrigin : BaseEnumExt<RawOrigin, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
+    public sealed class EnumRawOrigin : BaseEnumExt<RawOrigin, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
     {
     }
 }

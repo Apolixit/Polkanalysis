@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_authorship
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_authorship
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_authorship
     /// <summary>
     /// >> 324 - Variant[pallet_authorship.UncleEntryItem]
     /// </summary>
-    public sealed class EnumUncleEntryItem : BaseEnumExt<UncleEntryItem, Ajuna.NetApi.Model.Types.Primitive.U32, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>>
+    public sealed class EnumUncleEntryItem : BaseEnumExt<UncleEntryItem, Ajuna.NetApi.Model.Types.Primitive.U32, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>>
     {
     }
 }

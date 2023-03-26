@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bags_list.pallet
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.pallet
     /// >> 324 - Variant[pallet_bags_list.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress>
+    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress>
     {
     }
 }

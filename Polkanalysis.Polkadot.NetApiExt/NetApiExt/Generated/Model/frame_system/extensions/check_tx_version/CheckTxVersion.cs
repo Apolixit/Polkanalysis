@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.check_tx_version
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.check_tx_version
 {
     
     

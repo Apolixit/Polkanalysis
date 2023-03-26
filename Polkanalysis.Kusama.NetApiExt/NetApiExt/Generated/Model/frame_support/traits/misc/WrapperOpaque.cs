@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc
         /// <summary>
         /// >> T
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_im_online.BoundedOpaqueNetworkState _t;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_im_online.BoundedOpaqueNetworkState _t;
         
         public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> Value0
         {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_im_online.BoundedOpaqueNetworkState T
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_im_online.BoundedOpaqueNetworkState T
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc
             var start = p;
             Value0 = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>();
             Value0.Decode(byteArray, ref p);
-            T = new Substats.Kusama.NetApiExt.Generated.Model.pallet_im_online.BoundedOpaqueNetworkState();
+            T = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_im_online.BoundedOpaqueNetworkState();
             T.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

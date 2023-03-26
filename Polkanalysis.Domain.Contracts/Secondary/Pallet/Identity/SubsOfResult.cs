@@ -1,11 +1,11 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Newtonsoft.Json.Linq;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
 using System.Numerics;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
 {
     public class SubsOfResult : BaseType
     {

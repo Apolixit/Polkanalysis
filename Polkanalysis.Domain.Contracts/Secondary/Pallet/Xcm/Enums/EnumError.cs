@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.Enums
 {
     public enum Error
     {

@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Core.Display;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums
 {
     public enum Data
     {

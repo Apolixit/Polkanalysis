@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Modules;
 using Ajuna.NetApi.Modules.Contracts;
-using Substats.Domain.Contracts.Secondary.Common;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Rpc
+namespace Polkanalysis.Domain.Contracts.Secondary.Rpc
 {
     public interface IRpc
     {

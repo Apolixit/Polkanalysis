@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// <summary>
         /// >> upgrade_times
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ReplacementTimes> _upgradeTimes;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ReplacementTimes> _upgradeTimes;
         
         /// <summary>
         /// >> last_pruned
         /// </summary>
         private Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> _lastPruned;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ReplacementTimes> UpgradeTimes
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ReplacementTimes> UpgradeTimes
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            UpgradeTimes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ReplacementTimes>();
+            UpgradeTimes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ReplacementTimes>();
             UpgradeTimes.Decode(byteArray, ref p);
             LastPruned = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>();
             LastPruned.Decode(byteArray, ref p);

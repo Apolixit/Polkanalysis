@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
 {
     
     
@@ -27,12 +27,12 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         /// <summary>
         /// >> recipient
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
         
         /// <summary>
         /// >> state
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumOutboundState _state;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumOutboundState _state;
         
         /// <summary>
         /// >> signals_exist
@@ -49,7 +49,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U16 _lastIndex;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
         {
             get
             {
@@ -61,7 +61,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumOutboundState State
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumOutboundState State
         {
             get
             {
@@ -128,9 +128,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Recipient = new Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Recipient = new Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Recipient.Decode(byteArray, ref p);
-            State = new Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumOutboundState();
+            State = new Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumOutboundState();
             State.Decode(byteArray, ref p);
             SignalsExist = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             SignalsExist.Decode(byteArray, ref p);

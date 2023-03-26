@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.Staking
+namespace Polkanalysis.Domain.Contracts.Dto.Staking
 {
     public class PoolGlobalSettingsDto
     {

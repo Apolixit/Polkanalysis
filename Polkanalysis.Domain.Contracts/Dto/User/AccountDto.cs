@@ -1,6 +1,6 @@
-﻿using Substats.Domain.Contracts.Dto.Balances;
+﻿using Polkanalysis.Domain.Contracts.Dto.Balances;
 
-namespace Substats.Domain.Contracts.Dto.User
+namespace Polkanalysis.Domain.Contracts.Dto.User
 {
     public class AccountDto
     {

@@ -3,15 +3,15 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Pallet.Balances;
-using Substats.Domain.Contracts.Secondary.Pallet.Balances.Enums;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
 {
     public class BalancesStorageTests : PolkadotRepositoryMock
     {
@@ -64,7 +64,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
         {
             var account = new SubstrateAccount(MockAddress);
 
-            var coreRes = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData();
+            var coreRes = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData();
             coreRes.Create("0x00CA9A3B000000000000000000000000400D030000000000000000000000000020A1070000000000000000000000000020030000000000000000000000000000");
 
             var expectedResult = new AccountData();
@@ -80,7 +80,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
             var testAccount = new SubstrateAccount(MockAddress);
 
             var res = await MockStorageCallNullWithInputAsync<SubstrateAccount,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
                 AccountData>(testAccount, _substrateRepository.Storage.Balances.AccountAsync);
 
             Assert.That(res, Is.Not.Null);

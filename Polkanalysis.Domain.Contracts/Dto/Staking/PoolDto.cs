@@ -1,15 +1,15 @@
 ﻿using Microsoft;
-using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using static Substats.Domain.Contracts.Dto.GlobalStatusDto;
+using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
-namespace Substats.Domain.Contracts.Dto.Staking
+namespace Polkanalysis.Domain.Contracts.Dto.Staking
 {
     public class PoolDto
     {

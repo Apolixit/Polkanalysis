@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> judgements
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19 _judgements;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19 _judgements;
         
         /// <summary>
         /// >> deposit
@@ -37,9 +37,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> info
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo _info;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo _info;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19 Judgements
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19 Judgements
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo Info
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo Info
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Judgements = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19();
+            Judgements = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT19();
             Judgements.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
-            Info = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo();
+            Info = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo();
             Info.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

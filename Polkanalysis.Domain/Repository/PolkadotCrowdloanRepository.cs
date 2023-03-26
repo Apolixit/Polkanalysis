@@ -1,15 +1,15 @@
-﻿using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Dto;
-using Substats.Domain.Contracts.Dto.Parachain;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Repository;
+﻿using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Dto;
+using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Repository
+namespace Polkanalysis.Domain.Repository
 {
     public class PolkadotCrowdloanRepository : ICrowdloanRepository
     {

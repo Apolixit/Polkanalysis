@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
 {
     public class SubPools : BaseType
     {

@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -32,9 +32,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "ProposalCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Proposals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Deactivated"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
         }
         
         /// <summary>
@@ -90,10 +90,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> Proposals
         ///  Proposals that have been made.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal> Proposals(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal> Proposals(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = TreasuryStorage.ProposalsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal>(parameters, token);
             return result;
         }
         
@@ -148,10 +148,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> Approvals
         ///  Proposal indices that have been approved but not yet awarded.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17> Approvals(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17> Approvals(CancellationToken token)
         {
             string parameters = TreasuryStorage.ApprovalsParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17>(parameters, token);
             return result;
         }
     }
@@ -163,7 +163,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> propose_spend
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ProposeSpend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
+        public static Method ProposeSpend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(value.Encode());
@@ -197,7 +197,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> spend
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Spend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
+        public static Method Spend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -225,9 +225,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Fraction of a proposal's value that should be bonded in order to place the proposal.
         ///  An accepted proposal gets these back. A rejected proposal does not.
         /// </summary>
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill ProposalBond()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill ProposalBond()
         {
-            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
+            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
             result.Create("0x50C30000");
             return result;
         }
@@ -269,9 +269,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> Burn
         ///  Percentage of spare funds (if any) that are burnt per spend period.
         /// </summary>
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill Burn()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill Burn()
         {
-            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
+            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
             result.Create("0x10270000");
             return result;
         }
@@ -280,9 +280,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PalletId
         ///  The treasury's pallet id, used for deriving its sovereign account ID.
         /// </summary>
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId PalletId()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId PalletId()
         {
-            var result = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId();
+            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId();
             result.Create("0x70792F7472737279");
             return result;
         }

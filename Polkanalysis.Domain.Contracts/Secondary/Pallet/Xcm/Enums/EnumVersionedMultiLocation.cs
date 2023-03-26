@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.Enums
 {
     public enum VersionedMultiLocation
     {

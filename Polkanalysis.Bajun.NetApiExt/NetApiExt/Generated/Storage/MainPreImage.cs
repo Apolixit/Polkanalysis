@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -31,16 +31,16 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("PreImage", "StatusFor"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substats.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("PreImage", "PreimageFor"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13)));
         }
         
         /// <summary>
         /// >> StatusForParams
         ///  The request status of a given hash.
         /// </summary>
-        public static string StatusForParams(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string StatusForParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("PreImage", "StatusFor", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -51,17 +51,17 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> StatusFor
         ///  The request status of a given hash.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus> StatusFor(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus> StatusFor(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = PreImageStorage.StatusForParams(key);
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus>(parameters, token);
         }
         
         /// <summary>
         /// >> PreimageForParams
         ///  The preimages stored by this pallet.
         /// </summary>
-        public static string PreimageForParams(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string PreimageForParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("PreImage", "PreimageFor", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -72,10 +72,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> PreimageFor
         ///  The preimages stored by this pallet.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13> PreimageFor(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13> PreimageFor(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = PreImageStorage.PreimageForParams(key);
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13>(parameters, token);
         }
     }
     
@@ -97,7 +97,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> unnote_preimage
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UnnotePreimage(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 hash)
+        public static Method UnnotePreimage(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());
@@ -108,7 +108,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> request_preimage
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RequestPreimage(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 hash)
+        public static Method RequestPreimage(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());
@@ -119,7 +119,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> unrequest_preimage
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UnrequestPreimage(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 hash)
+        public static Method UnrequestPreimage(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());

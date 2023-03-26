@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.xcm.v2
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.xcm.v2
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumInstruction> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumInstruction> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumInstruction> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumInstruction> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.xcm.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumInstruction>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumInstruction>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

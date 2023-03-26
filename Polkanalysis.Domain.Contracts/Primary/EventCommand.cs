@@ -1,4 +1,4 @@
-﻿namespace Substats.Domain.Contracts.Primary
+﻿namespace Polkanalysis.Domain.Contracts.Primary
 {
     public class EventCommand
     {

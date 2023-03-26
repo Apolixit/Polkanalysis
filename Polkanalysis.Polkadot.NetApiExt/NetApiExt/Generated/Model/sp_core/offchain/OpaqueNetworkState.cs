@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.offchain
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain
         /// <summary>
         /// >> peer_id
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.OpaquePeerId _peerId;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.OpaquePeerId _peerId;
         
         /// <summary>
         /// >> external_addresses
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueMultiaddr> _externalAddresses;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueMultiaddr> _externalAddresses;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.OpaquePeerId PeerId
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.OpaquePeerId PeerId
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueMultiaddr> ExternalAddresses
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueMultiaddr> ExternalAddresses
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            PeerId = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.OpaquePeerId();
+            PeerId = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.OpaquePeerId();
             PeerId.Decode(byteArray, ref p);
-            ExternalAddresses = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueMultiaddr>();
+            ExternalAddresses = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueMultiaddr>();
             ExternalAddresses.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

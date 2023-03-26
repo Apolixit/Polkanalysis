@@ -1,7 +1,7 @@
 using Ajuna.NetApi.Model.Types.Base;
 
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum
 {
     
     

@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset
     /// <summary>
     /// >> 406 - Variant[xcm.v1.multiasset.AssetId]
     /// </summary>
-    public sealed class EnumAssetId : BaseEnumExt<AssetId, Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>
+    public sealed class EnumAssetId : BaseEnumExt<AssetId, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>
     {
     }
 }

@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.pallet
 {
     
     

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Rpc
+namespace Polkanalysis.Domain.Contracts.Secondary.Rpc
 {
     /// <summary>
     /// Extract from <see cref="Ajuna.NetApi.Modules.State"/>

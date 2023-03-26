@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> when
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint _when;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint _when;
         
         /// <summary>
         /// >> deposit
@@ -37,14 +37,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> depositor
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
         
         /// <summary>
         /// >> approvals
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 _approvals;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 _approvals;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 Approvals
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 Approvals
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            When = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint();
+            When = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint();
             When.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
-            Depositor = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Depositor = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Depositor.Decode(byteArray, ref p);
-            Approvals = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24();
+            Approvals = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24();
             Approvals.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

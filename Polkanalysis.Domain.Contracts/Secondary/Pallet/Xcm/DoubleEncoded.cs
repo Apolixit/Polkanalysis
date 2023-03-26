@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm
 {
     public class DoubleEncoded : BaseType
     {

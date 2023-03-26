@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -30,22 +30,22 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         public AwesomeAvatarsStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "Organizer"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "Organizer"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "CurrentSeasonId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U16)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "IsSeasonActive"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "Seasons"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Ajuna.NetApi.Model.Types.Primitive.U16), typeof(Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "GlobalConfigs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Ajuna.NetApi.Model.Types.Primitive.U16), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "GlobalConfigs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "Avatars"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Avatar>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Avatar>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "Owners"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "LastMintedBlockNumbers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "FreeMints"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U16)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U16)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("AwesomeAvatars", "Trade"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
         }
         
         /// <summary>
@@ -59,10 +59,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Organizer
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Organizer(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Organizer(CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.OrganizerParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
         }
         
         /// <summary>
@@ -114,10 +114,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> Seasons
         ///  Storage for the seasons.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season> Seasons(Ajuna.NetApi.Model.Types.Primitive.U16 key, CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season> Seasons(Ajuna.NetApi.Model.Types.Primitive.U16 key, CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.SeasonsParams(key);
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season>(parameters, token);
         }
         
         /// <summary>
@@ -131,16 +131,16 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> GlobalConfigs
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig> GlobalConfigs(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig> GlobalConfigs(CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.GlobalConfigsParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig>(parameters, token);
         }
         
         /// <summary>
         /// >> AvatarsParams
         /// </summary>
-        public static string AvatarsParams(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string AvatarsParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("AwesomeAvatars", "Avatars", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -150,16 +150,16 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Avatars
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Avatar>> Avatars(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Avatar>> Avatars(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.AvatarsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Avatar>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Avatar>>(parameters, token);
         }
         
         /// <summary>
         /// >> OwnersParams
         /// </summary>
-        public static string OwnersParams(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string OwnersParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("AwesomeAvatars", "Owners", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -169,16 +169,16 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Owners
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6> Owners(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6> Owners(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.OwnersParams(key);
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6>(parameters, token);
         }
         
         /// <summary>
         /// >> LastMintedBlockNumbersParams
         /// </summary>
-        public static string LastMintedBlockNumbersParams(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string LastMintedBlockNumbersParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("AwesomeAvatars", "LastMintedBlockNumbers", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -188,7 +188,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> LastMintedBlockNumbers
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> LastMintedBlockNumbers(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> LastMintedBlockNumbers(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.LastMintedBlockNumbersParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
@@ -197,7 +197,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> FreeMintsParams
         /// </summary>
-        public static string FreeMintsParams(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string FreeMintsParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("AwesomeAvatars", "FreeMints", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -207,7 +207,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> FreeMints
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U16> FreeMints(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U16> FreeMints(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.FreeMintsParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U16>(parameters, token);
@@ -216,7 +216,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> TradeParams
         /// </summary>
-        public static string TradeParams(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string TradeParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("AwesomeAvatars", "Trade", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -226,7 +226,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// <summary>
         /// >> Trade
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Trade(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Trade(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = AwesomeAvatarsStorage.TradeParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
@@ -240,7 +240,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> mint
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Mint(Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintOption mint_option)
+        public static Method Mint(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintOption mint_option)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(mint_option.Encode());
@@ -251,7 +251,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> forge
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Forge(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 leader, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6 sacrifices)
+        public static Method Forge(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 leader, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT6 sacrifices)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(leader.Encode());
@@ -263,7 +263,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> transfer_free_mints
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method TransferFreeMints(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Ajuna.NetApi.Model.Types.Primitive.U16 how_many)
+        public static Method TransferFreeMints(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Ajuna.NetApi.Model.Types.Primitive.U16 how_many)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -275,7 +275,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> set_price
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetPrice(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 avatar_id, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> price)
+        public static Method SetPrice(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 avatar_id, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> price)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(avatar_id.Encode());
@@ -287,7 +287,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> remove_price
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemovePrice(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 avatar_id)
+        public static Method RemovePrice(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 avatar_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(avatar_id.Encode());
@@ -298,7 +298,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> buy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Buy(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 avatar_id)
+        public static Method Buy(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 avatar_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(avatar_id.Encode());
@@ -309,7 +309,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> set_organizer
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetOrganizer(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 organizer)
+        public static Method SetOrganizer(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 organizer)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(organizer.Encode());
@@ -320,7 +320,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> upsert_season
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UpsertSeason(Ajuna.NetApi.Model.Types.Primitive.U16 season_id, Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season season)
+        public static Method UpsertSeason(Ajuna.NetApi.Model.Types.Primitive.U16 season_id, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season season)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(season_id.Encode());
@@ -332,7 +332,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> update_global_config
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UpdateGlobalConfig(Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig new_global_config)
+        public static Method UpdateGlobalConfig(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig new_global_config)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(new_global_config.Encode());
@@ -343,7 +343,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> issue_free_mints
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method IssueFreeMints(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Ajuna.NetApi.Model.Types.Primitive.U16 how_many)
+        public static Method IssueFreeMints(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Ajuna.NetApi.Model.Types.Primitive.U16 how_many)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());

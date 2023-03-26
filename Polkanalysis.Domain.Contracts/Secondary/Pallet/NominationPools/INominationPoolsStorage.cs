@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Org.BouncyCastle.Math;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.NominationPools
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
 {
     /// <summary>
     /// https://docs.rs/pallet-nomination-pools/latest/pallet_nomination_pools/

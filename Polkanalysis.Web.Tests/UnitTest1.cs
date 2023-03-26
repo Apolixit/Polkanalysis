@@ -1,4 +1,4 @@
-namespace Substats.Web.Test
+namespace Polkanalysis.Web.Test
 {
     public class Tests
     {

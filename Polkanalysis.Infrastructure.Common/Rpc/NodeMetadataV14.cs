@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Meta;
-using Substats.Domain.Contracts.Secondary.Common;
-using Substats.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Common.Rpc
+namespace Polkanalysis.Infrastructure.Common.Rpc
 {
     public class NodeMetadataV14 : INodeMetadataV14
     {

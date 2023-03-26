@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     /// <summary>
     /// >> 667 - Variant[polkadot_runtime_parachains.paras.PvfCheckCause]
     /// </summary>
-    public sealed class EnumPvfCheckCause : BaseEnumExt<PvfCheckCause, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumPvfCheckCause : BaseEnumExt<PvfCheckCause, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

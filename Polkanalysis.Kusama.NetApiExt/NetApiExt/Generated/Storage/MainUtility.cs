@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -40,7 +40,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Batch(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
+        public static Method Batch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> as_derivative
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AsDerivative(Ajuna.NetApi.Model.Types.Primitive.U16 index, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method AsDerivative(Ajuna.NetApi.Model.Types.Primitive.U16 index, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> batch_all
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method BatchAll(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
+        public static Method BatchAll(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> dispatch_as
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method DispatchAs(Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller as_origin, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method DispatchAs(Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller as_origin, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(as_origin.Encode());
@@ -86,7 +86,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceBatch(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
+        public static Method ForceBatch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -97,7 +97,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> with_weight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method WithWeight(Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call, Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight weight)
+        public static Method WithWeight(Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call.Encode());

@@ -1,8 +1,8 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.UseCase.Explorer.Block;
-using Substats.Domain.UseCase;
+using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.UseCase.Explorer.Block;
+using Polkanalysis.Domain.UseCase;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NSubstitute.ReturnsExtensions;
 
-namespace Substats.Domain.Tests.UseCase
+namespace Polkanalysis.Domain.Tests.UseCase
 {
     /// <summary>
     /// Global UseCase test class

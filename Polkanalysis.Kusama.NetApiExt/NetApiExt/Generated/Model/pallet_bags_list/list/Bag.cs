@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
         /// <summary>
         /// >> head
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _head;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _head;
         
         /// <summary>
         /// >> tail
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _tail;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _tail;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Head
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Head
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Tail
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Tail
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Head = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Head = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Head.Decode(byteArray, ref p);
-            Tail = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Tail = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Tail.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

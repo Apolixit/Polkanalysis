@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
 {
     
     
@@ -27,12 +27,12 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         /// <summary>
         /// >> name
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 _name;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 _name;
         
         /// <summary>
         /// >> description
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT2 _description;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT2 _description;
         
         /// <summary>
         /// >> early_start
@@ -62,19 +62,19 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         /// <summary>
         /// >> tiers
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT3 _tiers;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT3 _tiers;
         
         /// <summary>
         /// >> p_single_mint
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 _pSingleMint;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 _pSingleMint;
         
         /// <summary>
         /// >> p_batch_mint
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 _pBatchMint;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 _pBatchMint;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 Name
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 Name
         {
             get
             {
@@ -86,7 +86,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT2 Description
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT2 Description
         {
             get
             {
@@ -158,7 +158,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT3 Tiers
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT3 Tiers
         {
             get
             {
@@ -170,7 +170,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 PSingleMint
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 PSingleMint
         {
             get
             {
@@ -182,7 +182,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 PBatchMint
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4 PBatchMint
         {
             get
             {
@@ -218,9 +218,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Name = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1();
+            Name = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1();
             Name.Decode(byteArray, ref p);
-            Description = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT2();
+            Description = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT2();
             Description.Decode(byteArray, ref p);
             EarlyStart = new Ajuna.NetApi.Model.Types.Primitive.U32();
             EarlyStart.Decode(byteArray, ref p);
@@ -232,11 +232,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             MaxVariations.Decode(byteArray, ref p);
             MaxComponents = new Ajuna.NetApi.Model.Types.Primitive.U8();
             MaxComponents.Decode(byteArray, ref p);
-            Tiers = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT3();
+            Tiers = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT3();
             Tiers.Decode(byteArray, ref p);
-            PSingleMint = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4();
+            PSingleMint = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4();
             PSingleMint.Decode(byteArray, ref p);
-            PBatchMint = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4();
+            PBatchMint = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT4();
             PBatchMint.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

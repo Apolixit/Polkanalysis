@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.pallet
 {
     
     
@@ -31,7 +31,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.pallet
     /// >> 171 - Variant[pallet_multisig.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint>, Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Ajuna.NetApi.Model.Types.Primitive.Bool, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint>, Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint, Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8>>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint>, Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Ajuna.NetApi.Model.Types.Primitive.Bool, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint>, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8>>
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Integration.Tests.UseCase.Explorer.Events
+namespace Polkanalysis.Domain.Integration.Tests.UseCase.Explorer.Events
 {
     internal class EventDetailUseCaseTest
     {

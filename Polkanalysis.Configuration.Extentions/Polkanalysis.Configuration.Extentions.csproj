@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Substats.Configuration.Contracts\Substats.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

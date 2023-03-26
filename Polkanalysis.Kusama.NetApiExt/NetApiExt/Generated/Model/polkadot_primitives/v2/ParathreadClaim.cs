@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> Id
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _id;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _id;
         
         /// <summary>
         /// >> CollatorId
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public _collatorId;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public _collatorId;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Id
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Id
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public CollatorId
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public CollatorId
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Id = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Id.Decode(byteArray, ref p);
-            CollatorId = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public();
+            CollatorId = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public();
             CollatorId.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

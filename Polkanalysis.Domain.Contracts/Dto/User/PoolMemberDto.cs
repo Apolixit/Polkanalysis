@@ -1,11 +1,11 @@
-﻿using Substats.Domain.Contracts.Dto.Event;
+﻿using Polkanalysis.Domain.Contracts.Dto.Event;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.User
+namespace Polkanalysis.Domain.Contracts.Dto.User
 {
     public class PoolMemberDto
     {

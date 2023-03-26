@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Types.Base
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Types.Base
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Types.Base
     /// <summary>
     /// >> 30 - Variant[Result]
     /// </summary>
-    public sealed class EnumResult : BaseEnumExt<Result, Ajuna.NetApi.Model.Types.Base.BaseTuple, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError>
+    public sealed class EnumResult : BaseEnumExt<Result, Ajuna.NetApi.Model.Types.Base.BaseTuple, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError>
     {
     }
 }

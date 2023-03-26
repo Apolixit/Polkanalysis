@@ -1,6 +1,6 @@
-﻿using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Explorer;
+﻿using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Explorer;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using OperationResult.Tags;
@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Substats.Domain.UseCase.ErrorResult;
+using static Polkanalysis.Domain.UseCase.ErrorResult;
 
-namespace Substats.Domain.UseCase
+namespace Polkanalysis.Domain.UseCase
 {
     public abstract class UseCase<L, Dto, C> 
         where L : class

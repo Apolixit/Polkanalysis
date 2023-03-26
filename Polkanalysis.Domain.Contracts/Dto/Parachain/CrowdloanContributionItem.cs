@@ -1,12 +1,12 @@
-﻿using Substats.Domain.Contracts.Dto.Extrinsic;
-using Substats.Domain.Contracts.Dto.User;
+﻿using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.Parachain
+namespace Polkanalysis.Domain.Contracts.Dto.Parachain
 {
     public class CrowdloanContributionItem
     {

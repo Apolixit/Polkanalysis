@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Contracts
+namespace Polkanalysis.Domain.Contracts.Secondary.Contracts
 {
     public interface IConstants
     {

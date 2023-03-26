@@ -1,5 +1,5 @@
 ﻿using Ajuna.NetApi;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.AjunaExtension
+namespace Polkanalysis.AjunaExtension
 {
     public static class AddressExtension
     {

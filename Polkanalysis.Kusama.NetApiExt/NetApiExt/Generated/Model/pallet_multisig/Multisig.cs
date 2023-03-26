@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_multisig
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> when
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig.Timepoint _when;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_multisig.Timepoint _when;
         
         /// <summary>
         /// >> deposit
@@ -37,14 +37,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> depositor
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
         
         /// <summary>
         /// >> approvals
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 _approvals;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 _approvals;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 Approvals
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 Approvals
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            When = new Substats.Kusama.NetApiExt.Generated.Model.pallet_multisig.Timepoint();
+            When = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_multisig.Timepoint();
             When.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
-            Depositor = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Depositor = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Depositor.Decode(byteArray, ref p);
-            Approvals = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29();
+            Approvals = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29();
             Approvals.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

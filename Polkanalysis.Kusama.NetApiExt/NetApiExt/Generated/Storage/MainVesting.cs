@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,15 +31,15 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Vesting", "Vesting"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Vesting", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_vesting.EnumReleases)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Vesting", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_vesting.EnumReleases)));
         }
         
         /// <summary>
         /// >> VestingParams
         ///  Information regarding the vesting of a given account.
         /// </summary>
-        public static string VestingParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string VestingParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Vesting", "Vesting", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -50,10 +50,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Vesting
         ///  Information regarding the vesting of a given account.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25> Vesting(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25> Vesting(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = VestingStorage.VestingParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25>(parameters, token);
         }
         
         /// <summary>
@@ -73,10 +73,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  New networks start with latest version, as determined by the genesis build.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_vesting.EnumReleases> StorageVersion(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_vesting.EnumReleases> StorageVersion(CancellationToken token)
         {
             string parameters = VestingStorage.StorageVersionParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_vesting.EnumReleases>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_vesting.EnumReleases>(parameters, token);
         }
     }
     
@@ -97,7 +97,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> vest_other
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method VestOther(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target)
+        public static Method VestOther(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(target.Encode());
@@ -108,7 +108,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> vested_transfer
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method VestedTransfer(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target, Substats.Kusama.NetApiExt.Generated.Model.pallet_vesting.vesting_info.VestingInfo schedule)
+        public static Method VestedTransfer(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_vesting.vesting_info.VestingInfo schedule)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(target.Encode());
@@ -120,7 +120,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_vested_transfer
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceVestedTransfer(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress source, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target, Substats.Kusama.NetApiExt.Generated.Model.pallet_vesting.vesting_info.VestingInfo schedule)
+        public static Method ForceVestedTransfer(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress source, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_vesting.vesting_info.VestingInfo schedule)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(source.Encode());

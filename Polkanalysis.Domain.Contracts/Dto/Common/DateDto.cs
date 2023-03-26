@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.Common
+namespace Polkanalysis.Domain.Contracts.Dto.Common
 {
     public class DateDto
     {

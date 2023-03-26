@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.GrandPa.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.GrandPa.Enums
 {
     public enum StoredState
     {

@@ -19,11 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Substats.Configuration.Contracts\Substats.Configuration.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Domain.Contracts\Substats.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Domain\Substats.Domain.csproj" />
-    <ProjectReference Include="..\Substats.Integration.Tests.Contracts\Substats.Integration.Tests.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Integration.Tests.Contracts\Polkanalysis.Integration.Tests.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj" />
   </ItemGroup>
 
 </Project>

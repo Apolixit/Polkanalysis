@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,9 +31,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Proxies"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27, Ajuna.NetApi.Model.Types.Primitive.U128>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27, Ajuna.NetApi.Model.Types.Primitive.U128>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Announcements"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28, Ajuna.NetApi.Model.Types.Primitive.U128>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28, Ajuna.NetApi.Model.Types.Primitive.U128>)));
         }
         
         /// <summary>
@@ -41,7 +41,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The set of account proxies. Maps the account which has delegated to the accounts
         ///  which are being delegated to, together with the amount held on deposit.
         /// </summary>
-        public static string ProxiesParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string ProxiesParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Proxy", "Proxies", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -53,17 +53,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The set of account proxies. Maps the account which has delegated to the accounts
         ///  which are being delegated to, together with the amount held on deposit.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27, Ajuna.NetApi.Model.Types.Primitive.U128>> Proxies(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27, Ajuna.NetApi.Model.Types.Primitive.U128>> Proxies(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ProxyStorage.ProxiesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
         }
         
         /// <summary>
         /// >> AnnouncementsParams
         ///  The announcements made by the proxy (key).
         /// </summary>
-        public static string AnnouncementsParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string AnnouncementsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Proxy", "Announcements", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -74,10 +74,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Announcements
         ///  The announcements made by the proxy (key).
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28, Ajuna.NetApi.Model.Types.Primitive.U128>> Announcements(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28, Ajuna.NetApi.Model.Types.Primitive.U128>> Announcements(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ProxyStorage.AnnouncementsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
         }
     }
     
@@ -88,7 +88,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> proxy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Proxy(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType> force_proxy_type, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method Proxy(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(real.Encode());
@@ -101,7 +101,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> add_proxy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AddProxy(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay)
+        public static Method AddProxy(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@delegate.Encode());
@@ -114,7 +114,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> remove_proxy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveProxy(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay)
+        public static Method RemoveProxy(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@delegate.Encode());
@@ -137,7 +137,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> create_pure
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CreatePure(Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay, Ajuna.NetApi.Model.Types.Primitive.U16 index)
+        public static Method CreatePure(Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay, Ajuna.NetApi.Model.Types.Primitive.U16 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proxy_type.Encode());
@@ -150,7 +150,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> kill_pure
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method KillPure(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress spawner, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U16 index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> height, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> ext_index)
+        public static Method KillPure(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress spawner, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U16 index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> height, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> ext_index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(spawner.Encode());
@@ -165,7 +165,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> announce
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Announce(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
+        public static Method Announce(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(real.Encode());
@@ -177,7 +177,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> remove_announcement
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveAnnouncement(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
+        public static Method RemoveAnnouncement(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(real.Encode());
@@ -189,7 +189,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> reject_announcement
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RejectAnnouncement(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
+        public static Method RejectAnnouncement(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@delegate.Encode());
@@ -201,7 +201,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> proxy_announced
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ProxyAnnounced(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType> force_proxy_type, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method ProxyAnnounced(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@delegate.Encode());

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Substats.AjunaExtension": {
+    "Polkanalysis.AjunaExtension": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

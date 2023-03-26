@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -31,7 +31,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Vesting", "VestingSchedules"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT15)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT15)));
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  VestingSchedules: map AccountId => Vec<VestingSchedule>
         /// </summary>
-        public static string VestingSchedulesParams(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string VestingSchedulesParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Vesting", "VestingSchedules", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -53,10 +53,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  VestingSchedules: map AccountId => Vec<VestingSchedule>
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT15> VestingSchedules(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT15> VestingSchedules(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = VestingStorage.VestingSchedulesParams(key);
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT15>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT15>(parameters, token);
         }
     }
     
@@ -77,7 +77,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> vested_transfer
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method VestedTransfer(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress dest, Substats.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule schedule)
+        public static Method VestedTransfer(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule schedule)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -89,7 +89,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> update_vesting_schedules
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UpdateVestingSchedules(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule> vesting_schedules)
+        public static Method UpdateVestingSchedules(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule> vesting_schedules)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -101,7 +101,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> claim_for
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ClaimFor(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress dest)
+        public static Method ClaimFor(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress dest)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());

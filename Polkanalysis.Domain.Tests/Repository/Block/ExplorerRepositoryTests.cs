@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi;
-using Substats.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary;
 using Newtonsoft.Json.Linq;
 using NSubstitute;
 using System;
@@ -8,13 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Dto;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Dto;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Secondary.Repository;
-using Substats.Domain.Repository;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Repository;
 
-namespace Substats.Domain.Tests.Repository.Block
+namespace Polkanalysis.Domain.Tests.Repository.Block
 {
     public abstract class ExplorerRepositoryTests
     {

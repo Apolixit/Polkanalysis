@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa
         /// <summary>
         /// >> equivocation
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.EnumEquivocation _equivocation;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.EnumEquivocation _equivocation;
         
         public Ajuna.NetApi.Model.Types.Primitive.U64 SetId
         {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.EnumEquivocation Equivocation
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.EnumEquivocation Equivocation
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa
             var start = p;
             SetId = new Ajuna.NetApi.Model.Types.Primitive.U64();
             SetId.Decode(byteArray, ref p);
-            Equivocation = new Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.EnumEquivocation();
+            Equivocation = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.EnumEquivocation();
             Equivocation.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

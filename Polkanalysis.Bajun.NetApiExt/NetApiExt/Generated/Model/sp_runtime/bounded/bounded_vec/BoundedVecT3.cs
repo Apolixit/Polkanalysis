@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_ve
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumRarityTier> _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumRarityTier> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumRarityTier> Value
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumRarityTier> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_ve
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumRarityTier>();
+            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumRarityTier>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

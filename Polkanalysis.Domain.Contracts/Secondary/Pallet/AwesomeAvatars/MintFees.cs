@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
 {
     public class MintFees
     {

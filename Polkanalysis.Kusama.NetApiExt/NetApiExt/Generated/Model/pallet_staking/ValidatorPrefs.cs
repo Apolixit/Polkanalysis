@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> commission
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> _commission;
+        private Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> _commission;
         
         /// <summary>
         /// >> blocked
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.Bool _blocked;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> Commission
+        public Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> Commission
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Commission = new Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>();
+            Commission = new Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>();
             Commission.Decode(byteArray, ref p);
             Blocked = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             Blocked.Decode(byteArray, ref p);

@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Meta;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
-using Substats.Domain.Contracts.Dto.Module;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Common;
+using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 
-namespace Substats.Domain.Runtime
+namespace Polkanalysis.Domain.Runtime
 {
     public class CurrentMetaData : ICurrentMetaData
     {

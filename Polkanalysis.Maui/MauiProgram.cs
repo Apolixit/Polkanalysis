@@ -1,10 +1,10 @@
-﻿using Substats.Domain.Contracts.Repository;
-using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.SubstrateDecode.Event;
-using Substats.Maui.Data;
+﻿using Polkanalysis.Domain.Contracts.Repository;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.SubstrateDecode.Event;
+using Polkanalysis.Maui.Data;
 using Microsoft.Extensions.Logging;
 
-namespace Substats.Maui
+namespace Polkanalysis.Maui
 {
     public static class MauiProgram
     {

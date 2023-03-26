@@ -1,8 +1,8 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Auctions
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions
 {
     public class Winning : BaseType
     {

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -32,12 +32,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> backing_validators_per_candidate
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>>>> _backingValidatorsPerCandidate;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>>>> _backingValidatorsPerCandidate;
         
         /// <summary>
         /// >> disputes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> _disputes;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> _disputes;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 Session
         {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>>>> BackingValidatorsPerCandidate
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>>>> BackingValidatorsPerCandidate
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> Disputes
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> Disputes
         {
             get
             {
@@ -94,9 +94,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             var start = p;
             Session = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Session.Decode(byteArray, ref p);
-            BackingValidatorsPerCandidate = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>>>>();
+            BackingValidatorsPerCandidate = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateReceipt, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>>>>();
             BackingValidatorsPerCandidate.Decode(byteArray, ref p);
-            Disputes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet>();
+            Disputes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet>();
             Disputes.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

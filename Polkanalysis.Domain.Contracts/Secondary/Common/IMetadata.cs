@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Common
+namespace Polkanalysis.Domain.Contracts.Secondary.Common
 {
     /// <summary>
     /// Metadata contract

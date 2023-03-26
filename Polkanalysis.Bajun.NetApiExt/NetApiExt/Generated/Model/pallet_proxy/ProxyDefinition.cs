@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_proxy
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_proxy
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_proxy
         /// <summary>
         /// >> delegate
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _delegate;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _delegate;
         
         /// <summary>
         /// >> proxy_type
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type.EnumProxyType _proxyType;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type.EnumProxyType _proxyType;
         
         /// <summary>
         /// >> delay
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _delay;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Delegate
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Delegate
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_proxy
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type.EnumProxyType ProxyType
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type.EnumProxyType ProxyType
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_proxy
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Delegate = new Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Delegate = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Delegate.Decode(byteArray, ref p);
-            ProxyType = new Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type.EnumProxyType();
+            ProxyType = new Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type.EnumProxyType();
             ProxyType.Decode(byteArray, ref p);
             Delay = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Delay.Decode(byteArray, ref p);

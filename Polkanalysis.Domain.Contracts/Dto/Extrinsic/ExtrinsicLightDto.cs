@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.Extrinsic
+namespace Polkanalysis.Domain.Contracts.Dto.Extrinsic
 {
     public class ExtrinsicLightDto
     {

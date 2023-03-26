@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Crowdloan
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Crowdloan
 {
     public class CrowdloanStorageTests : PolkadotRepositoryMock
     {
@@ -28,7 +28,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Crowdloan
         [Test]
         public async Task Funds_ShouldWorkAsync()
         {
-            var coreResult = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo();
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo();
             coreResult.Create("0x521F755ACF5E3764DDAAB3E330C77125CF2DB266BEE14C6030D7D552F269B01700005039278C040000000000000000000000D42FF274A80A0000000000000000007822D800008053EE7BA80A00000000000000000001220000000B0000001200000037000000");
 
             var expectedResult = new FundInfo();
@@ -55,14 +55,14 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Crowdloan
         {
             await MockStorageCallNullWithInputAsync<
                 Id,
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
                 FundInfo>(new Id(2), _substrateRepository.Storage.Crowdloan.FundsAsync);
         }
 
         [Test]
         public async Task NewRaise_ShouldWorkAsync()
         {
-            var coreResult = new BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>();
+            var coreResult = new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>();
             coreResult.Create("0x080A0D00000C0D0000");
 
             var expectedResult = new BaseVec<Id>(new Id[]
@@ -71,14 +71,14 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Crowdloan
                 new Id(3340),
             });
 
-            await MockStorageCallAsync<BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
+            await MockStorageCallAsync<BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
                 BaseVec<Id>>(coreResult, expectedResult, _substrateRepository.Storage.Crowdloan.NewRaiseAsync);
         }
 
         [Test]
         public async Task NewRaiseNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
+            await MockStorageCallNullAsync<BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
                 BaseVec<Id>>(_substrateRepository.Storage.Crowdloan.NewRaiseAsync);
         }
     }

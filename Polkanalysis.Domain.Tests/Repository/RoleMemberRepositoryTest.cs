@@ -1,17 +1,17 @@
 ﻿using NSubstitute;
-using Substats.Domain.Contracts.Exception;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Repository;
-using Substats.Domain.Repository;
-using Substats.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Domain.Contracts.Exception;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Repository;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Tests.Repository
+namespace Polkanalysis.Domain.Tests.Repository
 {
     public class RoleMemberRepositoryTest
     {

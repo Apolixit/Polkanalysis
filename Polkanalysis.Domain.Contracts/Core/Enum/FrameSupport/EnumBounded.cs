@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Enum.FrameSupport
+namespace Polkanalysis.Domain.Contracts.Core.Enum.FrameSupport
 {
     public enum Bounded
     {

@@ -4,13 +4,13 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
-using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated.Types.Base;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
 {
     public class AuctionsStorageTests : PolkadotRepositoryMock
     {
@@ -76,15 +76,15 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
         {
             // Let's build the output we want
             var testAccount = new SubstrateAccount("13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY");
-            var accountId32TestAccount = SubstrateMapper.Instance.Map<SubstrateAccount, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> (testAccount);
+            var accountId32TestAccount = SubstrateMapper.Instance.Map<SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> (testAccount);
             var testId = new Id(1);
-            var idExt = SubstrateMapper.Instance.Map<Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(testId);
-            var baseTuple = new BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, U128>(accountId32TestAccount, idExt, new U128(10));
+            var idExt = SubstrateMapper.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(testId);
+            var baseTuple = new BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, U128>(accountId32TestAccount, idExt, new U128(10));
 
             var extResult = new Arr36BaseOpt();
             extResult.Create(new[] { new BaseOpt<BaseTuple<
-                        Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32,
-                        Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, 
+                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32,
+                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, 
                         U128>
                     >(baseTuple) });
 

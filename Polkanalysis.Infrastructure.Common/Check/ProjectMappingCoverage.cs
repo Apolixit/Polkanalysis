@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Common.Check
+namespace Polkanalysis.Infrastructure.Common.Check
 {
     /// <summary>
     /// Check if every class of NetApiExt has their correspondance in Domain.Contracts

@@ -1,7 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Runtime;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Runtime.Module;
+using Polkanalysis.Domain.Runtime.Module;
 
-namespace Substats.Domain.Integration.Tests.Runtime.Extrinsic
+namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
 {
     public class ExtrinsicBalancesTests : PolkadotIntegrationTest
     {

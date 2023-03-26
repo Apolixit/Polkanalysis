@@ -1,10 +1,10 @@
-﻿using Substats.Configuration.Extentions;
+﻿using Polkanalysis.Configuration.Extentions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using NUnit.Framework;
 using System.Configuration;
 
-namespace Substats.Configuration.Tests
+namespace Polkanalysis.Configuration.Tests
 {
     public class ConfigurationTest
     {

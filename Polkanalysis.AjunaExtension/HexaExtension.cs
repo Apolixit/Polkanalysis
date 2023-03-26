@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi;
-using Substats.Polkadot.NetApiExt.Generated.Types.Base;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.AjunaExtension
+namespace Polkanalysis.AjunaExtension
 {
     public static class HexaExtension
     {

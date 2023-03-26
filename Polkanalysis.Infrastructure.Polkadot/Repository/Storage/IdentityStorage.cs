@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Identity;
-using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using IdentityStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.IdentityStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using IdentityStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.IdentityStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     public class IdentityStorage : MainStorage, IIdentityStorage
     {
@@ -22,7 +22,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
 
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration,
                 Registration>
                 (id, IdentityStorageExt.IdentityOfParams, token);
         }
@@ -46,7 +46,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             var id = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
 
-            return await GetStorageWithParamsAsync<AccountId32, BaseTuple<AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>,
+            return await GetStorageWithParamsAsync<AccountId32, BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>,
                 BaseTuple<SubstrateAccount, EnumData>>
                 (id, IdentityStorageExt.SuperOfParams, token);
         }

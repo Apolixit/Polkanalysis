@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> candidate
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CommittedCandidateReceipt _candidate;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CommittedCandidateReceipt _candidate;
         
         /// <summary>
         /// >> validity_votes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation> _validityVotes;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation> _validityVotes;
         
         /// <summary>
         /// >> validator_indices
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> _validatorIndices;
+        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> _validatorIndices;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CommittedCandidateReceipt Candidate
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CommittedCandidateReceipt Candidate
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation> ValidityVotes
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation> ValidityVotes
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> ValidatorIndices
+        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> ValidatorIndices
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Candidate = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CommittedCandidateReceipt();
+            Candidate = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CommittedCandidateReceipt();
             Candidate.Decode(byteArray, ref p);
-            ValidityVotes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>();
+            ValidityVotes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumValidityAttestation>();
             ValidityVotes.Decode(byteArray, ref p);
-            ValidatorIndices = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
+            ValidatorIndices = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
             ValidatorIndices.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

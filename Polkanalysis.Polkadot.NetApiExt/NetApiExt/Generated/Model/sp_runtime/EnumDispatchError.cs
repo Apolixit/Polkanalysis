@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime
 {
     
     
@@ -48,7 +48,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
     /// <summary>
     /// >> 24 - Variant[sp_runtime.DispatchError]
     /// </summary>
-    public sealed class EnumDispatchError : BaseEnumExt<DispatchError, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.ModuleError, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTokenError, Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.EnumArithmeticError, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTransactionalError, BaseVoid, BaseVoid, BaseVoid>
+    public sealed class EnumDispatchError : BaseEnumExt<DispatchError, BaseVoid, BaseVoid, BaseVoid, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.ModuleError, BaseVoid, BaseVoid, BaseVoid, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTokenError, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.EnumArithmeticError, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumTransactionalError, BaseVoid, BaseVoid, BaseVoid>
     {
     }
 }

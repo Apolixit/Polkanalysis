@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts
+namespace Polkanalysis.Domain.Contracts
 {
     public class PalletErrorDto
     {

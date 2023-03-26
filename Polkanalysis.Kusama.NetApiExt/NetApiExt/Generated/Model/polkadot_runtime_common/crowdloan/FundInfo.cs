@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan
 {
     
     
@@ -27,12 +27,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crow
         /// <summary>
         /// >> depositor
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
         
         /// <summary>
         /// >> verifier
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> _verifier;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> _verifier;
         
         /// <summary>
         /// >> deposit
@@ -57,7 +57,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crow
         /// <summary>
         /// >> last_contribution
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution _lastContribution;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution _lastContribution;
         
         /// <summary>
         /// >> first_period
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crow
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _fundIndex;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
         {
             get
             {
@@ -86,7 +86,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crow
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> Verifier
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> Verifier
         {
             get
             {
@@ -146,7 +146,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crow
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution LastContribution
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution LastContribution
         {
             get
             {
@@ -218,9 +218,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crow
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Depositor = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Depositor = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Depositor.Decode(byteArray, ref p);
-            Verifier = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner>();
+            Verifier = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner>();
             Verifier.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
@@ -230,7 +230,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crow
             End.Decode(byteArray, ref p);
             Cap = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Cap.Decode(byteArray, ref p);
-            LastContribution = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution();
+            LastContribution = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution();
             LastContribution.Decode(byteArray, ref p);
             FirstPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
             FirstPeriod.Decode(byteArray, ref p);

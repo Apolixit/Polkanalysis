@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Runtime.Mapping
+namespace Polkanalysis.Domain.Contracts.Runtime.Mapping
 {
     public interface IMapping
     {

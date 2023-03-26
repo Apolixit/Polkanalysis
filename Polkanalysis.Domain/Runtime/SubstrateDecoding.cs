@@ -6,15 +6,15 @@ using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Metadata.V14;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Runtime.Mapping;
-using Substats.Domain.Contracts.Secondary;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Runtime.Mapping;
+using Polkanalysis.Domain.Contracts.Secondary;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Runtime.Module;
-using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 
-namespace Substats.Domain.Runtime
+namespace Polkanalysis.Domain.Runtime
 {
     public class SubstrateDecoding : ISubstrateDecoding
     {

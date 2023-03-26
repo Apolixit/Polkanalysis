@@ -1,11 +1,11 @@
-﻿using Substats.Domain.Contracts.Secondary.Contracts;
+﻿using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Timestamp
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Timestamp
 {
     public interface ITimestampStorage : IPalletStorage
     {

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_collator_selection.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_collator_selection.pallet
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_collator_selection.pal
         /// <summary>
         /// >> who
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
         
         /// <summary>
         /// >> deposit
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U128 _deposit;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_collator_selection.pal
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Who = new Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Who = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);

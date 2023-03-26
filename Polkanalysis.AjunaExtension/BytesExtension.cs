@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.AjunaExtension
+namespace Polkanalysis.AjunaExtension
 {
     public static class BytesExtension
     {

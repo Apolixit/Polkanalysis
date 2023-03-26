@@ -1,7 +1,7 @@
-﻿using Substats.Domain.Contracts.Dto.Module;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Account;
-using Substats.Domain.UseCase.Module;
+﻿using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Account;
+using Polkanalysis.Domain.UseCase.Module;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Tests.UseCase.Module
+namespace Polkanalysis.Domain.Tests.UseCase.Module
 {
     public class ModuleDetailUseCaseTest : UseCaseTest<ModuleDetailUseCase, ModuleDetailDto, ModuleCommand>
     {

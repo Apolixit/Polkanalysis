@@ -3,15 +3,15 @@ using Ajuna.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Org.BouncyCastle.Math;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using Substats.Polkadot.NetApiExt.Generated.Types.Base;
-using AuctionsStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.AuctionsStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
+using AuctionsStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.AuctionsStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     /// <summary>
     /// Auctions storage mapping from Polkadot blockchain to Domain
@@ -37,9 +37,9 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             var param = SubstrateMapper.Instance.Map<
                 BaseTuple<SubstrateAccount, Id>,
-                BaseTuple<AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(key);
+                BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(key);
 
-            return await GetStorageWithParamsAsync<BaseTuple<AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id >, U128 >(param, AuctionsStorageExt.ReservedAmountsParams, token);
+            return await GetStorageWithParamsAsync<BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id >, U128 >(param, AuctionsStorageExt.ReservedAmountsParams, token);
         }
 
         public async Task<Winning> WinningAsync(U32 key, CancellationToken token)

@@ -1,4 +1,4 @@
-﻿namespace Substats.Maui
+﻿namespace Polkanalysis.Maui
 {
     public partial class App : Application
     {

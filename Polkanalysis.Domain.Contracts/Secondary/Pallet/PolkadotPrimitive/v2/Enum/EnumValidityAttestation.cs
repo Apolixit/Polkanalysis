@@ -1,7 +1,7 @@
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core.Signature;
+using Polkanalysis.Domain.Contracts.Core.Signature;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum
 {
     public enum ValidityAttestation
     {

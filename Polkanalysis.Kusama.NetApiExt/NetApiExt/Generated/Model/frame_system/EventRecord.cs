@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.frame_system
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_system
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_system
         /// <summary>
         /// >> phase
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.frame_system.EnumPhase _phase;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_system.EnumPhase _phase;
         
         /// <summary>
         /// >> event
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeEvent _event;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeEvent _event;
         
         /// <summary>
         /// >> topics
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256> _topics;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256> _topics;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.frame_system.EnumPhase Phase
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_system.EnumPhase Phase
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_system
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeEvent Event
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeEvent Event
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_system
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256> Topics
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256> Topics
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_system
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Phase = new Substats.Kusama.NetApiExt.Generated.Model.frame_system.EnumPhase();
+            Phase = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_system.EnumPhase();
             Phase.Decode(byteArray, ref p);
-            Event = new Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeEvent();
+            Event = new Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeEvent();
             Event.Decode(byteArray, ref p);
-            Topics = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256>();
+            Topics = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256>();
             Topics.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

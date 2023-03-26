@@ -1,15 +1,15 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
-using Substats.Configuration.Contracts;
-using Substats.Domain.Contracts.Secondary;
+using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using NUnit.Framework;
-using Substats.Infrastructure.Polkadot.Repository;
-using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Microsoft.Extensions.Logging;
 
-namespace Substats.Integration.Tests.Contracts
+namespace Polkanalysis.Integration.Tests.Contracts
 {
     /// <summary>
     /// Test main class to be connected to endpoint

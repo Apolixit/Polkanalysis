@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_
         /// <summary>
         /// >> value
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 _value;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 _value;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 Value
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256();
+            Value = new Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

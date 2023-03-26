@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
 {
     
     

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> descriptor
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor _descriptor;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor _descriptor;
         
         /// <summary>
         /// >> commitments
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments _commitments;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments _commitments;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor Descriptor
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor Descriptor
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments Commitments
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments Commitments
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Descriptor = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor();
+            Descriptor = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor();
             Descriptor.Decode(byteArray, ref p);
-            Commitments = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments();
+            Commitments = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateCommitments();
             Commitments.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -2,21 +2,21 @@
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Dto.Era;
-using Substats.Domain.Contracts.Dto.Staking;
-using Substats.Domain.Contracts.Dto.User;
-using Substats.Domain.Contracts.Exception;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
-using Substats.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
-using Substats.Domain.Contracts.Secondary.Pallet.Staking.Enums;
-using Substats.Domain.Contracts.Secondary.Repository;
-using static Substats.Domain.Contracts.Dto.GlobalStatusDto;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Dto.Era;
+using Polkanalysis.Domain.Contracts.Dto.Staking;
+using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Exception;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
-namespace Substats.Domain.Repository
+namespace Polkanalysis.Domain.Repository
 {
     public class PolkadotRoleMemberRepository : IRoleMemberRepository
     {

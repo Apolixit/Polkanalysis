@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace Substats.Maui
+namespace Polkanalysis.Maui
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

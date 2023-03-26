@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
         /// <summary>
         /// >> error
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Types.Base.Arr4U8 _error;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr4U8 _error;
         
         public Ajuna.NetApi.Model.Types.Primitive.U8 Index
         {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Types.Base.Arr4U8 Error
+        public Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr4U8 Error
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
             var start = p;
             Index = new Ajuna.NetApi.Model.Types.Primitive.U8();
             Index.Decode(byteArray, ref p);
-            Error = new Substats.Kusama.NetApiExt.Generated.Types.Base.Arr4U8();
+            Error = new Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr4U8();
             Error.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

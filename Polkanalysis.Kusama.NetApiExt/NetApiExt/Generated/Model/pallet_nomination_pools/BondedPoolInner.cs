@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
         /// <summary>
         /// >> state
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState _state;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState _state;
         
         /// <summary>
         /// >> member_counter
@@ -42,7 +42,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
         /// <summary>
         /// >> roles
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles _roles;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles _roles;
         
         public Ajuna.NetApi.Model.Types.Primitive.U128 Points
         {
@@ -56,7 +56,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState State
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState State
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles Roles
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles Roles
         {
             get
             {
@@ -112,11 +112,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
             var start = p;
             Points = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Points.Decode(byteArray, ref p);
-            State = new Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState();
+            State = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState();
             State.Decode(byteArray, ref p);
             MemberCounter = new Ajuna.NetApi.Model.Types.Primitive.U32();
             MemberCounter.Decode(byteArray, ref p);
-            Roles = new Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles();
+            Roles = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles();
             Roles.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

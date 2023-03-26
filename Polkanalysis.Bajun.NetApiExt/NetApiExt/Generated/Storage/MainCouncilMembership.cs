@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -30,8 +30,8 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         public CouncilMembershipStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CouncilMembership", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT22)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CouncilMembership", "Prime"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CouncilMembership", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT22)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CouncilMembership", "Prime"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
         }
         
         /// <summary>
@@ -47,10 +47,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> Members
         ///  The current membership, stored as an ordered Vec.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT22> Members(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT22> Members(CancellationToken token)
         {
             string parameters = CouncilMembershipStorage.MembersParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT22>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT22>(parameters, token);
         }
         
         /// <summary>
@@ -66,10 +66,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> Prime
         ///  The current prime member, if one exists.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prime(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prime(CancellationToken token)
         {
             string parameters = CouncilMembershipStorage.PrimeParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
         }
     }
     
@@ -80,7 +80,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> add_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AddMember(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who)
+        public static Method AddMember(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -91,7 +91,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> remove_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveMember(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who)
+        public static Method RemoveMember(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -102,7 +102,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> swap_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SwapMember(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 remove, Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 add)
+        public static Method SwapMember(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 remove, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 add)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(remove.Encode());
@@ -114,7 +114,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> reset_members
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ResetMembers(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> members)
+        public static Method ResetMembers(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> members)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(members.Encode());
@@ -125,7 +125,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> change_key
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ChangeKey(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 @new)
+        public static Method ChangeKey(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -136,7 +136,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> set_prime
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetPrime(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who)
+        public static Method SetPrime(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());

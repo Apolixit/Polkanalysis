@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_staking.offence
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_staking.offence
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_staking.offence
         /// <summary>
         /// >> offender
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> _offender;
+        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> _offender;
         
         /// <summary>
         /// >> reporters
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _reporters;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _reporters;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> Offender
+        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> Offender
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_staking.offence
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Reporters
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Reporters
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_staking.offence
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Offender = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure>();
+            Offender = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure>();
             Offender.Decode(byteArray, ref p);
-            Reporters = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Reporters = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Reporters.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

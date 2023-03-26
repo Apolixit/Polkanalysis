@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -30,12 +30,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         public PhragmenElectionStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "RunnersUp"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Candidates"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "RunnersUp"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Candidates"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "ElectionRounds"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Voting"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter)));
         }
         
         /// <summary>
@@ -55,10 +55,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Invariant: Always sorted based on account id.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> Members(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> Members(CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.MembersParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
         }
         
         /// <summary>
@@ -80,10 +80,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Invariant: Always sorted based on rank (worse to best). Upon removal of a member, the
         ///  last (i.e. _best_) runner-up will be replaced.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> RunnersUp(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> RunnersUp(CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.RunnersUpParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
         }
         
         /// <summary>
@@ -109,10 +109,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Invariant: Always sorted based on account id.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>> Candidates(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>> Candidates(CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.CandidatesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>(parameters, token);
         }
         
         /// <summary>
@@ -140,7 +140,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: SAFE as `AccountId` is a crypto hash.
         /// </summary>
-        public static string VotingParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string VotingParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("PhragmenElection", "Voting", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -153,10 +153,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: SAFE as `AccountId` is a crypto hash.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter> Voting(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter> Voting(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = PhragmenElectionStorage.VotingParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter>(parameters, token);
         }
     }
     
@@ -167,7 +167,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> vote
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Vote(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> votes, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value)
+        public static Method Vote(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> votes, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(votes.Encode());
@@ -200,7 +200,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> renounce_candidacy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RenounceCandidacy(Substats.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.EnumRenouncing renouncing)
+        public static Method RenounceCandidacy(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_elections_phragmen.EnumRenouncing renouncing)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(renouncing.Encode());
@@ -211,7 +211,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> remove_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveMember(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Primitive.Bool slash_bond, Ajuna.NetApi.Model.Types.Primitive.Bool rerun_election)
+        public static Method RemoveMember(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Primitive.Bool slash_bond, Ajuna.NetApi.Model.Types.Primitive.Bool rerun_election)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());

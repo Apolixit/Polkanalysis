@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.frame_system.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.pallet
 {
     
     
@@ -35,7 +35,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_system.pallet
     /// >> 18 - Variant[frame_system.pallet.Event]
     /// Event for the System pallet.
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.DispatchInfo, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError, Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.DispatchInfo>, BaseVoid, Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.DispatchInfo, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError, Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.DispatchInfo>, BaseVoid, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>>
     {
     }
 }

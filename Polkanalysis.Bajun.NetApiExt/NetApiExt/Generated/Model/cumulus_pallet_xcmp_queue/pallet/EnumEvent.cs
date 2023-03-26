@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.pallet
 {
     
     
@@ -42,7 +42,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.pal
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError, Ajuna.NetApi.Model.Types.Primitive.U64>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError, Ajuna.NetApi.Model.Types.Primitive.U64>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>>
     {
     }
 }

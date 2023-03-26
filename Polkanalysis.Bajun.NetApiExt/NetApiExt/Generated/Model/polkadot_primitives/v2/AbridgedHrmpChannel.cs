@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -52,7 +52,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> mqc_head
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256> _mqcHead;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256> _mqcHead;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 MaxCapacity
         {
@@ -114,7 +114,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256> MqcHead
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256> MqcHead
         {
             get
             {
@@ -156,7 +156,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             MsgCount.Decode(byteArray, ref p);
             TotalSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
             TotalSize.Decode(byteArray, ref p);
-            MqcHead = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>();
+            MqcHead = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>();
             MqcHead.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

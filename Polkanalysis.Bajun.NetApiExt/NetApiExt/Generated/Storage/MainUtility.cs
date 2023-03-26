@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -40,7 +40,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Batch(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall> calls)
+        public static Method Batch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -51,7 +51,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> as_derivative
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AsDerivative(Ajuna.NetApi.Model.Types.Primitive.U16 index, Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
+        public static Method AsDerivative(Ajuna.NetApi.Model.Types.Primitive.U16 index, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -63,7 +63,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> batch_all
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method BatchAll(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall> calls)
+        public static Method BatchAll(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -74,7 +74,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> dispatch_as
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method DispatchAs(Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller as_origin, Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
+        public static Method DispatchAs(Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller as_origin, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(as_origin.Encode());
@@ -86,7 +86,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> force_batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceBatch(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall> calls)
+        public static Method ForceBatch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());

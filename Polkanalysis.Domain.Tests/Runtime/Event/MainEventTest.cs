@@ -1,12 +1,12 @@
-﻿using Substats.Domain.Contracts.Runtime;
-using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Tests.Runtime.Event
+namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
     public class MainEventTest
     {

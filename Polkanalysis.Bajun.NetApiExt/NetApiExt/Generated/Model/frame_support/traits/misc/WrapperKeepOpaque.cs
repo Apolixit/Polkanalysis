@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc
         /// <summary>
         /// >> T
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall _t;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall _t;
         
         public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> Value0
         {
@@ -46,7 +46,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall T
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall T
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc
             var start = p;
             Value0 = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>();
             Value0.Decode(byteArray, ref p);
-            T = new Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall();
+            T = new Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall();
             T.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

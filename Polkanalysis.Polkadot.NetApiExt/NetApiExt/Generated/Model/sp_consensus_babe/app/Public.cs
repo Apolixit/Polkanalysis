@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app
         /// <summary>
         /// >> value
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public _value;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public _value;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public Value
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public();
+            Value = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Configuration.Contracts
+namespace Polkanalysis.Configuration.Contracts
 {
     public interface ISubstrateEndpoint
     {

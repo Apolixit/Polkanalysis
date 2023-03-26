@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa
     /// <summary>
     /// >> 221 - Variant[sp_finality_grandpa.Equivocation]
     /// </summary>
-    public sealed class EnumEquivocation : BaseEnumExt<Equivocation, Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.EquivocationT1, Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.EquivocationT2>
+    public sealed class EnumEquivocation : BaseEnumExt<Equivocation, Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.EquivocationT1, Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.EquivocationT2>
     {
     }
 }

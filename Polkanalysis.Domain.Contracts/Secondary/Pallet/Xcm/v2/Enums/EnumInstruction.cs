@@ -1,10 +1,10 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums;
-using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v1;
-using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v1.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v1;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v1.Enums;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums
 {
     public enum Instruction
     {

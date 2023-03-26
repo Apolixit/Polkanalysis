@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent
 {
     
     
@@ -27,24 +27,24 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_
         /// <summary>
         /// >> validation_data
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData _validationData;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData _validationData;
         
         /// <summary>
         /// >> relay_chain_state
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof _relayChainState;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof _relayChainState;
         
         /// <summary>
         /// >> downward_messages
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage> _downwardMessages;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage> _downwardMessages;
         
         /// <summary>
         /// >> horizontal_messages
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT2 _horizontalMessages;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT2 _horizontalMessages;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData ValidationData
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData ValidationData
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof RelayChainState
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof RelayChainState
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage> DownwardMessages
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage> DownwardMessages
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT2 HorizontalMessages
+        public Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT2 HorizontalMessages
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ValidationData = new Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData();
+            ValidationData = new Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData();
             ValidationData.Decode(byteArray, ref p);
-            RelayChainState = new Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof();
+            RelayChainState = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof();
             RelayChainState.Decode(byteArray, ref p);
-            DownwardMessages = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>();
+            DownwardMessages = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>();
             DownwardMessages.Decode(byteArray, ref p);
-            HorizontalMessages = new Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT2();
+            HorizontalMessages = new Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT2();
             HorizontalMessages.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

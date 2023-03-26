@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.xcm
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.xcm
     /// <summary>
     /// >> 93 - Variant[xcm.VersionedMultiLocation]
     /// </summary>
-    public sealed class EnumVersionedMultiLocation : BaseEnumExt<VersionedMultiLocation, Substats.Bajun.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Substats.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation>
+    public sealed class EnumVersionedMultiLocation : BaseEnumExt<VersionedMultiLocation, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation>
     {
     }
 }

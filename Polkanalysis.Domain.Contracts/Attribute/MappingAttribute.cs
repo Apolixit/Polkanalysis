@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Attribute
+namespace Polkanalysis.Domain.Contracts.Attribute
 {
     public class DomainMappingAttribute : System.Attribute
     {

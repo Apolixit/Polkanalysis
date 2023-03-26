@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
         /// <summary>
         /// >> normal
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _normal;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _normal;
         
         /// <summary>
         /// >> operational
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _operational;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _operational;
         
         /// <summary>
         /// >> mandatory
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _mandatory;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _mandatory;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Normal
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Normal
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Operational
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Operational
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Mandatory
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Mandatory
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Normal = new Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
+            Normal = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
             Normal.Decode(byteArray, ref p);
-            Operational = new Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
+            Operational = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
             Operational.Decode(byteArray, ref p);
-            Mandatory = new Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
+            Mandatory = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
             Mandatory.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

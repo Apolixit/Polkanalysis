@@ -1,7 +1,7 @@
-﻿using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Dto.Extrinsic;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Explorer.Events;
+﻿using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Explorer.Events;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using System;
@@ -10,9 +10,9 @@ using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
-namespace Substats.Domain.UseCase.Explorer.Extrinsics
+namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 {
     public class ExtrinsicDetailsUseCase : UseCase<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicCommand>
     {

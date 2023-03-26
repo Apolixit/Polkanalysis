@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Random;
-using Substats.Domain.Contracts.Secondary.Contracts;
-using Substats.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Random;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Paras
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras
 {
     public interface IParasStorage : IPalletStorage
     {

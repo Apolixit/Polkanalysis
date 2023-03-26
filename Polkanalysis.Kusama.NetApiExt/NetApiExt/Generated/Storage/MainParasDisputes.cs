@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -33,10 +33,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "LastPrunedSession"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Disputes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash>), typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Included"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash>), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash>), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "SpamSlots"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U32>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Frozen"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>)));
@@ -67,7 +67,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> DisputesParams
         ///  All ongoing or concluded disputes for the last several sessions.
         /// </summary>
-        public static string DisputesParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key)
+        public static string DisputesParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key)
         {
             return RequestGenerator.GetStorage("ParasDisputes", "Disputes", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -78,10 +78,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Disputes
         ///  All ongoing or concluded disputes for the last several sessions.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState> Disputes(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState> Disputes(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
         {
             string parameters = ParasDisputesStorage.DisputesParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState>(parameters, token);
         }
         
         /// <summary>
@@ -89,7 +89,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  All included blocks on the chain, as well as the block number in this chain that
         ///  should be reverted back to if the candidate is disputed and determined to be invalid.
         /// </summary>
-        public static string IncludedParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key)
+        public static string IncludedParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key)
         {
             return RequestGenerator.GetStorage("ParasDisputes", "Included", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -101,7 +101,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  All included blocks on the chain, as well as the block number in this chain that
         ///  should be reverted back to if the candidate is disputed and determined to be invalid.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Included(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Included(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
         {
             string parameters = ParasDisputesStorage.IncludedParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);

@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -30,7 +30,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         public SudoStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Sudo", "Key"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Sudo", "Key"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
         }
         
         /// <summary>
@@ -46,10 +46,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> Key
         ///  The `AccountId` of the sudo key.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Key(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Key(CancellationToken token)
         {
             string parameters = SudoStorage.KeyParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
         }
     }
     
@@ -60,7 +60,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> sudo
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Sudo(Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
+        public static Method Sudo(Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call.Encode());
@@ -71,7 +71,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> sudo_unchecked_weight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SudoUncheckedWeight(Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call, Ajuna.NetApi.Model.Types.Primitive.U64 weight)
+        public static Method SudoUncheckedWeight(Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call, Ajuna.NetApi.Model.Types.Primitive.U64 weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call.Encode());
@@ -83,7 +83,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> set_key
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetKey(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new)
+        public static Method SetKey(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -94,7 +94,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> sudo_as
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SudoAs(Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
+        public static Method SudoAs(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());

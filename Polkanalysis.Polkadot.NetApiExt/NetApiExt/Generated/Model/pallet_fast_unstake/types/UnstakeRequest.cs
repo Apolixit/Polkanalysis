@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
         /// <summary>
         /// >> stashes
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 _stashes;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 _stashes;
         
         /// <summary>
         /// >> checked
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30 _checked;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30 _checked;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 Stashes
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29 Stashes
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30 Checked
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30 Checked
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Stashes = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29();
+            Stashes = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT29();
             Stashes.Decode(byteArray, ref p);
-            Checked = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30();
+            Checked = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT30();
             Checked.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -1,10 +1,10 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.AjunaExtension;
-using Substats.AjunaExtension.Encoding;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.AjunaExtension.Encoding;
 using System.Numerics;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
 {
     public class Exposure : BaseType
     {

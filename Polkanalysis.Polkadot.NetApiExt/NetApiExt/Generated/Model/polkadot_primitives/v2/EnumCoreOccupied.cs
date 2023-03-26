@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     /// <summary>
     /// >> 660 - Variant[polkadot_primitives.v2.CoreOccupied]
     /// </summary>
-    public sealed class EnumCoreOccupied : BaseEnumExt<CoreOccupied, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry, BaseVoid>
+    public sealed class EnumCoreOccupied : BaseEnumExt<CoreOccupied, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadEntry, BaseVoid>
     {
     }
 }

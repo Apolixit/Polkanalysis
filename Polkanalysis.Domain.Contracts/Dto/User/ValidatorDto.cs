@@ -1,13 +1,13 @@
-﻿using Substats.Domain.Contracts.Dto.Era;
-using Substats.Domain.Contracts.Dto.Staking;
-using Substats.Domain.Contracts.Runtime;
+﻿using Polkanalysis.Domain.Contracts.Dto.Era;
+using Polkanalysis.Domain.Contracts.Dto.Staking;
+using Polkanalysis.Domain.Contracts.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.User
+namespace Polkanalysis.Domain.Contracts.Dto.User
 {
     public class ValidatorDto
     {

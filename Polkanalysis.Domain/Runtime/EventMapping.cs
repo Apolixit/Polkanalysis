@@ -3,14 +3,14 @@ using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts;
-using Substats.Domain.Contracts.Helpers;
-using Substats.Domain.Contracts.Runtime.Mapping;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts;
+using Polkanalysis.Domain.Contracts.Helpers;
+using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using System.Numerics;
 using System.Text;
 
-namespace Substats.Domain.Runtime
+namespace Polkanalysis.Domain.Runtime
 {
     public class EventMapping : IMapping
     {

@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,17 +31,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "PendingSwap"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "Paras"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "NextFreeParaId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "NextFreeParaId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
         }
         
         /// <summary>
         /// >> PendingSwapParams
         ///  Pending swap operations.
         /// </summary>
-        public static string PendingSwapParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string PendingSwapParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Registrar", "PendingSwap", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -61,10 +61,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PendingSwap
         ///  Pending swap operations.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> PendingSwap(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> PendingSwap(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = RegistrarStorage.PendingSwapParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
             return result;
         }
         
@@ -75,7 +75,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The given account ID is responsible for registering the code and initial head data, but may only do
         ///  so if it isn't yet registered. (After that, it's up to governance to do so.)
         /// </summary>
-        public static string ParasParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string ParasParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Registrar", "Paras", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -98,10 +98,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The given account ID is responsible for registering the code and initial head data, but may only do
         ///  so if it isn't yet registered. (After that, it's up to governance to do so.)
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo> Paras(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo> Paras(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = RegistrarStorage.ParasParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo>(parameters, token);
             return result;
         }
         
@@ -127,10 +127,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> NextFreeParaId
         ///  The next free `ParaId`.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> NextFreeParaId(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> NextFreeParaId(CancellationToken token)
         {
             string parameters = RegistrarStorage.NextFreeParaIdParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
             return result;
         }
     }
@@ -142,7 +142,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> register
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Register(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
+        public static Method Register(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -155,7 +155,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> force_register
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceRegister(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Ajuna.NetApi.Model.Types.Primitive.U128 deposit, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
+        public static Method ForceRegister(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Ajuna.NetApi.Model.Types.Primitive.U128 deposit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -170,7 +170,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> deregister
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Deregister(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id)
+        public static Method Deregister(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -181,7 +181,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> swap
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Swap(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id other)
+        public static Method Swap(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id other)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -193,7 +193,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> remove_lock
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveLock(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        public static Method RemoveLock(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -214,7 +214,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> add_lock
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AddLock(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        public static Method AddLock(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -225,7 +225,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> schedule_code_upgrade
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ScheduleCodeUpgrade(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code)
+        public static Method ScheduleCodeUpgrade(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -237,7 +237,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> set_current_head
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetCurrentHead(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData new_head)
+        public static Method SetCurrentHead(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData new_head)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());

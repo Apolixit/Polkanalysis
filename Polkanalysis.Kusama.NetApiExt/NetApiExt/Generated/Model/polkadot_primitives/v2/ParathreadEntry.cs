@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> claim
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadClaim _claim;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadClaim _claim;
         
         /// <summary>
         /// >> retries
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _retries;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadClaim Claim
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadClaim Claim
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Claim = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadClaim();
+            Claim = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ParathreadClaim();
             Claim.Decode(byteArray, ref p);
             Retries = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Retries.Decode(byteArray, ref p);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Tests.Repository
+namespace Polkanalysis.Domain.Tests.Repository
 {
     internal class AccountRepositoryTest
     {

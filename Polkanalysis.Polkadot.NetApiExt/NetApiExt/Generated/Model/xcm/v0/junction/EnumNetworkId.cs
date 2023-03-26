@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction
 {
     
     
@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.junction
     /// <summary>
     /// >> 129 - Variant[xcm.v0.junction.NetworkId]
     /// </summary>
-    public sealed class EnumNetworkId : BaseEnumExt<NetworkId, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseVoid>
+    public sealed class EnumNetworkId : BaseEnumExt<NetworkId, BaseVoid, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseVoid>
     {
     }
 }

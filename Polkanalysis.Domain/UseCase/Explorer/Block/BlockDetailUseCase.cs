@@ -1,6 +1,6 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Primary;
+using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Primary;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using OperationResult;
-using Substats.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
-namespace Substats.Domain.UseCase.Explorer.Block
+namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
     public class BlockDetailUseCase : UseCase<BlockDetailUseCase, BlockDto, BlockCommand>
     {

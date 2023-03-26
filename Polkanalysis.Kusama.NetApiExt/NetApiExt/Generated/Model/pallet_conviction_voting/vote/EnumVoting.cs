@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
     /// <summary>
     /// >> 608 - Variant[pallet_conviction_voting.vote.Voting]
     /// </summary>
-    public sealed class EnumVoting : BaseEnumExt<Voting, Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.Casting, Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.Delegating>
+    public sealed class EnumVoting : BaseEnumExt<Voting, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.Casting, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.Delegating>
     {
     }
 }

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
 {
     
     
@@ -32,17 +32,17 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         /// <summary>
         /// >> mint
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintConfig _mint;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintConfig _mint;
         
         /// <summary>
         /// >> forge
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.ForgeConfig _forge;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.ForgeConfig _forge;
         
         /// <summary>
         /// >> trade
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.TradeConfig _trade;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.TradeConfig _trade;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 MaxAvatarsPerPlayer
         {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintConfig Mint
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintConfig Mint
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.ForgeConfig Forge
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.ForgeConfig Forge
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.TradeConfig Trade
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.TradeConfig Trade
         {
             get
             {
@@ -112,11 +112,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             var start = p;
             MaxAvatarsPerPlayer = new Ajuna.NetApi.Model.Types.Primitive.U32();
             MaxAvatarsPerPlayer.Decode(byteArray, ref p);
-            Mint = new Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintConfig();
+            Mint = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintConfig();
             Mint.Decode(byteArray, ref p);
-            Forge = new Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.ForgeConfig();
+            Forge = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.ForgeConfig();
             Forge.Decode(byteArray, ref p);
-            Trade = new Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.TradeConfig();
+            Trade = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.TradeConfig();
             Trade.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

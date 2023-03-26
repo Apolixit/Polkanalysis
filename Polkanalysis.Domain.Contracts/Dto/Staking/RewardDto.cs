@@ -1,13 +1,13 @@
 ﻿using Org.BouncyCastle.Math;
-using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.Staking
+namespace Polkanalysis.Domain.Contracts.Dto.Staking
 {
     public class RewardDto
     {

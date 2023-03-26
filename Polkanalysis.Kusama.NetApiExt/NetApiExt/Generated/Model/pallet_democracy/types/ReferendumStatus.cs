@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
 {
     
     
@@ -32,12 +32,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
         /// <summary>
         /// >> proposal
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded _proposal;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded _proposal;
         
         /// <summary>
         /// >> threshold
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold _threshold;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold _threshold;
         
         /// <summary>
         /// >> delay
@@ -47,7 +47,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
         /// <summary>
         /// >> tally
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Tally _tally;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Tally _tally;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 End
         {
@@ -61,7 +61,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded Proposal
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded Proposal
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold Threshold
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold Threshold
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Tally Tally
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Tally Tally
         {
             get
             {
@@ -130,13 +130,13 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
             var start = p;
             End = new Ajuna.NetApi.Model.Types.Primitive.U32();
             End.Decode(byteArray, ref p);
-            Proposal = new Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded();
+            Proposal = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded();
             Proposal.Decode(byteArray, ref p);
-            Threshold = new Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold();
+            Threshold = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold();
             Threshold.Decode(byteArray, ref p);
             Delay = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Delay.Decode(byteArray, ref p);
-            Tally = new Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Tally();
+            Tally = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Tally();
             Tally.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

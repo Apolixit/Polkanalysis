@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe
         /// <summary>
         /// >> allowed_slots
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots _allowedSlots;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots _allowedSlots;
         
         public Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64> C
         {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots AllowedSlots
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots AllowedSlots
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe
             var start = p;
             C = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>();
             C.Decode(byteArray, ref p);
-            AllowedSlots = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots();
+            AllowedSlots = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots();
             AllowedSlots.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

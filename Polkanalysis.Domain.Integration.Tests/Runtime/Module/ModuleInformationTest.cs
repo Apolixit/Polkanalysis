@@ -1,5 +1,5 @@
-﻿using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.Integration.Tests.Contracts;
+﻿using Polkanalysis.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Integration.Tests.Contracts;
 using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Dto;
-using Substats.Domain.Contracts.Runtime.Module;
-using Substats.Domain.Runtime.Module;
-using Substats.Domain.Runtime;
+using Polkanalysis.Domain.Dto;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Runtime.Module;
+using Polkanalysis.Domain.Runtime;
 using Ajuna.NetApi.Model.Meta;
 using Microsoft.Win32;
 using Org.BouncyCastle.Asn1.Utilities;
@@ -20,7 +20,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Security.Claims;
 using System.Security.Principal;
 
-namespace Substats.Domain.Integration.Tests.Runtime.Module
+namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class ModuleInformationTest : PolkadotIntegrationTest
     {

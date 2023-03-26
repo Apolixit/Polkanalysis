@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,22 +31,22 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Authorities"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "GenesisSlot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "CurrentSlot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Randomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "PendingEpochConfigChange"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextRandomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextAuthorities"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Authorities"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "GenesisSlot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "CurrentSlot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Randomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "PendingEpochConfigChange"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextRandomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextAuthorities"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "SegmentIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "UnderConstruction"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Initialized"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "AuthorVrfRandomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Initialized"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "AuthorVrfRandomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochStart"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Lateness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextEpochConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextEpochConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
         }
         
         /// <summary>
@@ -100,10 +100,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> Authorities
         ///  Current epoch authorities.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> Authorities(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> Authorities(CancellationToken token)
         {
             string parameters = BabeStorage.AuthoritiesParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
             return result;
         }
         
@@ -131,10 +131,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The slot at which the first epoch actually started. This is 0
         ///  until the first block of the chain.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> GenesisSlot(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> GenesisSlot(CancellationToken token)
         {
             string parameters = BabeStorage.GenesisSlotParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
             return result;
         }
         
@@ -160,10 +160,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> CurrentSlot
         ///  Current slot number.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> CurrentSlot(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> CurrentSlot(CancellationToken token)
         {
             string parameters = BabeStorage.CurrentSlotParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
             return result;
         }
         
@@ -207,10 +207,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  used where a number is needed that cannot have been chosen by an
         ///  adversary, for purposes such as public-coin zero-knowledge proofs.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> Randomness(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> Randomness(CancellationToken token)
         {
             string parameters = BabeStorage.RandomnessParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
             return result;
         }
         
@@ -236,10 +236,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PendingEpochConfigChange
         ///  Pending epoch configuration change that will be applied when the next epoch is enacted.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor> PendingEpochConfigChange(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor> PendingEpochConfigChange(CancellationToken token)
         {
             string parameters = BabeStorage.PendingEpochConfigChangeParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>(parameters, token);
             return result;
         }
         
@@ -265,10 +265,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> NextRandomness
         ///  Next epoch randomness.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> NextRandomness(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> NextRandomness(CancellationToken token)
         {
             string parameters = BabeStorage.NextRandomnessParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
             return result;
         }
         
@@ -294,10 +294,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> NextAuthorities
         ///  Next epoch authorities.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> NextAuthorities(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> NextAuthorities(CancellationToken token)
         {
             string parameters = BabeStorage.NextAuthoritiesParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
             return result;
         }
         
@@ -370,10 +370,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> UnderConstruction
         ///  TWOX-NOTE: `SegmentIndex` is an increasing integer, so this is okay.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5> UnderConstruction(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5> UnderConstruction(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = BabeStorage.UnderConstructionParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5>(parameters, token);
             return result;
         }
         
@@ -401,10 +401,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Temporary value (cleared at block finalization) which is `Some`
         ///  if per-block initialization has already been called for current block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>> Initialized(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>> Initialized(CancellationToken token)
         {
             string parameters = BabeStorage.InitializedParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(parameters, token);
             return result;
         }
         
@@ -436,10 +436,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  It is set in `on_finalize`, before it will contain the value from the last block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>> AuthorVrfRandomness(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>> AuthorVrfRandomness(CancellationToken token)
         {
             string parameters = BabeStorage.AuthorVrfRandomnessParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>>(parameters, token);
             return result;
         }
         
@@ -541,10 +541,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The configuration for the current epoch. Should never be `None` as it is initialized in
         ///  genesis.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> EpochConfig(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> EpochConfig(CancellationToken token)
         {
             string parameters = BabeStorage.EpochConfigParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
             return result;
         }
         
@@ -572,10 +572,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  The configuration for the next epoch, `None` if the config will not change
         ///  (you can fallback to `EpochConfig` instead in that case).
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> NextEpochConfig(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> NextEpochConfig(CancellationToken token)
         {
             string parameters = BabeStorage.NextEpochConfigParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
             return result;
         }
     }
@@ -587,7 +587,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> report_equivocation
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReportEquivocation(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof equivocation_proof, Substats.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
+        public static Method ReportEquivocation(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof equivocation_proof, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(equivocation_proof.Encode());
@@ -599,7 +599,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> report_equivocation_unsigned
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReportEquivocationUnsigned(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof equivocation_proof, Substats.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
+        public static Method ReportEquivocationUnsigned(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof equivocation_proof, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(equivocation_proof.Encode());
@@ -611,7 +611,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> plan_config_change
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method PlanConfigChange(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor config)
+        public static Method PlanConfigChange(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor config)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(config.Encode());

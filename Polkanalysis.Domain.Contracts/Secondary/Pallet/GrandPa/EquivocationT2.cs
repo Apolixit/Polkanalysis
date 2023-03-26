@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core.Public;
-using Substats.Domain.Contracts.Core.Signature;
+using Polkanalysis.Domain.Contracts.Core.Public;
+using Polkanalysis.Domain.Contracts.Core.Signature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.GrandPa
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.GrandPa
 {
     public class EquivocationT2 : BaseType
     {

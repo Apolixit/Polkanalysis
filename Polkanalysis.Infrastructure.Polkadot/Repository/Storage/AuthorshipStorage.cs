@@ -2,15 +2,15 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Authorship;
-using Substats.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using AuthorshipStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.AuthorshipStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using AuthorshipStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.AuthorshipStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     /// <summary>
     /// Authorship storage mapping from Polkadot blockchain to Domain
@@ -23,7 +23,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<SubstrateAccount> AuthorAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                    Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32,
+                    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32,
                     SubstrateAccount>
                 (AuthorshipStorageExt.AuthorParams, token);
         }
@@ -38,7 +38,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             return await GetStorageAsync<BoundedVecT7, BaseVec<EnumUncleEntryItem>>(AuthorshipStorageExt.UnclesParams, token);
 
             //var res = await GetStorageAsync<
-            //    Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7,
+            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7,
             //    BaseVec<EnumUncleEntryItem>>
             //    (AuthorshipStorageExt.UnclesParams, token);
 

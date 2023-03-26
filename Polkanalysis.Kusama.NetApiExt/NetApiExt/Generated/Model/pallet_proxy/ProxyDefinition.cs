@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
         /// <summary>
         /// >> delegate
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _delegate;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _delegate;
         
         /// <summary>
         /// >> proxy_type
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType _proxyType;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType _proxyType;
         
         /// <summary>
         /// >> delay
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _delay;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Delegate
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Delegate
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType ProxyType
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType ProxyType
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Delegate = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Delegate = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Delegate.Decode(byteArray, ref p);
-            ProxyType = new Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType();
+            ProxyType = new Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumProxyType();
             ProxyType.Decode(byteArray, ref p);
             Delay = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Delay.Decode(byteArray, ref p);

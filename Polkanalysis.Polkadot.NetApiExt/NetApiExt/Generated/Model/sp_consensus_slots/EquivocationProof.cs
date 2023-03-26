@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
 {
     
     
@@ -27,24 +27,24 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
         /// <summary>
         /// >> offender
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public _offender;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public _offender;
         
         /// <summary>
         /// >> slot
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
         
         /// <summary>
         /// >> first_header
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _firstHeader;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _firstHeader;
         
         /// <summary>
         /// >> second_header
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _secondHeader;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _secondHeader;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public Offender
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public Offender
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header FirstHeader
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header FirstHeader
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header SecondHeader
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header SecondHeader
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Offender = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public();
+            Offender = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public();
             Offender.Decode(byteArray, ref p);
-            Slot = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
+            Slot = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
             Slot.Decode(byteArray, ref p);
-            FirstHeader = new Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
+            FirstHeader = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
             FirstHeader.Decode(byteArray, ref p);
-            SecondHeader = new Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
+            SecondHeader = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
             SecondHeader.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

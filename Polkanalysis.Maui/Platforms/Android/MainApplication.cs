@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace Substats.Maui
+namespace Polkanalysis.Maui
 {
     [Application]
     public class MainApplication : MauiApplication

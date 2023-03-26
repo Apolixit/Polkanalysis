@@ -1,5 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.Integration.Tests.Contracts;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Integration.Tests.Repository.Explorer
+namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
     public class ExplorerBlockTests : ExplorerRepositoryTest
     {

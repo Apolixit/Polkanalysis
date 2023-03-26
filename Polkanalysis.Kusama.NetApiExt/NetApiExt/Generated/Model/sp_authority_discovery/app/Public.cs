@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app
         /// <summary>
         /// >> value
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public _value;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public _value;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public Value
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public();
+            Value = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

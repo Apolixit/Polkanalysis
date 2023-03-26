@@ -1,9 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Runtime.Module;
-using Substats.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Secondary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Substats.Domain.Runtime.Module
+namespace Polkanalysis.Domain.Runtime.Module
 {
     public class PalletBuilder : IPalletBuilder
     {
@@ -93,10 +93,10 @@ namespace Substats.Domain.Runtime.Module
             }
 
             Assembly assembly = typeof(Polkadot.NetApiExt.Generated.SubstrateClientExt).Assembly;
-            Type? palletType = assembly.GetType($"Substats.Polkadot.NetApiExt.Generated.Model.{dynamicCall}");
+            Type? palletType = assembly.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Model.{dynamicCall}");
             if (palletType == null) throw new FormatException($"Dynamic call to EnumCall for pallet {palletName} has failed");
 
-            Type? enumType = assembly.GetType($"Substats.Polkadot.NetApiExt.Generated.Model.{dynamicEnum}");
+            Type? enumType = assembly.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Model.{dynamicEnum}");
             if (enumType == null) throw new FormatException($"Dynamic call to enum for pallet {palletName} has failed");
 
             IType? callInstance = (IType?)Activator.CreateInstance(palletType);

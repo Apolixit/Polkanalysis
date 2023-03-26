@@ -1,15 +1,15 @@
-﻿using Substats.Domain.UseCase.Explorer.Block;
-using Substats.Domain.UseCase;
-using Substats.Domain.UseCase.Explorer.Events;
-using Substats.Domain.UseCase.Explorer.Extrinsics;
+﻿using Polkanalysis.Domain.UseCase.Explorer.Block;
+using Polkanalysis.Domain.UseCase;
+using Polkanalysis.Domain.UseCase.Explorer.Events;
+using Polkanalysis.Domain.UseCase.Explorer.Extrinsics;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Primary;
+using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Primary;
 using NSubstitute.ReturnsExtensions;
-using Substats.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
-namespace Substats.Domain.Tests.UseCase.Explorer.Events
+namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 {
     public class EventDetailUseCaseTest : UseCaseTest<EventDetailUseCase, EventDto, EventCommand>
     {

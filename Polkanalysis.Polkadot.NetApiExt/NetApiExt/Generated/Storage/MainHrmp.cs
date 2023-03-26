@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,27 +31,27 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpOpenChannelRequests"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpOpenChannelRequestsList"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpOpenChannelRequestsList"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpOpenChannelRequestCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpAcceptedChannelRequestCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpCloseChannelRequests"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpCloseChannelRequestsList"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpCloseChannelRequestsList"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpWatermarks"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpChannels"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpIngressChannelsIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpEgressChannelsIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpChannelContents"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Hrmp", "HrmpChannelDigests"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>)));
         }
         
         /// <summary>
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - There are no channels that exists in list but not in the set and vice versa.
         /// </summary>
-        public static string HrmpOpenChannelRequestsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
+        public static string HrmpOpenChannelRequestsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpOpenChannelRequests", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -88,10 +88,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - There are no channels that exists in list but not in the set and vice versa.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest> HrmpOpenChannelRequests(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest> HrmpOpenChannelRequests(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpOpenChannelRequestsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpOpenChannelRequest>(parameters, token);
             return result;
         }
         
@@ -115,10 +115,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> HrmpOpenChannelRequestsList
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>> HrmpOpenChannelRequestsList(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>> HrmpOpenChannelRequestsList(CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpOpenChannelRequestsListParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
             return result;
         }
         
@@ -128,7 +128,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant: `HrmpOpenChannelRequests` should contain the same number of items that has
         ///  `(X, _)` as the number of `HrmpOpenChannelRequestCount` for `X`.
         /// </summary>
-        public static string HrmpOpenChannelRequestCountParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string HrmpOpenChannelRequestCountParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpOpenChannelRequestCount", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -150,7 +150,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant: `HrmpOpenChannelRequests` should contain the same number of items that has
         ///  `(X, _)` as the number of `HrmpOpenChannelRequestCount` for `X`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpOpenChannelRequestCount(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpOpenChannelRequestCount(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpOpenChannelRequestCountParams(key);
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
@@ -163,7 +163,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant: `HrmpOpenChannelRequests` should contain the same number of items `(_, X)` with
         ///  `confirmed` set to true, as the number of `HrmpAcceptedChannelRequestCount` for `X`.
         /// </summary>
-        public static string HrmpAcceptedChannelRequestCountParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string HrmpAcceptedChannelRequestCountParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpAcceptedChannelRequestCount", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -185,7 +185,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant: `HrmpOpenChannelRequests` should contain the same number of items `(_, X)` with
         ///  `confirmed` set to true, as the number of `HrmpAcceptedChannelRequestCount` for `X`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpAcceptedChannelRequestCount(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpAcceptedChannelRequestCount(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpAcceptedChannelRequestCountParams(key);
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
@@ -202,7 +202,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - There are no channels that exists in list but not in the set and vice versa.
         /// </summary>
-        public static string HrmpCloseChannelRequestsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
+        public static string HrmpCloseChannelRequestsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpCloseChannelRequests", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -228,7 +228,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - There are no channels that exists in list but not in the set and vice versa.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> HrmpCloseChannelRequests(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> HrmpCloseChannelRequests(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpCloseChannelRequestsParams(key);
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
@@ -255,10 +255,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> HrmpCloseChannelRequestsList
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>> HrmpCloseChannelRequestsList(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>> HrmpCloseChannelRequestsList(CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpCloseChannelRequestsListParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId>>(parameters, token);
             return result;
         }
         
@@ -268,7 +268,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - each para `P` used here as a key should satisfy `Paras::is_valid_para(P)` within a session.
         /// </summary>
-        public static string HrmpWatermarksParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string HrmpWatermarksParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpWatermarks", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -290,7 +290,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - each para `P` used here as a key should satisfy `Paras::is_valid_para(P)` within a session.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpWatermarks(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HrmpWatermarks(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpWatermarksParams(key);
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
@@ -303,7 +303,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - each participant in the channel should satisfy `Paras::is_valid_para(P)` within a session.
         /// </summary>
-        public static string HrmpChannelsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
+        public static string HrmpChannelsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpChannels", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -325,10 +325,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant:
         ///  - each participant in the channel should satisfy `Paras::is_valid_para(P)` within a session.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel> HrmpChannels(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel> HrmpChannels(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpChannelsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp.HrmpChannel>(parameters, token);
             return result;
         }
         
@@ -348,7 +348,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  - there should be no other dangling channels in `HrmpChannels`.
         ///  - the vectors are sorted.
         /// </summary>
-        public static string HrmpIngressChannelsIndexParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string HrmpIngressChannelsIndexParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpIngressChannelsIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -380,17 +380,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  - there should be no other dangling channels in `HrmpChannels`.
         ///  - the vectors are sorted.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> HrmpIngressChannelsIndex(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> HrmpIngressChannelsIndex(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpIngressChannelsIndexParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
             return result;
         }
         
         /// <summary>
         /// >> HrmpEgressChannelsIndexParams
         /// </summary>
-        public static string HrmpEgressChannelsIndexParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string HrmpEgressChannelsIndexParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpEgressChannelsIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -409,10 +409,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> HrmpEgressChannelsIndex
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> HrmpEgressChannelsIndex(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> HrmpEgressChannelsIndex(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpEgressChannelsIndexParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
             return result;
         }
         
@@ -421,7 +421,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Storage for the messages for each channel.
         ///  Invariant: cannot be non-empty if the corresponding channel in `HrmpChannels` is `None`.
         /// </summary>
-        public static string HrmpChannelContentsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
+        public static string HrmpChannelContentsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpChannelContents", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -442,10 +442,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Storage for the messages for each channel.
         ///  Invariant: cannot be non-empty if the corresponding channel in `HrmpChannels` is `None`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>> HrmpChannelContents(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>> HrmpChannelContents(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpChannelContentsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundHrmpMessage>>(parameters, token);
             return result;
         }
         
@@ -458,7 +458,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  - The outer vector is sorted ascending by block number and cannot store two items with the
         ///    same block number.
         /// </summary>
-        public static string HrmpChannelDigestsParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string HrmpChannelDigestsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Hrmp", "HrmpChannelDigests", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -483,10 +483,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  - The outer vector is sorted ascending by block number and cannot store two items with the
         ///    same block number.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>> HrmpChannelDigests(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>> HrmpChannelDigests(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = HrmpStorage.HrmpChannelDigestsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>>>(parameters, token);
             return result;
         }
     }
@@ -498,7 +498,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> hrmp_init_open_channel
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method HrmpInitOpenChannel(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id recipient, Ajuna.NetApi.Model.Types.Primitive.U32 proposed_max_capacity, Ajuna.NetApi.Model.Types.Primitive.U32 proposed_max_message_size)
+        public static Method HrmpInitOpenChannel(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id recipient, Ajuna.NetApi.Model.Types.Primitive.U32 proposed_max_capacity, Ajuna.NetApi.Model.Types.Primitive.U32 proposed_max_message_size)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(recipient.Encode());
@@ -511,7 +511,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> hrmp_accept_open_channel
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method HrmpAcceptOpenChannel(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id sender)
+        public static Method HrmpAcceptOpenChannel(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id sender)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(sender.Encode());
@@ -522,7 +522,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> hrmp_close_channel
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method HrmpCloseChannel(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId channel_id)
+        public static Method HrmpCloseChannel(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId channel_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(channel_id.Encode());
@@ -533,7 +533,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> force_clean_hrmp
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceCleanHrmp(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Ajuna.NetApi.Model.Types.Primitive.U32 inbound, Ajuna.NetApi.Model.Types.Primitive.U32 outbound)
+        public static Method ForceCleanHrmp(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Ajuna.NetApi.Model.Types.Primitive.U32 inbound, Ajuna.NetApi.Model.Types.Primitive.U32 outbound)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -568,7 +568,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> hrmp_cancel_open_request
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method HrmpCancelOpenRequest(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId channel_id, Ajuna.NetApi.Model.Types.Primitive.U32 open_requests)
+        public static Method HrmpCancelOpenRequest(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HrmpChannelId channel_id, Ajuna.NetApi.Model.Types.Primitive.U32 open_requests)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(channel_id.Encode());
@@ -580,7 +580,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> force_open_hrmp_channel
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceOpenHrmpChannel(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id sender, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id recipient, Ajuna.NetApi.Model.Types.Primitive.U32 max_capacity, Ajuna.NetApi.Model.Types.Primitive.U32 max_message_size)
+        public static Method ForceOpenHrmpChannel(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id sender, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id recipient, Ajuna.NetApi.Model.Types.Primitive.U32 max_capacity, Ajuna.NetApi.Model.Types.Primitive.U32 max_message_size)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(sender.Encode());

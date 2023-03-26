@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Helpers
+namespace Polkanalysis.Domain.Contracts.Helpers
 {
     public class SubstrateHelper
     {

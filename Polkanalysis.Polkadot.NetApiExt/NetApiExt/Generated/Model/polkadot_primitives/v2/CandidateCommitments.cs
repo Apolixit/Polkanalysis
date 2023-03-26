@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -32,17 +32,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> horizontal_messages
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage> _horizontalMessages;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage> _horizontalMessages;
         
         /// <summary>
         /// >> new_validation_code
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode> _newValidationCode;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode> _newValidationCode;
         
         /// <summary>
         /// >> head_data
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData _headData;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData _headData;
         
         /// <summary>
         /// >> processed_downward_messages
@@ -66,7 +66,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage> HorizontalMessages
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage> HorizontalMessages
         {
             get
             {
@@ -78,7 +78,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode> NewValidationCode
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode> NewValidationCode
         {
             get
             {
@@ -90,7 +90,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData HeadData
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData HeadData
         {
             get
             {
@@ -148,11 +148,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             var start = p;
             UpwardMessages = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>();
             UpwardMessages.Decode(byteArray, ref p);
-            HorizontalMessages = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>();
+            HorizontalMessages = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>();
             HorizontalMessages.Decode(byteArray, ref p);
-            NewValidationCode = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>();
+            NewValidationCode = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>();
             NewValidationCode.Decode(byteArray, ref p);
-            HeadData = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData();
+            HeadData = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData();
             HeadData.Decode(byteArray, ref p);
             ProcessedDownwardMessages = new Ajuna.NetApi.Model.Types.Primitive.U32();
             ProcessedDownwardMessages.Decode(byteArray, ref p);

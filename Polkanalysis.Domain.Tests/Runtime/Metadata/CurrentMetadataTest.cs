@@ -1,5 +1,5 @@
-﻿using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Secondary;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary;
 using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Runtime;
+using Polkanalysis.Domain.Runtime;
 
-namespace Substats.Domain.Tests.Runtime.Metadata
+namespace Polkanalysis.Domain.Tests.Runtime.Metadata
 {
     public class CurrentMetadataTest
     {

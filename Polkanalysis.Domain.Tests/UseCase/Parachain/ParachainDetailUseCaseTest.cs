@@ -1,17 +1,17 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Substats.Domain.Contracts.Dto.Parachain;
-using Substats.Domain.Contracts.Dto.User;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Parachain;
-using Substats.Domain.UseCase.Validator;
+using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Parachain;
+using Polkanalysis.Domain.UseCase.Validator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Tests.UseCase.Parachain
+namespace Polkanalysis.Domain.Tests.UseCase.Parachain
 {
     internal class ParachainDetailUseCaseTest : UseCaseTest<ParachainDetailUseCase, ParachainDto, ParachainCommand>
     {

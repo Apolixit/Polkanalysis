@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -32,9 +32,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Scheduler", "IncompleteSince"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Scheduler", "Agenda"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Scheduler", "Lookup"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
         }
         
         /// <summary>
@@ -69,10 +69,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Agenda
         ///  Items to be executed, indexed by the block number that they should be executed on.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26> Agenda(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26> Agenda(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = SchedulerStorage.AgendaParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT26>(parameters, token);
         }
         
         /// <summary>
@@ -82,7 +82,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  For v3 -> v4 the previously unbounded identities are Blake2-256 hashed to form the v4
         ///  identities.
         /// </summary>
-        public static string LookupParams(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 key)
+        public static string LookupParams(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 key)
         {
             return RequestGenerator.GetStorage("Scheduler", "Lookup", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -96,7 +96,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  For v3 -> v4 the previously unbounded identities are Blake2-256 hashed to form the v4
         ///  identities.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> Lookup(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> Lookup(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 key, CancellationToken token)
         {
             string parameters = SchedulerStorage.LookupParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
@@ -110,7 +110,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> schedule
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Schedule(Ajuna.NetApi.Model.Types.Primitive.U32 when, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method Schedule(Ajuna.NetApi.Model.Types.Primitive.U32 when, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(when.Encode());
@@ -136,7 +136,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> schedule_named
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ScheduleNamed(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 id, Ajuna.NetApi.Model.Types.Primitive.U32 when, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method ScheduleNamed(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 id, Ajuna.NetApi.Model.Types.Primitive.U32 when, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -151,7 +151,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> cancel_named
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CancelNamed(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 id)
+        public static Method CancelNamed(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -162,7 +162,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> schedule_after
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ScheduleAfter(Ajuna.NetApi.Model.Types.Primitive.U32 after, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method ScheduleAfter(Ajuna.NetApi.Model.Types.Primitive.U32 after, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(after.Encode());
@@ -176,7 +176,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> schedule_named_after
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ScheduleNamedAfter(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 id, Ajuna.NetApi.Model.Types.Primitive.U32 after, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method ScheduleNamedAfter(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 id, Ajuna.NetApi.Model.Types.Primitive.U32 after, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Ajuna.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());

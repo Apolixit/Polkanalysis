@@ -1,21 +1,21 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Dto;
-using Substats.Domain.Runtime;
-using Substats.Integration.Tests.Contracts;
-using Substats.Polkadot.NetApiExt.Generated.Storage;
+using Polkanalysis.Domain.Contracts;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Dto;
+using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Integration.Tests.Contracts;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.Core.Arguments;
 using NUnit.Framework;
 using System.Threading;
-using Substats.Domain.Runtime.Module;
-using Substats.Domain.Contracts.Secondary.Repository;
-using Substats.Domain.Repository;
+using Polkanalysis.Domain.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Repository;
 
-namespace Substats.Domain.Integration.Tests.Repository.Explorer
+namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
     public abstract class ExplorerRepositoryTest : PolkadotIntegrationTest
     {

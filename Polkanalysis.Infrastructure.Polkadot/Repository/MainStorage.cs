@@ -2,8 +2,8 @@
 using Ajuna.NetApi.Model.Types;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Polkadot.Repository
+namespace Polkanalysis.Infrastructure.Polkadot.Repository
 {
     public abstract class MainStorage
     {

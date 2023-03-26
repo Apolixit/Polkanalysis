@@ -3,16 +3,16 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core.Random;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core.Random;
+using Polkanalysis.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Babe
+namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Babe
 {
     public class BabeStorageTests : PolkadotIntegrationTest
     {

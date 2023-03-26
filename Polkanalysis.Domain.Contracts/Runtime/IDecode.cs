@@ -2,14 +2,14 @@
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Runtime
+namespace Polkanalysis.Domain.Contracts.Runtime
 {
     /// <summary>
     /// Decode and build a tree from Substrate interaction

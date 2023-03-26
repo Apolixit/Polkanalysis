@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Secondary.Pallet.Balances;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
 {
     public class AccountInfo : BaseType
     {

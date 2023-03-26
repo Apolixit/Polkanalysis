@@ -1,15 +1,15 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Org.BouncyCastle.Math;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
 {
     public interface IAwesomeAvatarsStorage : IPalletStorage
     {

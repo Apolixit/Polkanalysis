@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         /// <summary>
         /// >> dna
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 _dna;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 _dna;
         
         /// <summary>
         /// >> souls
@@ -51,7 +51,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 Dna
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1 Dna
         {
             get
             {
@@ -94,7 +94,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             var start = p;
             SeasonId = new Ajuna.NetApi.Model.Types.Primitive.U16();
             SeasonId.Decode(byteArray, ref p);
-            Dna = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1();
+            Dna = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1();
             Dna.Decode(byteArray, ref p);
             Souls = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Souls.Decode(byteArray, ref p);

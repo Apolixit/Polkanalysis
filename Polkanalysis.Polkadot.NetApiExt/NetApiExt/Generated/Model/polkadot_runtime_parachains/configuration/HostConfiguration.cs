@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration
 {
     
     
@@ -82,7 +82,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// <summary>
         /// >> ump_service_total_weight
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _umpServiceTotalWeight;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _umpServiceTotalWeight;
         
         /// <summary>
         /// >> hrmp_max_parachain_outbound_channels
@@ -217,7 +217,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// <summary>
         /// >> ump_max_individual_weight
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _umpMaxIndividualWeight;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _umpMaxIndividualWeight;
         
         /// <summary>
         /// >> pvf_checking_enabled
@@ -366,7 +366,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight UmpServiceTotalWeight
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight UmpServiceTotalWeight
         {
             get
             {
@@ -690,7 +690,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight UmpMaxIndividualWeight
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight UmpMaxIndividualWeight
         {
             get
             {
@@ -816,7 +816,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             MaxPovSize.Decode(byteArray, ref p);
             MaxDownwardMessageSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
             MaxDownwardMessageSize.Decode(byteArray, ref p);
-            UmpServiceTotalWeight = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            UmpServiceTotalWeight = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             UmpServiceTotalWeight.Decode(byteArray, ref p);
             HrmpMaxParachainOutboundChannels = new Ajuna.NetApi.Model.Types.Primitive.U32();
             HrmpMaxParachainOutboundChannels.Decode(byteArray, ref p);
@@ -870,7 +870,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             NeededApprovals.Decode(byteArray, ref p);
             RelayVrfModuloSamples = new Ajuna.NetApi.Model.Types.Primitive.U32();
             RelayVrfModuloSamples.Decode(byteArray, ref p);
-            UmpMaxIndividualWeight = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            UmpMaxIndividualWeight = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             UmpMaxIndividualWeight.Decode(byteArray, ref p);
             PvfCheckingEnabled = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             PvfCheckingEnabled.Decode(byteArray, ref p);

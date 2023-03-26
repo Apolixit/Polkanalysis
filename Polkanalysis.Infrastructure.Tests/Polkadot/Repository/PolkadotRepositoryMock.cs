@@ -6,17 +6,17 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
-using Substats.Configuration.Contracts;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Infrastructure.DirectAccess.Repository;
-using Substats.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
 {
     public abstract class PolkadotRepositoryMock
     {

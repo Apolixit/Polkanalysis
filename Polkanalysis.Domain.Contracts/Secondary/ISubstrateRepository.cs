@@ -3,12 +3,12 @@ using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Adapter.Block;
-using Substats.Domain.Contracts.Secondary.Common;
-using Substats.Domain.Contracts.Secondary.Contracts;
-using Substats.Domain.Contracts.Secondary.Rpc;
+using Polkanalysis.Domain.Contracts.Adapter.Block;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary.Rpc;
 
-namespace Substats.Domain.Contracts.Secondary
+namespace Polkanalysis.Domain.Contracts.Secondary
 {
     public interface ISubstrateRepository : ITimeQueryable
     {

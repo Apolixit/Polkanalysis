@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking
 {
     
     
@@ -37,7 +37,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> others
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.IndividualExposure> _others;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.IndividualExposure> _others;
         
         public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> Total
         {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.IndividualExposure> Others
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.IndividualExposure> Others
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
             Total.Decode(byteArray, ref p);
             Own = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>();
             Own.Decode(byteArray, ref p);
-            Others = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.IndividualExposure>();
+            Others = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.IndividualExposure>();
             Others.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

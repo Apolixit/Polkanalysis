@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using NUnit.Framework;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Core.Random;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Core.Random;
+using Polkanalysis.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Session
+namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Session
 {
     public class SessionStorageTests : PolkadotIntegrationTest
     {

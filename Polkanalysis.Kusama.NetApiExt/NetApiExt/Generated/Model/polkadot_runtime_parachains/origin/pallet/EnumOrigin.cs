@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.origin.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.origin.pallet
 {
     
     
@@ -24,7 +24,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
     /// <summary>
     /// >> 154 - Variant[polkadot_runtime_parachains.origin.pallet.Origin]
     /// </summary>
-    public sealed class EnumOrigin : BaseEnumExt<Origin, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>
+    public sealed class EnumOrigin : BaseEnumExt<Origin, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>
     {
     }
 }

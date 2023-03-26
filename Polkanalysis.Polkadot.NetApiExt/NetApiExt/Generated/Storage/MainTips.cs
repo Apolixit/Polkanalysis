@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,9 +31,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Tips", "Tips"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Tips", "Reasons"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>)));
         }
         
         /// <summary>
@@ -42,7 +42,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  This has the insecure enumerable hash function since the key itself is already
         ///  guaranteed to be a secure hash.
         /// </summary>
-        public static string TipsParams(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string TipsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("Tips", "Tips", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -64,10 +64,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  This has the insecure enumerable hash function since the key itself is already
         ///  guaranteed to be a secure hash.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip> Tips(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip> Tips(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = TipsStorage.TipsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip>(parameters, token);
             return result;
         }
         
@@ -76,7 +76,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Simple preimage lookup from the reason's hash to the original data. Again, has an
         ///  insecure enumerable hash since the key is guaranteed to be the result of a secure hash.
         /// </summary>
-        public static string ReasonsParams(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string ReasonsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("Tips", "Reasons", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -97,7 +97,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         ///  Simple preimage lookup from the reason's hash to the original data. Again, has an
         ///  insecure enumerable hash since the key is guaranteed to be the result of a secure hash.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> Reasons(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> Reasons(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = TipsStorage.ReasonsParams(key);
             var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);
@@ -112,7 +112,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> report_awesome
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReportAwesome(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> reason, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
+        public static Method ReportAwesome(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> reason, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(reason.Encode());
@@ -124,7 +124,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> retract_tip
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RetractTip(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
+        public static Method RetractTip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());
@@ -135,7 +135,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> tip_new
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method TipNew(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> reason, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> tip_value)
+        public static Method TipNew(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> reason, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> tip_value)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(reason.Encode());
@@ -148,7 +148,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> tip
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Tip(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> tip_value)
+        public static Method Tip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> tip_value)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());
@@ -160,7 +160,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> close_tip
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CloseTip(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
+        public static Method CloseTip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());
@@ -171,7 +171,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> slash_tip
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SlashTip(Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
+        public static Method SlashTip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(hash.Encode());
@@ -221,9 +221,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> TipFindersFee
         ///  The percent of the final tip which goes to the original reporter of the tip.
         /// </summary>
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent TipFindersFee()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent TipFindersFee()
         {
-            var result = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent();
+            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent();
             result.Create("0x14");
             return result;
         }

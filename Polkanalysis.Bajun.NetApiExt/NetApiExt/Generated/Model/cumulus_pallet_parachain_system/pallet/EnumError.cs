@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.pallet
 {
     
     

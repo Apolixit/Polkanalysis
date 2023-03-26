@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> who
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
         
         /// <summary>
         /// >> value
         /// </summary>
         private Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> _value;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Who = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Who = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);
             Value = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>();
             Value.Decode(byteArray, ref p);

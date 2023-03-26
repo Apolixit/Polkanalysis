@@ -1,7 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types;
-using Substats.Domain.Contracts.Runtime.Mapping;
+using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 
-namespace Substats.Domain.Contracts.Runtime
+namespace Polkanalysis.Domain.Contracts.Runtime
 {
     /// <summary>
     /// Build a tree from Substrate extrinsic, event or log

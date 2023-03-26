@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
 {
     
     
@@ -34,7 +34,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
     /// <summary>
     /// >> 643 - Variant[pallet_referenda.types.ReferendumInfo]
     /// </summary>
-    public sealed class EnumReferendumInfo : BaseEnumExt<ReferendumInfo, Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.ReferendumStatusT2, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumReferendumInfo : BaseEnumExt<ReferendumInfo, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.ReferendumStatusT2, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>>, Ajuna.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

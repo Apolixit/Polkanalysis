@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras_inherent.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras_inherent.pallet
 {
     
     
@@ -25,7 +25,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
     /// >> 381 - Variant[polkadot_runtime_parachains.paras_inherent.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.InherentData>
+    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.InherentData>
     {
     }
 }

@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,7 +31,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Slots", "Leases"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>)));
         }
         
         /// <summary>
@@ -53,7 +53,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  It is illegal for a `None` value to trail in the list.
         /// </summary>
-        public static string LeasesParams(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string LeasesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Slots", "Leases", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -88,10 +88,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  It is illegal for a `None` value to trail in the list.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>> Leases(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>> Leases(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = SlotsStorage.LeasesParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>>>(parameters, token);
             return result;
         }
     }
@@ -103,7 +103,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> force_lease
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceLease(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 leaser, Ajuna.NetApi.Model.Types.Primitive.U128 amount, Ajuna.NetApi.Model.Types.Primitive.U32 period_begin, Ajuna.NetApi.Model.Types.Primitive.U32 period_count)
+        public static Method ForceLease(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 leaser, Ajuna.NetApi.Model.Types.Primitive.U128 amount, Ajuna.NetApi.Model.Types.Primitive.U32 period_begin, Ajuna.NetApi.Model.Types.Primitive.U32 period_count)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -118,7 +118,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> clear_all_leases
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ClearAllLeases(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        public static Method ClearAllLeases(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -129,7 +129,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> trigger_onboard
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method TriggerOnboard(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        public static Method TriggerOnboard(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());

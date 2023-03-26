@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_treasury
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury
         /// <summary>
         /// >> proposer
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _proposer;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _proposer;
         
         /// <summary>
         /// >> value
@@ -37,14 +37,14 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury
         /// <summary>
         /// >> beneficiary
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _beneficiary;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _beneficiary;
         
         /// <summary>
         /// >> bond
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U128 _bond;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Proposer
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Proposer
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Beneficiary
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Beneficiary
         {
             get
             {
@@ -110,11 +110,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_treasury
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Proposer = new Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Proposer = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Proposer.Decode(byteArray, ref p);
             Value = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Value.Decode(byteArray, ref p);
-            Beneficiary = new Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Beneficiary = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Beneficiary.Decode(byteArray, ref p);
             Bond = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Bond.Decode(byteArray, ref p);

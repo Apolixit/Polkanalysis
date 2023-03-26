@@ -1,8 +1,8 @@
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Core.Display;
 
-namespace Substats.Domain.Contracts.Core.Multi
+namespace Polkanalysis.Domain.Contracts.Core.Multi
 {
     public enum MultiAddress
     {

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_syst
         /// <summary>
         /// >> dmq_mqc_head
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 _dmqMqcHead;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 _dmqMqcHead;
         
         /// <summary>
         /// >> relay_dispatch_queue_size
@@ -37,14 +37,14 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_syst
         /// <summary>
         /// >> ingress_channels
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> _ingressChannels;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> _ingressChannels;
         
         /// <summary>
         /// >> egress_channels
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> _egressChannels;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> _egressChannels;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 DmqMqcHead
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 DmqMqcHead
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_syst
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> IngressChannels
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> IngressChannels
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_syst
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> EgressChannels
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>> EgressChannels
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_syst
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            DmqMqcHead = new Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256();
+            DmqMqcHead = new Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256();
             DmqMqcHead.Decode(byteArray, ref p);
             RelayDispatchQueueSize = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>();
             RelayDispatchQueueSize.Decode(byteArray, ref p);
-            IngressChannels = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>>();
+            IngressChannels = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>>();
             IngressChannels.Decode(byteArray, ref p);
-            EgressChannels = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>>();
+            EgressChannels = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHrmpChannel>>();
             EgressChannels.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

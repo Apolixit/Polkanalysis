@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
     /// <summary>
     /// >> 358 - Variant[polkadot_primitives.v2.ValidityAttestation]
     /// </summary>
-    public sealed class EnumValidityAttestation : BaseEnumExt<ValidityAttestation, BaseVoid, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature, Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>
+    public sealed class EnumValidityAttestation : BaseEnumExt<ValidityAttestation, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>
     {
     }
 }

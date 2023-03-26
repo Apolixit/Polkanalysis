@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
 {
     
     
@@ -32,17 +32,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> origin
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller _origin;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller _origin;
         
         /// <summary>
         /// >> proposal
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded _proposal;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded _proposal;
         
         /// <summary>
         /// >> enactment
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime _enactment;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime _enactment;
         
         /// <summary>
         /// >> submitted
@@ -52,22 +52,22 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> submission_deposit
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit _submissionDeposit;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit _submissionDeposit;
         
         /// <summary>
         /// >> decision_deposit
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> _decisionDeposit;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> _decisionDeposit;
         
         /// <summary>
         /// >> deciding
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> _deciding;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> _deciding;
         
         /// <summary>
         /// >> tally
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Tally _tally;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Tally _tally;
         
         /// <summary>
         /// >> in_queue
@@ -91,7 +91,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller Origin
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller Origin
         {
             get
             {
@@ -103,7 +103,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded Proposal
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded Proposal
         {
             get
             {
@@ -115,7 +115,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime Enactment
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime Enactment
         {
             get
             {
@@ -139,7 +139,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit SubmissionDeposit
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit SubmissionDeposit
         {
             get
             {
@@ -151,7 +151,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> DecisionDeposit
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> DecisionDeposit
         {
             get
             {
@@ -163,7 +163,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> Deciding
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> Deciding
         {
             get
             {
@@ -175,7 +175,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Tally Tally
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Tally Tally
         {
             get
             {
@@ -238,21 +238,21 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             var start = p;
             Track = new Ajuna.NetApi.Model.Types.Primitive.U16();
             Track.Decode(byteArray, ref p);
-            Origin = new Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller();
+            Origin = new Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller();
             Origin.Decode(byteArray, ref p);
-            Proposal = new Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded();
+            Proposal = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded();
             Proposal.Decode(byteArray, ref p);
-            Enactment = new Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime();
+            Enactment = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime();
             Enactment.Decode(byteArray, ref p);
             Submitted = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Submitted.Decode(byteArray, ref p);
-            SubmissionDeposit = new Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit();
+            SubmissionDeposit = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit();
             SubmissionDeposit.Decode(byteArray, ref p);
-            DecisionDeposit = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>();
+            DecisionDeposit = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>();
             DecisionDeposit.Decode(byteArray, ref p);
-            Deciding = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus>();
+            Deciding = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus>();
             Deciding.Decode(byteArray, ref p);
-            Tally = new Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Tally();
+            Tally = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Tally();
             Tally.Decode(byteArray, ref p);
             InQueue = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             InQueue.Decode(byteArray, ref p);

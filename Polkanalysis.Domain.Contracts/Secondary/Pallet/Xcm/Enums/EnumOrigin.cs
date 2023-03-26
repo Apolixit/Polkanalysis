@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v1;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.Enums
 {
     public enum Origin
     {

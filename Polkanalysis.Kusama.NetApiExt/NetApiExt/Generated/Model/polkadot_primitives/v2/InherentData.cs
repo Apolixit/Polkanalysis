@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,24 +27,24 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> bitfields
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed.UncheckedSigned> _bitfields;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed.UncheckedSigned> _bitfields;
         
         /// <summary>
         /// >> backed_candidates
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.BackedCandidate> _backedCandidates;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.BackedCandidate> _backedCandidates;
         
         /// <summary>
         /// >> disputes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> _disputes;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> _disputes;
         
         /// <summary>
         /// >> parent_header
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _parentHeader;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _parentHeader;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed.UncheckedSigned> Bitfields
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed.UncheckedSigned> Bitfields
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.BackedCandidate> BackedCandidates
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.BackedCandidate> BackedCandidates
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> Disputes
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet> Disputes
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header ParentHeader
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header ParentHeader
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Bitfields = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed.UncheckedSigned>();
+            Bitfields = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed.UncheckedSigned>();
             Bitfields.Decode(byteArray, ref p);
-            BackedCandidates = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.BackedCandidate>();
+            BackedCandidates = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.BackedCandidate>();
             BackedCandidates.Decode(byteArray, ref p);
-            Disputes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet>();
+            Disputes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeStatementSet>();
             Disputes.Decode(byteArray, ref p);
-            ParentHeader = new Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
+            ParentHeader = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
             ParentHeader.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

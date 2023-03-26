@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
     /// <summary>
     /// >> 783 - Variant[polkadot_runtime_parachains.scheduler.AssignmentKind]
     /// </summary>
-    public sealed class EnumAssignmentKind : BaseEnumExt<AssignmentKind, BaseVoid, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumAssignmentKind : BaseEnumExt<AssignmentKind, BaseVoid, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

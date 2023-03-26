@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.pallet
 {
     
     
@@ -33,7 +33,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_m
     /// >> 313 - Variant[pallet_election_provider_multi_phase.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RawSolution, Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore>, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>>, Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RawSolution, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>>>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RawSolution, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore>, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RawSolution, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>>>
     {
     }
 }

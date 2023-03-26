@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
         /// <summary>
         /// >> id
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 _id;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 _id;
         
         /// <summary>
         /// >> amount
@@ -37,9 +37,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
         /// <summary>
         /// >> reasons
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReasons _reasons;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReasons _reasons;
         
-        public Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 Id
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 Id
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReasons Reasons
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReasons Reasons
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substats.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8();
+            Id = new Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8();
             Id.Decode(byteArray, ref p);
             Amount = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Amount.Decode(byteArray, ref p);
-            Reasons = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReasons();
+            Reasons = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReasons();
             Reasons.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

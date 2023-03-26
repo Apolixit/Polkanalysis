@@ -1,6 +1,6 @@
-﻿using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Module;
-using Substats.Domain.UseCase.Validator;
+﻿using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Module;
+using Polkanalysis.Domain.UseCase.Validator;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Dto.User;
 
-namespace Substats.Domain.Tests.UseCase.Validator
+namespace Polkanalysis.Domain.Tests.UseCase.Validator
 {
     public class ValidatorDetailUseCaseTest : UseCaseTest<ValidatorDetailUseCase, ValidatorDto, ValidatorCommand>
     {

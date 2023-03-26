@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Error
+namespace Polkanalysis.Domain.Contracts.Core.Error
 {
     public enum TransactionalError
     {

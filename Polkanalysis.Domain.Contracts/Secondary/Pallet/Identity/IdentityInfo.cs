@@ -1,10 +1,10 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using System.Text;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
 {
     public class IdentityInfo : BaseType
     {

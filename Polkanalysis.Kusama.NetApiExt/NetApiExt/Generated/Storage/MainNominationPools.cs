@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -36,23 +36,23 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembersPerPool"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "PoolMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForPoolMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "BondedPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForBondedPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "RewardPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForRewardPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "SubPoolsStorage"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForSubPoolsStorage"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "Metadata"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT37)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT37)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForMetadata"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "LastPoolId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "ReversePoolIdLookup"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForReversePoolIdLookup"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
         }
         
@@ -173,7 +173,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> PoolMembersParams
         ///  Active members.
         /// </summary>
-        public static string PoolMembersParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string PoolMembersParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("NominationPools", "PoolMembers", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -184,10 +184,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> PoolMembers
         ///  Active members.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember> PoolMembers(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember> PoolMembers(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.PoolMembersParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember>(parameters, token);
         }
         
         /// <summary>
@@ -224,10 +224,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> BondedPools
         ///  Storage for bonded pools.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner> BondedPools(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner> BondedPools(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.BondedPoolsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner>(parameters, token);
         }
         
         /// <summary>
@@ -266,10 +266,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout
         ///  is claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool> RewardPools(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool> RewardPools(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.RewardPoolsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool>(parameters, token);
         }
         
         /// <summary>
@@ -308,10 +308,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Groups of unbonding pools. Each group of unbonding pools belongs to a bonded pool,
         ///  hence the name sub-pools. Keyed by the bonded pools account.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools> SubPoolsStorage(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools> SubPoolsStorage(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.SubPoolsStorageParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools>(parameters, token);
         }
         
         /// <summary>
@@ -348,10 +348,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Metadata
         ///  Metadata for the pool.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT37> Metadata(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT37> Metadata(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.MetadataParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT37>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT37>(parameters, token);
         }
         
         /// <summary>
@@ -399,7 +399,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  This is only used for slashing. In all other instances, the pool id is used, and the
         ///  accounts are deterministically derived from it.
         /// </summary>
-        public static string ReversePoolIdLookupParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string ReversePoolIdLookupParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("NominationPools", "ReversePoolIdLookup", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -413,7 +413,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  This is only used for slashing. In all other instances, the pool id is used, and the
         ///  accounts are deterministically derived from it.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ReversePoolIdLookup(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ReversePoolIdLookup(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.ReversePoolIdLookupParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
@@ -458,7 +458,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> bond_extra
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method BondExtra(Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumBondExtra extra)
+        public static Method BondExtra(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumBondExtra extra)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(extra.Encode());
@@ -479,7 +479,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> unbond
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Unbond(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> unbonding_points)
+        public static Method Unbond(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> unbonding_points)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(member_account.Encode());
@@ -503,7 +503,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> withdraw_unbonded
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method WithdrawUnbonded(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
+        public static Method WithdrawUnbonded(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(member_account.Encode());
@@ -515,7 +515,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> create
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Create(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler)
+        public static Method Create(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -529,7 +529,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> create_with_pool_id
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CreateWithPoolId(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler, Ajuna.NetApi.Model.Types.Primitive.U32 pool_id)
+        public static Method CreateWithPoolId(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler, Ajuna.NetApi.Model.Types.Primitive.U32 pool_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -544,7 +544,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> nominate
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Nominate(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> validators)
+        public static Method Nominate(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> validators)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -556,7 +556,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_state
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetState(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState state)
+        public static Method SetState(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState state)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -580,7 +580,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_configs
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetConfigs(Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp min_join_bond, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp min_create_bond, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_pools, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_members, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_members_per_pool)
+        public static Method SetConfigs(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp min_join_bond, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp min_create_bond, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_pools, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_members, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_members_per_pool)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(min_join_bond.Encode());
@@ -595,7 +595,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> update_roles
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UpdateRoles(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_root, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_nominator, Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_state_toggler)
+        public static Method UpdateRoles(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_root, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_nominator, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_state_toggler)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());

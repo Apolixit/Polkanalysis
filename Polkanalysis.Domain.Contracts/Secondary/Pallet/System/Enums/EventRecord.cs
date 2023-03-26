@@ -1,8 +1,8 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core.Map;
-using Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using Polkanalysis.Domain.Contracts.Core.Map;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 {
     public class EventRecord : BaseType
     {

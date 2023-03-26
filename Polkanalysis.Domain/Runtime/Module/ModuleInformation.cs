@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Meta;
-using Substats.Domain.Contracts.Dto;
-using Substats.Domain.Contracts.Dto.Module;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Dto;
+using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Runtime.Module
+namespace Polkanalysis.Domain.Runtime.Module
 {
     public class ModuleInformation : IModuleInformation
     {

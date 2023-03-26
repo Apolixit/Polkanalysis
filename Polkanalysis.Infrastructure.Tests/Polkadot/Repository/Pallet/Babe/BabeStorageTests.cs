@@ -3,20 +3,20 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Substats.Domain.Contracts.Core.Public;
-using Substats.Domain.Contracts.Core.Random;
-using Substats.Domain.Contracts.Secondary.Pallet.Babe;
-using Substats.Domain.Contracts.Secondary.Pallet.Babe.Enums;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Types.Base;
+using Polkanalysis.Domain.Contracts.Core.Public;
+using Polkanalysis.Domain.Contracts.Core.Random;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe.Enums;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
 {
     public class BabeStorageTests : PolkadotRepositoryMock
     {
@@ -109,12 +109,12 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task PendingEpochConfigChange_ShouldWorkAsync()
         {
-            var extAllowedSlot = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots();
-            extAllowedSlot.Create(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.AllowedSlots.PrimarySlots);
-            var extResult = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor();
+            var extAllowedSlot = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots();
+            extAllowedSlot.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.AllowedSlots.PrimarySlots);
+            var extResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor();
             extResult.Create(
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.NextConfigDescriptor.V1,
-                new BaseTuple<BaseTuple<U64, U64>, Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>(
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.NextConfigDescriptor.V1,
+                new BaseTuple<BaseTuple<U64, U64>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>(
                     new BaseTuple<U64, U64>(new U64(2), new U64(4)), extAllowedSlot));
 
             var allowedSlot = new EnumAllowedSlots();
@@ -130,7 +130,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task PendingEpochConfigChangeNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor,
+            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor,
                 EnumNextConfigDescriptor>(_substrateRepository.Storage.Babe.PendingEpochConfigChangeAsync);
         }
 
@@ -223,9 +223,9 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Ignore("Find a good test case")]
         public async Task Initialized_ShouldWorkAsync()
         {
-            //var enumPreDigestExt = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest();
-            //enumPreDigestExt.Create(Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.PreDigest.Primary, )
-            //var extResult = new BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>();
+            //var enumPreDigestExt = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest();
+            //enumPreDigestExt.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.PreDigest.Primary, )
+            //var extResult = new BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>();
             //extResult.Create();
             //var expectedResult = new EnumPreDigest();
             //var expectedEnumData = new PrimaryPreDigest();
@@ -238,7 +238,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         public async Task InitializedNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                BaseOpt<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>,
+                BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>,
                 BaseOpt<EnumPreDigest>>(_substrateRepository.Storage.Babe.InitializedAsync);
         }
 
@@ -291,7 +291,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         public async Task EpochConfig_ShouldWorkAsync()
         {
 
-            var extResult = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
+            var extResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
             extResult.Create("0x0100000000000000040000000000000002");
 
             var expectedResult = new BabeEpochConfiguration();
@@ -306,13 +306,13 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         public async Task EpochConfigNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.EpochConfigAsync);
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.EpochConfigAsync);
         }
 
         [Test]
         public async Task NextEpochConfig_ShouldWorkAsync()
         {
-            var extResult = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
+            var extResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
             extResult.Create("0x0100000000000000040000000000000002");
 
             var expectedResult = new BabeEpochConfiguration();
@@ -326,7 +326,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Babe
         [Test]
         public async Task NextEpochConfigNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.NextEpochConfigAsync);
+            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.NextEpochConfigAsync);
         }
     }
 }

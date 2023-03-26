@@ -1,13 +1,13 @@
-﻿using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Dto.Staking;
-using Substats.Domain.Contracts.Dto.User;
+﻿using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Dto.Staking;
+using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Repository
+namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
     public interface IRoleMemberRepository
     {

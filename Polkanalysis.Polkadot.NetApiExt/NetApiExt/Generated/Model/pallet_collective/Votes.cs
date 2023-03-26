@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_collective
 {
     
     
@@ -37,12 +37,12 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective
         /// <summary>
         /// >> ayes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _ayes;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _ayes;
         
         /// <summary>
         /// >> nays
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _nays;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _nays;
         
         /// <summary>
         /// >> end
@@ -73,7 +73,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Ayes
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Ayes
         {
             get
             {
@@ -85,7 +85,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Nays
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Nays
         {
             get
             {
@@ -132,9 +132,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_collective
             Index.Decode(byteArray, ref p);
             Threshold = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Threshold.Decode(byteArray, ref p);
-            Ayes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Ayes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Ayes.Decode(byteArray, ref p);
-            Nays = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Nays = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Nays.Decode(byteArray, ref p);
             End = new Ajuna.NetApi.Model.Types.Primitive.U32();
             End.Decode(byteArray, ref p);

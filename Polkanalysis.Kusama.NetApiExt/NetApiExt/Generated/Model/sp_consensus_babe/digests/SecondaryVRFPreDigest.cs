@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
 {
     
     
@@ -32,17 +32,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
         /// <summary>
         /// >> slot
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
         
         /// <summary>
         /// >> vrf_output
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 _vrfOutput;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 _vrfOutput;
         
         /// <summary>
         /// >> vrf_proof
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Types.Base.Arr64U8 _vrfProof;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr64U8 _vrfProof;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 AuthorityIndex
         {
@@ -56,7 +56,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 VrfOutput
+        public Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8 VrfOutput
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Types.Base.Arr64U8 VrfProof
+        public Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr64U8 VrfProof
         {
             get
             {
@@ -112,11 +112,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
             var start = p;
             AuthorityIndex = new Ajuna.NetApi.Model.Types.Primitive.U32();
             AuthorityIndex.Decode(byteArray, ref p);
-            Slot = new Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
+            Slot = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
             Slot.Decode(byteArray, ref p);
-            VrfOutput = new Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8();
+            VrfOutput = new Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8();
             VrfOutput.Decode(byteArray, ref p);
-            VrfProof = new Substats.Kusama.NetApiExt.Generated.Types.Base.Arr64U8();
+            VrfProof = new Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr64U8();
             VrfProof.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

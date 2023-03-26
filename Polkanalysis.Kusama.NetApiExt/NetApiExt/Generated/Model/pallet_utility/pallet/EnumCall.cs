@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_utility.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_utility.pallet
 {
     
     
@@ -35,7 +35,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_utility.pallet
     /// >> 177 - Variant[pallet_utility.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller, Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall, Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
+    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
     {
     }
 }

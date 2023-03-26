@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> Id
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _id;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _id;
         
         /// <summary>
         /// >> CollatorId
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public _collatorId;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public _collatorId;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Id
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Id
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public CollatorId
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public CollatorId
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Id = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Id.Decode(byteArray, ref p);
-            CollatorId = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public();
+            CollatorId = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public();
             CollatorId.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

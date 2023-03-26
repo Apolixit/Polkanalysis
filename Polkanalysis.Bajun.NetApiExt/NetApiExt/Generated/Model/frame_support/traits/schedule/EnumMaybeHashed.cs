@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule
     /// <summary>
     /// >> 227 - Variant[frame_support.traits.schedule.MaybeHashed]
     /// </summary>
-    public sealed class EnumMaybeHashed : BaseEnumExt<MaybeHashed, Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall, Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>
+    public sealed class EnumMaybeHashed : BaseEnumExt<MaybeHashed, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall, Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>
     {
     }
 }

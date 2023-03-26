@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.junction
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.junction
 {
     
     
@@ -40,7 +40,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.junction
     /// <summary>
     /// >> 159 - Variant[xcm.v1.junction.Junction]
     /// </summary>
-    public sealed class EnumJunction : BaseEnumExt<Junction, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Substats.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64>>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Substats.Kusama.NetApiExt.Generated.Types.Base.Arr20U8>, Ajuna.NetApi.Model.Types.Primitive.U8, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>, Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyId, Substats.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyPart>>
+    public sealed class EnumJunction : BaseEnumExt<Junction, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64>>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr20U8>, Ajuna.NetApi.Model.Types.Primitive.U8, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyId, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyPart>>
     {
     }
 }

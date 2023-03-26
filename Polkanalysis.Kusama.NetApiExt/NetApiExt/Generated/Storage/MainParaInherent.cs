@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,7 +31,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "Included"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "OnChainVotes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "OnChainVotes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes)));
         }
         
         /// <summary>
@@ -76,10 +76,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> OnChainVotes
         ///  Scraped on chain data for extracting resolved disputes as well as backing votes.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes> OnChainVotes(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes> OnChainVotes(CancellationToken token)
         {
             string parameters = ParaInherentStorage.OnChainVotesParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes>(parameters, token);
         }
     }
     
@@ -90,7 +90,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> enter
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Enter(Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.InherentData data)
+        public static Method Enter(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.InherentData data)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(data.Encode());

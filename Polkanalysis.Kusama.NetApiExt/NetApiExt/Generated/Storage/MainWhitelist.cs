@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,13 +31,13 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Whitelist", "WhitelistedCall"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
         }
         
         /// <summary>
         /// >> WhitelistedCallParams
         /// </summary>
-        public static string WhitelistedCallParams(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string WhitelistedCallParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("Whitelist", "WhitelistedCall", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -47,7 +47,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// <summary>
         /// >> WhitelistedCall
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> WhitelistedCall(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> WhitelistedCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = WhitelistStorage.WhitelistedCallParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
@@ -61,7 +61,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> whitelist_call
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method WhitelistCall(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
+        public static Method WhitelistCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call_hash.Encode());
@@ -72,7 +72,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> remove_whitelisted_call
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveWhitelistedCall(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
+        public static Method RemoveWhitelistedCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call_hash.Encode());
@@ -83,7 +83,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> dispatch_whitelisted_call
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method DispatchWhitelistedCall(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash, Ajuna.NetApi.Model.Types.Primitive.U32 call_encoded_len, Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight call_weight_witness)
+        public static Method DispatchWhitelistedCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash, Ajuna.NetApi.Model.Types.Primitive.U32 call_encoded_len, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight call_weight_witness)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call_hash.Encode());
@@ -96,7 +96,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> dispatch_whitelisted_call_with_preimage
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method DispatchWhitelistedCallWithPreimage(Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method DispatchWhitelistedCallWithPreimage(Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call.Encode());

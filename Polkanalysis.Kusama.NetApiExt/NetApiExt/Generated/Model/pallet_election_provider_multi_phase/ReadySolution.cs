@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_mul
         /// <summary>
         /// >> supports
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT32 _supports;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT32 _supports;
         
         /// <summary>
         /// >> score
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore _score;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore _score;
         
         /// <summary>
         /// >> compute
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute _compute;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute _compute;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT32 Supports
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT32 Supports
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_mul
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore Score
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore Score
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_mul
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute Compute
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute Compute
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_mul
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Supports = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT32();
+            Supports = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT32();
             Supports.Decode(byteArray, ref p);
-            Score = new Substats.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore();
+            Score = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore();
             Score.Decode(byteArray, ref p);
-            Compute = new Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute();
+            Compute = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute();
             Compute.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

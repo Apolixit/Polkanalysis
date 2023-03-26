@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips.pallet
 {
     
     
@@ -36,7 +36,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_tips.pallet
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>
     {
     }
 }

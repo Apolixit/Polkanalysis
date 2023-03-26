@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core.Enum.FrameSupport;
-using Substats.Domain.Contracts.Secondary.Pallet.Democracy.Enums;
+using Polkanalysis.Domain.Contracts.Core.Enum.FrameSupport;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Democracy.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Democracy
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Democracy
 {
     public class ReferendumStatus : BaseType
     {

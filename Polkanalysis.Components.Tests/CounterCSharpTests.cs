@@ -1,6 +1,6 @@
-using Substats.Components.Tests;
+using Polkanalysis.Components.Tests;
 
-namespace Substats.Components.Test
+namespace Polkanalysis.Components.Test
 {
     /// <summary>
     /// These tests are written entirely in C#.

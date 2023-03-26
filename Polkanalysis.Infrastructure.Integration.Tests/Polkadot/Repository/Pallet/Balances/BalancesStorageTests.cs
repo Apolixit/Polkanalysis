@@ -1,17 +1,17 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Balances.Enums;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Balances
+namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Balances
 {
     public class BalancesStorageTests : PolkadotIntegrationTest
     {

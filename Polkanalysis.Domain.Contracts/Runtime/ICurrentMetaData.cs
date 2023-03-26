@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Model.Meta;
-using Substats.Domain.Contracts.Dto.Module;
-using Substats.Domain.Contracts.Secondary.Common;
+using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Runtime
+namespace Polkanalysis.Domain.Contracts.Runtime
 {
     public interface ICurrentMetaData
     {

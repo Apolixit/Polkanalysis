@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -40,7 +40,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Batch(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> calls)
+        public static Method Batch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -51,7 +51,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> as_derivative
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AsDerivative(Ajuna.NetApi.Model.Types.Primitive.U16 index, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
+        public static Method AsDerivative(Ajuna.NetApi.Model.Types.Primitive.U16 index, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> batch_all
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method BatchAll(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> calls)
+        public static Method BatchAll(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -74,7 +74,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> dispatch_as
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method DispatchAs(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller as_origin, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
+        public static Method DispatchAs(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller as_origin, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(as_origin.Encode());
@@ -86,7 +86,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> force_batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceBatch(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> calls)
+        public static Method ForceBatch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -97,7 +97,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> with_weight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method WithWeight(Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight weight)
+        public static Method WithWeight(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call.Encode());

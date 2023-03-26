@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signed
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signe
         /// <summary>
         /// >> payload
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield _payload;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield _payload;
         
         /// <summary>
         /// >> validator_index
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex _validatorIndex;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex _validatorIndex;
         
         /// <summary>
         /// >> signature
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature _signature;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature _signature;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield Payload
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield Payload
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signe
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex ValidatorIndex
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex ValidatorIndex
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signe
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature Signature
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature Signature
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.signe
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Payload = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield();
+            Payload = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield();
             Payload.Decode(byteArray, ref p);
-            ValidatorIndex = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex();
+            ValidatorIndex = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex();
             ValidatorIndex.Decode(byteArray, ref p);
-            Signature = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature();
+            Signature = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature();
             Signature.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

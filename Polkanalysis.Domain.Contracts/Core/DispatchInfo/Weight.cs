@@ -6,7 +6,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace Substats.Domain.Contracts.Core.DispatchInfo
+//namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
 //{
 //    public class Weight : BaseType
 //    {

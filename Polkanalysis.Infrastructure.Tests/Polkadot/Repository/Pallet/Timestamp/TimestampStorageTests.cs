@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Timestamp
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Timestamp
 {
     public class TimestampStorageTests : PolkadotRepositoryMock
     {

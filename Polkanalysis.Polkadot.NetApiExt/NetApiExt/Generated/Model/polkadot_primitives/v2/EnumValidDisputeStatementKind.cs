@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
     /// <summary>
     /// >> 405 - Variant[polkadot_primitives.v2.ValidDisputeStatementKind]
     /// </summary>
-    public sealed class EnumValidDisputeStatementKind : BaseEnumExt<ValidDisputeStatementKind, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseVoid>
+    public sealed class EnumValidDisputeStatementKind : BaseEnumExt<ValidDisputeStatementKind, BaseVoid, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256, BaseVoid>
     {
     }
 }

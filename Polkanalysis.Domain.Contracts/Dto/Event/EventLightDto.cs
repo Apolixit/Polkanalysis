@@ -1,6 +1,6 @@
-﻿using Substats.Domain.Contracts.Dto.Block;
+﻿using Polkanalysis.Domain.Contracts.Dto.Block;
 
-namespace Substats.Domain.Contracts.Dto.Event
+namespace Polkanalysis.Domain.Contracts.Dto.Event
 {
     public class EventLightDto
     {

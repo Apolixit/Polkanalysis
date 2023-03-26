@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Secondary.Pallet.NominationPools;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using NominationStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.NominationPoolsStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using NominationStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.NominationPoolsStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     public class NominationPoolsStorage : MainStorage, INominationPoolsStorage
     {
@@ -20,7 +20,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 U32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner,
                 BondedPoolInner>
                 (poolId, NominationStorageExt.BondedPoolsParams, token);
         }
@@ -98,7 +98,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
                 PoolMember>
                 (SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account),
                 NominationStorageExt.PoolMembersParams, token);
@@ -115,7 +115,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 U32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool,
                 RewardPool>
                 (poolId, NominationStorageExt.RewardPoolsParams, token);
         }
@@ -124,7 +124,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 U32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools,
                 SubPools>
                 (key, NominationStorageExt.SubPoolsStorageParams, token);
         }

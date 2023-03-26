@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,12 +27,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> validators_for
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> _validatorsFor;
+        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> _validatorsFor;
         
         /// <summary>
         /// >> validators_against
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> _validatorsAgainst;
+        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> _validatorsAgainst;
         
         /// <summary>
         /// >> start
@@ -44,7 +44,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// </summary>
         private Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> _concludedAt;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> ValidatorsFor
+        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> ValidatorsFor
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> ValidatorsAgainst
+        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0> ValidatorsAgainst
         {
             get
             {
@@ -110,9 +110,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ValidatorsFor = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
+            ValidatorsFor = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
             ValidatorsFor.Decode(byteArray, ref p);
-            ValidatorsAgainst = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
+            ValidatorsAgainst = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
             ValidatorsAgainst.Decode(byteArray, ref p);
             Start = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Start.Decode(byteArray, ref p);

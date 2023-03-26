@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bounties
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties
         /// <summary>
         /// >> proposer
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _proposer;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _proposer;
         
         /// <summary>
         /// >> value
@@ -52,9 +52,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties
         /// <summary>
         /// >> status
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus _status;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus _status;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Proposer
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Proposer
         {
             get
             {
@@ -114,7 +114,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus Status
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus Status
         {
             get
             {
@@ -146,7 +146,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Proposer = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Proposer = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Proposer.Decode(byteArray, ref p);
             Value = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Value.Decode(byteArray, ref p);
@@ -156,7 +156,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties
             CuratorDeposit.Decode(byteArray, ref p);
             Bond = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Bond.Decode(byteArray, ref p);
-            Status = new Substats.Kusama.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus();
+            Status = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus();
             Status.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

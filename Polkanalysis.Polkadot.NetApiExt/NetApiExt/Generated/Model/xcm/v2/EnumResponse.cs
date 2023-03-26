@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v2
 {
     
     
@@ -30,7 +30,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2
     /// <summary>
     /// >> 143 - Variant[xcm.v2.Response]
     /// </summary>
-    public sealed class EnumResponse : BaseEnumExt<Response, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>>, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumResponse : BaseEnumExt<Response, BaseVoid, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>>, Ajuna.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

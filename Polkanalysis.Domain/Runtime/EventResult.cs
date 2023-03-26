@@ -1,5 +1,5 @@
-﻿using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Runtime.Mapping;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Runtime
+namespace Polkanalysis.Domain.Runtime
 {
     public class EventResult
     {

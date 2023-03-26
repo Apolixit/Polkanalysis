@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.pa
         /// <summary>
         /// >> manager
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _manager;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _manager;
         
         /// <summary>
         /// >> deposit
@@ -39,7 +39,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.pa
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.Bool _locked;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Manager
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Manager
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.pa
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Manager = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Manager = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Manager.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);

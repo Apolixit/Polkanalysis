@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa
 {
     
     
@@ -32,17 +32,17 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
         /// <summary>
         /// >> identity
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public _identity;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public _identity;
         
         /// <summary>
         /// >> first
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> _first;
+        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> _first;
         
         /// <summary>
         /// >> second
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> _second;
+        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> _second;
         
         public Ajuna.NetApi.Model.Types.Primitive.U64 RoundNumber
         {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public Identity
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public Identity
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> First
+        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> First
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> Second
+        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature> Second
         {
             get
             {
@@ -112,11 +112,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
             var start = p;
             RoundNumber = new Ajuna.NetApi.Model.Types.Primitive.U64();
             RoundNumber.Decode(byteArray, ref p);
-            Identity = new Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public();
+            Identity = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public();
             Identity.Decode(byteArray, ref p);
-            First = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature>();
+            First = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature>();
             First.Decode(byteArray, ref p);
-            Second = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature>();
+            Second = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa.Precommit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.app.Signature>();
             Second.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

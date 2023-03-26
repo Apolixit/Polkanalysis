@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.xcm.v1.multiasset
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multiasset
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.xcm.v1.multiasset
     /// <summary>
     /// >> 84 - Variant[xcm.v1.multiasset.WildMultiAsset]
     /// </summary>
-    public sealed class EnumWildMultiAsset : BaseEnumExt<WildMultiAsset, BaseVoid, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId, Substats.Bajun.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumWildFungibility>>
+    public sealed class EnumWildMultiAsset : BaseEnumExt<WildMultiAsset, BaseVoid, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumWildFungibility>>
     {
     }
 }

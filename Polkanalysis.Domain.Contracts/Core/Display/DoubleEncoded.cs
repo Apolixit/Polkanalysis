@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Display
+namespace Polkanalysis.Domain.Contracts.Core.Display
 {
     public class DoubleEncoded : BaseType
     {

@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset
     /// <summary>
     /// >> 410 - Variant[xcm.v1.multiasset.MultiAssetFilter]
     /// </summary>
-    public sealed class EnumMultiAssetFilter : BaseEnumExt<MultiAssetFilter, Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets, Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumWildMultiAsset>
+    public sealed class EnumMultiAssetFilter : BaseEnumExt<MultiAssetFilter, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumWildMultiAsset>
     {
     }
 }

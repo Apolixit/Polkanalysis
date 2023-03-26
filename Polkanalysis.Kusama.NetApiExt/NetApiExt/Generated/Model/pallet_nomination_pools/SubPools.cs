@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
         /// <summary>
         /// >> no_era
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool _noEra;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool _noEra;
         
         /// <summary>
         /// >> with_era
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 _withEra;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 _withEra;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool NoEra
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool NoEra
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 WithEra
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 WithEra
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            NoEra = new Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool();
+            NoEra = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool();
             NoEra.Decode(byteArray, ref p);
-            WithEra = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2();
+            WithEra = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2();
             WithEra.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

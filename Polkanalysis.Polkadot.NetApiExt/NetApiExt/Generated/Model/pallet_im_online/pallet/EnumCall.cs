@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.pallet
 {
     
     
@@ -25,7 +25,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online.pallet
     /// >> 230 - Variant[pallet_im_online.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online.Heartbeat, Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Signature>>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.Heartbeat, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Signature>>
     {
     }
 }

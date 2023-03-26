@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> when
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint _when;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint _when;
         
         /// <summary>
         /// >> deposit
@@ -37,14 +37,14 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> depositor
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _depositor;
         
         /// <summary>
         /// >> approvals
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _approvals;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _approvals;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Depositor
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Approvals
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Approvals
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            When = new Substats.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint();
+            When = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint();
             When.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
-            Depositor = new Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Depositor = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Depositor.Decode(byteArray, ref p);
-            Approvals = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Approvals = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Approvals.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

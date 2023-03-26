@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -32,24 +32,24 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "PendingValidationCode"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "NewValidationCode"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "ValidationData"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "ValidationData"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "DidSetValidationCode"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "LastRelayChainBlockNumber"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "UpgradeRestrictionSignal"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "RelayStateProof"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "RelevantMessagingState"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot.MessagingStateSnapshot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "HostConfiguration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHostConfiguration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "LastDmqMqcHead"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "LastHrmpMqcHeads"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT1)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "UpgradeRestrictionSignal"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "RelayStateProof"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "RelevantMessagingState"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot.MessagingStateSnapshot)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "HostConfiguration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHostConfiguration)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "LastDmqMqcHead"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "LastHrmpMqcHeads"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT1)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "ProcessedDownwardMessages"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "HrmpWatermark"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "HrmpOutboundMessages"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "HrmpOutboundMessages"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "UpwardMessages"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "PendingUpwardMessages"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "AnnouncedHrmpMessagesPerCandidate"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "ReservedXcmpWeightOverride"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "ReservedDmpWeightOverride"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "AuthorizedUpgrade"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "AuthorizedUpgrade"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParachainSystem", "CustomValidationHeadData"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>)));
         }
         
@@ -126,10 +126,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         ///  This value is expected to be set only once per block and it's never stored
         ///  in the trie.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData> ValidationData(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData> ValidationData(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.ValidationDataParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.PersistedValidationData>(parameters, token);
         }
         
         /// <summary>
@@ -195,10 +195,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         ///  relay-chain. This value is ephemeral which means it doesn't hit the storage. This value is
         ///  set after the inherent.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>> UpgradeRestrictionSignal(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>> UpgradeRestrictionSignal(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.UpgradeRestrictionSignalParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction>>(parameters, token);
         }
         
         /// <summary>
@@ -224,10 +224,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  This data is also absent from the genesis.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof> RelayStateProof(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof> RelayStateProof(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.RelayStateProofParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_trie.storage_proof.StorageProof>(parameters, token);
         }
         
         /// <summary>
@@ -255,10 +255,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  This data is also absent from the genesis.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot.MessagingStateSnapshot> RelevantMessagingState(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot.MessagingStateSnapshot> RelevantMessagingState(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.RelevantMessagingStateParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot.MessagingStateSnapshot>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_parachain_system.relay_state_snapshot.MessagingStateSnapshot>(parameters, token);
         }
         
         /// <summary>
@@ -284,10 +284,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  This data is also absent from the genesis.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHostConfiguration> HostConfiguration(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHostConfiguration> HostConfiguration(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.HostConfigurationParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHostConfiguration>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2.AbridgedHostConfiguration>(parameters, token);
         }
         
         /// <summary>
@@ -309,10 +309,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         ///  This value is loaded before and saved after processing inbound downward messages carried
         ///  by the system inherent.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain> LastDmqMqcHead(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain> LastDmqMqcHead(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.LastDmqMqcHeadParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.MessageQueueChain>(parameters, token);
         }
         
         /// <summary>
@@ -334,10 +334,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         ///  This value is loaded before and saved after processing inbound downward messages carried
         ///  by the system inherent.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT1> LastHrmpMqcHeads(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT1> LastHrmpMqcHeads(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.LastHrmpMqcHeadsParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT1>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.BTreeMapT1>(parameters, token);
         }
         
         /// <summary>
@@ -403,10 +403,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  This will be cleared in `on_initialize` of each new block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>> HrmpOutboundMessages(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>> HrmpOutboundMessages(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.HrmpOutboundMessagesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_core_primitives.OutboundHrmpMessage>>(parameters, token);
         }
         
         /// <summary>
@@ -527,10 +527,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> AuthorizedUpgrade
         ///  The next authorized upgrade, if there is one.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256> AuthorizedUpgrade(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256> AuthorizedUpgrade(CancellationToken token)
         {
             string parameters = ParachainSystemStorage.AuthorizedUpgradeParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
         }
         
         /// <summary>
@@ -564,7 +564,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> set_validation_data
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetValidationData(Substats.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.ParachainInherentData data)
+        public static Method SetValidationData(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_primitives_parachain_inherent.ParachainInherentData data)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(data.Encode());
@@ -586,7 +586,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> authorize_upgrade
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AuthorizeUpgrade(Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 code_hash)
+        public static Method AuthorizeUpgrade(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 code_hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(code_hash.Encode());

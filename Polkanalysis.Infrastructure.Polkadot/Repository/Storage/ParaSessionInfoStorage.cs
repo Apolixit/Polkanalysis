@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Public;
-using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using ParaSessionStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.ParaSessionInfoStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Public;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using ParaSessionStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.ParaSessionInfoStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     public class ParaSessionInfoStorage : MainStorage, IParaSessionInfoStorage
     {
@@ -27,7 +27,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageAsync<
                 BaseVec<
-                        Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public> , BaseVec<PublicSr25519>>
+                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public> , BaseVec<PublicSr25519>>
                         (ParaSessionStorageExt.AssignmentKeysUnsafeParams, token);
         }
 
@@ -40,7 +40,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 U32,
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo,
                 SessionInfo>(key, ParaSessionStorageExt.SessionsParams, token);
         }
     }

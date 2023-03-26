@@ -1,7 +1,7 @@
 ﻿
-using Substats.Domain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
 
-namespace Substats.Domain.Contracts
+namespace Polkanalysis.Domain.Contracts
 {
     public class DispatchInfoDto
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Repository
+namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
     public interface IAuctionRepository
     {

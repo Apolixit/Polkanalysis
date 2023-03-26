@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.v1
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v1
 {
     public class MultiAssets : BaseType
     {

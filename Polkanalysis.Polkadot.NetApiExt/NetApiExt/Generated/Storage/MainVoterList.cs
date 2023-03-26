@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -31,10 +31,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("VoterList", "ListNodes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("VoterList", "CounterForListNodes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("VoterList", "ListBags"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U64), typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U64), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag)));
         }
         
         /// <summary>
@@ -43,7 +43,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Nodes store links forward and back within their respective bags.
         /// </summary>
-        public static string ListNodesParams(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string ListNodesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("VoterList", "ListNodes", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -65,10 +65,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Nodes store links forward and back within their respective bags.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node> ListNodes(Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node> ListNodes(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = VoterListStorage.ListNodesParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node>(parameters, token);
             return result;
         }
         
@@ -129,10 +129,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Stores a `Bag` struct, which stores head and tail pointers to itself.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag> ListBags(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag> ListBags(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = VoterListStorage.ListBagsParams(key);
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag>(parameters, token);
             return result;
         }
     }
@@ -144,7 +144,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> rebag
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Rebag(Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress dislocated)
+        public static Method Rebag(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress dislocated)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dislocated.Encode());
@@ -155,7 +155,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> put_in_front_of
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method PutInFrontOf(Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress lighter)
+        public static Method PutInFrontOf(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress lighter)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(lighter.Encode());

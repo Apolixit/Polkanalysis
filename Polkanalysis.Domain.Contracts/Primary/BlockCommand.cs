@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Primary
+namespace Polkanalysis.Domain.Contracts.Primary
 {
     /// <summary>
     /// Represent a request to get detail from a block

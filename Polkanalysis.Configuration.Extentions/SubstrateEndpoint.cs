@@ -1,8 +1,8 @@
-﻿using Substats.Configuration.Contracts;
+﻿using Polkanalysis.Configuration.Contracts;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 
-namespace Substats.Configuration.Extentions
+namespace Polkanalysis.Configuration.Extentions
 {
     public class SubstrateEndpoint : ISubstrateEndpoint
     {

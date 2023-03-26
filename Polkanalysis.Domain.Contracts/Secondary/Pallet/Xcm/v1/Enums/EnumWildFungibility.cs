@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.v1.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v1.Enums
 {
     public enum WildFungibility
     {

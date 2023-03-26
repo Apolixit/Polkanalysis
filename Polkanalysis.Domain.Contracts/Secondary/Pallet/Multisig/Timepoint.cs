@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Multisig
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Multisig
 {
     public class Timepoint : BaseType
     {

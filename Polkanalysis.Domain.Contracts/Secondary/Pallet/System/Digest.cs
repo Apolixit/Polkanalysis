@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
 {
     public class Digest : BaseType
     {

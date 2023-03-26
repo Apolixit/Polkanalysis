@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
-using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Repository
+namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
     //internal interface IExtrinsicRepository
     //{

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Signature
+namespace Polkanalysis.Domain.Contracts.Core.Signature
 {
     public class SignatureSr25519 : Signature
     {

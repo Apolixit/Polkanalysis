@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Substats.Configuration.Contracts\Substats.Configuration.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Domain.Contracts\Substats.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Polkadot\Polkanalysis.Infrastructure.Polkadot.csproj" />
   </ItemGroup>
 
 </Project>

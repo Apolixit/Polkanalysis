@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         /// <summary>
         /// >> sender
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _sender;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _sender;
         
         /// <summary>
         /// >> state
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumInboundState _state;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumInboundState _state;
         
         /// <summary>
         /// >> message_metadata
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> _messageMetadata;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> _messageMetadata;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Sender
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Sender
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumInboundState State
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumInboundState State
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> MessageMetadata
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> MessageMetadata
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Sender = new Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Sender = new Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Sender.Decode(byteArray, ref p);
-            State = new Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumInboundState();
+            State = new Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumInboundState();
             State.Decode(byteArray, ref p);
-            MessageMetadata = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>>();
+            MessageMetadata = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>>();
             MessageMetadata.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

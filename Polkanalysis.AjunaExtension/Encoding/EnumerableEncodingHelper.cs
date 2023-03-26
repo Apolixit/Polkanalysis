@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.AjunaExtension.Encoding
+namespace Polkanalysis.AjunaExtension.Encoding
 {
     public static class EnumerableEncodingHelper
     {

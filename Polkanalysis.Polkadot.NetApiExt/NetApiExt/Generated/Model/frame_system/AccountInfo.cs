@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system
 {
     
     
@@ -47,7 +47,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system
         /// <summary>
         /// >> data
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData _data;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData _data;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 Nonce
         {
@@ -97,7 +97,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData Data
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData Data
         {
             get
             {
@@ -136,7 +136,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system
             Providers.Decode(byteArray, ref p);
             Sufficients = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Sufficients.Decode(byteArray, ref p);
-            Data = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData();
+            Data = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData();
             Data.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

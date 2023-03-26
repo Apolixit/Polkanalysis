@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.pallet
 {
     
     
@@ -39,7 +39,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.pallet
     /// >> 167 - Variant[pallet_referenda.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller, Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime>, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller, Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime>, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

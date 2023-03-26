@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.ChildBounties.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.ChildBounties.Enums
 {
     public enum Error
     {

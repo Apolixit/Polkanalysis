@@ -1,16 +1,16 @@
-﻿using Substats.Integration.Tests.Contracts;
+﻿using Polkanalysis.Integration.Tests.Contracts;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Ajuna.NetApi;
-using Substats.Domain.Contracts.Secondary.Repository;
-using Substats.Domain.Repository;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Repository;
 
-namespace Substats.Domain.Integration.Tests.Repository
+namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
     public class AccountRepositoryTest : PolkadotIntegrationTest
     {

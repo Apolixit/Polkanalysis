@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_utility.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_utility.pallet
 {
     
     
@@ -35,7 +35,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_utility.pallet
     /// >> 257 - Variant[pallet_utility.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall, Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
+    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumOriginCaller, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
     {
     }
 }

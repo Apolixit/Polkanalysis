@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto
         /// <summary>
         /// >> value
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 _value;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 _value;
         
-        public Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 Value
+        public Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_core.crypto
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8();
+            Value = new Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -3,18 +3,18 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Secondary.Pallet.Balances;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using BalancesStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.BalancesStorage;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using BalancesStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.BalancesStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     /// <summary>
     /// Balances storage mapping from Polkadot blockchain to Domain
@@ -32,7 +32,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
 
             return await GetStorageWithParamsAsync<
                 AccountId32, 
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
                 AccountData>
                 (accountId32, BalancesStorageExt.AccountParams, token);
         }
@@ -63,9 +63,9 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 BaseVec<ReserveData>>
                 (accountId32, BalancesStorageExt.ReservesParams, token);
 
-            //var res = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6>(BalancesStorageExt.ReservesParams(accountId32), token);
+            //var res = await GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6>(BalancesStorageExt.ReservesParams(accountId32), token);
 
-            //return SubstrateMapper.Instance.Map<Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6, BaseVec<ReserveData>>(res);
+            //return SubstrateMapper.Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6, BaseVec<ReserveData>>(res);
         }
 
         public async Task<U128> TotalIssuanceAsync(CancellationToken token)

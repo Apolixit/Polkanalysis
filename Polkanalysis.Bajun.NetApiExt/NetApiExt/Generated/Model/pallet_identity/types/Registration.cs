@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> judgements
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT8 _judgements;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT8 _judgements;
         
         /// <summary>
         /// >> deposit
@@ -37,9 +37,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> info
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo _info;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo _info;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT8 Judgements
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT8 Judgements
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo Info
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo Info
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Judgements = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT8();
+            Judgements = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT8();
             Judgements.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
-            Info = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo();
+            Info = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo();
             Info.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

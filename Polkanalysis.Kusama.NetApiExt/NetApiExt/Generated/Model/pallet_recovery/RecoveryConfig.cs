@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_recovery
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
 {
     
     
@@ -37,7 +37,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_recovery
         /// <summary>
         /// >> friends
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 _friends;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 _friends;
         
         /// <summary>
         /// >> threshold
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_recovery
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 Friends
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 Friends
         {
             get
             {
@@ -114,7 +114,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_recovery
             DelayPeriod.Decode(byteArray, ref p);
             Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
-            Friends = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24();
+            Friends = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24();
             Friends.Decode(byteArray, ref p);
             Threshold = new Ajuna.NetApi.Model.Types.Primitive.U16();
             Threshold.Decode(byteArray, ref p);

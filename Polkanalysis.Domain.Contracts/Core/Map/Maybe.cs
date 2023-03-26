@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Map
+namespace Polkanalysis.Domain.Contracts.Core.Map
 {
     public class Maybe<T> : BaseType
         where T : IType, new()

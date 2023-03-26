@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet
     ///			of this pallet.
     ///			
     /// </summary>
-    public sealed class EnumError : BaseEnumExt<Error, Substats.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.EnumListError>
+    public sealed class EnumError : BaseEnumExt<Error, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.EnumListError>
     {
     }
 }

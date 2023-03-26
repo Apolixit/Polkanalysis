@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
-using Substats.Domain.Contracts.Dto.Parachain;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Nominator;
+using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Nominator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.UseCase.Parachain
+namespace Polkanalysis.Domain.UseCase.Parachain
 {
     public class ParachainDetailUseCase : UseCase<ParachainDetailUseCase, ParachainDto, ParachainCommand>
     {

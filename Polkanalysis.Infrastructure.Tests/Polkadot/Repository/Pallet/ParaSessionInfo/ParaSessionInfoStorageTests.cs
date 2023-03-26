@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Public;
-using Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Public;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionInfo
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionInfo
 {
     public class ParaSessionInfoStorageTests : PolkadotRepositoryMock
     {
@@ -14,7 +14,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionIn
         public async Task AssignmentKeysUnsafe_ShouldWorkAsync()
         {
             var coreResult = new BaseVec<
-                        Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>();
+                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>();
             coreResult.Create("0x081C9A9A52E094114C0C1CD1AF7B0F7F2023B34B78AD842A87AF690AECBF2DA7258AC16E2487AE411A37A41F7A086824B2EFD39C94B3494EFA7C1B708E360B380C");
 
             var expectedResult = new BaseVec<PublicSr25519>(
@@ -32,7 +32,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionIn
         public async Task AssignmentKeysUnsafeNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<BaseVec<
-                        Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>, BaseVec<PublicSr25519>>(_substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
+                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>, BaseVec<PublicSr25519>>(_substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionIn
         [Test]
         public async Task Sessions_ShouldWorkAsync()
         {
-            var coreResult = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo();
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo();
             IEnumerable<byte> encoded =
                 Ajuna.NetApi.Utils.HexToByteArray("0x089000000051000000") // ActiveValidatorIndices
                 .Concat(Ajuna.NetApi.Utils.HexToByteArray("0xD385F13394068E87B0CF39C525782DF628EA9A5D41364914CAE4A951EB7C3359")) // RandomSeed
@@ -148,7 +148,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessionIn
         {
             await MockStorageCallNullWithInputAsync<
                 U32,
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo,
                 SessionInfo>(new U32(1), _substrateRepository.Storage.ParaSessionInfo.SessionsAsync);
         }
 

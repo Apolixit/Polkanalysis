@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
     /// <summary>
     /// >> 381 - Variant[sp_runtime.MultiSigner]
     /// </summary>
-    public sealed class EnumMultiSigner : BaseEnumExt<MultiSigner, Substats.Kusama.NetApiExt.Generated.Model.sp_core.ed25519.Public, Substats.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public, Substats.Kusama.NetApiExt.Generated.Model.sp_core.ecdsa.Public>
+    public sealed class EnumMultiSigner : BaseEnumExt<MultiSigner, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.ed25519.Public, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.sr25519.Public, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.ecdsa.Public>
     {
     }
 }

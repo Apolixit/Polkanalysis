@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Substats.Components\Substats.Components.csproj" />
-    <ProjectReference Include="..\Substats.Domain.Contracts\Substats.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Substats.Domain\Substats.Domain.csproj" />
-    <ProjectReference Include="..\Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Components\Polkanalysis.Components.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Polkadot\Polkanalysis.Infrastructure.Polkadot.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Core.Random;
-using Substats.Domain.Contracts.Secondary.Pallet.Session;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using SessionStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.SessionStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Core.Random;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using SessionStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.SessionStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     public class SessionStorage : MainStorage, ISessionStorage
     {
@@ -37,7 +37,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32, 
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys,
                 SessionKeysPolka>
                 (SubstrateMapper.Instance.Map<AccountId32>(account), SessionStorageExt.NextKeysParams, token);
         }
@@ -50,7 +50,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>> QueuedKeysAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                BaseVec<BaseTuple<AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>,
+                BaseVec<BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>,
                 BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>
                 (SessionStorageExt.QueuedKeysParams, token);
         }

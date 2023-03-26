@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types
     /// <summary>
     /// >> 579 - Variant[pallet_democracy.types.ReferendumInfo]
     /// </summary>
-    public sealed class EnumReferendumInfo : BaseEnumExt<ReferendumInfo, Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.ReferendumStatus, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.Bool, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumReferendumInfo : BaseEnumExt<ReferendumInfo, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.ReferendumStatus, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.Bool, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

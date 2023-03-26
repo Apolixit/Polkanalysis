@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.orml_vesting.module
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.module
 {
     
     
@@ -31,7 +31,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.orml_vesting.module
     /// >> 230 - Variant[orml_vesting.module.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseVoid, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Substats.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule>, BaseTuple<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule>>, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseVoid, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule>>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress>
     {
     }
 }

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         /// <summary>
         /// >> fees
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintFees _fees;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintFees _fees;
         
         /// <summary>
         /// >> cooldown
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintFees Fees
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintFees Fees
         {
             get
             {
@@ -112,7 +112,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             var start = p;
             Open = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             Open.Decode(byteArray, ref p);
-            Fees = new Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintFees();
+            Fees = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintFees();
             Fees.Decode(byteArray, ref p);
             Cooldown = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Cooldown.Decode(byteArray, ref p);

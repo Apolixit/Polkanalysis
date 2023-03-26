@@ -1,16 +1,16 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Substats.Domain.Contracts.Secondary.Pallet.Auctions;
-using Substats.Infrastructure.Polkadot.Repository.Storage;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
+using Polkanalysis.Infrastructure.Polkadot.Repository.Storage;
+using Polkanalysis.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Auctions
+namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Auctions
 {
     public class AuctionsStorageTests : PolkadotIntegrationTest
     {

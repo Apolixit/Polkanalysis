@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
         /// <summary>
         /// >> parent_hash
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _parentHash;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _parentHash;
         
         /// <summary>
         /// >> number
@@ -37,19 +37,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
         /// <summary>
         /// >> state_root
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _stateRoot;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _stateRoot;
         
         /// <summary>
         /// >> extrinsics_root
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _extrinsicsRoot;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _extrinsicsRoot;
         
         /// <summary>
         /// >> digest
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest _digest;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest _digest;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ParentHash
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ParentHash
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 StateRoot
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 StateRoot
         {
             get
             {
@@ -85,7 +85,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ExtrinsicsRoot
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 ExtrinsicsRoot
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest Digest
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest Digest
         {
             get
             {
@@ -128,15 +128,15 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ParentHash = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            ParentHash = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             ParentHash.Decode(byteArray, ref p);
             Number = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>();
             Number.Decode(byteArray, ref p);
-            StateRoot = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            StateRoot = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             StateRoot.Decode(byteArray, ref p);
-            ExtrinsicsRoot = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            ExtrinsicsRoot = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             ExtrinsicsRoot.Decode(byteArray, ref p);
-            Digest = new Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest();
+            Digest = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest();
             Digest.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

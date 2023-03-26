@@ -2,17 +2,17 @@
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using NSubstitute;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Authorship
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Authorship
 {
     public class AuthorshipStorageTests : PolkadotRepositoryMock
     {
@@ -20,9 +20,9 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Authorship
         public async Task Uncles_ShouldWorkAsync()
         {
             var coreResult = new BoundedVecT7();
-            var uncleEnum = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem();
-            uncleEnum.Create(Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.UncleEntryItem.InclusionHeight, new U32(10));
-            coreResult.Create(Utils.Bytes2HexString(new BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem>(new[]
+            var uncleEnum = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem();
+            uncleEnum.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_authorship.UncleEntryItem.InclusionHeight, new U32(10));
+            coreResult.Create(Utils.Bytes2HexString(new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem>(new[]
             {
                 uncleEnum
             }).Encode()));

@@ -1,4 +1,4 @@
-﻿using Substats.Domain.Contracts.Primary;
+﻿using Polkanalysis.Domain.Contracts.Primary;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using System;
@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Dto.User;
 
-namespace Substats.Domain.UseCase.Account
+namespace Polkanalysis.Domain.UseCase.Account
 {
     public class AccountDetailUseCase : UseCase<AccountDetailUseCase, AccountDto, AccountCommand>
     {

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
 {
     
     
@@ -62,12 +62,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> min_approval
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve _minApproval;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve _minApproval;
         
         /// <summary>
         /// >> min_support
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve _minSupport;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve _minSupport;
         
         public Ajuna.NetApi.Model.Types.Primitive.Str Name
         {
@@ -153,7 +153,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve MinApproval
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve MinApproval
         {
             get
             {
@@ -165,7 +165,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve MinSupport
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve MinSupport
         {
             get
             {
@@ -214,9 +214,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             ConfirmPeriod.Decode(byteArray, ref p);
             MinEnactmentPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
             MinEnactmentPeriod.Decode(byteArray, ref p);
-            MinApproval = new Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve();
+            MinApproval = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve();
             MinApproval.Decode(byteArray, ref p);
-            MinSupport = new Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve();
+            MinSupport = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve();
             MinSupport.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

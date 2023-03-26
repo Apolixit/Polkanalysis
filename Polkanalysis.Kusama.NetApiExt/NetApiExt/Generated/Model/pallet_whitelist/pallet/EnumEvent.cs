@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_whitelist.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_whitelist.pallet
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_whitelist.pallet
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Substats.Kusama.NetApiExt.Generated.Types.Base.EnumResult>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.EnumResult>>
     {
     }
 }

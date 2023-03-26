@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Adapter.Block
+namespace Polkanalysis.Domain.Contracts.Adapter.Block
 {
     public interface IBlockParameterLike
     {

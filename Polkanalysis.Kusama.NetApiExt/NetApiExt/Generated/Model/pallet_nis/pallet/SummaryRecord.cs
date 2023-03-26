@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
         /// <summary>
         /// >> proportion_owed
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill _proportionOwed;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill _proportionOwed;
         
         /// <summary>
         /// >> index
@@ -37,14 +37,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
         /// <summary>
         /// >> thawed
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill _thawed;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill _thawed;
         
         /// <summary>
         /// >> last_period
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _lastPeriod;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill ProportionOwed
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill ProportionOwed
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill Thawed
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill Thawed
         {
             get
             {
@@ -110,11 +110,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ProportionOwed = new Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill();
+            ProportionOwed = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill();
             ProportionOwed.Decode(byteArray, ref p);
             Index = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Index.Decode(byteArray, ref p);
-            Thawed = new Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill();
+            Thawed = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill();
             Thawed.Decode(byteArray, ref p);
             LastPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
             LastPeriod.Decode(byteArray, ref p);

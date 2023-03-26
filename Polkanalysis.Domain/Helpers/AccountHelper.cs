@@ -1,11 +1,11 @@
 ﻿
 //using Ajuna.NetApi;
 //using Ajuna.NetApi.Model.Types;
-//using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+//using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 //using Schnorrkel.Keys;
-//using Substats.Domain.Contracts.Dto.User;
+//using Polkanalysis.Domain.Contracts.Dto.User;
 
-//namespace Substats.Domain.Contracts.Helpers
+//namespace Polkanalysis.Domain.Contracts.Helpers
 //{
 //    /// <summary>
 //    /// Todo: refacto with interface

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> targets
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 _targets;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 _targets;
         
         /// <summary>
         /// >> submitted_in
@@ -39,7 +39,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.Bool _suppressed;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 Targets
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8 Targets
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Targets = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8();
+            Targets = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT8();
             Targets.Decode(byteArray, ref p);
             SubmittedIn = new Ajuna.NetApi.Model.Types.Primitive.U32();
             SubmittedIn.Decode(byteArray, ref p);

@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Storage
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
 {
     
     
@@ -30,8 +30,8 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         public DmpQueueStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Configuration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "PageIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Configuration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "PageIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Pages"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Overweight"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
@@ -51,10 +51,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> Configuration
         ///  The configuration.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData> Configuration(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData> Configuration(CancellationToken token)
         {
             string parameters = DmpQueueStorage.ConfigurationParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData>(parameters, token);
         }
         
         /// <summary>
@@ -70,10 +70,10 @@ namespace Substats.Bajun.NetApiExt.Generated.Storage
         /// >> PageIndex
         ///  The page index.
         /// </summary>
-        public async Task<Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData> PageIndex(CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData> PageIndex(CancellationToken token)
         {
             string parameters = DmpQueueStorage.PageIndexParams();
-            return await _client.GetStorageAsync<Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData>(parameters, token);
         }
         
         /// <summary>

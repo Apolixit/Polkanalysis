@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_timestamp.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_timestamp.pallet
 {
     
     

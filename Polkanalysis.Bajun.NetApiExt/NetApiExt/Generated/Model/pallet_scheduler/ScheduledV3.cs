@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_scheduler
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_scheduler
 {
     
     
@@ -37,7 +37,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_scheduler
         /// <summary>
         /// >> call
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumMaybeHashed _call;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumMaybeHashed _call;
         
         /// <summary>
         /// >> maybe_periodic
@@ -47,7 +47,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_scheduler
         /// <summary>
         /// >> origin
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller _origin;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller _origin;
         
         public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> MaybeId
         {
@@ -73,7 +73,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_scheduler
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumMaybeHashed Call
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumMaybeHashed Call
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_scheduler
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller Origin
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller Origin
         {
             get
             {
@@ -132,11 +132,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_scheduler
             MaybeId.Decode(byteArray, ref p);
             Priority = new Ajuna.NetApi.Model.Types.Primitive.U8();
             Priority.Decode(byteArray, ref p);
-            Call = new Substats.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumMaybeHashed();
+            Call = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumMaybeHashed();
             Call.Decode(byteArray, ref p);
             MaybePeriodic = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>();
             MaybePeriodic.Decode(byteArray, ref p);
-            Origin = new Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller();
+            Origin = new Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller();
             Origin.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

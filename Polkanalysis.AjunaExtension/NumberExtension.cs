@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
 using System.Numerics;
 
-namespace Substats.AjunaExtension
+namespace Polkanalysis.AjunaExtension
 {
     public static class NumberExtension
     {

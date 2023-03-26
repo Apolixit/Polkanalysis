@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.Module
+namespace Polkanalysis.Domain.Contracts.Dto.Module
 {
     public class ModuleInfoDto
     {

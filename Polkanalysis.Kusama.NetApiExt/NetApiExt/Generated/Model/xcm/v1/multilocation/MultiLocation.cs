@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation
         /// <summary>
         /// >> interior
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.EnumJunctions _interior;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.EnumJunctions _interior;
         
         public Ajuna.NetApi.Model.Types.Primitive.U8 Parents
         {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.EnumJunctions Interior
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.EnumJunctions Interior
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation
             var start = p;
             Parents = new Ajuna.NetApi.Model.Types.Primitive.U8();
             Parents.Decode(byteArray, ref p);
-            Interior = new Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.EnumJunctions();
+            Interior = new Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.EnumJunctions();
             Interior.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

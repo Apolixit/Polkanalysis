@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Secondary.Pallet.Identity;
-using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 
-namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
+namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
 {
     public class IdentityStorageTests : PolkadotRepositoryMock
     {
@@ -15,7 +15,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
         [Ignore("Bytes null")]
         public async Task IdentityOf_ShouldWorkAsync()
         {
-            var coreResult = new Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration();
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration();
             coreResult.Create("0x04010000000200BB34642400000000000000000000000017506F6C6B61646F742E70726F202D205265616C676172001568747470733A2F2F706F6C6B61646F742E70726F14407265616C6761723A6D61747269782E6F72671368656C6C6F40706F6C6B61646F742E70726F00000D4070726F706F6C6B61646F74");
 
             var identityInfo = new IdentityInfo(
@@ -37,14 +37,14 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
         {
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration,
                 Registration>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.IdentityOfAsync);
         }
         
         [Test]
         public async Task SuperOf_ShouldWorkAsync()
         {
-            var coreResult = new BaseTuple<AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>();
+            var coreResult = new BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>();
             coreResult.Create("0x127A30E486492921E58F2564B36AB1CA21FF630672F0E76920EDD601F8F2B89A07415A494D5554");
 
             var expectedResult = new BaseTuple<SubstrateAccount, EnumData>(
@@ -59,7 +59,7 @@ namespace Substats.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
         {
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount, 
-                BaseTuple<AccountId32, Substats.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>,
+                BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>,
                     BaseTuple<SubstrateAccount, EnumData>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SuperOfAsync);
         }
 

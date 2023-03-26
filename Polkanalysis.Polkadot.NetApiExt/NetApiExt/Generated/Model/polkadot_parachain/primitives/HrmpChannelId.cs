@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primiti
         /// <summary>
         /// >> sender
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _sender;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _sender;
         
         /// <summary>
         /// >> recipient
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Sender
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Sender
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primiti
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primiti
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Sender = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Sender = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Sender.Decode(byteArray, ref p);
-            Recipient = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Recipient = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Recipient.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

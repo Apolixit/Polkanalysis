@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_grandpa
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_grandpa
 {
     
     
@@ -37,7 +37,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_grandpa
         /// <summary>
         /// >> next_authorities
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT4 _nextAuthorities;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT4 _nextAuthorities;
         
         /// <summary>
         /// >> forced
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_grandpa
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT4 NextAuthorities
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT4 NextAuthorities
         {
             get
             {
@@ -114,7 +114,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_grandpa
             ScheduledAt.Decode(byteArray, ref p);
             Delay = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Delay.Decode(byteArray, ref p);
-            NextAuthorities = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT4();
+            NextAuthorities = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT4();
             NextAuthorities.Decode(byteArray, ref p);
             Forced = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>();
             Forced.Decode(byteArray, ref p);

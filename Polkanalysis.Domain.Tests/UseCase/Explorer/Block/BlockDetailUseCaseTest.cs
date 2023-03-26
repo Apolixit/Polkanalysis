@@ -1,9 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase;
-using Substats.Domain.UseCase.Explorer;
-using Substats.Domain.UseCase.Explorer.Block;
+using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase;
+using Polkanalysis.Domain.UseCase.Explorer;
+using Polkanalysis.Domain.UseCase.Explorer.Block;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
-namespace Substats.Domain.Tests.UseCase.Explorer.Block
+namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
     public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailUseCase, BlockDto, BlockCommand>
     {

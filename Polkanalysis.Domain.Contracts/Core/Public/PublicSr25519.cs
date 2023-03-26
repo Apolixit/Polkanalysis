@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core.Random;
+using Polkanalysis.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Public
+namespace Polkanalysis.Domain.Contracts.Core.Public
 {
     public class PublicSr25519 : Public
     {

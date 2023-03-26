@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.pallet
 {
     
     
@@ -42,7 +42,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>
     {
     }
 }

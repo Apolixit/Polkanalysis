@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase
 {
     
     

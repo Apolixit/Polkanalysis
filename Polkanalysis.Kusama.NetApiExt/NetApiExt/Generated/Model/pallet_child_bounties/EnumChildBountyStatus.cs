@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
 {
     
     
@@ -30,7 +30,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
     /// <summary>
     /// >> 705 - Variant[pallet_child_bounties.ChildBountyStatus]
     /// </summary>
-    public sealed class EnumChildBountyStatus : BaseEnumExt<ChildBountyStatus, BaseVoid, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumChildBountyStatus : BaseEnumExt<ChildBountyStatus, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

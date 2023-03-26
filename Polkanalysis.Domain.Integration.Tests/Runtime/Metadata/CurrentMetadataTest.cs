@@ -2,16 +2,16 @@
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Runtime;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Integration.Tests.Runtime.Metadata
+namespace Polkanalysis.Domain.Integration.Tests.Runtime.Metadata
 {
     public class CurrentMetadataTest : PolkadotIntegrationTest
     {

@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.sp_runtime
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime
 {
     
     
@@ -42,7 +42,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_runtime
     /// <summary>
     /// >> 22 - Variant[sp_runtime.DispatchError]
     /// </summary>
-    public sealed class EnumDispatchError : BaseEnumExt<DispatchError, BaseVoid, BaseVoid, BaseVoid, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.ModuleError, BaseVoid, BaseVoid, BaseVoid, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumTokenError, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumArithmeticError, Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumTransactionalError>
+    public sealed class EnumDispatchError : BaseEnumExt<DispatchError, BaseVoid, BaseVoid, BaseVoid, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.ModuleError, BaseVoid, BaseVoid, BaseVoid, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumTokenError, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumArithmeticError, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumTransactionalError>
     {
     }
 }

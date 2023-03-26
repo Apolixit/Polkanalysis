@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.hrmp
 {
     
     
@@ -52,7 +52,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         /// <summary>
         /// >> mqc_head
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256> _mqcHead;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256> _mqcHead;
         
         /// <summary>
         /// >> sender_deposit
@@ -124,7 +124,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256> MqcHead
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256> MqcHead
         {
             get
             {
@@ -192,7 +192,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
             MsgCount.Decode(byteArray, ref p);
             TotalSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
             TotalSize.Decode(byteArray, ref p);
-            MqcHead = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256>();
+            MqcHead = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256>();
             MqcHead.Decode(byteArray, ref p);
             SenderDeposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             SenderDeposit.Decode(byteArray, ref p);

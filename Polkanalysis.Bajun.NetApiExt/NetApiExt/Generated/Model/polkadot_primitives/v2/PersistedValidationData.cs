@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> parent_head
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData _parentHead;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData _parentHead;
         
         /// <summary>
         /// >> relay_parent_number
@@ -37,14 +37,14 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> relay_parent_storage_root
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 _relayParentStorageRoot;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 _relayParentStorageRoot;
         
         /// <summary>
         /// >> max_pov_size
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _maxPovSize;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData ParentHead
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData ParentHead
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256 RelayParentStorageRoot
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 RelayParentStorageRoot
         {
             get
             {
@@ -110,11 +110,11 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ParentHead = new Substats.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData();
+            ParentHead = new Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData();
             ParentHead.Decode(byteArray, ref p);
             RelayParentNumber = new Ajuna.NetApi.Model.Types.Primitive.U32();
             RelayParentNumber.Decode(byteArray, ref p);
-            RelayParentStorageRoot = new Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256();
+            RelayParentStorageRoot = new Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256();
             RelayParentStorageRoot.Decode(byteArray, ref p);
             MaxPovSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
             MaxPovSize.Decode(byteArray, ref p);

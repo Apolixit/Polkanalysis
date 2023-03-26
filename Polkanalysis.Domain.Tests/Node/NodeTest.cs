@@ -1,10 +1,10 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Runtime;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using Polkanalysis.Domain.Contracts;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +16,12 @@ using System.Transactions;
 using Org.BouncyCastle.Utilities.Encoders;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Substats.Domain.Contracts.Runtime.Module;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
-using Substats.Polkadot.NetApiExt.Generated.Model.frame_system;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system;
 
-namespace Substats.Domain.Tests.Node
+namespace Polkanalysis.Domain.Tests.Node
 {
     public class NodeTest
     {

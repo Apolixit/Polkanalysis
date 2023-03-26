@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
 {
     
     
@@ -27,12 +27,12 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// <summary>
         /// >> votes_accept
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _votesAccept;
+        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _votesAccept;
         
         /// <summary>
         /// >> votes_reject
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _votesReject;
+        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _votesReject;
         
         /// <summary>
         /// >> age
@@ -47,9 +47,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// <summary>
         /// >> causes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumPvfCheckCause> _causes;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumPvfCheckCause> _causes;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> VotesAccept
+        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> VotesAccept
         {
             get
             {
@@ -61,7 +61,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> VotesReject
+        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> VotesReject
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumPvfCheckCause> Causes
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumPvfCheckCause> Causes
         {
             get
             {
@@ -128,15 +128,15 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            VotesAccept = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
+            VotesAccept = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
             VotesAccept.Decode(byteArray, ref p);
-            VotesReject = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
+            VotesReject = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
             VotesReject.Decode(byteArray, ref p);
             Age = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Age.Decode(byteArray, ref p);
             CreatedAt = new Ajuna.NetApi.Model.Types.Primitive.U32();
             CreatedAt.Decode(byteArray, ref p);
-            Causes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumPvfCheckCause>();
+            Causes = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumPvfCheckCause>();
             Causes.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

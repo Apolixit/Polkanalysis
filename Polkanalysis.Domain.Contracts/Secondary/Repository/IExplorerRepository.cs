@@ -1,11 +1,11 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 
-namespace Substats.Domain.Contracts.Secondary.Repository
+namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
     public interface IExplorerRepository
     {

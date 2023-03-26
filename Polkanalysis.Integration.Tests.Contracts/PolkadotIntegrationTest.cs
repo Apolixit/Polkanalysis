@@ -1,4 +1,4 @@
-﻿using Substats.Configuration.Contracts;
+﻿using Polkanalysis.Configuration.Contracts;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Integration.Tests.Contracts
+namespace Polkanalysis.Integration.Tests.Contracts
 {
     public abstract class PolkadotIntegrationTest : IntegrationTest
     {

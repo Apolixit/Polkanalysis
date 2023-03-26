@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -32,21 +32,21 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "QueryCounter"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "Queries"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U64), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U64), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "AssetTraps"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "SafeXcmVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "SupportedVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionNotifiers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionNotifyTargets"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionDiscoveryQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT40)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "CurrentMigration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionDiscoveryQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT40)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "CurrentMigration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage)));
         }
         
         /// <summary>
@@ -83,10 +83,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Queries
         ///  The ongoing queries.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus> Queries(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus> Queries(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.QueriesParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus>(parameters, token);
         }
         
         /// <summary>
@@ -96,7 +96,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Key is the blake2 256 hash of (origin, versioned `MultiAssets`) pair. Value is the number of
         ///  times this pair has been trapped (usually just 1 if it exists at all).
         /// </summary>
-        public static string AssetTrapsParams(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string AssetTrapsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("XcmPallet", "AssetTraps", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -110,7 +110,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Key is the blake2 256 hash of (origin, versioned `MultiAssets`) pair. Value is the number of
         ///  times this pair has been trapped (usually just 1 if it exists at all).
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AssetTraps(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AssetTraps(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.AssetTrapsParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
@@ -141,7 +141,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> SupportedVersionParams
         ///  The Latest versions that we know various locations support.
         /// </summary>
-        public static string SupportedVersionParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
+        public static string SupportedVersionParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
         {
             return RequestGenerator.GetStorage("XcmPallet", "SupportedVersion", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -152,7 +152,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> SupportedVersion
         ///  The Latest versions that we know various locations support.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SupportedVersion(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SupportedVersion(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.SupportedVersionParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
@@ -162,7 +162,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> VersionNotifiersParams
         ///  All locations that we have requested version notifications from.
         /// </summary>
-        public static string VersionNotifiersParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
+        public static string VersionNotifiersParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
         {
             return RequestGenerator.GetStorage("XcmPallet", "VersionNotifiers", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -173,7 +173,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> VersionNotifiers
         ///  All locations that we have requested version notifications from.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> VersionNotifiers(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> VersionNotifiers(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionNotifiersParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
@@ -184,7 +184,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The target locations that are subscribed to our version changes, as well as the most recent
         ///  of our versions we informed them of.
         /// </summary>
-        public static string VersionNotifyTargetsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
+        public static string VersionNotifyTargetsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
         {
             return RequestGenerator.GetStorage("XcmPallet", "VersionNotifyTargets", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -196,7 +196,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The target locations that are subscribed to our version changes, as well as the most recent
         ///  of our versions we informed them of.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>> VersionNotifyTargets(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>> VersionNotifyTargets(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionNotifyTargetsParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
@@ -219,10 +219,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  the `u32` counter is the number of times that a send to the destination has been attempted,
         ///  which is used as a prioritization.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT40> VersionDiscoveryQueue(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT40> VersionDiscoveryQueue(CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionDiscoveryQueueParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT40>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT40>(parameters, token);
         }
         
         /// <summary>
@@ -238,10 +238,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> CurrentMigration
         ///  The current migration's stage, if any.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage> CurrentMigration(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage> CurrentMigration(CancellationToken token)
         {
             string parameters = XcmPalletStorage.CurrentMigrationParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage>(parameters, token);
         }
     }
     
@@ -252,7 +252,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> send
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Send(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message)
+        public static Method Send(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -264,7 +264,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> teleport_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method TeleportAssets(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
+        public static Method TeleportAssets(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -278,7 +278,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> reserve_transfer_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReserveTransferAssets(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
+        public static Method ReserveTransferAssets(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -292,7 +292,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> execute
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Execute(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Ajuna.NetApi.Model.Types.Primitive.U64 max_weight)
+        public static Method Execute(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Ajuna.NetApi.Model.Types.Primitive.U64 max_weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(message.Encode());
@@ -304,7 +304,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_xcm_version
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceXcmVersion(Substats.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation location, Ajuna.NetApi.Model.Types.Primitive.U32 xcm_version)
+        public static Method ForceXcmVersion(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation location, Ajuna.NetApi.Model.Types.Primitive.U32 xcm_version)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(location.Encode());
@@ -327,7 +327,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_subscribe_version_notify
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceSubscribeVersionNotify(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation location)
+        public static Method ForceSubscribeVersionNotify(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation location)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(location.Encode());
@@ -338,7 +338,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_unsubscribe_version_notify
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceUnsubscribeVersionNotify(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation location)
+        public static Method ForceUnsubscribeVersionNotify(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation location)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(location.Encode());
@@ -349,7 +349,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> limited_reserve_transfer_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method LimitedReserveTransferAssets(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Substats.Kusama.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
+        public static Method LimitedReserveTransferAssets(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -364,7 +364,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> limited_teleport_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method LimitedTeleportAssets(Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Substats.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Substats.Kusama.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
+        public static Method LimitedTeleportAssets(Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());

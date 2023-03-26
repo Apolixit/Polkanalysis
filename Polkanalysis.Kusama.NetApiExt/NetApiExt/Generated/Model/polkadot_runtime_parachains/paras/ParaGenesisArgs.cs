@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         /// <summary>
         /// >> genesis_head
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData _genesisHead;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData _genesisHead;
         
         /// <summary>
         /// >> validation_code
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode _validationCode;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode _validationCode;
         
         /// <summary>
         /// >> para_kind
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.Bool _paraKind;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData GenesisHead
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData GenesisHead
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode ValidationCode
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode ValidationCode
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            GenesisHead = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData();
+            GenesisHead = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData();
             GenesisHead.Decode(byteArray, ref p);
-            ValidationCode = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode();
+            ValidationCode = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode();
             ValidationCode.Decode(byteArray, ref p);
             ParaKind = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             ParaKind.Decode(byteArray, ref p);

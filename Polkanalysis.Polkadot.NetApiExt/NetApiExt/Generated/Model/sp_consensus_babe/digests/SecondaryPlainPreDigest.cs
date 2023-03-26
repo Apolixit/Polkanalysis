@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
         /// <summary>
         /// >> slot
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 AuthorityIndex
         {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests
             var start = p;
             AuthorityIndex = new Ajuna.NetApi.Model.Types.Primitive.U32();
             AuthorityIndex.Decode(byteArray, ref p);
-            Slot = new Substats.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
+            Slot = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
             Slot.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

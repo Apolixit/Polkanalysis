@@ -1,9 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.AjunaExtension;
+using Polkanalysis.AjunaExtension;
 using System.Numerics;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
 {
     public class SpanRecord : BaseType
     {

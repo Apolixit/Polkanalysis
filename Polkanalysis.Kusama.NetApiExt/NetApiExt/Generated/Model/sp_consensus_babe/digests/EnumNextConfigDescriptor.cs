@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
 {
     
     
@@ -24,7 +24,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
     /// <summary>
     /// >> 85 - Variant[sp_consensus_babe.digests.NextConfigDescriptor]
     /// </summary>
-    public sealed class EnumNextConfigDescriptor : BaseEnumExt<NextConfigDescriptor, BaseVoid, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>>
+    public sealed class EnumNextConfigDescriptor : BaseEnumExt<NextConfigDescriptor, BaseVoid, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>>
     {
     }
 }

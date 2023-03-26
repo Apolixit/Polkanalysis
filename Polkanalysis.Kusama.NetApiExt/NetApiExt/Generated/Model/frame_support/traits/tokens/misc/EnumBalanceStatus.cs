@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.traits.tokens.misc
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.tokens.misc
 {
     
     

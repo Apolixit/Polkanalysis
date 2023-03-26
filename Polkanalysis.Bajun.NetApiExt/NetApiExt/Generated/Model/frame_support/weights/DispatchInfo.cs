@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
 {
     
     
@@ -32,12 +32,12 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
         /// <summary>
         /// >> class
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumDispatchClass _class;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumDispatchClass _class;
         
         /// <summary>
         /// >> pays_fee
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumPays _paysFee;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumPays _paysFee;
         
         public Ajuna.NetApi.Model.Types.Primitive.U64 Weight
         {
@@ -51,7 +51,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumDispatchClass Class
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumDispatchClass Class
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumPays PaysFee
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumPays PaysFee
         {
             get
             {
@@ -94,9 +94,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights
             var start = p;
             Weight = new Ajuna.NetApi.Model.Types.Primitive.U64();
             Weight.Decode(byteArray, ref p);
-            Class = new Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumDispatchClass();
+            Class = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumDispatchClass();
             Class.Decode(byteArray, ref p);
-            PaysFee = new Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumPays();
+            PaysFee = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumPays();
             PaysFee.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

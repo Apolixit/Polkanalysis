@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
 {
     
     
@@ -37,12 +37,12 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
         /// <summary>
         /// >> last_recorded_reward_counter
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 _lastRecordedRewardCounter;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 _lastRecordedRewardCounter;
         
         /// <summary>
         /// >> unbonding_eras
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1 _unbondingEras;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1 _unbondingEras;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 PoolId
         {
@@ -68,7 +68,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 LastRecordedRewardCounter
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 LastRecordedRewardCounter
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1 UnbondingEras
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1 UnbondingEras
         {
             get
             {
@@ -114,9 +114,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools
             PoolId.Decode(byteArray, ref p);
             Points = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Points.Decode(byteArray, ref p);
-            LastRecordedRewardCounter = new Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128();
+            LastRecordedRewardCounter = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128();
             LastRecordedRewardCounter.Decode(byteArray, ref p);
-            UnbondingEras = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1();
+            UnbondingEras = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1();
             UnbondingEras.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

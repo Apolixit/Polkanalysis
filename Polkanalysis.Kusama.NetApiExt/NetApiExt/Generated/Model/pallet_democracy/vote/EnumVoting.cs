@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote
 {
     
     
@@ -26,7 +26,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote
     /// <summary>
     /// >> 582 - Variant[pallet_democracy.vote.Voting]
     /// </summary>
-    public sealed class EnumVoting : BaseEnumExt<Voting, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT11, Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction, Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Substats.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>>
+    public sealed class EnumVoting : BaseEnumExt<Voting, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT11, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>>
     {
     }
 }

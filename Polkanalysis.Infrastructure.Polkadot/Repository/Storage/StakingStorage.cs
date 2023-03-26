@@ -2,16 +2,16 @@
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Org.BouncyCastle.Math;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Session;
-using Substats.Domain.Contracts.Secondary.Pallet.Staking;
-using Substats.Domain.Contracts.Secondary.Pallet.Staking.Enums;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using StakingStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.StakingStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using StakingStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.StakingStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     public class StakingStorage : MainStorage, IStakingStorage
     {
@@ -20,7 +20,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<ActiveEraInfo> ActiveEraAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo,
                 ActiveEraInfo>
                 (StakingStorageExt.ActiveEraParams, token);
         }
@@ -48,7 +48,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<Percent> ChillThresholdAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent,
                 Percent>(StakingStorageExt.ChillThresholdParams, token);
         }
 
@@ -76,7 +76,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 U32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints,
                 EraRewardPoints>(key, StakingStorageExt.ErasRewardPointsParams, token);
         }
 
@@ -84,7 +84,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                BaseTuple<U32, AccountId32>,
-               Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
+               Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
                Exposure>(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasStakersParams, token);
         }
 
@@ -92,7 +92,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                BaseTuple<U32, AccountId32>,
-               Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
+               Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
                Exposure>(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasStakersClippedParams, token);
         }
 
@@ -110,7 +110,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                BaseTuple<U32, AccountId32>,
-               Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
+               Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
                ValidatorPrefs>(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasValidatorPrefsParams, token);
         }
 
@@ -122,7 +122,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<EnumForcing> ForceEraAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing, EnumForcing>(StakingStorageExt.ForceEraParams, token);
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing, EnumForcing>(StakingStorageExt.ForceEraParams, token);
         }
 
         public async Task<BaseVec<SubstrateAccount>> InvulnerablesAsync(CancellationToken token)
@@ -135,7 +135,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger, 
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger, 
                 StakingLedger>(SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.LedgerParams, token);
         }
 
@@ -152,7 +152,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<Perbill> MinCommissionAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
                 >(StakingStorageExt.MinCommissionParams, token);
         }
 
@@ -175,7 +175,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations,
                 Nominations>(SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.NominatorsParams, token);
         }
 
@@ -197,7 +197,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination,
                 EnumRewardDestination>(
                 SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.PayeeParams, token);
         }
@@ -206,7 +206,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans,
                 SlashingSpans>(
                 SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.SlashingSpansParams, token);
         }
@@ -214,7 +214,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<Perbill> SlashRewardFractionAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
                 >(StakingStorageExt.SlashRewardFractionParams, token);
         }
 
@@ -222,7 +222,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 BaseTuple<AccountId32, U32>,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord,
                 SpanRecord>(
                 SubstrateMapper.Instance.Map<BaseTuple<AccountId32, U32>>(key), StakingStorageExt.SpanSlashParams, token);
         }
@@ -231,7 +231,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         //public async Task<EnumReleases> StorageVersionAsync(CancellationToken token)
         //{
         //    return await GetStorageAsync<
-        //        Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases,
+        //        Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases,
         //        EnumReleases>(StakingStorageExt.StorageVersionParams, token);
         //}
 
@@ -244,7 +244,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 U32,
-                BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>,
+                BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>,
                 BaseVec<UnappliedSlash>>(key, StakingStorageExt.UnappliedSlashesParams, token);
         }
 
@@ -257,7 +257,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Substats.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
                 ValidatorPrefs
                 >(SubstrateMapper.Instance.Map<AccountId32>(account), StakingStorageExt.ValidatorsParams, token);
         }
@@ -266,7 +266,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 BaseTuple<U32, AccountId32>,
-                BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, U128>,
+                BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, U128>,
                 BaseTuple<Perbill, U128>
                 >(SubstrateMapper.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ValidatorSlashInEraParams, token);
         }

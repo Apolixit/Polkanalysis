@@ -1,7 +1,7 @@
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core.Public;
+using Polkanalysis.Domain.Contracts.Core.Public;
 
-namespace Substats.Domain.Contracts.Core.Multi
+namespace Polkanalysis.Domain.Contracts.Core.Multi
 {
     public enum MultiSigner
     {

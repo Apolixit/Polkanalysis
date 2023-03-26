@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
 {
     
     
@@ -47,7 +47,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
         /// <summary>
         /// >> status
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus _status;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus _status;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 ParentBounty
         {
@@ -97,7 +97,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus Status
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus Status
         {
             get
             {
@@ -136,7 +136,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties
             Fee.Decode(byteArray, ref p);
             CuratorDeposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
             CuratorDeposit.Decode(byteArray, ref p);
-            Status = new Substats.Kusama.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus();
+            Status = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus();
             Status.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

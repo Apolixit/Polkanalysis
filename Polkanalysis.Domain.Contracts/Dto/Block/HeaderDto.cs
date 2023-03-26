@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.Block
+namespace Polkanalysis.Domain.Contracts.Dto.Block
 {
     public class HeaderDto
     {

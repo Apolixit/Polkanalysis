@@ -10,11 +10,11 @@
 using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Meta;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Kusama.NetApiExt.Generated.Storage;
+using Polkanalysis.Kusama.NetApiExt.Generated.Storage;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated
+namespace Polkanalysis.Kusama.NetApiExt.Generated
 {
     
     

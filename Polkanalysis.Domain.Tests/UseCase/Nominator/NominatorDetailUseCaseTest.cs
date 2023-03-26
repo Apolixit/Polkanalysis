@@ -1,17 +1,17 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Substats.Domain.Contracts.Dto.Module;
-using Substats.Domain.Contracts.Dto.User;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Module;
-using Substats.Domain.UseCase.Nominator;
+using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Module;
+using Polkanalysis.Domain.UseCase.Nominator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Tests.UseCase.Nominator
+namespace Polkanalysis.Domain.Tests.UseCase.Nominator
 {
     internal class NominatorDetailUseCaseTest : UseCaseTest<NominatorDetailUseCase, NominatorDto, NominatorCommand>
     {

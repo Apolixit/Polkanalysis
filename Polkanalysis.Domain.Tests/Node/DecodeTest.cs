@@ -1,9 +1,9 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Runtime.Mapping;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Runtime;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Runtime.Mapping;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
 
-namespace Substats.SubstrateDecode.Test.Node
+namespace Polkanalysis.SubstrateDecode.Test.Node
 {
     public class DecodeTest
     {

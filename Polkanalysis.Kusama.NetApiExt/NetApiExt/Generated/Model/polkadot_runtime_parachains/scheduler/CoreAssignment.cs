@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler
 {
     
     
@@ -27,24 +27,24 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         /// <summary>
         /// >> core
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex _core;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex _core;
         
         /// <summary>
         /// >> para_id
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _paraId;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _paraId;
         
         /// <summary>
         /// >> kind
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.EnumAssignmentKind _kind;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.EnumAssignmentKind _kind;
         
         /// <summary>
         /// >> group_idx
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex _groupIdx;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex _groupIdx;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex Core
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex Core
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id ParaId
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id ParaId
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.EnumAssignmentKind Kind
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.EnumAssignmentKind Kind
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex GroupIdx
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex GroupIdx
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Core = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex();
+            Core = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex();
             Core.Decode(byteArray, ref p);
-            ParaId = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            ParaId = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             ParaId.Decode(byteArray, ref p);
-            Kind = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.EnumAssignmentKind();
+            Kind = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.EnumAssignmentKind();
             Kind.Decode(byteArray, ref p);
-            GroupIdx = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex();
+            GroupIdx = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex();
             GroupIdx.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

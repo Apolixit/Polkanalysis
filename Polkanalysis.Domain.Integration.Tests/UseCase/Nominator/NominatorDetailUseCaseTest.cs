@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Integration.Tests.UseCase.Nominator
+namespace Polkanalysis.Domain.Integration.Tests.UseCase.Nominator
 {
     internal class NominatorDetailUseCaseTest
     {

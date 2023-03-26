@@ -1,7 +1,7 @@
 using Bunit;
 using NUnit.Framework;
 
-namespace Substats.Components.Test
+namespace Polkanalysis.Components.Test
 {
     /// <summary>
     /// Test context wrapper for bUnit.

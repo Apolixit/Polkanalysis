@@ -1,10 +1,10 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Secondary.Pallet.Timestamp;
-using Substats.Polkadot.NetApiExt.Generated;
-using TimestampStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.TimestampStorage;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Timestamp;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using TimestampStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.TimestampStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     public class TimestampStorage : MainStorage, ITimestampStorage
     {

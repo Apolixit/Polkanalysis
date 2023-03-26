@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.DispatchInfo
+namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
 {
     public class DispatchInfo : BaseType
     {

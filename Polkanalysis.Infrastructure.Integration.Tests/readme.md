@@ -1,6 +1,6 @@
 # Infrastructure integration test
 
-Integration test project of Substats.Infrastructure implementation
+Integration test project of Polkanalysis.Infrastructure implementation
 
 ## Dependencies
 - (NUnit)[https://nunit.org]

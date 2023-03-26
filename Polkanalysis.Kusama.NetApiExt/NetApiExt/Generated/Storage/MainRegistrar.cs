@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,17 +31,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "PendingSwap"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "Paras"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "NextFreeParaId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "NextFreeParaId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
         }
         
         /// <summary>
         /// >> PendingSwapParams
         ///  Pending swap operations.
         /// </summary>
-        public static string PendingSwapParams(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string PendingSwapParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Registrar", "PendingSwap", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -52,10 +52,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> PendingSwap
         ///  Pending swap operations.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> PendingSwap(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> PendingSwap(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = RegistrarStorage.PendingSwapParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
         }
         
         /// <summary>
@@ -65,7 +65,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The given account ID is responsible for registering the code and initial head data, but may only do
         ///  so if it isn't yet registered. (After that, it's up to governance to do so.)
         /// </summary>
-        public static string ParasParams(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string ParasParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Registrar", "Paras", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -79,10 +79,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The given account ID is responsible for registering the code and initial head data, but may only do
         ///  so if it isn't yet registered. (After that, it's up to governance to do so.)
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo> Paras(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo> Paras(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = RegistrarStorage.ParasParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo>(parameters, token);
         }
         
         /// <summary>
@@ -98,10 +98,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> NextFreeParaId
         ///  The next free `ParaId`.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> NextFreeParaId(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> NextFreeParaId(CancellationToken token)
         {
             string parameters = RegistrarStorage.NextFreeParaIdParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
         }
     }
     
@@ -112,7 +112,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> register
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Register(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
+        public static Method Register(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -125,7 +125,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_register
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceRegister(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Ajuna.NetApi.Model.Types.Primitive.U128 deposit, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
+        public static Method ForceRegister(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Ajuna.NetApi.Model.Types.Primitive.U128 deposit, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -140,7 +140,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> deregister
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Deregister(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id)
+        public static Method Deregister(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -151,7 +151,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> swap
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Swap(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id other)
+        public static Method Swap(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id other)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(id.Encode());
@@ -163,7 +163,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> remove_lock
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveLock(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        public static Method RemoveLock(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -184,7 +184,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> add_lock
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AddLock(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
+        public static Method AddLock(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -195,7 +195,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> schedule_code_upgrade
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ScheduleCodeUpgrade(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code)
+        public static Method ScheduleCodeUpgrade(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -207,7 +207,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_current_head
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetCurrentHead(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData new_head)
+        public static Method SetCurrentHead(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData new_head)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());

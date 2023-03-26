@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.traits
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.traits
     /// <summary>
     /// >> 56 - Variant[xcm.v2.traits.Outcome]
     /// </summary>
-    public sealed class EnumOutcome : BaseEnumExt<Outcome, Ajuna.NetApi.Model.Types.Primitive.U64, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>, Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>
+    public sealed class EnumOutcome : BaseEnumExt<Outcome, Ajuna.NetApi.Model.Types.Primitive.U64, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>
     {
     }
 }

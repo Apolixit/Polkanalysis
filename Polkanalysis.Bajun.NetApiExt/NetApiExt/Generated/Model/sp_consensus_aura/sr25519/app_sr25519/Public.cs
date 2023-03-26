@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.sp_consensus_aura.sr25519.app_sr25519
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_consensus_aura.sr25519.app_sr25519
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_consensus_aura.sr25519.app
         /// <summary>
         /// >> value
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_core.sr25519.Public _value;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.sr25519.Public _value;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_core.sr25519.Public Value
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.sr25519.Public Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.sp_consensus_aura.sr25519.app
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Substats.Bajun.NetApiExt.Generated.Model.sp_core.sr25519.Public();
+            Value = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.sr25519.Public();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

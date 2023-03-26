@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime
 {
     
     

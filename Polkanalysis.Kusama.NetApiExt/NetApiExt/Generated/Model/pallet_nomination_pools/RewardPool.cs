@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
         /// <summary>
         /// >> last_recorded_reward_counter
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 _lastRecordedRewardCounter;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 _lastRecordedRewardCounter;
         
         /// <summary>
         /// >> last_recorded_total_payouts
@@ -39,7 +39,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U128 _totalRewardsClaimed;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 LastRecordedRewardCounter
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128 LastRecordedRewardCounter
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_nomination_pools
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            LastRecordedRewardCounter = new Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128();
+            LastRecordedRewardCounter = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128();
             LastRecordedRewardCounter.Decode(byteArray, ref p);
             LastRecordedTotalPayouts = new Ajuna.NetApi.Model.Types.Primitive.U128();
             LastRecordedTotalPayouts.Decode(byteArray, ref p);

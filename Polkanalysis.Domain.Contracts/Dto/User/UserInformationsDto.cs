@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Dto.User
+namespace Polkanalysis.Domain.Contracts.Dto.User
 {
     public class UserInformationsDto
     {

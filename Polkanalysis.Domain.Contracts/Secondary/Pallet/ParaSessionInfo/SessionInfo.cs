@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Core.Public;
-using Substats.Domain.Contracts.Core.Random;
+using Polkanalysis.Domain.Contracts.Core.Public;
+using Polkanalysis.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
 {
     public class SessionInfo : BaseType
     {

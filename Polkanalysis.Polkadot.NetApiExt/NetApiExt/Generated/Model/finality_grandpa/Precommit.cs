@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.finality_grandpa
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
         /// <summary>
         /// >> target_hash
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 _targetHash;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 _targetHash;
         
         /// <summary>
         /// >> target_number
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _targetNumber;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 TargetHash
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 TargetHash
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.finality_grandpa
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            TargetHash = new Substats.Polkadot.NetApiExt.Generated.Model.primitive_types.H256();
+            TargetHash = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256();
             TargetHash.Decode(byteArray, ref p);
             TargetNumber = new Ajuna.NetApi.Model.Types.Primitive.U32();
             TargetNumber.Decode(byteArray, ref p);

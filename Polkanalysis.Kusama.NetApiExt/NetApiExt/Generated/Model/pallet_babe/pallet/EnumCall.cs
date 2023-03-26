@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_babe.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_babe.pallet
 {
     
     
@@ -29,7 +29,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_babe.pallet
     /// >> 77 - Variant[pallet_babe.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof, Substats.Kusama.NetApiExt.Generated.Model.sp_session.MembershipProof>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof, Substats.Kusama.NetApiExt.Generated.Model.sp_session.MembershipProof>, Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_session.MembershipProof>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_session.MembershipProof>, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>
     {
     }
 }

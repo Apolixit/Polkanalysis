@@ -1,15 +1,15 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Substats.Domain.Contracts.Core;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Integration.Tests.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Staking
+namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Staking
 {
     public class StakingStorageTests : PolkadotIntegrationTest
     {

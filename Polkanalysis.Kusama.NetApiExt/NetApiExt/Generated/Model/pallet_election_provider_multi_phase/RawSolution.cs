@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider_multi_phase
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_mul
         /// <summary>
         /// >> solution
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.NposCompactSolution24 _solution;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.NposCompactSolution24 _solution;
         
         /// <summary>
         /// >> score
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore _score;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore _score;
         
         /// <summary>
         /// >> round
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _round;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.NposCompactSolution24 Solution
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.NposCompactSolution24 Solution
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_mul
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore Score
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore Score
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_election_provider_mul
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Solution = new Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime.NposCompactSolution24();
+            Solution = new Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.NposCompactSolution24();
             Solution.Decode(byteArray, ref p);
-            Score = new Substats.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore();
+            Score = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore();
             Score.Decode(byteArray, ref p);
             Round = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Round.Decode(byteArray, ref p);

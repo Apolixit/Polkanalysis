@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.GrandPa
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.GrandPa
 {
     public class Prevote : BaseType
     {

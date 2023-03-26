@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.check_mortality
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.check_mortality
 {
     
     
@@ -27,9 +27,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
         /// <summary>
         /// >> value
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era.EnumEra _value;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era.EnumEra _value;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era.EnumEra Value
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era.EnumEra Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.extensions.ch
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era.EnumEra();
+            Value = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era.EnumEra();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -1,4 +1,4 @@
-﻿using Substats.Domain.Contracts.Runtime;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Dto;
-using Substats.Domain.Contracts.Runtime.Module;
-using Substats.Domain.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Dto;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Runtime.Module;
 
-namespace Substats.Infrastructure.DirectAccess.Tests.Repository
+namespace Polkanalysis.Infrastructure.DirectAccess.Tests.Repository
 {
     public class ModuleInformationTest
     {

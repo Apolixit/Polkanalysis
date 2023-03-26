@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types
 {
     
     
@@ -27,49 +27,49 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> additional
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1 _additional;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1 _additional;
         
         /// <summary>
         /// >> display
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _display;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _display;
         
         /// <summary>
         /// >> legal
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _legal;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _legal;
         
         /// <summary>
         /// >> web
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _web;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _web;
         
         /// <summary>
         /// >> riot
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _riot;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _riot;
         
         /// <summary>
         /// >> email
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _email;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _email;
         
         /// <summary>
         /// >> pgp_fingerprint
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Types.Base.Arr20U8> _pgpFingerprint;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr20U8> _pgpFingerprint;
         
         /// <summary>
         /// >> image
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _image;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _image;
         
         /// <summary>
         /// >> twitter
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _twitter;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData _twitter;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1 Additional
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1 Additional
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Display
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Display
         {
             get
             {
@@ -93,7 +93,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Legal
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Legal
         {
             get
             {
@@ -105,7 +105,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Web
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Web
         {
             get
             {
@@ -117,7 +117,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Riot
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Riot
         {
             get
             {
@@ -129,7 +129,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Email
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Email
         {
             get
             {
@@ -141,7 +141,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Types.Base.Arr20U8> PgpFingerprint
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr20U8> PgpFingerprint
         {
             get
             {
@@ -153,7 +153,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Image
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Image
         {
             get
             {
@@ -165,7 +165,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Twitter
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData Twitter
         {
             get
             {
@@ -200,23 +200,23 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Additional = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1();
+            Additional = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1();
             Additional.Decode(byteArray, ref p);
-            Display = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Display = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Display.Decode(byteArray, ref p);
-            Legal = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Legal = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Legal.Decode(byteArray, ref p);
-            Web = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Web = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Web.Decode(byteArray, ref p);
-            Riot = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Riot = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Riot.Decode(byteArray, ref p);
-            Email = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Email = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Email.Decode(byteArray, ref p);
-            PgpFingerprint = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Types.Base.Arr20U8>();
+            PgpFingerprint = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr20U8>();
             PgpFingerprint.Decode(byteArray, ref p);
-            Image = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Image = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Image.Decode(byteArray, ref p);
-            Twitter = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Twitter = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Twitter.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

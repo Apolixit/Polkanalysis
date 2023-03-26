@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Types.Base
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Types.Base
 {
     
     
@@ -24,7 +24,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Types.Base
     public sealed class Arr22BaseTuple : BaseType
     {
         
-        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[] _value;
+        private Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[] _value;
         
         public override int TypeSize
         {
@@ -34,7 +34,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Types.Base
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[] Value
+        public Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[] Value
         {
             get
             {
@@ -48,7 +48,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Types.Base
         
         public override string TypeName()
         {
-            return string.Format("[{0}; {1}]", new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>().TypeName(), this.TypeSize);
+            return string.Format("[{0}; {1}]", new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>().TypeName(), this.TypeSize);
         }
         
         public override byte[] Encode()
@@ -61,15 +61,15 @@ namespace Substats.Kusama.NetApiExt.Generated.Types.Base
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            var array = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[TypeSize];
-            for (var i = 0; i < array.Length; i++) {var t = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>();t.Decode(byteArray, ref p);array[i] = t;};
+            var array = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[TypeSize];
+            for (var i = 0; i < array.Length; i++) {var t = new Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>();t.Decode(byteArray, ref p);array[i] = t;};
             var bytesLength = p - start;
             Bytes = new byte[bytesLength];
             System.Array.Copy(byteArray, start, Bytes, 0, bytesLength);
             Value = array;
         }
         
-        public void Create(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[] array)
+        public void Create(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U16>, Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.PerU16>>[] array)
         {
             Value = array;
             Bytes = Encode();

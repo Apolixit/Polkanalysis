@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
 {
     
     
@@ -27,17 +27,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
         /// <summary>
         /// >> id
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _id;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _id;
         
         /// <summary>
         /// >> prev
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _prev;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _prev;
         
         /// <summary>
         /// >> next
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _next;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _next;
         
         /// <summary>
         /// >> bag_upper
@@ -49,7 +49,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U64 _score;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Id
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Id
         {
             get
             {
@@ -61,7 +61,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prev
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prev
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Next
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Next
         {
             get
             {
@@ -128,11 +128,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_bags_list.list
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Id = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Id.Decode(byteArray, ref p);
-            Prev = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Prev = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Prev.Decode(byteArray, ref p);
-            Next = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Next = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Next.Decode(byteArray, ref p);
             BagUpper = new Ajuna.NetApi.Model.Types.Primitive.U64();
             BagUpper.Decode(byteArray, ref p);

@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace Substats.Maui
+namespace Polkanalysis.Maui
 {
     public class Program
     {

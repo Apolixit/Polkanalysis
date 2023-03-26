@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_preimage.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_preimage.pallet
 {
     
     
@@ -31,7 +31,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_preimage.pallet
     /// >> 228 - Variant[pallet_preimage.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Substats.Bajun.NetApiExt.Generated.Model.primitive_types.H256>
+    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>
     {
     }
 }

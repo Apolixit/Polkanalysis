@@ -1,6 +1,6 @@
-﻿using Substats.Domain.Contracts.Dto;
-using Substats.Domain.Dto;
-using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
+﻿using Polkanalysis.Domain.Contracts.Dto;
+using Polkanalysis.Domain.Dto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Tests.Dto
+namespace Polkanalysis.Domain.Tests.Dto
 {
     public class ModelBuilderTests
     {

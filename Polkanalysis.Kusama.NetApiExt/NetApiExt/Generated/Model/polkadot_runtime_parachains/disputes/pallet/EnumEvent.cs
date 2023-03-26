@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.pallet
 {
     
     
@@ -34,7 +34,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeLocation>, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeResult>, Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeLocation>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeResult>, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Ajuna.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums
 {
     public enum Order
     {

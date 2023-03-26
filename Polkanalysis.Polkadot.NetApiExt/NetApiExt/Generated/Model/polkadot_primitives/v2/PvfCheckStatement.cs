@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> subject
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash _subject;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash _subject;
         
         /// <summary>
         /// >> session_index
@@ -42,7 +42,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> validator_index
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex _validatorIndex;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex _validatorIndex;
         
         public Ajuna.NetApi.Model.Types.Primitive.Bool Accept
         {
@@ -56,7 +56,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash Subject
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash Subject
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex ValidatorIndex
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex ValidatorIndex
         {
             get
             {
@@ -112,11 +112,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             var start = p;
             Accept = new Ajuna.NetApi.Model.Types.Primitive.Bool();
             Accept.Decode(byteArray, ref p);
-            Subject = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash();
+            Subject = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash();
             Subject.Decode(byteArray, ref p);
             SessionIndex = new Ajuna.NetApi.Model.Types.Primitive.U32();
             SessionIndex.Decode(byteArray, ref p);
-            ValidatorIndex = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex();
+            ValidatorIndex = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex();
             ValidatorIndex.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

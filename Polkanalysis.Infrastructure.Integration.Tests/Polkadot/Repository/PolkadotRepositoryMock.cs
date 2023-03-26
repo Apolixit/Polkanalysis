@@ -1,16 +1,16 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Substats.Configuration.Contracts;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Integration.Tests.Polkadot.Repository
+namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository
 {
     public abstract class PolkadotRepositoryMock
     {

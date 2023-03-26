@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Dto.User;
-using Substats.Domain.Contracts.Exception;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Contracts;
-using Substats.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Exception;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
-namespace Substats.Domain.Repository
+namespace Polkanalysis.Domain.Repository
 {
     public class PolkadotAccountRepository : IAccountRepository
     {

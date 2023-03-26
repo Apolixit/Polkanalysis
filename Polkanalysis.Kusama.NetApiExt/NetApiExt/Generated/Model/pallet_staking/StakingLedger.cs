@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> stash
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _stash;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _stash;
         
         /// <summary>
         /// >> total
@@ -42,14 +42,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> unlocking
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6 _unlocking;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6 _unlocking;
         
         /// <summary>
         /// >> claimed_rewards
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7 _claimedRewards;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7 _claimedRewards;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Stash
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Stash
         {
             get
             {
@@ -85,7 +85,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6 Unlocking
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6 Unlocking
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7 ClaimedRewards
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7 ClaimedRewards
         {
             get
             {
@@ -128,15 +128,15 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Stash = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Stash = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Stash.Decode(byteArray, ref p);
             Total = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>();
             Total.Decode(byteArray, ref p);
             Active = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>();
             Active.Decode(byteArray, ref p);
-            Unlocking = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6();
+            Unlocking = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6();
             Unlocking.Decode(byteArray, ref p);
-            ClaimedRewards = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7();
+            ClaimedRewards = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7();
             ClaimedRewards.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

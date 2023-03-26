@@ -1,12 +1,12 @@
-﻿using Substats.Domain.Contracts.Dto.Extrinsic;
+﻿using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Substats.Domain.Contracts.Dto.GlobalStatusDto;
+using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
-namespace Substats.Domain.Contracts.Dto.Parachain
+namespace Polkanalysis.Domain.Contracts.Dto.Parachain
 {
     public class BidDto
     {

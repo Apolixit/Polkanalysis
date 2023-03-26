@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset
 {
     
     
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset
     /// <summary>
     /// >> 155 - Variant[xcm.v0.multi_asset.MultiAsset]
     /// </summary>
-    public sealed class EnumMultiAsset : BaseEnumExt<MultiAsset, BaseVoid, BaseVoid, BaseVoid, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetInstance>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetInstance>>
+    public sealed class EnumMultiAsset : BaseEnumExt<MultiAsset, BaseVoid, BaseVoid, BaseVoid, BaseVoid, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetInstance>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_location.EnumMultiLocation, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetInstance>>
     {
     }
 }

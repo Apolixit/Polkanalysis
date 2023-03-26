@@ -1,4 +1,4 @@
-namespace Substats.Maui.Data
+namespace Polkanalysis.Maui.Data
 {
     public class WeatherForecast
     {

@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vot
     /// <summary>
     /// >> 144 - Variant[pallet_conviction_voting.vote.AccountVote]
     /// </summary>
-    public sealed class EnumAccountVote : BaseEnumExt<AccountVote, BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.Vote, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128>>
+    public sealed class EnumAccountVote : BaseEnumExt<AccountVote, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.Vote, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.U128>>
     {
     }
 }

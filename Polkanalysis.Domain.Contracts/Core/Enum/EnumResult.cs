@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core.Error;
+using Polkanalysis.Domain.Contracts.Core.Error;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Enum
+namespace Polkanalysis.Domain.Contracts.Core.Enum
 {
     public enum Result
     {

@@ -1,17 +1,17 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Dto;
-using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Dto.Event;
-using Substats.Domain.Contracts.Dto.Extrinsic;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase;
-using Substats.Domain.UseCase.Explorer.Extrinsics;
+using Polkanalysis.Domain.Contracts.Dto;
+using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase;
+using Polkanalysis.Domain.UseCase.Explorer.Extrinsics;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Substats.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
-namespace Substats.Domain.Tests.UseCase.Explorer.Extrinsics
+namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
 {
     public class ExtrinsicDetailUseCaseTest : UseCaseTest<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicCommand>
     {

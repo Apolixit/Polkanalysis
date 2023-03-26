@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Runtime.Module
+namespace Polkanalysis.Domain.Contracts.Runtime.Module
 {
     public interface IPalletBuilder
     {

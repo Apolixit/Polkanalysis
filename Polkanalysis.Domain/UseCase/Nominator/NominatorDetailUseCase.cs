@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
-using Substats.Domain.Contracts.Dto.User;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.UseCase.Module;
+using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.UseCase.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.UseCase.Nominator
+namespace Polkanalysis.Domain.UseCase.Nominator
 {
     public class NominatorDetailUseCase : UseCase<NominatorDetailUseCase, NominatorDto, NominatorCommand>
     {

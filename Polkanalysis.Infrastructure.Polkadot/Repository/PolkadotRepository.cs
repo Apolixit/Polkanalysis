@@ -1,28 +1,28 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Infrastructure.Polkadot.Repository;
-using Substats.Configuration.Contracts;
-using Substats.Domain.Contracts.Secondary.Contracts;
-using Substats.Infrastructure.Polkadot.Repository.Storage;
-using Substats.Domain.Contracts.Secondary.Common;
-using Substats.Domain.Contracts.Secondary.Rpc;
+using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Infrastructure.Polkadot.Repository.Storage;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
+using Polkanalysis.Domain.Contracts.Secondary.Rpc;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Infrastructure.Common.Rpc;
+using Polkanalysis.Infrastructure.Common.Rpc;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Substats.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Ajuna.NetApi;
 
-namespace Substats.Infrastructure.DirectAccess.Repository
+namespace Polkanalysis.Infrastructure.DirectAccess.Repository
 {
     public class PolkadotRepository : ISubstrateRepository
     {

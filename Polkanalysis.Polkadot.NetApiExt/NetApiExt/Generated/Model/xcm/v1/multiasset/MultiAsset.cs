@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
         /// <summary>
         /// >> id
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId _id;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId _id;
         
         /// <summary>
         /// >> fun
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumFungibility _fun;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumFungibility _fun;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId Id
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId Id
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumFungibility Fun
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumFungibility Fun
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId();
+            Id = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumAssetId();
             Id.Decode(byteArray, ref p);
-            Fun = new Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumFungibility();
+            Fun = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.EnumFungibility();
             Fun.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

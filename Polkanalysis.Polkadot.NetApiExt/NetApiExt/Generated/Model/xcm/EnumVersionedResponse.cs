@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.xcm
     /// <summary>
     /// >> 717 - Variant[xcm.VersionedResponse]
     /// </summary>
-    public sealed class EnumVersionedResponse : BaseEnumExt<VersionedResponse, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v0.EnumResponse, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v1.EnumResponse, Substats.Polkadot.NetApiExt.Generated.Model.xcm.v2.EnumResponse>
+    public sealed class EnumVersionedResponse : BaseEnumExt<VersionedResponse, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.EnumResponse, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.EnumResponse, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v2.EnumResponse>
     {
     }
 }

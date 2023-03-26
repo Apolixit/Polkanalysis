@@ -1,8 +1,8 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
-using Substats.Domain.Contracts.Runtime;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Runtime;
-using Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
+using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
@@ -11,9 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
 
-namespace Substats.Domain.Tests.Runtime.Event
+namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
     public class BalancesEventListenerTest : MainEventTest
     {
@@ -102,7 +102,7 @@ namespace Substats.Domain.Tests.Runtime.Event
         [TestCase("0x000200000005076D6F646C70792F74727372790000000000000000000000000000000000000000840C540600000000000000000000000000")]
         public void Balances_Deposit_ShouldBeParsed(string hex)
         {
-            //		currentValue.GetType().FullName	"Substats.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
+            //		currentValue.GetType().FullName	"Polkanalysis.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
 
             var nodeResult = _substrateDecode.DecodeEvent(hex);
             var eventRes = PrerequisiteEvent(nodeResult);
@@ -114,7 +114,7 @@ namespace Substats.Domain.Tests.Runtime.Event
         [TestCase("0x000200000005013DEF8519FB4F9A5FA7456D38B97C65B3463A8F0259B45B595AA4CDE5367179FA66A9800500000000000000000000000000")]
         public void Balances_DustLost_ShouldBeParsed(string hex)
         {
-            //		currentValue.GetType().FullName	"Substats.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
+            //		currentValue.GetType().FullName	"Polkanalysis.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
 
             var nodeResult = _substrateDecode.DecodeEvent(hex);
             var eventRes = PrerequisiteEvent(nodeResult);

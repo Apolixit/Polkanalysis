@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
         /// <summary>
         /// >> network_state
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueNetworkState _networkState;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueNetworkState _networkState;
         
         /// <summary>
         /// >> session_index
@@ -61,7 +61,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueNetworkState NetworkState
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueNetworkState NetworkState
         {
             get
             {
@@ -130,7 +130,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_im_online
             var start = p;
             BlockNumber = new Ajuna.NetApi.Model.Types.Primitive.U32();
             BlockNumber.Decode(byteArray, ref p);
-            NetworkState = new Substats.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueNetworkState();
+            NetworkState = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.offchain.OpaqueNetworkState();
             NetworkState.Decode(byteArray, ref p);
             SessionIndex = new Ajuna.NetApi.Model.Types.Primitive.U32();
             SessionIndex.Decode(byteArray, ref p);

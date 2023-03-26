@@ -1,8 +1,8 @@
-﻿using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Dto.Module;
-using Substats.Domain.Contracts.Primary;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.UseCase.Explorer.Block;
+﻿using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.UseCase.Explorer.Block;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using System;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.UseCase.Module
+namespace Polkanalysis.Domain.UseCase.Module
 {
     public class ModuleDetailUseCase : UseCase<ModuleDetailUseCase, ModuleDetailDto, ModuleCommand>
     {

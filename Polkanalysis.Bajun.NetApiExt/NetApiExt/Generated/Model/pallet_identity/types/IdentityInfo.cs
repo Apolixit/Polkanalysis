@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types
 {
     
     
@@ -27,49 +27,49 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> additional
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT5 _additional;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT5 _additional;
         
         /// <summary>
         /// >> display
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _display;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _display;
         
         /// <summary>
         /// >> legal
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _legal;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _legal;
         
         /// <summary>
         /// >> web
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _web;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _web;
         
         /// <summary>
         /// >> riot
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _riot;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _riot;
         
         /// <summary>
         /// >> email
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _email;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _email;
         
         /// <summary>
         /// >> pgp_fingerprint
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Types.Base.Arr20U8> _pgpFingerprint;
+        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr20U8> _pgpFingerprint;
         
         /// <summary>
         /// >> image
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _image;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _image;
         
         /// <summary>
         /// >> twitter
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _twitter;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData _twitter;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT5 Additional
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT5 Additional
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Display
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Display
         {
             get
             {
@@ -93,7 +93,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Legal
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Legal
         {
             get
             {
@@ -105,7 +105,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Web
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Web
         {
             get
             {
@@ -117,7 +117,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Riot
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Riot
         {
             get
             {
@@ -129,7 +129,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Email
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Email
         {
             get
             {
@@ -141,7 +141,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Types.Base.Arr20U8> PgpFingerprint
+        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr20U8> PgpFingerprint
         {
             get
             {
@@ -153,7 +153,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Image
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Image
         {
             get
             {
@@ -165,7 +165,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Twitter
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData Twitter
         {
             get
             {
@@ -200,23 +200,23 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Additional = new Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT5();
+            Additional = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT5();
             Additional.Decode(byteArray, ref p);
-            Display = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Display = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Display.Decode(byteArray, ref p);
-            Legal = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Legal = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Legal.Decode(byteArray, ref p);
-            Web = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Web = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Web.Decode(byteArray, ref p);
-            Riot = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Riot = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Riot.Decode(byteArray, ref p);
-            Email = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Email = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Email.Decode(byteArray, ref p);
-            PgpFingerprint = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Bajun.NetApiExt.Generated.Types.Base.Arr20U8>();
+            PgpFingerprint = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr20U8>();
             PgpFingerprint.Decode(byteArray, ref p);
-            Image = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Image = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Image.Decode(byteArray, ref p);
-            Twitter = new Substats.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
+            Twitter = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumData();
             Twitter.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

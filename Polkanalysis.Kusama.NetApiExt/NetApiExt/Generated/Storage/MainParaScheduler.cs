@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -30,12 +30,12 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         public ParaSchedulerStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ValidatorGroups"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "AvailabilityCores"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadClaimIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ValidatorGroups"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "AvailabilityCores"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadClaimIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "SessionStartBlock"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "Scheduled"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "Scheduled"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>)));
         }
         
         /// <summary>
@@ -61,10 +61,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Bound: The number of cores is the sum of the numbers of parachains and parathread multiplexers.
         ///  Reasonably, 100-1000. The dominant factor is the number of validators: safe upper bound at 10k.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>> ValidatorGroups(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>> ValidatorGroups(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ValidatorGroupsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>>(parameters, token);
         }
         
         /// <summary>
@@ -86,10 +86,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The number of queued claims is bounded at the `scheduling_lookahead`
         ///  multiplied by the number of parathread multiplexer cores. Reasonably, 10 * 50 = 500.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue> ParathreadQueue(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue> ParathreadQueue(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ParathreadQueueParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue>(parameters, token);
         }
         
         /// <summary>
@@ -119,10 +119,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///    * The number of parachains and parathread multiplexers
         ///    * The number of validators divided by `configuration.max_validators_per_core`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>> AvailabilityCores(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>> AvailabilityCores(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.AvailabilityCoresParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>>(parameters, token);
         }
         
         /// <summary>
@@ -144,10 +144,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Bounded by the number of parathread cores and scheduling lookahead. Reasonably, 10 * 50 = 500.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ParathreadClaimIndex(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ParathreadClaimIndex(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ParathreadClaimIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
         }
         
         /// <summary>
@@ -202,10 +202,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The value contained here will not be valid after the end of a block. Runtime APIs should be used to determine scheduled cores/
         ///  for the upcoming block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>> Scheduled(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>> Scheduled(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ScheduledParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>>(parameters, token);
         }
     }
     

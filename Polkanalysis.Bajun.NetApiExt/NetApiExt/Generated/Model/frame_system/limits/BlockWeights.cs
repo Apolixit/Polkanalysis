@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits
 {
     
     
@@ -37,7 +37,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits
         /// <summary>
         /// >> per_class
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2 _perClass;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2 _perClass;
         
         public Ajuna.NetApi.Model.Types.Primitive.U64 BaseBlock
         {
@@ -63,7 +63,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2 PerClass
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2 PerClass
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.frame_system.limits
             BaseBlock.Decode(byteArray, ref p);
             MaxBlock = new Ajuna.NetApi.Model.Types.Primitive.U64();
             MaxBlock.Decode(byteArray, ref p);
-            PerClass = new Substats.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2();
+            PerClass = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2();
             PerClass.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

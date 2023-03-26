@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Dto.User;
 
-namespace Substats.Domain.Contracts.Secondary.Repository
+namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
     public interface IAccountRepository : IRepositoryRequirement
     {

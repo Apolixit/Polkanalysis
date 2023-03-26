@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -32,64 +32,64 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ValidatorCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinimumValidatorCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Invulnerables"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Invulnerables"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Bonded"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinNominatorBond"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinValidatorBond"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinimumActiveStake"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinCommission"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MinCommission"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Ledger"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.StakingLedger)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.StakingLedger)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Payee"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Validators"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "CounterForValidators"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MaxValidatorsCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "Nominators"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Nominations)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Nominations)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "CounterForNominators"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "MaxNominatorsCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "CurrentEra"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ActiveEra"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ActiveEra"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ErasStartSessionIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ErasStakers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ErasStakersClipped"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ErasValidatorPrefs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ErasValidatorReward"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ErasRewardPoints"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ErasTotalStake"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ForceEra"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumForcing)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "SlashRewardFraction"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ForceEra"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumForcing)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "SlashRewardFraction"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "CanceledSlashPayout"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "UnappliedSlashes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "BondedEras"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ValidatorSlashInEra"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "NominatorSlashInEra"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "SlashingSpans"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "SpanSlash"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>), typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "CurrentPlannedSession"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "OffendingValidators"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.Bool>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumReleases)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ChillThreshold"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumReleases)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Staking", "ChillThreshold"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent)));
         }
         
         /// <summary>
@@ -147,17 +147,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  easy to initialize and the performance hit is minimal (we expect no more than four
         ///  invulnerables) and restricted to testnets.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Invulnerables(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Invulnerables(CancellationToken token)
         {
             string parameters = StakingStorage.InvulnerablesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
         }
         
         /// <summary>
         /// >> BondedParams
         ///  Map from all locked "stash" accounts to the controller account.
         /// </summary>
-        public static string BondedParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string BondedParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Staking", "Bonded", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -168,10 +168,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Bonded
         ///  Map from all locked "stash" accounts to the controller account.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Bonded(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Bonded(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.BondedParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
         }
         
         /// <summary>
@@ -248,17 +248,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  If set to `0`, no limit exists.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> MinCommission(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> MinCommission(CancellationToken token)
         {
             string parameters = StakingStorage.MinCommissionParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
         }
         
         /// <summary>
         /// >> LedgerParams
         ///  Map from all (unlocked) "controller" accounts to the info regarding the staking.
         /// </summary>
-        public static string LedgerParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string LedgerParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Staking", "Ledger", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -269,17 +269,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Ledger
         ///  Map from all (unlocked) "controller" accounts to the info regarding the staking.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.StakingLedger> Ledger(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.StakingLedger> Ledger(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.LedgerParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.StakingLedger>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.StakingLedger>(parameters, token);
         }
         
         /// <summary>
         /// >> PayeeParams
         ///  Where the reward payment should be made. Keyed by stash.
         /// </summary>
-        public static string PayeeParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string PayeeParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Staking", "Payee", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -290,17 +290,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Payee
         ///  Where the reward payment should be made. Keyed by stash.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination> Payee(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination> Payee(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.PayeeParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination>(parameters, token);
         }
         
         /// <summary>
         /// >> ValidatorsParams
         ///  The map from (wannabe) validator stash key to the preferences of that validator.
         /// </summary>
-        public static string ValidatorsParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string ValidatorsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Staking", "Validators", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -311,10 +311,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Validators
         ///  The map from (wannabe) validator stash key to the preferences of that validator.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs> Validators(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs> Validators(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.ValidatorsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
         }
         
         /// <summary>
@@ -378,7 +378,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
         ///  [`Call::chill_other`] dispatchable by anyone.
         /// </summary>
-        public static string NominatorsParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string NominatorsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Staking", "Nominators", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -404,10 +404,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
         ///  [`Call::chill_other`] dispatchable by anyone.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Nominations> Nominators(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Nominations> Nominators(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.NominatorsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Nominations>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Nominations>(parameters, token);
         }
         
         /// <summary>
@@ -496,10 +496,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The active era is the era being currently rewarded. Validator set of this era must be
         ///  equal to [`SessionInterface::validators`].
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo> ActiveEra(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo> ActiveEra(CancellationToken token)
         {
             string parameters = StakingStorage.ActiveEraParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo>(parameters, token);
         }
         
         /// <summary>
@@ -538,7 +538,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Is it removed after `HISTORY_DEPTH` eras.
         ///  If stakers hasn't been set or has been removed then empty exposure is returned.
         /// </summary>
-        public static string ErasStakersParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string ErasStakersParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
         {
             return RequestGenerator.GetStorage("Staking", "ErasStakers", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -554,10 +554,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Is it removed after `HISTORY_DEPTH` eras.
         ///  If stakers hasn't been set or has been removed then empty exposure is returned.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> ErasStakers(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> ErasStakers(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasStakersParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
         }
         
         /// <summary>
@@ -574,7 +574,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Is it removed after `HISTORY_DEPTH` eras.
         ///  If stakers hasn't been set or has been removed then empty exposure is returned.
         /// </summary>
-        public static string ErasStakersClippedParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string ErasStakersClippedParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
         {
             return RequestGenerator.GetStorage("Staking", "ErasStakersClipped", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -595,10 +595,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Is it removed after `HISTORY_DEPTH` eras.
         ///  If stakers hasn't been set or has been removed then empty exposure is returned.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> ErasStakersClipped(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure> ErasStakersClipped(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasStakersClippedParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.Exposure>(parameters, token);
         }
         
         /// <summary>
@@ -609,7 +609,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Is it removed after `HISTORY_DEPTH` eras.
         /// </summary>
-        public static string ErasValidatorPrefsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string ErasValidatorPrefsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
         {
             return RequestGenerator.GetStorage("Staking", "ErasValidatorPrefs", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -624,10 +624,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Is it removed after `HISTORY_DEPTH` eras.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs> ErasValidatorPrefs(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs> ErasValidatorPrefs(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasValidatorPrefsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs>(parameters, token);
         }
         
         /// <summary>
@@ -672,10 +672,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Rewards for the last `HISTORY_DEPTH` eras.
         ///  If reward hasn't been set or has been removed then 0 reward is returned.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints> ErasRewardPoints(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints> ErasRewardPoints(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = StakingStorage.ErasRewardPointsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints>(parameters, token);
         }
         
         /// <summary>
@@ -714,10 +714,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> ForceEra
         ///  Mode of era forcing.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumForcing> ForceEra(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumForcing> ForceEra(CancellationToken token)
         {
             string parameters = StakingStorage.ForceEraParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumForcing>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumForcing>(parameters, token);
         }
         
         /// <summary>
@@ -737,10 +737,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  The rest of the slashed value is handled by the `Slash`.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> SlashRewardFraction(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill> SlashRewardFraction(CancellationToken token)
         {
             string parameters = StakingStorage.SlashRewardFractionParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill>(parameters, token);
         }
         
         /// <summary>
@@ -779,10 +779,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> UnappliedSlashes
         ///  All unapplied slashes that are queued for later.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>> UnappliedSlashes(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>> UnappliedSlashes(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = StakingStorage.UnappliedSlashesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>>(parameters, token);
         }
         
         /// <summary>
@@ -815,7 +815,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  All slashing events on validators, mapped by era to the highest slash proportion
         ///  and slash value of the era.
         /// </summary>
-        public static string ValidatorSlashInEraParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string ValidatorSlashInEraParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
         {
             return RequestGenerator.GetStorage("Staking", "ValidatorSlashInEra", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -827,17 +827,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  All slashing events on validators, mapped by era to the highest slash proportion
         ///  and slash value of the era.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>> ValidatorSlashInEra(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>> ValidatorSlashInEra(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.ValidatorSlashInEraParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
         }
         
         /// <summary>
         /// >> NominatorSlashInEraParams
         ///  All slashing events on nominators, mapped by era to the highest slash value of the era.
         /// </summary>
-        public static string NominatorSlashInEraParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string NominatorSlashInEraParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
         {
             return RequestGenerator.GetStorage("Staking", "NominatorSlashInEra", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -848,7 +848,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> NominatorSlashInEra
         ///  All slashing events on nominators, mapped by era to the highest slash value of the era.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> NominatorSlashInEra(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> NominatorSlashInEra(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = StakingStorage.NominatorSlashInEraParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
@@ -858,7 +858,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> SlashingSpansParams
         ///  Slashing spans for stash accounts.
         /// </summary>
-        public static string SlashingSpansParams(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string SlashingSpansParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
             return RequestGenerator.GetStorage("Staking", "SlashingSpans", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -869,10 +869,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> SlashingSpans
         ///  Slashing spans for stash accounts.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans> SlashingSpans(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans> SlashingSpans(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = StakingStorage.SlashingSpansParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans>(parameters, token);
         }
         
         /// <summary>
@@ -880,7 +880,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Records information about the maximum slash of a stash within a slashing span,
         ///  as well as how much reward has been paid out.
         /// </summary>
-        public static string SpanSlashParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32> key)
+        public static string SpanSlashParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32> key)
         {
             return RequestGenerator.GetStorage("Staking", "SpanSlash", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -892,10 +892,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Records information about the maximum slash of a stash within a slashing span,
         ///  as well as how much reward has been paid out.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord> SpanSlash(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord> SpanSlash(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
         {
             string parameters = StakingStorage.SpanSlashParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord>(parameters, token);
         }
         
         /// <summary>
@@ -975,10 +975,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  This is set to v7.0.0 for new networks.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumReleases> StorageVersion(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumReleases> StorageVersion(CancellationToken token)
         {
             string parameters = StakingStorage.StorageVersionParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumReleases>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumReleases>(parameters, token);
         }
         
         /// <summary>
@@ -998,10 +998,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  nominators. The threshold is compared to the actual number of validators / nominators
         ///  (`CountFor*`) in the system compared to the configured max (`Max*Count`).
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent> ChillThreshold(CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent> ChillThreshold(CancellationToken token)
         {
             string parameters = StakingStorage.ChillThresholdParams();
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent>(parameters, token);
         }
     }
     
@@ -1012,7 +1012,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> bond
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Bond(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress controller, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination payee)
+        public static Method Bond(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress controller, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination payee)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(controller.Encode());
@@ -1058,7 +1058,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> validate
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Validate(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs prefs)
+        public static Method Validate(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs prefs)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(prefs.Encode());
@@ -1069,7 +1069,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> nominate
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Nominate(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress> targets)
+        public static Method Nominate(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress> targets)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(targets.Encode());
@@ -1090,7 +1090,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_payee
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetPayee(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination payee)
+        public static Method SetPayee(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination payee)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(payee.Encode());
@@ -1101,7 +1101,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_controller
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetController(Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress controller)
+        public static Method SetController(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress controller)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(controller.Encode());
@@ -1134,7 +1134,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> scale_validator_count
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ScaleValidatorCount(Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent factor)
+        public static Method ScaleValidatorCount(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent factor)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(factor.Encode());
@@ -1165,7 +1165,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_invulnerables
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetInvulnerables(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> invulnerables)
+        public static Method SetInvulnerables(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> invulnerables)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(invulnerables.Encode());
@@ -1176,7 +1176,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_unstake
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceUnstake(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 stash, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
+        public static Method ForceUnstake(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 stash, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(stash.Encode());
@@ -1210,7 +1210,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> payout_stakers
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method PayoutStakers(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 validator_stash, Ajuna.NetApi.Model.Types.Primitive.U32 era)
+        public static Method PayoutStakers(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 validator_stash, Ajuna.NetApi.Model.Types.Primitive.U32 era)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(validator_stash.Encode());
@@ -1233,7 +1233,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> reap_stash
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReapStash(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 stash, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
+        public static Method ReapStash(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 stash, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(stash.Encode());
@@ -1245,7 +1245,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> kick
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Kick(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress> who)
+        public static Method Kick(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress> who)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -1256,7 +1256,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> set_staking_configs
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetStakingConfigs(Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp min_nominator_bond, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp min_validator_bond, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp max_nominator_count, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp max_validator_count, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp chill_threshold, Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp min_commission)
+        public static Method SetStakingConfigs(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp min_nominator_bond, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp min_validator_bond, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp max_nominator_count, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp max_validator_count, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp chill_threshold, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet.EnumConfigOp min_commission)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(min_nominator_bond.Encode());
@@ -1272,7 +1272,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> chill_other
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ChillOther(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 controller)
+        public static Method ChillOther(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 controller)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(controller.Encode());
@@ -1283,7 +1283,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> force_apply_min_commission
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceApplyMinCommission(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 validator_stash)
+        public static Method ForceApplyMinCommission(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 validator_stash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(validator_stash.Encode());

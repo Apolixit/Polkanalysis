@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
         /// <summary>
         /// >> real
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _real;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _real;
         
         /// <summary>
         /// >> call_hash
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _callHash;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 _callHash;
         
         /// <summary>
         /// >> height
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U32 _height;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Real
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Real
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 CallHash
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 CallHash
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_proxy
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Real = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Real = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Real.Decode(byteArray, ref p);
-            CallHash = new Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
+            CallHash = new Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256();
             CallHash.Decode(byteArray, ref p);
             Height = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Height.Decode(byteArray, ref p);

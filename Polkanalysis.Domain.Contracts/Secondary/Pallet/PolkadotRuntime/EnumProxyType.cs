@@ -1,6 +1,6 @@
 using Ajuna.NetApi.Model.Types.Base;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntime
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime
 {
     public enum ProxyType
     {

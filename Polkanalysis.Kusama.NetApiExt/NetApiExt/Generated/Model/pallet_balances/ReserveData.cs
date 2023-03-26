@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_balances
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_balances
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_balances
         /// <summary>
         /// >> id
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Types.Base.Arr8U8 _id;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr8U8 _id;
         
         /// <summary>
         /// >> amount
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U128 _amount;
         
-        public Substats.Kusama.NetApiExt.Generated.Types.Base.Arr8U8 Id
+        public Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr8U8 Id
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_balances
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substats.Kusama.NetApiExt.Generated.Types.Base.Arr8U8();
+            Id = new Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr8U8();
             Id.Decode(byteArray, ref p);
             Amount = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Amount.Decode(byteArray, ref p);

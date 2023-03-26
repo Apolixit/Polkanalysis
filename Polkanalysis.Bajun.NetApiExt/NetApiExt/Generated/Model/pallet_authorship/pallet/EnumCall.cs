@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_authorship.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_authorship.pallet
 {
     
     
@@ -25,7 +25,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_authorship.pallet
     /// >> 232 - Variant[pallet_authorship.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Bajun.NetApiExt.Generated.Model.sp_runtime.generic.header.Header>>
+    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.generic.header.Header>>
     {
     }
 }

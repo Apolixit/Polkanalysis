@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things
 {
     
     

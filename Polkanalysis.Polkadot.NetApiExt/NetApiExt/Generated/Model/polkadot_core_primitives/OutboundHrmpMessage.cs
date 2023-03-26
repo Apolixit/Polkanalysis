@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives
         /// <summary>
         /// >> recipient
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
         
         /// <summary>
         /// >> data
         /// </summary>
         private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> _data;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Recipient = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Recipient = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Recipient.Decode(byteArray, ref p);
             Data = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>();
             Data.Decode(byteArray, ref p);

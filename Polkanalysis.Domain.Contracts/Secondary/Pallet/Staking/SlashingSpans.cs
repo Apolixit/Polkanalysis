@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Staking
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
 {
     public class SlashingSpans : BaseType
     {

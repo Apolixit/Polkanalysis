@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
         /// <summary>
         /// >> normal
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _normal;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _normal;
         
         /// <summary>
         /// >> operational
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _operational;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _operational;
         
         /// <summary>
         /// >> mandatory
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _mandatory;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _mandatory;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Normal
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Normal
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Operational
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Operational
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Mandatory
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Mandatory
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Normal = new Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            Normal = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             Normal.Decode(byteArray, ref p);
-            Operational = new Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            Operational = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             Operational.Decode(byteArray, ref p);
-            Mandatory = new Substats.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            Mandatory = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             Mandatory.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitive
         /// <summary>
         /// >> sender
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _sender;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _sender;
         
         /// <summary>
         /// >> recipient
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id _recipient;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Sender
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Sender
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitive
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitive
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Sender = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Sender = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Sender.Decode(byteArray, ref p);
-            Recipient = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            Recipient = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             Recipient.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

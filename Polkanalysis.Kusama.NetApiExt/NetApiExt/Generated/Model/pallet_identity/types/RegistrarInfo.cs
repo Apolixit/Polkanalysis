@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> account
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _account;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _account;
         
         /// <summary>
         /// >> fee
@@ -37,9 +37,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
         /// <summary>
         /// >> fields
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.BitFlags _fields;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.BitFlags _fields;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Account
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Account
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.BitFlags Fields
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.BitFlags Fields
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Account = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Account = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Account.Decode(byteArray, ref p);
             Fee = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Fee.Decode(byteArray, ref p);
-            Fields = new Substats.Kusama.NetApiExt.Generated.Model.pallet_identity.types.BitFlags();
+            Fields = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_identity.types.BitFlags();
             Fields.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

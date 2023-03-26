@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Storage
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
     
     
@@ -30,8 +30,8 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         public GrandpaStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "State"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "PendingChange"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "State"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "PendingChange"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "NextForced"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "Stalled"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "CurrentSetId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
@@ -61,10 +61,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> State
         ///  State of the current authority set.
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState> State(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState> State(CancellationToken token)
         {
             string parameters = GrandpaStorage.StateParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState>(parameters, token);
             return result;
         }
         
@@ -90,10 +90,10 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> PendingChange
         ///  Pending change: (signaled at, scheduled change).
         /// </summary>
-        public async Task<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange> PendingChange(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange> PendingChange(CancellationToken token)
         {
             string parameters = GrandpaStorage.PendingChangeParams();
-            var result = await _client.GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange>(parameters, token);
+            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange>(parameters, token);
             return result;
         }
         
@@ -231,7 +231,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> report_equivocation
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReportEquivocation(Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.EquivocationProof equivocation_proof, Substats.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
+        public static Method ReportEquivocation(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.EquivocationProof equivocation_proof, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(equivocation_proof.Encode());
@@ -243,7 +243,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Storage
         /// >> report_equivocation_unsigned
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReportEquivocationUnsigned(Substats.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.EquivocationProof equivocation_proof, Substats.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
+        public static Method ReportEquivocationUnsigned(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_finality_grandpa.EquivocationProof equivocation_proof, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(equivocation_proof.Encode());

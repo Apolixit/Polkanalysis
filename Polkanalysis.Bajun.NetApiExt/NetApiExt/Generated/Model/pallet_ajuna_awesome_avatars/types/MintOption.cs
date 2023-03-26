@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         /// <summary>
         /// >> mint_type
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintType _mintType;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintType _mintType;
         
         /// <summary>
         /// >> count
         /// </summary>
-        private Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintPackSize _count;
+        private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintPackSize _count;
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintType MintType
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintType MintType
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
             }
         }
         
-        public Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintPackSize Count
+        public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintPackSize Count
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            MintType = new Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintType();
+            MintType = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintType();
             MintType.Decode(byteArray, ref p);
-            Count = new Substats.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintPackSize();
+            Count = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.EnumMintPackSize();
             Count.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

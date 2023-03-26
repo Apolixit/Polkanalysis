@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,19 +31,19 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Offences", "Reports"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substats.Kusama.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Offences", "ConcurrentReportsIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                             Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Types.Base.Arr16U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr16U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Offences", "ReportsByKindIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr16U8), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr16U8), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>)));
         }
         
         /// <summary>
         /// >> ReportsParams
         ///  The primary structure that holds all offence records keyed by report identifiers.
         /// </summary>
-        public static string ReportsParams(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string ReportsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
             return RequestGenerator.GetStorage("Offences", "Reports", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -54,17 +54,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Reports
         ///  The primary structure that holds all offence records keyed by report identifiers.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails> Reports(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails> Reports(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = OffencesStorage.ReportsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_staking.offence.OffenceDetails>(parameters, token);
         }
         
         /// <summary>
         /// >> ConcurrentReportsIndexParams
         ///  A vector of reports of the same kind that happened at the same time slot.
         /// </summary>
-        public static string ConcurrentReportsIndexParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Types.Base.Arr16U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> key)
+        public static string ConcurrentReportsIndexParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr16U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> key)
         {
             return RequestGenerator.GetStorage("Offences", "ConcurrentReportsIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
@@ -75,10 +75,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> ConcurrentReportsIndex
         ///  A vector of reports of the same kind that happened at the same time slot.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256>> ConcurrentReportsIndex(Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Kusama.NetApiExt.Generated.Types.Base.Arr16U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256>> ConcurrentReportsIndex(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr16U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> key, CancellationToken token)
         {
             string parameters = OffencesStorage.ConcurrentReportsIndexParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256>>(parameters, token);
         }
         
         /// <summary>
@@ -90,7 +90,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Note that the actual type of this mapping is `Vec<u8>`, this is because values of
         ///  different types are not supported at the moment so we are doing the manual serialization.
         /// </summary>
-        public static string ReportsByKindIndexParams(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr16U8 key)
+        public static string ReportsByKindIndexParams(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr16U8 key)
         {
             return RequestGenerator.GetStorage("Offences", "ReportsByKindIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -106,7 +106,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  Note that the actual type of this mapping is `Vec<u8>`, this is because values of
         ///  different types are not supported at the moment so we are doing the manual serialization.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> ReportsByKindIndex(Substats.Kusama.NetApiExt.Generated.Types.Base.Arr16U8 key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>> ReportsByKindIndex(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr16U8 key, CancellationToken token)
         {
             string parameters = OffencesStorage.ReportsByKindIndexParams(key);
             return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>(parameters, token);

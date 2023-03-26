@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
 {
     public class Weight : BaseType
     {

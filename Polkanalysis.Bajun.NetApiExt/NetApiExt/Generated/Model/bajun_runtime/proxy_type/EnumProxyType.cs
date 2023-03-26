@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.proxy_type
 {
     
     

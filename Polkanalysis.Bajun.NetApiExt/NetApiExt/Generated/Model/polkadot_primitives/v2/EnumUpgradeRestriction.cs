@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     

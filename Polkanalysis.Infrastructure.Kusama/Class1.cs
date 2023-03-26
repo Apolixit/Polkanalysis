@@ -1,4 +1,4 @@
-﻿namespace Substats.Infrastructure.Kusama
+﻿namespace Polkanalysis.Infrastructure.Kusama
 {
     public class Class1
     {

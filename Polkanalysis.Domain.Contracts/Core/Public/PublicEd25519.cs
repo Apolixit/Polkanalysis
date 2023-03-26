@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Public
+namespace Polkanalysis.Domain.Contracts.Core.Public
 {
     public class PublicEd25519 : Public
     {

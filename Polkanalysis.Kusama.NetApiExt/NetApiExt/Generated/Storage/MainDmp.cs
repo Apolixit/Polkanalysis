@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,16 +31,16 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Dmp", "DownwardMessageQueues"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Dmp", "DownwardMessageQueueHeads"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256)));
         }
         
         /// <summary>
         /// >> DownwardMessageQueuesParams
         ///  The downward messages addressed for a certain para.
         /// </summary>
-        public static string DownwardMessageQueuesParams(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string DownwardMessageQueuesParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Dmp", "DownwardMessageQueues", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -51,10 +51,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> DownwardMessageQueues
         ///  The downward messages addressed for a certain para.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>> DownwardMessageQueues(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>> DownwardMessageQueues(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = DmpStorage.DownwardMessageQueuesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>>(parameters, token);
         }
         
         /// <summary>
@@ -67,7 +67,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  - `B`: is the relay-chain block number in which a message was appended.
         ///  - `H(M)`: is the hash of the message being appended.
         /// </summary>
-        public static string DownwardMessageQueueHeadsParams(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string DownwardMessageQueueHeadsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Dmp", "DownwardMessageQueueHeads", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -84,10 +84,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  - `B`: is the relay-chain block number in which a message was appended.
         ///  - `H(M)`: is the hash of the message being appended.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256> DownwardMessageQueueHeads(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256> DownwardMessageQueueHeads(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = DmpStorage.DownwardMessageQueueHeadsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
         }
     }
     

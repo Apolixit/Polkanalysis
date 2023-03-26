@@ -1,7 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 
-namespace Substats.AjunaExtension
+namespace Polkanalysis.AjunaExtension
 {
     public static class TypeExtension
     {

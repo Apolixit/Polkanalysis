@@ -4,15 +4,15 @@ using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Newtonsoft.Json.Linq;
-using Substats.AjunaExtension;
-using Substats.Domain.Contracts.Core.Random;
+using Polkanalysis.AjunaExtension;
+using Polkanalysis.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core
+namespace Polkanalysis.Domain.Contracts.Core
 {
     public class SubstrateAccount : BaseType
     {

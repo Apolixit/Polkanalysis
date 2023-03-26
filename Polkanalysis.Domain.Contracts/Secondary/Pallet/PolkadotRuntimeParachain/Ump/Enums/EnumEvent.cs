@@ -1,12 +1,12 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core.Display;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Core.DispatchInfo;
-using Substats.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums;
 using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachain.Ump.Enums
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachain.Ump.Enums
 {
     public enum Event
     {

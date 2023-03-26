@@ -1,7 +1,7 @@
-﻿using Substats.Domain.Contracts.Dto.Block;
-using Substats.Domain.Contracts.Runtime;
+﻿using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Runtime;
 
-namespace Substats.Domain.Contracts.Dto.Event
+namespace Polkanalysis.Domain.Contracts.Dto.Event
 {
     /// <summary>
     /// Event front DTO

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
         /// <summary>
         /// >> post_info
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.PostDispatchInfo _postInfo;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.PostDispatchInfo _postInfo;
         
         /// <summary>
         /// >> error
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError _error;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError _error;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.PostDispatchInfo PostInfo
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.PostDispatchInfo PostInfo
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError Error
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError Error
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_runtime
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            PostInfo = new Substats.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.PostDispatchInfo();
+            PostInfo = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.PostDispatchInfo();
             PostInfo.Decode(byteArray, ref p);
-            Error = new Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError();
+            Error = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError();
             Error.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

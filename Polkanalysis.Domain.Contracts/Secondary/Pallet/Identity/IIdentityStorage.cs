@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Contracts;
-using Substats.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.Identity
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
 {
     public interface IIdentityStorage : IPalletStorage
     {

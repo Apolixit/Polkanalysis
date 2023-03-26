@@ -1,7 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 
-namespace Substats.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
+namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.AwesomeAvatars
 {
     /// <summary>
     /// AAA season

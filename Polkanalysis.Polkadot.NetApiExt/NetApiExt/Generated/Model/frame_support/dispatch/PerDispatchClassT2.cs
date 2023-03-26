@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
         /// <summary>
         /// >> normal
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _normal;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _normal;
         
         /// <summary>
         /// >> operational
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _operational;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _operational;
         
         /// <summary>
         /// >> mandatory
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _mandatory;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass _mandatory;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Normal
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Normal
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Operational
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Operational
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Mandatory
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass Mandatory
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Normal = new Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
+            Normal = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
             Normal.Decode(byteArray, ref p);
-            Operational = new Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
+            Operational = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
             Operational.Decode(byteArray, ref p);
-            Mandatory = new Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
+            Mandatory = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits.WeightsPerClass();
             Mandatory.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

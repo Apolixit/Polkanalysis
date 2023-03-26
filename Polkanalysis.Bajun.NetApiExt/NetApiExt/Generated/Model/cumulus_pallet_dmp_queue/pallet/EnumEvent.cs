@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.pallet
+namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.pallet
 {
     
     
@@ -38,7 +38,7 @@ namespace Substats.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.pall
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, BaseTuple<Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Substats.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumOutcome>, BaseTuple<Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Substats.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumOutcome>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>>
     {
     }
 }

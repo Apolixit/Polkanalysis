@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Secondary.Common
+namespace Polkanalysis.Domain.Contracts.Secondary.Common
 {
     /// <summary>
     /// Based on <see cref="Ajuna.NetApi.Model.Meta.NodeMetadataV14"/> implementation

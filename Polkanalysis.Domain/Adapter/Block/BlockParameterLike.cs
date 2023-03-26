@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Org.BouncyCastle.Crypto;
-using Substats.Domain.Contracts.Adapter.Block;
+using Polkanalysis.Domain.Contracts.Adapter.Block;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Adapter.Block
+namespace Polkanalysis.Domain.Adapter.Block
 {
     public class BlockParameterLike : IBlockParameterLike
     {

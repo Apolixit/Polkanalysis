@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking
 {
     
     
@@ -32,7 +32,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
         /// <summary>
         /// >> individual
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Types.Base.BTreeMapT1 _individual;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.BTreeMapT1 _individual;
         
         public Ajuna.NetApi.Model.Types.Primitive.U32 Total
         {
@@ -46,7 +46,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Types.Base.BTreeMapT1 Individual
+        public Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.BTreeMapT1 Individual
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking
             var start = p;
             Total = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Total.Decode(byteArray, ref p);
-            Individual = new Substats.Kusama.NetApiExt.Generated.Types.Base.BTreeMapT1();
+            Individual = new Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.BTreeMapT1();
             Individual.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

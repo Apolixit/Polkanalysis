@@ -1,5 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
-using Substats.Integration.Tests.Contracts;
+using Polkanalysis.Integration.Tests.Contracts;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types;
 using System.Runtime.InteropServices;
-using Substats.Polkadot.NetApiExt.Generated.Storage;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 
-namespace Substats.Domain.Integration.Tests.Repository.Explorer
+namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
     public class ExplorerExtrinsicsTests : ExplorerRepositoryTest
     {

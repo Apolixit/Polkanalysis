@@ -1,14 +1,14 @@
 ﻿using Ajuna.NetApi.Model.Types.Primitive;
-using Substats.Domain.Contracts.Dto.Parachain;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Repository
+namespace Polkanalysis.Domain.Repository
 {
     public class PolkadotParachainRepository : IParachainRepository
     {

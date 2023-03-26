@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots
 {
     
     
@@ -27,24 +27,24 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots
         /// <summary>
         /// >> offender
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public _offender;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public _offender;
         
         /// <summary>
         /// >> slot
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot _slot;
         
         /// <summary>
         /// >> first_header
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _firstHeader;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _firstHeader;
         
         /// <summary>
         /// >> second_header
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _secondHeader;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header _secondHeader;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public Offender
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public Offender
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot Slot
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header FirstHeader
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header FirstHeader
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header SecondHeader
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header SecondHeader
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Offender = new Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public();
+            Offender = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public();
             Offender.Decode(byteArray, ref p);
-            Slot = new Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
+            Slot = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot();
             Slot.Decode(byteArray, ref p);
-            FirstHeader = new Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
+            FirstHeader = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
             FirstHeader.Decode(byteArray, ref p);
-            SecondHeader = new Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
+            SecondHeader = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.generic.header.Header();
             SecondHeader.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

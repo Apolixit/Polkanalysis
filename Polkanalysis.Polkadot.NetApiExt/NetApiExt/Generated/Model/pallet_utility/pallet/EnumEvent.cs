@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_utility.pallet
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_utility.pallet
 {
     
     
@@ -38,7 +38,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.pallet_utility.pallet
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError>, BaseVoid, BaseVoid, BaseVoid, Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError, Substats.Polkadot.NetApiExt.Generated.Types.Base.EnumResult>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError>, BaseVoid, BaseVoid, BaseVoid, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.EnumResult>
     {
     }
 }

@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Storage
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
 {
     
     
@@ -31,8 +31,8 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         {
             this._client = client;
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "Funds"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "NewRaise"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
+                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "NewRaise"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "EndingsCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
             _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "NextFundIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
         }
@@ -41,7 +41,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> FundsParams
         ///  Info on all of the funds.
         /// </summary>
-        public static string FundsParams(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string FundsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
             return RequestGenerator.GetStorage("Crowdloan", "Funds", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
                         Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
@@ -52,10 +52,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> Funds
         ///  Info on all of the funds.
         /// </summary>
-        public async Task<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo> Funds(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo> Funds(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = CrowdloanStorage.FundsParams(key);
-            return await _client.GetStorageAsync<Substats.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo>(parameters, token);
+            return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo>(parameters, token);
         }
         
         /// <summary>
@@ -73,10 +73,10 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         ///  The funds that have had additional contributions during the last block. This is used
         ///  in order to determine which funds should submit new or updated bids.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> NewRaise(CancellationToken token)
+        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> NewRaise(CancellationToken token)
         {
             string parameters = CrowdloanStorage.NewRaiseParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
         }
         
         /// <summary>
@@ -125,7 +125,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> create
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Create(Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> cap, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> first_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> last_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> end, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> verifier)
+        public static Method Create(Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> cap, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> first_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> last_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> end, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> verifier)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -141,7 +141,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> contribute
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Contribute(Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSignature> signature)
+        public static Method Contribute(Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSignature> signature)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -154,7 +154,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> withdraw
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Withdraw(Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
+        public static Method Withdraw(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -166,7 +166,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> refund
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Refund(Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
+        public static Method Refund(Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -177,7 +177,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> dissolve
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Dissolve(Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
+        public static Method Dissolve(Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -188,7 +188,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> edit
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Edit(Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> cap, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> first_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> last_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> end, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> verifier)
+        public static Method Edit(Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> cap, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> first_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> last_period, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> end, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> verifier)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -204,7 +204,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> add_memo
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AddMemo(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id index, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> memo)
+        public static Method AddMemo(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id index, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> memo)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -216,7 +216,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> poke
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Poke(Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id index)
+        public static Method Poke(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -227,7 +227,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Storage
         /// >> contribute_all
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ContributeAll(Ajuna.NetApi.Model.Types.Base.BaseCom<Substats.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseOpt<Substats.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSignature> signature)
+        public static Method ContributeAll(Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.EnumMultiSignature> signature)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
         /// <summary>
         /// >> weight
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _weight;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _weight;
         
         /// <summary>
         /// >> class
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumDispatchClass _class;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumDispatchClass _class;
         
         /// <summary>
         /// >> pays_fee
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays _paysFee;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays _paysFee;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Weight
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight Weight
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumDispatchClass Class
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumDispatchClass Class
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays PaysFee
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays PaysFee
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Weight = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            Weight = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             Weight.Decode(byteArray, ref p);
-            Class = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumDispatchClass();
+            Class = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumDispatchClass();
             Class.Decode(byteArray, ref p);
-            PaysFee = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays();
+            PaysFee = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays();
             PaysFee.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime
 {
     
     
@@ -27,34 +27,34 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
         /// <summary>
         /// >> grandpa
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public _grandpa;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public _grandpa;
         
         /// <summary>
         /// >> babe
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public _babe;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public _babe;
         
         /// <summary>
         /// >> im_online
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public _imOnline;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public _imOnline;
         
         /// <summary>
         /// >> para_validator
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public _paraValidator;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public _paraValidator;
         
         /// <summary>
         /// >> para_assignment
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public _paraAssignment;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public _paraAssignment;
         
         /// <summary>
         /// >> authority_discovery
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app.Public _authorityDiscovery;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app.Public _authorityDiscovery;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public Grandpa
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public Grandpa
         {
             get
             {
@@ -66,7 +66,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public Babe
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public Babe
         {
             get
             {
@@ -78,7 +78,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public ImOnline
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public ImOnline
         {
             get
             {
@@ -90,7 +90,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public ParaValidator
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public ParaValidator
         {
             get
             {
@@ -102,7 +102,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public ParaAssignment
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public ParaAssignment
         {
             get
             {
@@ -114,7 +114,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
             }
         }
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app.Public AuthorityDiscovery
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app.Public AuthorityDiscovery
         {
             get
             {
@@ -146,17 +146,17 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.kusama_runtime
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Grandpa = new Substats.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public();
+            Grandpa = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_finality_grandpa.app.Public();
             Grandpa.Decode(byteArray, ref p);
-            Babe = new Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public();
+            Babe = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.app.Public();
             Babe.Decode(byteArray, ref p);
-            ImOnline = new Substats.Kusama.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public();
+            ImOnline = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public();
             ImOnline.Decode(byteArray, ref p);
-            ParaValidator = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public();
+            ParaValidator = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public();
             ParaValidator.Decode(byteArray, ref p);
-            ParaAssignment = new Substats.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public();
+            ParaAssignment = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public();
             ParaAssignment.Decode(byteArray, ref p);
-            AuthorityDiscovery = new Substats.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app.Public();
+            AuthorityDiscovery = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_authority_discovery.app.Public();
             AuthorityDiscovery.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

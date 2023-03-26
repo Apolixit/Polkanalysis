@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
 {
     
     
@@ -27,7 +27,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> candidate_hash
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash _candidateHash;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash _candidateHash;
         
         /// <summary>
         /// >> session
@@ -37,9 +37,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> statements
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> _statements;
+        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> _statements;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash CandidateHash
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash CandidateHash
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> Statements
+        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> Statements
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            CandidateHash = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash();
+            CandidateHash = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash();
             CandidateHash.Decode(byteArray, ref p);
             Session = new Ajuna.NetApi.Model.Types.Primitive.U32();
             Session.Decode(byteArray, ref p);
-            Statements = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>>();
+            Statements = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>>();
             Statements.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

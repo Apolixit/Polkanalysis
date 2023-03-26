@@ -2,17 +2,17 @@
 using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Meta;
 using Microsoft.Extensions.Configuration;
-using Substats.Configuration.Contracts;
-using Substats.Domain.Contracts.Secondary;
-using Substats.Polkadot.NetApiExt.Generated;
-using Substats.Polkadot.NetApiExt.Generated.Storage;
+using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Infrastructure.Polkadot.Repository
+namespace Polkanalysis.Infrastructure.Polkadot.Repository
 {
     //public class PolkadotSubstrateClientRepository : ISubstrateClientRepository
     //{

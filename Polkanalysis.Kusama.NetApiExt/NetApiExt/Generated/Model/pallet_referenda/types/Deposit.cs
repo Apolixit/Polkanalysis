@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
 {
     
     
@@ -27,14 +27,14 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> who
         /// </summary>
-        private Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
+        private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
         
         /// <summary>
         /// >> amount
         /// </summary>
         private Ajuna.NetApi.Model.Types.Primitive.U128 _amount;
         
-        public Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
+        public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Who = new Substats.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
+            Who = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);
             Amount = new Ajuna.NetApi.Model.Types.Primitive.U128();
             Amount.Decode(byteArray, ref p);

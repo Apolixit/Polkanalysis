@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.limits
 {
     
     
@@ -27,19 +27,19 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
         /// <summary>
         /// >> base_block
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _baseBlock;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _baseBlock;
         
         /// <summary>
         /// >> max_block
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _maxBlock;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight _maxBlock;
         
         /// <summary>
         /// >> per_class
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT2 _perClass;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT2 _perClass;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight BaseBlock
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight BaseBlock
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight MaxBlock
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight MaxBlock
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT2 PerClass
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT2 PerClass
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.frame_system.limits
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            BaseBlock = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            BaseBlock = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             BaseBlock.Decode(byteArray, ref p);
-            MaxBlock = new Substats.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
+            MaxBlock = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
             MaxBlock.Decode(byteArray, ref p);
-            PerClass = new Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT2();
+            PerClass = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT2();
             PerClass.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

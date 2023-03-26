@@ -1,13 +1,13 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Substats.Domain.Contracts.Core;
-using Substats.Domain.Contracts.Secondary.Pallet.Crowdloan;
-using Substats.Infrastructure.Polkadot.Mapper;
-using Substats.Polkadot.NetApiExt.Generated;
-using CrowdloanStorageExt = Substats.Polkadot.NetApiExt.Generated.Storage.CrowdloanStorage;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Infrastructure.Polkadot.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated;
+using CrowdloanStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.CrowdloanStorage;
 
-namespace Substats.Infrastructure.Polkadot.Repository.Storage
+namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     public class CrowdloanStorage : MainStorage, ICrowdloanStorage
     {
@@ -20,11 +20,11 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<FundInfo> FundsAsync(Id key, CancellationToken token)
         {
-            var id = SubstrateMapper.Instance.Map<Id, Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key);
+            var id = SubstrateMapper.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key);
 
             return await GetStorageWithParamsAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
-                Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
                 FundInfo>
                 (id, CrowdloanStorageExt.FundsParams, token);
         }
@@ -32,7 +32,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<BaseVec<Id>> NewRaiseAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
+                BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
                 BaseVec<Id>>(CrowdloanStorageExt.NewRaiseParams, token);
         }
     }

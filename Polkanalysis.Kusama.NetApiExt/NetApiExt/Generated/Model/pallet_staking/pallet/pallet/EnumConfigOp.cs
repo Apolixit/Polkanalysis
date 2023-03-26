@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.pallet_staking.pallet.pallet
     /// <summary>
     /// >> 105 - Variant[pallet_staking.pallet.pallet.ConfigOp]
     /// </summary>
-    public sealed class EnumConfigOp : BaseEnumExt<ConfigOp, BaseVoid, Substats.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, BaseVoid>
+    public sealed class EnumConfigOp : BaseEnumExt<ConfigOp, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, BaseVoid>
     {
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Substats.Domain.Contracts.Core.Empty
+namespace Polkanalysis.Domain.Contracts.Core.Empty
 {
     public class Lsb0 : BaseType
     {

@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion
 {
     
     
@@ -27,27 +27,27 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// <summary>
         /// >> core
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex _core;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex _core;
         
         /// <summary>
         /// >> hash
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash _hash;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash _hash;
         
         /// <summary>
         /// >> descriptor
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor _descriptor;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor _descriptor;
         
         /// <summary>
         /// >> availability_votes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _availabilityVotes;
+        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _availabilityVotes;
         
         /// <summary>
         /// >> backers
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _backers;
+        private Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> _backers;
         
         /// <summary>
         /// >> relay_parent_number
@@ -62,9 +62,9 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         /// <summary>
         /// >> backing_group
         /// </summary>
-        private Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex _backingGroup;
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex _backingGroup;
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex Core
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex Core
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash Hash
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash Hash
         {
             get
             {
@@ -88,7 +88,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor Descriptor
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor Descriptor
         {
             get
             {
@@ -100,7 +100,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> AvailabilityVotes
+        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> AvailabilityVotes
         {
             get
             {
@@ -112,7 +112,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> Backers
+        public Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0> Backers
         {
             get
             {
@@ -148,7 +148,7 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
             }
         }
         
-        public Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex BackingGroup
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex BackingGroup
         {
             get
             {
@@ -182,21 +182,21 @@ namespace Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachain
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Core = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex();
+            Core = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CoreIndex();
             Core.Decode(byteArray, ref p);
-            Hash = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash();
+            Hash = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash();
             Hash.Decode(byteArray, ref p);
-            Descriptor = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor();
+            Descriptor = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.CandidateDescriptor();
             Descriptor.Decode(byteArray, ref p);
-            AvailabilityVotes = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
+            AvailabilityVotes = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
             AvailabilityVotes.Decode(byteArray, ref p);
-            Backers = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Substats.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
+            Backers = new Ajuna.NetApi.Model.Types.Base.BaseBitSeq<Ajuna.NetApi.Model.Types.Primitive.U8, Polkanalysis.Polkadot.NetApiExt.Generated.Model.bitvec.order.Lsb0>();
             Backers.Decode(byteArray, ref p);
             RelayParentNumber = new Ajuna.NetApi.Model.Types.Primitive.U32();
             RelayParentNumber.Decode(byteArray, ref p);
             BackedInNumber = new Ajuna.NetApi.Model.Types.Primitive.U32();
             BackedInNumber.Decode(byteArray, ref p);
-            BackingGroup = new Substats.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex();
+            BackingGroup = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.GroupIndex();
             BackingGroup.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

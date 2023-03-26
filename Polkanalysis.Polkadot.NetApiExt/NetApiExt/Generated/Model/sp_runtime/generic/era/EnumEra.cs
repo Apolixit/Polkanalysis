@@ -13,7 +13,7 @@ using Ajuna.NetApi.Model.Types.Primitive;
 using System.Collections.Generic;
 
 
-namespace Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era
+namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.era
 {
     
     

@@ -11,7 +11,7 @@ using Ajuna.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
-namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
+namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
 {
     
     
@@ -28,7 +28,7 @@ namespace Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests
     /// <summary>
     /// >> 509 - Variant[sp_consensus_babe.digests.PreDigest]
     /// </summary>
-    public sealed class EnumPreDigest : BaseEnumExt<PreDigest, BaseVoid, Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.PrimaryPreDigest, Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.SecondaryPlainPreDigest, Substats.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.SecondaryVRFPreDigest>
+    public sealed class EnumPreDigest : BaseEnumExt<PreDigest, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.PrimaryPreDigest, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.SecondaryPlainPreDigest, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.SecondaryVRFPreDigest>
     {
     }
 }
