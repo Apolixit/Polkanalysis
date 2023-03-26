@@ -137,7 +137,7 @@ namespace Substats.Domain.Contracts.Secondary.Repository
         /// </summary>
         /// <param name="eventCallback"></param>
         /// <returns></returns>
-        Task SubscribeEventAsync(Action<EventLightDto> eventCallback);
+        Task SubscribeEventAsync(Action<EventLightDto> eventCallback, CancellationToken cancellationToken);
         #endregion
 
         #region Extrinsic

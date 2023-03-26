@@ -23,6 +23,9 @@
   <ItemGroup>
     <Folder Include="Core\Encoding\" />
     <Folder Include="Core\Sp\" />
+    <Folder Include="Secondary\Pallet\frame_system\extensions\" />
+    <Folder Include="Secondary\Pallet\frame_system\limits\" />
+    <Folder Include="Secondary\Pallet\frame_system\pallet\" />
   </ItemGroup>
 
 </Project>

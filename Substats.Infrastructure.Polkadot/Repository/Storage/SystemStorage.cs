@@ -1,7 +1,10 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Ajuna.NetApi.Model.Rpc;
+using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Map;
+using Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Substats.Domain.Contracts.Secondary.Pallet.SystemCore;
 using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Substats.Infrastructure.Polkadot.Mapper;
@@ -54,7 +57,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<FrameSupportDispatchPerDispatchClassWeight> BlockWeightAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                PerDispatchClassT1, 
+                PerDispatchClassT1,
                 FrameSupportDispatchPerDispatchClassWeight>(SystemStorageExt.BlockWeightParams, token);
 
             //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT1>(SystemStorageExt.BlockWeightParams(), token);
@@ -65,10 +68,10 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
             //    Substats.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch.PerDispatchClassT1, FrameSupportDispatchPerDispatchClassWeight>(result);
         }
 
-        public async Task<Digest> DigestAsync(CancellationToken token)
+        public async Task<Domain.Contracts.Secondary.Pallet.SystemCore.Digest> DigestAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest, Digest>(SystemStorageExt.DigestParams, token);
+                Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest, Domain.Contracts.Secondary.Pallet.SystemCore.Digest>(SystemStorageExt.DigestParams, token);
 
             //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(SystemStorageExt.DigestParams(), token);
 
@@ -91,6 +94,73 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
                 (SystemStorageExt.EventsParams, token);
         }
 
+        public async Task SubscribeEventsAsync(Action<BaseVec<EventRecord>> callback, CancellationToken token)
+        {
+            await _client.SubscribeStorageKeyAsync(
+                SystemStorageExt.EventsParams(),
+                async (string subscriptionId, StorageChangeSet storageChangeSet) =>
+                {
+                    if (storageChangeSet.Changes == null
+                    || storageChangeSet.Changes.Length == 0
+                    || storageChangeSet.Changes[0].Length < 2)
+                    {
+                        throw new InvalidOperationException("Couldn't update account information. Please check 'CallBackAccountChange'");
+                    }
+                    var hexString = storageChangeSet.Changes[0][1];
+
+                    // No data
+                    if (string.IsNullOrEmpty(hexString)) return;
+
+                    var blockData = await _client.Chain.GetBlockAsync();
+
+                    try
+                    {
+                        var coreResult = new BaseVec<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>();
+                        coreResult.Create(hexString);
+
+                        
+                        _logger.LogInformation(
+                            $"Parsed all the events ({coreResult.Value.Length}) from block {blockData.Block.Header.Number.Value}");
+
+                        var expectedResult = new List<EventRecord>();
+                        foreach (var coreEvent in coreResult.Value)
+                        {
+                            var mappedPhase = SubstrateMapper.Instance.Map<EnumPhase>(coreEvent.Phase);
+                            var mappedTopics = SubstrateMapper.Instance.Map<BaseVec<Hash>>(coreEvent.Topics);
+                            var maybeMappedEvents = new Maybe<EnumRuntimeEvent>();
+
+                            try
+                            {
+
+                                var mappedEvents = SubstrateMapper.Instance.Map<
+                            Substats.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(coreEvent.Event);
+
+                                maybeMappedEvents = new Maybe<EnumRuntimeEvent>(mappedEvents);
+                            }
+                            catch (Exception ex)
+                            {
+                                maybeMappedEvents.Core = coreEvent;
+                            }
+
+                            expectedResult.Add(new EventRecord(mappedPhase, maybeMappedEvents, mappedTopics));
+                        }
+
+                        callback(new BaseVec<EventRecord>(expectedResult.ToArray()));
+                    } catch(Exception ex)
+                    {
+                        _logger.LogError(
+                            $"Fail to parse all the events from block {blockData.Block.Header.Number.Value}", 
+                            ex.InnerException);
+                    }
+                }, token);
+
+            //await SubscribeStorageKeyAsync(
+            //    SystemStorageExt.EventsParams(),
+            //    callback,
+            //    token
+            //);
+        }
+
         public async Task<BaseVec<BaseTuple<U32, U32>>> EventTopicsAsync(Hash key, CancellationToken token)
         {
             var param = SubstrateMapper.Instance.Map<Hash, H256>(key);
@@ -105,7 +175,7 @@ namespace Substats.Infrastructure.Polkadot.Repository.Storage
         public async Task<EnumPhase> ExecutionPhaseAsync(CancellationToken token)
         {
             return await GetStorageAsync<
-                Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, EnumPhase> (SystemStorageExt.ExecutionPhaseParams, token);
+                Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, EnumPhase>(SystemStorageExt.ExecutionPhaseParams, token);
 
             //var result = await GetStorageAsync<Substats.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase>(SystemStorageExt.ExecutionPhaseParams(), token);
 

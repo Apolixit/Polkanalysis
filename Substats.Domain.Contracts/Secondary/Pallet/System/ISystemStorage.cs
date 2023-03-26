@@ -1,6 +1,7 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Substats.Domain.Contracts.Core;
+using Substats.Domain.Contracts.Core.Map;
 using Substats.Domain.Contracts.Secondary.Contracts;
 using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using System;
@@ -91,6 +92,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BaseVec<EventRecord>> EventsAsync(CancellationToken token);
+        public Task SubscribeEventsAsync(Action<BaseVec<EventRecord>> callback, CancellationToken token);
 
         /// <summary>
         /// The number of events in the `Events<T>` list.

@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types;
+﻿using Ajuna.NetApi.Model.Rpc;
+using Ajuna.NetApi.Model.Types;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Substats.Infrastructure.Polkadot.Mapper;
@@ -124,5 +125,43 @@ namespace Substats.Infrastructure.Polkadot.Repository
             _logger.LogTrace($"Storage call response is {res}");
             return res;
         }
+
+        //public async Task SubscribeStorageKeyAsync<R, T>(
+        //    string storageParams,
+        //    Action<T> method,
+        //    CancellationToken token,
+        //    [CallerMemberName] string callerName = "")
+        //    where R : IType, new()
+        //    where T : IType, new()
+        //{
+        //    _logger.LogTrace($"Subscribe call from {callerName} with parameters = {storageParams}");
+
+        //    await _client.SubscribeStorageKeyAsync(
+        //        storageParams, 
+        //        async (string subscriptionId, StorageChangeSet storageChangeSet) => {
+        //            if (storageChangeSet.Changes == null
+        //            || storageChangeSet.Changes.Length == 0
+        //            || storageChangeSet.Changes[0].Length < 2)
+        //            {
+        //                throw new InvalidOperationException("Couldn't update account information. Please check 'CallBackAccountChange'");
+        //            }
+        //            var hexString = storageChangeSet.Changes[0][1];
+
+        //            // No data
+        //            if (string.IsNullOrEmpty(hexString)) return;
+                    
+        //            var coreResult = new R();
+        //            coreResult.Create(hexString);
+
+        //            // Try to map
+        //            try
+        //            {
+
+        //            }
+        //            var expectedResult = SubstrateMapper.Instance.Map<R, T>(coreResult);
+
+        //            method(expectedResult);
+        //        },token);
+        //}
     }
 }

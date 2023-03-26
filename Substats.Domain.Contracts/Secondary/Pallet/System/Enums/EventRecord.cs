@@ -1,4 +1,5 @@
 ﻿using Ajuna.NetApi.Model.Types.Base;
+using Substats.Domain.Contracts.Core.Map;
 using Substats.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 
 namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
@@ -9,13 +10,18 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 
         public EventRecord(EnumPhase phase, EnumRuntimeEvent @event, BaseVec<Hash> topics)
         {
-            Create(phase, @event, topics);
+            Create(phase, new Maybe<EnumRuntimeEvent>(@event), topics);
         }
 
-        public void Create(EnumPhase phase, EnumRuntimeEvent @event, BaseVec<Hash> topics)
+        public EventRecord(EnumPhase phase, Maybe<EnumRuntimeEvent> maybeEvent, BaseVec<Hash> topics)
+        {
+            Create(phase, maybeEvent, topics);
+        }
+
+        public void Create(EnumPhase phase, Maybe<EnumRuntimeEvent> maybeEvent, BaseVec<Hash> topics)
         {
             Phase = phase;
-            Event = @event;
+            Event = maybeEvent;
             Topics = topics;
 
             Bytes = Encode();
@@ -23,7 +29,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
         }
 
         public EnumPhase Phase { get; set; }
-        public EnumRuntimeEvent Event { get; set; }
+        public Maybe<EnumRuntimeEvent> Event { get; set; }
         public BaseVec<Hash> Topics { get; set; }
 
         public override byte[] Encode()
@@ -40,7 +46,7 @@ namespace Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
             var start = p;
             Phase = new EnumPhase();
             Phase.Decode(byteArray, ref p);
-            Event = new EnumRuntimeEvent();
+            Event = new Maybe<EnumRuntimeEvent>();
             Event.Decode(byteArray, ref p);
             Topics = new BaseVec<Hash>();
             Topics.Decode(byteArray, ref p);

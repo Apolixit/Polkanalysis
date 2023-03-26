@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Substats.Configuration.Extentions\Substats.Configuration.Extentions.csproj" />
+    <ProjectReference Include="..\Substats.Domain\Substats.Domain.csproj" />
     <ProjectReference Include="..\Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj" />
     <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
   </ItemGroup>

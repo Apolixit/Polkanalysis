@@ -24,6 +24,8 @@ using Substats.Domain.Contracts.Secondary.Repository;
 using Substats.Domain.Adapter.Block;
 using Substats.Domain.Contracts.Helpers;
 using Substats.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Serilog.Core;
+using Substats.Domain.Contracts.Core.Map;
 
 namespace Substats.Domain.Repository
 {
@@ -433,27 +435,25 @@ namespace Substats.Domain.Repository
             //Method = new Method(array2[0], array2[1], parameters);
         }
 
-        public async Task SubscribeEventAsync(Action<EventLightDto> eventCallback)
+        public async Task SubscribeEventAsync(Action<EventLightDto> eventCallback, CancellationToken cancellationToken)
         {
-            Action<string, StorageChangeSet> eventChangeset = (subscriptionId, storageChangeSet) =>
-            {
-                var hexString = SubstrateHelper.getChangesetData(storageChangeSet);
-
-                // No data
-                if (string.IsNullOrEmpty(hexString)) return;
-
-                var eventsReceived = new BaseVec<EventRecord>();
-                eventsReceived.Create(hexString);
-
-                foreach (EventRecord eventReceived in eventsReceived.Value)
+            await _substrateService.Storage.System.SubscribeEventsAsync((BaseVec<EventRecord> eventsReceived) => {
+            foreach (EventRecord eventReceived in eventsReceived.Value)
                 {
+                    if(!eventReceived.Event.HasBeenMapped)
+                    {
+                        // Log
+                        _logger.LogWarning($"Event unmapped : from {eventReceived.Event.CoreType.Name} to {eventReceived.Event.DestinationType.Name}");
+                        continue;
+                    }
                     try
                     {
-                        eventCallback(
-                            _modelBuilder.BuildEventLightDto(
-                                _substrateDecode.DecodeEvent(eventReceived)
-                                )
-                            );
+                        _logger.LogInformation($"Event mapped : {eventReceived.Event.Value.Value}");
+                        //eventCallback(
+                        //    _modelBuilder.BuildEventLightDto(
+                        //        _substrateDecode.DecodeEvent(eventReceived)
+                        //        )
+                        //    );
                     }
                     catch (Exception ex)
                     {
@@ -461,9 +461,44 @@ namespace Substats.Domain.Repository
                         _logger.LogError($"Read event failed : {ex}");
                     }
                 }
-            };
+            }, cancellationToken);
+            //Action<string, StorageChangeSet> eventChangeset = (subscriptionId, storageChangeSet) =>
+            //{
+            //    var hexString = SubstrateHelper.getChangesetData(storageChangeSet);
 
-            //await _substrateService.Rpc.SubscribeStorageKeyAsync(SystemStorage.EventsParams(), eventChangeset, CancellationToken.None);
+            //    // No data
+            //    if (string.IsNullOrEmpty(hexString)) return;
+
+            //    var eventsReceived = new BaseVec<EventRecord>();
+            //    eventsReceived.Create(hexString);
+
+            //    foreach (EventRecord eventReceived in eventsReceived.Value)
+            //    {
+            //        if(!eventReceived.Event.HasBeenMapped)
+            //        {
+            //            // Log
+            //            _logger.LogWarning($"Event unmapped : from {eventReceived.Event.CoreType.Name} to {eventReceived.Event.DestinationType.Name}");
+            //            continue;
+            //        }
+            //        try
+            //        {
+            //            _logger.LogInformation($"Event mapped : {eventReceived.Event.Value.Value}");
+            //            eventCallback(
+            //                _modelBuilder.BuildEventLightDto(
+            //                    _substrateDecode.DecodeEvent(eventReceived)
+            //                    )
+            //                );
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            _logger.LogWarning($"Event Hexadecimal: {Utils.Bytes2HexString(eventReceived.Encode())}");
+            //            _logger.LogError($"Read event failed : {ex}");
+            //        }
+            //    }
+            //};
+            
+            //await _substrateService.AjunaClient.SubscribeStorageKeyAsync(
+            //    _substrateService.Storage.System.EventsParams(), eventChangeset, CancellationToken.None);
         }
 
         
