@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Domain.Contracts", "Substats.Domain.Contracts\Substats.Domain.Contracts.csproj", "{A72F0959-6B7E-41A3-8295-42D9166DFBEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Contracts", "Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj", "{A72F0959-6B7E-41A3-8295-42D9166DFBEA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Deployment", "00.Deployment", "{95DEEDB4-3C7D-4D06-9A97-CC16D7721152}"
 EndProject
@@ -13,23 +13,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Infrastructure", "03.Inf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Core", "04.Core", "{F8743F78-109F-4E69-BA71-02047B4BB2D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Domain.Tests", "Substats.Domain.Tests\Substats.Domain.Tests.csproj", "{8B5DC9BD-7E9C-498C-96B5-BDA460A1CC29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Tests", "Polkanalysis.Domain.Tests\Polkanalysis.Domain.Tests.csproj", "{8B5DC9BD-7E9C-498C-96B5-BDA460A1CC29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Domain", "02.Domain", "{6BD8838E-552B-417B-8B30-841C712E6696}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Maui", "Substats.Maui\Substats.Maui.csproj", "{C9964890-7AC4-43BE-9050-26E1C9AD47F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Maui", "Polkanalysis.Maui\Polkanalysis.Maui.csproj", "{C9964890-7AC4-43BE-9050-26E1C9AD47F2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.AjunaExtension", "Substats.AjunaExtension\Substats.AjunaExtension.csproj", "{335051EA-09D2-413E-A3D5-13C6A1DC5E6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.AjunaExtension", "Polkanalysis.AjunaExtension\Polkanalysis.AjunaExtension.csproj", "{335051EA-09D2-413E-A3D5-13C6A1DC5E6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Web", "Substats.Web\Substats.Web.csproj", "{E30E54F5-6C0A-4E75-906F-49FA317F26EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Web", "Polkanalysis.Web\Polkanalysis.Web.csproj", "{E30E54F5-6C0A-4E75-906F-49FA317F26EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Components", "Substats.Components\Substats.Components.csproj", "{F791AB81-450D-473C-A37F-7D388CC89C20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components", "Polkanalysis.Components\Polkanalysis.Components.csproj", "{F791AB81-450D-473C-A37F-7D388CC89C20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Polkadot", "Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj", "{7827F798-B3C5-4432-9679-75E21F0CAB87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Polkadot", "Polkanalysis.Infrastructure.Polkadot\Polkanalysis.Infrastructure.Polkadot.csproj", "{7827F798-B3C5-4432-9679-75E21F0CAB87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Tests", "Substats.Infrastructure.Tests\Substats.Infrastructure.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Tests", "Polkanalysis.Infrastructure.Tests\Polkanalysis.Infrastructure.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Components.Tests", "Substats.Components.Tests\Substats.Components.Tests.csproj", "{E85B9C73-8F2D-4FFB-A873-8863921DC52E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components.Tests", "Polkanalysis.Components.Tests\Polkanalysis.Components.Tests.csproj", "{E85B9C73-8F2D-4FFB-A873-8863921DC52E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{8E48983F-62D8-4900-B95A-7A5CDC843E5B}"
 EndProject
@@ -43,35 +43,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Roadmap.md = Roadmap.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Web.Tests", "Substats.Web.Tests\Substats.Web.Tests.csproj", "{214A2068-9758-49FA-ADB6-C3454DF59367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Web.Tests", "Polkanalysis.Web.Tests\Polkanalysis.Web.Tests.csproj", "{214A2068-9758-49FA-ADB6-C3454DF59367}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Domain", "Substats.Domain\Substats.Domain.csproj", "{A2B9E326-4639-4F3E-9301-CA5C6BD17298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain", "Polkanalysis.Domain\Polkanalysis.Domain.csproj", "{A2B9E326-4639-4F3E-9301-CA5C6BD17298}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Polkadot.NetApiExt", "Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj", "{898FC3F3-39ED-4C3D-A010-61F74D1335E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj", "{898FC3F3-39ED-4C3D-A010-61F74D1335E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Bajun.NetApiExt", "Substats.Bajun.NetApiExt\Substats.Bajun.NetApiExt.csproj", "{50624445-5704-4CF9-A520-FCFBCE404FF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Bajun.NetApiExt", "Polkanalysis.Bajun.NetApiExt\Polkanalysis.Bajun.NetApiExt.csproj", "{50624445-5704-4CF9-A520-FCFBCE404FF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Kusama.NetApiExt", "Substats.Kusama.NetApiExt\Substats.Kusama.NetApiExt.csproj", "{3B8E53DA-2735-4E87-AEDB-42F4DAA8EA39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Kusama.NetApiExt", "Polkanalysis.Kusama.NetApiExt\Polkanalysis.Kusama.NetApiExt.csproj", "{3B8E53DA-2735-4E87-AEDB-42F4DAA8EA39}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Domain.Integration.Tests", "Substats.Domain.Integration.Tests\Substats.Domain.Integration.Tests.csproj", "{B46291D1-85C6-47FE-AC87-910C73772ED8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Integration.Tests", "Polkanalysis.Domain.Integration.Tests\Polkanalysis.Domain.Integration.Tests.csproj", "{B46291D1-85C6-47FE-AC87-910C73772ED8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Integration.Tests", "Substats.Infrastructure.Integration.Tests\Substats.Infrastructure.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Integration.Tests", "Polkanalysis.Infrastructure.Integration.Tests\Polkanalysis.Infrastructure.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Configuration.Contracts", "Substats.Configuration.Contracts\Substats.Configuration.Contracts.csproj", "{3B261EEB-01E2-41D3-AA57-056019BE9629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Contracts", "Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj", "{3B261EEB-01E2-41D3-AA57-056019BE9629}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Integration.Tests.Contracts", "Substats.Integration.Tests.Contracts\Substats.Integration.Tests.Contracts.csproj", "{C8614077-A9DD-46B1-BD51-22C7D0F2F9AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Integration.Tests.Contracts", "Polkanalysis.Integration.Tests.Contracts\Polkanalysis.Integration.Tests.Contracts.csproj", "{C8614077-A9DD-46B1-BD51-22C7D0F2F9AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Configuration.Tests", "Substats.Configuration.Tests\Substats.Configuration.Tests.csproj", "{58704B38-B29E-4D38-A24C-57FD98F15EFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Tests", "Polkanalysis.Configuration.Tests\Polkanalysis.Configuration.Tests.csproj", "{58704B38-B29E-4D38-A24C-57FD98F15EFC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Configuration.Extentions", "Substats.Configuration.Extentions\Substats.Configuration.Extentions.csproj", "{41741FB9-B6A9-41A2-A26B-DE030A65E7EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Extentions", "Polkanalysis.Configuration.Extentions\Polkanalysis.Configuration.Extentions.csproj", "{41741FB9-B6A9-41A2-A26B-DE030A65E7EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Blockchains", "05.Blockchains", "{B6463D88-968C-4EEB-A7B4-A56007B3FDF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Kusama", "Substats.Infrastructure.Kusama\Substats.Infrastructure.Kusama.csproj", "{F3B296A5-3EEF-4916-9D55-BAFFF563624E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Kusama", "Polkanalysis.Infrastructure.Kusama\Polkanalysis.Infrastructure.Kusama.csproj", "{F3B296A5-3EEF-4916-9D55-BAFFF563624E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Bajun", "Substats.Infrastructure.Bajun\Substats.Infrastructure.Bajun.csproj", "{9EE6AC2A-5811-484F-8C23-0CF308AF3894}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Bajun", "Polkanalysis.Infrastructure.Bajun\Polkanalysis.Infrastructure.Bajun.csproj", "{9EE6AC2A-5811-484F-8C23-0CF308AF3894}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substats.Infrastructure.Common", "Substats.Infrastructure.Common\Substats.Infrastructure.Common.csproj", "{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Common", "Polkanalysis.Infrastructure.Common\Polkanalysis.Infrastructure.Common.csproj", "{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ajuna.NetApi", "..\Ajuna.NetApi\Ajuna.NetApi\Ajuna.NetApi.csproj", "{CD3839A0-E0F4-43C7-A49C-13280EB13A13}"
 EndProject

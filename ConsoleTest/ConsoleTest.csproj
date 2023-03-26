@@ -30,10 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Substats.Configuration.Extentions\Substats.Configuration.Extentions.csproj" />
-    <ProjectReference Include="..\Substats.Domain\Substats.Domain.csproj" />
-    <ProjectReference Include="..\Substats.Infrastructure.Polkadot\Substats.Infrastructure.Polkadot.csproj" />
-    <ProjectReference Include="..\Substats.Polkadot.NetApiExt\Substats.Polkadot.NetApiExt.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Configuration.Extentions\Polkanalysis.Configuration.Extentions.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Polkadot\Polkanalysis.Infrastructure.Polkadot.csproj" />
   </ItemGroup>
 
 </Project>
