@@ -40,13 +40,13 @@ namespace Polkanalysis.Domain.Runtime
 
         public INode Decode(IType elem)
         {
-            EventNode node = new EventNode();
+            GenericNode node = new GenericNode();
             VisitNode(node, elem);
 
             return node;
         }
 
-        public INode DecodeEvent(string hex)
+        public IEventNode DecodeEvent(string hex)
         {
             if (string.IsNullOrEmpty(hex))
                 throw new ArgumentNullException($"{nameof(hex)}");
@@ -64,10 +64,15 @@ namespace Polkanalysis.Domain.Runtime
             return DecodeEvent(ev);
         }
 
-        public INode DecodeEvent(EventRecord ev)
+        public IEventNode DecodeEvent(EventRecord ev)
         {
             var eventNode = new EventNode();
+            if (!ev.Event.HasBeenMapped) return eventNode;
+
             VisitNode(eventNode, ev);
+
+            //eventNode.Module = eventNode.HumanData;
+            //eventNode.Method = eventNode.Children.First().HumanData;
 
             _logger.LogTrace("Node created from EventRecord");
             return eventNode;
@@ -88,7 +93,7 @@ namespace Polkanalysis.Domain.Runtime
             var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
 
             var extrinsicCall = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
-            var palletNode = new EventNode();
+            var palletNode = new GenericNode();
             palletNode.Name = pallet.Name;
             palletNode.AddHumanData(pallet.Name);
             palletNode.AddChild(Decode(extrinsicCall));
@@ -115,7 +120,7 @@ namespace Polkanalysis.Domain.Runtime
             if (logs == null)
                 throw new ArgumentNullException($"{nameof(logs)}");
 
-            EventNode node = new EventNode();
+            GenericNode node = new GenericNode();
             foreach (var log in logs)
             {
                 node.AddChild(VisitNode(log));
@@ -127,7 +132,7 @@ namespace Polkanalysis.Domain.Runtime
         #region Internal visit tree
         private INode VisitNode(IType value)
         {
-            EventNode node = new EventNode();
+            GenericNode node = new GenericNode();
             VisitNode(node, value);
             return node;
         }
@@ -144,7 +149,7 @@ namespace Polkanalysis.Domain.Runtime
             {
                 var val = baseEnumValue.GetValue();
 
-                if (val == null) throw new ArgumentNullException($"The value element (enum) from {baseEnumValue.TypeName} is null while visiting node");
+                if (val == null) throw new ArgumentNullException($"The value element (enum) from {baseEnumValue.TypeName()} is null while visiting node");
 
                 var doc = _palletBuilder.FindDocumentation(val);
                 var AddDataToNode = (INode node) =>
@@ -154,13 +159,13 @@ namespace Polkanalysis.Domain.Runtime
                         .AddName(val.ToString())
                         .AddHumanData(val);
 
-                    if (doc != null)
+                    if (!string.IsNullOrEmpty(doc))
                         node.AddDocumentation(doc);
 
                     return node;
                 };
 
-                var childNode = AddDataToNode(new EventNode());
+                var childNode = AddDataToNode(new GenericNode());
 
                 var enumValue2 = baseEnumValue.GetValue2();
                 if (enumValue2 == null)
@@ -205,7 +210,7 @@ namespace Polkanalysis.Domain.Runtime
                     var prp = value.GetValue(property.Name);
                     if (prp is IType prpType)
                     {
-                        var childNode = new EventNode()
+                        var childNode = new GenericNode()
                                                 .AddData(prpType)
                                                 .AddName(property.Name);
                         node.AddChild(childNode);
@@ -234,22 +239,44 @@ namespace Polkanalysis.Domain.Runtime
                 if (node.IsEmpty)
                     node = AddDataToNode(node);
                 else
-                    node.AddChild(AddDataToNode(new EventNode()));
+                    node.AddChild(AddDataToNode(new GenericNode()));
             }
         }
 
         private void VisitNodeGeneric(INode node, IType value)
         {
-            //var genericArgs = value.GetValue().GetType().IsArray;
-            var valueArray = value.GetValueArray();
-            if (valueArray == null)
-                throw new ArgumentNullException($"{nameof(valueArray)}GetValueArray() is null");
+            var isArray = value.GetValue().GetType().IsArray;
+            //var valueArray = value.GetValue().GetType().IsArray ? 
+            //    value.GetValueArray() : 
+            //    new object[] { value.GetValue() };
 
-            foreach (IType currentValue in valueArray)
+            if(isArray)
             {
+                var valueArray = value.GetValueArray();
+
+                if (valueArray == null)
+                    throw new ArgumentNullException($"{nameof(valueArray)} GetValueArray() is null");
+
+                foreach (IType currentValue in valueArray)
+                {
+                    if (currentValue.GetType().IsGenericType)
+                    {
+                        var childNode = new GenericNode().AddData(currentValue);
+                        node.AddChild(childNode);
+
+                        VisitNode(childNode, currentValue);
+                    }
+                    else
+                    {
+                        VisitNode(node, currentValue);
+                    }
+                }
+            } else
+            {
+                var currentValue = (IType)value.GetValue();
                 if (currentValue.GetType().IsGenericType)
                 {
-                    var childNode = new EventNode().AddData(currentValue);
+                    var childNode = new GenericNode().AddData(currentValue);
                     node.AddChild(childNode);
 
                     VisitNode(childNode, currentValue);
@@ -259,6 +286,7 @@ namespace Polkanalysis.Domain.Runtime
                     VisitNode(node, currentValue);
                 }
             }
+            
         }
 
         /// <summary>
@@ -268,6 +296,7 @@ namespace Polkanalysis.Domain.Runtime
         /// <returns></returns>
         private bool HasComplexeField(IType value)
         {
+            return true;
             var customAttributes = value.GetType().CustomAttributes;
             if (customAttributes != null && customAttributes.Count() > 0)
             {

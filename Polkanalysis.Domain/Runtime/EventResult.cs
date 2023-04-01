@@ -45,7 +45,7 @@ namespace Polkanalysis.Domain.Runtime
             return Create(palletEventName, eventName, details);
         }
 
-        private static EventDetailsResult AddDetails(LinkedList<EventNode> nodes)
+        private static EventDetailsResult AddDetails(LinkedList<GenericNode> nodes)
         {
             return null;
         }

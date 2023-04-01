@@ -1,10 +1,11 @@
 ﻿using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using SystemEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.TransactionPayment.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -33,10 +34,10 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void TransactionPayment_TransactionFeePaid_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.TransactionPayment));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.pallet.Event.TransactionFeePaid));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.TransactionPayment));
+            Assert.That(nodeResult.Method, Is.EqualTo(SystemEvent.Event.TransactionFeePaid));
 
             //var expectedResult = EventResult.Create("TransactionPayment", "TransactionFeePaid", new List<EventDetailsResult>()
             //{

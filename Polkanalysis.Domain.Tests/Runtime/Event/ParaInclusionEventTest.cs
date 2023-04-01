@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using BalancesEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -31,10 +33,10 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void ParaInclusion_CandidateBacked_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.ParaInclusion));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.inclusion.pallet.Event.CandidateBacked));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.ParaInclusion));
+            Assert.That(nodeResult.Method, Is.EqualTo(Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.Event.CandidateBacked));
         }
 
         [Test]
@@ -42,10 +44,9 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void ParaInclusion_CandidateBackedToDto_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.ParaInclusion));
-            //Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Withdraw));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.ParaInclusion));
         }
 
         /// <summary>
@@ -90,10 +91,9 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void ParaInclusion_CandidateIncluded_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.ParaInclusion));
-            //Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Withdraw));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.ParaInclusion));
         }
     }
 }

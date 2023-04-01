@@ -92,7 +92,6 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BaseVec<EventRecord>> EventsAsync(CancellationToken token);
-        public Task SubscribeEventsAsync(Action<BaseVec<EventRecord>> callback, CancellationToken token);
 
         /// <summary>
         /// The number of events in the `Events<T>` list.

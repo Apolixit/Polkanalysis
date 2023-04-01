@@ -39,9 +39,7 @@ namespace Polkanalysis.Domain.Tests.UseCase
         [Test]
         public async Task GenericUseCaseWithNullRequest_ShouldFailedAsync()
         {
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            var result = await _useCase.ExecuteAsync(null, CancellationToken.None);
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+            var result = await _useCase.ExecuteAsync(null!, CancellationToken.None);
 
             Assert.IsTrue(result.IsError);
             Assert.That(result.Value, Is.Null);

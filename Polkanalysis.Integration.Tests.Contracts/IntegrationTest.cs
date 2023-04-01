@@ -8,6 +8,7 @@ using Polkanalysis.Infrastructure.Polkadot.Repository;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Microsoft.Extensions.Logging;
+using Polkanalysis.Domain.Contracts.Runtime;
 
 namespace Polkanalysis.Integration.Tests.Contracts
 {

@@ -1,9 +1,11 @@
 ﻿using Ajuna.NetApi.Model.Extrinsics;
 using Ajuna.NetApi.Model.Rpc;
+using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
@@ -138,6 +140,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="eventCallback"></param>
         /// <returns></returns>
         Task SubscribeEventAsync(Action<EventLightDto> eventCallback, CancellationToken cancellationToken);
+
+        public Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<IType> callback, CancellationToken token);
         #endregion
 
         #region Extrinsic

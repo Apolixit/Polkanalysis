@@ -21,6 +21,8 @@ using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Ajuna.NetApi;
+using Polkanalysis.Infrastructure.Polkadot.Repository.Events;
+using Polkanalysis.Domain.Contracts.Runtime;
 
 namespace Polkanalysis.Infrastructure.DirectAccess.Repository
 {
@@ -28,9 +30,12 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Repository
     {
         private SubstrateClientExt? _polkadotClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
-        //private readonly SubstrateMapper _mapper;
+        private readonly ISubstrateDecoding _substrateDecode;
         private readonly ILogger<PolkadotRepository> _logger;
-        public PolkadotRepository(ISubstrateEndpoint substrateconfiguration, ILogger<PolkadotRepository> logger)
+
+        public PolkadotRepository(
+            ISubstrateEndpoint substrateconfiguration,
+            ILogger<PolkadotRepository> logger)
         {
             _substrateconfiguration = substrateconfiguration;
             _logger = logger;
@@ -74,7 +79,7 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Repository
             get {
                 if (_rpc == null)
                     _rpc = new Rpc(PolkadotClient);
-                
+
                 return _rpc;
             }
         }
@@ -83,7 +88,16 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Repository
 
         public ICalls Calls => throw new NotImplementedException();
 
-        public IEvents Events => throw new NotImplementedException();
+        private IEvents? _events = null;
+        public IEvents Events {
+            get
+            {
+                if (_events == null)
+                    _events = new PolkadotEvents(PolkadotClient, _logger);
+
+                return _events;
+            }
+}
 
         public IErrors Errors => throw new NotImplementedException();
 

@@ -31,7 +31,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Infrastructure.Polkadot\Polkanalysis.Infrastructure.Polkadot.csproj" />
   </ItemGroup>
 
   <ItemGroup>

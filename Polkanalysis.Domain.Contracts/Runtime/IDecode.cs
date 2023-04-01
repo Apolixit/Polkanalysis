@@ -28,14 +28,14 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        INode DecodeEvent(string hex);
+        IEventNode DecodeEvent(string hex);
 
         /// <summary>
         /// Build a tree from an event
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        INode DecodeEvent(EventRecord ev);
+        IEventNode DecodeEvent(EventRecord ev);
 
         /// <summary>
         /// Build a tree from an extrinsic hexadecimal representation

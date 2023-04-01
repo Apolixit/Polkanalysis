@@ -1,205 +1,75 @@
-﻿using Ajuna.NetApi.Model.Types;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Runtime.Mapping;
-using System.Dynamic;
-using System.Reflection.Emit;
-using System.Reflection;
-using System.Text.Json;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Runtime
 {
-    public class EventNode : INode
+    public class EventNode : GenericNode, IEventNode
     {
-        public string ComponentName { get; set; } = string.Empty;
-        public bool IsIdentified { get; set; }
-        public Type? DataType { get; set; } = null;
-        public IType? Data { get; set; } = null;
-        public string Name { get; set; } = string.Empty;
-
-        private dynamic? _humanData = null;
-        public dynamic? HumanData {
+        private RuntimeEvent? _module = null;
+        public RuntimeEvent Module {
             get
             {
-                if (_humanData == null && Children.Count > 0)
+                if (_module == null)
                 {
-                    _humanData = Children.Select(x => x.HumanData).ToList();
+                    var runtimeEvent = getRuntimeEvent();
+                    if (runtimeEvent == null || runtimeEvent.HumanData == null)
+                        throw new InvalidOperationException("Runtime event is null !");
+
+                    _module = (RuntimeEvent)runtimeEvent.HumanData;
                 }
-                return _humanData;
+
+                return _module.Value;
             }
-            set
+            internal set
             {
-                _humanData = value;
+                _module = value;
             }
         }
-        public LinkedList<INode> Children { get; set; } = new LinkedList<INode>();
 
-        #region Tree props
-        public bool IsEmpty => Data == null;
-
-        public bool IsLeaf => Children == null || Children.Count == 0;
-
-        public string Documentation { get; set; }
-        #endregion
-
-        public INode AddData(IType data)
+        private Enum? _method = null;
+        public Enum Method
         {
-            Data = data;
-            DataType = data.GetType();
-            return this;
-        }
-
-        public INode AddName(string name)
-        {
-            Name = name;
-            return this;
-        }
-
-        public INode AddHumanData(dynamic humanData)
-        {
-            HumanData = humanData;
-            return this;
-        }
-
-        public INode AddContext(IMappingElement mapping)
-        {
-            ComponentName = $"Component_{mapping.ObjectType.Name}";
-            IsIdentified = mapping.IsIdentified;
-
-            return this;
-        }
-
-        public void AddChild(INode eventNode)
-        {
-            Children.AddLast(eventNode);
-        }
-
-        public INode AddDocumentation(string doc)
-        {
-            Documentation = doc;
-            return this;
-        }
-
-        public INode AddDocumentation(string[] doc)
-        {
-            if (doc == null)
-                throw new ArgumentNullException($"{nameof(doc)}");
-
-            return AddDocumentation(string.Join("\n", doc));
-        }
-
-        public string ToJson()
-        {
-            var res = JsonSerializer.Serialize(ToDictionnary());
-            return res;
-        }
-
-        public Dictionary<string, object> ToDictionnary()
-        {
-            var dictionnary = new Dictionary<string, object>();
-
-            if (Children.Count > 0)
+            get
             {
-                dictionnary.Add(
-                    Name, 
-                    Children.Select(x => x.ToDictionnary()));
+                if (_method == null)
+                {
+                    var runtimeEvent = getRuntimeEvent();
+                    if (runtimeEvent == null || runtimeEvent.HumanData == null)
+                        throw new InvalidOperationException("Runtime event is null !");
+
+                    var palletEvent = runtimeEvent.Children[0];
+
+                    if (palletEvent == null || palletEvent.HumanData == null)
+                        throw new InvalidOperationException("Pallet event is null !");
+
+                    _method = (Enum)palletEvent.HumanData;
+                }
+
+                return _method;
             }
-            else
+            internal set
             {
-                dictionnary.Add(Name, HumanData);
+                _method = value;
             }
-
-            return dictionnary;
         }
 
-        public KeyValuePair<string, object> ToKeyValuePair()
+        private INode getRuntimeEvent()
         {
-            return new KeyValuePair<string, object>(
-                Name,
-                Children.Count > 0 
-                    ? Children.Select(x => x.ToKeyValuePair()) 
-                    : HumanData
-            );
+            if (Children == null || Children.Count == 0)
+                throw new InvalidOperationException("EventRecord node has no children...");
+
+            var globalEvent = Children[1];
+            if (globalEvent.Children == null || globalEvent.Children.Count == 0)
+                throw new InvalidOperationException("RuntimeEvent node has no children...");
+
+            var runtimeEvent = globalEvent.Children[0];
+
+            return runtimeEvent;
         }
-
-        public INode Create()
-        {
-            return new EventNode();
-        }
-
-        public bool Has(object data)
-        {
-            return Find(data)?.Count() > 0;
-        }
-
-        private IEnumerable<INode> FindInner(List<INode> list, object obj)
-        {
-            if (HumanData != null && HumanData?.Equals(obj))
-            {
-                list.Add(this);
-            }
-
-            if (Children == null) return list;
-
-            foreach (var child in Children)
-            {
-                list.AddRange(child.Find(obj));
-            }
-
-            return list;
-        }
-
-        private IEnumerable<INode> FindInner(List<INode> list, Type obj)
-        {
-            if (DataType != null && DataType.FullName.Equals(obj.FullName))
-            {
-                list.Add(this);
-            }
-
-            if (Children == null) return list;
-
-            foreach (var child in Children)
-            {
-                list.AddRange(child.Find(obj));
-            }
-
-            return list;
-        }
-
-        private IEnumerable<INode> FindInner(List<INode> list, IType obj)
-        {
-            if (Data != null && Data.Equals(obj))
-            {
-                list.Add(this);
-            }
-
-            if (Children == null) return list;
-
-            foreach (var child in Children)
-            {
-                list.AddRange(child.Find(obj));
-            }
-
-            return list;
-        }
-
-        public IEnumerable<INode> Find(object obj)
-        {
-            var nodesFounded = new List<INode>();
-            return FindInner(nodesFounded, obj);
-        }
-
-        public IEnumerable<INode> Find(Type obj)
-        {
-            var nodesFounded = new List<INode>();
-            return FindInner(nodesFounded, obj);
-        }
-
-        public IEnumerable<INode> Find(IType obj)
-        {
-            var nodesFounded = new List<INode>();
-            return FindInner(nodesFounded, obj);
-        }
-
-        
     }
 }

@@ -1,16 +1,12 @@
 ﻿using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
     public class MainEventTest
     {
-        protected (INode runtimeEvent, INode palletEvent) PrerequisiteEvent(INode node)
+        protected void PrerequisiteEvent(INode node)
         {
             Assert.That(node, Is.Not.Null);
 
@@ -20,17 +16,6 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             Assert.That(node.Children.Count, Is.EqualTo(3));
 
             Assert.That(node.Has(Phase.ApplyExtrinsic));
-
-            var runtimeEvent = node.Children.ToList()[1];
-            Assert.That(runtimeEvent.Name, Is.EqualTo("Event"));
-
-            var palletChild = runtimeEvent.Children.First();
-            Assert.IsInstanceOf<Enum>(palletChild.HumanData);
-
-            var palletEvent = palletChild.Children.First();
-            Assert.IsInstanceOf<Enum>(palletEvent.HumanData);
-
-            return (palletChild, palletEvent);
         }
     }
 }

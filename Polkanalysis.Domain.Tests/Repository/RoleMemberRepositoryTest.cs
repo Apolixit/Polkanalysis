@@ -4,7 +4,6 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
-using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

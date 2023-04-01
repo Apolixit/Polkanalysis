@@ -26,6 +26,7 @@ using Polkanalysis.Domain.Contracts.Helpers;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Serilog.Core;
 using Polkanalysis.Domain.Contracts.Core.Map;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -437,7 +438,7 @@ namespace Polkanalysis.Domain.Repository
 
         public async Task SubscribeEventAsync(Action<EventLightDto> eventCallback, CancellationToken cancellationToken)
         {
-            await _substrateService.Storage.System.SubscribeEventsAsync((BaseVec<EventRecord> eventsReceived) => {
+            await _substrateService.Events.SubscribeEventsAsync((BaseVec<EventRecord> eventsReceived) => {
             foreach (EventRecord eventReceived in eventsReceived.Value)
                 {
                     if(!eventReceived.Event.HasBeenMapped)
@@ -522,6 +523,24 @@ namespace Polkanalysis.Domain.Repository
             return _modelBuilder.BuildEventDto(
                     await GetBlockLightAsync(blockHash, cancellationToken),
                     eventNode);
+        }
+
+        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<IType> callback, CancellationToken token)
+        {
+            await _substrateService.Events.SubscribeEventsAsync((BaseVec<EventRecord> events) =>
+            {
+                foreach (var ev in events.Value)
+                {
+                    var eventNode = _substrateDecode.DecodeEvent(ev);
+                    if (eventNode.Module.ToString() == palletName.ToString() && 
+                    eventNode.Method.ToString() == eventName.ToString())
+                    {
+                        _logger.LogInformation("Found seeking event !");
+                        //ev.Event.Value.Value2
+                        callback(ev);
+                    }
+                }
+            }, token);
         }
 
         public Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken)

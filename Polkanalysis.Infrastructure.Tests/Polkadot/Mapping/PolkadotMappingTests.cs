@@ -1,7 +1,9 @@
 ﻿using Ajuna.NetApi;
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
+using AutoMapper;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Polkanalysis.Infrastructure.Tests.Polkadot.Repository;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
@@ -113,8 +115,15 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
 
             Assert.That(targetValue, Is.EqualTo(u64));
             Assert.That(targetValue, Is.EqualTo(mapU64));
-            
-            
+        }
+
+        [Test]
+        public void UnmappedEvent_ShouldThrowException()
+        {
+            var bondExtraCore = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumBondExtra();
+            bondExtraCore.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondExtra.FreeBalance, new U128(10));
+
+            Assert.Throws<AutoMapperMappingException>(() => SubstrateMapper.Instance.Map<EnumBondExtra>(bondExtraCore));
         }
     }
 }

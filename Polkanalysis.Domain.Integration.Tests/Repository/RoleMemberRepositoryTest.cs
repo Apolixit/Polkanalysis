@@ -25,7 +25,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
             _roleMemberRepository = new PolkadotRoleMemberRepository(
                 _substrateRepository,
                 new PolkadotAccountRepository(_substrateRepository),
-                new EventNode());
+                new GenericNode());
         }
 
 

@@ -5,8 +5,12 @@ using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Core.Enum;
 using Polkanalysis.Domain.Contracts.Helpers;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using System.Numerics;
 using System.Text;
 
@@ -53,18 +57,22 @@ namespace Polkanalysis.Domain.Runtime
                         new MappingElementBaseCom<BigInteger>(),
                     }
                 },
-
+                new EventMappingElem()
+                {
+                    CategoryName = "Account",
+                    Mapping = new List<IMappingElement>() { new MappingElementEnumRuntimeEvent() }
+                },
                 //new EventMappingElem()
                 //{
                 //    CategoryName = "Account",
                 //    Mapping = new List<IMappingElement>() { new MappingElementAccount() }
                 //},
 
-                //new EventMappingElem()
-                //{
-                //    CategoryName = "Hash",
-                //    Mapping = new List<IMappingElement>() { new MappingElementHash(), new MappingElementHashByteArray(), new MappingElementArr32U8(), new MappingElementArr64U8() }
-                //},
+                new EventMappingElem()
+                {
+                    CategoryName = "Hash",
+                    Mapping = new List<IMappingElement>() { new MappingElementHashByteArray() }
+                },
 
                 //new EventMappingElem()
                 //{
@@ -190,22 +198,23 @@ namespace Polkanalysis.Domain.Runtime
     //    dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((Arr64U8)input).Bytes);
     //}
 
-    //public class MappingElementHashByteArray : IMappingElement
-    //{
-    //    //[AjunaNodeType(TypeDefEnum.Array)]
-    //    public Type ObjectType => typeof(BaseVec<U8>);
-    //    public bool IsIdentified => true;
+    public class MappingElementHashByteArray : IMappingElement
+    {
+        //[AjunaNodeType(TypeDefEnum.Array)]
+        public Type ObjectType => typeof(BaseVec<U8>);
+        public bool IsIdentified => true;
 
-    //    dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((BaseVec<U8>)input).Bytes);
-    //}
+        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((BaseVec<U8>)input).Bytes);
+    }
 
     //public class MappingElementAccount : IMappingElement
     //{
-    //    public Type ObjectType => typeof(AccountId32);
+    //    public Type ObjectType => typeof(SubstrateAccount);
     //    public bool IsIdentified => true;
 
-    //    dynamic IMappingElement.ToHuman(dynamic input) => new {
-    //        PublicKey = Utils.GetPublicKeyFrom(AccountHelper.BuildAddress((AccountId32)input)),
+    //    dynamic IMappingElement.ToHuman(dynamic input) => new
+    //    {
+    //        PublicKey = Utils.GetPublicKeyFrom(AccountHelper.BuildAddress((SubstrateAccount)input)),
     //        Ss58Address = AccountHelper.BuildAddress((AccountId32)input)
     //    };
     //}
@@ -217,24 +226,23 @@ namespace Polkanalysis.Domain.Runtime
 
     //    dynamic IMappingElement.ToHuman(dynamic input) => new
     //    {
-    //        PublicKey = Utils.GetPublicKeyFrom(Utils.GetAddressFrom((Contracts.Core.SubstrateAccount)input.Bytes)),
+    //        PublicKey = Utils.GetPublicKeyFrom(Utils.GetAddressFrom((SubstrateAccount)input.)),
     //        Ss58Address = Utils.GetAddressFrom((Contracts.Core.SubstrateAccount)input.Bytes)
     //    };
     //}
 
-    //public class MappingElementEnumResult : IMappingElement
-    //{
-    //    public Type ObjectType => typeof(EnumResult);
+    public class MappingElementEnumResult : IMappingElement
+    {
+        public Type ObjectType => typeof(EnumResult);
 
-    //    public bool IsIdentified => true;
+        public bool IsIdentified => true;
 
-    //    dynamic IMappingElement.ToHuman(dynamic input)
-    //    {
-    //        var enumResult = ((EnumResult)input);
-    //        //enumResult.Value2;
-    //        return (enumResult.Value, enumResult.Value2.ToString());
-    //    }
-    //}
+        dynamic IMappingElement.ToHuman(dynamic input)
+        {
+            var enumResult = (EnumResult)input;
+            return (enumResult.Value, enumResult.Value2.ToString());
+        }
+    }
 
     //public class MappingElementText : IMappingElement
     //{
@@ -311,6 +319,30 @@ namespace Polkanalysis.Domain.Runtime
             return (enumResult.GetValue(), enumResult.GetValue2());
         }
     }
+    public class MappingElementEnumRuntimeEvent : IMappingElement
+    {
+        public Type ObjectType => typeof(EnumRuntimeEvent);
+        public bool IsIdentified => true;
+
+        dynamic IMappingElement.ToHuman(dynamic input)
+        {
+            var enumResult = (EnumRuntimeEvent)input;
+            return enumResult.Value;
+        }
+    }
+
+    //// EventRecord
+    //public class MappingElementEventRecord : IMappingElement
+    //{
+    //    public Type ObjectType => typeof(EventRecord);
+    //    public bool IsIdentified => true;
+
+    //    dynamic IMappingElement.ToHuman(dynamic input)
+    //    {
+    //        var enumResult = (EventRecord)input;
+    //        return enumResult.;
+    //    }
+    //}
 
     public class MappingElementUnknown : IMappingElement
     {

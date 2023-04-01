@@ -56,6 +56,7 @@ using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras;
+using static Polkanalysis.Infrastructure.Polkadot.Mapper.SubstrateMapper.BaseTypeProfile;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Mapper
 {
@@ -180,6 +181,8 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 CreateMap(typeof(BaseTuple<,,>), typeof(BaseTuple<,,>)).ConvertUsing(typeof(BaseTupleConverter<,,,,,>));
                 CreateMap(typeof(BaseVec<>), typeof(BaseVec<>)).ConvertUsing(typeof(BaseVecConverter<,>));
                 CreateMap(typeof(BaseCom<>), typeof(BaseCom<>)).ConvertUsing(typeof(BaseComConverter<,>));
+                
+                CreateMap(typeof(BaseEnumExt<,,,>), typeof(BaseEnumExt<,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
 
                 BaseComMapping<I8>();
                 BaseComMapping<I16>();
@@ -294,6 +297,89 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                     return destination;
                 }
             }
+
+            public class BaseEnumTypeConverter : ITypeConverter<BaseEnumType, BaseEnumType>
+            {
+                public BaseEnumType Convert(BaseEnumType source, BaseEnumType destination, ResolutionContext context)
+                {
+                    var x = 1;
+                    return destination;
+                }
+            }
+
+            public class BaseEnumExtConverter<I0, I1, D0, D1> : ITypeConverter<BaseEnumExt<I0, I1>, BaseEnumExt<D0, D1>>
+                where I0 : Enum 
+                where I1 : IType, new()
+                where D0 : Enum
+                where D1 : IType, new()
+            {
+                public BaseEnumExt<D0, D1> Convert(BaseEnumExt<I0, I1> source, BaseEnumExt<D0, D1> destination, ResolutionContext context)
+                {
+                    destination = new BaseEnumExt<D0, D1>();
+                    if (source == null) return destination;
+
+                    destination.Create(context.Mapper.Map<D0>(source.Value), context.Mapper.Map<D1>(source.Value2));
+                    return destination;
+                }
+            }
+
+            public class BaseEnumExtConverter<I0, I1, I2, D0, D1, D2> : 
+                ITypeConverter<BaseEnumExt<I0, I1, I2>, BaseEnumExt<D0, D1, D2>>
+                where I0 : Enum
+                where I1 : IType, new()
+                where I2 : IType, new()
+                where D0 : Enum
+                where D1 : IType, new()
+                where D2 : IType, new()
+            {
+                public BaseEnumExt<D0, D1, D2> Convert(BaseEnumExt<I0, I1, I2> source, BaseEnumExt<D0, D1, D2> destination, ResolutionContext context)
+                {
+                    destination = new BaseEnumExt<D0, D1, D2>();
+                    if (source == null) return destination;
+
+                    destination.Create(context.Mapper.Map<D0>(source.Value), context.Mapper.Map<D1>(source.Value2));
+                    return destination;
+                }
+            }
+
+            public class BaseEnumExtConverter<
+                T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10,
+                D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10>
+            where T0 : Enum
+            where T1 : IType, new()
+            where T2 : IType, new()
+            where T3 : IType, new()
+            where T4 : IType, new()
+            where T5 : IType, new()
+            where T6 : IType, new()
+            where T7 : IType, new()
+            where T8 : IType, new()
+            where T9 : IType, new()
+            where T10 : IType, new()
+            where D0 : Enum
+            where D1 : IType, new()
+            where D2 : IType, new()
+            where D3 : IType, new()
+            where D4 : IType, new()
+            where D5 : IType, new()
+            where D6 : IType, new()
+            where D7 : IType, new()
+            where D8 : IType, new()
+            where D9 : IType, new()
+            where D10 : IType, new()
+            {
+                public BaseEnumExt<D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10> Convert(
+                    BaseEnumExt<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> source, 
+                    BaseEnumExt<D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10> destination, 
+                    ResolutionContext context)
+                {
+                    destination = new BaseEnumExt<D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10>();
+                    if (source == null) return destination;
+
+                    destination.Create(context.Mapper.Map<D0>(source.Value), context.Mapper.Map<D1>(source.Value2));
+                    return destination;
+                }
+            }
         }
 
         public class NameableProfile : Profile
@@ -401,7 +487,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 // Events
                 CreateMap<EnumBalanceStatus, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumBalanceStatus>();
                 CreateMap<EnumReasons, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumReasons>();
-                CreateMap<Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
+                //CreateMap<Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
             }
         }
 
@@ -749,7 +835,23 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.EnumDigestItem, EnumDigestItem>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord, EventRecord>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, EnumPhase>();
+                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>().ForMember(o => o.Value2, m => m.MapFrom(s => s.Value2));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>();
+
+                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
+
+                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>().ConvertUsing((s, d) =>
+                //{
+                //    d = new();
+                //    d.Value = Instance.Map<Domain.Contracts.Secondary.Pallet.Balances.Enums.Event>(s.Value);
+                //    d.Value2 = Instance.Map<BaseTuple<SubstrateAccount, U128>>(s.Value2);
+
+                //    return d;
+                //});
+                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
+
+                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(typeof(BaseEnumTypeConverter));
+
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo, LastRuntimeUpgradeInfo>();
             }
         }

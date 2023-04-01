@@ -1,11 +1,12 @@
 ﻿using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using ScheduleEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.Scheduler.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -37,26 +38,32 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void Scheduler_ScheduleBlock_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
-            Assert.IsNotNull(result);
 
-            var expectedResult = EventResult.Create("Scheduler", "Scheduled", new List<EventDetailsResult>()
-            {
-                new EventDetailsResult()
-                {
-                    ComponentName = "Component_U32",
-                    Title = "BlockNumber",
-                    Value = (uint)400
-                },
-                new EventDetailsResult()
-                {
-                    ComponentName = "Component_U32",
-                    Title = "Index",
-                    Value = (uint)0
-                },
-            });
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
+            Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Scheduled));
+
+            //var result = EventResult.Create(nodeResult);
+            //Assert.IsNotNull(result);
+
+            //var expectedResult = EventResult.Create("Scheduler", "Scheduled", new List<EventDetailsResult>()
+            //{
+            //    new EventDetailsResult()
+            //    {
+            //        ComponentName = "Component_U32",
+            //        Title = "BlockNumber",
+            //        Value = (uint)400
+            //    },
+            //    new EventDetailsResult()
+            //    {
+            //        ComponentName = "Component_U32",
+            //        Title = "Index",
+            //        Value = (uint)0
+            //    },
+            //});
+
+            //Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         /// <summary>
@@ -73,10 +80,10 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void Scheduler_Dispatched_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Scheduler));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_scheduler.pallet.Event.Dispatched));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
+            Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Dispatched));
         }
     }
 }

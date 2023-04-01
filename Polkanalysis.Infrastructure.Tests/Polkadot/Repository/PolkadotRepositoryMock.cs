@@ -7,6 +7,7 @@ using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Polkanalysis.Polkadot.NetApiExt.Generated;

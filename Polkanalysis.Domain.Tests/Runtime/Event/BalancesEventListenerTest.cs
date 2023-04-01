@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using BalancesEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -42,10 +44,10 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void Balances_Withdraw_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Balances));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Withdraw));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Balances));
+            Assert.That(nodeResult.Method, Is.EqualTo(BalancesEvent.Event.Withdraw));
         }
 
         /// <summary>
@@ -63,10 +65,10 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void Balances_Endowed_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Balances));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Endowed));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Balances));
+            Assert.That(nodeResult.Method, Is.EqualTo(BalancesEvent.Event.Endowed));
 
         }
 
@@ -91,24 +93,22 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             //Ferdie    SS58 Address:   5CiPPseXPECbkjWCa6MnjNokrgYjMqmKndv2rSnekmSK2DjL
             //Amount    1000
 
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Balances));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Transfer));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Balances));
+            Assert.That(nodeResult.Method, Is.EqualTo(BalancesEvent.Event.Transfer));
 
         }
 
         [Test]
-        [TestCase("0x000200000005076D6F646C70792F74727372790000000000000000000000000000000000000000840C540600000000000000000000000000")]
+        [TestCase("0x000200000005076D6F646C70792F74727372790000000000000000000000000000000000000000CF08830700000000000000000000000000")]
         public void Balances_Deposit_ShouldBeParsed(string hex)
         {
-            //		currentValue.GetType().FullName	"Polkanalysis.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
-
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Balances));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.Deposit));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Balances));
+            Assert.That(nodeResult.Method, Is.EqualTo(BalancesEvent.Event.Deposit));
         }
 
         [TestCase("0x000200000005013DEF8519FB4F9A5FA7456D38B97C65B3463A8F0259B45B595AA4CDE5367179FA66A9800500000000000000000000000000")]
@@ -117,10 +117,10 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             //		currentValue.GetType().FullName	"Polkanalysis.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall"	string
 
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Balances));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.Event.DustLost));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Balances));
+            Assert.That(nodeResult.Method, Is.EqualTo(BalancesEvent.Event.DustLost));
         }
 
 
@@ -129,10 +129,10 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void Treasury_Deposit_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.Treasury));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_treasury.pallet.Event.Deposit));
+            Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Treasury));
+            Assert.That(nodeResult.Method, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_treasury.pallet.Event.Deposit));
         }
     }
 }

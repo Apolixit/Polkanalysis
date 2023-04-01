@@ -46,7 +46,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// <summary>
         /// Node sub children
         /// </summary>
-        LinkedList<INode> Children { get; set; }
+        IList<INode> Children { get; set; }
 
         public bool IsEmpty { get; }
         public bool IsLeaf { get; }

@@ -63,17 +63,28 @@ namespace Polkanalysis.Domain.Contracts.Core.Map
         {
             var start = p;
 
-            if (HasBeenMapped)
+            try
             {
                 Value = new T();
                 Value.Decode(byteArray, ref p);
+
+                TypeSize = p - start;
             }
-            else
+            catch(System.Exception ex)
             {
                 throw new InvalidOperationException();
             }
+            //if (HasBeenMapped)
+            //{
+            //    Value = new T();
+            //    Value.Decode(byteArray, ref p);
+            //}
+            //else
+            //{
+            //    throw new InvalidOperationException();
+            //}
 
-            TypeSize = p - start;
+            
         }
     }
 }

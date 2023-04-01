@@ -28,14 +28,14 @@ namespace Polkanalysis.Domain.Tests.Node
         [Test]
         public void CreateNode_ShouldBeEmpty()
         {
-            var newNode = new EventNode();
+            var newNode = new GenericNode();
             Assert.IsTrue(newNode.IsEmpty);
         }
 
         [Test]
         public void CreateNode_WithAmount_ShouldSucceed()
         {
-            var node = new EventNode();
+            var node = new GenericNode();
             var u32Amount = new U32();
             u32Amount.Create(1000);
 
@@ -70,20 +70,20 @@ namespace Polkanalysis.Domain.Tests.Node
             var u32Amount = new U32();
             u32Amount.Create(1000);
 
-            var nodeAccount = new EventNode();
+            var nodeAccount = new GenericNode();
             nodeAccount.AddData(accountId32);
             nodeAccount.AddHumanData(addressAccount);
             nodeAccount.AddName("from");
             Assert.IsTrue(nodeAccount.IsLeaf);
 
-            var nodeAmount = new EventNode();
+            var nodeAmount = new GenericNode();
             nodeAmount.AddData(u32Amount);
             nodeAmount.AddHumanData(u32Amount.Value);
             nodeAmount.AddName("amount");
             Assert.IsTrue(nodeAmount.IsLeaf);
 
 
-            var masterNode = new EventNode();
+            var masterNode = new GenericNode();
             Assert.IsEmpty(masterNode.Children);
 
             masterNode.AddChild(nodeAccount);

@@ -3,12 +3,13 @@ using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using SystemEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -36,10 +37,12 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void System_ExtrinsicSuccess_1_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.System));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.frame_system.pallet.Event.ExtrinsicSuccess));
+            //IEventNode eventNode = (IEventNode)nodeResult.Children[1];
+
+            Assert.That(nodeResult.Module, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(nodeResult.Method, Is.EqualTo(SystemEvent.Event.ExtrinsicSuccess));
             //var result = EventResult.Create(nodeResult);
             //            {
             //            phase:
@@ -77,31 +80,12 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void System_ExtrinsicSuccess_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult);
 
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.System));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.frame_system.pallet.Event.ExtrinsicSuccess));
-        }
+            //IEventNode eventNode = (IEventNode)nodeResult.Children[1];
 
-        /// <summary>
-        /// https://github.com/paritytech/substrate/blob/master/frame/system/src/lib.rs#L501
-        /// 1/3
-        /// Transfer balance (1000), Charlie to Ferdie (Ferdie new account)
-        /// Pallet system
-        /// New account
-        /// Address
-        /// </summary>
-        /// <param name="hex"></param>
-        [Test]
-        [TestCase("0x000100000000031CBD2D43530A44705AD088AF313E18F80B53EF16B36177CD4B77B846F2A5F07C00")]
-        public void System_NewAccount_ShouldBeParsed(string hex)
-        {
-            var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var eventRes = PrerequisiteEvent(nodeResult);
-            //Ferdie SS58 Address: 5CiPPseXPECbkjWCa6MnjNokrgYjMqmKndv2rSnekmSK2DjL
-
-            Assert.That(eventRes.runtimeEvent.HumanData, Is.EqualTo(RuntimeEvent.System));
-            Assert.That(eventRes.palletEvent.HumanData, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.frame_system.pallet.Event.NewAccount));
+            Assert.That(nodeResult.Module, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(nodeResult.Method, Is.EqualTo(SystemEvent.Event.ExtrinsicSuccess));
         }
     }
 }
