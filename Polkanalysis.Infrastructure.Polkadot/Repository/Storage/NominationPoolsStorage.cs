@@ -100,14 +100,14 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 AccountId32,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
                 PoolMember>
-                (SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account),
+                (PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account),
                 NominationStorageExt.PoolMembersParams, token);
         }
 
         public async Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token)
         {
             return await GetStorageWithParamsAsync<AccountId32, U32>
-                (SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account), 
+                (PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account), 
                 NominationStorageExt.ReversePoolIdLookupParams, token);
         }
 

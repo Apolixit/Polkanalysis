@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<FundInfo> FundsAsync(Id key, CancellationToken token)
         {
-            var id = SubstrateMapper.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key);
+            var id = PolkadotMapping.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key);
 
             return await GetStorageWithParamsAsync<
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,

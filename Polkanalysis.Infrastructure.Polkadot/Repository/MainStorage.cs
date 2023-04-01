@@ -74,7 +74,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
 
             if (result == null) return new T();
 
-            return SubstrateMapper.Instance.Map<R, T>(result);
+            return PolkadotMapping.Instance.Map<R, T>(result);
         }
 
         protected async Task<T> GetStorageAsync<T>(
@@ -97,7 +97,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
 
             if (result == null) return new T();
 
-            return SubstrateMapper.Instance.Map<R, T>(result);
+            return PolkadotMapping.Instance.Map<R, T>(result);
         }
 
         /// <summary>

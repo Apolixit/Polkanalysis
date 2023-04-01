@@ -16,14 +16,14 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
         [Ignore("Todo: debug")]
         public void PolkadotMapping_ShouldBeValid()
         {
-            SubstrateMapper.Instance.ConfigurationProvider.AssertConfigurationIsValid();
+            PolkadotMapping.Instance.ConfigurationProvider.AssertConfigurationIsValid();
         }
 
         [Test]
         public void SubstrateAccount_ToAccountId32_ShouldWork()
         {
             var substrateAccount = new SubstrateAccount(MockAddress);
-            var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(substrateAccount);
+            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(substrateAccount);
 
             Assert.That(Utils.GetAddressFrom(substrateAccount.Bytes), Is.EqualTo(Utils.GetAddressFrom(accountId32.Value.Encode())));
         }
@@ -35,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
             var publicKey = Utils.GetPublicKeyFrom(MockAddress);
             accountId32.Create(publicKey);
 
-            var substrateAccount = SubstrateMapper.Instance.Map<AccountId32, SubstrateAccount>(accountId32);
+            var substrateAccount = PolkadotMapping.Instance.Map<AccountId32, SubstrateAccount>(accountId32);
 
             Assert.That(Utils.GetAddressFrom(substrateAccount.Bytes), Is.EqualTo(Utils.GetAddressFrom(accountId32.Value.Encode())));
         }
@@ -48,7 +48,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
 
             var p2 = new Perbill(new U32(0));
 
-            Assert.That(p2, Is.EqualTo(SubstrateMapper.Instance.Map<Perbill>(p1)));
+            Assert.That(p2, Is.EqualTo(PolkadotMapping.Instance.Map<Perbill>(p1)));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
             var s1 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
             s1.Create("0x01000000");
 
-            var d1 = SubstrateMapper.Instance.Map<
+            var d1 = PolkadotMapping.Instance.Map<
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
                 Domain.Contracts.Core.Id>(s1);
 
@@ -66,7 +66,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
             // Reverse
             var s2 = new Domain.Contracts.Core.Id(1);
 
-            var d2 = SubstrateMapper.Instance.Map<
+            var d2 = PolkadotMapping.Instance.Map<
                 Domain.Contracts.Core.Id,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(s2);
 
@@ -83,7 +83,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
             });
 
             // Convert BaseVec<SubstrateAccount> to BaseVec<AccountId32>
-            BaseVec<AccountId32> dest = SubstrateMapper.Instance.Map<BaseVec<SubstrateAccount>, BaseVec<AccountId32>>(source);
+            BaseVec<AccountId32> dest = PolkadotMapping.Instance.Map<BaseVec<SubstrateAccount>, BaseVec<AccountId32>>(source);
             Assert.That(dest, Is.Not.Null);
         }
 
@@ -111,7 +111,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
             var u64 = new U64();
             u64.Create(baseCom.Value.Value.ToByteArray());
 
-            var mapU64 = SubstrateMapper.Instance.Map<BaseCom<U64>, U64>(baseCom);
+            var mapU64 = PolkadotMapping.Instance.Map<BaseCom<U64>, U64>(baseCom);
 
             Assert.That(targetValue, Is.EqualTo(u64));
             Assert.That(targetValue, Is.EqualTo(mapU64));
@@ -123,7 +123,29 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
             var bondExtraCore = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumBondExtra();
             bondExtraCore.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondExtra.FreeBalance, new U128(10));
 
-            Assert.Throws<AutoMapperMappingException>(() => SubstrateMapper.Instance.Map<EnumBondExtra>(bondExtraCore));
+            Assert.Throws<AutoMapperMappingException>(() => PolkadotMapping.Instance.Map<EnumBondExtra>(bondExtraCore));
+        }
+
+        [Test]
+        public void SubsrateAccount_AccountId32_ShouldBeEquivalent()
+        {
+            var ac = new AccountId32();
+            ac.Create(Utils.GetPublicKeyFrom(MockAddress));
+
+            var tp1 = new BaseTuple<AccountId32, U128>(ac, new U128(10));
+            var tp2 = new BaseTuple<SubstrateAccount, U128>(new SubstrateAccount(MockAddress), new U128(10));
+
+            var encoded = tp2.Encode();
+
+            Assert.That(tp1.Encode(), Is.EqualTo(encoded));
+
+            tp1 = new BaseTuple<AccountId32, U128>();
+            tp1.Create(encoded);
+
+            tp2 = new BaseTuple<SubstrateAccount, U128>();
+            tp2.Create(encoded);
+
+            Assert.That(tp1.Encode(), Is.EqualTo(tp2.Encode()));
         }
     }
 }

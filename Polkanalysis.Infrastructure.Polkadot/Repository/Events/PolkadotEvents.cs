@@ -1,4 +1,5 @@
-﻿using Ajuna.NetApi.Model.Rpc;
+﻿using Ajuna.NetApi;
+using Ajuna.NetApi.Model.Rpc;
 using Ajuna.NetApi.Model.Types;
 using Ajuna.NetApi.Model.Types.Base;
 using Microsoft.Extensions.Logging;
@@ -50,20 +51,30 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Events
                         coreResult.Create(hexString);
 
 
-                        _logger.LogInformation(
+                        _logger.LogTrace(
                             $"Parsed all the events ({coreResult.Value.Length}) from block {blockData.Block.Header.Number.Value}");
 
                         var expectedResult = new List<EventRecord>();
                         foreach (var coreEvent in coreResult.Value)
                         {
-                            var mappedPhase = SubstrateMapper.Instance.Map<EnumPhase>(coreEvent.Phase);
-                            var mappedTopics = SubstrateMapper.Instance.Map<BaseVec<Hash>>(coreEvent.Topics);
+                            var mainEvent = coreEvent.Event.Value;
+                            var secondaryEvent = string.Empty;
+                            var details = string.Empty;
+
+                            var mainEventString = coreEvent.Event.Value.ToString();
+                            if (coreEvent.Event.Value == Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.Scheduler)
+                            {
+                                var hex = Utils.Bytes2HexString(coreEvent.Encode());
+                            }
+
+                            var mappedPhase = PolkadotMapping.Instance.Map<EnumPhase>(coreEvent.Phase);
+                            var mappedTopics = PolkadotMapping.Instance.Map<BaseVec<Hash>>(coreEvent.Topics);
                             var maybeMappedEvents = new Maybe<EnumRuntimeEvent>();
 
                             try
                             {
 
-                                var mappedEvents = SubstrateMapper.Instance.Map<
+                                var mappedEvents = PolkadotMapping.Instance.Map<
                             Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(coreEvent.Event);
 
                                 maybeMappedEvents = new Maybe<EnumRuntimeEvent>(mappedEvents);

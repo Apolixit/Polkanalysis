@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
 
             return await GetStorageWithParamsAsync<
                 AccountId32,
@@ -96,7 +96,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<BaseVec<BaseTuple<U32, U32>>> EventTopicsAsync(Hash key, CancellationToken token)
         {
-            var param = SubstrateMapper.Instance.Map<Hash, H256>(key);
+            var param = PolkadotMapping.Instance.Map<Hash, H256>(key);
 
             return await GetStorageWithParamsAsync<
                 H256,

@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
             return await GetStorageWithParamsAsync<
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo, 
-                ParaInfo>(SubstrateMapper.Instance.Map< Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key), RegistrarStorageExt.ParasParams, token);
+                ParaInfo>(PolkadotMapping.Instance.Map< Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key), RegistrarStorageExt.ParasParams, token);
         }
 
         public async Task<Id> PendingSwapAsync(Id key, CancellationToken token)
@@ -30,7 +30,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
             return await GetStorageWithParamsAsync<
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
-                Id>(SubstrateMapper.Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key), RegistrarStorageExt.PendingSwapParams, token);
+                Id>(PolkadotMapping.Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key), RegistrarStorageExt.PendingSwapParams, token);
         }
     }
 }

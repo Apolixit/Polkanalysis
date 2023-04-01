@@ -2,6 +2,7 @@
 using Ajuna.NetApi.Model.Types.Base;
 using Ajuna.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
@@ -15,15 +16,25 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.System
     public class SystemEventsTest : PolkadotRepositoryMock
     {
         [Test]
-        [Ignore("Not ready")]
-        public async Task BalanceEvents_ShouldBeMapped()
+        [TestCase("0x0002000000050848020D0712411B7EBF7F757F9F0D3F69F1660D636FB2C9811D81140CF84F561D70D8890F00000000000000000000000000")]
+        public async Task Balances_Withdraw_Core_ShouldBeInstanciated(string hex)
         {
-            var coreEvent = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent();
-            coreEvent.Create("0x05072C2A55B5E0D28CC772B47BB9B25981CBB69ECA73F7C3388FB6464E7D24BE470E387EE301000000000000000000000000");
+            var coreEvent = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord();
+            coreEvent.Create(hex);
+            //var coreEvent = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent();
+            //coreEvent.Create(hex);
 
-            var mapped = SubstrateMapper.Instance.Map<Domain.Contracts.Secondary.Pallet.PolkadotRuntime.EnumRuntimeEvent>(coreEvent);
+            var automappedEvent = PolkadotMapping.Instance.Map<EventRecord>(coreEvent);
+            var hexMapped = Utils.Bytes2HexString(automappedEvent.Encode());
 
-            var x = 1;
+            Assert.That(hex, Is.EqualTo(hexMapped));
+
+            var mappedEvent = new EventRecord();
+            mappedEvent.Create(hex);
+            //var mappedEvent = new Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent();
+            //mappedEvent.Create(hex);
+
+            Assert.That(coreEvent.Bytes, Is.EqualTo(mappedEvent.Bytes));
         }
 
         [Test]
@@ -42,7 +53,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.System
             expectedResult.Create(Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Withdraw, new BaseTuple<SubstrateAccount, U128>(new SubstrateAccount(MockAddress), new U128(10)));
 
             var t = (BaseEnumType)coreEvent;
-            var mapped = SubstrateMapper.Instance.Map<Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>(coreEvent);
+            var mapped = PolkadotMapping.Instance.Map<Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>(coreEvent);
 
             Assert.That(mapped, Is.EqualTo(expectedResult));
         }

@@ -18,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     /// <summary>
     /// Balances storage mapping from Polkadot blockchain to Domain
-    /// Mapping is define from <see cref="SubstrateMapper.BalancesStorageProfile"/>
+    /// Mapping is define from <see cref="PolkadotMapping.BalancesStorageProfile"/>
     /// </summary>
     public class BalancesStorage : MainStorage, IBalancesStorage
     {
@@ -28,7 +28,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<AccountData> AccountAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
 
             return await GetStorageWithParamsAsync<
                 AccountId32, 
@@ -44,7 +44,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<BaseVec<BalanceLock>> LocksAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
 
             return await GetStorageWithParamsAsync<
                 AccountId32,
@@ -55,7 +55,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
 
             return await GetStorageWithParamsAsync<
                 AccountId32,

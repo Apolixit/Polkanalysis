@@ -18,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<Registration> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {
-            var id = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var id = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
 
             return await GetStorageWithParamsAsync<
                 AccountId32,
@@ -37,14 +37,14 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<SubsOfResult> SubsOfAsync(SubstrateAccount account, CancellationToken token)
         {
-            var id = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var id = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
             return await GetStorageWithParamsAsync<AccountId32, BaseTuple<U128, BoundedVecT20>, SubsOfResult>
                 (id, IdentityStorageExt.SubsOfParams, token);
         }
 
         public async Task<BaseTuple<SubstrateAccount, EnumData>> SuperOfAsync(SubstrateAccount account, CancellationToken token)
         {
-            var id = SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var id = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
 
             return await GetStorageWithParamsAsync<AccountId32, BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>,
                 BaseTuple<SubstrateAccount, EnumData>>

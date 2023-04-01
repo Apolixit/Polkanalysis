@@ -19,7 +19,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     /// <summary>
     /// Babe storage mapping from Polkadot blockchain to Domain
-    /// Mapping is define from <see cref="SubstrateMapper.AuthorshipStorageProfile"/>
+    /// Mapping is define from <see cref="PolkadotMapping.AuthorshipStorageProfile"/>
     /// </summary>
     public class BabeStorage : MainStorage, IBabeStorage
     {

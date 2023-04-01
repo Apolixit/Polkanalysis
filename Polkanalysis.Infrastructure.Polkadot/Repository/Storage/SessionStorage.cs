@@ -28,7 +28,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<Nameable, Hexa> key, CancellationToken token)
         {
-            var param = SubstrateMapper.Instance.Map<BaseTuple<KeyTypeId, BaseVec<U8>>>(key);
+            var param = PolkadotMapping.Instance.Map<BaseTuple<KeyTypeId, BaseVec<U8>>>(key);
             return await GetStorageWithParamsAsync<
                 BaseTuple<KeyTypeId, BaseVec<U8>>, AccountId32, SubstrateAccount>(param, SessionStorageExt.KeyOwnerParams, token);
         }
@@ -39,7 +39,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 AccountId32, 
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys,
                 SessionKeysPolka>
-                (SubstrateMapper.Instance.Map<AccountId32>(account), SessionStorageExt.NextKeysParams, token);
+                (PolkadotMapping.Instance.Map<AccountId32>(account), SessionStorageExt.NextKeysParams, token);
         }
 
         public async Task<Bool> QueuedChangedAsync(CancellationToken token)

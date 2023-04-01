@@ -6,6 +6,7 @@ using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
@@ -141,7 +142,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <returns></returns>
         Task SubscribeEventAsync(Action<EventLightDto> eventCallback, CancellationToken cancellationToken);
 
-        public Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<IType> callback, CancellationToken token);
+        public Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token);
         #endregion
 
         #region Extrinsic

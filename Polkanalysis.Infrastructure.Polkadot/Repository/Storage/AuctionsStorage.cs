@@ -15,7 +15,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
     /// <summary>
     /// Auctions storage mapping from Polkadot blockchain to Domain
-    /// Mapping is define from <see cref="SubstrateMapper.AuctionsStorageProfile"/>
+    /// Mapping is define from <see cref="PolkadotMapping.AuctionsStorageProfile"/>
     /// </summary>
     public class AuctionsStorage : MainStorage, IAuctionsStorage
     {
@@ -35,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 
         public async Task<U128> ReservedAmountsAsync(BaseTuple<SubstrateAccount, Id> key, CancellationToken token)
         {
-            var param = SubstrateMapper.Instance.Map<
+            var param = PolkadotMapping.Instance.Map<
                 BaseTuple<SubstrateAccount, Id>,
                 BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(key);
 

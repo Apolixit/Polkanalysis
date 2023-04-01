@@ -27,6 +27,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Serilog.Core;
 using Polkanalysis.Domain.Contracts.Core.Map;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -35,6 +36,7 @@ namespace Polkanalysis.Domain.Repository
         private readonly ISubstrateRepository _substrateService;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IModelBuilder _modelBuilder;
+        private readonly IBlockchainMapping _mapping;
         private readonly ILogger<PolkadotExplorerRepository> _logger;
         private BlockLightDto? _lastBlock;
 
@@ -525,7 +527,7 @@ namespace Polkanalysis.Domain.Repository
                     eventNode);
         }
 
-        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<IType> callback, CancellationToken token)
+        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token)
         {
             await _substrateService.Events.SubscribeEventsAsync((BaseVec<EventRecord> events) =>
             {

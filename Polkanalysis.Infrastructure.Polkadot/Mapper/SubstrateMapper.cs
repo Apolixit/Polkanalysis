@@ -20,9 +20,9 @@ using Ajuna.NetApi.Model.Types.Primitive;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using Polkanalysis.AjunaExtension.Encoding;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.tokens.misc;
-using static Polkanalysis.Infrastructure.Polkadot.Mapper.SubstrateMapper;
+using static Polkanalysis.Infrastructure.Polkadot.Mapper.PolkadotMapping;
 using Org.BouncyCastle.Math.EC.Rfc7748;
-using static Polkanalysis.Infrastructure.Polkadot.Mapper.SubstrateMapper.AuctionsStorageProfile;
+using static Polkanalysis.Infrastructure.Polkadot.Mapper.PolkadotMapping.AuctionsStorageProfile;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519;
 using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
@@ -33,7 +33,7 @@ using Org.BouncyCastle.Asn1.X509.Qualified;
 using System.Numerics;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
-using static Polkanalysis.Infrastructure.Polkadot.Mapper.SubstrateMapper.IdentityStorageProfile;
+using static Polkanalysis.Infrastructure.Polkadot.Mapper.PolkadotMapping.IdentityStorageProfile;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
@@ -56,12 +56,22 @@ using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras;
-using static Polkanalysis.Infrastructure.Polkadot.Mapper.SubstrateMapper.BaseTypeProfile;
+using static Polkanalysis.Infrastructure.Polkadot.Mapper.PolkadotMapping.BaseTypeProfile;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Core.Map;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Mapper
 {
-    public class SubstrateMapper
+    public class PolkadotMapping : IBlockchainMapping
     {
+        public IMapper Mapper
+        {
+            get
+            {
+                return Instance;
+            }
+        }
+
         #region Singleton
         private static IMapper? _instance;
         public static IMapper Instance
@@ -853,6 +863,37 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(typeof(BaseEnumTypeConverter));
 
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo, LastRuntimeUpgradeInfo>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord, EventRecord>().ConvertUsing(typeof(EventRecordConverter));
+            }
+
+            public class EventRecordConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord, EventRecord>
+            {
+                public EventRecord Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord source, EventRecord destination, ResolutionContext context)
+                {
+                    destination = new EventRecord();
+                    if (source == null) return destination;
+
+                    var mappedPhase = PolkadotMapping.Instance.Map<EnumPhase>(source.Phase);
+                    var mappedTopics = PolkadotMapping.Instance.Map<BaseVec<Hash>>(source.Topics);
+                    var maybeMappedEvents = new Maybe<EnumRuntimeEvent>();
+
+                    try
+                    {
+
+                        var mappedEvents = PolkadotMapping.Instance.Map<
+                    Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(source.Event);
+
+                        maybeMappedEvents = new Maybe<EnumRuntimeEvent>(mappedEvents);
+                    }
+                    catch (Exception _)
+                    {
+                        maybeMappedEvents.Core = source;
+                    }
+
+                    destination = new EventRecord(mappedPhase, maybeMappedEvents, mappedTopics);
+
+                    return destination;
+                }
             }
         }
 

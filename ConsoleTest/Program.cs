@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Dto;
 using Polkanalysis.Domain.Repository;
@@ -42,6 +43,7 @@ public class Program
         {
             l.ClearProviders();
             l.AddConsole();
+            l.SetMinimumLevel(LogLevel.Debug);
         });
         services.AddSingleton(config);
         ConfigureServices(services);
@@ -58,7 +60,7 @@ public class Program
     private static void ConfigureServices(IServiceCollection services)
     {
         services
-            .AddSingleton<SubstrateMapper>()
+            .AddSingleton<PolkadotMapping>()
             .AddSingleton<ISubstrateRepository, PolkadotRepository>()
             .AddSingleton<IExplorerRepository, PolkadotExplorerRepository>()
             .AddSingleton<IModelBuilder, ModelBuilder>()
@@ -66,6 +68,7 @@ public class Program
             .AddSingleton<ISubstrateDecoding, SubstrateDecoding>()
             .AddSingleton<IPalletBuilder, PalletBuilder>()
             .AddSingleton<IMapping, EventMapping>()
+            .AddSingleton<IBlockchainMapping, PolkadotMapping>()
             .AddSingleton<ICurrentMetaData, CurrentMetaData>();
     }
 }

@@ -34,8 +34,8 @@ namespace Polkanalysis.Domain.Tests.Repository
         [Test]
         public void NullOrEmptyAddress_ShouldFailed()
         {
-            Assert.ThrowsAsync<ArgumentNullException>(async () => await _roleMemberRepository.GetValidatorDetailAsync(null, CancellationToken.None));
-            Assert.ThrowsAsync<ArgumentNullException>(async () => await _roleMemberRepository.GetNominatorDetailAsync(null, CancellationToken.None));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await _roleMemberRepository.GetValidatorDetailAsync(null!, CancellationToken.None));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await _roleMemberRepository.GetNominatorDetailAsync(null!, CancellationToken.None));
 
             Assert.ThrowsAsync<ArgumentNullException>(async () => await _roleMemberRepository.GetValidatorDetailAsync(string.Empty, CancellationToken.None));
             Assert.ThrowsAsync<ArgumentNullException>(async () => await _roleMemberRepository.GetNominatorDetailAsync(string.Empty, CancellationToken.None));

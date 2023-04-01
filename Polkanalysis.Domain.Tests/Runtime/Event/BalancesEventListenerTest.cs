@@ -40,6 +40,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// </summary>
         /// <param name="hex"></param>
         [Test]
+        [TestCase("0x0002000000050848020D0712411B7EBF7F757F9F0D3F69F1660D636FB2C9811D81140CF84F561D70D8890F00000000000000000000000000")]
         [TestCase("0x00010000000508D43593C715FDD31C61141ABD04A99FD6822C8558854CCDE39A5684E7A56DA27D1ECE240500000000000000000000000000")]
         public void Balances_Withdraw_ShouldBeParsed(string hex)
         {
@@ -132,7 +133,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             PrerequisiteEvent(nodeResult);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Treasury));
-            Assert.That(nodeResult.Method, Is.EqualTo(Polkadot.NetApiExt.Generated.Model.pallet_treasury.pallet.Event.Deposit));
+            Assert.That(nodeResult.Method, Is.EqualTo(Polkanalysis.Domain.Contracts.Secondary.Pallet.Treasury.Enums.Event.Deposit));
         }
     }
 }

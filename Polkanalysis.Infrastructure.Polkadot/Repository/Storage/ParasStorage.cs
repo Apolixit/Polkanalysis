@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode,
                 DataCode>
-                (SubstrateMapper.Instance.Map<
+                (PolkadotMapping.Instance.Map<
                     Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.CodeByHashParams, token);
         }
 
@@ -39,7 +39,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, 
                  U32>
-                 (SubstrateMapper.Instance.Map<
+                 (PolkadotMapping.Instance.Map<
                      Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.CodeByHashRefsParams, token);
         }
 
@@ -49,7 +49,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                  IdExt,
                  Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
                  Hash>
-                 (SubstrateMapper.Instance.Map<
+                 (PolkadotMapping.Instance.Map<
                      IdExt>(key), ParasStorageExt.CurrentCodeHashParams, token);
         }
 
@@ -59,7 +59,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                  IdExt,
                  Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
                  Hash>
-                 (SubstrateMapper.Instance.Map<
+                 (PolkadotMapping.Instance.Map<
                      IdExt>(key), ParasStorageExt.FutureCodeHashParams, token);
         }
 
@@ -68,7 +68,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
             return await GetStorageWithParamsAsync<
                  IdExt,
                  U32>
-                 (SubstrateMapper.Instance.Map<
+                 (PolkadotMapping.Instance.Map<
                      IdExt>(key), ParasStorageExt.FutureCodeUpgradesParams, token);
         }
 
@@ -78,7 +78,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                  IdExt,
                  Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData,
                  DataCode>
-                 (SubstrateMapper.Instance.Map<
+                 (PolkadotMapping.Instance.Map<
                      IdExt>(key), ParasStorageExt.HeadsParams, token);
         }
 
@@ -96,7 +96,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                  IdExt,
                  Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle,
                  EnumParaLifecycle>
-                 (SubstrateMapper.Instance.Map<
+                 (PolkadotMapping.Instance.Map<
                      IdExt>(key), ParasStorageExt.ParaLifecyclesParams, token);
         }
 
@@ -106,7 +106,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 BaseTuple<IdExt, U32>,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash,
                 Hash>
-                (SubstrateMapper.Instance.Map<BaseTuple<IdExt, U32>>(key), ParasStorageExt.PastCodeHashParams, token);
+                (PolkadotMapping.Instance.Map<BaseTuple<IdExt, U32>>(key), ParasStorageExt.PastCodeHashParams, token);
         }
 
         public async Task<ParaPastCodeMeta> PastCodeMetaAsync(Id key, CancellationToken token)
@@ -115,7 +115,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 IdExt,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaPastCodeMeta,
                 ParaPastCodeMeta>
-                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.PastCodeMetaParams, token);
+                (PolkadotMapping.Instance.Map<IdExt>(key), ParasStorageExt.PastCodeMetaParams, token);
         }
 
         public async Task<BaseVec<BaseTuple<Id, U32>>> PastCodePruningAsync(CancellationToken token)
@@ -139,7 +139,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.PvfCheckActiveVoteState,
-                PvfCheckActiveVoteState>     (SubstrateMapper.Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.PvfActiveVoteMapParams, token);
+                PvfCheckActiveVoteState>     (PolkadotMapping.Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(key), ParasStorageExt.PvfActiveVoteMapParams, token);
         }
 
         public async Task<ParaGenesisArgs> UpcomingParasGenesisAsync(Id key, CancellationToken token)
@@ -148,7 +148,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 IdExt,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs,
                 ParaGenesisArgs>
-                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.UpcomingParasGenesisParams, token);
+                (PolkadotMapping.Instance.Map<IdExt>(key), ParasStorageExt.UpcomingParasGenesisParams, token);
         }
 
         public async Task<BaseVec<BaseTuple<Id, U32>>> UpcomingUpgradesAsync(CancellationToken token)
@@ -173,7 +173,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 IdExt, 
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeGoAhead,
                 EnumUpgradeGoAhead>
-                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.UpgradeGoAheadSignalParams, token);
+                (PolkadotMapping.Instance.Map<IdExt>(key), ParasStorageExt.UpgradeGoAheadSignalParams, token);
         }
 
         public async Task<EnumUpgradeRestriction> UpgradeRestrictionSignalAsync(Id key, CancellationToken token)
@@ -182,7 +182,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 IdExt,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction,
                 EnumUpgradeRestriction>
-                (SubstrateMapper.Instance.Map<IdExt>(key), ParasStorageExt.UpgradeRestrictionSignalParams, token);
+                (PolkadotMapping.Instance.Map<IdExt>(key), ParasStorageExt.UpgradeRestrictionSignalParams, token);
         }
     }
 }

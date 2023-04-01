@@ -26,13 +26,11 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
 
         public Nameable(string hex)
         {
-            //Create(Utils.HexToByteArray(hex).Select(x => new U8(x)).ToArray());
             FromHexa(hex);
         }
 
         public Nameable(U8[] data)
         {
-            //Create(data);
             FromU8(data);
         }
 
@@ -98,7 +96,7 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            var array = new U8[byteArray.Length];
+            var array = new U8[TypeSize];
             for (var i = 0; i < array.Length; i++) { var t = new U8(); t.Decode(byteArray, ref p); array[i] = t; };
             var bytesLength = p - start;
             Bytes = new byte[bytesLength];

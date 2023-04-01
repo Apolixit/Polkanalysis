@@ -76,9 +76,9 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Auctions
         {
             // Let's build the output we want
             var testAccount = new SubstrateAccount("13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY");
-            var accountId32TestAccount = SubstrateMapper.Instance.Map<SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> (testAccount);
+            var accountId32TestAccount = PolkadotMapping.Instance.Map<SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> (testAccount);
             var testId = new Id(1);
-            var idExt = SubstrateMapper.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(testId);
+            var idExt = PolkadotMapping.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(testId);
             var baseTuple = new BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, U128>(accountId32TestAccount, idExt, new U128(10));
 
             var extResult = new Arr36BaseOpt();
