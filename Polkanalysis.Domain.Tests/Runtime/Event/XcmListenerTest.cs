@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi;
+﻿using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime;

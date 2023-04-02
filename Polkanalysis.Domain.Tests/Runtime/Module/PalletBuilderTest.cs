@@ -1,8 +1,8 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
@@ -83,14 +83,14 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
             var timestampPalletCall = Substitute.For<PalletCalls>();
             //timestampPalletCall.TypeId.Returns((uint)0);
             timestampPalletCall.TypeId = 0;
-            //var timestampPalletError = new Ajuna.NetApi.Model.Meta.PalletErrors();
+            //var timestampPalletError = new Substrate.NetApi.Model.Meta.PalletErrors();
             //timestampPalletError.TypeId.Returns((uint)0);
-            //var timestampPalletEvent = new Ajuna.NetApi.Model.Meta.PalletEvents();
+            //var timestampPalletEvent = new Substrate.NetApi.Model.Meta.PalletEvents();
             //timestampPalletEvent.TypeId.Returns((uint)0);
 
             timestampPalletModule.Calls = timestampPalletCall;
 
-            var dictionnaryModule = new Dictionary<uint, Ajuna.NetApi.Model.Meta.PalletModule>
+            var dictionnaryModule = new Dictionary<uint, Substrate.NetApi.Model.Meta.PalletModule>
             {
                 { 0, timestampPalletModule }
             };

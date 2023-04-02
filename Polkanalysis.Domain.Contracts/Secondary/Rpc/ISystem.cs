@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Rpc;
+﻿using Substrate.NetApi.Model.Rpc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Polkanalysis.Domain.Contracts.Secondary.Rpc
 {
     /// <summary>
-    /// Extract from <see cref="Ajuna.NetApi.Modules.System"/>
+    /// Extract from <see cref="Substrate.NetApi.Modules.System"/>
     /// </summary>
     //public interface ISystem
     //{

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,8 +30,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public InitializerStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Initializer", "HasInitialized"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Initializer", "BufferedSessionChanges"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Initializer", "HasInitialized"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Initializer", "BufferedSessionChanges"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>)));
         }
         
         /// <summary>
@@ -47,7 +47,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string HasInitializedParams()
         {
-            return RequestGenerator.GetStorage("Initializer", "HasInitialized", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Initializer", "HasInitialized", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -70,10 +70,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  them writes to the trie and one does not. This confusion makes `Option<()>` more suitable for
         ///  the semantics of this variable.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> HasInitialized(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple> HasInitialized(CancellationToken token)
         {
             string parameters = InitializerStorage.HasInitializedParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
             return result;
         }
         
@@ -89,7 +89,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string BufferedSessionChangesParams()
         {
-            return RequestGenerator.GetStorage("Initializer", "BufferedSessionChanges", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Initializer", "BufferedSessionChanges", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -111,10 +111,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  However this is a `Vec` regardless to handle various edge cases that may occur at runtime
         ///  upgrade boundaries or if governance intervenes.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>> BufferedSessionChanges(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>> BufferedSessionChanges(CancellationToken token)
         {
             string parameters = InitializerStorage.BufferedSessionChangesParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>>(parameters, token);
             return result;
         }
     }
@@ -126,7 +126,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> force_approve
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceApprove(Ajuna.NetApi.Model.Types.Primitive.U32 up_to)
+        public static Method ForceApprove(Substrate.NetApi.Model.Types.Primitive.U32 up_to)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(up_to.Encode());

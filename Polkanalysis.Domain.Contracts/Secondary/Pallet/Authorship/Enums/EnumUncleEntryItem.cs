@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship.Enums
     /// <summary>
     /// >> 481 - Variant[pallet_authorship.UncleEntryItem]
     /// </summary>
-    public sealed class EnumUncleEntryItem : BaseEnumExt<UncleEntryItem, Ajuna.NetApi.Model.Types.Primitive.U32, BaseTuple<Hash, BaseOpt<SubstrateAccount>>>
+    public sealed class EnumUncleEntryItem : BaseEnumExt<UncleEntryItem, Substrate.NetApi.Model.Types.Primitive.U32, BaseTuple<Hash, BaseOpt<SubstrateAccount>>>
     {
     }
 }

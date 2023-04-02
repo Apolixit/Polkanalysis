@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -26,7 +26,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm
     /// <summary>
     /// >> 153 - Variant[xcm.VersionedMultiAssets]
     /// </summary>
-    public sealed class EnumVersionedMultiAssets : BaseEnumExt<VersionedMultiAssets, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset.EnumMultiAsset>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets>
+    public sealed class EnumVersionedMultiAssets : BaseEnumExt<VersionedMultiAssets, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v0.multi_asset.EnumMultiAsset>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets>
     {
     }
 }

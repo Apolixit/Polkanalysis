@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,12 +30,12 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         public DmpQueueStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Configuration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "PageIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Pages"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Overweight"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U64), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Configuration"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.ConfigData)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "PageIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.PageIndexData)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Pages"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("DmpQueue", "Overweight"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U64), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)));
         }
         
         /// <summary>
@@ -44,7 +44,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string ConfigurationParams()
         {
-            return RequestGenerator.GetStorage("DmpQueue", "Configuration", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("DmpQueue", "Configuration", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string PageIndexParams()
         {
-            return RequestGenerator.GetStorage("DmpQueue", "PageIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("DmpQueue", "PageIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -80,10 +80,10 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> PagesParams
         ///  The queue pages.
         /// </summary>
-        public static string PagesParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string PagesParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("DmpQueue", "Pages", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("DmpQueue", "Pages", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -91,20 +91,20 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> Pages
         ///  The queue pages.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>> Pages(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>>> Pages(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = DmpQueueStorage.PagesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>>>(parameters, token);
         }
         
         /// <summary>
         /// >> OverweightParams
         ///  The overweight messages.
         /// </summary>
-        public static string OverweightParams(Ajuna.NetApi.Model.Types.Primitive.U64 key)
+        public static string OverweightParams(Substrate.NetApi.Model.Types.Primitive.U64 key)
         {
-            return RequestGenerator.GetStorage("DmpQueue", "Overweight", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("DmpQueue", "Overweight", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -112,10 +112,10 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> Overweight
         ///  The overweight messages.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>> Overweight(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>> Overweight(Substrate.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = DmpQueueStorage.OverweightParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>>(parameters, token);
         }
     }
     
@@ -126,7 +126,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> service_overweight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ServiceOverweight(Ajuna.NetApi.Model.Types.Primitive.U64 index, Ajuna.NetApi.Model.Types.Primitive.U64 weight_limit)
+        public static Method ServiceOverweight(Substrate.NetApi.Model.Types.Primitive.U64 index, Substrate.NetApi.Model.Types.Primitive.U64 weight_limit)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());

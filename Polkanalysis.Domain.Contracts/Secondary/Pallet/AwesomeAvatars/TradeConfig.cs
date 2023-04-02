@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;

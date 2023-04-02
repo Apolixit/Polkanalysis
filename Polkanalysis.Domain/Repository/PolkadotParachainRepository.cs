@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;

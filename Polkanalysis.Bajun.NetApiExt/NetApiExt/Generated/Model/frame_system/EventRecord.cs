@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system
     /// <summary>
     /// >> 16 - Composite[frame_system.EventRecord]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class EventRecord : BaseType
     {
         
@@ -37,7 +37,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system
         /// <summary>
         /// >> topics
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256> _topics;
+        private Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256> _topics;
         
         public Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.EnumPhase Phase
         {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256> Topics
+        public Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256> Topics
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system
             Phase.Decode(byteArray, ref p);
             Event = new Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumEvent();
             Event.Decode(byteArray, ref p);
-            Topics = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>();
+            Topics = new Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>();
             Topics.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

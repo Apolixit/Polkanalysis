@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
     /// <summary>
     /// >> 103 - Composite[pallet_ajuna_awesome_avatars.types.Season]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Season : BaseType
     {
         
@@ -37,27 +37,27 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
         /// <summary>
         /// >> early_start
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _earlyStart;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _earlyStart;
         
         /// <summary>
         /// >> start
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _start;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _start;
         
         /// <summary>
         /// >> end
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _end;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _end;
         
         /// <summary>
         /// >> max_variations
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U8 _maxVariations;
+        private Substrate.NetApi.Model.Types.Primitive.U8 _maxVariations;
         
         /// <summary>
         /// >> max_components
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U8 _maxComponents;
+        private Substrate.NetApi.Model.Types.Primitive.U8 _maxComponents;
         
         /// <summary>
         /// >> tiers
@@ -98,7 +98,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 EarlyStart
+        public Substrate.NetApi.Model.Types.Primitive.U32 EarlyStart
         {
             get
             {
@@ -110,7 +110,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Start
+        public Substrate.NetApi.Model.Types.Primitive.U32 Start
         {
             get
             {
@@ -122,7 +122,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 End
+        public Substrate.NetApi.Model.Types.Primitive.U32 End
         {
             get
             {
@@ -134,7 +134,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U8 MaxVariations
+        public Substrate.NetApi.Model.Types.Primitive.U8 MaxVariations
         {
             get
             {
@@ -146,7 +146,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U8 MaxComponents
+        public Substrate.NetApi.Model.Types.Primitive.U8 MaxComponents
         {
             get
             {
@@ -222,15 +222,15 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             Name.Decode(byteArray, ref p);
             Description = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT2();
             Description.Decode(byteArray, ref p);
-            EarlyStart = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            EarlyStart = new Substrate.NetApi.Model.Types.Primitive.U32();
             EarlyStart.Decode(byteArray, ref p);
-            Start = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Start = new Substrate.NetApi.Model.Types.Primitive.U32();
             Start.Decode(byteArray, ref p);
-            End = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            End = new Substrate.NetApi.Model.Types.Primitive.U32();
             End.Decode(byteArray, ref p);
-            MaxVariations = new Ajuna.NetApi.Model.Types.Primitive.U8();
+            MaxVariations = new Substrate.NetApi.Model.Types.Primitive.U8();
             MaxVariations.Decode(byteArray, ref p);
-            MaxComponents = new Ajuna.NetApi.Model.Types.Primitive.U8();
+            MaxComponents = new Substrate.NetApi.Model.Types.Primitive.U8();
             MaxComponents.Decode(byteArray, ref p);
             Tiers = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT3();
             Tiers.Decode(byteArray, ref p);

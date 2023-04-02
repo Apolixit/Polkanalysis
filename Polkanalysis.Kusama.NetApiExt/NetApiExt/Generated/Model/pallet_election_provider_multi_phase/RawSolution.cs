@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider
     /// <summary>
     /// >> 239 - Composite[pallet_election_provider_multi_phase.RawSolution]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class RawSolution : BaseType
     {
         
@@ -37,7 +37,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider
         /// <summary>
         /// >> round
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _round;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _round;
         
         public Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.NposCompactSolution24 Solution
         {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Round
+        public Substrate.NetApi.Model.Types.Primitive.U32 Round
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_election_provider
             Solution.Decode(byteArray, ref p);
             Score = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore();
             Score.Decode(byteArray, ref p);
-            Round = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Round = new Substrate.NetApi.Model.Types.Primitive.U32();
             Round.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -1,8 +1,8 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;

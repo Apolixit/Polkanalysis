@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using NSubstitute;
 using System;
 using System.Collections.Generic;

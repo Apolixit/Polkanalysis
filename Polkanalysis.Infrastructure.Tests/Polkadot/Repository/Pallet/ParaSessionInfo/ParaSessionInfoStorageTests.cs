@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Public;
@@ -100,19 +100,19 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.ParaSessi
         {
             var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo();
             IEnumerable<byte> encoded =
-                Ajuna.NetApi.Utils.HexToByteArray("0x089000000051000000") // ActiveValidatorIndices
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0xD385F13394068E87B0CF39C525782DF628EA9A5D41364914CAE4A951EB7C3359")) // RandomSeed
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x06000000")) // DisputePeriod
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x08DC23D2E5DD85889560C2C3DC197CB19E0B2E2698EE79A4AEA14234A0EE823A3DE24208A0BBBB7035130798ABBA24CAB205D22443E8973817B685F13C9012B97C")) // Validators
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x08A4EC26F9BA0E8D613485B10581FAACB3630801881552A23EB0E7CBE4DF3C94739EB30A9ABE2DE835E3229D8C3CD6B00E936D5339B325684A5C483B15420E123C")) // DiscoveryKeys
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x08C29A602EFBF32A378C6BD435B93D44BF996C58A2BC03E540729551AA52B4BF1ECA80EF8C5A7F17DDA7B9554E659D2B24C2373F3DCD7473BF12AEFE152F200333")) // AssignmentKeys
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x08140000000001000000020000000300000004000000140500000006000000070000000800000009000000")) // ValidatorGroups
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x2B000000")) // NCores
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x00000000")) // ZerothDelayTrancheWidth
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x28000000")) // RelayVrfModuloSamples
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x59000000")) // NDelayTranches
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x02000000")) // NoShowSlots
-                .Concat(Ajuna.NetApi.Utils.HexToByteArray("0x1E000000")); // NeededApprovals
+                Substrate.NetApi.Utils.HexToByteArray("0x089000000051000000") // ActiveValidatorIndices
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0xD385F13394068E87B0CF39C525782DF628EA9A5D41364914CAE4A951EB7C3359")) // RandomSeed
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x06000000")) // DisputePeriod
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x08DC23D2E5DD85889560C2C3DC197CB19E0B2E2698EE79A4AEA14234A0EE823A3DE24208A0BBBB7035130798ABBA24CAB205D22443E8973817B685F13C9012B97C")) // Validators
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x08A4EC26F9BA0E8D613485B10581FAACB3630801881552A23EB0E7CBE4DF3C94739EB30A9ABE2DE835E3229D8C3CD6B00E936D5339B325684A5C483B15420E123C")) // DiscoveryKeys
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x08C29A602EFBF32A378C6BD435B93D44BF996C58A2BC03E540729551AA52B4BF1ECA80EF8C5A7F17DDA7B9554E659D2B24C2373F3DCD7473BF12AEFE152F200333")) // AssignmentKeys
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x08140000000001000000020000000300000004000000140500000006000000070000000800000009000000")) // ValidatorGroups
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x2B000000")) // NCores
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x00000000")) // ZerothDelayTrancheWidth
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x28000000")) // RelayVrfModuloSamples
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x59000000")) // NDelayTranches
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x02000000")) // NoShowSlots
+                .Concat(Substrate.NetApi.Utils.HexToByteArray("0x1E000000")); // NeededApprovals
 
             coreResult.Create(encoded.ToArray());
 

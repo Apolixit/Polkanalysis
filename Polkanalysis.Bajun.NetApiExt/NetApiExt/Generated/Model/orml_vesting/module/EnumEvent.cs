@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -32,7 +32,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.module
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting.VestingSchedule>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>
     {
     }
 }

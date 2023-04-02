@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,10 +30,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public ProxyStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Proxies"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Ajuna.NetApi.Model.Types.Primitive.U128>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Announcements"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Ajuna.NetApi.Model.Types.Primitive.U128>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Proxies"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Substrate.NetApi.Model.Types.Primitive.U128>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Announcements"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Substrate.NetApi.Model.Types.Primitive.U128>)));
         }
         
         /// <summary>
@@ -43,8 +43,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ProxiesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Proxy", "Proxies", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Proxy", "Proxies", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -62,10 +62,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The set of account proxies. Maps the account which has delegated to the accounts
         ///  which are being delegated to, together with the amount held on deposit.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Ajuna.NetApi.Model.Types.Primitive.U128>> Proxies(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Substrate.NetApi.Model.Types.Primitive.U128>> Proxies(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ProxyStorage.ProxiesParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Substrate.NetApi.Model.Types.Primitive.U128>>(parameters, token);
             return result;
         }
         
@@ -75,8 +75,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string AnnouncementsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Proxy", "Announcements", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Proxy", "Announcements", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -93,10 +93,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> Announcements
         ///  The announcements made by the proxy (key).
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Ajuna.NetApi.Model.Types.Primitive.U128>> Announcements(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Substrate.NetApi.Model.Types.Primitive.U128>> Announcements(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = ProxyStorage.AnnouncementsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Substrate.NetApi.Model.Types.Primitive.U128>>(parameters, token);
             return result;
         }
     }
@@ -108,7 +108,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> proxy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Proxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
+        public static Method Proxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(real.Encode());
@@ -121,7 +121,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> add_proxy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AddProxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay)
+        public static Method AddProxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U32 delay)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@delegate.Encode());
@@ -134,7 +134,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> remove_proxy
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveProxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay)
+        public static Method RemoveProxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U32 delay)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@delegate.Encode());
@@ -157,7 +157,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> create_pure
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CreatePure(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U32 delay, Ajuna.NetApi.Model.Types.Primitive.U16 index)
+        public static Method CreatePure(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U32 delay, Substrate.NetApi.Model.Types.Primitive.U16 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proxy_type.Encode());
@@ -170,7 +170,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> kill_pure
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method KillPure(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress spawner, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Ajuna.NetApi.Model.Types.Primitive.U16 index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> height, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> ext_index)
+        public static Method KillPure(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress spawner, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U16 index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> height, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> ext_index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(spawner.Encode());
@@ -221,7 +221,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> proxy_announced
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ProxyAnnounced(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
+        public static Method ProxyAnnounced(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@delegate.Encode());
@@ -242,9 +242,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is held for an additional storage item whose value size is
         ///  `sizeof(Balance)` bytes and whose key size is `sizeof(AccountId)` bytes.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 ProxyDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 ProxyDepositBase()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x0084B2952E0000000000000000000000");
             return result;
         }
@@ -257,9 +257,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  pre-existing storage value. Thus, when configuring `ProxyDepositFactor` one should take
         ///  into account `32 + proxy_type.encode().len()` bytes of data.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 ProxyDepositFactor()
+        public Substrate.NetApi.Model.Types.Primitive.U128 ProxyDepositFactor()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x8066AB13000000000000000000000000");
             return result;
         }
@@ -268,9 +268,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MaxProxies
         ///  The maximum amount of proxies allowed for a single account.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxProxies()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxProxies()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x20000000");
             return result;
         }
@@ -279,9 +279,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MaxPending
         ///  The maximum amount of time-delayed announcements that are allowed to be pending.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxPending()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxPending()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x20000000");
             return result;
         }
@@ -293,9 +293,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is held when a new storage item holding a `Balance` is created (typically 16
         ///  bytes).
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 AnnouncementDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 AnnouncementDepositBase()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x0084B2952E0000000000000000000000");
             return result;
         }
@@ -307,9 +307,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is held for adding an `AccountId`, `Hash` and `BlockNumber` (typically 68 bytes)
         ///  into a pre-existing storage value.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 AnnouncementDepositFactor()
+        public Substrate.NetApi.Model.Types.Primitive.U128 AnnouncementDepositFactor()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x00CD5627000000000000000000000000");
             return result;
         }

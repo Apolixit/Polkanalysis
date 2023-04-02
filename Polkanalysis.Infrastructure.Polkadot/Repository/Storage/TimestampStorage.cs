@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Timestamp;
 using Polkanalysis.Polkadot.NetApiExt.Generated;

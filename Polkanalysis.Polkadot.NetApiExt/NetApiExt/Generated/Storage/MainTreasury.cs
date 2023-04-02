@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,11 +30,11 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public TreasuryStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "ProposalCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Proposals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Deactivated"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "ProposalCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Proposals"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Deactivated"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Treasury", "Approvals"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
         }
         
         /// <summary>
@@ -43,7 +43,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ProposalCountParams()
         {
-            return RequestGenerator.GetStorage("Treasury", "ProposalCount", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Treasury", "ProposalCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -59,10 +59,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> ProposalCount
         ///  Number of proposals that have been made.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ProposalCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ProposalCount(CancellationToken token)
         {
             string parameters = TreasuryStorage.ProposalCountParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -70,10 +70,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> ProposalsParams
         ///  Proposals that have been made.
         /// </summary>
-        public static string ProposalsParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string ProposalsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Treasury", "Proposals", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Treasury", "Proposals", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -90,7 +90,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> Proposals
         ///  Proposals that have been made.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal> Proposals(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal> Proposals(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = TreasuryStorage.ProposalsParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_treasury.Proposal>(parameters, token);
@@ -103,7 +103,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string DeactivatedParams()
         {
-            return RequestGenerator.GetStorage("Treasury", "Deactivated", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Treasury", "Deactivated", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -119,10 +119,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> Deactivated
         ///  The amount which has been reported as inactive to Currency.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Deactivated(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> Deactivated(CancellationToken token)
         {
             string parameters = TreasuryStorage.DeactivatedParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
             return result;
         }
         
@@ -132,7 +132,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ApprovalsParams()
         {
-            return RequestGenerator.GetStorage("Treasury", "Approvals", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Treasury", "Approvals", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -163,7 +163,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> propose_spend
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ProposeSpend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
+        public static Method ProposeSpend(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> value, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(value.Encode());
@@ -175,7 +175,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> reject_proposal
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RejectProposal(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> proposal_id)
+        public static Method RejectProposal(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> proposal_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal_id.Encode());
@@ -186,7 +186,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> approve_proposal
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ApproveProposal(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> proposal_id)
+        public static Method ApproveProposal(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> proposal_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal_id.Encode());
@@ -197,7 +197,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> spend
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Spend(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
+        public static Method Spend(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -209,7 +209,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> remove_approval
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveApproval(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> proposal_id)
+        public static Method RemoveApproval(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> proposal_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal_id.Encode());
@@ -236,9 +236,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> ProposalBondMinimum
         ///  Minimum amount of funds that should be placed in a deposit for making a proposal.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 ProposalBondMinimum()
+        public Substrate.NetApi.Model.Types.Primitive.U128 ProposalBondMinimum()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x0010A5D4E80000000000000000000000");
             return result;
         }
@@ -247,9 +247,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> ProposalBondMaximum
         ///  Maximum amount of funds that should be placed in a deposit for making a proposal.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128> ProposalBondMaximum()
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128> ProposalBondMaximum()
         {
-            var result = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128>();
+            var result = new Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128>();
             result.Create("0x01005039278C0400000000000000000000");
             return result;
         }
@@ -258,9 +258,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SpendPeriod
         ///  Period between successive spends.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SpendPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SpendPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00460500");
             return result;
         }
@@ -293,9 +293,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  NOTE: This parameter is also used within the Bounties Pallet extension if enabled.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxApprovals()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxApprovals()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x64000000");
             return result;
         }

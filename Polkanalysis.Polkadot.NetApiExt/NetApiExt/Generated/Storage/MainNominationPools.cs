@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,30 +30,30 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public NominationPoolsStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MinJoinBond"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MinCreateBond"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembersPerPool"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "PoolMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForPoolMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "BondedPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForBondedPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "RewardPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForRewardPools"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "SubPoolsStorage"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForSubPoolsStorage"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "Metadata"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForMetadata"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "LastPoolId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "ReversePoolIdLookup"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForReversePoolIdLookup"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MinJoinBond"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MinCreateBond"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembersPerPool"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "PoolMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForPoolMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "BondedPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForBondedPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "RewardPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForRewardPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "SubPoolsStorage"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForSubPoolsStorage"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "Metadata"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForMetadata"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "LastPoolId"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "ReversePoolIdLookup"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForReversePoolIdLookup"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
         }
         
         /// <summary>
@@ -62,7 +62,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string MinJoinBondParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "MinJoinBond", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "MinJoinBond", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -78,10 +78,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MinJoinBond
         ///  Minimum amount to bond to join a pool.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> MinJoinBond(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> MinJoinBond(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.MinJoinBondParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
             return result;
         }
         
@@ -97,7 +97,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string MinCreateBondParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "MinCreateBond", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "MinCreateBond", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -119,10 +119,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is the value that will always exist in the staking ledger of the pool bonded account
         ///  while all other accounts leave.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> MinCreateBond(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> MinCreateBond(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.MinCreateBondParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
             return result;
         }
         
@@ -133,7 +133,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string MaxPoolsParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "MaxPools", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "MaxPools", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -150,10 +150,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Maximum number of nomination pools that can exist. If `None`, then an unbounded number of
         ///  pools can exist.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> MaxPools(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPools(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.MaxPoolsParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -164,7 +164,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string MaxPoolMembersParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "MaxPoolMembers", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "MaxPoolMembers", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -181,10 +181,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Maximum number of members that can exist in the system. If `None`, then the count
         ///  members are not bound on a system wide basis.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> MaxPoolMembers(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPoolMembers(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.MaxPoolMembersParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -195,7 +195,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string MaxPoolMembersPerPoolParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "MaxPoolMembersPerPool", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "MaxPoolMembersPerPool", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -212,10 +212,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Maximum number of members that may belong to pool. If `None`, then the count of
         ///  members is not bound on a per pool basis.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> MaxPoolMembersPerPool(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPoolMembersPerPool(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.MaxPoolMembersPerPoolParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -227,8 +227,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string PoolMembersParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("NominationPools", "PoolMembers", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("NominationPools", "PoolMembers", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -260,7 +260,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CounterForPoolMembersParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForPoolMembers", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "CounterForPoolMembers", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -276,10 +276,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CounterForPoolMembers
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForPoolMembers(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForPoolMembers(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.CounterForPoolMembersParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -287,10 +287,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BondedPoolsParams
         ///  Storage for bonded pools.
         /// </summary>
-        public static string BondedPoolsParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string BondedPoolsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("NominationPools", "BondedPools", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("NominationPools", "BondedPools", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -307,7 +307,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BondedPools
         ///  Storage for bonded pools.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner> BondedPools(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner> BondedPools(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.BondedPoolsParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner>(parameters, token);
@@ -320,7 +320,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CounterForBondedPoolsParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForBondedPools", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "CounterForBondedPools", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -336,10 +336,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CounterForBondedPools
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForBondedPools(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForBondedPools(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.CounterForBondedPoolsParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -348,10 +348,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout
         ///  is claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.
         /// </summary>
-        public static string RewardPoolsParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string RewardPoolsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("NominationPools", "RewardPools", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("NominationPools", "RewardPools", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -369,7 +369,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout
         ///  is claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool> RewardPools(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool> RewardPools(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.RewardPoolsParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool>(parameters, token);
@@ -382,7 +382,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CounterForRewardPoolsParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForRewardPools", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "CounterForRewardPools", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -398,10 +398,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CounterForRewardPools
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForRewardPools(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForRewardPools(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.CounterForRewardPoolsParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -410,10 +410,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Groups of unbonding pools. Each group of unbonding pools belongs to a bonded pool,
         ///  hence the name sub-pools. Keyed by the bonded pools account.
         /// </summary>
-        public static string SubPoolsStorageParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string SubPoolsStorageParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("NominationPools", "SubPoolsStorage", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("NominationPools", "SubPoolsStorage", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -431,7 +431,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Groups of unbonding pools. Each group of unbonding pools belongs to a bonded pool,
         ///  hence the name sub-pools. Keyed by the bonded pools account.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools> SubPoolsStorage(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools> SubPoolsStorage(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.SubPoolsStorageParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools>(parameters, token);
@@ -444,7 +444,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CounterForSubPoolsStorageParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForSubPoolsStorage", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "CounterForSubPoolsStorage", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -460,10 +460,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CounterForSubPoolsStorage
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForSubPoolsStorage(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForSubPoolsStorage(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.CounterForSubPoolsStorageParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -471,10 +471,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MetadataParams
         ///  Metadata for the pool.
         /// </summary>
-        public static string MetadataParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string MetadataParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("NominationPools", "Metadata", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("NominationPools", "Metadata", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -491,7 +491,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> Metadata
         ///  Metadata for the pool.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28> Metadata(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28> Metadata(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.MetadataParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28>(parameters, token);
@@ -504,7 +504,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CounterForMetadataParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForMetadata", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "CounterForMetadata", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -520,10 +520,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CounterForMetadata
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForMetadata(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForMetadata(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.CounterForMetadataParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -533,7 +533,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string LastPoolIdParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "LastPoolId", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "LastPoolId", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -549,10 +549,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> LastPoolId
         ///  Ever increasing number of all pools created so far.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> LastPoolId(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LastPoolId(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.LastPoolIdParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -565,8 +565,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ReversePoolIdLookupParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("NominationPools", "ReversePoolIdLookup", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("NominationPools", "ReversePoolIdLookup", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -586,10 +586,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is only used for slashing. In all other instances, the pool id is used, and the
         ///  accounts are deterministically derived from it.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ReversePoolIdLookup(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ReversePoolIdLookup(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = NominationPoolsStorage.ReversePoolIdLookupParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -599,7 +599,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CounterForReversePoolIdLookupParams()
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForReversePoolIdLookup", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("NominationPools", "CounterForReversePoolIdLookup", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -615,10 +615,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CounterForReversePoolIdLookup
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CounterForReversePoolIdLookup(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForReversePoolIdLookup(CancellationToken token)
         {
             string parameters = NominationPoolsStorage.CounterForReversePoolIdLookupParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
     }
@@ -630,7 +630,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> join
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Join(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Ajuna.NetApi.Model.Types.Primitive.U32 pool_id)
+        public static Method Join(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Substrate.NetApi.Model.Types.Primitive.U32 pool_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -663,7 +663,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> unbond
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Unbond(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> unbonding_points)
+        public static Method Unbond(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> unbonding_points)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(member_account.Encode());
@@ -675,7 +675,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> pool_withdraw_unbonded
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method PoolWithdrawUnbonded(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
+        public static Method PoolWithdrawUnbonded(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Substrate.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -687,7 +687,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> withdraw_unbonded
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method WithdrawUnbonded(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Ajuna.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
+        public static Method WithdrawUnbonded(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Substrate.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(member_account.Encode());
@@ -699,7 +699,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> create
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Create(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler)
+        public static Method Create(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -713,7 +713,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> create_with_pool_id
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CreateWithPoolId(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler, Ajuna.NetApi.Model.Types.Primitive.U32 pool_id)
+        public static Method CreateWithPoolId(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler, Substrate.NetApi.Model.Types.Primitive.U32 pool_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -728,7 +728,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> nominate
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Nominate(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> validators)
+        public static Method Nominate(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> validators)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -740,7 +740,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> set_state
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetState(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState state)
+        public static Method SetState(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState state)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -752,7 +752,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> set_metadata
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMetadata(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> metadata)
+        public static Method SetMetadata(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> metadata)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -779,7 +779,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> update_roles
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UpdateRoles(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_state_toggler)
+        public static Method UpdateRoles(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_state_toggler)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -793,7 +793,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> chill
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Chill(Ajuna.NetApi.Model.Types.Primitive.U32 pool_id)
+        public static Method Chill(Substrate.NetApi.Model.Types.Primitive.U32 pool_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pool_id.Encode());
@@ -830,9 +830,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  For a value of 10, the threshold would be a pool points-to-balance ratio of 10:1.
         ///  Such a scenario would also be the equivalent of the pool being 90% slashed.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U8 MaxPointsToBalance()
+        public Substrate.NetApi.Model.Types.Primitive.U8 MaxPointsToBalance()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U8();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U8();
             result.Create("0x0A");
             return result;
         }

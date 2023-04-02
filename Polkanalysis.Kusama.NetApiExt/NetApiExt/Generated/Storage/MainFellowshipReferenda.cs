@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,13 +30,13 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public FellowshipReferendaStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "ReferendumCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "ReferendumInfoFor"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumReferendumInfo)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "TrackQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U16), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "DecidingCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U16), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "ReferendumCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "ReferendumInfoFor"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumReferendumInfo)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "TrackQueue"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U16), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FellowshipReferenda", "DecidingCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U16), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
         }
         
         /// <summary>
@@ -45,27 +45,27 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string ReferendumCountParams()
         {
-            return RequestGenerator.GetStorage("FellowshipReferenda", "ReferendumCount", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("FellowshipReferenda", "ReferendumCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> ReferendumCount
         ///  The next free referendum index, aka the number of referenda started so far.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ReferendumCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ReferendumCount(CancellationToken token)
         {
             string parameters = FellowshipReferendaStorage.ReferendumCountParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
         /// >> ReferendumInfoForParams
         ///  Information concerning any given referendum.
         /// </summary>
-        public static string ReferendumInfoForParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string ReferendumInfoForParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("FellowshipReferenda", "ReferendumInfoFor", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("FellowshipReferenda", "ReferendumInfoFor", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -73,7 +73,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> ReferendumInfoFor
         ///  Information concerning any given referendum.
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumReferendumInfo> ReferendumInfoFor(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumReferendumInfo> ReferendumInfoFor(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = FellowshipReferendaStorage.ReferendumInfoForParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumReferendumInfo>(parameters, token);
@@ -86,10 +86,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  This should be empty if `DecidingCount` is less than `TrackInfo::max_deciding`.
         /// </summary>
-        public static string TrackQueueParams(Ajuna.NetApi.Model.Types.Primitive.U16 key)
+        public static string TrackQueueParams(Substrate.NetApi.Model.Types.Primitive.U16 key)
         {
-            return RequestGenerator.GetStorage("FellowshipReferenda", "TrackQueue", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("FellowshipReferenda", "TrackQueue", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -100,7 +100,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  This should be empty if `DecidingCount` is less than `TrackInfo::max_deciding`.
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20> TrackQueue(Ajuna.NetApi.Model.Types.Primitive.U16 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20> TrackQueue(Substrate.NetApi.Model.Types.Primitive.U16 key, CancellationToken token)
         {
             string parameters = FellowshipReferendaStorage.TrackQueueParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20>(parameters, token);
@@ -110,10 +110,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> DecidingCountParams
         ///  The number of referenda being decided currently.
         /// </summary>
-        public static string DecidingCountParams(Ajuna.NetApi.Model.Types.Primitive.U16 key)
+        public static string DecidingCountParams(Substrate.NetApi.Model.Types.Primitive.U16 key)
         {
-            return RequestGenerator.GetStorage("FellowshipReferenda", "DecidingCount", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("FellowshipReferenda", "DecidingCount", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -121,10 +121,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> DecidingCount
         ///  The number of referenda being decided currently.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> DecidingCount(Ajuna.NetApi.Model.Types.Primitive.U16 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> DecidingCount(Substrate.NetApi.Model.Types.Primitive.U16 key, CancellationToken token)
         {
             string parameters = FellowshipReferendaStorage.DecidingCountParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
     }
     
@@ -148,7 +148,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> place_decision_deposit
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method PlaceDecisionDeposit(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method PlaceDecisionDeposit(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -159,7 +159,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> refund_decision_deposit
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RefundDecisionDeposit(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method RefundDecisionDeposit(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -170,7 +170,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> cancel
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Cancel(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method Cancel(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -181,7 +181,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> kill
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Kill(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method Kill(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -192,7 +192,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> nudge_referendum
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method NudgeReferendum(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method NudgeReferendum(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -203,7 +203,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> one_fewer_deciding
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method OneFewerDeciding(Ajuna.NetApi.Model.Types.Primitive.U16 track)
+        public static Method OneFewerDeciding(Substrate.NetApi.Model.Types.Primitive.U16 track)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(track.Encode());
@@ -214,7 +214,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> refund_submission_deposit
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RefundSubmissionDeposit(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method RefundSubmissionDeposit(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());

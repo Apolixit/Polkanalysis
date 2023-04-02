@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,26 +20,26 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
     /// <summary>
     /// >> 438 - Composite[pallet_conviction_voting.types.Tally]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Tally : BaseType
     {
         
         /// <summary>
         /// >> ayes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _ayes;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _ayes;
         
         /// <summary>
         /// >> nays
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _nays;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _nays;
         
         /// <summary>
         /// >> support
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _support;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _support;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Ayes
+        public Substrate.NetApi.Model.Types.Primitive.U128 Ayes
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Nays
+        public Substrate.NetApi.Model.Types.Primitive.U128 Nays
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Support
+        public Substrate.NetApi.Model.Types.Primitive.U128 Support
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Ayes = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Ayes = new Substrate.NetApi.Model.Types.Primitive.U128();
             Ayes.Decode(byteArray, ref p);
-            Nays = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Nays = new Substrate.NetApi.Model.Types.Primitive.U128();
             Nays.Decode(byteArray, ref p);
-            Support = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Support = new Substrate.NetApi.Model.Types.Primitive.U128();
             Support.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

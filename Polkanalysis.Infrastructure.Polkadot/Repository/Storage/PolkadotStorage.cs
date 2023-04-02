@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;

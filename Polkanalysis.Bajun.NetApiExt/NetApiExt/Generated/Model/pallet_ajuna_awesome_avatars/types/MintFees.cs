@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,26 +20,26 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
     /// <summary>
     /// >> 113 - Composite[pallet_ajuna_awesome_avatars.types.MintFees]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class MintFees : BaseType
     {
         
         /// <summary>
         /// >> one
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _one;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _one;
         
         /// <summary>
         /// >> three
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _three;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _three;
         
         /// <summary>
         /// >> six
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _six;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _six;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 One
+        public Substrate.NetApi.Model.Types.Primitive.U128 One
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Three
+        public Substrate.NetApi.Model.Types.Primitive.U128 Three
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Six
+        public Substrate.NetApi.Model.Types.Primitive.U128 Six
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            One = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            One = new Substrate.NetApi.Model.Types.Primitive.U128();
             One.Decode(byteArray, ref p);
-            Three = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Three = new Substrate.NetApi.Model.Types.Primitive.U128();
             Three.Decode(byteArray, ref p);
-            Six = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Six = new Substrate.NetApi.Model.Types.Primitive.U128();
             Six.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

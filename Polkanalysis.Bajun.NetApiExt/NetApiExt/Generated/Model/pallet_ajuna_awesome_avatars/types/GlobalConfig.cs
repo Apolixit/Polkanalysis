@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,14 +20,14 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
     /// <summary>
     /// >> 111 - Composite[pallet_ajuna_awesome_avatars.types.GlobalConfig]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class GlobalConfig : BaseType
     {
         
         /// <summary>
         /// >> max_avatars_per_player
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxAvatarsPerPlayer;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxAvatarsPerPlayer;
         
         /// <summary>
         /// >> mint
@@ -44,7 +44,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
         /// </summary>
         private Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.TradeConfig _trade;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxAvatarsPerPlayer
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxAvatarsPerPlayer
         {
             get
             {
@@ -110,7 +110,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            MaxAvatarsPerPlayer = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxAvatarsPerPlayer = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxAvatarsPerPlayer.Decode(byteArray, ref p);
             Mint = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.MintConfig();
             Mint.Decode(byteArray, ref p);

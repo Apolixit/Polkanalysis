@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,22 +30,22 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public DemocracyStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "PublicPropCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "PublicProps"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT11)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "DepositOf"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12, Ajuna.NetApi.Model.Types.Primitive.U128>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "ReferendumCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "LowestUnbaked"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "ReferendumInfoOf"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.EnumReferendumInfo)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "VotingOf"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumVoting)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "LastTabledWasExternal"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "NextExternal"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "Blacklist"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "Cancellations"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "PublicPropCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "PublicProps"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT11)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "DepositOf"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12, Substrate.NetApi.Model.Types.Primitive.U128>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "ReferendumCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "LowestUnbaked"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "ReferendumInfoOf"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.EnumReferendumInfo)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "VotingOf"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumVoting)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "LastTabledWasExternal"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.Bool)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "NextExternal"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "Blacklist"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Democracy", "Cancellations"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substrate.NetApi.Model.Types.Primitive.Bool)));
         }
         
         /// <summary>
@@ -54,7 +54,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string PublicPropCountParams()
         {
-            return RequestGenerator.GetStorage("Democracy", "PublicPropCount", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Democracy", "PublicPropCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -70,10 +70,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> PublicPropCount
         ///  The number of (public) proposals that have been made so far.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> PublicPropCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> PublicPropCount(CancellationToken token)
         {
             string parameters = DemocracyStorage.PublicPropCountParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -83,7 +83,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string PublicPropsParams()
         {
-            return RequestGenerator.GetStorage("Democracy", "PublicProps", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Democracy", "PublicProps", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -112,10 +112,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: Safe, as increasing integer keys are safe.
         /// </summary>
-        public static string DepositOfParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string DepositOfParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Democracy", "DepositOf", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Democracy", "DepositOf", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -134,10 +134,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: Safe, as increasing integer keys are safe.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12, Ajuna.NetApi.Model.Types.Primitive.U128>> DepositOf(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12, Substrate.NetApi.Model.Types.Primitive.U128>> DepositOf(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = DemocracyStorage.DepositOfParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12, Substrate.NetApi.Model.Types.Primitive.U128>>(parameters, token);
             return result;
         }
         
@@ -147,7 +147,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ReferendumCountParams()
         {
-            return RequestGenerator.GetStorage("Democracy", "ReferendumCount", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Democracy", "ReferendumCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -163,10 +163,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> ReferendumCount
         ///  The next free referendum index, aka the number of referenda started so far.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> ReferendumCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ReferendumCount(CancellationToken token)
         {
             string parameters = DemocracyStorage.ReferendumCountParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -177,7 +177,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string LowestUnbakedParams()
         {
-            return RequestGenerator.GetStorage("Democracy", "LowestUnbaked", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Democracy", "LowestUnbaked", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -194,10 +194,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The lowest referendum index representing an unbaked referendum. Equal to
         ///  `ReferendumCount` if there isn't a unbaked referendum.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> LowestUnbaked(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LowestUnbaked(CancellationToken token)
         {
             string parameters = DemocracyStorage.LowestUnbakedParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -207,10 +207,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: SAFE as indexes are not under an attacker���s control.
         /// </summary>
-        public static string ReferendumInfoOfParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string ReferendumInfoOfParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Democracy", "ReferendumInfoOf", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Democracy", "ReferendumInfoOf", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -229,7 +229,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: SAFE as indexes are not under an attacker���s control.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.EnumReferendumInfo> ReferendumInfoOf(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.EnumReferendumInfo> ReferendumInfoOf(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = DemocracyStorage.ReferendumInfoOfParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.EnumReferendumInfo>(parameters, token);
@@ -245,8 +245,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string VotingOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Democracy", "VotingOf", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Democracy", "VotingOf", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -281,7 +281,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string LastTabledWasExternalParams()
         {
-            return RequestGenerator.GetStorage("Democracy", "LastTabledWasExternal", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Democracy", "LastTabledWasExternal", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -298,10 +298,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  True if the last referendum tabled was submitted externally. False if it was a public
         ///  proposal.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> LastTabledWasExternal(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> LastTabledWasExternal(CancellationToken token)
         {
             string parameters = DemocracyStorage.LastTabledWasExternalParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.Bool>(parameters, token);
             return result;
         }
         
@@ -314,7 +314,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string NextExternalParams()
         {
-            return RequestGenerator.GetStorage("Democracy", "NextExternal", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Democracy", "NextExternal", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -333,10 +333,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  - `LastTabledWasExternal` is `false`; or
         ///  - `PublicProps` is empty.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>> NextExternal(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>> NextExternal(CancellationToken token)
         {
             string parameters = DemocracyStorage.NextExternalParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote_threshold.EnumVoteThreshold>>(parameters, token);
             return result;
         }
         
@@ -347,8 +347,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string BlacklistParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
-            return RequestGenerator.GetStorage("Democracy", "Blacklist", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Democracy", "Blacklist", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -366,10 +366,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  A record of who vetoed what. Maps proposal hash to a possible existent block number
         ///  (until when it may not be resubmitted) and who vetoed it.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>> Blacklist(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>> Blacklist(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = DemocracyStorage.BlacklistParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT12>>(parameters, token);
             return result;
         }
         
@@ -379,8 +379,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CancellationsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
-            return RequestGenerator.GetStorage("Democracy", "Cancellations", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Democracy", "Cancellations", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -397,10 +397,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> Cancellations
         ///  Record of all proposals that have been subject to emergency cancellation.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> Cancellations(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> Cancellations(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = DemocracyStorage.CancellationsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.Bool>(parameters, token);
             return result;
         }
     }
@@ -412,7 +412,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> propose
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Propose(Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded proposal, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value)
+        public static Method Propose(Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded proposal, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> value)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal.Encode());
@@ -424,7 +424,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> second
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Second(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> proposal)
+        public static Method Second(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> proposal)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal.Encode());
@@ -435,7 +435,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> vote
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Vote(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> ref_index, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote vote)
+        public static Method Vote(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> ref_index, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.EnumAccountVote vote)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(ref_index.Encode());
@@ -447,7 +447,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> emergency_cancel
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method EmergencyCancel(Ajuna.NetApi.Model.Types.Primitive.U32 ref_index)
+        public static Method EmergencyCancel(Substrate.NetApi.Model.Types.Primitive.U32 ref_index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(ref_index.Encode());
@@ -491,7 +491,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> fast_track
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method FastTrack(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Ajuna.NetApi.Model.Types.Primitive.U32 voting_period, Ajuna.NetApi.Model.Types.Primitive.U32 delay)
+        public static Method FastTrack(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Substrate.NetApi.Model.Types.Primitive.U32 voting_period, Substrate.NetApi.Model.Types.Primitive.U32 delay)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal_hash.Encode());
@@ -515,7 +515,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> cancel_referendum
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CancelReferendum(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> ref_index)
+        public static Method CancelReferendum(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> ref_index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(ref_index.Encode());
@@ -526,7 +526,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> delegate
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Delegate(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress to, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction conviction, Ajuna.NetApi.Model.Types.Primitive.U128 balance)
+        public static Method Delegate(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress to, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction conviction, Substrate.NetApi.Model.Types.Primitive.U128 balance)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(to.Encode());
@@ -570,7 +570,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> remove_vote
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveVote(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method RemoveVote(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -581,7 +581,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> remove_other_vote
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RemoveOtherVote(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target, Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method RemoveOtherVote(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target, Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(target.Encode());
@@ -593,7 +593,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> blacklist
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Blacklist(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> maybe_ref_index)
+        public static Method Blacklist(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> maybe_ref_index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(proposal_hash.Encode());
@@ -605,7 +605,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> cancel_proposal
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CancelProposal(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> prop_index)
+        public static Method CancelProposal(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> prop_index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(prop_index.Encode());
@@ -624,9 +624,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  voting stakers have an opportunity to remove themselves from the system in the case
         ///  where they are on the losing side of a vote.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 EnactmentPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 EnactmentPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00270600");
             return result;
         }
@@ -635,9 +635,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> LaunchPeriod
         ///  How often (in blocks) new public referenda are launched.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 LaunchPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 LaunchPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00270600");
             return result;
         }
@@ -646,9 +646,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> VotingPeriod
         ///  How often (in blocks) to check for new votes.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 VotingPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 VotingPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00270600");
             return result;
         }
@@ -660,9 +660,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  It should be no shorter than enactment period to ensure that in the case of an approval,
         ///  those successful voters are locked into the consequences that their votes entail.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 VoteLockingPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 VoteLockingPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00270600");
             return result;
         }
@@ -671,9 +671,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MinimumDeposit
         ///  The minimum amount to be used as a deposit for a public referendum proposal.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 MinimumDeposit()
+        public Substrate.NetApi.Model.Types.Primitive.U128 MinimumDeposit()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x0010A5D4E80000000000000000000000");
             return result;
         }
@@ -684,9 +684,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  want to set this permanently to `false`, others may want to condition it on things such
         ///  as an upgrade having happened recently.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.Bool InstantAllowed()
+        public Substrate.NetApi.Model.Types.Primitive.Bool InstantAllowed()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.Bool();
+            var result = new Substrate.NetApi.Model.Types.Primitive.Bool();
             result.Create("0x01");
             return result;
         }
@@ -695,9 +695,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> FastTrackVotingPeriod
         ///  Minimum voting period allowed for a fast-track referendum.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 FastTrackVotingPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 FastTrackVotingPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x08070000");
             return result;
         }
@@ -706,9 +706,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CooloffPeriod
         ///  Period in blocks where an external proposal may not be re-submitted after being vetoed.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 CooloffPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 CooloffPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0xC0890100");
             return result;
         }
@@ -720,9 +720,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Also used to compute weight, an overly big value can
         ///  lead to extrinsic with very big weight: see `delegate` for instance.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxVotes()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxVotes()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x64000000");
             return result;
         }
@@ -731,9 +731,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MaxProposals
         ///  The maximum number of public proposals that can exist at any time.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxProposals()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxProposals()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x64000000");
             return result;
         }
@@ -742,9 +742,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MaxDeposits
         ///  The maximum number of deposits a public proposal may have at any time.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxDeposits()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxDeposits()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x64000000");
             return result;
         }
@@ -753,9 +753,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MaxBlacklisted
         ///  The maximum number of items which can be blacklisted.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxBlacklisted()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxBlacklisted()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x64000000");
             return result;
         }

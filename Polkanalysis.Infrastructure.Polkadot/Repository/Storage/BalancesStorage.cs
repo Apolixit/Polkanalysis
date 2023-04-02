@@ -1,6 +1,6 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.AjunaExtension;

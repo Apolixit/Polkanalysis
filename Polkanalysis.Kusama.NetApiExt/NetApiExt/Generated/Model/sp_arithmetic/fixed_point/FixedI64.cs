@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,16 +20,16 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_poin
     /// <summary>
     /// >> 635 - Composite[sp_arithmetic.fixed_point.FixedI64]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class FixedI64 : BaseType
     {
         
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.I64 _value;
+        private Substrate.NetApi.Model.Types.Primitive.I64 _value;
         
-        public Ajuna.NetApi.Model.Types.Primitive.I64 Value
+        public Substrate.NetApi.Model.Types.Primitive.I64 Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.fixed_poin
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Primitive.I64();
+            Value = new Substrate.NetApi.Model.Types.Primitive.I64();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

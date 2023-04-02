@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,16 +20,16 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounde
     /// <summary>
     /// >> 282 - Composite[sp_runtime.bounded.bounded_vec.BoundedVecT8]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedVecT8 : BaseType
     {
         
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement>> _value;
+        private Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement>> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement>> Value
+        public Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement>> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounde
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement>>();
+            Value = new Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement>>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

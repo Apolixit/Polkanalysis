@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Meta;
+﻿using Substrate.NetApi.Model.Meta;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
 using Polkanalysis.Domain.Contracts.Dto.Module;

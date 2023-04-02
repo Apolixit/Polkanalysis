@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -37,7 +37,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_membership.pallet
     /// >> 272 - Variant[pallet_membership.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
+    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseVoid>
     {
     }
 }

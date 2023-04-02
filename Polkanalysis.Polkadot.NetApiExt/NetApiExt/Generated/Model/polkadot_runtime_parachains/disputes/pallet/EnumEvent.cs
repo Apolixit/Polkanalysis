@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -34,7 +34,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parac
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeLocation>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeResult>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeLocation>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.disputes.EnumDisputeResult>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash, Substrate.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

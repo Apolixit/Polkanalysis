@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Meta;
+﻿using Substrate.NetApi.Model.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Polkanalysis.Domain.Contracts.Secondary.Common
 {
     /// <summary>
-    /// Based on <see cref="Ajuna.NetApi.Model.Meta.NodeMetadataV14"/> implementation
+    /// Based on <see cref="Substrate.NetApi.Model.Meta.NodeMetadataV14"/> implementation
     /// </summary>
     public interface INodeMetadataV14
     {

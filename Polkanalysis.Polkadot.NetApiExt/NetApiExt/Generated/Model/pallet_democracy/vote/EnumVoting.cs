@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -26,7 +26,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote
     /// <summary>
     /// >> 536 - Variant[pallet_democracy.vote.Voting]
     /// </summary>
-    public sealed class EnumVoting : BaseEnumExt<Voting, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT13, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>>
+    public sealed class EnumVoting : BaseEnumExt<Voting, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT13, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>, BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.types.Delegations, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.vote.PriorLock>>
     {
     }
 }

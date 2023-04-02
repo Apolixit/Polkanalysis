@@ -1,8 +1,8 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Domain.Contracts.Core;
@@ -200,7 +200,7 @@ namespace Polkanalysis.Domain.Runtime
 
     public class MappingElementHashByteArray : IMappingElement
     {
-        //[AjunaNodeType(TypeDefEnum.Array)]
+        //[SubstrateNodeType(TypeDefEnum.Array)]
         public Type ObjectType => typeof(BaseVec<U8>);
         public bool IsIdentified => true;
 

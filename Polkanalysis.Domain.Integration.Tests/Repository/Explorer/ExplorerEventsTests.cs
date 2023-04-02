@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ajuna.NetApi;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {

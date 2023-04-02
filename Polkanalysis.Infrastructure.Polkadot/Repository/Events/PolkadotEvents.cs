@@ -1,7 +1,7 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core.Map;
 using Polkanalysis.Domain.Contracts.Runtime;

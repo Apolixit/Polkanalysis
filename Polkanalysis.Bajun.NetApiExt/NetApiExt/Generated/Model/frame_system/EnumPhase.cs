@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -28,7 +28,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system
     /// <summary>
     /// >> 117 - Variant[frame_system.Phase]
     /// </summary>
-    public sealed class EnumPhase : BaseEnumExt<Phase, Ajuna.NetApi.Model.Types.Primitive.U32, BaseVoid, BaseVoid>
+    public sealed class EnumPhase : BaseEnumExt<Phase, Substrate.NetApi.Model.Types.Primitive.U32, BaseVoid, BaseVoid>
     {
     }
 }

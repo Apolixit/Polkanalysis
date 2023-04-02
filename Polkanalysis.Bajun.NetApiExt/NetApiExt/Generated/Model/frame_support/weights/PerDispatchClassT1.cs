@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,26 +20,26 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
     /// <summary>
     /// >> 7 - Composite[frame_support.weights.PerDispatchClassT1]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class PerDispatchClassT1 : BaseType
     {
         
         /// <summary>
         /// >> normal
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _normal;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _normal;
         
         /// <summary>
         /// >> operational
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _operational;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _operational;
         
         /// <summary>
         /// >> mandatory
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _mandatory;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _mandatory;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 Normal
+        public Substrate.NetApi.Model.Types.Primitive.U64 Normal
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 Operational
+        public Substrate.NetApi.Model.Types.Primitive.U64 Operational
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 Mandatory
+        public Substrate.NetApi.Model.Types.Primitive.U64 Mandatory
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Normal = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            Normal = new Substrate.NetApi.Model.Types.Primitive.U64();
             Normal.Decode(byteArray, ref p);
-            Operational = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            Operational = new Substrate.NetApi.Model.Types.Primitive.U64();
             Operational.Decode(byteArray, ref p);
-            Mandatory = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            Mandatory = new Substrate.NetApi.Model.Types.Primitive.U64();
             Mandatory.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

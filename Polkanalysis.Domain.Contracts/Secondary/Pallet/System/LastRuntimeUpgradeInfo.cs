@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
 
         public LastRuntimeUpgradeInfo(U32 specVersion, Str specName)
         {
-            Create(new BaseCom<U32>(new Ajuna.NetApi.CompactInteger(specVersion)), specName);
+            Create(new BaseCom<U32>(new Substrate.NetApi.CompactInteger(specVersion)), specName);
         }
 
         public void Create(BaseCom<U32> specVersion, Str specName)

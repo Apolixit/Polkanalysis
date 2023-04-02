@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,6 @@ namespace Polkanalysis.Domain.Contracts.Core
     //{
     //    public required string Value { get; set; }
 
-    //    public Ajuna.NetApi.Model.Types.Base.Hash AjunaHash { get; set; }
+    //    public Substrate.NetApi.Model.Types.Base.Hash AjunaHash { get; set; }
     //}
 }

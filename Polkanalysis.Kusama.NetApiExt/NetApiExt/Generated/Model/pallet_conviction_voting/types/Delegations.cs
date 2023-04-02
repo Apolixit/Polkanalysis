@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,21 +20,21 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
     /// <summary>
     /// >> 613 - Composite[pallet_conviction_voting.types.Delegations]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Delegations : BaseType
     {
         
         /// <summary>
         /// >> votes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _votes;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _votes;
         
         /// <summary>
         /// >> capital
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _capital;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _capital;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Votes
+        public Substrate.NetApi.Model.Types.Primitive.U128 Votes
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Capital
+        public Substrate.NetApi.Model.Types.Primitive.U128 Capital
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Votes = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Votes = new Substrate.NetApi.Model.Types.Primitive.U128();
             Votes.Decode(byteArray, ref p);
-            Capital = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Capital = new Substrate.NetApi.Model.Types.Primitive.U128();
             Capital.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

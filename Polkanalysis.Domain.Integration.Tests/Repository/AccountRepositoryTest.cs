@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
-using Ajuna.NetApi;
+using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
 

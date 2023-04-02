@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -50,7 +50,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season>, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U8>, Ajuna.NetApi.Model.Types.Primitive.U16, Ajuna.NetApi.Model.Types.Primitive.U16, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U16>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U16>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, BaseTuple<Substrate.NetApi.Model.Types.Primitive.U16, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.Season>, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avatars.types.GlobalConfig, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Substrate.NetApi.Model.Types.Primitive.U8>, Substrate.NetApi.Model.Types.Primitive.U16, Substrate.NetApi.Model.Types.Primitive.U16, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U16>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U16>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Substrate.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>
     {
     }
 }

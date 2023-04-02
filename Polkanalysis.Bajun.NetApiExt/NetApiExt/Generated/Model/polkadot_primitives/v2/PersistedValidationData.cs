@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
     /// <summary>
     /// >> 138 - Composite[polkadot_primitives.v2.PersistedValidationData]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class PersistedValidationData : BaseType
     {
         
@@ -32,7 +32,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> relay_parent_number
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _relayParentNumber;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _relayParentNumber;
         
         /// <summary>
         /// >> relay_parent_storage_root
@@ -42,7 +42,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> max_pov_size
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxPovSize;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxPovSize;
         
         public Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData ParentHead
         {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 RelayParentNumber
+        public Substrate.NetApi.Model.Types.Primitive.U32 RelayParentNumber
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxPovSize
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxPovSize
         {
             get
             {
@@ -112,11 +112,11 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             var start = p;
             ParentHead = new Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData();
             ParentHead.Decode(byteArray, ref p);
-            RelayParentNumber = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            RelayParentNumber = new Substrate.NetApi.Model.Types.Primitive.U32();
             RelayParentNumber.Decode(byteArray, ref p);
             RelayParentStorageRoot = new Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256();
             RelayParentStorageRoot.Decode(byteArray, ref p);
-            MaxPovSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxPovSize = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxPovSize.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

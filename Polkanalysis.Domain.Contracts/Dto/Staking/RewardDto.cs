@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Math;
-using Polkanalysis.Domain.Contracts.Dto.Event;
+﻿using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;

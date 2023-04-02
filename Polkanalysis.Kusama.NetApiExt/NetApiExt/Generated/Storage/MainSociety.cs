@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,30 +30,30 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public SocietyStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Founder"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Rules"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Candidates"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "SuspendedCandidates"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumBidKind>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Pot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Head"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Members"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "SuspendedMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Bids"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Vouching"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVouchingStatus)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Payouts"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Strikes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Votes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVote)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Defender"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "DefenderVotes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVote)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "MaxMembers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Founder"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Rules"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Candidates"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "SuspendedCandidates"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumBidKind>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Pot"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Head"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Members"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "SuspendedMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Primitive.Bool)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Bids"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Vouching"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVouchingStatus)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Payouts"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U128>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Strikes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Votes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVote)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "Defender"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "DefenderVotes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVote)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Society", "MaxMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
         }
         
         /// <summary>
@@ -62,7 +62,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string FounderParams()
         {
-            return RequestGenerator.GetStorage("Society", "Founder", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Founder", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -82,7 +82,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string RulesParams()
         {
-            return RequestGenerator.GetStorage("Society", "Rules", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Rules", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -102,17 +102,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string CandidatesParams()
         {
-            return RequestGenerator.GetStorage("Society", "Candidates", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Candidates", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> Candidates
         ///  The current set of candidates; bidders that are attempting to become members.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>> Candidates(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>> Candidates(CancellationToken token)
         {
             string parameters = SocietyStorage.CandidatesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>>(parameters, token);
         }
         
         /// <summary>
@@ -121,8 +121,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string SuspendedCandidatesParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Society", "SuspendedCandidates", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Society", "SuspendedCandidates", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -130,10 +130,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> SuspendedCandidates
         ///  The set of suspended candidates.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumBidKind>> SuspendedCandidates(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumBidKind>> SuspendedCandidates(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = SocietyStorage.SuspendedCandidatesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumBidKind>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumBidKind>>(parameters, token);
         }
         
         /// <summary>
@@ -142,17 +142,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PotParams()
         {
-            return RequestGenerator.GetStorage("Society", "Pot", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Pot", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> Pot
         ///  Amount of our account balance that is specifically for the next round's bid(s).
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> Pot(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> Pot(CancellationToken token)
         {
             string parameters = SocietyStorage.PotParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
         }
         
         /// <summary>
@@ -161,7 +161,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string HeadParams()
         {
-            return RequestGenerator.GetStorage("Society", "Head", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Head", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -180,17 +180,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string MembersParams()
         {
-            return RequestGenerator.GetStorage("Society", "Members", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Members", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> Members
         ///  The current set of members, ordered.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Members(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Members(CancellationToken token)
         {
             string parameters = SocietyStorage.MembersParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
         }
         
         /// <summary>
@@ -199,8 +199,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string SuspendedMembersParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Society", "SuspendedMembers", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Society", "SuspendedMembers", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -208,10 +208,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> SuspendedMembers
         ///  The set of suspended members.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> SuspendedMembers(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> SuspendedMembers(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = SocietyStorage.SuspendedMembersParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.Bool>(parameters, token);
         }
         
         /// <summary>
@@ -220,17 +220,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string BidsParams()
         {
-            return RequestGenerator.GetStorage("Society", "Bids", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Bids", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> Bids
         ///  The current bids, stored ordered by the value of the bid.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>> Bids(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>> Bids(CancellationToken token)
         {
             string parameters = SocietyStorage.BidsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.Bid>>(parameters, token);
         }
         
         /// <summary>
@@ -239,8 +239,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string VouchingParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Society", "Vouching", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Society", "Vouching", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -260,8 +260,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PayoutsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Society", "Payouts", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Society", "Payouts", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -269,10 +269,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> Payouts
         ///  Pending payouts; ordered by block number, with the amount that should be paid out.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>>> Payouts(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U128>>> Payouts(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = SocietyStorage.PayoutsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U128>>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U128>>>(parameters, token);
         }
         
         /// <summary>
@@ -281,8 +281,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string StrikesParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Society", "Strikes", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Society", "Strikes", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -290,28 +290,28 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> Strikes
         ///  The ongoing number of losing votes cast by the member.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Strikes(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> Strikes(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = SocietyStorage.StrikesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
         /// >> VotesParams
         ///  Double map from Candidate -> Voter -> (Maybe) Vote.
         /// </summary>
-        public static string VotesParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string VotesParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
         {
-            return RequestGenerator.GetStorage("Society", "Votes", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
+            return RequestGenerator.GetStorage("Society", "Votes", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
         }
         
         /// <summary>
         /// >> Votes
         ///  Double map from Candidate -> Voter -> (Maybe) Vote.
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVote> Votes(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVote> Votes(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = SocietyStorage.VotesParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumVote>(parameters, token);
@@ -323,7 +323,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string DefenderParams()
         {
-            return RequestGenerator.GetStorage("Society", "Defender", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "Defender", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -342,8 +342,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string DefenderVotesParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("Society", "DefenderVotes", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Society", "DefenderVotes", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -363,17 +363,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string MaxMembersParams()
         {
-            return RequestGenerator.GetStorage("Society", "MaxMembers", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Society", "MaxMembers", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> MaxMembers
         ///  The max number of members for the society at one time.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> MaxMembers(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxMembers(CancellationToken token)
         {
             string parameters = SocietyStorage.MaxMembersParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
     }
     
@@ -384,7 +384,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> bid
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Bid(Ajuna.NetApi.Model.Types.Primitive.U128 value)
+        public static Method Bid(Substrate.NetApi.Model.Types.Primitive.U128 value)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(value.Encode());
@@ -395,7 +395,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> unbid
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Unbid(Ajuna.NetApi.Model.Types.Primitive.U32 pos)
+        public static Method Unbid(Substrate.NetApi.Model.Types.Primitive.U32 pos)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pos.Encode());
@@ -406,7 +406,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> vouch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Vouch(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Primitive.U128 value, Ajuna.NetApi.Model.Types.Primitive.U128 tip)
+        public static Method Vouch(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Substrate.NetApi.Model.Types.Primitive.U128 value, Substrate.NetApi.Model.Types.Primitive.U128 tip)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -419,7 +419,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> unvouch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Unvouch(Ajuna.NetApi.Model.Types.Primitive.U32 pos)
+        public static Method Unvouch(Substrate.NetApi.Model.Types.Primitive.U32 pos)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(pos.Encode());
@@ -430,7 +430,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> vote
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Vote(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress candidate, Ajuna.NetApi.Model.Types.Primitive.Bool approve)
+        public static Method Vote(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress candidate, Substrate.NetApi.Model.Types.Primitive.Bool approve)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(candidate.Encode());
@@ -442,7 +442,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> defender_vote
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method DefenderVote(Ajuna.NetApi.Model.Types.Primitive.Bool approve)
+        public static Method DefenderVote(Substrate.NetApi.Model.Types.Primitive.Bool approve)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(approve.Encode());
@@ -463,7 +463,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> found
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Found(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress founder, Ajuna.NetApi.Model.Types.Primitive.U32 max_members, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> rules)
+        public static Method Found(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress founder, Substrate.NetApi.Model.Types.Primitive.U32 max_members, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> rules)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(founder.Encode());
@@ -486,7 +486,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> judge_suspended_member
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method JudgeSuspendedMember(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Ajuna.NetApi.Model.Types.Primitive.Bool forgive)
+        public static Method JudgeSuspendedMember(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Substrate.NetApi.Model.Types.Primitive.Bool forgive)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(who.Encode());
@@ -510,7 +510,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_members
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxMembers(Ajuna.NetApi.Model.Types.Primitive.U32 max)
+        public static Method SetMaxMembers(Substrate.NetApi.Model.Types.Primitive.U32 max)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(max.Encode());

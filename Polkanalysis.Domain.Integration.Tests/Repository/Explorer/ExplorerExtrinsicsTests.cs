@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Extrinsics;
+﻿using Substrate.NetApi.Model.Extrinsics;
 using Polkanalysis.Integration.Tests.Contracts;
 using NUnit.Framework;
 using System;
@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
 using System.Runtime.InteropServices;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 

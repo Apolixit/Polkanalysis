@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,14 +20,14 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
     /// <summary>
     /// >> 19 - Composite[frame_support.weights.DispatchInfo]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class DispatchInfo : BaseType
     {
         
         /// <summary>
         /// >> weight
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _weight;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _weight;
         
         /// <summary>
         /// >> class
@@ -39,7 +39,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
         /// </summary>
         private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumPays _paysFee;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 Weight
+        public Substrate.NetApi.Model.Types.Primitive.U64 Weight
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Weight = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            Weight = new Substrate.NetApi.Model.Types.Primitive.U64();
             Weight.Decode(byteArray, ref p);
             Class = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.EnumDispatchClass();
             Class.Decode(byteArray, ref p);

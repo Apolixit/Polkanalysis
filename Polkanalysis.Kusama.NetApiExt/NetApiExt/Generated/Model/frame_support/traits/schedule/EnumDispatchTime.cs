@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -26,7 +26,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.sch
     /// <summary>
     /// >> 165 - Variant[frame_support.traits.schedule.DispatchTime]
     /// </summary>
-    public sealed class EnumDispatchTime : BaseEnumExt<DispatchTime, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumDispatchTime : BaseEnumExt<DispatchTime, Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

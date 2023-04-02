@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -36,7 +36,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_tips.pallet
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>>
     {
     }
 }

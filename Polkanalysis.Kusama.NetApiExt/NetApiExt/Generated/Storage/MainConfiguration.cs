@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,9 +30,9 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public ConfigurationStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "ActiveConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "PendingConfigs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "BypassConsistencyCheck"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "ActiveConfig"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "PendingConfigs"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "BypassConsistencyCheck"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.Bool)));
         }
         
         /// <summary>
@@ -41,7 +41,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string ActiveConfigParams()
         {
-            return RequestGenerator.GetStorage("Configuration", "ActiveConfig", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Configuration", "ActiveConfig", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -66,7 +66,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PendingConfigsParams()
         {
-            return RequestGenerator.GetStorage("Configuration", "PendingConfigs", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Configuration", "PendingConfigs", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -79,10 +79,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  The list is sorted ascending by session index. Also, this list can only contain at most
         ///  2 items: for the next session and for the `scheduled_session`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>> PendingConfigs(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>> PendingConfigs(CancellationToken token)
         {
             string parameters = ConfigurationStorage.PendingConfigsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>>(parameters, token);
         }
         
         /// <summary>
@@ -92,7 +92,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string BypassConsistencyCheckParams()
         {
-            return RequestGenerator.GetStorage("Configuration", "BypassConsistencyCheck", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Configuration", "BypassConsistencyCheck", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -100,10 +100,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  If this is set, then the configuration setters will bypass the consistency checks. This
         ///  is meant to be used only as the last resort.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> BypassConsistencyCheck(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> BypassConsistencyCheck(CancellationToken token)
         {
             string parameters = ConfigurationStorage.BypassConsistencyCheckParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.Bool>(parameters, token);
         }
     }
     
@@ -114,7 +114,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_validation_upgrade_cooldown
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetValidationUpgradeCooldown(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetValidationUpgradeCooldown(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -125,7 +125,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_validation_upgrade_delay
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetValidationUpgradeDelay(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetValidationUpgradeDelay(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -136,7 +136,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_code_retention_period
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetCodeRetentionPeriod(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetCodeRetentionPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -147,7 +147,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_code_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxCodeSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxCodeSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -158,7 +158,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_pov_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxPovSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxPovSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -169,7 +169,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_head_data_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxHeadDataSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxHeadDataSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -180,7 +180,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_parathread_cores
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetParathreadCores(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetParathreadCores(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -191,7 +191,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_parathread_retries
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetParathreadRetries(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetParathreadRetries(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -202,7 +202,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_group_rotation_frequency
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetGroupRotationFrequency(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetGroupRotationFrequency(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -213,7 +213,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_chain_availability_period
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetChainAvailabilityPeriod(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetChainAvailabilityPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -224,7 +224,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_thread_availability_period
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetThreadAvailabilityPeriod(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetThreadAvailabilityPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -235,7 +235,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_scheduling_lookahead
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetSchedulingLookahead(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetSchedulingLookahead(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -246,7 +246,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_validators_per_core
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxValidatorsPerCore(Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> @new)
+        public static Method SetMaxValidatorsPerCore(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -257,7 +257,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_validators
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxValidators(Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> @new)
+        public static Method SetMaxValidators(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -268,7 +268,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_dispute_period
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetDisputePeriod(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetDisputePeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -279,7 +279,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_dispute_post_conclusion_acceptance_period
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetDisputePostConclusionAcceptancePeriod(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetDisputePostConclusionAcceptancePeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -290,7 +290,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_dispute_max_spam_slots
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetDisputeMaxSpamSlots(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetDisputeMaxSpamSlots(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -301,7 +301,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_dispute_conclusion_by_time_out_period
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetDisputeConclusionByTimeOutPeriod(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetDisputeConclusionByTimeOutPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -312,7 +312,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_no_show_slots
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetNoShowSlots(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetNoShowSlots(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -323,7 +323,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_n_delay_tranches
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetNDelayTranches(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetNDelayTranches(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -334,7 +334,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_zeroth_delay_tranche_width
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetZerothDelayTrancheWidth(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetZerothDelayTrancheWidth(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -345,7 +345,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_needed_approvals
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetNeededApprovals(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetNeededApprovals(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -356,7 +356,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_relay_vrf_modulo_samples
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetRelayVrfModuloSamples(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetRelayVrfModuloSamples(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -367,7 +367,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_upward_queue_count
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxUpwardQueueCount(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxUpwardQueueCount(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -378,7 +378,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_upward_queue_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxUpwardQueueSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxUpwardQueueSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -389,7 +389,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_downward_message_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxDownwardMessageSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxDownwardMessageSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -411,7 +411,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_upward_message_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxUpwardMessageSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxUpwardMessageSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -422,7 +422,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_max_upward_message_num_per_candidate
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMaxUpwardMessageNumPerCandidate(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMaxUpwardMessageNumPerCandidate(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -433,7 +433,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_open_request_ttl
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpOpenRequestTtl(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpOpenRequestTtl(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -444,7 +444,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_sender_deposit
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpSenderDeposit(Ajuna.NetApi.Model.Types.Primitive.U128 @new)
+        public static Method SetHrmpSenderDeposit(Substrate.NetApi.Model.Types.Primitive.U128 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -455,7 +455,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_recipient_deposit
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpRecipientDeposit(Ajuna.NetApi.Model.Types.Primitive.U128 @new)
+        public static Method SetHrmpRecipientDeposit(Substrate.NetApi.Model.Types.Primitive.U128 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -466,7 +466,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_channel_max_capacity
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpChannelMaxCapacity(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpChannelMaxCapacity(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -477,7 +477,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_channel_max_total_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpChannelMaxTotalSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpChannelMaxTotalSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -488,7 +488,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_max_parachain_inbound_channels
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpMaxParachainInboundChannels(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpMaxParachainInboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -499,7 +499,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_max_parathread_inbound_channels
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpMaxParathreadInboundChannels(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpMaxParathreadInboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -510,7 +510,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_channel_max_message_size
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpChannelMaxMessageSize(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpChannelMaxMessageSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -521,7 +521,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_max_parachain_outbound_channels
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpMaxParachainOutboundChannels(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpMaxParachainOutboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -532,7 +532,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_max_parathread_outbound_channels
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpMaxParathreadOutboundChannels(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpMaxParathreadOutboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -543,7 +543,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_hrmp_max_message_num_per_candidate
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetHrmpMaxMessageNumPerCandidate(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetHrmpMaxMessageNumPerCandidate(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -565,7 +565,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_pvf_checking_enabled
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetPvfCheckingEnabled(Ajuna.NetApi.Model.Types.Primitive.Bool @new)
+        public static Method SetPvfCheckingEnabled(Substrate.NetApi.Model.Types.Primitive.Bool @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -576,7 +576,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_pvf_voting_ttl
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetPvfVotingTtl(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetPvfVotingTtl(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -587,7 +587,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_minimum_validation_upgrade_delay
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMinimumValidationUpgradeDelay(Ajuna.NetApi.Model.Types.Primitive.U32 @new)
+        public static Method SetMinimumValidationUpgradeDelay(Substrate.NetApi.Model.Types.Primitive.U32 @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -598,7 +598,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set_bypass_consistency_check
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetBypassConsistencyCheck(Ajuna.NetApi.Model.Types.Primitive.Bool @new)
+        public static Method SetBypassConsistencyCheck(Substrate.NetApi.Model.Types.Primitive.Bool @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());

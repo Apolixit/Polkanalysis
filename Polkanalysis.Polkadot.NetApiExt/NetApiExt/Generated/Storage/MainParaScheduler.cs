@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,12 +30,12 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public ParaSchedulerStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ValidatorGroups"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "AvailabilityCores"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadClaimIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "SessionStartBlock"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "Scheduled"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ValidatorGroups"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadQueue"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "AvailabilityCores"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadClaimIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "SessionStartBlock"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "Scheduled"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>)));
         }
         
         /// <summary>
@@ -49,7 +49,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ValidatorGroupsParams()
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "ValidatorGroups", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaScheduler", "ValidatorGroups", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -70,10 +70,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Bound: The number of cores is the sum of the numbers of parachains and parathread multiplexers.
         ///  Reasonably, 100-1000. The dominant factor is the number of validators: safe upper bound at 10k.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>> ValidatorGroups(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>> ValidatorGroups(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ValidatorGroupsParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>>(parameters, token);
             return result;
         }
         
@@ -86,7 +86,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ParathreadQueueParams()
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "ParathreadQueue", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaScheduler", "ParathreadQueue", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -125,7 +125,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string AvailabilityCoresParams()
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "AvailabilityCores", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaScheduler", "AvailabilityCores", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -148,10 +148,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///    * The number of parachains and parathread multiplexers
         ///    * The number of validators divided by `configuration.max_validators_per_core`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>> AvailabilityCores(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>> AvailabilityCores(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.AvailabilityCoresParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>>(parameters, token);
             return result;
         }
         
@@ -164,7 +164,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ParathreadClaimIndexParams()
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "ParathreadClaimIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaScheduler", "ParathreadClaimIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -183,10 +183,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Bounded by the number of parathread cores and scheduling lookahead. Reasonably, 10 * 50 = 500.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ParathreadClaimIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ParathreadClaimIndex(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ParathreadClaimIndexParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
             return result;
         }
         
@@ -201,7 +201,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string SessionStartBlockParams()
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "SessionStartBlock", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaScheduler", "SessionStartBlock", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -222,10 +222,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Thus for all intents and purposes the effect of the session change is observed at the
         ///  block following the session change, block number of which we save in this storage value.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SessionStartBlock(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SessionStartBlock(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.SessionStartBlockParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -240,7 +240,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ScheduledParams()
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "Scheduled", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaScheduler", "Scheduled", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -261,10 +261,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The value contained here will not be valid after the end of a block. Runtime APIs should be used to determine scheduled cores/
         ///  for the upcoming block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>> Scheduled(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>> Scheduled(CancellationToken token)
         {
             string parameters = ParaSchedulerStorage.ScheduledParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>>(parameters, token);
             return result;
         }
     }

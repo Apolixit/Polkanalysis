@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,10 +30,10 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         public PreImageStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PreImage", "StatusFor"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PreImage", "PreimageFor"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PreImage", "StatusFor"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_preimage.EnumRequestStatus)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PreImage", "PreimageFor"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT13)));
         }
         
         /// <summary>
@@ -42,8 +42,8 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string StatusForParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
-            return RequestGenerator.GetStorage("PreImage", "StatusFor", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("PreImage", "StatusFor", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -63,8 +63,8 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string PreimageForParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
-            return RequestGenerator.GetStorage("PreImage", "PreimageFor", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("PreImage", "PreimageFor", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -86,7 +86,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> note_preimage
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method NotePreimage(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> bytes)
+        public static Method NotePreimage(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> bytes)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bytes.Encode());

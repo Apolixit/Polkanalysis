@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -31,7 +31,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_sudo.pallet
     /// >> 269 - Variant[pallet_sudo.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall, Ajuna.NetApi.Model.Types.Primitive.U64>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>>
+    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall, Substrate.NetApi.Model.Types.Primitive.U64>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>>
     {
     }
 }

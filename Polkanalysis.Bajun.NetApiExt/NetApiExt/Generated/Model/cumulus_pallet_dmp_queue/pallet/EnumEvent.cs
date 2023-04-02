@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -38,7 +38,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue.
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumOutcome>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumOutcome>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64>, BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64>>
     {
     }
 }

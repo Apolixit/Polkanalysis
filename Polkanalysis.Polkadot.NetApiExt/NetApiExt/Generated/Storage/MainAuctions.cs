@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,12 +30,12 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public AuctionsStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "AuctionCounter"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "AuctionInfo"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "ReservedAmounts"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>), typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "Winning"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "AuctionCounter"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "AuctionInfo"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "ReservedAmounts"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>), typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Auctions", "Winning"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt)));
         }
         
         /// <summary>
@@ -44,7 +44,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string AuctionCounterParams()
         {
-            return RequestGenerator.GetStorage("Auctions", "AuctionCounter", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Auctions", "AuctionCounter", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -60,10 +60,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> AuctionCounter
         ///  Number of auctions started so far.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AuctionCounter(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> AuctionCounter(CancellationToken token)
         {
             string parameters = AuctionsStorage.AuctionCounterParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -77,7 +77,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string AuctionInfoParams()
         {
-            return RequestGenerator.GetStorage("Auctions", "AuctionInfo", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Auctions", "AuctionInfo", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -97,10 +97,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  contiguous lease periods on auction is for. The second is the block number when the
         ///  auction will "begin to end", i.e. the first block of the Ending Period of the auction.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> AuctionInfo(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> AuctionInfo(CancellationToken token)
         {
             string parameters = AuctionsStorage.AuctionInfoParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
             return result;
         }
         
@@ -109,10 +109,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Amounts currently reserved in the accounts of the bidders currently winning
         ///  (sub-)ranges.
         /// </summary>
-        public static string ReservedAmountsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> key)
+        public static string ReservedAmountsParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> key)
         {
-            return RequestGenerator.GetStorage("Auctions", "ReservedAmounts", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Auctions", "ReservedAmounts", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -130,10 +130,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Amounts currently reserved in the accounts of the bidders currently winning
         ///  (sub-)ranges.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> ReservedAmounts(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> ReservedAmounts(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> key, CancellationToken token)
         {
             string parameters = AuctionsStorage.ReservedAmountsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
             return result;
         }
         
@@ -143,10 +143,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  the current auction. The map's key is the 0-based index into the Sample Size. The
         ///  first sample of the ending period is 0; the last is `Sample Size - 1`.
         /// </summary>
-        public static string WinningParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string WinningParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Auctions", "Winning", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Auctions", "Winning", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -165,7 +165,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  the current auction. The map's key is the 0-based index into the Sample Size. The
         ///  first sample of the ending period is 0; the last is `Sample Size - 1`.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt> Winning(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt> Winning(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = AuctionsStorage.WinningParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr36BaseOpt>(parameters, token);
@@ -180,7 +180,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> new_auction
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method NewAuction(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> duration, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> lease_period_index)
+        public static Method NewAuction(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> duration, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> lease_period_index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(duration.Encode());
@@ -192,7 +192,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> bid
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Bid(Ajuna.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> para, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> auction_index, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> first_slot, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> last_slot, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount)
+        public static Method Bid(Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> para, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> auction_index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> first_slot, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> last_slot, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());
@@ -221,9 +221,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> EndingPeriod
         ///  The number of blocks over which an auction may be retroactively ended.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 EndingPeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 EndingPeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x40190100");
             return result;
         }
@@ -234,9 +234,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  `EndingPeriod` / `SampleLength` = Total # of Samples
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SampleLength()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SampleLength()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x14000000");
             return result;
         }
@@ -244,9 +244,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> SlotRangeCount
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SlotRangeCount()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SlotRangeCount()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x24000000");
             return result;
         }
@@ -254,9 +254,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> LeasePeriodsPerSlot
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 LeasePeriodsPerSlot()
+        public Substrate.NetApi.Model.Types.Primitive.U32 LeasePeriodsPerSlot()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x08000000");
             return result;
         }

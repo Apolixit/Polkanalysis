@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,21 +20,21 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
     /// <summary>
     /// >> 625 - Composite[pallet_referenda.types.DecidingStatus]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class DecidingStatus : BaseType
     {
         
         /// <summary>
         /// >> since
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _since;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _since;
         
         /// <summary>
         /// >> confirming
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> _confirming;
+        private Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> _confirming;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Since
+        public Substrate.NetApi.Model.Types.Primitive.U32 Since
         {
             get
             {
@@ -46,7 +46,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> Confirming
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> Confirming
         {
             get
             {
@@ -74,9 +74,9 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Since = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Since = new Substrate.NetApi.Model.Types.Primitive.U32();
             Since.Decode(byteArray, ref p);
-            Confirming = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32>();
+            Confirming = new Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32>();
             Confirming.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

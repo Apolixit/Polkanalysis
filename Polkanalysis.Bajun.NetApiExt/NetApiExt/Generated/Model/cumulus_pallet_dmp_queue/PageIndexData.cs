@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,26 +20,26 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue
     /// <summary>
     /// >> 358 - Composite[cumulus_pallet_dmp_queue.PageIndexData]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class PageIndexData : BaseType
     {
         
         /// <summary>
         /// >> begin_used
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _beginUsed;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _beginUsed;
         
         /// <summary>
         /// >> end_used
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _endUsed;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _endUsed;
         
         /// <summary>
         /// >> overweight_count
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _overweightCount;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _overweightCount;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 BeginUsed
+        public Substrate.NetApi.Model.Types.Primitive.U32 BeginUsed
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 EndUsed
+        public Substrate.NetApi.Model.Types.Primitive.U32 EndUsed
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 OverweightCount
+        public Substrate.NetApi.Model.Types.Primitive.U64 OverweightCount
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_dmp_queue
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            BeginUsed = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            BeginUsed = new Substrate.NetApi.Model.Types.Primitive.U32();
             BeginUsed.Decode(byteArray, ref p);
-            EndUsed = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            EndUsed = new Substrate.NetApi.Model.Types.Primitive.U32();
             EndUsed.Decode(byteArray, ref p);
-            OverweightCount = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            OverweightCount = new Substrate.NetApi.Model.Types.Primitive.U64();
             OverweightCount.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

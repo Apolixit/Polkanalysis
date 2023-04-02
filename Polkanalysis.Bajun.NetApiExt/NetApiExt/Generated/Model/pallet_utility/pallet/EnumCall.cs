@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -33,7 +33,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_utility.pallet
     /// >> 173 - Variant[pallet_utility.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U16, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>>
+    public sealed class EnumCall : BaseEnumExt<Call, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, BaseTuple<Substrate.NetApi.Model.Types.Primitive.U16, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumOriginCaller, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall>>
     {
     }
 }

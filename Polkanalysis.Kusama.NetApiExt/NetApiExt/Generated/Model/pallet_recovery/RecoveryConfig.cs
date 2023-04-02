@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,19 +20,19 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
     /// <summary>
     /// >> 669 - Composite[pallet_recovery.RecoveryConfig]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class RecoveryConfig : BaseType
     {
         
         /// <summary>
         /// >> delay_period
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _delayPeriod;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _delayPeriod;
         
         /// <summary>
         /// >> deposit
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _deposit;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _deposit;
         
         /// <summary>
         /// >> friends
@@ -42,9 +42,9 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
         /// <summary>
         /// >> threshold
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U16 _threshold;
+        private Substrate.NetApi.Model.Types.Primitive.U16 _threshold;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 DelayPeriod
+        public Substrate.NetApi.Model.Types.Primitive.U32 DelayPeriod
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Deposit
+        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U16 Threshold
+        public Substrate.NetApi.Model.Types.Primitive.U16 Threshold
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            DelayPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            DelayPeriod = new Substrate.NetApi.Model.Types.Primitive.U32();
             DelayPeriod.Decode(byteArray, ref p);
-            Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Deposit = new Substrate.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
             Friends = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24();
             Friends.Decode(byteArray, ref p);
-            Threshold = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            Threshold = new Substrate.NetApi.Model.Types.Primitive.U16();
             Threshold.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

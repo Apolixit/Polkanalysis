@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
         Initialization = 2,
     }
 
-    public sealed class EnumPhase : BaseEnumExt<Phase, Ajuna.NetApi.Model.Types.Primitive.U32, BaseVoid, BaseVoid>
+    public sealed class EnumPhase : BaseEnumExt<Phase, Substrate.NetApi.Model.Types.Primitive.U32, BaseVoid, BaseVoid>
     {
     }
 }

@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
     /// <summary>
     /// >> 360 - Composite[polkadot_primitives.v2.DisputeStatementSet]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class DisputeStatementSet : BaseType
     {
         
@@ -32,12 +32,12 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
         /// <summary>
         /// >> session
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _session;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _session;
         
         /// <summary>
         /// >> statements
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> _statements;
+        private Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> _statements;
         
         public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash CandidateHash
         {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Session
+        public Substrate.NetApi.Model.Types.Primitive.U32 Session
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> Statements
+        public Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>> Statements
         {
             get
             {
@@ -94,9 +94,9 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2
             var start = p;
             CandidateHash = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash();
             CandidateHash.Decode(byteArray, ref p);
-            Session = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Session = new Substrate.NetApi.Model.Types.Primitive.U32();
             Session.Decode(byteArray, ref p);
-            Statements = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>>();
+            Statements = new Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumDisputeStatement, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Signature>>();
             Statements.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

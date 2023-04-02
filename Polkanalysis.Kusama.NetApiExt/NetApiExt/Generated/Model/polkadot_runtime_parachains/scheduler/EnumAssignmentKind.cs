@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -26,7 +26,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_paracha
     /// <summary>
     /// >> 783 - Variant[polkadot_runtime_parachains.scheduler.AssignmentKind]
     /// </summary>
-    public sealed class EnumAssignmentKind : BaseEnumExt<AssignmentKind, BaseVoid, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumAssignmentKind : BaseEnumExt<AssignmentKind, BaseVoid, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.collator_app.Public, Substrate.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,14 +30,14 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public ImOnlineStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "HeartbeatAfter"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "Keys"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "ReceivedHeartbeats"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "AuthoredBlocks"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "HeartbeatAfter"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "Keys"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "ReceivedHeartbeats"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "AuthoredBlocks"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
         }
         
         /// <summary>
@@ -56,7 +56,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string HeartbeatAfterParams()
         {
-            return RequestGenerator.GetStorage("ImOnline", "HeartbeatAfter", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ImOnline", "HeartbeatAfter", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -73,10 +73,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  progress estimate from `NextSessionRotation`, as those estimates should be
         ///  more accurate then the value we calculate for `HeartbeatAfter`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> HeartbeatAfter(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> HeartbeatAfter(CancellationToken token)
         {
             string parameters = ImOnlineStorage.HeartbeatAfterParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
@@ -85,7 +85,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string KeysParams()
         {
-            return RequestGenerator.GetStorage("ImOnline", "Keys", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ImOnline", "Keys", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -103,11 +103,11 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
         ///  `WrapperOpaque<BoundedOpaqueNetworkState>`.
         /// </summary>
-        public static string ReceivedHeartbeatsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32> key)
+        public static string ReceivedHeartbeatsParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32> key)
         {
-            return RequestGenerator.GetStorage("ImOnline", "ReceivedHeartbeats", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
+            return RequestGenerator.GetStorage("ImOnline", "ReceivedHeartbeats", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
         }
         
         /// <summary>
@@ -115,7 +115,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
         ///  `WrapperOpaque<BoundedOpaqueNetworkState>`.
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque> ReceivedHeartbeats(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque> ReceivedHeartbeats(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
         {
             string parameters = ImOnlineStorage.ReceivedHeartbeatsParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque>(parameters, token);
@@ -126,11 +126,11 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  For each session index, we keep a mapping of `ValidatorId<T>` to the
         ///  number of blocks authored by the given authority.
         /// </summary>
-        public static string AuthoredBlocksParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string AuthoredBlocksParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
         {
-            return RequestGenerator.GetStorage("ImOnline", "AuthoredBlocks", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
+            return RequestGenerator.GetStorage("ImOnline", "AuthoredBlocks", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
         }
         
         /// <summary>
@@ -138,10 +138,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  For each session index, we keep a mapping of `ValidatorId<T>` to the
         ///  number of blocks authored by the given authority.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AuthoredBlocks(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> AuthoredBlocks(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
         {
             string parameters = ImOnlineStorage.AuthoredBlocksParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
     }
     

@@ -14,13 +14,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Timestamp
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Ajuna.NetApi.Model.Types.Primitive.U64> NowAsync(CancellationToken token);
+        public Task<Substrate.NetApi.Model.Types.Primitive.U64> NowAsync(CancellationToken token);
 
         /// <summary>
         /// Did the timestamp get updated in this block?
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Ajuna.NetApi.Model.Types.Primitive.Bool> DidUpdateAsync(CancellationToken token);
+        public Task<Substrate.NetApi.Model.Types.Primitive.Bool> DidUpdateAsync(CancellationToken token);
     }
 }

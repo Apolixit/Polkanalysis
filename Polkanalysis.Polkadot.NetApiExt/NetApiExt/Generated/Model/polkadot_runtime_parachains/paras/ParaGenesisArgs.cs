@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parac
     /// <summary>
     /// >> 677 - Composite[polkadot_runtime_parachains.paras.ParaGenesisArgs]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class ParaGenesisArgs : BaseType
     {
         
@@ -37,7 +37,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parac
         /// <summary>
         /// >> para_kind
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.Bool _paraKind;
+        private Substrate.NetApi.Model.Types.Primitive.Bool _paraKind;
         
         public Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData GenesisHead
         {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parac
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.Bool ParaKind
+        public Substrate.NetApi.Model.Types.Primitive.Bool ParaKind
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parac
             GenesisHead.Decode(byteArray, ref p);
             ValidationCode = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode();
             ValidationCode.Decode(byteArray, ref p);
-            ParaKind = new Ajuna.NetApi.Model.Types.Primitive.Bool();
+            ParaKind = new Substrate.NetApi.Model.Types.Primitive.Bool();
             ParaKind.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

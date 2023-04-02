@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,16 +20,16 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_ranked_collective
     /// <summary>
     /// >> 638 - Composite[pallet_ranked_collective.MemberRecord]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class MemberRecord : BaseType
     {
         
         /// <summary>
         /// >> rank
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U16 _rank;
+        private Substrate.NetApi.Model.Types.Primitive.U16 _rank;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U16 Rank
+        public Substrate.NetApi.Model.Types.Primitive.U16 Rank
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_ranked_collective
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Rank = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            Rank = new Substrate.NetApi.Model.Types.Primitive.U16();
             Rank.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -24,7 +24,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.dige
     /// <summary>
     /// >> 195 - Variant[sp_consensus_babe.digests.NextConfigDescriptor]
     /// </summary>
-    public sealed class EnumNextConfigDescriptor : BaseEnumExt<NextConfigDescriptor, BaseVoid, BaseTuple<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>>
+    public sealed class EnumNextConfigDescriptor : BaseEnumExt<NextConfigDescriptor, BaseVoid, BaseTuple<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>>
     {
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore

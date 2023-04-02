@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,12 +30,12 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public NisStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "QueueTotals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT34)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "Queues"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT35)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "Summary"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet.SummaryRecord)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "Receipts"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet.ReceiptRecord)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "QueueTotals"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT34)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "Queues"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT35)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "Summary"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet.SummaryRecord)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Nis", "Receipts"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet.ReceiptRecord)));
         }
         
         /// <summary>
@@ -48,7 +48,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string QueueTotalsParams()
         {
-            return RequestGenerator.GetStorage("Nis", "QueueTotals", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Nis", "QueueTotals", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -69,10 +69,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> QueuesParams
         ///  The queues of bids. Indexed by duration (in `Period`s).
         /// </summary>
-        public static string QueuesParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string QueuesParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Nis", "Queues", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Nis", "Queues", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -80,7 +80,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> Queues
         ///  The queues of bids. Indexed by duration (in `Period`s).
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT35> Queues(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT35> Queues(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NisStorage.QueuesParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT35>(parameters, token);
@@ -92,7 +92,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string SummaryParams()
         {
-            return RequestGenerator.GetStorage("Nis", "Summary", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Nis", "Summary", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -109,10 +109,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> ReceiptsParams
         ///  The currently outstanding receipts, indexed according to the order of creation.
         /// </summary>
-        public static string ReceiptsParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string ReceiptsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Nis", "Receipts", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Nis", "Receipts", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -120,7 +120,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> Receipts
         ///  The currently outstanding receipts, indexed according to the order of creation.
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet.ReceiptRecord> Receipts(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet.ReceiptRecord> Receipts(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = NisStorage.ReceiptsParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet.ReceiptRecord>(parameters, token);
@@ -134,7 +134,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> place_bid
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method PlaceBid(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Ajuna.NetApi.Model.Types.Primitive.U32 duration)
+        public static Method PlaceBid(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Substrate.NetApi.Model.Types.Primitive.U32 duration)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -146,7 +146,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> retract_bid
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method RetractBid(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> amount, Ajuna.NetApi.Model.Types.Primitive.U32 duration)
+        public static Method RetractBid(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Substrate.NetApi.Model.Types.Primitive.U32 duration)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(amount.Encode());
@@ -168,7 +168,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> thaw
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Thaw(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> index, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128> portion)
+        public static Method Thaw(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> index, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128> portion)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());

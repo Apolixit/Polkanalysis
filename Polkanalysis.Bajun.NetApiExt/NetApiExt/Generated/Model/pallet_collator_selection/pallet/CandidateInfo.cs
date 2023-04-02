@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_collator_selection
     /// <summary>
     /// >> 329 - Composite[pallet_collator_selection.pallet.CandidateInfo]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class CandidateInfo : BaseType
     {
         
@@ -32,7 +32,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_collator_selection
         /// <summary>
         /// >> deposit
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _deposit;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _deposit;
         
         public Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
         {
@@ -46,7 +46,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_collator_selection
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Deposit
+        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_collator_selection
             var start = p;
             Who = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);
-            Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Deposit = new Substrate.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

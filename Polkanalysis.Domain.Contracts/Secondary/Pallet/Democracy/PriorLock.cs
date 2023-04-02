@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,9 +40,9 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Democracy
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            BlockNumber = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            BlockNumber = new Substrate.NetApi.Model.Types.Primitive.U32();
             BlockNumber.Decode(byteArray, ref p);
-            Balance = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Balance = new Substrate.NetApi.Model.Types.Primitive.U128();
             Balance.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

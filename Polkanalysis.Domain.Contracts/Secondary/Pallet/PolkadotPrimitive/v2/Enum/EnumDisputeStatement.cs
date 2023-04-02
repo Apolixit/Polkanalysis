@@ -1,4 +1,4 @@
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum

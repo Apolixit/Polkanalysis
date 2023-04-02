@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,14 +20,14 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
     /// <summary>
     /// >> 375 - Composite[pallet_ajuna_awesome_avatars.types.Avatar]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Avatar : BaseType
     {
         
         /// <summary>
         /// >> season_id
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U16 _seasonId;
+        private Substrate.NetApi.Model.Types.Primitive.U16 _seasonId;
         
         /// <summary>
         /// >> dna
@@ -37,9 +37,9 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
         /// <summary>
         /// >> souls
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _souls;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _souls;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U16 SeasonId
+        public Substrate.NetApi.Model.Types.Primitive.U16 SeasonId
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Souls
+        public Substrate.NetApi.Model.Types.Primitive.U32 Souls
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            SeasonId = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            SeasonId = new Substrate.NetApi.Model.Types.Primitive.U16();
             SeasonId.Decode(byteArray, ref p);
             Dna = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT1();
             Dna.Decode(byteArray, ref p);
-            Souls = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Souls = new Substrate.NetApi.Model.Types.Primitive.U32();
             Souls.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ajuna.NetApi\Ajuna.NetApi\Ajuna.NetApi.csproj" />
+    <ProjectReference Include="..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj" />
   </ItemGroup>
 

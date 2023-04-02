@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,12 +30,12 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public BountiesStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyCount"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "Bounties"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyDescriptions"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyApprovals"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "Bounties"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyDescriptions"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyApprovals"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
         }
         
         /// <summary>
@@ -44,7 +44,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string BountyCountParams()
         {
-            return RequestGenerator.GetStorage("Bounties", "BountyCount", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Bounties", "BountyCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -60,10 +60,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountyCount
         ///  Number of bounty proposals that have been made.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> BountyCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> BountyCount(CancellationToken token)
         {
             string parameters = BountiesStorage.BountyCountParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -71,10 +71,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountiesParams
         ///  Bounties that have been made.
         /// </summary>
-        public static string BountiesParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string BountiesParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Bounties", "Bounties", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Bounties", "Bounties", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -91,7 +91,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> Bounties
         ///  Bounties that have been made.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty> Bounties(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty> Bounties(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = BountiesStorage.BountiesParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty>(parameters, token);
@@ -102,10 +102,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountyDescriptionsParams
         ///  The description of each bounty.
         /// </summary>
-        public static string BountyDescriptionsParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string BountyDescriptionsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Bounties", "BountyDescriptions", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Bounties", "BountyDescriptions", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -122,7 +122,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountyDescriptions
         ///  The description of each bounty.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25> BountyDescriptions(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25> BountyDescriptions(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = BountiesStorage.BountyDescriptionsParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25>(parameters, token);
@@ -135,7 +135,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string BountyApprovalsParams()
         {
-            return RequestGenerator.GetStorage("Bounties", "BountyApprovals", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Bounties", "BountyApprovals", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -166,7 +166,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> propose_bounty
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ProposeBounty(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> value, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> description)
+        public static Method ProposeBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> value, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> description)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(value.Encode());
@@ -178,7 +178,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> approve_bounty
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ApproveBounty(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id)
+        public static Method ApproveBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -189,7 +189,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> propose_curator
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ProposeCurator(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress curator, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> fee)
+        public static Method ProposeCurator(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress curator, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> fee)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -202,7 +202,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> unassign_curator
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method UnassignCurator(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id)
+        public static Method UnassignCurator(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -213,7 +213,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> accept_curator
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AcceptCurator(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id)
+        public static Method AcceptCurator(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -224,7 +224,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> award_bounty
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AwardBounty(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
+        public static Method AwardBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -236,7 +236,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> claim_bounty
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ClaimBounty(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id)
+        public static Method ClaimBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -247,7 +247,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> close_bounty
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CloseBounty(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id)
+        public static Method CloseBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -258,7 +258,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> extend_bounty_expiry
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ExtendBountyExpiry(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> bounty_id, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8> remark)
+        public static Method ExtendBountyExpiry(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> remark)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bounty_id.Encode());
@@ -274,9 +274,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountyDepositBase
         ///  The amount held on deposit for placing a bounty proposal.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 BountyDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 BountyDepositBase()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x00E40B54020000000000000000000000");
             return result;
         }
@@ -285,9 +285,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountyDepositPayoutDelay
         ///  The delay period for which a bounty beneficiary need to wait before claim the payout.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 BountyDepositPayoutDelay()
+        public Substrate.NetApi.Model.Types.Primitive.U32 BountyDepositPayoutDelay()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00C20100");
             return result;
         }
@@ -296,9 +296,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountyUpdatePeriod
         ///  Bounty duration in blocks.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 BountyUpdatePeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 BountyUpdatePeriod()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x80C61300");
             return result;
         }
@@ -321,9 +321,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CuratorDepositMax
         ///  Maximum amount of funds that should be placed in a deposit for making a proposal.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128> CuratorDepositMax()
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128> CuratorDepositMax()
         {
-            var result = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128>();
+            var result = new Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128>();
             result.Create("0x0100204AA9D10100000000000000000000");
             return result;
         }
@@ -332,9 +332,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CuratorDepositMin
         ///  Minimum amount of funds that should be placed in a deposit for making a proposal.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128> CuratorDepositMin()
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128> CuratorDepositMin()
         {
-            var result = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U128>();
+            var result = new Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128>();
             result.Create("0x0100E87648170000000000000000000000");
             return result;
         }
@@ -343,9 +343,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> BountyValueMinimum
         ///  Minimum value for a bounty.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 BountyValueMinimum()
+        public Substrate.NetApi.Model.Types.Primitive.U128 BountyValueMinimum()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x00E87648170000000000000000000000");
             return result;
         }
@@ -354,9 +354,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> DataDepositPerByte
         ///  The amount held on deposit per byte within the tip report reason or bounty description.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
+        public Substrate.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x00E1F505000000000000000000000000");
             return result;
         }
@@ -367,9 +367,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Benchmarks depend on this value, be sure to update weights file when changing this value
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaximumReasonLength()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaximumReasonLength()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00400000");
             return result;
         }

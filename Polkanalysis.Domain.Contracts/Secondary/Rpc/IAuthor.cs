@@ -1,7 +1,7 @@
-﻿using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types;
+﻿using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Polkanalysis.Domain.Contracts.Secondary.Rpc
 {
     /// <summary>
-    /// Extract from <see cref="Ajuna.NetApi.Modules.Author"/>
+    /// Extract from <see cref="Substrate.NetApi.Modules.Author"/>
     /// </summary>
     //public interface IAuthor
     //{

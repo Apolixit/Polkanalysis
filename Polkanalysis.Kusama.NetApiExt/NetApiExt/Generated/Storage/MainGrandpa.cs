@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,13 +30,13 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public GrandpaStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "State"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "PendingChange"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "NextForced"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "Stalled"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "CurrentSetId"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "SetIdSession"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U64), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "State"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_grandpa.EnumStoredState)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "PendingChange"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_grandpa.StoredPendingChange)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "NextForced"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "Stalled"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "CurrentSetId"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U64)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Grandpa", "SetIdSession"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U64), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
         }
         
         /// <summary>
@@ -45,7 +45,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string StateParams()
         {
-            return RequestGenerator.GetStorage("Grandpa", "State", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Grandpa", "State", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -64,7 +64,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PendingChangeParams()
         {
-            return RequestGenerator.GetStorage("Grandpa", "PendingChange", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Grandpa", "PendingChange", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -83,17 +83,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string NextForcedParams()
         {
-            return RequestGenerator.GetStorage("Grandpa", "NextForced", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Grandpa", "NextForced", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> NextForced
         ///  next block number where we can force a change.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> NextForced(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> NextForced(CancellationToken token)
         {
             string parameters = GrandpaStorage.NextForcedParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
@@ -102,17 +102,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string StalledParams()
         {
-            return RequestGenerator.GetStorage("Grandpa", "Stalled", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Grandpa", "Stalled", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> Stalled
         ///  `true` if we are currently stalled.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> Stalled(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> Stalled(CancellationToken token)
         {
             string parameters = GrandpaStorage.StalledParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
         }
         
         /// <summary>
@@ -122,7 +122,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string CurrentSetIdParams()
         {
-            return RequestGenerator.GetStorage("Grandpa", "CurrentSetId", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Grandpa", "CurrentSetId", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -130,10 +130,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  The number of changes (both in terms of keys and underlying economic responsibilities)
         ///  in the "set" of Grandpa validators from genesis.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> CurrentSetId(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U64> CurrentSetId(CancellationToken token)
         {
             string parameters = GrandpaStorage.CurrentSetIdParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U64>(parameters, token);
         }
         
         /// <summary>
@@ -143,10 +143,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: `SetId` is not under user control.
         /// </summary>
-        public static string SetIdSessionParams(Ajuna.NetApi.Model.Types.Primitive.U64 key)
+        public static string SetIdSessionParams(Substrate.NetApi.Model.Types.Primitive.U64 key)
         {
-            return RequestGenerator.GetStorage("Grandpa", "SetIdSession", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Grandpa", "SetIdSession", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -157,10 +157,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: `SetId` is not under user control.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SetIdSession(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SetIdSession(Substrate.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = GrandpaStorage.SetIdSessionParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
     }
     
@@ -195,7 +195,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> note_stalled
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method NoteStalled(Ajuna.NetApi.Model.Types.Primitive.U32 delay, Ajuna.NetApi.Model.Types.Primitive.U32 best_finalized_block_number)
+        public static Method NoteStalled(Substrate.NetApi.Model.Types.Primitive.U32 delay, Substrate.NetApi.Model.Types.Primitive.U32 best_finalized_block_number)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(delay.Encode());

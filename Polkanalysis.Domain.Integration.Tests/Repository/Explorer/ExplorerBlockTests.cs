@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Integration.Tests.Contracts;
 using NUnit.Framework;
 using System;

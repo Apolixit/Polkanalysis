@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using System.Text;

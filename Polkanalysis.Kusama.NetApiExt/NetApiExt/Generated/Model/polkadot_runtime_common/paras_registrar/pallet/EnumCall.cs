@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -41,7 +41,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_common.
     /// >> 375 - Variant[polkadot_runtime_common.paras_registrar.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData>>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseVoid, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData>>
     {
     }
 }

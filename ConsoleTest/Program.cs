@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Extrinsics;
+﻿using Substrate.NetApi.Model.Extrinsics;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

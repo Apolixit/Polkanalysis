@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
     /// <summary>
     /// >> 349 - Composite[cumulus_pallet_xcmp_queue.OutboundChannelDetails]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class OutboundChannelDetails : BaseType
     {
         
@@ -37,17 +37,17 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         /// <summary>
         /// >> signals_exist
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.Bool _signalsExist;
+        private Substrate.NetApi.Model.Types.Primitive.Bool _signalsExist;
         
         /// <summary>
         /// >> first_index
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U16 _firstIndex;
+        private Substrate.NetApi.Model.Types.Primitive.U16 _firstIndex;
         
         /// <summary>
         /// >> last_index
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U16 _lastIndex;
+        private Substrate.NetApi.Model.Types.Primitive.U16 _lastIndex;
         
         public Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Recipient
         {
@@ -73,7 +73,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.Bool SignalsExist
+        public Substrate.NetApi.Model.Types.Primitive.Bool SignalsExist
         {
             get
             {
@@ -85,7 +85,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U16 FirstIndex
+        public Substrate.NetApi.Model.Types.Primitive.U16 FirstIndex
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U16 LastIndex
+        public Substrate.NetApi.Model.Types.Primitive.U16 LastIndex
         {
             get
             {
@@ -132,11 +132,11 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             Recipient.Decode(byteArray, ref p);
             State = new Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumOutboundState();
             State.Decode(byteArray, ref p);
-            SignalsExist = new Ajuna.NetApi.Model.Types.Primitive.Bool();
+            SignalsExist = new Substrate.NetApi.Model.Types.Primitive.Bool();
             SignalsExist.Decode(byteArray, ref p);
-            FirstIndex = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            FirstIndex = new Substrate.NetApi.Model.Types.Primitive.U16();
             FirstIndex.Decode(byteArray, ref p);
-            LastIndex = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            LastIndex = new Substrate.NetApi.Model.Types.Primitive.U16();
             LastIndex.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,26 +20,26 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits
     /// <summary>
     /// >> 126 - Composite[frame_system.limits.BlockWeights]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class BlockWeights : BaseType
     {
         
         /// <summary>
         /// >> base_block
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _baseBlock;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _baseBlock;
         
         /// <summary>
         /// >> max_block
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _maxBlock;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _maxBlock;
         
         /// <summary>
         /// >> per_class
         /// </summary>
         private Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2 _perClass;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 BaseBlock
+        public Substrate.NetApi.Model.Types.Primitive.U64 BaseBlock
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 MaxBlock
+        public Substrate.NetApi.Model.Types.Primitive.U64 MaxBlock
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_system.limits
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            BaseBlock = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            BaseBlock = new Substrate.NetApi.Model.Types.Primitive.U64();
             BaseBlock.Decode(byteArray, ref p);
-            MaxBlock = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            MaxBlock = new Substrate.NetApi.Model.Types.Primitive.U64();
             MaxBlock.Decode(byteArray, ref p);
             PerClass = new Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.weights.PerDispatchClassT2();
             PerClass.Decode(byteArray, ref p);

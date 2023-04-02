@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,12 +30,12 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         public CollatorSelectionStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "Invulnerables"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT17)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "Candidates"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT18)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "LastAuthoredBlock"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "DesiredCandidates"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "CandidacyBond"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "Invulnerables"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT17)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "Candidates"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT18)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "LastAuthoredBlock"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "DesiredCandidates"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("CollatorSelection", "CandidacyBond"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
         }
         
         /// <summary>
@@ -44,7 +44,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string InvulnerablesParams()
         {
-            return RequestGenerator.GetStorage("CollatorSelection", "Invulnerables", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("CollatorSelection", "Invulnerables", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string CandidatesParams()
         {
-            return RequestGenerator.GetStorage("CollatorSelection", "Candidates", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("CollatorSelection", "Candidates", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -82,8 +82,8 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string LastAuthoredBlockParams(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
         {
-            return RequestGenerator.GetStorage("CollatorSelection", "LastAuthoredBlock", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("CollatorSelection", "LastAuthoredBlock", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -91,10 +91,10 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> LastAuthoredBlock
         ///  Last block authored by collator.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> LastAuthoredBlock(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LastAuthoredBlock(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
         {
             string parameters = CollatorSelectionStorage.LastAuthoredBlockParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
@@ -105,7 +105,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string DesiredCandidatesParams()
         {
-            return RequestGenerator.GetStorage("CollatorSelection", "DesiredCandidates", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("CollatorSelection", "DesiredCandidates", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -114,10 +114,10 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  This should ideally always be less than [`Config::MaxCandidates`] for weights to be correct.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> DesiredCandidates(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> DesiredCandidates(CancellationToken token)
         {
             string parameters = CollatorSelectionStorage.DesiredCandidatesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
@@ -128,7 +128,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string CandidacyBondParams()
         {
-            return RequestGenerator.GetStorage("CollatorSelection", "CandidacyBond", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("CollatorSelection", "CandidacyBond", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -137,10 +137,10 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// 
         ///  When a collator calls `leave_intent` they immediately receive the deposit back.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U128> CandidacyBond(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> CandidacyBond(CancellationToken token)
         {
             string parameters = CollatorSelectionStorage.CandidacyBondParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U128>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
         }
     }
     
@@ -151,7 +151,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> set_invulnerables
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetInvulnerables(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> @new)
+        public static Method SetInvulnerables(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> @new)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -162,7 +162,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> set_desired_candidates
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetDesiredCandidates(Ajuna.NetApi.Model.Types.Primitive.U32 max)
+        public static Method SetDesiredCandidates(Substrate.NetApi.Model.Types.Primitive.U32 max)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(max.Encode());
@@ -173,7 +173,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> set_candidacy_bond
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetCandidacyBond(Ajuna.NetApi.Model.Types.Primitive.U128 bond)
+        public static Method SetCandidacyBond(Substrate.NetApi.Model.Types.Primitive.U128 bond)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(bond.Encode());

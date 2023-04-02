@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types;
+﻿using Substrate.NetApi.Model.Types;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 
 namespace Polkanalysis.Domain.Contracts.Runtime

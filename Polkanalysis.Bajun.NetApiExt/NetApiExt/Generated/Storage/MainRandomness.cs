@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +30,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         public RandomnessStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Randomness", "RandomMaterial"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT7)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Randomness", "RandomMaterial"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.bounded_vec.BoundedVecT7)));
         }
         
         /// <summary>
@@ -41,7 +41,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string RandomMaterialParams()
         {
-            return RequestGenerator.GetStorage("Randomness", "RandomMaterial", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Randomness", "RandomMaterial", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>

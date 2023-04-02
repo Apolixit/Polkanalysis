@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Modules;
-using Ajuna.NetApi.Modules.Contracts;
+﻿using Substrate.NetApi.Modules;
+using Substrate.NetApi.Modules.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using System;
 using System.Collections.Generic;

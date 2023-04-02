@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,21 +20,21 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc
     /// <summary>
     /// >> 169 - Composite[frame_support.traits.misc.WrapperKeepOpaque]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class WrapperKeepOpaque : BaseType
     {
         
         /// <summary>
         /// >> value0
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> _value0;
+        private Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> _value0;
         
         /// <summary>
         /// >> T
         /// </summary>
         private Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall _t;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32> Value0
+        public Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> Value0
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value0 = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>();
+            Value0 = new Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32>();
             Value0.Decode(byteArray, ref p);
             T = new Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall();
             T.Decode(byteArray, ref p);

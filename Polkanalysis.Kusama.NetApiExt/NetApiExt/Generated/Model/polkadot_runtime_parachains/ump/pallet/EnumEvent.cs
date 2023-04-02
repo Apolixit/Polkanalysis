@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -40,7 +40,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_paracha
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v2.traits.EnumOutcome>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Ajuna.NetApi.Model.Types.Primitive.U64, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
+    public sealed class EnumEvent : BaseEnumExt<Event, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v2.traits.EnumOutcome>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8, Substrate.NetApi.Model.Types.Primitive.U64, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>, BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>>
     {
     }
 }

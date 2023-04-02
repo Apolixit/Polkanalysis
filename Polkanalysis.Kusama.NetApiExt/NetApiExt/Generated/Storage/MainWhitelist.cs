@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,8 +30,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public WhitelistStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Whitelist", "WhitelistedCall"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Whitelist", "WhitelistedCall"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple)));
         }
         
         /// <summary>
@@ -39,18 +39,18 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string WhitelistedCallParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
-            return RequestGenerator.GetStorage("Whitelist", "WhitelistedCall", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Whitelist", "WhitelistedCall", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
         /// <summary>
         /// >> WhitelistedCall
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> WhitelistedCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple> WhitelistedCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = WhitelistStorage.WhitelistedCallParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
         }
     }
     
@@ -83,7 +83,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> dispatch_whitelisted_call
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method DispatchWhitelistedCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash, Ajuna.NetApi.Model.Types.Primitive.U32 call_encoded_len, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight call_weight_witness)
+        public static Method DispatchWhitelistedCall(Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256 call_hash, Substrate.NetApi.Model.Types.Primitive.U32 call_encoded_len, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight call_weight_witness)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call_hash.Encode());

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -32,7 +32,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.multiaddress
     /// <summary>
     /// >> 220 - Variant[sp_runtime.multiaddress.MultiAddress]
     /// </summary>
-    public sealed class EnumMultiAddress : BaseEnumExt<MultiAddress, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Base.BaseTuple>, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr20U8>
+    public sealed class EnumMultiAddress : BaseEnumExt<MultiAddress, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Base.BaseTuple>, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr20U8>
     {
     }
 }

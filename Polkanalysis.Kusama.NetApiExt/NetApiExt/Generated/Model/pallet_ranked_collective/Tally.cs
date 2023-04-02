@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,26 +20,26 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_ranked_collective
     /// <summary>
     /// >> 441 - Composite[pallet_ranked_collective.Tally]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Tally : BaseType
     {
         
         /// <summary>
         /// >> bare_ayes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _bareAyes;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _bareAyes;
         
         /// <summary>
         /// >> ayes
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _ayes;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _ayes;
         
         /// <summary>
         /// >> nays
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _nays;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _nays;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 BareAyes
+        public Substrate.NetApi.Model.Types.Primitive.U32 BareAyes
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_ranked_collective
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Ayes
+        public Substrate.NetApi.Model.Types.Primitive.U32 Ayes
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_ranked_collective
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Nays
+        public Substrate.NetApi.Model.Types.Primitive.U32 Nays
         {
             get
             {
@@ -92,11 +92,11 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_ranked_collective
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            BareAyes = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            BareAyes = new Substrate.NetApi.Model.Types.Primitive.U32();
             BareAyes.Decode(byteArray, ref p);
-            Ayes = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Ayes = new Substrate.NetApi.Model.Types.Primitive.U32();
             Ayes.Decode(byteArray, ref p);
-            Nays = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Nays = new Substrate.NetApi.Model.Types.Primitive.U32();
             Nays.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -1,6 +1,6 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Modules;
-using Ajuna.NetApi.Modules.Contracts;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Modules;
+using Substrate.NetApi.Modules.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Rpc;
 using System;
 using System.Collections.Generic;

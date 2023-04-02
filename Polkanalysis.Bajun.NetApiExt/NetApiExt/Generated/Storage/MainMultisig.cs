@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,29 +30,29 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         public MultisigStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Multisig", "Multisigs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8>), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Multisig)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Multisig", "Calls"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Multisig", "Multisigs"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8>), typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Multisig)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Multisig", "Calls"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>)));
         }
         
         /// <summary>
         /// >> MultisigsParams
         ///  The set of open multisig operations.
         /// </summary>
-        public static string MultisigsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8> key)
+        public static string MultisigsParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8> key)
         {
-            return RequestGenerator.GetStorage("Multisig", "Multisigs", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
+            return RequestGenerator.GetStorage("Multisig", "Multisigs", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
         }
         
         /// <summary>
         /// >> Multisigs
         ///  The set of open multisig operations.
         /// </summary>
-        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Multisig> Multisigs(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8> key, CancellationToken token)
+        public async Task<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Multisig> Multisigs(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8> key, CancellationToken token)
         {
             string parameters = MultisigStorage.MultisigsParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Multisig>(parameters, token);
@@ -63,18 +63,18 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string CallsParams(Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 key)
         {
-            return RequestGenerator.GetStorage("Multisig", "Calls", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Multisig", "Calls", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
         /// <summary>
         /// >> Calls
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>> Calls(Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>> Calls(Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 key, CancellationToken token)
         {
             string parameters = MultisigStorage.CallsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>>(parameters, token);
         }
     }
     
@@ -85,7 +85,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> as_multi_threshold_1
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AsMultiThreshold1(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
+        public static Method AsMultiThreshold1(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(other_signatories.Encode());
@@ -97,7 +97,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> as_multi
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AsMulti(Ajuna.NetApi.Model.Types.Primitive.U16 threshold, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque call, Ajuna.NetApi.Model.Types.Primitive.Bool store_call, Ajuna.NetApi.Model.Types.Primitive.U64 max_weight)
+        public static Method AsMulti(Substrate.NetApi.Model.Types.Primitive.U16 threshold, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Polkanalysis.Bajun.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperKeepOpaque call, Substrate.NetApi.Model.Types.Primitive.Bool store_call, Substrate.NetApi.Model.Types.Primitive.U64 max_weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(threshold.Encode());
@@ -113,7 +113,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> approve_as_multi
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ApproveAsMulti(Ajuna.NetApi.Model.Types.Primitive.U16 threshold, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 call_hash, Ajuna.NetApi.Model.Types.Primitive.U64 max_weight)
+        public static Method ApproveAsMulti(Substrate.NetApi.Model.Types.Primitive.U16 threshold, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 call_hash, Substrate.NetApi.Model.Types.Primitive.U64 max_weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(threshold.Encode());
@@ -128,7 +128,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> cancel_as_multi
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method CancelAsMulti(Ajuna.NetApi.Model.Types.Primitive.U16 threshold, Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint timepoint, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 call_hash)
+        public static Method CancelAsMulti(Substrate.NetApi.Model.Types.Primitive.U16 threshold, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint timepoint, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8 call_hash)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(threshold.Encode());

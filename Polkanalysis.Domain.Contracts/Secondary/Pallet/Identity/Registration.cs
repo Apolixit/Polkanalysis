@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using System;
@@ -47,7 +47,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
             var start = p;
             Judgements = new BaseVec<BaseTuple<U32, EnumJudgement>>();
             Judgements.Decode(byteArray, ref p);
-            Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Deposit = new Substrate.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
             Info = new IdentityInfo();
             Info.Decode(byteArray, ref p);

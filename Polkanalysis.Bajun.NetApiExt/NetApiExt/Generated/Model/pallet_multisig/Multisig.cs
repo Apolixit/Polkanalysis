@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig
     /// <summary>
     /// >> 167 - Composite[pallet_multisig.Multisig]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Multisig : BaseType
     {
         
@@ -32,7 +32,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> deposit
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _deposit;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _deposit;
         
         /// <summary>
         /// >> depositor
@@ -42,7 +42,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig
         /// <summary>
         /// >> approvals
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _approvals;
+        private Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> _approvals;
         
         public Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint When
         {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Deposit
+        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Approvals
+        public Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Approvals
         {
             get
             {
@@ -112,11 +112,11 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig
             var start = p;
             When = new Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_multisig.Timepoint();
             When.Decode(byteArray, ref p);
-            Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Deposit = new Substrate.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
             Depositor = new Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Depositor.Decode(byteArray, ref p);
-            Approvals = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
+            Approvals = new Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>();
             Approvals.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

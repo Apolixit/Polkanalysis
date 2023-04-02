@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
 using System;
 using System.Collections.Generic;

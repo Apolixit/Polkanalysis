@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,31 +20,31 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting
     /// <summary>
     /// >> 46 - Composite[orml_vesting.VestingSchedule]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class VestingSchedule : BaseType
     {
         
         /// <summary>
         /// >> start
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _start;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _start;
         
         /// <summary>
         /// >> period
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _period;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _period;
         
         /// <summary>
         /// >> period_count
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _periodCount;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _periodCount;
         
         /// <summary>
         /// >> per_period
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> _perPeriod;
+        private Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> _perPeriod;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Start
+        public Substrate.NetApi.Model.Types.Primitive.U32 Start
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Period
+        public Substrate.NetApi.Model.Types.Primitive.U32 Period
         {
             get
             {
@@ -68,7 +68,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 PeriodCount
+        public Substrate.NetApi.Model.Types.Primitive.U32 PeriodCount
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128> PerPeriod
+        public Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> PerPeriod
         {
             get
             {
@@ -110,13 +110,13 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.orml_vesting
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Start = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Start = new Substrate.NetApi.Model.Types.Primitive.U32();
             Start.Decode(byteArray, ref p);
-            Period = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Period = new Substrate.NetApi.Model.Types.Primitive.U32();
             Period.Decode(byteArray, ref p);
-            PeriodCount = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            PeriodCount = new Substrate.NetApi.Model.Types.Primitive.U32();
             PeriodCount.Decode(byteArray, ref p);
-            PerPeriod = new Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>();
+            PerPeriod = new Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128>();
             PerPeriod.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

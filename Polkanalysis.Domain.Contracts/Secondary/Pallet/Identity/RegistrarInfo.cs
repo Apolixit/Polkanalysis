@@ -1,6 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
-using Org.BouncyCastle.Math.EC.Endo;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;

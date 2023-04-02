@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using System;

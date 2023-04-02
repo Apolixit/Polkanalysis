@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
     /// <summary>
     /// >> 622 - Composite[pallet_referenda.types.Deposit]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Deposit : BaseType
     {
         
@@ -32,7 +32,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> amount
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _amount;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _amount;
         
         public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
         {
@@ -46,7 +46,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Amount
+        public Substrate.NetApi.Model.Types.Primitive.U128 Amount
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             var start = p;
             Who = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);
-            Amount = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Amount = new Substrate.NetApi.Model.Types.Primitive.U128();
             Amount.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

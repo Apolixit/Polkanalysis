@@ -1,11 +1,11 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
@@ -302,7 +302,7 @@ namespace Polkanalysis.Domain.Runtime
                 var hasCompositeAttribute =
                     customAttributes.Any(attr => attr.AttributeType.Name == "AjunaNodeTypeAttribute" && attr.ConstructorArguments.Any(
                         constr => constr.Value != null &&
-                        (int)constr.Value == (int)Ajuna.NetApi.Model.Types.Metadata.V14.TypeDefEnum.Composite));
+                        (int)constr.Value == (int)Substrate.NetApi.Model.Types.Metadata.V14.TypeDefEnum.Composite));
                 return hasCompositeAttribute;
             }
 

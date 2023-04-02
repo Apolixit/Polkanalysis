@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Meta;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System;

@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Core;

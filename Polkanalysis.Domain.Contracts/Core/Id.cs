@@ -1,6 +1,6 @@
-﻿using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.AjunaExtension;
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Polkanalysis.Domain.Contracts.Core
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Value = new Substrate.NetApi.Model.Types.Primitive.U32();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

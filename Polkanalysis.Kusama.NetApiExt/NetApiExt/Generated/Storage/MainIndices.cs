@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,18 +30,18 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public IndicesStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Indices", "Accounts"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.Bool>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Indices", "Accounts"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.Bool>)));
         }
         
         /// <summary>
         /// >> AccountsParams
         ///  The lookup from index to account.
         /// </summary>
-        public static string AccountsParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string AccountsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Indices", "Accounts", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Indices", "Accounts", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -49,10 +49,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> Accounts
         ///  The lookup from index to account.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.Bool>> Accounts(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.Bool>> Accounts(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = IndicesStorage.AccountsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128, Ajuna.NetApi.Model.Types.Primitive.Bool>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.Bool>>(parameters, token);
         }
     }
     
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> claim
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Claim(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method Claim(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -74,7 +74,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> transfer
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Transfer(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new, Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method Transfer(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new, Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -86,7 +86,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> free
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Free(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method Free(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -97,7 +97,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> force_transfer
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceTransfer(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new, Ajuna.NetApi.Model.Types.Primitive.U32 index, Ajuna.NetApi.Model.Types.Primitive.Bool freeze)
+        public static Method ForceTransfer(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new, Substrate.NetApi.Model.Types.Primitive.U32 index, Substrate.NetApi.Model.Types.Primitive.Bool freeze)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(@new.Encode());
@@ -110,7 +110,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> freeze
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Freeze(Ajuna.NetApi.Model.Types.Primitive.U32 index)
+        public static Method Freeze(Substrate.NetApi.Model.Types.Primitive.U32 index)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());

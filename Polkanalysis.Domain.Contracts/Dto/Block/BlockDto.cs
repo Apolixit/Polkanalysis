@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Common;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using System;

@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,14 +20,14 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
     /// <summary>
     /// >> 621 - Composite[pallet_referenda.types.ReferendumStatusT1]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class ReferendumStatusT1 : BaseType
     {
         
         /// <summary>
         /// >> track
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U16 _track;
+        private Substrate.NetApi.Model.Types.Primitive.U16 _track;
         
         /// <summary>
         /// >> origin
@@ -47,7 +47,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> submitted
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _submitted;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _submitted;
         
         /// <summary>
         /// >> submission_deposit
@@ -57,12 +57,12 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> decision_deposit
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> _decisionDeposit;
+        private Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> _decisionDeposit;
         
         /// <summary>
         /// >> deciding
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> _deciding;
+        private Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> _deciding;
         
         /// <summary>
         /// >> tally
@@ -72,14 +72,14 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// <summary>
         /// >> in_queue
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.Bool _inQueue;
+        private Substrate.NetApi.Model.Types.Primitive.Bool _inQueue;
         
         /// <summary>
         /// >> alarm
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>> _alarm;
+        private Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>> _alarm;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U16 Track
+        public Substrate.NetApi.Model.Types.Primitive.U16 Track
         {
             get
             {
@@ -127,7 +127,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Submitted
+        public Substrate.NetApi.Model.Types.Primitive.U32 Submitted
         {
             get
             {
@@ -151,7 +151,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> DecisionDeposit
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit> DecisionDeposit
         {
             get
             {
@@ -163,7 +163,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> Deciding
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus> Deciding
         {
             get
             {
@@ -187,7 +187,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.Bool InQueue
+        public Substrate.NetApi.Model.Types.Primitive.Bool InQueue
         {
             get
             {
@@ -199,7 +199,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>> Alarm
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>> Alarm
         {
             get
             {
@@ -236,7 +236,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Track = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            Track = new Substrate.NetApi.Model.Types.Primitive.U16();
             Track.Decode(byteArray, ref p);
             Origin = new Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumOriginCaller();
             Origin.Decode(byteArray, ref p);
@@ -244,19 +244,19 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             Proposal.Decode(byteArray, ref p);
             Enactment = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumDispatchTime();
             Enactment.Decode(byteArray, ref p);
-            Submitted = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Submitted = new Substrate.NetApi.Model.Types.Primitive.U32();
             Submitted.Decode(byteArray, ref p);
             SubmissionDeposit = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit();
             SubmissionDeposit.Decode(byteArray, ref p);
-            DecisionDeposit = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>();
+            DecisionDeposit = new Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.Deposit>();
             DecisionDeposit.Decode(byteArray, ref p);
-            Deciding = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus>();
+            Deciding = new Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.DecidingStatus>();
             Deciding.Decode(byteArray, ref p);
             Tally = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.types.Tally();
             Tally.Decode(byteArray, ref p);
-            InQueue = new Ajuna.NetApi.Model.Types.Primitive.Bool();
+            InQueue = new Substrate.NetApi.Model.Types.Primitive.Bool();
             InQueue.Decode(byteArray, ref p);
-            Alarm = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>>();
+            Alarm = new Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>>();
             Alarm.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

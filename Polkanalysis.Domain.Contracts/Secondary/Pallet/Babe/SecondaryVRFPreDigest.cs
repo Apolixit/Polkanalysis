@@ -1,6 +1,6 @@
-﻿using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            AuthorityIndex = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            AuthorityIndex = new Substrate.NetApi.Model.Types.Primitive.U32();
             AuthorityIndex.Decode(byteArray, ref p);
             Slot = new U64();
             Slot.Decode(byteArray, ref p);

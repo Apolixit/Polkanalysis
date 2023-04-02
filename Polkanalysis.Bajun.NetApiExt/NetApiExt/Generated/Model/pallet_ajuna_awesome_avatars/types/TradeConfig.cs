@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,16 +20,16 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
     /// <summary>
     /// >> 115 - Composite[pallet_ajuna_awesome_avatars.types.TradeConfig]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class TradeConfig : BaseType
     {
         
         /// <summary>
         /// >> open
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.Bool _open;
+        private Substrate.NetApi.Model.Types.Primitive.Bool _open;
         
-        public Ajuna.NetApi.Model.Types.Primitive.Bool Open
+        public Substrate.NetApi.Model.Types.Primitive.Bool Open
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_ajuna_awesome_avat
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Open = new Ajuna.NetApi.Model.Types.Primitive.Bool();
+            Open = new Substrate.NetApi.Model.Types.Primitive.Bool();
             Open.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

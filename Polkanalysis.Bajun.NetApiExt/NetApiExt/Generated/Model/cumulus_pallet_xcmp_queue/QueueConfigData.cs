@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,41 +20,41 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
     /// <summary>
     /// >> 352 - Composite[cumulus_pallet_xcmp_queue.QueueConfigData]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class QueueConfigData : BaseType
     {
         
         /// <summary>
         /// >> suspend_threshold
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _suspendThreshold;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _suspendThreshold;
         
         /// <summary>
         /// >> drop_threshold
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _dropThreshold;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _dropThreshold;
         
         /// <summary>
         /// >> resume_threshold
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _resumeThreshold;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _resumeThreshold;
         
         /// <summary>
         /// >> threshold_weight
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _thresholdWeight;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _thresholdWeight;
         
         /// <summary>
         /// >> weight_restrict_decay
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _weightRestrictDecay;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _weightRestrictDecay;
         
         /// <summary>
         /// >> xcmp_max_individual_weight
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U64 _xcmpMaxIndividualWeight;
+        private Substrate.NetApi.Model.Types.Primitive.U64 _xcmpMaxIndividualWeight;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SuspendThreshold
+        public Substrate.NetApi.Model.Types.Primitive.U32 SuspendThreshold
         {
             get
             {
@@ -66,7 +66,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 DropThreshold
+        public Substrate.NetApi.Model.Types.Primitive.U32 DropThreshold
         {
             get
             {
@@ -78,7 +78,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 ResumeThreshold
+        public Substrate.NetApi.Model.Types.Primitive.U32 ResumeThreshold
         {
             get
             {
@@ -90,7 +90,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 ThresholdWeight
+        public Substrate.NetApi.Model.Types.Primitive.U64 ThresholdWeight
         {
             get
             {
@@ -102,7 +102,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 WeightRestrictDecay
+        public Substrate.NetApi.Model.Types.Primitive.U64 WeightRestrictDecay
         {
             get
             {
@@ -114,7 +114,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U64 XcmpMaxIndividualWeight
+        public Substrate.NetApi.Model.Types.Primitive.U64 XcmpMaxIndividualWeight
         {
             get
             {
@@ -146,17 +146,17 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            SuspendThreshold = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            SuspendThreshold = new Substrate.NetApi.Model.Types.Primitive.U32();
             SuspendThreshold.Decode(byteArray, ref p);
-            DropThreshold = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            DropThreshold = new Substrate.NetApi.Model.Types.Primitive.U32();
             DropThreshold.Decode(byteArray, ref p);
-            ResumeThreshold = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            ResumeThreshold = new Substrate.NetApi.Model.Types.Primitive.U32();
             ResumeThreshold.Decode(byteArray, ref p);
-            ThresholdWeight = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            ThresholdWeight = new Substrate.NetApi.Model.Types.Primitive.U64();
             ThresholdWeight.Decode(byteArray, ref p);
-            WeightRestrictDecay = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            WeightRestrictDecay = new Substrate.NetApi.Model.Types.Primitive.U64();
             WeightRestrictDecay.Decode(byteArray, ref p);
-            XcmpMaxIndividualWeight = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            XcmpMaxIndividualWeight = new Substrate.NetApi.Model.Types.Primitive.U64();
             XcmpMaxIndividualWeight.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

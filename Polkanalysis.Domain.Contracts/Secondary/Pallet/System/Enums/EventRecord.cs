@@ -1,12 +1,12 @@
-﻿using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+﻿using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using Polkanalysis.Domain.Contracts.Core.Map;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
 {
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public class EventRecord : BaseType
     {
         public EventRecord() { }

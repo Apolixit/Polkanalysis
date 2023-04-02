@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Extrinsics;
+﻿using Substrate.NetApi.Model.Extrinsics;
 using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime;
@@ -48,7 +48,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
         [TestCase("0x280403000b207eba5c8501")]
         public void TimestampsExtrinsic_WithTimeSet_ShouldBeParsed(string extrinsicHash)
         {
-            var extrinsic = new Ajuna.NetApi.Model.Extrinsics.Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
+            var extrinsic = new Substrate.NetApi.Model.Extrinsics.Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
             var res = _substrateDecode.DecodeExtrinsic(extrinsic);
             Assert.IsTrue(true);
         }

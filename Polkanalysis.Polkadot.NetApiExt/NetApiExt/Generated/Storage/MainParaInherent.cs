@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,8 +30,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public ParaInherentStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "Included"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "OnChainVotes"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "Included"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "OnChainVotes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes)));
         }
         
         /// <summary>
@@ -45,7 +45,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string IncludedParams()
         {
-            return RequestGenerator.GetStorage("ParaInherent", "Included", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaInherent", "Included", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -66,10 +66,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  If this is `None` at the end of the block, we panic and render the block invalid.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple> Included(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple> Included(CancellationToken token)
         {
             string parameters = ParaInherentStorage.IncludedParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
             return result;
         }
         
@@ -79,7 +79,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string OnChainVotesParams()
         {
-            return RequestGenerator.GetStorage("ParaInherent", "OnChainVotes", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParaInherent", "OnChainVotes", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>

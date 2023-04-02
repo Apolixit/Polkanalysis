@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
     /// <summary>
     /// >> 342 - Composite[cumulus_pallet_xcmp_queue.InboundChannelDetails]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class InboundChannelDetails : BaseType
     {
         
@@ -37,7 +37,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
         /// <summary>
         /// >> message_metadata
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> _messageMetadata;
+        private Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> _messageMetadata;
         
         public Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id Sender
         {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> MessageMetadata
+        public Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>> MessageMetadata
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue
             Sender.Decode(byteArray, ref p);
             State = new Polkanalysis.Bajun.NetApiExt.Generated.Model.cumulus_pallet_xcmp_queue.EnumInboundState();
             State.Decode(byteArray, ref p);
-            MessageMetadata = new Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>>();
+            MessageMetadata = new Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_parachain.primitives.EnumXcmpMessageFormat>>();
             MessageMetadata.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

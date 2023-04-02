@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -40,7 +40,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_collective.pallet
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.Bool, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Substrate.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Substrate.NetApi.Model.Types.Primitive.Bool, Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.EnumResult>, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

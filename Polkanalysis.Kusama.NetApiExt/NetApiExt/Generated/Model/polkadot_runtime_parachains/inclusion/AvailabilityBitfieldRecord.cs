@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_paracha
     /// <summary>
     /// >> 762 - Composite[polkadot_runtime_parachains.inclusion.AvailabilityBitfieldRecord]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class AvailabilityBitfieldRecord : BaseType
     {
         
@@ -32,7 +32,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_paracha
         /// <summary>
         /// >> submitted_at
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _submittedAt;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _submittedAt;
         
         public Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield Bitfield
         {
@@ -46,7 +46,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_paracha
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SubmittedAt
+        public Substrate.NetApi.Model.Types.Primitive.U32 SubmittedAt
         {
             get
             {
@@ -76,7 +76,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_paracha
             var start = p;
             Bitfield = new Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.AvailabilityBitfield();
             Bitfield.Decode(byteArray, ref p);
-            SubmittedAt = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            SubmittedAt = new Substrate.NetApi.Model.Types.Primitive.U32();
             SubmittedAt.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

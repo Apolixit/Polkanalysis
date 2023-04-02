@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi;
+﻿using Substrate.NetApi;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System;
 using System.Collections.Generic;

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,39 +30,39 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public ParasStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PvfActiveVoteMap"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.PvfCheckActiveVoteState)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PvfActiveVoteList"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "Parachains"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "ParaLifecycles"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "Heads"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "CurrentCodeHash"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PastCodeHash"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PastCodeMeta"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaPastCodeMeta)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PastCodePruning"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "FutureCodeUpgrades"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "FutureCodeHash"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpgradeGoAheadSignal"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeGoAhead)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpgradeRestrictionSignal"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpgradeCooldowns"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpcomingUpgrades"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "ActionsQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpcomingParasGenesis"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "CodeByHashRefs"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "CodeByHash"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PvfActiveVoteMap"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.PvfCheckActiveVoteState)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PvfActiveVoteList"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "Parachains"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "ParaLifecycles"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.EnumParaLifecycle)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "Heads"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "CurrentCodeHash"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PastCodeHash"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PastCodeMeta"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaPastCodeMeta)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "PastCodePruning"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "FutureCodeUpgrades"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "FutureCodeHash"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpgradeGoAheadSignal"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeGoAhead)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpgradeRestrictionSignal"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumUpgradeRestriction)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpgradeCooldowns"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpcomingUpgrades"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "ActionsQueue"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "UpcomingParasGenesis"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "CodeByHashRefs"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Paras", "CodeByHash"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode)));
         }
         
         /// <summary>
@@ -74,8 +74,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PvfActiveVoteMapParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key)
         {
-            return RequestGenerator.GetStorage("Paras", "PvfActiveVoteMap", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "PvfActiveVoteMap", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -98,17 +98,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PvfActiveVoteListParams()
         {
-            return RequestGenerator.GetStorage("Paras", "PvfActiveVoteList", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Paras", "PvfActiveVoteList", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> PvfActiveVoteList
         ///  The list of all currently active PVF votes. Auxiliary to `PvfActiveVoteMap`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>> PvfActiveVoteList(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>> PvfActiveVoteList(CancellationToken token)
         {
             string parameters = ParasStorage.PvfActiveVoteListParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>>(parameters, token);
         }
         
         /// <summary>
@@ -119,7 +119,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string ParachainsParams()
         {
-            return RequestGenerator.GetStorage("Paras", "Parachains", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Paras", "Parachains", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -128,10 +128,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Consider using the [`ParachainsCache`] type of modifying.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> Parachains(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> Parachains(CancellationToken token)
         {
             string parameters = ParasStorage.ParachainsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
         }
         
         /// <summary>
@@ -140,8 +140,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string ParaLifecyclesParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "ParaLifecycles", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "ParaLifecycles", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -161,8 +161,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string HeadsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "Heads", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "Heads", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -184,8 +184,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string CurrentCodeHashParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "CurrentCodeHash", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "CurrentCodeHash", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -208,10 +208,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Corresponding code can be retrieved with [`CodeByHash`].
         /// </summary>
-        public static string PastCodeHashParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32> key)
+        public static string PastCodeHashParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32> key)
         {
-            return RequestGenerator.GetStorage("Paras", "PastCodeHash", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "PastCodeHash", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -222,7 +222,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Corresponding code can be retrieved with [`CodeByHash`].
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash> PastCodeHash(Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash> PastCodeHash(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
         {
             string parameters = ParasStorage.PastCodeHashParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash>(parameters, token);
@@ -236,8 +236,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PastCodeMetaParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "PastCodeMeta", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "PastCodeMeta", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -264,7 +264,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PastCodePruningParams()
         {
-            return RequestGenerator.GetStorage("Paras", "PastCodePruning", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Paras", "PastCodePruning", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -276,10 +276,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  from the time at which the parachain perceives a code upgrade as having occurred.
         ///  Multiple entries for a single para are permitted. Ordered ascending by block number.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>> PastCodePruning(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>> PastCodePruning(CancellationToken token)
         {
             string parameters = ParasStorage.PastCodePruningParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
         }
         
         /// <summary>
@@ -290,8 +290,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string FutureCodeUpgradesParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "FutureCodeUpgrades", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "FutureCodeUpgrades", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -301,10 +301,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  The change will be applied after the first parablock for this ID included which executes
         ///  in the context of a relay chain block with a number >= `expected_at`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> FutureCodeUpgrades(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> FutureCodeUpgrades(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
         {
             string parameters = ParasStorage.FutureCodeUpgradesParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
@@ -315,8 +315,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string FutureCodeHashParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "FutureCodeHash", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "FutureCodeHash", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -346,8 +346,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string UpgradeGoAheadSignalParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "UpgradeGoAheadSignal", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "UpgradeGoAheadSignal", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -383,8 +383,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string UpgradeRestrictionSignalParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "UpgradeRestrictionSignal", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "UpgradeRestrictionSignal", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -414,7 +414,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string UpgradeCooldownsParams()
         {
-            return RequestGenerator.GetStorage("Paras", "UpgradeCooldowns", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Paras", "UpgradeCooldowns", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -423,10 +423,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Ordered ascending by block number.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>> UpgradeCooldowns(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>> UpgradeCooldowns(CancellationToken token)
         {
             string parameters = ParasStorage.UpgradeCooldownsParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
         }
         
         /// <summary>
@@ -438,7 +438,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string UpcomingUpgradesParams()
         {
-            return RequestGenerator.GetStorage("Paras", "UpcomingUpgrades", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Paras", "UpcomingUpgrades", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -448,20 +448,20 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  Ordered ascending by block number.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>> UpcomingUpgrades(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>> UpcomingUpgrades(CancellationToken token)
         {
             string parameters = ParasStorage.UpcomingUpgradesParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Ajuna.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Substrate.NetApi.Model.Types.Primitive.U32>>>(parameters, token);
         }
         
         /// <summary>
         /// >> ActionsQueueParams
         ///  The actions to perform during the start of a specific session index.
         /// </summary>
-        public static string ActionsQueueParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string ActionsQueueParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Paras", "ActionsQueue", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "ActionsQueue", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -469,10 +469,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> ActionsQueue
         ///  The actions to perform during the start of a specific session index.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ActionsQueue(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ActionsQueue(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ParasStorage.ActionsQueueParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
         }
         
         /// <summary>
@@ -484,8 +484,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string UpcomingParasGenesisParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
         {
-            return RequestGenerator.GetStorage("Paras", "UpcomingParasGenesis", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "UpcomingParasGenesis", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -508,8 +508,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string CodeByHashRefsParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key)
         {
-            return RequestGenerator.GetStorage("Paras", "CodeByHashRefs", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "CodeByHashRefs", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -517,10 +517,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> CodeByHashRefs
         ///  The number of reference on the validation code in [`CodeByHash`] storage.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CodeByHashRefs(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CodeByHashRefs(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key, CancellationToken token)
         {
             string parameters = ParasStorage.CodeByHashRefsParams(key);
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
@@ -532,8 +532,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string CodeByHashParams(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCodeHash key)
         {
-            return RequestGenerator.GetStorage("Paras", "CodeByHash", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Paras", "CodeByHash", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -582,7 +582,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> force_schedule_code_upgrade
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceScheduleCodeUpgrade(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code, Ajuna.NetApi.Model.Types.Primitive.U32 relay_parent_number)
+        public static Method ForceScheduleCodeUpgrade(Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Kusama.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code, Substrate.NetApi.Model.Types.Primitive.U32 relay_parent_number)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(para.Encode());

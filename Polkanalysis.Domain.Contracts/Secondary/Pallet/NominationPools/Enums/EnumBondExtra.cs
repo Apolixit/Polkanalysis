@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums
     /// <summary>
     /// >> 370 - Variant[pallet_nomination_pools.BondExtra]
     /// </summary>
-    public sealed class EnumBondExtra : BaseEnumExt<BondExtra, Ajuna.NetApi.Model.Types.Primitive.U128, BaseVoid>
+    public sealed class EnumBondExtra : BaseEnumExt<BondExtra, Substrate.NetApi.Model.Types.Primitive.U128, BaseVoid>
     {
     }
 }

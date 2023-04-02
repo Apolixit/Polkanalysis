@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,21 +20,21 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
     /// <summary>
     /// >> 445 - Composite[frame_support.dispatch.PostDispatchInfo]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class PostDispatchInfo : BaseType
     {
         
         /// <summary>
         /// >> actual_weight
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> _actualWeight;
+        private Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> _actualWeight;
         
         /// <summary>
         /// >> pays_fee
         /// </summary>
         private Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays _paysFee;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> ActualWeight
+        public Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight> ActualWeight
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            ActualWeight = new Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>();
+            ActualWeight = new Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>();
             ActualWeight.Decode(byteArray, ref p);
             PaysFee = new Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.dispatch.EnumPays();
             PaysFee.Decode(byteArray, ref p);

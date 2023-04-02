@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,16 +20,16 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_
     /// <summary>
     /// >> 683 - Composite[sp_core.bounded.bounded_vec.BoundedVecT27]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class BoundedVecT27 : BaseType
     {
         
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition> _value;
+        private Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition> _value;
         
-        public Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition> Value
+        public Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition> Value
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition>();
+            Value = new Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_proxy.ProxyDefinition>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

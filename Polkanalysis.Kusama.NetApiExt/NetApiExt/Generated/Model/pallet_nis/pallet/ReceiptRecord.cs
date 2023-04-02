@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
     /// <summary>
     /// >> 726 - Composite[pallet_nis.pallet.ReceiptRecord]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class ReceiptRecord : BaseType
     {
         
@@ -37,7 +37,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
         /// <summary>
         /// >> expiry
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _expiry;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _expiry;
         
         public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perquintill Proportion
         {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Expiry
+        public Substrate.NetApi.Model.Types.Primitive.U32 Expiry
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
             Proportion.Decode(byteArray, ref p);
             Who = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);
-            Expiry = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Expiry = new Substrate.NetApi.Model.Types.Primitive.U32();
             Expiry.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -28,7 +28,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits
     /// <summary>
     /// >> 56 - Variant[xcm.v2.traits.Outcome]
     /// </summary>
-    public sealed class EnumOutcome : BaseEnumExt<Outcome, Ajuna.NetApi.Model.Types.Primitive.U64, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>
+    public sealed class EnumOutcome : BaseEnumExt<Outcome, Substrate.NetApi.Model.Types.Primitive.U64, BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.traits.EnumError>
     {
     }
 }

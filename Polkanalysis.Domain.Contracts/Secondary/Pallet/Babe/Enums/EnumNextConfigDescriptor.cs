@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +13,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe.Enums
         V1 = 1,
     }
 
-    public sealed class EnumNextConfigDescriptor : BaseEnumExt<NextConfigDescriptor, BaseVoid, BaseTuple<BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64,
-        Ajuna.NetApi.Model.Types.Primitive.U64>,
+    public sealed class EnumNextConfigDescriptor : BaseEnumExt<NextConfigDescriptor, BaseVoid, BaseTuple<BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64,
+        Substrate.NetApi.Model.Types.Primitive.U64>,
         EnumAllowedSlots>>
     {
     }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -26,7 +26,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1
     /// <summary>
     /// >> 414 - Variant[xcm.v1.Response]
     /// </summary>
-    public sealed class EnumResponse : BaseEnumExt<Response, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumResponse : BaseEnumExt<Response, Polkanalysis.Kusama.NetApiExt.Generated.Model.xcm.v1.multiasset.MultiAssets, Substrate.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

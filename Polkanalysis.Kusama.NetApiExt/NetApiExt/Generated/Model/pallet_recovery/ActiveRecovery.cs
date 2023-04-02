@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,26 +20,26 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
     /// <summary>
     /// >> 671 - Composite[pallet_recovery.ActiveRecovery]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class ActiveRecovery : BaseType
     {
         
         /// <summary>
         /// >> created
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _created;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _created;
         
         /// <summary>
         /// >> deposit
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _deposit;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _deposit;
         
         /// <summary>
         /// >> friends
         /// </summary>
         private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24 _friends;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 Created
+        public Substrate.NetApi.Model.Types.Primitive.U32 Created
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Deposit
+        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_recovery
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Created = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            Created = new Substrate.NetApi.Model.Types.Primitive.U32();
             Created.Decode(byteArray, ref p);
-            Deposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Deposit = new Substrate.NetApi.Model.Types.Primitive.U128();
             Deposit.Decode(byteArray, ref p);
             Friends = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT24();
             Friends.Decode(byteArray, ref p);

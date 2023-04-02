@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,44 +20,44 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
     /// <summary>
     /// >> 633 - Composite[pallet_referenda.types.TrackInfo]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class TrackInfo : BaseType
     {
         
         /// <summary>
         /// >> name
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.Str _name;
+        private Substrate.NetApi.Model.Types.Primitive.Str _name;
         
         /// <summary>
         /// >> max_deciding
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxDeciding;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxDeciding;
         
         /// <summary>
         /// >> decision_deposit
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _decisionDeposit;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _decisionDeposit;
         
         /// <summary>
         /// >> prepare_period
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _preparePeriod;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _preparePeriod;
         
         /// <summary>
         /// >> decision_period
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _decisionPeriod;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _decisionPeriod;
         
         /// <summary>
         /// >> confirm_period
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _confirmPeriod;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _confirmPeriod;
         
         /// <summary>
         /// >> min_enactment_period
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _minEnactmentPeriod;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _minEnactmentPeriod;
         
         /// <summary>
         /// >> min_approval
@@ -69,7 +69,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         /// </summary>
         private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve _minSupport;
         
-        public Ajuna.NetApi.Model.Types.Primitive.Str Name
+        public Substrate.NetApi.Model.Types.Primitive.Str Name
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxDeciding
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxDeciding
         {
             get
             {
@@ -93,7 +93,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 DecisionDeposit
+        public Substrate.NetApi.Model.Types.Primitive.U128 DecisionDeposit
         {
             get
             {
@@ -105,7 +105,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 PreparePeriod
+        public Substrate.NetApi.Model.Types.Primitive.U32 PreparePeriod
         {
             get
             {
@@ -117,7 +117,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 DecisionPeriod
+        public Substrate.NetApi.Model.Types.Primitive.U32 DecisionPeriod
         {
             get
             {
@@ -129,7 +129,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 ConfirmPeriod
+        public Substrate.NetApi.Model.Types.Primitive.U32 ConfirmPeriod
         {
             get
             {
@@ -141,7 +141,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MinEnactmentPeriod
+        public Substrate.NetApi.Model.Types.Primitive.U32 MinEnactmentPeriod
         {
             get
             {
@@ -200,19 +200,19 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Name = new Ajuna.NetApi.Model.Types.Primitive.Str();
+            Name = new Substrate.NetApi.Model.Types.Primitive.Str();
             Name.Decode(byteArray, ref p);
-            MaxDeciding = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxDeciding = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxDeciding.Decode(byteArray, ref p);
-            DecisionDeposit = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            DecisionDeposit = new Substrate.NetApi.Model.Types.Primitive.U128();
             DecisionDeposit.Decode(byteArray, ref p);
-            PreparePeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            PreparePeriod = new Substrate.NetApi.Model.Types.Primitive.U32();
             PreparePeriod.Decode(byteArray, ref p);
-            DecisionPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            DecisionPeriod = new Substrate.NetApi.Model.Types.Primitive.U32();
             DecisionPeriod.Decode(byteArray, ref p);
-            ConfirmPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            ConfirmPeriod = new Substrate.NetApi.Model.Types.Primitive.U32();
             ConfirmPeriod.Decode(byteArray, ref p);
-            MinEnactmentPeriod = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MinEnactmentPeriod = new Substrate.NetApi.Model.Types.Primitive.U32();
             MinEnactmentPeriod.Decode(byteArray, ref p);
             MinApproval = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_referenda.types.EnumCurve();
             MinApproval.Decode(byteArray, ref p);

@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Meta;
+﻿using Substrate.NetApi.Model.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common
 {
     /// <summary>
     /// Metadata contract
-    /// Based on <see cref="Ajuna.NetApi.Model.Meta.MetaData"/> implementation
+    /// Based on <see cref="Substrate.NetApi.Model.Meta.MetaData"/> implementation
     /// </summary>
     public interface IMetadata
     {

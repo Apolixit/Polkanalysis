@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,56 +20,56 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
     /// <summary>
     /// >> 148 - Composite[polkadot_primitives.v2.AbridgedHostConfiguration]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class AbridgedHostConfiguration : BaseType
     {
         
         /// <summary>
         /// >> max_code_size
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxCodeSize;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxCodeSize;
         
         /// <summary>
         /// >> max_head_data_size
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxHeadDataSize;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxHeadDataSize;
         
         /// <summary>
         /// >> max_upward_queue_count
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxUpwardQueueCount;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxUpwardQueueCount;
         
         /// <summary>
         /// >> max_upward_queue_size
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxUpwardQueueSize;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxUpwardQueueSize;
         
         /// <summary>
         /// >> max_upward_message_size
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxUpwardMessageSize;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxUpwardMessageSize;
         
         /// <summary>
         /// >> max_upward_message_num_per_candidate
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _maxUpwardMessageNumPerCandidate;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _maxUpwardMessageNumPerCandidate;
         
         /// <summary>
         /// >> hrmp_max_message_num_per_candidate
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _hrmpMaxMessageNumPerCandidate;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _hrmpMaxMessageNumPerCandidate;
         
         /// <summary>
         /// >> validation_upgrade_cooldown
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _validationUpgradeCooldown;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _validationUpgradeCooldown;
         
         /// <summary>
         /// >> validation_upgrade_delay
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U32 _validationUpgradeDelay;
+        private Substrate.NetApi.Model.Types.Primitive.U32 _validationUpgradeDelay;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxCodeSize
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxCodeSize
         {
             get
             {
@@ -81,7 +81,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxHeadDataSize
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxHeadDataSize
         {
             get
             {
@@ -93,7 +93,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxUpwardQueueCount
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxUpwardQueueCount
         {
             get
             {
@@ -105,7 +105,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxUpwardQueueSize
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxUpwardQueueSize
         {
             get
             {
@@ -117,7 +117,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxUpwardMessageSize
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxUpwardMessageSize
         {
             get
             {
@@ -129,7 +129,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxUpwardMessageNumPerCandidate
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxUpwardMessageNumPerCandidate
         {
             get
             {
@@ -141,7 +141,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 HrmpMaxMessageNumPerCandidate
+        public Substrate.NetApi.Model.Types.Primitive.U32 HrmpMaxMessageNumPerCandidate
         {
             get
             {
@@ -153,7 +153,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 ValidationUpgradeCooldown
+        public Substrate.NetApi.Model.Types.Primitive.U32 ValidationUpgradeCooldown
         {
             get
             {
@@ -165,7 +165,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U32 ValidationUpgradeDelay
+        public Substrate.NetApi.Model.Types.Primitive.U32 ValidationUpgradeDelay
         {
             get
             {
@@ -200,23 +200,23 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.polkadot_primitives.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            MaxCodeSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxCodeSize = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxCodeSize.Decode(byteArray, ref p);
-            MaxHeadDataSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxHeadDataSize = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxHeadDataSize.Decode(byteArray, ref p);
-            MaxUpwardQueueCount = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxUpwardQueueCount = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxUpwardQueueCount.Decode(byteArray, ref p);
-            MaxUpwardQueueSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxUpwardQueueSize = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxUpwardQueueSize.Decode(byteArray, ref p);
-            MaxUpwardMessageSize = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxUpwardMessageSize = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxUpwardMessageSize.Decode(byteArray, ref p);
-            MaxUpwardMessageNumPerCandidate = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            MaxUpwardMessageNumPerCandidate = new Substrate.NetApi.Model.Types.Primitive.U32();
             MaxUpwardMessageNumPerCandidate.Decode(byteArray, ref p);
-            HrmpMaxMessageNumPerCandidate = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            HrmpMaxMessageNumPerCandidate = new Substrate.NetApi.Model.Types.Primitive.U32();
             HrmpMaxMessageNumPerCandidate.Decode(byteArray, ref p);
-            ValidationUpgradeCooldown = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            ValidationUpgradeCooldown = new Substrate.NetApi.Model.Types.Primitive.U32();
             ValidationUpgradeCooldown.Decode(byteArray, ref p);
-            ValidationUpgradeDelay = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            ValidationUpgradeDelay = new Substrate.NetApi.Model.Types.Primitive.U32();
             ValidationUpgradeDelay.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

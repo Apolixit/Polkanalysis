@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Newtonsoft.Json.Linq;
 using NSubstitute;

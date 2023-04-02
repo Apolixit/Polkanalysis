@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,21 +20,21 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
     /// <summary>
     /// >> 723 - Composite[pallet_nis.pallet.Bid]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Bid : BaseType
     {
         
         /// <summary>
         /// >> amount
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _amount;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _amount;
         
         /// <summary>
         /// >> who
         /// </summary>
         private Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 _who;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Amount
+        public Substrate.NetApi.Model.Types.Primitive.U128 Amount
         {
             get
             {
@@ -74,7 +74,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_nis.pallet
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Amount = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Amount = new Substrate.NetApi.Model.Types.Primitive.U128();
             Amount.Decode(byteArray, ref p);
             Who = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Who.Decode(byteArray, ref p);

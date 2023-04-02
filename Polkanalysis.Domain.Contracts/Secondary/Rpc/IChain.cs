@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Polkanalysis.Domain.Contracts.Secondary.Rpc
 {
     /// <summary>
-    /// Extract from <see cref="Ajuna.NetApi.Modules.Chain"/>
+    /// Extract from <see cref="Substrate.NetApi.Modules.Chain"/>
     /// </summary>
     //public interface IChain
     //{

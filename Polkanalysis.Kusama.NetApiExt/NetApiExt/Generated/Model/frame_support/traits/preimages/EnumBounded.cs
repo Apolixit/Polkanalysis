@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -28,7 +28,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.frame_support.traits.pre
     /// <summary>
     /// >> 71 - Variant[frame_support.traits.preimages.Bounded]
     /// </summary>
-    public sealed class EnumBounded : BaseEnumExt<Bounded, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT2, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumBounded : BaseEnumExt<Bounded, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT2, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Substrate.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

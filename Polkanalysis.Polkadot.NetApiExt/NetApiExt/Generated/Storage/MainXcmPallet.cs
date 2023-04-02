@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,23 +30,23 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public XcmPalletStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "QueryCounter"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "Queries"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U64), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "AssetTraps"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "SafeXcmVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "SupportedVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionNotifiers"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionNotifyTargets"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionDiscoveryQueue"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT31)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "CurrentMigration"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "QueryCounter"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U64)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "Queries"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U64), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "AssetTraps"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "SafeXcmVersion"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "SupportedVersion"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionNotifiers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Substrate.NetApi.Model.Types.Primitive.U64)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionNotifyTargets"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation>), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U32>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "VersionDiscoveryQueue"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT31)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("XcmPallet", "CurrentMigration"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumVersionMigrationStage)));
         }
         
         /// <summary>
@@ -55,7 +55,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string QueryCounterParams()
         {
-            return RequestGenerator.GetStorage("XcmPallet", "QueryCounter", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("XcmPallet", "QueryCounter", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -71,10 +71,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> QueryCounter
         ///  The latest available query index.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> QueryCounter(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U64> QueryCounter(CancellationToken token)
         {
             string parameters = XcmPalletStorage.QueryCounterParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U64>(parameters, token);
             return result;
         }
         
@@ -82,10 +82,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> QueriesParams
         ///  The ongoing queries.
         /// </summary>
-        public static string QueriesParams(Ajuna.NetApi.Model.Types.Primitive.U64 key)
+        public static string QueriesParams(Substrate.NetApi.Model.Types.Primitive.U64 key)
         {
-            return RequestGenerator.GetStorage("XcmPallet", "Queries", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("XcmPallet", "Queries", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -102,7 +102,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> Queries
         ///  The ongoing queries.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus> Queries(Ajuna.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus> Queries(Substrate.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.QueriesParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_xcm.pallet.EnumQueryStatus>(parameters, token);
@@ -118,8 +118,8 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string AssetTrapsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
         {
-            return RequestGenerator.GetStorage("XcmPallet", "AssetTraps", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Identity}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("XcmPallet", "AssetTraps", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -139,10 +139,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Key is the blake2 256 hash of (origin, versioned `MultiAssets`) pair. Value is the number of
         ///  times this pair has been trapped (usually just 1 if it exists at all).
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> AssetTraps(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> AssetTraps(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.AssetTrapsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -153,7 +153,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string SafeXcmVersionParams()
         {
-            return RequestGenerator.GetStorage("XcmPallet", "SafeXcmVersion", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("XcmPallet", "SafeXcmVersion", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -170,10 +170,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Default version to encode XCM when latest version of destination is unknown. If `None`,
         ///  then the destinations whose XCM version is unknown are considered unreachable.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SafeXcmVersion(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SafeXcmVersion(CancellationToken token)
         {
             string parameters = XcmPalletStorage.SafeXcmVersionParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -181,11 +181,11 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SupportedVersionParams
         ///  The Latest versions that we know various locations support.
         /// </summary>
-        public static string SupportedVersionParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
+        public static string SupportedVersionParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
         {
-            return RequestGenerator.GetStorage("XcmPallet", "SupportedVersion", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
+            return RequestGenerator.GetStorage("XcmPallet", "SupportedVersion", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
         }
         
         /// <summary>
@@ -201,10 +201,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SupportedVersion
         ///  The Latest versions that we know various locations support.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SupportedVersion(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SupportedVersion(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.SupportedVersionParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -212,11 +212,11 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> VersionNotifiersParams
         ///  All locations that we have requested version notifications from.
         /// </summary>
-        public static string VersionNotifiersParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
+        public static string VersionNotifiersParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
         {
-            return RequestGenerator.GetStorage("XcmPallet", "VersionNotifiers", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
+            return RequestGenerator.GetStorage("XcmPallet", "VersionNotifiers", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
         }
         
         /// <summary>
@@ -232,10 +232,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> VersionNotifiers
         ///  All locations that we have requested version notifications from.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> VersionNotifiers(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U64> VersionNotifiers(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionNotifiersParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U64>(parameters, token);
             return result;
         }
         
@@ -244,11 +244,11 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The target locations that are subscribed to our version changes, as well as the most recent
         ///  of our versions we informed them of.
         /// </summary>
-        public static string VersionNotifyTargetsParams(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
+        public static string VersionNotifyTargetsParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key)
         {
-            return RequestGenerator.GetStorage("XcmPallet", "VersionNotifyTargets", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
+            return RequestGenerator.GetStorage("XcmPallet", "VersionNotifyTargets", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
         }
         
         /// <summary>
@@ -265,10 +265,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The target locations that are subscribed to our version changes, as well as the most recent
         ///  of our versions we informed them of.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>> VersionNotifyTargets(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U32>> VersionNotifyTargets(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation> key, CancellationToken token)
         {
             string parameters = XcmPalletStorage.VersionNotifyTargetsParams(key);
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U64, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
             return result;
         }
         
@@ -280,7 +280,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string VersionDiscoveryQueueParams()
         {
-            return RequestGenerator.GetStorage("XcmPallet", "VersionDiscoveryQueue", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("XcmPallet", "VersionDiscoveryQueue", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -311,7 +311,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CurrentMigrationParams()
         {
-            return RequestGenerator.GetStorage("XcmPallet", "CurrentMigration", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("XcmPallet", "CurrentMigration", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -354,7 +354,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> teleport_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method TeleportAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
+        public static Method TeleportAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -368,7 +368,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> reserve_transfer_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReserveTransferAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
+        public static Method ReserveTransferAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -382,7 +382,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> execute
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Execute(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Ajuna.NetApi.Model.Types.Primitive.U64 max_weight)
+        public static Method Execute(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Substrate.NetApi.Model.Types.Primitive.U64 max_weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(message.Encode());
@@ -394,7 +394,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> force_xcm_version
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceXcmVersion(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation location, Ajuna.NetApi.Model.Types.Primitive.U32 xcm_version)
+        public static Method ForceXcmVersion(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation location, Substrate.NetApi.Model.Types.Primitive.U32 xcm_version)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(location.Encode());
@@ -406,7 +406,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> force_default_xcm_version
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceDefaultXcmVersion(Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> maybe_xcm_version)
+        public static Method ForceDefaultXcmVersion(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> maybe_xcm_version)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(maybe_xcm_version.Encode());
@@ -439,7 +439,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> limited_reserve_transfer_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method LimitedReserveTransferAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
+        public static Method LimitedReserveTransferAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -454,7 +454,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> limited_teleport_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method LimitedTeleportAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
+        public static Method LimitedTeleportAssets(Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());

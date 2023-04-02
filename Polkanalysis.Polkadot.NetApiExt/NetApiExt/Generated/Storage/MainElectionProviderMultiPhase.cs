@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,17 +30,17 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public ElectionProviderMultiPhaseStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "Round"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "CurrentPhase"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "QueuedSolution"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "Snapshot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "DesiredTargets"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SnapshotMetadata"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionNextIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionIndices"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionsMap"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "MinimumUntrustedScore"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "Round"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "CurrentPhase"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "QueuedSolution"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "Snapshot"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "DesiredTargets"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SnapshotMetadata"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionNextIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionIndices"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionsMap"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "MinimumUntrustedScore"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore)));
         }
         
         /// <summary>
@@ -54,7 +54,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string RoundParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "Round", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "Round", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -75,10 +75,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  This is merely incremented once per every time that an upstream `elect` is called.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Round(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> Round(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.RoundParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -88,7 +88,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CurrentPhaseParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "CurrentPhase", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "CurrentPhase", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -117,7 +117,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string QueuedSolutionParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "QueuedSolution", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "QueuedSolution", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -148,7 +148,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string SnapshotParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "Snapshot", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "Snapshot", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -181,7 +181,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string DesiredTargetsParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "DesiredTargets", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "DesiredTargets", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -199,10 +199,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Only exists when [`Snapshot`] is present.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> DesiredTargets(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> DesiredTargets(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -214,7 +214,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string SnapshotMetadataParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SnapshotMetadata", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SnapshotMetadata", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -253,7 +253,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string SignedSubmissionNextIndexParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionNextIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionNextIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -277,10 +277,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  capacity, it will simply saturate. We can't just iterate over `SignedSubmissionsMap`,
         ///  because iteration is slow. Instead, we store the value here.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SignedSubmissionNextIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SignedSubmissionNextIndex(CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -295,7 +295,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string SignedSubmissionIndicesParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionIndices", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionIndices", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -333,10 +333,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Twox note: the key of the map is an auto-incrementing index which users cannot inspect or
         ///  affect; we shouldn't need a cryptographically secure hasher.
         /// </summary>
-        public static string SignedSubmissionsMapParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string SignedSubmissionsMapParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionsMap", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionsMap", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -359,7 +359,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Twox note: the key of the map is an auto-incrementing index which users cannot inspect or
         ///  affect; we shouldn't need a cryptographically secure hasher.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission> SignedSubmissionsMap(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission> SignedSubmissionsMap(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams(key);
             var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission>(parameters, token);
@@ -375,7 +375,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string MinimumUntrustedScoreParams()
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "MinimumUntrustedScore", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "MinimumUntrustedScore", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -421,7 +421,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> set_minimum_untrusted_score
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetMinimumUntrustedScore(Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore> maybe_next_score)
+        public static Method SetMinimumUntrustedScore(Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore> maybe_next_score)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(maybe_next_score.Encode());
@@ -432,7 +432,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> set_emergency_election_result
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SetEmergencyElectionResult(Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>> supports)
+        public static Method SetEmergencyElectionResult(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>> supports)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(supports.Encode());
@@ -454,7 +454,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> governance_fallback
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method GovernanceFallback(Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> maybe_max_voters, Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> maybe_max_targets)
+        public static Method GovernanceFallback(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> maybe_max_voters, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> maybe_max_targets)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(maybe_max_voters.Encode());
@@ -470,9 +470,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> UnsignedPhase
         ///  Duration of the unsigned phase.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 UnsignedPhase()
+        public Substrate.NetApi.Model.Types.Primitive.U32 UnsignedPhase()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x58020000");
             return result;
         }
@@ -481,9 +481,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SignedPhase
         ///  Duration of the signed phase.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SignedPhase()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SignedPhase()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x58020000");
             return result;
         }
@@ -519,9 +519,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  For example, if it is 5, that means that at least 5 blocks will elapse between attempts
         ///  to submit the worker's solution.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 OffchainRepeat()
+        public Substrate.NetApi.Model.Types.Primitive.U32 OffchainRepeat()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x12000000");
             return result;
         }
@@ -530,9 +530,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MinerTxPriority
         ///  The priority of the unsigned transaction submitted in the unsigned-phase
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U64 MinerTxPriority()
+        public Substrate.NetApi.Model.Types.Primitive.U64 MinerTxPriority()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U64();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U64();
             result.Create("0x65666666666666E6");
             return result;
         }
@@ -547,9 +547,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  `SignedSubmissionIndices.len()` is less than or equal to the new value. Otherwise,
         ///  attempts to submit new solutions may cause a runtime panic.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SignedMaxSubmissions()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SignedMaxSubmissions()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x10000000");
             return result;
         }
@@ -573,9 +573,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SignedMaxRefunds
         ///  The maximum amount of unchecked solutions to refund the call fee for.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 SignedMaxRefunds()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SignedMaxRefunds()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x04000000");
             return result;
         }
@@ -584,9 +584,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SignedRewardBase
         ///  Base reward for a signed solution
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedRewardBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedRewardBase()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x00E40B54020000000000000000000000");
             return result;
         }
@@ -595,9 +595,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SignedDepositBase
         ///  Base deposit for a signed solution.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositBase()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x00A0DB215D0000000000000000000000");
             return result;
         }
@@ -606,9 +606,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SignedDepositByte
         ///  Per-byte deposit for a signed solution.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedDepositByte()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositByte()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x787D0100000000000000000000000000");
             return result;
         }
@@ -617,9 +617,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> SignedDepositWeight
         ///  Per-weight deposit for a signed solution.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U128 SignedDepositWeight()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositWeight()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
             result.Create("0x00000000000000000000000000000000");
             return result;
         }
@@ -630,9 +630,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  are only over a single block, but once multi-block elections are introduced they will
         ///  take place over multiple blocks.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxElectingVoters()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxElectingVoters()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0xE4570000");
             return result;
         }
@@ -641,9 +641,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> MaxElectableTargets
         ///  The maximum number of electable targets to put in the snapshot.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U16 MaxElectableTargets()
+        public Substrate.NetApi.Model.Types.Primitive.U16 MaxElectableTargets()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U16();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U16();
             result.Create("0xFFFF");
             return result;
         }
@@ -655,9 +655,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Note: This must always be greater or equal to `T::DataProvider::desired_targets()`.
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MaxWinners()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxWinners()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0xB0040000");
             return result;
         }
@@ -665,9 +665,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> MinerMaxLength
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MinerMaxLength()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MinerMaxLength()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x00003600");
             return result;
         }
@@ -685,9 +685,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// <summary>
         /// >> MinerMaxVotesPerVoter
         /// </summary>
-        public Ajuna.NetApi.Model.Types.Primitive.U32 MinerMaxVotesPerVoter()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MinerMaxVotesPerVoter()
         {
-            var result = new Ajuna.NetApi.Model.Types.Primitive.U32();
+            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
             result.Create("0x10000000");
             return result;
         }

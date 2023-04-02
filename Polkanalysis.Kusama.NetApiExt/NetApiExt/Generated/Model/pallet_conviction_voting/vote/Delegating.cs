@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,14 +20,14 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
     /// <summary>
     /// >> 615 - Composite[pallet_conviction_voting.vote.Delegating]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Delegating : BaseType
     {
         
         /// <summary>
         /// >> balance
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _balance;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _balance;
         
         /// <summary>
         /// >> target
@@ -49,7 +49,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
         /// </summary>
         private Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting.vote.PriorLock _prior;
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Balance
+        public Substrate.NetApi.Model.Types.Primitive.U128 Balance
         {
             get
             {
@@ -128,7 +128,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_conviction_voting
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Balance = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Balance = new Substrate.NetApi.Model.Types.Primitive.U128();
             Balance.Decode(byteArray, ref p);
             Target = new Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32();
             Target.Decode(byteArray, ref p);

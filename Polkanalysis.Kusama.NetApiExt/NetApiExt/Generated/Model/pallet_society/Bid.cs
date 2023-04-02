@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Attributes;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Metadata.V14;
+using Substrate.NetApi.Attributes;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Collections.Generic;
 
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society
     /// <summary>
     /// >> 662 - Composite[pallet_society.Bid]
     /// </summary>
-    [AjunaNodeType(TypeDefEnum.Composite)]
+    [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Bid : BaseType
     {
         
@@ -37,7 +37,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society
         /// <summary>
         /// >> value
         /// </summary>
-        private Ajuna.NetApi.Model.Types.Primitive.U128 _value;
+        private Substrate.NetApi.Model.Types.Primitive.U128 _value;
         
         public Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 Who
         {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society
             }
         }
         
-        public Ajuna.NetApi.Model.Types.Primitive.U128 Value
+        public Substrate.NetApi.Model.Types.Primitive.U128 Value
         {
             get
             {
@@ -96,7 +96,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society
             Who.Decode(byteArray, ref p);
             Kind = new Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_society.EnumBidKind();
             Kind.Decode(byteArray, ref p);
-            Value = new Ajuna.NetApi.Model.Types.Primitive.U128();
+            Value = new Substrate.NetApi.Model.Types.Primitive.U128();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

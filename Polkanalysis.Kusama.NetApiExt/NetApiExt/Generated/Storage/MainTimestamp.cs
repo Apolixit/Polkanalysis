@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,8 +30,8 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public TimestampStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Timestamp", "Now"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Timestamp", "DidUpdate"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.Bool)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Timestamp", "Now"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U64)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Timestamp", "DidUpdate"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.Bool)));
         }
         
         /// <summary>
@@ -40,17 +40,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string NowParams()
         {
-            return RequestGenerator.GetStorage("Timestamp", "Now", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Timestamp", "Now", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> Now
         ///  Current time for the current block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> Now(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U64> Now(CancellationToken token)
         {
             string parameters = TimestampStorage.NowParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U64>(parameters, token);
         }
         
         /// <summary>
@@ -59,17 +59,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string DidUpdateParams()
         {
-            return RequestGenerator.GetStorage("Timestamp", "DidUpdate", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Timestamp", "DidUpdate", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> DidUpdate
         ///  Did the timestamp get updated in this block?
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.Bool> DidUpdate(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> DidUpdate(CancellationToken token)
         {
             string parameters = TimestampStorage.DidUpdateParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.Bool>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.Bool>(parameters, token);
         }
     }
     
@@ -80,7 +80,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> set
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Set(Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64> now)
+        public static Method Set(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U64> now)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(now.Encode());

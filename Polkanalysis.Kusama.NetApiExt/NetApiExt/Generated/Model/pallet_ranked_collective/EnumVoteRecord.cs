@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -26,7 +26,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_ranked_collective
     /// <summary>
     /// >> 440 - Variant[pallet_ranked_collective.VoteRecord]
     /// </summary>
-    public sealed class EnumVoteRecord : BaseEnumExt<VoteRecord, Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>
+    public sealed class EnumVoteRecord : BaseEnumExt<VoteRecord, Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>
     {
     }
 }

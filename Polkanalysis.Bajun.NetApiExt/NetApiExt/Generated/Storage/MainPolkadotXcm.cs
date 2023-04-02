@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,7 +52,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> teleport_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method TeleportAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
+        public static Method TeleportAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -66,7 +66,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> reserve_transfer_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ReserveTransferAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item)
+        public static Method ReserveTransferAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -80,7 +80,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> execute
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Execute(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Ajuna.NetApi.Model.Types.Primitive.U64 max_weight)
+        public static Method Execute(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedXcm message, Substrate.NetApi.Model.Types.Primitive.U64 max_weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(message.Encode());
@@ -92,7 +92,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> force_xcm_version
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceXcmVersion(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation location, Ajuna.NetApi.Model.Types.Primitive.U32 xcm_version)
+        public static Method ForceXcmVersion(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.multilocation.MultiLocation location, Substrate.NetApi.Model.Types.Primitive.U32 xcm_version)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(location.Encode());
@@ -104,7 +104,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> force_default_xcm_version
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceDefaultXcmVersion(Ajuna.NetApi.Model.Types.Base.BaseOpt<Ajuna.NetApi.Model.Types.Primitive.U32> maybe_xcm_version)
+        public static Method ForceDefaultXcmVersion(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> maybe_xcm_version)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(maybe_xcm_version.Encode());
@@ -137,7 +137,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> limited_reserve_transfer_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method LimitedReserveTransferAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
+        public static Method LimitedReserveTransferAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());
@@ -152,7 +152,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> limited_teleport_assets
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method LimitedTeleportAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Ajuna.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
+        public static Method LimitedTeleportAssets(Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation dest, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiLocation beneficiary, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.EnumVersionedMultiAssets assets, Substrate.NetApi.Model.Types.Primitive.U32 fee_asset_item, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v2.EnumWeightLimit weight_limit)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(dest.Encode());

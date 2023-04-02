@@ -1,8 +1,7 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Org.BouncyCastle.Math;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;

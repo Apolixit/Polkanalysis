@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -40,7 +40,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v1.junction
     /// <summary>
     /// >> 59 - Variant[xcm.v1.junction.Junction]
     /// </summary>
-    public sealed class EnumJunction : BaseEnumExt<Junction, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U64>>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr20U8>, Ajuna.NetApi.Model.Types.Primitive.U8, Ajuna.NetApi.Model.Types.Base.BaseCom<Ajuna.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyId, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyPart>>
+    public sealed class EnumJunction : BaseEnumExt<Junction, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr32U8>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U64>>, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumNetworkId, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.Arr20U8>, Substrate.NetApi.Model.Types.Primitive.U8, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128>, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.bounded.weak_bounded_vec.WeakBoundedVecT1, BaseVoid, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyId, Polkanalysis.Bajun.NetApiExt.Generated.Model.xcm.v0.junction.EnumBodyPart>>
     {
     }
 }

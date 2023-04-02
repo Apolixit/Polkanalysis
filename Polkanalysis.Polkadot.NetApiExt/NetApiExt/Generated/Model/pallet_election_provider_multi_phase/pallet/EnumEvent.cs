@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -38,7 +38,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provid
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute, Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Ajuna.NetApi.Model.Types.Primitive.Bool>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore>, BaseVoid, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Ajuna.NetApi.Model.Types.Primitive.U128>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase, Ajuna.NetApi.Model.Types.Primitive.U32>>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>, Substrate.NetApi.Model.Types.Primitive.Bool>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumElectionCompute, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore>, BaseVoid, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase, Substrate.NetApi.Model.Types.Primitive.U32>>
     {
     }
 }

@@ -1,7 +1,7 @@
-﻿using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types.Base;
-using Ajuna.NetApi.Model.Types.Primitive;
-using Ajuna.NetApi.TypeConverters;
+﻿using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
+using Substrate.NetApi.TypeConverters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

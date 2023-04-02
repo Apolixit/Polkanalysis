@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +30,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         public SudoStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Sudo", "Key"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Sudo", "Key"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string KeyParams()
         {
-            return RequestGenerator.GetStorage("Sudo", "Key", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Sudo", "Key", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -71,7 +71,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// >> sudo_unchecked_weight
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method SudoUncheckedWeight(Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call, Ajuna.NetApi.Model.Types.Primitive.U64 weight)
+        public static Method SudoUncheckedWeight(Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.EnumCall call, Substrate.NetApi.Model.Types.Primitive.U64 weight)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(call.Encode());

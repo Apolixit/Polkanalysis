@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types;
+﻿using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
@@ -101,7 +101,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
         }
 
         /// <summary>
-        /// Just a simple wrapper to <see cref="Ajuna.NetApi.SubstrateClient.GetStorageAsync"/>
+        /// Just a simple wrapper to <see cref="Substrate.NetApi.SubstrateClient.GetStorageAsync"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="parameters"></param>

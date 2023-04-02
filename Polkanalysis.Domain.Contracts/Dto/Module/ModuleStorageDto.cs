@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Meta;
+﻿using Substrate.NetApi.Model.Meta;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

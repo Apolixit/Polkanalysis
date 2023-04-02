@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.AwesomeAvatars;

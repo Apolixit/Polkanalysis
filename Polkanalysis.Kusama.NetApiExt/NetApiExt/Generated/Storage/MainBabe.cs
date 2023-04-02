@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,23 +30,23 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         public BabeStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Authorities"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "GenesisSlot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "CurrentSlot"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Randomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "PendingEpochConfigChange"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextRandomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextAuthorities"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "SegmentIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "UnderConstruction"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                            Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Ajuna.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Initialized"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "AuthorVrfRandomness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochStart"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Lateness"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextEpochConfig"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U64)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Authorities"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "GenesisSlot"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "CurrentSlot"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Randomness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "PendingEpochConfigChange"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextRandomness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextAuthorities"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "SegmentIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "UnderConstruction"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Initialized"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "AuthorVrfRandomness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochStart"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Lateness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochConfig"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextEpochConfig"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
         }
         
         /// <summary>
@@ -55,17 +55,17 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string EpochIndexParams()
         {
-            return RequestGenerator.GetStorage("Babe", "EpochIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "EpochIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
         /// >> EpochIndex
         ///  Current epoch index.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U64> EpochIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U64> EpochIndex(CancellationToken token)
         {
             string parameters = BabeStorage.EpochIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U64>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U64>(parameters, token);
         }
         
         /// <summary>
@@ -74,7 +74,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string AuthoritiesParams()
         {
-            return RequestGenerator.GetStorage("Babe", "Authorities", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "Authorities", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -94,7 +94,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string GenesisSlotParams()
         {
-            return RequestGenerator.GetStorage("Babe", "GenesisSlot", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "GenesisSlot", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -114,7 +114,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string CurrentSlotParams()
         {
-            return RequestGenerator.GetStorage("Babe", "CurrentSlot", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "CurrentSlot", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -142,7 +142,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string RandomnessParams()
         {
-            return RequestGenerator.GetStorage("Babe", "Randomness", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "Randomness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -170,7 +170,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string PendingEpochConfigChangeParams()
         {
-            return RequestGenerator.GetStorage("Babe", "PendingEpochConfigChange", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "PendingEpochConfigChange", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -189,7 +189,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string NextRandomnessParams()
         {
-            return RequestGenerator.GetStorage("Babe", "NextRandomness", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "NextRandomness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -208,7 +208,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string NextAuthoritiesParams()
         {
-            return RequestGenerator.GetStorage("Babe", "NextAuthorities", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "NextAuthorities", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -235,7 +235,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string SegmentIndexParams()
         {
-            return RequestGenerator.GetStorage("Babe", "SegmentIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "SegmentIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -250,20 +250,20 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  We reset all segments and return to `0` at the beginning of every
         ///  epoch.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> SegmentIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SegmentIndex(CancellationToken token)
         {
             string parameters = BabeStorage.SegmentIndexParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
         /// >> UnderConstructionParams
         ///  TWOX-NOTE: `SegmentIndex` is an increasing integer, so this is okay.
         /// </summary>
-        public static string UnderConstructionParams(Ajuna.NetApi.Model.Types.Primitive.U32 key)
+        public static string UnderConstructionParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
         {
-            return RequestGenerator.GetStorage("Babe", "UnderConstruction", Ajuna.NetApi.Model.Meta.Storage.Type.Map, new Ajuna.NetApi.Model.Meta.Storage.Hasher[] {
-                        Ajuna.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Ajuna.NetApi.Model.Types.IType[] {
+            return RequestGenerator.GetStorage("Babe", "UnderConstruction", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
                         key});
         }
         
@@ -271,7 +271,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> UnderConstruction
         ///  TWOX-NOTE: `SegmentIndex` is an increasing integer, so this is okay.
         /// </summary>
-        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3> UnderConstruction(Ajuna.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3> UnderConstruction(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
             string parameters = BabeStorage.UnderConstructionParams(key);
             return await _client.GetStorageAsync<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT3>(parameters, token);
@@ -284,7 +284,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string InitializedParams()
         {
-            return RequestGenerator.GetStorage("Babe", "Initialized", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "Initialized", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -292,10 +292,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  Temporary value (cleared at block finalization) which is `Some`
         ///  if per-block initialization has already been called for current block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>> Initialized(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>> Initialized(CancellationToken token)
         {
             string parameters = BabeStorage.InitializedParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(parameters, token);
         }
         
         /// <summary>
@@ -307,7 +307,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string AuthorVrfRandomnessParams()
         {
-            return RequestGenerator.GetStorage("Babe", "AuthorVrfRandomness", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "AuthorVrfRandomness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -317,10 +317,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// 
         ///  It is set in `on_finalize`, before it will contain the value from the last block.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>> AuthorVrfRandomness(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>> AuthorVrfRandomness(CancellationToken token)
         {
             string parameters = BabeStorage.AuthorVrfRandomnessParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Kusama.NetApiExt.Generated.Types.Base.Arr32U8>>(parameters, token);
         }
         
         /// <summary>
@@ -333,7 +333,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string EpochStartParams()
         {
-            return RequestGenerator.GetStorage("Babe", "EpochStart", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "EpochStart", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -344,10 +344,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  entropy was fixed (i.e. it was known to chain observers). Since epochs are defined in
         ///  slots, which may be skipped, the block numbers may not line up with the slot numbers.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>> EpochStart(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> EpochStart(CancellationToken token)
         {
             string parameters = BabeStorage.EpochStartParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Ajuna.NetApi.Model.Types.Primitive.U32>>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
         }
         
         /// <summary>
@@ -360,7 +360,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string LatenessParams()
         {
-            return RequestGenerator.GetStorage("Babe", "Lateness", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "Lateness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -371,10 +371,10 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         ///  on block finalization. Querying this storage entry outside of block
         ///  execution context should always yield zero.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> Lateness(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> Lateness(CancellationToken token)
         {
             string parameters = BabeStorage.LatenessParams();
-            return await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            return await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
         }
         
         /// <summary>
@@ -384,7 +384,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string EpochConfigParams()
         {
-            return RequestGenerator.GetStorage("Babe", "EpochConfig", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "EpochConfig", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -405,7 +405,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// </summary>
         public static string NextEpochConfigParams()
         {
-            return RequestGenerator.GetStorage("Babe", "NextEpochConfig", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("Babe", "NextEpochConfig", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>

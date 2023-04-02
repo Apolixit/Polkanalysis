@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,7 +40,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method Batch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
+        public static Method Batch(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -51,7 +51,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> as_derivative
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method AsDerivative(Ajuna.NetApi.Model.Types.Primitive.U16 index, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
+        public static Method AsDerivative(Substrate.NetApi.Model.Types.Primitive.U16 index, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall call)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(index.Encode());
@@ -63,7 +63,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> batch_all
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method BatchAll(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
+        public static Method BatchAll(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());
@@ -86,7 +86,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Storage
         /// >> force_batch
         /// Contains one variant per dispatchable that can be called by an extrinsic.
         /// </summary>
-        public static Method ForceBatch(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
+        public static Method ForceBatch(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall> calls)
         {
             System.Collections.Generic.List<byte> byteArray = new List<byte>();
             byteArray.AddRange(calls.Encode());

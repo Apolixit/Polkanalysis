@@ -1,6 +1,6 @@
 ﻿
-//using Ajuna.NetApi;
-//using Ajuna.NetApi.Model.Types;
+//using Substrate.NetApi;
+//using Substrate.NetApi.Model.Types;
 //using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 //using Schnorrkel.Keys;
 //using Polkanalysis.Domain.Contracts.Dto.User;

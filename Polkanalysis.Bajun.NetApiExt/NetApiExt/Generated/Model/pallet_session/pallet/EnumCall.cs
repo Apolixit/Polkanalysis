@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -27,7 +27,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_session.pallet
     /// >> 237 - Variant[pallet_session.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.SessionKeys, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>, BaseVoid>
+    public sealed class EnumCall : BaseEnumExt<Call, BaseTuple<Polkanalysis.Bajun.NetApiExt.Generated.Model.bajun_runtime.SessionKeys, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>, BaseVoid>
     {
     }
 }

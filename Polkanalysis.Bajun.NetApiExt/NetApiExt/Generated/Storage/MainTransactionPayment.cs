@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,8 +30,8 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         public TransactionPaymentStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "NextFeeMultiplier"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "StorageVersion"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "NextFeeMultiplier"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "StorageVersion"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases)));
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string NextFeeMultiplierParams()
         {
-            return RequestGenerator.GetStorage("TransactionPayment", "NextFeeMultiplier", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("TransactionPayment", "NextFeeMultiplier", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -56,7 +56,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Storage
         /// </summary>
         public static string StorageVersionParams()
         {
-            return RequestGenerator.GetStorage("TransactionPayment", "StorageVersion", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("TransactionPayment", "StorageVersion", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>

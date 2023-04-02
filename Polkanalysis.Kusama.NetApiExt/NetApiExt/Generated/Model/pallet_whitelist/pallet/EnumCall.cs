@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -31,7 +31,7 @@ namespace Polkanalysis.Kusama.NetApiExt.Generated.Model.pallet_whitelist.pallet
     /// >> 168 - Variant[pallet_whitelist.pallet.Call]
     /// Contains one variant per dispatchable that can be called by an extrinsic.
     /// </summary>
-    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>
+    public sealed class EnumCall : BaseEnumExt<Call, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, BaseTuple<Polkanalysis.Kusama.NetApiExt.Generated.Model.primitive_types.H256, Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Kusama.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight>, Polkanalysis.Kusama.NetApiExt.Generated.Model.kusama_runtime.EnumRuntimeCall>
     {
     }
 }

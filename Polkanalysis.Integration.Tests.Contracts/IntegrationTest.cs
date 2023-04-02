@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi.Model.Extrinsics;
+﻿using Substrate.NetApi.Model.Extrinsics;
 using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Microsoft.Extensions.Configuration;

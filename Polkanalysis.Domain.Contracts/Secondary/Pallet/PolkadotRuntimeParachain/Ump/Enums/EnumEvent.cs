@@ -1,9 +1,9 @@
-﻿using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v2.Enums;
-using Ajuna.NetApi.Model.Types.Primitive;
+using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachain.Ump.Enums

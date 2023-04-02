@@ -1,6 +1,6 @@
-﻿using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Common;

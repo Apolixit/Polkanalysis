@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Meta;
-using Ajuna.NetApi.Model.Types;
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,9 +30,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         public ParasSharedStorage(SubstrateClientExt client)
         {
             this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasShared", "CurrentSessionIndex"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasShared", "ActiveValidatorIndices"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasShared", "ActiveValidatorKeys"), new System.Tuple<Ajuna.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasShared", "CurrentSessionIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasShared", "ActiveValidatorIndices"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>)));
+            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasShared", "ActiveValidatorKeys"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>)));
         }
         
         /// <summary>
@@ -41,7 +41,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string CurrentSessionIndexParams()
         {
-            return RequestGenerator.GetStorage("ParasShared", "CurrentSessionIndex", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParasShared", "CurrentSessionIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -57,10 +57,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// >> CurrentSessionIndex
         ///  The current session index.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Primitive.U32> CurrentSessionIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CurrentSessionIndex(CancellationToken token)
         {
             string parameters = ParasSharedStorage.CurrentSessionIndexParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
             return result;
         }
         
@@ -71,7 +71,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ActiveValidatorIndicesParams()
         {
-            return RequestGenerator.GetStorage("ParasShared", "ActiveValidatorIndices", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParasShared", "ActiveValidatorIndices", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -88,10 +88,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  All the validators actively participating in parachain consensus.
         ///  Indices are into the broader validator set.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>> ActiveValidatorIndices(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>> ActiveValidatorIndices(CancellationToken token)
         {
             string parameters = ParasSharedStorage.ActiveValidatorIndicesParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>(parameters, token);
             return result;
         }
         
@@ -102,7 +102,7 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// </summary>
         public static string ActiveValidatorKeysParams()
         {
-            return RequestGenerator.GetStorage("ParasShared", "ActiveValidatorKeys", Ajuna.NetApi.Model.Meta.Storage.Type.Plain);
+            return RequestGenerator.GetStorage("ParasShared", "ActiveValidatorKeys", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
         }
         
         /// <summary>
@@ -119,10 +119,10 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The parachain attestation keys of the validators actively participating in parachain consensus.
         ///  This should be the same length as `ActiveValidatorIndices`.
         /// </summary>
-        public async Task<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>> ActiveValidatorKeys(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>> ActiveValidatorKeys(CancellationToken token)
         {
             string parameters = ParasSharedStorage.ActiveValidatorKeysParams();
-            var result = await _client.GetStorageAsync<Ajuna.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>>(parameters, token);
+            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.validator_app.Public>>(parameters, token);
             return result;
         }
     }

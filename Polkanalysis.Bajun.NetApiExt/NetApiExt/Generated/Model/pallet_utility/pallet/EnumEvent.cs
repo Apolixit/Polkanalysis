@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Ajuna.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 
@@ -38,7 +38,7 @@ namespace Polkanalysis.Bajun.NetApiExt.Generated.Model.pallet_utility.pallet
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Ajuna.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError>, BaseVoid, BaseVoid, BaseVoid, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.EnumResult>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError>, BaseVoid, BaseVoid, BaseVoid, Polkanalysis.Bajun.NetApiExt.Generated.Model.sp_runtime.EnumDispatchError, Polkanalysis.Bajun.NetApiExt.Generated.Types.Base.EnumResult>
     {
     }
 }

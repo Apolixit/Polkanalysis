@@ -71,11 +71,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Common", "Polkanalysis.Infrastructure.Common\Polkanalysis.Infrastructure.Common.csproj", "{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ajuna.NetApi", "..\Ajuna.NetApi\Ajuna.NetApi\Ajuna.NetApi.csproj", "{CD3839A0-E0F4-43C7-A49C-13280EB13A13}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Contracts", "Polkanalysis.Infrastructure.Contracts\Polkanalysis.Infrastructure.Contracts.csproj", "{1629D073-4A84-4842-8A12-20C8EEC0AFD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj", "{0F03AC80-4B06-4726-9E7D-D73E68916F80}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substrate.NetApi", "..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj", "{D0789FBF-DFD4-47C3-ABE8-561646D1651C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,10 +177,6 @@ Global
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD3839A0-E0F4-43C7-A49C-13280EB13A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD3839A0-E0F4-43C7-A49C-13280EB13A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD3839A0-E0F4-43C7-A49C-13280EB13A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD3839A0-E0F4-43C7-A49C-13280EB13A13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1629D073-4A84-4842-8A12-20C8EEC0AFD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1629D073-4A84-4842-8A12-20C8EEC0AFD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1629D073-4A84-4842-8A12-20C8EEC0AFD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -189,6 +185,10 @@ Global
 		{0F03AC80-4B06-4726-9E7D-D73E68916F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F03AC80-4B06-4726-9E7D-D73E68916F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F03AC80-4B06-4726-9E7D-D73E68916F80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0789FBF-DFD4-47C3-ABE8-561646D1651C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0789FBF-DFD4-47C3-ABE8-561646D1651C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0789FBF-DFD4-47C3-ABE8-561646D1651C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0789FBF-DFD4-47C3-ABE8-561646D1651C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -217,9 +217,9 @@ Global
 		{F3B296A5-3EEF-4916-9D55-BAFFF563624E} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{9EE6AC2A-5811-484F-8C23-0CF308AF3894} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
-		{CD3839A0-E0F4-43C7-A49C-13280EB13A13} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 		{1629D073-4A84-4842-8A12-20C8EEC0AFD3} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{0F03AC80-4B06-4726-9E7D-D73E68916F80} = {B6463D88-968C-4EEB-A7B4-A56007B3FDF6}
+		{D0789FBF-DFD4-47C3-ABE8-561646D1651C} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31C4F337-85EF-42F2-9358-F402619BBAE7}

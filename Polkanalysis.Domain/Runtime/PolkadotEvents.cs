@@ -1,5 +1,5 @@
-﻿//using Ajuna.NetApi.Model.Types;
-//using Ajuna.NetApi.Model.Types.Base;
+﻿//using Substrate.NetApi.Model.Types;
+//using Substrate.NetApi.Model.Types.Base;
 //using Microsoft.Extensions.Logging;
 //using Polkanalysis.Domain.Contracts.Runtime;
 //using Polkanalysis.Domain.Contracts.Secondary;

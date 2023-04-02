@@ -1,4 +1,4 @@
-﻿using Ajuna.NetApi;
+﻿using Substrate.NetApi;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;

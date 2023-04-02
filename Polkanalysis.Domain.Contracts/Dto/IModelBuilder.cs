@@ -1,5 +1,5 @@
-﻿using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Common;
 using Polkanalysis.Domain.Contracts.Dto.Event;
@@ -81,7 +81,7 @@ namespace Polkanalysis.Domain.Contracts.Dto
         /// <param name="extrinsicNode"></param>
         /// <param name="extrinsicIndex"></param>
         /// <returns></returns>
-        public ExtrinsicDto BuildExtrinsicDto(Ajuna.NetApi.Model.Extrinsics.Extrinsic extrinsic, BlockLightDto blockLight, INode extrinsicNode, uint extrinsicIndex);
+        public ExtrinsicDto BuildExtrinsicDto(Substrate.NetApi.Model.Extrinsics.Extrinsic extrinsic, BlockLightDto blockLight, INode extrinsicNode, uint extrinsicIndex);
         public ExtrinsicLightDto BuildExtrinsicLightDto();
 
         public string BuildDocumentation(string[] doc);

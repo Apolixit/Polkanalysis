@@ -1,6 +1,6 @@
-﻿using Ajuna.NetApi;
-using Ajuna.NetApi.Model.Rpc;
-using Ajuna.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi;
+using Substrate.NetApi.Model.Rpc;
+using Substrate.NetApi.Model.Types.Base;
 using Blake2Core;
 using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Domain.Contracts.Dto.Block;
@@ -13,8 +13,8 @@ using Microsoft.VisualStudio.Threading;
 using System;
 using System.Reflection.Metadata.Ecma335;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
-using Ajuna.NetApi.Model.Extrinsics;
-using Ajuna.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Types;
 using System.Runtime.InteropServices;
 using Polkanalysis.Domain.Contracts.Dto;
 using System.Text;
@@ -118,7 +118,7 @@ namespace Polkanalysis.Domain.Repository
 
             var currentDate = await GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
 
-            //var eventsCount = await _substrateService.Api.Core.GetStorageAsync<Ajuna.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
+            //var eventsCount = await _substrateService.Api.Core.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(SystemStorage.EventCountParams(), blockHash.Value, cancellationToken);
             var eventsCount = await _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
 
             //var blockExecutionPhase = await _substrateService.Api.Core.GetStorageAsync<EnumPhase>(SystemStorage.ExecutionPhaseParams(), blockHash.Value, cancellationToken);
@@ -140,7 +140,7 @@ namespace Polkanalysis.Domain.Repository
 
             //var digest = await _substrateService.Client.SystemStorage.Digest(cancellationToken);
 
-            // BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Ajuna.NetApi.Model.Types.Base.BaseVec<Ajuna.NetApi.Model.Types.Primitive.U8>>
+            // BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr4U8, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>
 
             //var digest = await _substrateService.Api.Core.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest>(SystemStorage.DigestParams(), blockHash.Value, cancellationToken);
             var digest = await _substrateService.At(blockHash).Storage.System.DigestAsync(cancellationToken);
@@ -356,7 +356,7 @@ namespace Polkanalysis.Domain.Repository
             {
                 if (e.Phase.Value == Phase.ApplyExtrinsic)
                 {
-                    var applyExtrinsicIndex = ((Ajuna.NetApi.Model.Types.Primitive.U32)e.Phase.Value2).Value;
+                    var applyExtrinsicIndex = ((Substrate.NetApi.Model.Types.Primitive.U32)e.Phase.Value2).Value;
                     return applyExtrinsicIndex == extrinsicDto.Index;
                 }
                 return false;
