@@ -142,7 +142,9 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <returns></returns>
         Task SubscribeEventAsync(Action<EventLightDto> eventCallback, CancellationToken cancellationToken);
 
-        public Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token);
+        IEnumerable<EventRecord> FindEvent(BaseVec<EventRecord> events, RuntimeEvent palletName, Enum eventName);
+
+        Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token);
         #endregion
 
         #region Extrinsic

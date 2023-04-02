@@ -32,7 +32,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
                 _substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
 
             _substrateDecoding = new SubstrateDecoding(
-                new EventMapping(),
+                new EventNodeMapping(),
                 _substrateRepository,
                 new PalletBuilder(
                     _substrateRepository,

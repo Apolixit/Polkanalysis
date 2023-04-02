@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void Setup()
         {
             _substrateDecode = new SubstrateDecoding(
-                new EventMapping(),
+                new EventNodeMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),
@@ -29,17 +29,15 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs#L253
         /// Pallet scheduler
         /// Schedule time
-        /// Block 400 
-        /// Index : 0
         /// </summary>
         /// <param name="hex"></param>
-        [Test, Ignore("TODO change with another call")]
-        [TestCase("0x00010000000600900100000000000000")]
+        [Test]
+        [TestCase("0x020100CE41E9000000000000")]
         public void Scheduler_ScheduleBlock_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
 
-            PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult, Contracts.Secondary.Pallet.SystemCore.Enums.Phase.Initialization);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
             Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Scheduled));
@@ -70,17 +68,15 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs#L259
         /// Pallet scheduler
         /// Dispatch
-        /// task: TaskAddress<T::BlockNumber> = (180, 0)
-        /// id: Option<TaskName> = Option<Bytes> 0x6d6f6e6579706f74396cdbf0a89f28e8ff09a5d97fae185d3ff9920d8cbcb3cec50f256865dbe0f1
 	    /// result: DispatchResult = 0 (Ok)
         /// </summary>
         /// <param name="hex"></param>
-        [Test, Ignore("TODO change with another call")]
-        [TestCase("0x020602B40000000000000001A06D6F6E6579706F74396CDBF0A89F28E8FF09A5D97FAE185D3FF9920D8CBCB3CEC50F256865DBE0F10000")]
+        [Test]
+        [TestCase("0x0201021D5DE200000000000164656D6F63726163650000000000000000000000000000000000000000000000010200")]
         public void Scheduler_Dispatched_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            PrerequisiteEvent(nodeResult);
+            PrerequisiteEvent(nodeResult, Contracts.Secondary.Pallet.SystemCore.Enums.Phase.Initialization);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
             Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Dispatched));

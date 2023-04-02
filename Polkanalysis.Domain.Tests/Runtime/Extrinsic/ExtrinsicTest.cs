@@ -23,7 +23,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Extrinsic
         public void Setup()
         {
             _substrateDecode = new SubstrateDecoding(
-                new EventMapping(),
+                new EventNodeMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),

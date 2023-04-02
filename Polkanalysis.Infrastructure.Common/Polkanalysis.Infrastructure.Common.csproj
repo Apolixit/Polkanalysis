@@ -8,10 +8,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Contracts\Polkanalysis.Infrastructure.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Repository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="Npgsql" Version="7.0.2" />
+    <PackageReference Include="SqlKata" Version="2.4.0" />
   </ItemGroup>
 
 </Project>

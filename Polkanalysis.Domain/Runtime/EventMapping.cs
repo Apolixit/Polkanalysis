@@ -16,11 +16,11 @@ using System.Text;
 
 namespace Polkanalysis.Domain.Runtime
 {
-    public class EventMapping : IMapping
+    public class EventNodeMapping : INodeMapping
     {
         protected IList<EventMappingElem> Elements { get; set; }
 
-        public EventMapping(MetaData metaData) : this()
+        public EventNodeMapping(MetaData metaData) : this()
         {
             //Elements.Add(new EventMappingElem()
             //{
@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.Runtime
             //});
         }
 
-        public EventMapping()
+        public EventNodeMapping()
         {
             Elements = new List<EventMappingElem>
             {

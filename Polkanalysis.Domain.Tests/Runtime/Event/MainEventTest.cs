@@ -6,7 +6,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
     public class MainEventTest
     {
-        protected void PrerequisiteEvent(INode node)
+        protected void PrerequisiteEvent(INode node, Phase phase = Phase.ApplyExtrinsic)
         {
             Assert.That(node, Is.Not.Null);
 
@@ -15,7 +15,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             // 3 children : Phase / Events / Topic
             Assert.That(node.Children.Count, Is.EqualTo(3));
 
-            Assert.That(node.Has(Phase.ApplyExtrinsic));
+            Assert.That(node.Has(phase));
         }
     }
 }

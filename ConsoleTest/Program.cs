@@ -67,7 +67,7 @@ public class Program
             .AddSingleton<ISubstrateEndpoint, SubstrateEndpoint>()
             .AddSingleton<ISubstrateDecoding, SubstrateDecoding>()
             .AddSingleton<IPalletBuilder, PalletBuilder>()
-            .AddSingleton<IMapping, EventMapping>()
+            .AddSingleton<INodeMapping, EventNodeMapping>()
             .AddSingleton<IBlockchainMapping, PolkadotMapping>()
             .AddSingleton<ICurrentMetaData, CurrentMetaData>();
     }

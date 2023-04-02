@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Runtime.Mapping
 {
-    public interface IMapping
+    public interface INodeMapping
     {
         /// <summary>
         /// Search the current type into mapping element

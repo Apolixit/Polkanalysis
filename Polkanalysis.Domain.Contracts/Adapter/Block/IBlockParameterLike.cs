@@ -9,7 +9,7 @@ namespace Polkanalysis.Domain.Contracts.Adapter.Block
 {
     public interface IBlockParameterLike
     {
-        public BlockNumber ToBlockNumber();
-        public Hash ToBlockHash();
+        public Task<BlockNumber> ToBlockNumberAsync();
+        public Task<Hash> ToBlockHashAsync();
     }
 }

@@ -101,7 +101,7 @@ namespace Polkanalysis.Domain.Tests.Node
         public void CreateNode_EventTimestamp_ShouldBeParsedToJson(string hex)
         {
             var decode = new SubstrateDecoding(
-                new EventMapping(),
+                new EventNodeMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),
@@ -146,7 +146,7 @@ namespace Polkanalysis.Domain.Tests.Node
         public void CreateNode_AccountInfo_ShouldBeParsedToJson(string hex)
         {
             var decode = new SubstrateDecoding(
-                new EventMapping(),
+                new EventNodeMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),

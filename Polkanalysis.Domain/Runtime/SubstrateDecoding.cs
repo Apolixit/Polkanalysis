@@ -18,14 +18,14 @@ namespace Polkanalysis.Domain.Runtime
 {
     public class SubstrateDecoding : ISubstrateDecoding
     {
-        private readonly IMapping _mapping;
+        private readonly INodeMapping _mapping;
         private readonly ISubstrateRepository _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
         private readonly ICurrentMetaData _metaData;
         private readonly ILogger<SubstrateDecoding> _logger;
 
         public SubstrateDecoding(
-            IMapping mapping, 
+            INodeMapping mapping, 
             ISubstrateRepository substrateRepository, 
             IPalletBuilder palletBuilder,
             ICurrentMetaData metaData,
@@ -245,10 +245,9 @@ namespace Polkanalysis.Domain.Runtime
 
         private void VisitNodeGeneric(INode node, IType value)
         {
+            if (value.GetValue() == null) return;
+
             var isArray = value.GetValue().GetType().IsArray;
-            //var valueArray = value.GetValue().GetType().IsArray ? 
-            //    value.GetValueArray() : 
-            //    new object[] { value.GetValue() };
 
             if(isArray)
             {

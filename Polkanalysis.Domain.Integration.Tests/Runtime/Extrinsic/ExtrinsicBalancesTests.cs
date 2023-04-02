@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
                 Substitute.For<ILogger<CurrentMetaData>>());
 
             _substrateDecode = new SubstrateDecoding(
-                new EventMapping(),
+                new EventNodeMapping(),
                 _substrateRepository,
                 new PalletBuilder(
                     _substrateRepository,

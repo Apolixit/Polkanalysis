@@ -24,7 +24,7 @@ namespace Polkanalysis.SubstrateDecode.Test.Node
         public void Setup()
         {
             _decode = new SubstrateDecoding(
-                new EventMapping(),
+                new EventNodeMapping(),
                 Substitute.For<ISubstrateRepository>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),
