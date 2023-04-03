@@ -24,6 +24,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Contracts;
+using Polkanalysis.Infrastructure.Common.Database;
+using Polkanalysis.Domain.Contracts;
 
 namespace ConsoleTest;
 
@@ -69,6 +72,8 @@ public class Program
             .AddSingleton<IPalletBuilder, PalletBuilder>()
             .AddSingleton<INodeMapping, EventNodeMapping>()
             .AddSingleton<IBlockchainMapping, PolkadotMapping>()
+            .AddSingleton<IEventAggregateRepository, EventAggregateRepository>()
+            .AddScoped<IDatabaseConfiguration, DatabaseConfiguration>()
             .AddSingleton<ICurrentMetaData, CurrentMetaData>();
     }
 }

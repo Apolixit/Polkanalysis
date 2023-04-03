@@ -29,6 +29,7 @@ using Polkanalysis.Domain.Contracts.Core.Map;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Runtime;
+using static Polkanalysis.Domain.Contracts.Secondary.Repository.IExplorerRepository;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -547,7 +548,7 @@ namespace Polkanalysis.Domain.Repository
             }
         }
 
-        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token)
+        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, AsyncSubscribeDelegate callback, CancellationToken token)
         {
             await _substrateService.Events.SubscribeEventsAsync((BaseVec<EventRecord> events) =>
             {
@@ -555,6 +556,11 @@ namespace Polkanalysis.Domain.Repository
                 .ToList()
                 .ForEach(ev => callback(ev));
             }, token);
+        }
+
+        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, AsyncSubscribeDelegate callback, ListenerFilter filter, CancellationToken token)
+        {
+            // Todo
         }
 
         public Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken)

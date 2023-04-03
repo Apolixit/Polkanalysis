@@ -1,19 +1,26 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Infrastructure.Contracts;
 using Polkanalysis.Infrastructure.Contracts.Model;
+using Serilog.Core;
+using System.Numerics;
 
 namespace Polkanalysis.Infrastructure.Common.Database
 {
     public class EventAggregateRepository : IEventAggregateRepository
     {
         private readonly IDatabaseConfiguration _dataBaseConfiguration;
+        private readonly ILogger<IEventAggregateRepository> _logger;
         private NpgsqlConnection connection;
         private const string TableName = "BlockchainEvents";
-        public EventAggregateRepository(IDatabaseConfiguration dataBaseConfiguration)
+        public EventAggregateRepository(
+            IDatabaseConfiguration dataBaseConfiguration,
+            ILogger<IEventAggregateRepository> logger)
         {
             _dataBaseConfiguration = dataBaseConfiguration;
+            _logger = logger;
             connection = new NpgsqlConnection(_dataBaseConfiguration.ConnectionString);
             connection.Open();
         }
@@ -48,7 +55,14 @@ namespace Polkanalysis.Infrastructure.Common.Database
                 moduleEvent = eventModel.EventName 
             };
 
-            await connection.ExecuteAsync(insert, token);
+            try
+            {
+                var nbRows = await connection.ExecuteAsync(insert, queryArgument);
+                _logger.LogTrace($"Insert {nbRows} in database");
+            } catch(Exception ex)
+            {
+                _logger.LogError(ex, "");
+            }
         }
     }
 }
