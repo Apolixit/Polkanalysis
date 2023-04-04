@@ -54,8 +54,8 @@ namespace Polkanalysis.Domain.Contracts.Core
             TypeSize = p - start;
         }
 
-        public string ToStringAddress(int ss58 = 42)
-            => ToStringAddress((short)ss58);
+        //public string ToStringAddress(int ss58 = 42)
+        //    => ToStringAddress((short)ss58);
         public string ToStringAddress(short ss58 = 42)
         {
             return Utils.GetAddressFrom(Bytes, ss58);

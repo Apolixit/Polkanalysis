@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

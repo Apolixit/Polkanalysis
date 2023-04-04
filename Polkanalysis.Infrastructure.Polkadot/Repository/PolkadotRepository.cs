@@ -30,7 +30,6 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Repository
     {
         private SubstrateClientExt? _polkadotClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
-        private readonly ISubstrateDecoding _substrateDecode;
         private readonly ILogger<PolkadotRepository> _logger;
 
         public PolkadotRepository(
