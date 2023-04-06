@@ -57,16 +57,6 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Events
                         var expectedResult = new List<EventRecord>();
                         foreach (var coreEvent in coreResult.Value)
                         {
-                            var mainEvent = coreEvent.Event.Value;
-                            var secondaryEvent = string.Empty;
-                            var details = string.Empty;
-
-                            var mainEventString = coreEvent.Event.Value.ToString();
-                            if (coreEvent.Event.Value == Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.RuntimeEvent.Scheduler)
-                            {
-                                var hex = Utils.Bytes2HexString(coreEvent.Encode());
-                            }
-
                             var mappedPhase = PolkadotMapping.Instance.Map<EnumPhase>(coreEvent.Phase);
                             var mappedTopics = PolkadotMapping.Instance.Map<BaseVec<Hash>>(coreEvent.Topics);
                             var maybeMappedEvents = new Maybe<EnumRuntimeEvent>();
@@ -75,7 +65,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Events
                             {
 
                                 var mappedEvents = PolkadotMapping.Instance.Map<
-                            Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(coreEvent.Event);
+                          Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(coreEvent.Event);
 
                                 maybeMappedEvents = new Maybe<EnumRuntimeEvent>(mappedEvents);
                             }
@@ -98,7 +88,5 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Events
                     }
                 }, token);
         }
-
-        
     }
 }

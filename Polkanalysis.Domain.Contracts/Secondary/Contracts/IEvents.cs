@@ -13,5 +13,6 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Contracts
     public interface IEvents
     {
         public Task SubscribeEventsAsync(Action<BaseVec<EventRecord>> callback, CancellationToken token);
+        //public Task SubscribeEventsAsync(Func<BaseVec<EventRecord>, Task> callback, CancellationToken token);
     }
 }

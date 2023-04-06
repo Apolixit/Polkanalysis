@@ -25,7 +25,7 @@ namespace Polkanalysis.Configuration.Tests
         [Test]
         public void nullAppSettings_ShouldFailed()
         {
-            Assert.Throws<ConfigurationErrorsException>(() => new SubstrateEndpoint(Arg.Any<IConfiguration>()));
+            Assert.Throws<ConfigurationErrorsException>(() => new SubstrateEndpoint(null!));
         }
 
         [Test]

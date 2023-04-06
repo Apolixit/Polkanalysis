@@ -548,7 +548,7 @@ namespace Polkanalysis.Domain.Repository
             }
         }
 
-        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, AsyncSubscribeDelegate callback, CancellationToken token)
+        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token)
         {
             await _substrateService.Events.SubscribeEventsAsync((BaseVec<EventRecord> events) =>
             {
@@ -558,10 +558,10 @@ namespace Polkanalysis.Domain.Repository
             }, token);
         }
 
-        public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, AsyncSubscribeDelegate callback, ListenerFilter filter, CancellationToken token)
-        {
-            // Todo
-        }
+        //public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Func<EventRecord, Task> callback, ListenerFilter filter, CancellationToken token)
+        //{
+        //    // Todo
+        //}
 
         public Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken)
             => GetExtrinsicAsync(_blockParameter.FromBlockNumber(blockId), extrinsicIndex, cancellationToken);

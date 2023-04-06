@@ -27,6 +27,9 @@ using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Contracts;
 using Polkanalysis.Infrastructure.Common.Database;
 using Polkanalysis.Domain.Contracts;
+using Polkanalysis.Infrastructure.Contracts.Database.Analysis.Events;
+using Polkanalysis.Infrastructure.Common.Database.Analysis;
+using Polkanalysis.Infrastructure.Common.Database.Analysis.Events.Balances;
 
 namespace ConsoleTest;
 
@@ -74,6 +77,8 @@ public class Program
             .AddSingleton<IBlockchainMapping, PolkadotMapping>()
             .AddSingleton<IEventAggregateRepository, EventAggregateRepository>()
             .AddScoped<IDatabaseConfiguration, DatabaseConfiguration>()
-            .AddSingleton<ICurrentMetaData, CurrentMetaData>();
+            .AddSingleton<ICurrentMetaData, CurrentMetaData>()
+            .AddSingleton<BalancesTransferRepository>()
+            .AddSingleton<IEventsFactory, EventsFactory>();
     }
 }

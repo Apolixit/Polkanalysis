@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Infrastructure.Contracts.Analysis
+namespace Polkanalysis.Infrastructure.Contracts.Database.Analysis
 {
     public interface IDatabaseGet<T> 
         where T : class

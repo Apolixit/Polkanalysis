@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Substrate.DotNet.Extension
+// Substrate.NET.API.Extension
+// Substrate.NET.API.Helper
 namespace Polkanalysis.AjunaExtension.Encoding
 {
     public static class EnumerableEncodingHelper
