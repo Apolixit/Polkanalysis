@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Contracts.Model;
 using Substrate.NetApi.Model.Types;
 using System;
@@ -12,5 +13,7 @@ namespace Polkanalysis.Infrastructure.Contracts.Database.Analysis.Events
     public interface IEventsFactory
     {
         public Task ExecuteInsertAsync(RuntimeEvent runtimeEvent, Enum eventValue, EventsDatabaseModel eventModel, IType details, CancellationToken token);
+        public bool Has(RuntimeEvent runtimeEvent, Enum eventValue);
+        public EventElementFactory? TryFind(RuntimeEvent runtimeEvent, Enum eventValue);
     }
 }

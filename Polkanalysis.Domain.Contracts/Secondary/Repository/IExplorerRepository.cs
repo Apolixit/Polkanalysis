@@ -201,6 +201,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken);
+        Task<(BlockNumber blockNumber, Hash blockHash, BlockData blockDetails)> ExtractInformationsFromHeaderAsync(Header header, CancellationToken token);
         #endregion
     }
 }

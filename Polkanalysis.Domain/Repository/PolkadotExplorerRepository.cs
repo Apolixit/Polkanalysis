@@ -302,7 +302,7 @@ namespace Polkanalysis.Domain.Repository
             var extrinsicsDto = new List<ExtrinsicDto>();
             foreach (var extrinsic in blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54))
             {
-                var encodedExtrinsic = encodeExtrinsic(extrinsic);
+                var encodedExtrinsic = extrinsic.Encode();
                 var hexExtrinsic = Utils.Bytes2HexString(encodedExtrinsic);
                 var extrinsicHash = new Hash();
                 extrinsicHash.Create(hexExtrinsic);
@@ -372,77 +372,6 @@ namespace Polkanalysis.Domain.Repository
             return eventsLinked;
         }
 
-
-        public byte[] encodeExtrinsic(Extrinsic extrinsic)
-        {
-            var result = new List<byte>();
-            //var r = new byte[] { Convert.ToByte(enumPallet) };
-            //result.AddRange(r);
-            //result.AddRange(param);
-
-
-            int p = 0;
-
-            result.Add(Convert.ToByte(extrinsic.Signed));
-            result.Add(extrinsic.TransactionVersion);
-            if (extrinsic.Signed)
-            {
-                result.AddRange(extrinsic.Account.Encode());
-                result.AddRange(extrinsic.Signature);
-                result.AddRange(extrinsic.Era.Encode());
-                result.AddRange(extrinsic.Nonce.Encode());
-                result.AddRange(extrinsic.Charge.Encode());
-            }
-
-            result.AddRange(extrinsic.Method.Encode());
-
-            return result.ToArray();
-            //int p = 0;
-            //CompactInteger.Decode(memory.ToArray(), ref p);
-            //int num = 1;
-            //byte b = memory.Slice(p, num).ToArray()[0];
-            //Signed = b >= 128;
-            //TransactionVersion = (byte)(b - (Signed ? 128 : 0));
-            //p += num;
-            //if (Signed)
-            //{
-            //    num = 1;
-            //    _ = memory.Slice(p, num).ToArray()[0];
-            //    p += num;
-            //    num = 32;
-            //    byte[] publicKey = memory.Slice(p, num).ToArray();
-            //    p += num;
-            //    num = 1;
-            //    byte keyType = memory.Slice(p, num).ToArray()[0];
-            //    p += num;
-            //    Account account = new Account();
-            //    account.Create((KeyType)keyType, publicKey);
-            //    Account = account;
-            //    num = 64;
-            //    Signature = memory.Slice(p, num).ToArray();
-            //    p += num;
-            //    num = 1;
-            //    byte[] array = memory.Slice(p, num).ToArray();
-            //    if (array[0] != 0)
-            //    {
-            //        num = 2;
-            //        array = memory.Slice(p, num).ToArray();
-            //    }
-
-            //    Era = Era.Decode(array);
-            //    p += num;
-            //    Nonce = CompactInteger.Decode(memory.ToArray(), ref p);
-            //    Charge = chargeType;
-            //    Charge.Decode(memory.ToArray(), ref p);
-            //}
-
-            //num = 2;
-            //byte[] array2 = memory.Slice(p, num).ToArray();
-            //p += num;
-            //byte[] parameters = memory.Slice(p).ToArray();
-            //Method = new Method(array2[0], array2[1], parameters);
-        }
-
         public async Task SubscribeEventAsync(Action<EventLightDto> eventCallback, CancellationToken cancellationToken)
         {
             await _substrateService.Events.SubscribeEventsAsync((BaseVec<EventRecord> eventsReceived) => {
@@ -457,11 +386,6 @@ namespace Polkanalysis.Domain.Repository
                     try
                     {
                         _logger.LogInformation($"Event mapped : {eventReceived.Event.Value.Value}");
-                        //eventCallback(
-                        //    _modelBuilder.BuildEventLightDto(
-                        //        _substrateDecode.DecodeEvent(eventReceived)
-                        //        )
-                        //    );
                     }
                     catch (Exception ex)
                     {
@@ -470,43 +394,6 @@ namespace Polkanalysis.Domain.Repository
                     }
                 }
             }, cancellationToken);
-            //Action<string, StorageChangeSet> eventChangeset = (subscriptionId, storageChangeSet) =>
-            //{
-            //    var hexString = SubstrateHelper.getChangesetData(storageChangeSet);
-
-            //    // No data
-            //    if (string.IsNullOrEmpty(hexString)) return;
-
-            //    var eventsReceived = new BaseVec<EventRecord>();
-            //    eventsReceived.Create(hexString);
-
-            //    foreach (EventRecord eventReceived in eventsReceived.Value)
-            //    {
-            //        if(!eventReceived.Event.HasBeenMapped)
-            //        {
-            //            // Log
-            //            _logger.LogWarning($"Event unmapped : from {eventReceived.Event.CoreType.Name} to {eventReceived.Event.DestinationType.Name}");
-            //            continue;
-            //        }
-            //        try
-            //        {
-            //            _logger.LogInformation($"Event mapped : {eventReceived.Event.Value.Value}");
-            //            eventCallback(
-            //                _modelBuilder.BuildEventLightDto(
-            //                    _substrateDecode.DecodeEvent(eventReceived)
-            //                    )
-            //                );
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            _logger.LogWarning($"Event Hexadecimal: {Utils.Bytes2HexString(eventReceived.Encode())}");
-            //            _logger.LogError($"Read event failed : {ex}");
-            //        }
-            //    }
-            //};
-            
-            //await _substrateService.AjunaClient.SubscribeStorageKeyAsync(
-            //    _substrateService.Storage.System.EventsParams(), eventChangeset, CancellationToken.None);
         }
 
         
@@ -577,6 +464,26 @@ namespace Polkanalysis.Domain.Repository
             var blockHash = block.ToBlockHashAsync();
             //TODO
             throw new NotImplementedException();
+        }
+
+        public async Task<(BlockNumber blockNumber, Hash blockHash, BlockData blockDetails)> ExtractInformationsFromHeaderAsync(Header header, CancellationToken token)
+        {
+            if(header == null) throw new ArgumentNullException("header");
+
+            var blockNumber = new BlockNumber();
+            blockNumber.Create((uint)header.Number.Value);
+
+            var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(blockNumber, token);
+
+            if (blockHash == null)
+                throw new BlockException($"{nameof(blockHash)} from given blockId (={blockNumber.Value}) is null");
+
+            var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, token);
+
+            if (blockDetails == null)
+                throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
+
+            return (blockNumber, blockHash, blockDetails);
         }
     }
 }

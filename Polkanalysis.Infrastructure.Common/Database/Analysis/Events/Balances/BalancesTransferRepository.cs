@@ -21,12 +21,11 @@ using System.Threading.Tasks;
 namespace Polkanalysis.Infrastructure.Common.Database.Analysis.Events.Balances
 {
     //[LinkedEvent("Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Transfer")]
-    public class BalancesTransferRepository : AnalysisRepository, 
-        IDatabaseInsert,
+    public class BalancesTransferRepository : AnalysisRepository,
         IDatabaseGet<BalancesTransferModel>
     {
         protected override string TableName => "EventBalancesTransfer";
-            
+
         public BalancesTransferRepository(
             IDatabaseConfiguration dataBaseConfiguration,
             IBlockchainMapping mapping,
@@ -34,42 +33,32 @@ namespace Polkanalysis.Infrastructure.Common.Database.Analysis.Events.Balances
         {
         }
 
-        public async Task InsertAsync(
-            EventsDatabaseModel eventModel, 
+        protected override async Task InternalInsertAsync(
+            EventsDatabaseModel eventModel,
             IType data,
             CancellationToken token)
         {
             var convertedData = _mapping.Mapper.Map<BaseTuple<SubstrateAccount, SubstrateAccount, U128>>(data);
 
-            try
-            {
-                var transferAmount = (double)((U128)convertedData.Value[2]).Value;
 
-                var nbRows = await _db.Query(TableName).InsertAsync(new
-                {
-                    blockchainName = eventModel.BlockchainName,
-                    blockId = eventModel.BlockId,
-                    eventId = 0,
-                    moduleName = eventModel.ModuleName,
-                    eventName = eventModel.EventName,
-                    from = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress(),
-                    to = ((SubstrateAccount)convertedData.Value[1]).ToStringAddress(),
-                    amount = transferAmount
-                }, cancellationToken: token);
+            var transferAmount = (double)((U128)convertedData.Value[2]).Value;
 
-                if (nbRows != 1)
-                    throw new InvalidOperationException("Inserted rows are inconsistent");
+            var nbRows = await _db.Query(TableName).InsertAsync(new
+            {
+                blockchainName = eventModel.BlockchainName,
+                blockId = eventModel.BlockId,
+                eventId = 0,
+                moduleName = eventModel.ModuleName,
+                eventName = eventModel.EventName,
+                from = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress(),
+                to = ((SubstrateAccount)convertedData.Value[1]).ToStringAddress(),
+                amount = transferAmount
+            }, cancellationToken: token);
 
-                _logger.LogInformation($"{eventModel.EventName} successfully inserted is database");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error while trying to insert in database");
-            }
-            finally
-            {
-                await _connection.CloseAsync();
-            }
+            if (nbRows != 1)
+                throw new InvalidOperationException("Inserted rows are inconsistent");
+
+            _logger.LogInformation($"{eventModel.EventName} successfully inserted is database");
         }
 
         public async Task<IEnumerable<BalancesTransferModel>> GetAllAsync(CancellationToken token)
