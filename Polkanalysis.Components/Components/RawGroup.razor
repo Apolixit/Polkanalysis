@@ -1,0 +1,22 @@
+﻿@typeparam T
+
+<div class="row row-group m-0">
+    @foreach (var elem in Elems)
+    {
+        <div class="col-@ColumnSizeXs col-lg-@ColumnSizeMd col-xl-@ColumnSizeLg border-light">
+            <div class="card-body">
+                @ElemsContent(elem)
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public int NbCols { get; set; } = 1;
+    public int ColumnSizeLg => 12 / NbCols;
+    public int ColumnSizeMd => ColumnSizeLg * 2;
+    public int ColumnSizeXs => 12;
+
+    [Parameter] public RenderFragment<T> ElemsContent { get; set; }
+    [Parameter] public IList<T> Elems { get; set; } = null;
+}

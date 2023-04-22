@@ -1,0 +1,49 @@
+﻿@typeparam T
+
+@if(Elems == null)
+{
+    @if(NullContent != null)
+    {
+        @NullContent
+    } else
+    {
+        <Loader />
+    }
+} else if(Elems.Count == 0)
+{
+    @if(EmptyContent != null)
+    {
+        @EmptyContent
+    } else
+    {
+        <text>No data...</text>
+    }
+} else
+{
+    foreach(var elem in Elems)
+    {
+        @ElemsContent(elem);
+    }
+}
+
+@code {
+    /// <summary>
+    /// Fragment displays if list is null
+    /// </summary>
+    [Parameter] public RenderFragment NullContent { get; set; } = null;
+
+    /// <summary>
+    /// Fragment displays if list is empty
+    /// </summary>
+    [Parameter] public RenderFragment EmptyContent { get; set; } = null;
+
+    /// <summary>
+    /// Fragment displays for each elements of the list
+    /// </summary>
+    [Parameter] public RenderFragment<T> ElemsContent { get; set; } = null;
+
+    /// <summary>
+    /// The list we are working on
+    /// </summary>
+    [Parameter] public IList<T> Elems { get; set; } = null;
+}

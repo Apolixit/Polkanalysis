@@ -1,0 +1,32 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Block;
+@using Polkanalysis.Domain.Contracts.Secondary.Repository;
+@inject IExplorerRepository blockRepository;
+
+<div class="card">
+    <div class="card-header">
+        Latest block
+    </div>
+    <div class="table-responsive">
+        <Table Elems="blocks" Context="block">
+            <TbodyContent>
+                <tr>
+
+                </tr>
+            </TbodyContent>
+        </Table>
+    </div>
+</div>
+
+@code {
+    private List<BlockLightDto> blocks = new List<BlockLightDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        //blockRepository.SubscribeNewBlocksAsync((BlockLightDto blockLight) =>
+        //{
+        //    blocks.Add(blockLight);
+        //    StateHasChanged();
+        //}, CancellationToken.None);
+        //StateHasChanged();
+    }
+}

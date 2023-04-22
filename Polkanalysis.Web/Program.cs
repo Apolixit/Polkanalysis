@@ -14,7 +14,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddSingleton<ISubstrateRepository, PolkadotRepository>();
 //builder.Services.AddScoped<IEventRepository, EventRepositoryDirectAccess>();
-builder.Services.AddScoped<ISubstrateDecoding, SubstrateDecoding>();
+//builder.Services.AddScoped<ISubstrateDecoding, SubstrateDecoding>();
 
 var host = builder.Build();
 var logger = host.Services.GetRequiredService<ILoggerFactory>()
