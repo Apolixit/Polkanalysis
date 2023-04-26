@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NSubstitute.ReturnsExtensions;
+using Polkanalysis.Domain.Contracts.Primary.Result;
 
 namespace Polkanalysis.Domain.Tests.UseCase
 {

@@ -10,10 +10,13 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using MediatR;
+using Serilog.Core;
+using Polkanalysis.Domain.Contracts.Primary.Result;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
-    public class BlockDetailUseCase : UseCase<BlockDetailUseCase, BlockDto, BlockCommand>
+    public class BlockDetailUseCase : UseCase<BlockDetailUseCase, BlockDto, BlockDetailsCommand>
     {
         private readonly IExplorerRepository _blockRepository;
 
@@ -22,16 +25,16 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
             _blockRepository = blockRepository;
         }
 
-        public override async Task<Result<BlockDto, ErrorResult>> ExecuteAsync(BlockCommand blockCommand, CancellationToken cancellationToken)
+        public async override Task<Result<BlockDto, ErrorResult>> Handle(BlockDetailsCommand command, CancellationToken cancellationToken)
         {
-            if (blockCommand == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(blockCommand)} is not set");
+            if (command == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
 
             BlockDto? blockDto = null;
-            if (blockCommand.BlockNumber != null)
-                blockDto = await _blockRepository.GetBlockDetailsAsync((uint)blockCommand.BlockNumber, cancellationToken);
-            else if (!string.IsNullOrEmpty(blockCommand.BlockHash))
-                blockDto = await _blockRepository.GetBlockDetailsAsync(blockCommand.BlockHash, cancellationToken);
+            if (command.BlockNumber != null)
+                blockDto = await _blockRepository.GetBlockDetailsAsync((uint)command.BlockNumber, cancellationToken);
+            else if (!string.IsNullOrEmpty(command.BlockHash))
+                blockDto = await _blockRepository.GetBlockDetailsAsync(command.BlockHash, cancellationToken);
 
             if (blockDto == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"{nameof(blockDto)} is null");

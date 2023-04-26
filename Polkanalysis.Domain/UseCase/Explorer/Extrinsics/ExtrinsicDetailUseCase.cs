@@ -1,16 +1,9 @@
-﻿using Polkanalysis.Domain.Contracts.Dto.Event;
-using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
+﻿using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Primary;
-using Polkanalysis.Domain.UseCase.Explorer.Events;
 using Microsoft.Extensions.Logging;
 using OperationResult;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Primary.Result;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 {
@@ -25,18 +18,18 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<ExtrinsicDto, ErrorResult>> ExecuteAsync(ExtrinsicCommand extrinsicCommand, CancellationToken cancellationToken)
+        public override async Task<Result<ExtrinsicDto, ErrorResult>> Handle(ExtrinsicCommand command, CancellationToken cancellationToken)
         {
-            if (extrinsicCommand == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(extrinsicCommand)} is not set");
+            if (command == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
 
-            if (extrinsicCommand.BlockNumber < 1)
-                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(extrinsicCommand.BlockNumber)} is not valid (should be > 0)");
+            if (command.BlockNumber < 1)
+                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(command.BlockNumber)} is not valid (should be > 0)");
 
-            if (extrinsicCommand.ExtrinsicIndex < 1)
-                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(extrinsicCommand.ExtrinsicIndex)} is not valid (should be > 0)");
+            if (command.ExtrinsicIndex < 1)
+                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(command.ExtrinsicIndex)} is not valid (should be > 0)");
 
-            ExtrinsicDto extrinsicDto = await _explorerRepository.GetExtrinsicAsync(extrinsicCommand.BlockNumber, extrinsicCommand.ExtrinsicIndex, cancellationToken);
+            ExtrinsicDto extrinsicDto = await _explorerRepository.GetExtrinsicAsync(command.BlockNumber, command.ExtrinsicIndex, cancellationToken);
 
             if (extrinsicDto == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"{nameof(extrinsicDto)} is null");

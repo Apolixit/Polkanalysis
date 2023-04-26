@@ -1,0 +1,37 @@
+﻿@using Polkanalysis.Domain.Contracts.Primary.Result;
+@typeparam T
+
+@if (UseCaseData == null)
+{
+    <Loader />
+}
+else
+{
+    @if (UseCaseData.Value.IsError)
+    {
+        @if (ErrorTemplate != null)
+        {
+            @ErrorTemplate
+            ;
+        }
+        else
+        {
+            <div>
+                @UseCaseData.Value.Error.Description
+            </div>
+        }
+    }
+    else
+    {
+        @ChildContent(UseCaseData.Value.Value)
+        ;
+    }
+}
+
+
+
+@code {
+    [Parameter] public required OperationResult.Result<T, ErrorResult>? UseCaseData { get; set; }
+    [Parameter] public required RenderFragment<T> ChildContent { get; set; }
+    [Parameter] public RenderFragment? ErrorTemplate { get; set; }
+}

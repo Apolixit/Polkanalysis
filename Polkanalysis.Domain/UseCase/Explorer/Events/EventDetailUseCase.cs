@@ -1,22 +1,18 @@
-﻿using Polkanalysis.Domain.Contracts.Dto;
-using Polkanalysis.Domain.Contracts.Dto.Block;
-using Polkanalysis.Domain.Contracts.Dto.Event;
+﻿using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Primary;
-using Polkanalysis.Domain.UseCase.Explorer.Block;
 using Microsoft.Extensions.Logging;
 using OperationResult;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Primary.Result;
+using MediatR;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Events
 {
     public class EventDetailUseCase : UseCase<EventDetailUseCase, EventDto, EventCommand>
     {
         private readonly IExplorerRepository _explorerRepository;
+        private readonly IMediator _mediator;
+
 
         public EventDetailUseCase(
             IExplorerRepository explorerRepository,
@@ -25,19 +21,19 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<EventDto, ErrorResult>> ExecuteAsync(EventCommand eventCommand, CancellationToken cancellationToken)
+        public override async Task<Result<EventDto, ErrorResult>> Handle(EventCommand command, CancellationToken cancellationToken)
         {
-            if (eventCommand == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(eventCommand)} is not set");
+            if (command == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
 
-            if(eventCommand.BlockNumber < 1)
-                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(eventCommand.BlockNumber)} is not valid (should be > 0)");
+            if(command.BlockNumber < 1)
+                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(command.BlockNumber)} is not valid (should be > 0)");
 
-            if (eventCommand.EventIndex < 1)
-                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(eventCommand.EventIndex)} is not valid (should be > 0)");
+            if (command.EventIndex < 1)
+                return UseCaseError(ErrorResult.ErrorType.InvalidParam, $"{nameof(command.EventIndex)} is not valid (should be > 0)");
 
 
-            EventDto eventDto = await _explorerRepository.GetEventAsync(eventCommand.BlockNumber, eventCommand.EventIndex, cancellationToken);
+            EventDto eventDto = await _explorerRepository.GetEventAsync(command.BlockNumber, command.EventIndex, cancellationToken);
 
             if (eventDto == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"{nameof(eventDto)} is null");

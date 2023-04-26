@@ -1,7 +1,9 @@
-﻿@using Polkanalysis.Domain.Contracts.Dto.Block;
+﻿@using MediatR;
+@using Polkanalysis.Domain.Contracts.Dto.Block;
 @using Polkanalysis.Domain.Contracts.Primary;
+@using Polkanalysis.Domain.Contracts.Primary.Result;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
-@inject IExplorerRepository blockRepository;
+@inject IMediator _mediator;
 
 <div class="card">
     <div class="card-header">
@@ -12,29 +14,26 @@
                     <i class="icon-options"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="javascript:void();">Action</a>
-                    <a class="dropdown-item" href="javascript:void();">Another action</a>
-                    <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                    <a class="dropdown-item" href="javascript:void();">Export PDF</a>
+                    <a class="dropdown-item" href="javascript:void();">Export Excel</a>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="card-body">
-        @if (blockDetail == null)
-        {
-            <Loader />
-        }
-        else
-        {
-            <span>Hash : @blockDetail.Hash</span>
-        }
-        @*<div class="chart-container-2">
-            <div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-            <canvas id="chart2" width="478" height="188" style="display: block; width: 478px; height: 188px;" class="chartjs-render-monitor"></canvas>
-        </div>*@
+        @*<Data UseCaseData="@blockDetail">
+            @if (blockDetail == null)
+            {
+                <Loader />
+            }
+            else
+            {
+                <span>Hash : @blockDetail.Value.Hash</span>
+
+            }
+        </Data>*@
+
     </div>
     <div class="table-responsive">
         <table class="table align-items-center">
@@ -66,7 +65,8 @@
 
 @code {
     [Parameter] public int? blockId { get; set; }
-    private BlockLightDto? blockDetail;
+    //private BlockLightDto? blockDetail;
+    private OperationResult.Result<BlockDto, ErrorResult>? blockDetail;
 
     protected override async Task OnInitializedAsync()
     {
@@ -74,7 +74,7 @@
         //var blockUseCase = new Polkanalysis.Domain.UseCase.Explorer.Block.BlockDetailUseCase();
         //var result = await blockUseCase.ExecuteAsync(new BlockCommand((uint)blockId), CancellationToken.None));
 
-        blockDetail = await blockRepository.GetBlockLightAsync((uint)blockId, CancellationToken.None);
+        blockDetail = await _mediator.Send(new BlockDetailsCommand((uint)blockId));
         StateHasChanged();
     }
 }

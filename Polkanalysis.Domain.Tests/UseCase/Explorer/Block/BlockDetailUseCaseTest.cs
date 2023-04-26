@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Primary.Result;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {

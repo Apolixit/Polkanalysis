@@ -30,6 +30,12 @@ using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Infrastructure.Contracts.Database.Analysis.Events;
 using Polkanalysis.Infrastructure.Common.Database.Analysis;
 using Polkanalysis.Infrastructure.Common.Database.Analysis.Events.Balances;
+using MediatR.Courier;
+using System.Reflection;
+using Polkanalysis.Domain.UseCase.Explorer.Block;
+using MediatR;
+using static System.Formats.Asn1.AsnWriter;
+using Polkanalysis.Domain.Contracts.Primary.Notification;
 
 namespace ConsoleTest;
 
@@ -58,6 +64,8 @@ public class Program
             .AddSingleton<IRuntime, Runtime>()
             .BuildServiceProvider();
 
+        //await serviceProvider.GetRequiredService<IMediator>().Send(new SubscribeBlockCommand());
+
         await serviceProvider
             .GetService<IRuntime>()
             .TodoAsync();
@@ -66,6 +74,13 @@ public class Program
     private static void ConfigureServices(IServiceCollection services)
     {
         services
+            //.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Polkanalysis.Domain.UseCase.Module.ModuleDetailUseCase).GetTypeInfo().Assembly))
+            .AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+                //cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+            })
+            .AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly)
+            //.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>))
             .AddSingleton<PolkadotMapping>()
             .AddSingleton<ISubstrateRepository, PolkadotRepository>()
             .AddSingleton<IExplorerRepository, PolkadotExplorerRepository>()

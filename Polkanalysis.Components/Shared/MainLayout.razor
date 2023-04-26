@@ -1,8 +1,11 @@
-﻿@using Microsoft.Extensions.Logging;
+﻿@using MediatR;
+@using Microsoft.Extensions.Logging;
+@using Polkanalysis.Domain.Contracts.Primary.Notification;
 @using Polkanalysis.Domain.Contracts.Secondary;
 
 @inherits LayoutComponentBase
 @inject ISubstrateRepository substrateService;
+@inject IMediator _mediator;
 @inject ILogger<MainLayout> logger;
 
 
@@ -44,6 +47,12 @@
 
                 <div class="col-12 col-xl-6">
                     <LatestExtrinsics></LatestExtrinsics>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-xl-12">
+                    <Polkanalysis.Components.Substrate.Modules.ModuleList></Polkanalysis.Components.Substrate.Modules.ModuleList>
                 </div>
             </div>
 
@@ -129,6 +138,8 @@
                 isCurrentlyConnected = isConnected;
 
                 StateHasChanged();
+
+                await _mediator.Send(new SubscribeBlockCommand());
             }
 
         }, CancellationToken.None);

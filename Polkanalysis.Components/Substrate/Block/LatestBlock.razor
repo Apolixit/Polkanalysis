@@ -1,6 +1,12 @@
-﻿@using Polkanalysis.Domain.Contracts.Dto.Block;
+﻿@using MediatR.Courier;
+@using MediatR;
+@using Polkanalysis.Domain.Contracts.Dto.Block;
+@using Polkanalysis.Domain.Contracts.Primary.Notification;
+@using Polkanalysis.Domain.Contracts.Primary;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
 @inject IExplorerRepository blockRepository;
+@inject ICourier _courier;
+@inject IMediator _mediator;
 
 <div class="card">
     <div class="card-header">
@@ -10,7 +16,18 @@
         <Table Elems="blocks" Context="block">
             <TbodyContent>
                 <tr>
-
+                    <td>
+                        @block.Number
+                    </td>
+                    <td>
+                        @block.When
+                    </td>
+                    <td>
+                        @block.Hash
+                    </td>
+                    <td>
+                        @block.Status
+                    </td>
                 </tr>
             </TbodyContent>
         </Table>
@@ -20,13 +37,33 @@
 @code {
     private List<BlockLightDto> blocks = new List<BlockLightDto>();
 
-    protected override async Task OnInitializedAsync()
+    protected async override Task OnInitializedAsync()
     {
-        //blockRepository.SubscribeNewBlocksAsync((BlockLightDto blockLight) =>
-        //{
-        //    blocks.Add(blockLight);
-        //    StateHasChanged();
-        //}, CancellationToken.None);
+        //var latestBlock = await _mediator.Send(new BlockLightCommand());
+        //blocks.Add(latestBlock.Value);
+
+        _courier.Subscribe<BlockNotification>(HandleBlock);
+
+        StateHasChanged();
+    }
+
+    public Task HandleBlock(BlockNotification notification, CancellationToken cancellationToken)
+    {
+        Console.WriteLine("New block !");
+        //Console.WriteLine(notification.blockLight.Number);
+        //blocks.Add(notification.blockLight);
         //StateHasChanged();
+
+        return Task.CompletedTask;
+    }
+
+    public class HandleNewBlockUseCase : INotificationHandler<BlockNotification>
+    {
+        public Task Handle(BlockNotification notification, CancellationToken cancellationToken)
+        {
+            Console.WriteLine("New block !");
+
+            return Task.CompletedTask;
+        }
     }
 }

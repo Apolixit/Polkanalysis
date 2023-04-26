@@ -1,0 +1,37 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Module;
+@using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
+@inject IMediator _mediator;
+
+<Data UseCaseData="moduleDetail">
+    <Table Elems="moduleDetail.Value.Value.ToList()" Context="module">
+        <ThContent>
+            <th>Name</th>
+            <th>Calls</th>
+            <th>Events</th>
+            <th>Storage</th>
+            <th>Constants</th>
+            <th>Errors</th>
+            <th>Details</th>
+        </ThContent>
+        <TbodyContent>
+            <tr>
+                <th>@module.Information.PalletName</th>
+                <th>@module.Calls.Count()</th>
+                <th>@module.Events.Count()</th>
+                <th>@module.Storage.Count()</th>
+                <th>@module.Constants.Count()</th>
+                <th>@module.Errors.Count()</th>
+                <th>Details</th>
+            </tr>
+        </TbodyContent>
+    </Table>
+</Data>
+
+@code {
+    private OperationResult.Result<IEnumerable<ModuleDetailDto>, ErrorResult>? moduleDetail;
+
+    protected override async Task OnInitializedAsync()
+    {
+        moduleDetail = await _mediator.Send(new ModulesQuery(), CancellationToken.None);
+    }
+}

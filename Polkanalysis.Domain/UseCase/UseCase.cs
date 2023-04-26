@@ -9,14 +9,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Polkanalysis.Domain.UseCase.ErrorResult;
+using MediatR;
+using Polkanalysis.Domain.Contracts.Primary.Result;
+using static Polkanalysis.Domain.Contracts.Primary.Result.ErrorResult;
 
 namespace Polkanalysis.Domain.UseCase
 {
-    public abstract class UseCase<L, Dto, C> 
+    public abstract class UseCase<L, Dto, C> : IRequestHandler<C, Result<Dto, ErrorResult>>
         where L : class
         where Dto : class
-        where C : class
+        where C : IRequest<Result<Dto, ErrorResult>>
     {
         protected readonly ILogger<L> _logger;
 
@@ -39,6 +41,6 @@ namespace Polkanalysis.Domain.UseCase
             return Helpers.Error(errorResult);
         }
 
-        public abstract Task<Result<Dto, ErrorResult>> ExecuteAsync(C command, CancellationToken cancellationToken);
+        public abstract Task<Result<Dto, ErrorResult>> Handle(C command, CancellationToken cancellationToken);
     }
 }

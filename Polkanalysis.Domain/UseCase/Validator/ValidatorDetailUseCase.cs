@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Primary.Result;
 
 namespace Polkanalysis.Domain.UseCase.Validator
 {
@@ -16,7 +17,7 @@ namespace Polkanalysis.Domain.UseCase.Validator
         {
         }
 
-        public override async Task<Result<ValidatorDto, ErrorResult>> ExecuteAsync(ValidatorCommand command, CancellationToken cancellationToken)
+        public override async Task<Result<ValidatorDto, ErrorResult>> Handle(ValidatorCommand command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

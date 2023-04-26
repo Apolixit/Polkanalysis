@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Primary;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Primary.Result;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 {

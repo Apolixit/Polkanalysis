@@ -10,13 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Primary.Result;
+using MediatR;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
     /// <summary>
     /// Display condensed informations about a block
     /// </summary>
-    public class BlockLightUseCase : UseCase<BlockLightUseCase, BlockLightDto, BlockCommand>
+    public class BlockLightUseCase : UseCase<BlockLightUseCase, BlockLightDto, BlockLightCommand>
     {
         private readonly IExplorerRepository _blockRepository;
 
@@ -25,17 +27,19 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
             _blockRepository = blockRepository;
         }
 
-        public override async Task<Result<BlockLightDto, ErrorResult>> ExecuteAsync(BlockCommand blockCommand, CancellationToken cancellationToken)
+        public override async Task<Result<BlockLightDto, ErrorResult>> Handle(BlockLightCommand command, CancellationToken cancellationToken)
         {
-            if (blockCommand == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(blockCommand)} is not set");
+            if (command == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
 
-            
+
             BlockLightDto? blockLightDto = null;
-            if (blockCommand.BlockNumber != null)
-                blockLightDto = await _blockRepository.GetBlockLightAsync((uint)blockCommand.BlockNumber, cancellationToken);
-            else if (!string.IsNullOrEmpty(blockCommand.BlockHash))
-                blockLightDto = await _blockRepository.GetBlockLightAsync(blockCommand.BlockHash, cancellationToken);
+            if(!command.IsSet)
+                blockLightDto = await _blockRepository.GetLastBlockAsync(cancellationToken);
+            else if (command.BlockNumber != null)
+                blockLightDto = await _blockRepository.GetBlockLightAsync((uint)command.BlockNumber, cancellationToken);
+            else if (!string.IsNullOrEmpty(command.BlockHash))
+                blockLightDto = await _blockRepository.GetBlockLightAsync(command.BlockHash, cancellationToken);
 
             if (blockLightDto == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"{nameof(blockLightDto)} is null");
