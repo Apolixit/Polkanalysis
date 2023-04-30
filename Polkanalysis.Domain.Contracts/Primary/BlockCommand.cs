@@ -30,29 +30,40 @@ namespace Polkanalysis.Domain.Contracts.Primary
         public bool IsSet => BlockNumber != null && BlockHash != null;
     }
 
-    public class BlockDetailsCommand : BlockCommand, IRequest<Result<BlockDto, ErrorResult>>
+    public class BlockDetailsCommand : IRequest<Result<BlockDto, ErrorResult>>
     {
-        public BlockDetailsCommand(uint blockNumber) : base(blockNumber) { }
+        public uint? BlockNumber { get; }
+        public string? BlockHash { get; }
 
-        public BlockDetailsCommand(string blockHash) : base(blockHash) { }
+        public BlockDetailsCommand(uint blockNumber)
+        {
+            BlockNumber = blockNumber;
+        }
+
+        public BlockDetailsCommand(string blockHash)
+        {
+            BlockHash = blockHash;
+        }
+
+        public bool IsSet => BlockNumber != null && BlockHash != null;
     }
 
     /// <summary>
     /// Represent a request to get detail from a block
     /// </summary>
-    public abstract class BlockCommand : IRequest<Result<BlockDto, ErrorResult>>
-    {
-        public uint? BlockNumber { get; }
-        public string? BlockHash { get; }
+    //public abstract class BlockCommand : IRequest<Result<BlockDto, ErrorResult>>
+    //{
+    //    public uint? BlockNumber { get; }
+    //    public string? BlockHash { get; }
 
-        protected BlockCommand(uint blockNumber)
-        {
-            BlockNumber = blockNumber;
-        }
+    //    protected BlockCommand(uint blockNumber)
+    //    {
+    //        BlockNumber = blockNumber;
+    //    }
 
-        protected BlockCommand(string blockHash)
-        {
-            BlockHash = blockHash;
-        }
-    }
+    //    protected BlockCommand(string blockHash)
+    //    {
+    //        BlockHash = blockHash;
+    //    }
+    //}
 }

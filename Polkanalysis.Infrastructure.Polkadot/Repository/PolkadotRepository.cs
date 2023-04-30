@@ -128,32 +128,31 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Repository
 
         public async Task CheckBlockchainStateAsync(Action<bool> isConnectedCallback, CancellationToken cancellationToken, int millisecondCheck = 500)
         {
-            //try
-            //{
-            //    while (!cancellationToken.IsCancellationRequested)
-            //    {
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {
 
-            //        isConnectedCallback(Client.Core.IsConnected);
-            //        if (!Client.Core.IsConnected)
-            //        {
-            //            try
-            //            {
-            //                await Client.Core.ConnectAsync(cancellationToken);
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                // TODO
-            //                isConnectedCallback(Client.Core.IsConnected);
-            //            }
-            //        }
+                    isConnectedCallback(PolkadotClient.IsConnected);
+                    if (!PolkadotClient.IsConnected)
+                    {
+                        try
+                        {
+                            await PolkadotClient.ConnectAsync(cancellationToken);
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO
+                        }
+                    }
 
-            //        await Task.Delay(TimeSpan.FromMilliseconds(millisecondCheck), cancellationToken);
-            //    }
-            //}
-            //catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-            //{
+                    await Task.Delay(TimeSpan.FromMilliseconds(millisecondCheck), cancellationToken);
+                }
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
 
-            //}
+            }
         }
 
         public bool IsValidAccountAddress(string address)

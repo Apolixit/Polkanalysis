@@ -36,6 +36,7 @@ using Polkanalysis.Domain.UseCase.Explorer.Block;
 using MediatR;
 using static System.Formats.Asn1.AsnWriter;
 using Polkanalysis.Domain.Contracts.Primary.Notification;
+using Polkanalysis.Domain.Contracts.Primary;
 
 namespace ConsoleTest;
 
@@ -77,6 +78,7 @@ public class Program
             //.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Polkanalysis.Domain.UseCase.Module.ModuleDetailUseCase).GetTypeInfo().Assembly))
             .AddMediatR(cfg => {
                 cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(BlockLightCommand).Assembly);
                 //cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
             })
             .AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly)

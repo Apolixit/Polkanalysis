@@ -15,7 +15,7 @@ using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
 
 namespace Polkanalysis.Domain.UseCase.Module
 {
-    public class RuntimeModuleDetailUseCase : UseCase<RuntimeModuleDetailUseCase, ModuleDetailDto, ModuleDetailCommand>
+    public class RuntimeModuleDetailUseCase : UseCase<RuntimeModuleDetailUseCase, ModuleDetailDto, ModuleDetailQuery>
     {
         private readonly IModuleInformation _moduleRepository;
         public RuntimeModuleDetailUseCase(
@@ -25,7 +25,7 @@ namespace Polkanalysis.Domain.UseCase.Module
             _moduleRepository = moduleRepository;
         }
 
-        public override async Task<Result<ModuleDetailDto, ErrorResult>> Handle(ModuleDetailCommand command, CancellationToken cancellationToken)
+        public override async Task<Result<ModuleDetailDto, ErrorResult>> Handle(ModuleDetailQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

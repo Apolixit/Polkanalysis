@@ -1,10 +1,10 @@
 ﻿@typeparam T
 
-<div class="table-responsive">
-    <table class="table table-striped">
+<div class="">
+    <table class="">
         @if (ThContent != null)
         {
-            <thead class="bg-gray-50">
+            <thead>
                 <tr>
                     @ThContent
                 </tr>
@@ -23,7 +23,7 @@
                 }
             </tr>
         }
-        else if (Elems.Count == 0)
+        else if (Elems.Count() == 0)
         {
             <tr>
                 @if (EmptyContent != null)
@@ -64,5 +64,5 @@
 
     [Parameter] public EventCallback OnBodyRowClick { get; set; }
 
-    [Parameter] public IList<T>? Elems { get; set; } = null;
+    [Parameter] public IEnumerable<T>? Elems { get; set; } = null;
 }

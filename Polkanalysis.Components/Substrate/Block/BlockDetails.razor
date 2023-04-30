@@ -1,4 +1,7 @@
-﻿@using MediatR;
+﻿@page "/block/{blockId:int}"
+@page "/block/{blockHash?}"
+
+@using MediatR;
 @using Polkanalysis.Domain.Contracts.Dto.Block;
 @using Polkanalysis.Domain.Contracts.Primary;
 @using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -39,24 +42,40 @@
         <table class="table align-items-center">
             <tbody>
                 <tr>
-                    <td><i class="fa fa-circle text-white mr-2"></i> Direct</td>
-                    <td>$5856</td>
-                    <td>+55%</td>
+                    <td><PolkadotIcons IconName="Block Number.svg" /> Block hash</td>
+                    <td>@blockDetail.Value.Value.Hash</td>
                 </tr>
                 <tr>
-                    <td><i class="fa fa-circle text-light-1 mr-2"></i>Affiliate</td>
-                    <td>$2602</td>
-                    <td>+25%</td>
+                    <td><i class="fa-solid fa-alarm-clock"></i> Timestamp</td>
+                    <td>@blockDetail.Value.Value.Date.Date</td>
                 </tr>
                 <tr>
-                    <td><i class="fa fa-circle text-light-2 mr-2"></i>E-mail</td>
-                    <td>$1802</td>
-                    <td>+15%</td>
+                    <td><PolkadotIcons IconName="Time.svg" /> Block time</td>
+                    <td>@blockDetail.Value.Value.Date.Date</td>
                 </tr>
                 <tr>
-                    <td><i class="fa fa-circle text-light-3 mr-2"></i>Other</td>
-                    <td>$1105</td>
-                    <td>+5%</td>
+                    <td><i class="fa-solid fa-battery-empty"></i> Status</td>
+                    <td>@blockDetail.Value.Value.Status</td>
+                </tr>
+                <tr>
+                    <td><PolkadotIcons IconName="Blockchain.svg" /> Parent hash</td>
+                    <td>@blockDetail.Value.Value.ParentHash</td>
+                </tr>
+                <tr>
+                    <td><i class="fa-solid fa-signal-bars"></i> State root</td>
+                    <td>@blockDetail.Value.Value.StateRoot</td>
+                </tr>
+                <tr>
+                    <td><PolkadotIcons IconName="Block Explorer.svg" /> Extrinsic root</td>
+                    <td>@blockDetail.Value.Value.ExtrinsicsRoot</td>
+                </tr>
+                <tr>
+                    <td><PolkadotIcons IconName="Validator.svg" /> Validator</td>
+                    <td>@blockDetail.Value.Value.Validator</td>
+                </tr>
+                <tr>
+                    <td><PolkadotIcons IconName="Version.svg" /> Spec version</td>
+                    <td>@blockDetail.Value.Value.SpecVersion</td>
                 </tr>
             </tbody>
         </table>
@@ -65,6 +84,7 @@
 
 @code {
     [Parameter] public int? blockId { get; set; }
+    [Parameter] public string? blockHash { get; set; }
     //private BlockLightDto? blockDetail;
     private OperationResult.Result<BlockDto, ErrorResult>? blockDetail;
 

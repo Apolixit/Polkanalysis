@@ -18,11 +18,11 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
     public class BlockDetailUseCase : UseCase<BlockDetailUseCase, BlockDto, BlockDetailsCommand>
     {
-        private readonly IExplorerRepository _blockRepository;
+        private readonly IExplorerRepository _explorerRepository;
 
-        public BlockDetailUseCase(IExplorerRepository blockRepository, ILogger<BlockDetailUseCase> logger) : base(logger)
+        public BlockDetailUseCase(IExplorerRepository explorerRepository, ILogger<BlockDetailUseCase> logger) : base(logger)
         {
-            _blockRepository = blockRepository;
+            _explorerRepository = explorerRepository;
         }
 
         public async override Task<Result<BlockDto, ErrorResult>> Handle(BlockDetailsCommand command, CancellationToken cancellationToken)
@@ -32,9 +32,9 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
 
             BlockDto? blockDto = null;
             if (command.BlockNumber != null)
-                blockDto = await _blockRepository.GetBlockDetailsAsync((uint)command.BlockNumber, cancellationToken);
+                blockDto = await _explorerRepository.GetBlockDetailsAsync((uint)command.BlockNumber, cancellationToken);
             else if (!string.IsNullOrEmpty(command.BlockHash))
-                blockDto = await _blockRepository.GetBlockDetailsAsync(command.BlockHash, cancellationToken);
+                blockDto = await _explorerRepository.GetBlockDetailsAsync(command.BlockHash, cancellationToken);
 
             if (blockDto == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"{nameof(blockDto)} is null");

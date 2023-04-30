@@ -1,0 +1,50 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Module;
+
+@if (Arguments != null && Arguments.Any() && displayDetails)
+{
+    <tr>
+        <td colspan="3">
+            <table class="">
+                <tbody>
+                    @{
+                        int idx = 1;
+                    }
+                    @foreach (var typeField in Arguments!)
+                    {
+                        <tr>
+                            <td rowspan="3">@idx</td>
+                            <td>Name</td>
+                            <td>@typeField.Name</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>@typeField.Type</td>
+                        </tr>
+                        <tr>
+                            <td>Type name</td>
+                            <td>@typeField.TypeName</td>
+                        </tr>
+
+                        idx++;
+                    }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-center" colspan="3" @onclick="(e => displayDetails = !displayDetails)">
+            @if (displayDetails)
+            {
+                <text>Show details</text>
+            }
+            else
+            {
+                <text>Hide details</text>
+            }
+        </td>
+    </tr>
+}
+@code {
+    [Parameter] public IEnumerable<TypeFieldDto>? Arguments { get; set; }
+    private bool displayDetails = false;
+}

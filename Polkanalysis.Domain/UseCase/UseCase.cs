@@ -15,14 +15,20 @@ using static Polkanalysis.Domain.Contracts.Primary.Result.ErrorResult;
 
 namespace Polkanalysis.Domain.UseCase
 {
-    public abstract class UseCase<L, Dto, C> : IRequestHandler<C, Result<Dto, ErrorResult>>
-        where L : class
-        where Dto : class
-        where C : IRequest<Result<Dto, ErrorResult>>
+    /// <summary>
+    /// Abstract use case class to handle mediator incoming request
+    /// </summary>
+    /// <typeparam name="TLogger">The use case class</typeparam>
+    /// <typeparam name="TDto">The DTO returned</typeparam>
+    /// <typeparam name="TRequest">Query or command</typeparam>
+    public abstract class UseCase<TLogger, TDto, TRequest> : IRequestHandler<TRequest, Result<TDto, ErrorResult>>
+        where TLogger : class
+        where TDto : class
+        where TRequest : IRequest<Result<TDto, ErrorResult>>
     {
-        protected readonly ILogger<L> _logger;
+        protected readonly ILogger<TLogger> _logger;
 
-        protected UseCase(ILogger<L> logger)
+        protected UseCase(ILogger<TLogger> logger)
         {
             _logger = logger;
         }
@@ -41,6 +47,6 @@ namespace Polkanalysis.Domain.UseCase
             return Helpers.Error(errorResult);
         }
 
-        public abstract Task<Result<Dto, ErrorResult>> Handle(C command, CancellationToken cancellationToken);
+        public abstract Task<Result<TDto, ErrorResult>> Handle(TRequest request, CancellationToken cancellationToken);
     }
 }

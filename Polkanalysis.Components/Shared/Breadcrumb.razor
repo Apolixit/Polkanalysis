@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using Polkanalysis.Components.Dto;
+
+<div>
+    <span>
+        <NavLink href="/">
+            <PolkadotIcons IconName="Overview.svg" /> Home
+        </NavLink>
+    </span>
+    @if(Elements.Any())
+    {
+        @foreach (var elem in Elements)
+        {
+            <span> / </span>
+            if(!string.IsNullOrEmpty(elem.Url))
+            {
+                <NavLink href="@elem.Url">
+                    @elem.Name
+                </NavLink>
+            } else
+            {
+                <text>@elem.Name</text>
+            }
+        }
+    }
+</div>
+
+@code {
+    [Parameter]
+    public IEnumerable<BreadcrumbDto> Elements { get; set; } = Enumerable.Empty<BreadcrumbDto>();
+}

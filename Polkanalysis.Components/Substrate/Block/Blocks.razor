@@ -1,4 +1,15 @@
-﻿<h3>Blocks</h3>
+﻿@page "/blocks"
+@using Polkanalysis.Domain.Contracts.Dto.Block;
+@using Polkanalysis.Domain.Contracts.Secondary.Repository;
+
+<div class="card">
+    <div class="card-header">
+        All blocks
+    </div>
+    <div class="table-responsive">
+        <BlockListing NbBlockMax="10" NbPreviousBlockToFetch="40"></BlockListing>
+    </div>
+</div>
 
 @code {
 

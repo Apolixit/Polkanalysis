@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using MediatR;
+using OperationResult;
 
 namespace Polkanalysis.Domain.Tests.UseCase
 {
@@ -19,14 +21,20 @@ namespace Polkanalysis.Domain.Tests.UseCase
     /// Global UseCase test class
     /// Every use cases have common behaviors to test
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class UseCaseTest<T, U, V> 
-        where T : class
-        where U : class
-        where V : class
+    /// <typeparam name="TLogger"></typeparam>
+    public abstract class UseCaseTest<TLogger, TDto, TRequest> 
+        where TLogger : class
+        where TDto : class
+        where TRequest : IRequest<Result<TDto, ErrorResult>>
     {
-        protected ILogger<T> _logger;
-        protected UseCase<T, U, V> _useCase;
+        protected ILogger<TLogger> _logger;
+        protected UseCase<TLogger, TDto, TRequest> _useCase;
+
+        //protected UseCaseTest(ILogger<TLogger> logger, UseCase<TLogger, TDto, TRequest> useCase)
+        //{
+        //    _logger = logger;
+        //    _useCase = useCase;
+        //}
 
         public virtual void Setup()
         {
@@ -40,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase
         [Test]
         public async Task GenericUseCaseWithNullRequest_ShouldFailedAsync()
         {
-            var result = await _useCase.ExecuteAsync(null!, CancellationToken.None);
+            var result = await _useCase.Handle(default!, CancellationToken.None);
 
             Assert.IsTrue(result.IsError);
             Assert.That(result.Value, Is.Null);

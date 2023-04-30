@@ -4,7 +4,7 @@
 @using Polkanalysis.Domain.Contracts.Secondary;
 
 @inherits LayoutComponentBase
-@inject ISubstrateRepository substrateService;
+@inject ISubstrateRepository _substrateService;
 @inject IMediator _mediator;
 @inject ILogger<MainLayout> logger;
 
@@ -17,7 +17,7 @@
         <div class="brand-logo">
             <a href="index.html">
                 <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-                <h5 class="logo-text">Dashtreme Admin</h5>
+                <h5 class="logo-text">Polkanalysis</h5>
             </a>
         </div>
         <SideMenu></SideMenu>
@@ -29,49 +29,29 @@
 
     <div class="content-wrapper">
         <div class="container-fluid">
+            @if (_substrateService.IsConnected())
+            {
+                @Body
 
-            <!--Start Dashboard Content-->
-            <div class="row row-group m-0">
-                <div class="col-12 col-xl-6 border-light">
-                    <BlockchainIdentity />
+                <div class="overlay toggle-menu"></div>
+            } else
+            {
+                <div class="row row-group m-0 text-center">
+                    <div class="col-12 border-light">
+                        <Loader />
+                        <div class="mt-2">Waiting blockchain connexion...</div>
+                    </div>
                 </div>
-                <div class="col-12 col-xl-6 border-light">
-                    <BlockchainStats />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 col-xl-6">
-                    <LatestBlock></LatestBlock>
-                </div>
-
-                <div class="col-12 col-xl-6">
-                    <LatestExtrinsics></LatestExtrinsics>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 col-xl-12">
-                    <Polkanalysis.Components.Substrate.Modules.ModuleList></Polkanalysis.Components.Substrate.Modules.ModuleList>
-                </div>
-            </div>
-
-            <!--start overlay-->
-            <div class="overlay toggle-menu"></div>
-            <!--end overlay-->
-
+            }
         </div>
-        <!-- End container-fluid-->
 
-    </div><!--End content-wrapper-->
+    </div>
     <!--Start Back To Top Button-->
     <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
     <!--End Back To Top Button-->
-    <!--Start footer-->
     <Footer />
-    <!--End footer-->
     <!--start color switcher-->
-    <div class="right-sidebar">
+    @*<div class="right-sidebar">
         <div class="switcher-icon">
             <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
         </div>
@@ -105,41 +85,25 @@
             </ul>
 
         </div>
-    </div>
+    </div>*@
     <!--end color switcher-->
-
-</div><!--End wrapper-->
-@*<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>*@
+</div>
 
 @code {
     protected bool isCurrentlyConnected = false;
 
     protected override async Task OnInitializedAsync()
     {
-        await substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
+        await _substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
         {
             if (isCurrentlyConnected != isConnected)
             {
                 logger.LogInformation($"Is connected : {isConnected}");
                 isCurrentlyConnected = isConnected;
 
-                StateHasChanged();
-
                 await _mediator.Send(new SubscribeBlockCommand());
+
+                StateHasChanged();
             }
 
         }, CancellationToken.None);

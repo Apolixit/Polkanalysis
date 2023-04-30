@@ -17,7 +17,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
-    public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailUseCase, BlockDto, BlockCommand>
+    public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailUseCase, BlockDto, BlockDetailsCommand>
     {
         protected IExplorerRepository _explorerRepository;
 
@@ -35,7 +35,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerRepository.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
-            var result = await _useCase.ExecuteAsync(new BlockCommand(1), CancellationToken.None);
+            var result = await _useCase.Handle(new BlockDetailsCommand(1), CancellationToken.None);
 
             Assert.IsTrue(result.IsError);
             Assert.That(result.Value, Is.Null);
@@ -48,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerRepository.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
-            var result = await _useCase.ExecuteAsync(new BlockCommand(1), CancellationToken.None);
+            var result = await _useCase.Handle(new BlockDetailsCommand(1), CancellationToken.None);
 
             Assert.IsTrue(result.IsSuccess);
             Assert.That(result.Value, Is.Not.Null);
@@ -59,7 +59,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerRepository.GetBlockDetailsAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
-            var result = await _useCase.ExecuteAsync(new BlockCommand("0x00"), CancellationToken.None);
+            var result = await _useCase.Handle(new BlockDetailsCommand("0x00"), CancellationToken.None);
 
             Assert.IsTrue(result.IsSuccess);
             Assert.That(result.Value, Is.Not.Null);

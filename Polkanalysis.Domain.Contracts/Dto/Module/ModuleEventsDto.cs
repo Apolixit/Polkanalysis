@@ -12,5 +12,15 @@ namespace Polkanalysis.Domain.Contracts.Dto.Module
         public required int Lookup { get; set; }
         public IEnumerable<TypeFieldDto>? Arguments { get; set; }
         public string? Documentation { get; set; }
+        public string SumUpArguments()
+        {
+            string sumUp = string.Empty;
+            if(Arguments != null)
+            {
+                sumUp = $"[{string.Join(", ", Arguments.Select(a => a.Name))}]";
+            }
+
+            return sumUp;
+        }
     }
 }

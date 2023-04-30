@@ -1,0 +1,49 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Block;
+@using Polkanalysis.Domain.Contracts.Secondary.Repository;
+@inject IExplorerRepository _blockRepository;
+@inject NavigationManager _navigationManager;
+
+<Table Elems="Blocks" Context="block">
+    <TbodyContent>
+        <tr @onclick="(() => GoToBlockDetails(block.Number))">
+            <td>
+                @block.Number
+            </td>
+            <td>
+                @block.When
+            </td>
+            <td>
+                @block.Hash
+            </td>
+            <td>
+                @block.Status
+            </td>
+        </tr>
+    </TbodyContent>
+</Table>
+
+@code {
+    [Parameter] public int NbBlockMax { get; set; } = 10;
+    [Parameter] public int NbPreviousBlockToFetch { get; set; } = 10;
+    [Parameter] public List<BlockLightDto> Blocks { get; set; } = new List<BlockLightDto>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await _blockRepository.SubscribeNewBlocksAsync((BlockLightDto blockLight) =>
+        {
+            Blocks.Insert(0, blockLight);
+
+            if (Blocks.Count > NbBlockMax)
+            {
+                Blocks = Blocks.Take(NbBlockMax).ToList();
+            }
+
+            StateHasChanged();
+        }, CancellationToken.None);
+    }
+
+    protected void GoToBlockDetails(ulong blockId)
+    {
+        _navigationManager.NavigateTo($"block/{blockId}");
+    }
+}

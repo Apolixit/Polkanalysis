@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.RuntimeModule
 {
-    public class ModuleDetailCommand : IRequest<Result<ModuleDetailDto, ErrorResult>>
+    public class ModuleDetailQuery : IRequest<Result<ModuleDetailDto, ErrorResult>>
     {
         public string ModuleName { get; set; }
 
-        public ModuleDetailCommand(string moduleName)
+        public ModuleDetailQuery(string moduleName)
         {
             ModuleName = moduleName;
         }

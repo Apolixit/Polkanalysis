@@ -4,66 +4,40 @@
 @using Polkanalysis.Domain.Contracts.Primary.Notification;
 @using Polkanalysis.Domain.Contracts.Primary;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
-@inject IExplorerRepository blockRepository;
-@inject ICourier _courier;
-@inject IMediator _mediator;
+
+@inject IExplorerRepository _blockRepository;
+@inject NavigationManager _navigationManager;
 
 <div class="card">
     <div class="card-header">
         Latest block
     </div>
     <div class="table-responsive">
-        <Table Elems="blocks" Context="block">
-            <TbodyContent>
-                <tr>
-                    <td>
-                        @block.Number
-                    </td>
-                    <td>
-                        @block.When
-                    </td>
-                    <td>
-                        @block.Hash
-                    </td>
-                    <td>
-                        @block.Status
-                    </td>
-                </tr>
-            </TbodyContent>
-        </Table>
+        <BlockListing NbBlockMax="10"></BlockListing>
     </div>
 </div>
 
 @code {
+    [Parameter] public int NbBlockMax { get; set; } = 10;
     private List<BlockLightDto> blocks = new List<BlockLightDto>();
 
     protected async override Task OnInitializedAsync()
     {
-        //var latestBlock = await _mediator.Send(new BlockLightCommand());
-        //blocks.Add(latestBlock.Value);
-
-        _courier.Subscribe<BlockNotification>(HandleBlock);
-
-        StateHasChanged();
-    }
-
-    public Task HandleBlock(BlockNotification notification, CancellationToken cancellationToken)
-    {
-        Console.WriteLine("New block !");
-        //Console.WriteLine(notification.blockLight.Number);
-        //blocks.Add(notification.blockLight);
-        //StateHasChanged();
-
-        return Task.CompletedTask;
-    }
-
-    public class HandleNewBlockUseCase : INotificationHandler<BlockNotification>
-    {
-        public Task Handle(BlockNotification notification, CancellationToken cancellationToken)
+        await _blockRepository.SubscribeNewBlocksAsync((BlockLightDto blockLight) =>
         {
-            Console.WriteLine("New block !");
+            blocks.Insert(0, blockLight);
 
-            return Task.CompletedTask;
-        }
+            if (blocks.Count > NbBlockMax)
+            {
+                blocks = blocks.Take(NbBlockMax).ToList();
+            }
+
+            StateHasChanged();
+        }, CancellationToken.None);
+    }
+
+    protected void GoToBlockDetails(ulong blockId)
+    {
+        _navigationManager.NavigateTo($"block/{blockId}");
     }
 }
