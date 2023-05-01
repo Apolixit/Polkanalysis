@@ -1,6 +1,4 @@
-﻿using Substrate.NetApi.Model.Extrinsics;
-using AutoMapper;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Configuration.Contracts;
@@ -18,25 +16,13 @@ using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
-using Polkanalysis.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Contracts;
 using Polkanalysis.Infrastructure.Common.Database;
-using Polkanalysis.Domain.Contracts;
-using Polkanalysis.Infrastructure.Contracts.Database.Analysis.Events;
-using Polkanalysis.Infrastructure.Common.Database.Analysis;
-using Polkanalysis.Infrastructure.Common.Database.Analysis.Events.Balances;
+using Polkanalysis.Infrastructure.Common.Database.Repository;
 using MediatR.Courier;
-using System.Reflection;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
-using MediatR;
-using static System.Formats.Asn1.AsnWriter;
-using Polkanalysis.Domain.Contracts.Primary.Notification;
 using Polkanalysis.Domain.Contracts.Primary;
+using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
 
 namespace ConsoleTest;
 
@@ -93,9 +79,7 @@ public class Program
             .AddSingleton<INodeMapping, EventNodeMapping>()
             .AddSingleton<IBlockchainMapping, PolkadotMapping>()
             .AddSingleton<IEventAggregateRepository, EventAggregateRepository>()
-            .AddScoped<IDatabaseConfiguration, DatabaseConfiguration>()
             .AddSingleton<ICurrentMetaData, CurrentMetaData>()
-            .AddSingleton<BalancesTransferRepository>()
             .AddSingleton<IEventsFactory, EventsFactory>();
     }
 }

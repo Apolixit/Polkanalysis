@@ -23,7 +23,7 @@ namespace Polkanalysis.Web.Services
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddScoped<IDatabaseConfiguration, DatabaseConfiguration>();
+            
 
             return services;
         }

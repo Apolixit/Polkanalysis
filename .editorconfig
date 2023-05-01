@@ -2,3 +2,6 @@
 
 # IDE0058: Expression value is never used
 dotnet_diagnostic.IDE0058.severity = silent
+
+# VSTHRD111: Use ConfigureAwait(bool)
+dotnet_diagnostic.VSTHRD111.severity = none

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="4.0.1" />
     <PackageReference Include="CSharp.OperationResult" Version="0.1.6" />
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="MediatR.Courier" Version="6.0.0" />
@@ -16,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.AjunaExtension\Polkanalysis.AjunaExtension.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Common\Polkanalysis.Infrastructure.Common.csproj" />
   </ItemGroup>
 
 </Project>

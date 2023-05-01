@@ -23,7 +23,6 @@ namespace Polkanalysis.Domain.UseCase
     /// <typeparam name="TRequest">Query or command</typeparam>
     public abstract class UseCase<TLogger, TDto, TRequest> : IRequestHandler<TRequest, Result<TDto, ErrorResult>>
         where TLogger : class
-        where TDto : class
         where TRequest : IRequest<Result<TDto, ErrorResult>>
     {
         protected readonly ILogger<TLogger> _logger;
