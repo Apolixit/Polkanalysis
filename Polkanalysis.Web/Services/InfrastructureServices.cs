@@ -23,7 +23,7 @@ namespace Polkanalysis.Web.Services
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            
+            services.AddDatabaseEvents();
 
             return services;
         }

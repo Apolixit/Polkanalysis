@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Common\Polkanalysis.Infrastructure.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCase\Statistics\Balances\" />
+  </ItemGroup>
+
 </Project>

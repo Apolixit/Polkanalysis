@@ -52,7 +52,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
         public Task HandleBlockAsync(BlockNotification notification, CancellationToken cancellationToken)
         {
             //Console.WriteLine(notification.blockLight.Number);
-            _logger.LogInformation("New block handle !");
+            //_logger.LogInformation("New block handle !");
 
             return Task.CompletedTask;
         }

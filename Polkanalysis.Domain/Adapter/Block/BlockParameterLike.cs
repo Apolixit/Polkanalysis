@@ -1,17 +1,10 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Adapter.Block
 {
-    public class BlockParameterLike : IBlockParameterLike
+    public class BlockParameterLike
     {
         private uint? _blockNumber;
         private Hash? _blockHash;
@@ -22,8 +15,22 @@ namespace Polkanalysis.Domain.Adapter.Block
             _substrateService = substrateService;
         }
 
-        public BlockParameterLike FromBlockNumber(uint blockNumber)
+        public async Task<bool> EnsureBlockNumberIsValidAsync(uint blockNumber)
         {
+            var lastHeader = await _substrateService.Rpc.Chain.GetHeaderAsync();
+
+            if (lastHeader.Number.Value < blockNumber)
+                return false;
+
+            return true;
+        }
+
+        public async Task<BlockParameterLike> FromBlockNumberAsync(uint blockNumber)
+        {
+            var isBlockValid = await EnsureBlockNumberIsValidAsync(blockNumber);
+            if(!isBlockValid)
+                throw new BlockException($"Block number {blockNumber} has not been produced yet");
+
             _blockNumber = blockNumber;
             return this;
         }
@@ -53,8 +60,7 @@ namespace Polkanalysis.Domain.Adapter.Block
             if (_blockHash != null)
                 return _blockHash;
 
-            var blockNumber = new BlockNumber();
-            blockNumber.Create(_blockNumber!.Value);
+            var blockNumber = new BlockNumber(_blockNumber!.Value);
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None);
 
             if (blockHash == null)

@@ -19,7 +19,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
 {
-    public class IdentityIdentityClearedRepository : AnalysisRepository, IDatabaseGet<IdentityIdentityClearedModel>
+    public class IdentityIdentityClearedRepository : EventDatabaseRepository, IDatabaseGet<IdentityIdentityClearedModel>
     {
         public IdentityIdentityClearedRepository(
             SubstrateDbContext context,
@@ -39,7 +39,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
             return Task.FromResult(_context.EventIdentityIdentityCleared ?? Enumerable.Empty<IdentityIdentityClearedModel>());
         }
 
-        protected override async Task BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = _mapping.Mapper.Map<BaseTuple<SubstrateAccount, U128>>(data);
 
@@ -59,10 +59,11 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
             if (await IsAlreadyExistsAsync(model, token))
             {
                 _logger.LogWarning($"{model} already exists in database !");
-                return;
+                return false;
             }
 
             await _context.EventIdentityIdentityCleared.AddAsync(model);
+            return true;
         }
 
         

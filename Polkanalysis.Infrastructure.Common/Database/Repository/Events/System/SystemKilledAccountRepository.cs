@@ -17,7 +17,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
 {
-    public class SystemKilledAccountRepository : AnalysisRepository, IDatabaseGet<SystemKilledAccountModel>
+    public class SystemKilledAccountRepository : EventDatabaseRepository, IDatabaseGet<SystemKilledAccountModel>
     {
         public SystemKilledAccountRepository(
             SubstrateDbContext context,
@@ -37,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
             return Task.FromResult(_context.EventSystemKilledAccount ?? Enumerable.Empty<SystemKilledAccountModel>());
         }
 
-        protected override async Task BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = _mapping.Mapper.Map<SubstrateAccount>(data);
 
@@ -55,10 +55,11 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
             if (await IsAlreadyExistsAsync(model, token))
             {
                 _logger.LogWarning($"{model} already exists in database !");
-                return;
+                return false;
             }
 
             await _context.EventSystemKilledAccount.AddAsync(model);
+            return true;
         }
 
         

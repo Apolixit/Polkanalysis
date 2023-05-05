@@ -1,9 +1,6 @@
 ﻿using Substrate.NetApi;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Rpc;

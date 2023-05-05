@@ -2,11 +2,14 @@
 @page "/block/{blockHash?}"
 
 @using MediatR;
+@using Polkanalysis.Components.Services.Http;
 @using Polkanalysis.Domain.Contracts.Dto.Block;
 @using Polkanalysis.Domain.Contracts.Primary;
 @using Polkanalysis.Domain.Contracts.Primary.Result;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
 @inject IMediator _mediator;
+@inject IApiService apiService;
+
 
 <div class="card">
     <div class="card-header">
@@ -43,39 +46,39 @@
             <tbody>
                 <tr>
                     <td><PolkadotIcons IconName="Block Number.svg" /> Block hash</td>
-                    <td>@blockDetail.Value.Value.Hash</td>
+                    <td>@blockDetail.Hash</td>
                 </tr>
                 <tr>
                     <td><i class="fa-solid fa-alarm-clock"></i> Timestamp</td>
-                    <td>@blockDetail.Value.Value.Date.Date</td>
+                    <td>@blockDetail.Date.Date</td>
                 </tr>
                 <tr>
                     <td><PolkadotIcons IconName="Time.svg" /> Block time</td>
-                    <td>@blockDetail.Value.Value.Date.Date</td>
+                    <td>@blockDetail.Date.Date</td>
                 </tr>
                 <tr>
                     <td><i class="fa-solid fa-battery-empty"></i> Status</td>
-                    <td>@blockDetail.Value.Value.Status</td>
+                    <td>@blockDetail.Status</td>
                 </tr>
                 <tr>
                     <td><PolkadotIcons IconName="Blockchain.svg" /> Parent hash</td>
-                    <td>@blockDetail.Value.Value.ParentHash</td>
+                    <td>@blockDetail.ParentHash</td>
                 </tr>
                 <tr>
                     <td><i class="fa-solid fa-signal-bars"></i> State root</td>
-                    <td>@blockDetail.Value.Value.StateRoot</td>
+                    <td>@blockDetail.StateRoot</td>
                 </tr>
                 <tr>
                     <td><PolkadotIcons IconName="Block Explorer.svg" /> Extrinsic root</td>
-                    <td>@blockDetail.Value.Value.ExtrinsicsRoot</td>
+                    <td>@blockDetail.ExtrinsicsRoot</td>
                 </tr>
                 <tr>
                     <td><PolkadotIcons IconName="Validator.svg" /> Validator</td>
-                    <td>@blockDetail.Value.Value.Validator</td>
+                    <td>@blockDetail.Validator</td>
                 </tr>
                 <tr>
                     <td><PolkadotIcons IconName="Version.svg" /> Spec version</td>
-                    <td>@blockDetail.Value.Value.SpecVersion</td>
+                    <td>@blockDetail.SpecVersion</td>
                 </tr>
             </tbody>
         </table>
@@ -85,16 +88,11 @@
 @code {
     [Parameter] public int? blockId { get; set; }
     [Parameter] public string? blockHash { get; set; }
-    //private BlockLightDto? blockDetail;
-    private OperationResult.Result<BlockDto, ErrorResult>? blockDetail;
+    private BlockDto blockDetail;
 
     protected override async Task OnInitializedAsync()
     {
-        //await _blockRepository.GetBlockLightAsync(blockCommand.BlockHash, cancellationToken);
-        //var blockUseCase = new Polkanalysis.Domain.UseCase.Explorer.Block.BlockDetailUseCase();
-        //var result = await blockUseCase.ExecuteAsync(new BlockCommand((uint)blockId), CancellationToken.None));
-
-        blockDetail = await _mediator.Send(new BlockDetailsCommand((uint)blockId));
+        blockDetail = await apiService.GetHelperAsync<BlockDetailsCommand, BlockDto>("/api/polkadot/block", new BlockDetailsCommand((uint)blockId));
         StateHasChanged();
     }
 }

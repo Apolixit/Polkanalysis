@@ -11,16 +11,21 @@ namespace Polkanalysis.Configuration.Contracts
         /// <summary>
         /// Substrate blockchain name
         /// </summary>
-        public string Name { get; set; }
+        public string BlockchainName { get; set; }
 
         /// <summary>
-        /// Substrate string endpoint
+        /// Node Uri endpoint
         /// </summary>
-        public string Endpoint { get; set; }
+        public Uri WsEndpointUri { get; }
 
         /// <summary>
-        /// Substrate Uri endpoint
+        /// Api uri to request
         /// </summary>
-        public Uri EndPointUri { get; }
+        public Uri? ApiUri { get; set; }
+
+        /// <summary>
+        /// Prometheus uri
+        /// </summary>
+        public Uri? PrometheusUri { get; set; }
     }
 }

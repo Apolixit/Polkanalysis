@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
 {
-    public class BalancesSlashedRepository : AnalysisRepository, IDatabaseGet<BalancesSlashedModel>
+    public class BalancesSlashedRepository : EventDatabaseRepository, IDatabaseGet<BalancesSlashedModel>
     {
         public BalancesSlashedRepository(
             SubstrateDbContext context,
@@ -39,7 +39,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
             return Task.FromResult(_context.EventBalancesSlashed ?? Enumerable.Empty<BalancesSlashedModel>());
         }
 
-        protected override async Task BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = _mapping.Mapper.Map<BaseTuple<SubstrateAccount, U128>>(data);
 
@@ -59,10 +59,11 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
             if (await IsAlreadyExistsAsync(model, token))
             {
                 _logger.LogWarning($"{model} already exists in database !");
-                return;
+                return false;
             }
 
             await _context.EventBalancesSlashed.AddAsync(model);
+            return true;
         }
 
         

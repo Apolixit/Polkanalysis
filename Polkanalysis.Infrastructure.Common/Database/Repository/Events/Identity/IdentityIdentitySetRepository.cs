@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
 {
-    public class IdentityIdentitySetRepository : AnalysisRepository, IDatabaseGet<IdentityIdentitySetModel>
+    public class IdentityIdentitySetRepository : EventDatabaseRepository, IDatabaseGet<IdentityIdentitySetModel>
     {
         public IdentityIdentitySetRepository(
             SubstrateDbContext context,
@@ -38,7 +38,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
             return Task.FromResult(_context.EventIdentityIdentitySet ?? Enumerable.Empty<IdentityIdentitySetModel>());
         }
 
-        protected override async Task BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = _mapping.Mapper.Map<SubstrateAccount>(data);
 
@@ -56,10 +56,11 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
             if (await IsAlreadyExistsAsync(model, token))
             {
                 _logger.LogWarning($"{model} already exists in database !");
-                return;
+                return false;
             }
 
             await _context.EventIdentityIdentitySet.AddAsync(model);
+            return true;
         }
 
         

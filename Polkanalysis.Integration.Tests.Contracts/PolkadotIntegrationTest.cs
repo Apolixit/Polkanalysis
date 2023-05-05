@@ -14,9 +14,8 @@ namespace Polkanalysis.Integration.Tests.Contracts
         {
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
 
-            substrateConfigurationMock.Name.Returns("Polkadot");
-            substrateConfigurationMock.Endpoint.Returns("wss://rpc.polkadot.io");
-            substrateConfigurationMock.EndPointUri.Returns(new Uri("wss://rpc.polkadot.io"));
+            substrateConfigurationMock.BlockchainName.Returns("Polkadot");
+            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://rpc.polkadot.io"));
 
             return substrateConfigurationMock;
         }

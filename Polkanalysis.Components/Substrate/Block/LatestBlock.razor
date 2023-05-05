@@ -19,25 +19,4 @@
 
 @code {
     [Parameter] public int NbBlockMax { get; set; } = 10;
-    private List<BlockLightDto> blocks = new List<BlockLightDto>();
-
-    protected async override Task OnInitializedAsync()
-    {
-        await _blockRepository.SubscribeNewBlocksAsync((BlockLightDto blockLight) =>
-        {
-            blocks.Insert(0, blockLight);
-
-            if (blocks.Count > NbBlockMax)
-            {
-                blocks = blocks.Take(NbBlockMax).ToList();
-            }
-
-            StateHasChanged();
-        }, CancellationToken.None);
-    }
-
-    protected void GoToBlockDetails(ulong blockId)
-    {
-        _navigationManager.NavigateTo($"block/{blockId}");
-    }
 }

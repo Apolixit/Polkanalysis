@@ -27,5 +27,10 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
             Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetEventsAsync(100, CancellationToken.None));
             Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetExtrinsicsAsync(100, CancellationToken.None));
         }
+
+        public async Task SubscribeNewBlock_ShouldWorkAsync()
+        {
+
+        }
     }
 }

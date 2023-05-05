@@ -3316,7 +3316,7 @@ table.grid td {
   color: rgba(255, 255, 255, 0.73);
   text-align: center;
   padding: 12px 30px;
-  position: absolute;
+  position: fixed;
   right: 0;
   left: 250px;
   background-color: transparent;

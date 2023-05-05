@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
 {
-    public class SystemNewAccountRepository : AnalysisRepository, IDatabaseGet<SystemNewAccountModel>
+    public class SystemNewAccountRepository : EventDatabaseRepository, IDatabaseGet<SystemNewAccountModel>
     {
         public SystemNewAccountRepository(
             SubstrateDbContext context,
@@ -35,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
             return Task.FromResult(_context.EventSystemNewAccount ?? Enumerable.Empty<SystemNewAccountModel>());
         }
 
-        protected override async Task BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = _mapping.Mapper.Map<SubstrateAccount>(data);
 
@@ -53,10 +53,11 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
             if (await IsAlreadyExistsAsync(model, token))
             {
                 _logger.LogWarning($"{model} already exists in database !");
-                return;
+                return false;
             }
 
             await _context.EventSystemNewAccount.AddAsync(model);
+            return true;
         }
 
         

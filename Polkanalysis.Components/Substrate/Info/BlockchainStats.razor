@@ -1,4 +1,9 @@
-﻿<div class="card-body">
+﻿@using OperationResult;
+@using Polkanalysis.Components.Services.Http;
+@using Polkanalysis.Domain.Contracts.Dto.Stats;
+@inject IApiService apiService;
+
+<div class="card-body">
     <h5 class="text-white mb-0">
         Blockchain name
         <span class="float-right"><i class="fa fa-shopping-cart"></i></span>
@@ -6,9 +11,28 @@
     <div class="progress my-3" style="height:3px;">
         <div class="progress-bar" style="width:55%"></div>
     </div>
-    <p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+    @if(IsLoading)
+    {
+        <Loader />
+    } else
+    {
+        <p class="mb-0 text-white small-font">
+            Amount transfered
+            <span class="float-right">@AmountTransfer DOT <i class="zmdi zmdi-long-arrow-up"></i></span>
+        </p>
+    }
+    
 </div>
 
 @code {
+    public bool IsLoading = true;
+    public double AmountTransfer;
 
+    protected async override Task OnInitializedAsync()
+    {
+        var res = await apiService.GetHelperAsync<GlobalStatsDto>("/api/polkadot/stats/sumup");
+
+        AmountTransfer = res.TransfersVolume;
+        IsLoading = false;
+    }
 }

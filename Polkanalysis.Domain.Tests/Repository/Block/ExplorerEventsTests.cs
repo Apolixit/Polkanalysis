@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Tests.Repository.Block
 {
-    internal class ExplorerEventsTests
+    public class ExplorerEventsTests
     {
+        
     }
 }

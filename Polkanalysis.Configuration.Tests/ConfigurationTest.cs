@@ -8,7 +8,6 @@ namespace Polkanalysis.Configuration.Tests
 {
     public class ConfigurationTest
     {
-
         [Test]
         public void ValidAppSettings_ShouldCreateNewConfiguration()
         {
@@ -18,8 +17,25 @@ namespace Polkanalysis.Configuration.Tests
 
             var substrateEndpoint = new SubstrateEndpoint(config);
 
-            Assert.That(substrateEndpoint.Name, Is.EqualTo("Polkadot"));
-            Assert.That(substrateEndpoint.Endpoint, Is.EqualTo("wss://rpc.polkadot.io"));
+            Assert.That(substrateEndpoint.BlockchainName, Is.EqualTo("Polkadot"));
+            Assert.That(substrateEndpoint.WsEndpointUri, Is.EqualTo(new Uri("wss://rpc.polkadot.io")));
+            Assert.That(substrateEndpoint.ApiUri, Is.Null);
+            Assert.That(substrateEndpoint.PrometheusUri, Is.Null);
+        }
+
+        [Test]
+        public void ValidAppSettingsWithFacultative_ShouldCreateNewConfiguration()
+        {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings_polkadot_valid_with_facultative.json", false)
+                .Build();
+
+            var substrateEndpoint = new SubstrateEndpoint(config);
+
+            Assert.That(substrateEndpoint.BlockchainName, Is.EqualTo("Polkadot"));
+            Assert.That(substrateEndpoint.WsEndpointUri, Is.EqualTo(new Uri("wss://rpc.polkadot.io")));
+            Assert.That(substrateEndpoint.ApiUri, Is.EqualTo(new Uri("https://localhost:7066")));
+            Assert.That(substrateEndpoint.PrometheusUri, Is.EqualTo(new Uri("https://localhost:1234")));
         }
 
         [Test]

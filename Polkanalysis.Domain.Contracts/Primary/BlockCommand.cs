@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Newtonsoft.Json;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -45,6 +46,7 @@ namespace Polkanalysis.Domain.Contracts.Primary
             BlockHash = blockHash;
         }
 
+        [JsonIgnore]
         public bool IsSet => BlockNumber != null && BlockHash != null;
     }
 

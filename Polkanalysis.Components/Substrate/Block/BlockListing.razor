@@ -7,13 +7,11 @@
     <TbodyContent>
         <tr @onclick="(() => GoToBlockDetails(block.Number))">
             <td>
+                <PolkadotIcons IconName="Block Number.svg" />
                 @block.Number
             </td>
             <td>
                 @block.When
-            </td>
-            <td>
-                @block.Hash
             </td>
             <td>
                 @block.Status

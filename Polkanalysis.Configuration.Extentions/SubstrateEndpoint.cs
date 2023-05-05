@@ -6,30 +6,40 @@ namespace Polkanalysis.Configuration.Extentions
 {
     public class SubstrateEndpoint : ISubstrateEndpoint
     {
-        public const string ENDPOINT = "SubstrateEndpoint";
-
-        public string Name { get; set; }
-        public string Endpoint { get; set; }
-        public Uri EndPointUri => new Uri(Endpoint);
+        public string BlockchainName { get; set; }
+        public Uri WsEndpointUri { get; set; }
+        public Uri? ApiUri { get; set; }
+        public Uri? PrometheusUri { get; set; }
 
         public SubstrateEndpoint(IConfiguration configuration)
         {
             if (configuration == null) 
                 throw new ConfigurationErrorsException($"{nameof(configuration)} is not set");
 
-            var section = configuration.GetSection(ENDPOINT).GetChildren().ToList();
+            var substrateSection = configuration.GetSection("SubstrateEndpoint").GetChildren().ToList();
+            var apiSection = configuration.GetSection("Api").GetChildren().ToList();
+            var pometheusSection = configuration.GetSection("Prometheus").GetChildren().ToList();
+            
+            var blockchainNameSection = substrateSection.FirstOrDefault(e => e.Key == "Name");
+            var substrateEndpointSection = substrateSection.FirstOrDefault(e => e.Key == "Endpoint");
+            var apiUriSection = apiSection.FirstOrDefault(e => e.Key == "uri");
+            var prometheusUriSection = pometheusSection.FirstOrDefault(e => e.Key == "uri");
 
-            var nameSection = section.FirstOrDefault(e => e.Key == "Name");
-            var endpointSection = section.FirstOrDefault(e => e.Key == "Endpoint");
+            if (blockchainNameSection == null || blockchainNameSection.Value == null)
+                throw new ConfigurationErrorsException($"{nameof(blockchainNameSection)} is not set");
 
-            if (nameSection == null || nameSection.Value == null)
-                throw new ConfigurationErrorsException($"{nameof(nameSection)} is not set");
+            BlockchainName = blockchainNameSection.Value;
 
-            if (endpointSection == null || endpointSection.Value == null)
-                throw new ConfigurationErrorsException($"{nameof(endpointSection)} is not set");
+            if (substrateEndpointSection == null || substrateEndpointSection.Value == null)
+                throw new ConfigurationErrorsException($"{nameof(substrateEndpointSection)} is not set");
 
-            Name = nameSection.Value;
-            Endpoint = endpointSection.Value;
+            WsEndpointUri = new Uri(substrateEndpointSection.Value);
+
+            if(apiUriSection != null && apiUriSection.Value != null)
+                ApiUri = new Uri(apiUriSection.Value);
+
+            if (prometheusUriSection != null && prometheusUriSection.Value != null)
+                PrometheusUri = new Uri(prometheusUriSection.Value);
         }
     }
 }

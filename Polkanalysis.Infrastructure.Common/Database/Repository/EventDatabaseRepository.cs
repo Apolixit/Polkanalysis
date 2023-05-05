@@ -12,18 +12,18 @@ using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository
 {
-    public abstract class AnalysisRepository : IDatabaseInsert
+    public abstract class EventDatabaseRepository : IDatabaseInsert
     {
         protected readonly SubstrateDbContext _context;
         protected readonly ISubstrateRepository _substrateNodeRepository;
-        protected readonly ILogger<AnalysisRepository> _logger;
+        protected readonly ILogger<EventDatabaseRepository> _logger;
         protected readonly IBlockchainMapping _mapping;
 
-        protected AnalysisRepository(
+        protected EventDatabaseRepository(
             SubstrateDbContext context,
             ISubstrateRepository substrateNodeRepository,
             IBlockchainMapping mapping,
-            ILogger<AnalysisRepository> logger)
+            ILogger<EventDatabaseRepository> logger)
         {
             _context = context;
             _substrateNodeRepository = substrateNodeRepository;
@@ -31,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository
             _mapping = mapping;
         }
 
-        protected abstract Task BuildRequestInsertAsync(
+        protected abstract Task<bool> BuildRequestInsertAsync(
             EventModel eventModel,
             IType data,
             CancellationToken token);
@@ -46,13 +46,16 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository
 
             try
             {
-                await BuildRequestInsertAsync(eventModel, data, token);
+                var canInsert = await BuildRequestInsertAsync(eventModel, data, token);
 
-                var nbRows = await _context.SaveChangesAsync(token);
-                if (nbRows != 1)
-                    throw new InvalidOperationException("Inserted rows are inconsistent");
+                if(canInsert)
+                {
+                    var nbRows = await _context.SaveChangesAsync(token);
+                    if (nbRows != 1)
+                        throw new InvalidOperationException("Inserted rows are inconsistent");
 
-                _logger.LogInformation($"{eventModel.ModuleEvent} successfully inserted is database");
+                    _logger.LogInformation($"{eventModel.ModuleEvent} successfully inserted is database");
+                }
             }
             catch (Exception ex)
             {

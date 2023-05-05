@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
+using FluentValidation;
+using MediatR;
+using Polkanalysis.Domain.UseCase;
 
 namespace Polkanalysis.Web.Services
 {
@@ -15,6 +18,11 @@ namespace Polkanalysis.Web.Services
                 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
             });
             services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+
+            services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 
             return services;
         }

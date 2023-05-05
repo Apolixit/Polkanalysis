@@ -18,13 +18,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
 {
-    public class BalancesSetRepository : AnalysisRepository, IDatabaseGet<BalancesBalanceSetModel>
+    public class BalancesSetRepository : EventDatabaseRepository, IDatabaseGet<BalancesBalanceSetModel>
     {
         public BalancesSetRepository(
             SubstrateDbContext context,
             ISubstrateRepository substrateNodeRepository,
             IBlockchainMapping mapping,
-            ILogger<AnalysisRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<EventDatabaseRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
             return Task.FromResult(_context.EventBalancesBalanceSet ?? Enumerable.Empty<BalancesBalanceSetModel>());
         }
 
-        protected override async Task BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = _mapping.Mapper.Map<BaseTuple<SubstrateAccount, U128, U128>>(data);
 
@@ -60,10 +60,11 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
             if (await IsAlreadyExistsAsync(model, token))
             {
                 _logger.LogWarning($"{model} already exists in database !");
-                return;
+                return false;
             }
 
             await _context.EventBalancesBalanceSet.AddAsync(model);
+            return true;
         }
 
 

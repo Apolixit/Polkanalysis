@@ -14,13 +14,13 @@ using Substrate.NetApi.Model.Types.Primitive;
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
 {
     //[LinkedEvent("Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Transfer")]
-    public class BalancesTransferRepository : AnalysisRepository, IDatabaseGet<BalancesTransferModel>
+    public class BalancesTransferRepository : EventDatabaseRepository, IDatabaseGet<BalancesTransferModel>
     {
         public BalancesTransferRepository(
             SubstrateDbContext context,
             ISubstrateRepository substrateNodeRepository,
             IBlockchainMapping mapping,
-            ILogger<AnalysisRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<EventDatabaseRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {
         }
 
@@ -36,7 +36,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
         /// <param name="data"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        protected override async Task BuildRequestInsertAsync(
+        protected override async Task<bool> BuildRequestInsertAsync(
             EventModel eventModel,
             IType data,
             CancellationToken token)
@@ -59,10 +59,11 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
             if (await IsAlreadyExistsAsync(model, token))
             {
                 _logger.LogWarning($"{model} already exists in database !");
-                return;
+                return false;
             }
 
             await _context.EventBalancesTransfer.AddAsync(model);
+            return true;
         }
 
         /// <summary>

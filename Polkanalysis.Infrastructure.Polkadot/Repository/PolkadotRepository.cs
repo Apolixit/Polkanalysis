@@ -48,7 +48,7 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Repository
             {
                 if (_polkadotClient == null)
                 {
-                    _polkadotClient = new SubstrateClientExt(_substrateconfiguration.EndPointUri, ChargeTransactionPayment.Default());
+                    _polkadotClient = new SubstrateClientExt(_substrateconfiguration.WsEndpointUri, ChargeTransactionPayment.Default());
                 }
                 return _polkadotClient;
             }

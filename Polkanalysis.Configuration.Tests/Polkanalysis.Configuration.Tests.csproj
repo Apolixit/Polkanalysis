@@ -10,6 +10,7 @@
     <None Remove="appsettings_empty.json" />
     <None Remove="appsettings_haflfilled.json" />
     <None Remove="appsettings_polkadot_valid.json" />
+    <None Remove="appsettings_polkadot_valid_with_facultative.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,11 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="appsettings_polkadot_valid_with_facultative.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="appsettings_polkadot_valid.json">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>

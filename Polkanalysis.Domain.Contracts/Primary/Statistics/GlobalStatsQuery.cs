@@ -1,18 +1,20 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Dto.Stats;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 
-namespace Polkanalysis.Domain.Contracts.Primary.Frame.Balances
+namespace Polkanalysis.Domain.Contracts.Primary.Statistics
 {
-    public class AmountTransferedQuery : IRequest<Result<double, ErrorResult>>
+    public class GlobalStatsQuery : IRequest<Result<GlobalStatsDto, ErrorResult>>
     {
-        public SubstrateAccount? fromAccount { get; private set; }
-        public SubstrateAccount? toAccount { get; private set; }
-        public double? fromBlock { get; private set; }
-        public double? toBlock { get; private set; }
-        public DateTime? fromDate { get; private set; }
-        public DateTime? toDate { get; private set; }
+        public string? fromAccount { get; set; }
+        public string? toAccount { get; set; }
+        public uint? fromBlock { get; set; }
+        public uint? toBlock { get; set; }
+        public DateTime? fromDate { get; set; }
+        public DateTime? toDate { get; set; }
 
         private void UnsetParams()
         {
@@ -21,21 +23,21 @@ namespace Polkanalysis.Domain.Contracts.Primary.Frame.Balances
             fromDate = null;
             toDate = null;
         }
-        public AmountTransferedQuery From(DateTime dateMin)
+        public GlobalStatsQuery From(DateTime dateMin)
         {
             UnsetParams();
             fromDate = dateMin;
             return this;
         }
 
-        public AmountTransferedQuery From(double blockMin)
+        public GlobalStatsQuery From(uint blockMin)
         {
             UnsetParams();
             fromBlock = blockMin;
             return this;
         }
 
-        public AmountTransferedQuery Between(DateTime dateMin, DateTime dateMax)
+        public GlobalStatsQuery Between(DateTime dateMin, DateTime dateMax)
         {
             UnsetParams();
             fromDate = dateMin;
@@ -43,7 +45,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.Frame.Balances
             return this;
         }
 
-        public AmountTransferedQuery Between(double blockMin, double blockMax)
+        public GlobalStatsQuery Between(uint blockMin, uint blockMax)
         {
             UnsetParams();
             fromBlock = blockMin;
@@ -51,16 +53,16 @@ namespace Polkanalysis.Domain.Contracts.Primary.Frame.Balances
             return this;
         }
 
-        public AmountTransferedQuery FromAccount(SubstrateAccount account)
+        public GlobalStatsQuery FromAccount(string account)
         {
             fromAccount = account;
             return this;
         }
 
-        public AmountTransferedQuery ToAccount(SubstrateAccount account)
+        public GlobalStatsQuery ToAccount(string account)
         {
             toAccount = account;
             return this;
         }
     }
-}   
+}
