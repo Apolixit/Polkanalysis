@@ -168,7 +168,7 @@ namespace Polkanalysis.Domain.Repository
                 _ => await _substrateService.At(blockHash).Storage.Timestamp.NowAsync(cancellationToken)
             };
 
-            return new DateTime(1970, 1, 1, 0, 0, 0, 0)
+            return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                 .AddMilliseconds(currentTimestamp.Value);
         }
 

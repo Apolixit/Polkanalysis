@@ -32,9 +32,14 @@ namespace Polkanalysis.Domain.UseCase.Module
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
 
-            var modules = _substrateRepository.RuntimeMetadata.NodeMetadata.Modules.Select(x => _moduleRepository.GetModuleDetail(x.Value.Name));
+            List<Task<ModuleDetailDto>> modulesTask = new();
+            foreach ( var module in _substrateRepository.RuntimeMetadata.NodeMetadata.Modules) {
+                modulesTask.Add(Task.Run(() => _moduleRepository.GetModuleDetail(module.Value.Name)));
+            }
 
-            if (!modules.Any())
+            var modules = (IEnumerable<ModuleDetailDto>)await Task.WhenAll( modulesTask );
+
+            if (modules == null || !modules.Any())
             {
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, "No module has been found in metadata");
             }

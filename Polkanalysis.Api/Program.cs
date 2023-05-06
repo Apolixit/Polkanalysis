@@ -22,6 +22,7 @@ using MediatR;
 using Polkanalysis.Domain.UseCase;
 using FluentValidation;
 using Polkanalysis.Domain.Adapter.Block;
+using Serilog;
 
 namespace Polkanalysis.Api
 {
@@ -29,75 +30,89 @@ namespace Polkanalysis.Api
     {
         public async static Task Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
 
-            // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddRouting(options =>
+            try
             {
-                options.LowercaseUrls = true;
-                options.LowercaseQueryStrings = true;
-            });
+                var builder = WebApplication.CreateBuilder(args);
+                builder.Host.UseSerilog(logger);
+                // Add services to the container.
 
-            builder.Services.AddDbContext<SubstrateDbContext>(options =>
-            {
-                options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
-            });
-            builder.Services.TryAddSingleton<ISubstrateEndpoint, SubstrateEndpoint>();
-            builder.Services.AddMediatR(cfg => {
-                cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
-                cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-            });
-            builder.Services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
-            builder.Services.AddDatabaseEvents();
-            builder.Services.AddSingleton<ISubstrateRepository, PolkadotRepository>();
-            builder.Services.AddSingleton<IExplorerRepository, PolkadotExplorerRepository>();
-            builder.Services.AddSingleton<IModelBuilder, Domain.Dto.ModelBuilder>();
-            builder.Services.AddSingleton<ISubstrateDecoding, SubstrateDecoding>();
-            builder.Services.AddSingleton<IPalletBuilder, PalletBuilder>();
-            builder.Services.AddSingleton<INodeMapping, EventNodeMapping>();
-            builder.Services.AddSingleton<IBlockchainMapping, PolkadotMapping>();
-            builder.Services.AddSingleton<ICurrentMetaData, CurrentMetaData>();
-            builder.Services.AddSingleton<IModuleInformation, ModuleInformation>();
-            builder.Services.AddSingleton<BlockParameterLike>();
+                builder.Services.AddControllers();
+                // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+                builder.Services.AddEndpointsApiExplorer();
+                builder.Services.AddSwaggerGen();
+                builder.Services.AddRouting(options =>
+                {
+                    options.LowercaseUrls = true;
+                    options.LowercaseQueryStrings = true;
+                });
 
-            builder.Services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
+                builder.Services.AddDbContext<SubstrateDbContext>(options =>
+                {
+                    options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
+                });
+                builder.Services.TryAddSingleton<ISubstrateEndpoint, SubstrateEndpoint>();
+                builder.Services.AddMediatR(cfg => {
+                    cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+                    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+                });
+                builder.Services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+                builder.Services.AddDatabaseEvents();
+                builder.Services.AddSingleton<ISubstrateRepository, PolkadotRepository>();
+                builder.Services.AddSingleton<IExplorerRepository, PolkadotExplorerRepository>();
+                builder.Services.AddSingleton<IModelBuilder, Domain.Dto.ModelBuilder>();
+                builder.Services.AddSingleton<ISubstrateDecoding, SubstrateDecoding>();
+                builder.Services.AddSingleton<IPalletBuilder, PalletBuilder>();
+                builder.Services.AddSingleton<INodeMapping, EventNodeMapping>();
+                builder.Services.AddSingleton<IBlockchainMapping, PolkadotMapping>();
+                builder.Services.AddSingleton<ICurrentMetaData, CurrentMetaData>();
+                builder.Services.AddSingleton<IModuleInformation, ModuleInformation>();
+                builder.Services.AddSingleton<BlockParameterLike>();
 
-            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
-            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+                builder.Services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                                  policy =>
-                                  {
-                                      policy.AllowAnyOrigin();
-                                      policy.AllowAnyHeader();
-                                      policy.AllowAnyMethod();
-                                  });
-            });
+                builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+                builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 
-            var app = builder.Build();
+                builder.Services.AddCors(options =>
+                {
+                    options.AddDefaultPolicy(
+                                      policy =>
+                                      {
+                                          policy.AllowAnyOrigin();
+                                          policy.AllowAnyHeader();
+                                          policy.AllowAnyMethod();
+                                      });
+                });
 
-            await app.Services.GetRequiredService<ISubstrateRepository>().ConnectAsync();
+                var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                await app.Services.GetRequiredService<ISubstrateRepository>().ConnectAsync();
+
+                // Configure the HTTP request pipeline.
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUI();
+                }
+
+                app.UseHttpsRedirection();
+                app.UseAuthorization();
+                app.UseCors();
+                app.MapControllers();
+
+                await app.RunAsync();
             }
-
-            app.UseHttpsRedirection();
-            app.UseAuthorization();
-            app.UseCors();
-            app.MapControllers();
-
-            await app.RunAsync();
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly !");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
     }
 }

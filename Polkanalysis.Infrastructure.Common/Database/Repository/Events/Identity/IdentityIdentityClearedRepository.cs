@@ -62,7 +62,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
                 return false;
             }
 
-            await _context.EventIdentityIdentityCleared.AddAsync(model);
+            _context.EventIdentityIdentityCleared.Add(model);
             return true;
         }
 

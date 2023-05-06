@@ -23,13 +23,19 @@ using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
+using Polkanalysis.DatabaseWorker.Parameters;
+using Serilog;
+using Prometheus;
 
 IConfiguration config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .AddEnvironmentVariables()
             .Build();
 
+var logger = new LoggerConfiguration().ReadFrom.Configuration(config).CreateLogger();
+
 var host = Host.CreateDefaultBuilder(args)
+.UseSerilog(logger)
 .ConfigureServices((hostContext, services) =>
 {
     services
@@ -60,6 +66,7 @@ var host = Host.CreateDefaultBuilder(args)
     .AddSingleton<ICurrentMetaData, CurrentMetaData>()
     .AddSingleton<IEventsFactory, EventsFactory>()
     .AddSingleton<IModelBuilder, Polkanalysis.Domain.Dto.ModelBuilder>()
+    .AddSingleton<BlockPerimeter>()
     .AddDatabaseEvents();
 })
 .Build();

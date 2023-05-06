@@ -50,7 +50,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository
 
                 if(canInsert)
                 {
-                    var nbRows = await _context.SaveChangesAsync(token);
+                    var nbRows = _context.SaveChanges();
                     if (nbRows != 1)
                         throw new InvalidOperationException("Inserted rows are inconsistent");
 

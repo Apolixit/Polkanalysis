@@ -62,7 +62,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
                 return false;
             }
 
-            await _context.EventBalancesSlashed.AddAsync(model);
+            _context.EventBalancesSlashed.Add(model);
             return true;
         }
 

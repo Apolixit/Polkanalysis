@@ -56,7 +56,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
                 return false;
             }
 
-            await _context.EventSystemNewAccount.AddAsync(model);
+            _context.EventSystemNewAccount.Add(model);
             return true;
         }
 

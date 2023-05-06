@@ -7,6 +7,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.AjunaExtension;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.DatabaseWorker.Parameters;
 
 namespace Polkanalysis.DatabaseWorker
 {
@@ -16,6 +17,7 @@ namespace Polkanalysis.DatabaseWorker
         private readonly IExplorerRepository _explorerRepository;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IEventsFactory _eventsFactory;
+        private readonly BlockPerimeter _blockPerimeter;
         private readonly ILogger<EventsWorker> _logger;
 
         public EventsWorker(
@@ -23,12 +25,14 @@ namespace Polkanalysis.DatabaseWorker
             IExplorerRepository explorerRepository,
             IEventsFactory eventsFactory,
             ISubstrateDecoding substrateDecode,
+            BlockPerimeter blockPerimeter,
             ILogger<EventsWorker> logger)
         {
             _polkadotRepository = polkadotRepository;
             _explorerRepository = explorerRepository;
             _eventsFactory = eventsFactory;
             _substrateDecode = substrateDecode;
+            _blockPerimeter = blockPerimeter;
             _logger = logger;
         }
 
@@ -41,6 +45,10 @@ namespace Polkanalysis.DatabaseWorker
                 _logger.LogInformation($"Succesfully connected to {_polkadotRepository.BlockchainName}");
             }
 
+            if (_blockPerimeter.IsSet())
+            {
+                await RequestBlocksAsync(stoppingToken);
+            }
             // Subscribe to new blocks
             await ListenNewBlockAndInsertInDatabaseAsync(stoppingToken);
             //await ExampleBlockAndInsertInDatabaseAsync(stoppingToken);
@@ -54,6 +62,39 @@ namespace Polkanalysis.DatabaseWorker
             _logger.LogInformation($"Succesfully disconnected to {_polkadotRepository.BlockchainName}");
 
             await base.StopAsync(cancellationToken);
+        }
+
+        protected async Task RequestBlocksAsync(CancellationToken stoppingToken)
+        {
+            var lastBlockdata = await _polkadotRepository.Rpc.Chain.GetBlockAsync(stoppingToken);
+
+            if (_blockPerimeter.FromBlock != null && lastBlockdata.Block.Header.Number.Value < _blockPerimeter.FromBlock.Value)
+            {
+                _logger.LogWarning($"Current block number (={lastBlockdata.Block.Header.Number.Value}) is lower than FromBlock param (={_blockPerimeter.FromBlock.Value}), just go to subscribe new block");
+                return;
+            }
+
+            _blockPerimeter.ToBlock = _blockPerimeter.ToBlock ?? (uint)lastBlockdata.Block.Header.Number.Value;
+
+            if (_blockPerimeter.ToBlock > lastBlockdata.Block.Header.Number.Value)
+            {
+                _logger.LogWarning($"_blockPerimeter.ToBlock block number (={_blockPerimeter.ToBlock.Value}) is greater than current max block (={lastBlockdata.Block.Header.Number.Value})");
+                _blockPerimeter.ToBlock = (uint)lastBlockdata.Block.Header.Number.Value;
+            }
+
+            for (uint i = _blockPerimeter.FromBlock!.Value; i < _blockPerimeter.ToBlock!.Value; i++)
+            {
+                var blockNumber = new BlockNumber(i);
+                var hash = await _polkadotRepository.Rpc.Chain.GetBlockHashAsync(blockNumber, stoppingToken);
+
+                if(hash == null)
+                {
+                    _logger.LogError($"Block hash for block number {i} is null");
+                    break;
+                }
+
+                await AnalyseBlockAsync(blockNumber, hash, stoppingToken);
+            }
         }
 
         protected async Task ExampleBlockAndInsertInDatabaseAsync(CancellationToken stoppingToken)
@@ -122,37 +163,42 @@ namespace Polkanalysis.DatabaseWorker
             await _polkadotRepository.Rpc.Chain.SubscribeAllHeadsAsync(async (subscription, header) =>
             {
                 var (blockNumber, blockHash, _) = await _explorerRepository.ExtractInformationsFromHeaderAsync(header, stoppingToken);
-                var currentDate = await _explorerRepository.GetDateTimeFromTimestampAsync(blockHash, stoppingToken);
-
-                // Get events associated at each block
-                var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
-
-                if (events == null)
-                {
-                    _logger.LogWarning("No events associated to block num {blockId}", blockNumber);
-                }
-                else
-                {
-                    _logger.LogInformation($"Scan block num {blockNumber}, associated events = {events.Value.Length}");
-
-                    for (int i = 0; i < events.Value.Length; i++)
-                    {
-                        var ev = events.Value[i];
-                        var eventNode = _substrateDecode.DecodeEvent(ev);
-
-                        // Is this event has to be insert in database ?
-                        if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
-                        {
-                            _logger.LogDebug("[{module}][{method}] has no database event linked", eventNode.Module, eventNode.Method);
-                            continue;
-                        }
-                        _logger.LogInformation("[{module}][{method}] is linked to database !", eventNode.Module, eventNode.Method);
-
-                        await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
-                    }
-                }
+                await AnalyseBlockAsync(blockNumber, blockHash, stoppingToken);
             }, stoppingToken);
 #pragma warning restore VSTHRD101 // Avoid unsupported async delegates
+        }
+
+        private async Task AnalyseBlockAsync(BlockNumber blockNumber, Hash blockHash, CancellationToken stoppingToken)
+        {
+            var currentDate = await _explorerRepository.GetDateTimeFromTimestampAsync(blockHash, stoppingToken);
+
+            // Get events associated at each block
+            var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
+
+            if (events == null)
+            {
+                _logger.LogWarning("No events associated to block num {blockId}", blockNumber);
+            }
+            else
+            {
+                _logger.LogInformation($"Scan block num {blockNumber}, associated events = {events.Value.Length}");
+
+                for (int i = 0; i < events.Value.Length; i++)
+                {
+                    var ev = events.Value[i];
+                    var eventNode = _substrateDecode.DecodeEvent(ev);
+
+                    // Is this event has to be insert in database ?
+                    if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
+                    {
+                        _logger.LogDebug("[{module}][{method}] has no database event linked", eventNode.Module, eventNode.Method);
+                        continue;
+                    }
+                    _logger.LogInformation("[{module}][{method}] is linked to database !", eventNode.Module, eventNode.Method);
+
+                    await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
+                }
+            }
         }
 
         private async Task InsertDatabaseAsync(
