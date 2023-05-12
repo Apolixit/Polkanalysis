@@ -1,7 +1,7 @@
 ﻿
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using System.Numerics;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking

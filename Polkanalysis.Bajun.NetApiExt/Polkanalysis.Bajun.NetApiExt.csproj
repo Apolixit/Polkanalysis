@@ -5,8 +5,4 @@
     <SonarQubeExclude>true</SonarQubeExclude>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
-	</ItemGroup>
-
 </Project>

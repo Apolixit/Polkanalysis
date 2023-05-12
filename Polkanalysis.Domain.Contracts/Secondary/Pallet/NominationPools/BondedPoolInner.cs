@@ -1,6 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using System;
 using System.Collections.Generic;

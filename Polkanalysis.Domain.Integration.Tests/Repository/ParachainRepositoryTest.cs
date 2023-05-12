@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
@@ -18,7 +19,9 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [SetUp]
         public void Setup()
         {
-            _parachainRepository = new PolkadotParachainRepository(_substrateRepository);
+            _parachainRepository = new PolkadotParachainRepository(
+                _substrateRepository,
+                Substitute.For<IAccountRepository>());
         }
 
         [Test]

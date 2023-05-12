@@ -32,7 +32,9 @@ IConfiguration config = new ConfigurationBuilder()
             .AddEnvironmentVariables()
             .Build();
 
-var logger = new LoggerConfiguration().ReadFrom.Configuration(config).CreateLogger();
+var logger = new LoggerConfiguration().ReadFrom.Configuration(config)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
+    .CreateLogger();
 
 var host = Host.CreateDefaultBuilder(args)
 .UseSerilog(logger)

@@ -14,7 +14,7 @@ using Substrate.NetApi.Model.Types;
 using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity

@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan
 {
-    public enum MultiSigner
-    {
+    //public enum MultiSigner
+    //{
 
-        Ed25519 = 0,
+    //    Ed25519 = 0,
 
-        Sr25519 = 1,
+    //    Sr25519 = 1,
 
-        Ecdsa = 2,
-    }
+    //    Ecdsa = 2,
+    //}
 
-    public sealed class EnumMultiSigner : BaseEnumExt<MultiSigner, Hash, Hash, Hash>
-    {
-    }
+    //public sealed class EnumMultiSigner : BaseEnumExt<MultiSigner, Hash, Hash, Hash>
+    //{
+    //}
 }

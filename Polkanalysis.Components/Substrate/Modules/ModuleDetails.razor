@@ -1,15 +1,16 @@
 ﻿@page "/module/{moduleName}"
 @using Polkanalysis.Components.Dto;
+@using Polkanalysis.Components.Services.Http;
 @using Polkanalysis.Domain.Contracts.Dto.Module;
 @using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
-@inject IMediator _mediator;
+@inject IApiService apiService;
 
-<Data UseCaseData="moduleDetail">
+<Data Request="request">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
     <div class="panel mt-10">
         <div class="panel-heading p-3">
-            <h2>@moduleDetail!.Value.Value.Information.PalletName details</h2>
+            <h2>@context.Information.PalletName details</h2>
         </div>
     </div>
 
@@ -18,7 +19,7 @@
             <h4>Calls</h4>
         </div>
     </div>
-    <Table Elems="moduleDetail!.Value.Value.Calls" Context="call">
+    <Table Elems="context.Calls" Context="call">
         <ThContent>
             <th>Name</th>
             <th>Parameters</th>
@@ -39,7 +40,7 @@
             <h4>Events</h4>
         </div>
     </div>
-    <Table Elems="moduleDetail!.Value.Value.Events" Context="eventElem">
+    <Table Elems="context.Events" Context="eventElem">
         <ThContent>
             <th>Name</th>
             <th>Documentation</th>
@@ -60,7 +61,7 @@
             <h4>Storage functions</h4>
         </div>
     </div>
-    <Table Elems="moduleDetail!.Value.Value.Storage" Context="storage">
+    <Table Elems="context.Storage" Context="storage">
         <ThContent>
             <th>Name</th>
             <th>Type</th>
@@ -92,7 +93,7 @@
             <h4>Constants</h4>
         </div>
     </div>
-    <Table Elems="moduleDetail!.Value.Value.Constants" Context="constant">
+    <Table Elems="context.Constants" Context="constant">
         <ThContent>
             <th>Name</th>
             <th>Type</th>
@@ -120,7 +121,7 @@
             <h4>Error</h4>
         </div>
     </div>
-    <Table Elems="moduleDetail!.Value.Value.Errors" Context="error">
+    <Table Elems="context.Errors" Context="error">
         <ThContent>
             <th>Name</th>
             <th>Documentation</th>
@@ -136,15 +137,12 @@
 
 @code {
     [Parameter] public required string ModuleName { get; set; }
-    private OperationResult.Result<ModuleDetailDto, ErrorResult>? moduleDetail;
-    private bool displayDetails = false;
-    private bool displayDetailsEvent = false;
-    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
+    private ApiRequest<ModuleDetailDto> request = default!;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = default!;
 
-    protected async override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        moduleDetail = await _mediator.Send(new ModuleDetailQuery(ModuleName), CancellationToken.None);
-
+        request = new ApiRequest<ModuleDetailDto>($"/api/polkadot/runtimemodule/{ModuleName.ToLower()}");
         breadcrumbDtos = new List<BreadcrumbDto>()
         {
             new BreadcrumbDto("Modules", "/modules"),

@@ -1,24 +1,14 @@
-﻿using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi;
+﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Xsl;
-using Substrate.NetApi.Model.Types;
-using System.Transactions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
 
 namespace Polkanalysis.Domain.Tests.Node
 {
@@ -62,8 +52,7 @@ namespace Polkanalysis.Domain.Tests.Node
         {
             //Account
             var addressAccount = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
-            var accountId32 = new AccountId32();
-            accountId32.Create(Utils.GetPublicKeyFrom(addressAccount));
+            var accountId32 = new SubstrateAccount(addressAccount);
 
             //Amount
             var u32Amount = new U32();

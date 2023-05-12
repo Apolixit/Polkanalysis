@@ -2,8 +2,8 @@
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using System.Net;
-using Polkanalysis.Configuration.Contracts;
 using Microsoft.Extensions.Logging;
+using Polkanalysis.Configuration.Contracts;
 
 namespace Polkanalysis.Components.Services.Http
 {
@@ -30,13 +30,9 @@ namespace Polkanalysis.Components.Services.Http
             _logger = logger;
         }
 
-        //private string getUrl(string url) => _apiUri.Host + url;
         private string getUrl(string url)
         {
-            var x = _apiUri.AbsoluteUri.Substring(0, _apiUri.AbsoluteUri.Length - 1) + url;
-            _logger.LogError($"url : {x}");
-
-            return x;
+            return _apiUri.AbsoluteUri.Substring(0, _apiUri.AbsoluteUri.Length - 1) + url;
         }
 
         public async Task<HttpResponseWrapper<T>> Get<T>(string url)

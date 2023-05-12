@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Dto;
@@ -22,7 +23,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         public void Setup()
         {
             _modelBuilder = new ModelBuilder();
-            _crowdloanRepository = new PolkadotCrowdloanRepository(_substrateRepository, _modelBuilder);
+            _crowdloanRepository = new PolkadotCrowdloanRepository(
+                _substrateRepository, 
+                _modelBuilder, 
+                Substitute.For<IExplorerRepository>(),
+                Substitute.For<IAccountRepository>());
         }
     }
 }

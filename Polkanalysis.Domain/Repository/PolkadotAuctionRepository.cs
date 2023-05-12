@@ -8,16 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums;
 
 namespace Polkanalysis.Domain.Repository
 {
     public class PolkadotAuctionRepository : IAuctionRepository
     {
         private readonly ISubstrateRepository _substrateNodeRepository;
+        private readonly IExplorerRepository _explorerRepository;
 
-        public PolkadotAuctionRepository(ISubstrateRepository substrateNodeRepository)
+        public PolkadotAuctionRepository(ISubstrateRepository substrateNodeRepository, IExplorerRepository explorerRepository)
         {
             _substrateNodeRepository = substrateNodeRepository;
+            _explorerRepository = explorerRepository;
         }
 
         //var ajunaParaId = new Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
@@ -31,5 +35,10 @@ namespace Polkanalysis.Domain.Repository
 
         //    var apoBidAjunaAction = await _substrateNodeRepository.Client.AuctionsStorage.ReservedAmounts(baseTuplePara, cancellationToken);
         //var xx = await _substrateNodeRepository.Client.AuctionsStorage.AuctionInfo(cancellationToken);
+
+        public async Task<AuctionDto> GetAuctionDetailAsync(uint auctionId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

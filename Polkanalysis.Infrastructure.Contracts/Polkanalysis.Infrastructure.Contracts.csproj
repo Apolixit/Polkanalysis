@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
+    <PackageReference Include="Substrate.NET.API" Version="0.9.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
   </ItemGroup>
 

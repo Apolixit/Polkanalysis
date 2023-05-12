@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Domain.Contracts.Dto.Block;
+﻿using Polkanalysis.Domain.Contracts.Core.Multi;
+using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
@@ -13,17 +14,22 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain
 {
     public class CrowdloanDto
     {
-        public required ParachainDto Parachain { get; set; }
+        public required string CrowdloanId { get; set; }
 
         /// <summary>
-        /// Shortcut to Parachain owner account
+        /// Parachain linked
         /// </summary>
-        public UserAddressDto OwnerAccount => Parachain.OwnerAccount;
+        public ParachainDto Parachain { get; set; }
 
-        public required UserAddressDto FundAccount { get; set; }
+        /// <summary>
+        /// Crownloan creator
+        /// </summary>
+        public required UserAddressDto Depositor { get; set; }
+
+        public required uint FundIndex { get; set; }
         public string HeadData { get; set; } = string.Empty;
 
-        public string Verifier { get; set; } = string.Empty;
+        public EnumMultiSigner? Verifier { get; set; } = default;
 
         public required LeaseDto Lease { get; set; }
         /// <summary>
@@ -36,10 +42,13 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain
         /// </summary>
         public IEnumerable<AuctionDto> ParticipatedAuctions { get; set; } = Enumerable.Empty<AuctionDto>();
 
-        public required BigInteger FundTarget { get; set; } = 0;
-        public required BigInteger FundRaised { get; set; } = 0;
+        public required double FundTarget { get; set; } = 0;
+        public required double FundRaised { get; set; } = 0;
 
-        
+        /// <summary>
+        /// Last block when someone contribute before ending
+        /// </summary>
+        public BlockLightDto? LastBlockContribution { get; set; }
 
         public CrowdloanStatusDto CrowdloanStatus { get; set; }
 

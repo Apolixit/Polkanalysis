@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Enum;

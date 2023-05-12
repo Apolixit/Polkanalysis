@@ -11,15 +11,5 @@ namespace Polkanalysis.Api.Controllers
         public MasterController()
         {
         }
-
-        //public async override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-        //{
-        //    if(!_substrateRepository.IsConnected())
-        //    {
-        //        await _substrateRepository.ConnectAsync();
-        //    }
-
-        //    await base.OnActionExecutionAsync(context, next);
-        //}
     }
 }

@@ -4,10 +4,10 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.AjunaExtension;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Polkanalysis.DatabaseWorker.Parameters;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.DatabaseWorker
 {

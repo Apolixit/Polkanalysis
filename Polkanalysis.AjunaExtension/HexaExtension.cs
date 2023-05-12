@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.AjunaExtension
 {
-    public static class HexaExtension
-    {
-        public static string ToStringAddress(this Arr32U8 input) 
-            => Utils.Bytes2HexString(input.Bytes);
-    }
+    //public static class HexaExtension
+    //{
+    //    public static string ToStringAddress(this Arr32U8 input) 
+    //        => Utils.Bytes2HexString(input.Bytes);
+    //}
 }

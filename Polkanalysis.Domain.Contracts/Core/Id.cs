@@ -1,7 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +16,14 @@ namespace Polkanalysis.Domain.Contracts.Core
     public class Id : BaseType
     {
         public Id() { }
+
         public Id(uint value)
         {
             Create(BitConverter.GetBytes(value));
+        }
+
+        public Id(U32 value) : this(value.Value)
+        {
         }
 
         public U32 Value { get; set; }
@@ -33,7 +38,7 @@ namespace Polkanalysis.Domain.Contracts.Core
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new Substrate.NetApi.Model.Types.Primitive.U32();
+            Value = new U32();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

@@ -1,5 +1,5 @@
 ﻿using Substrate.NetApi;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;

@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.Threading;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe;

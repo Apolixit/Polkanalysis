@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
@@ -18,7 +19,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [SetUp]
         public void Setup()
         {
-            _auctionRepository = new PolkadotAuctionRepository(_substrateRepository);
+            _auctionRepository = new PolkadotAuctionRepository(_substrateRepository, Substitute.For<IExplorerRepository>());
         }
     }
 }

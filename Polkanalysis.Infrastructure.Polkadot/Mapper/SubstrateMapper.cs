@@ -18,7 +18,6 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primiti
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Polkanalysis.AjunaExtension.Encoding;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.tokens.misc;
 using static Polkanalysis.Infrastructure.Polkadot.Mapper.PolkadotMapping;
 using static Polkanalysis.Infrastructure.Polkadot.Mapper.PolkadotMapping.AuctionsStorageProfile;
@@ -49,7 +48,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.Democracy;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Democracy.Enums;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.xcm.double_encoded;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
@@ -57,6 +56,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras;
 using static Polkanalysis.Infrastructure.Polkadot.Mapper.PolkadotMapping.BaseTypeProfile;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Core.Map;
+using Polkanalysis.Domain.Contracts.Core.Multi;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Mapper
 {

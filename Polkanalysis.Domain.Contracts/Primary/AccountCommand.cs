@@ -12,5 +12,6 @@ namespace Polkanalysis.Domain.Contracts.Primary
 {
     public class AccountCommand : IRequest<Result<AccountDto, ErrorResult>>
     {
+        public string? AccountAddress { get; set; }
     }
 }

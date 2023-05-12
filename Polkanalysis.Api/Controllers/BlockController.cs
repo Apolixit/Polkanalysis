@@ -39,5 +39,18 @@ namespace Polkanalysis.Api.Controllers
 
             return Ok(result.Value);
         }
+
+        [HttpGet("testtimeout")]
+        public IActionResult GetTimeout()
+        {
+            Thread.Sleep(200000);
+            return Ok();
+        }
+
+        [HttpGet("badrequest")]
+        public IActionResult GetBadRequest()
+        {
+            return BadRequest();
+        }
     }
 }

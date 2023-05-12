@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.AjunaExtension
 {
-    public static class AddressExtension
-    {
-        public static string ToStringAddress(this AccountId32? sender, int ss58 = 42)
-            => ToStringAddress(sender, (short)ss58);
-        public static string ToStringAddress(this AccountId32? sender, short ss58 = 42)
-        {
-            if (sender == null) return string.Empty;
+    //public static class AddressExtension
+    //{
+    //    public static string ToStringAddress(this AccountId32? sender, int ss58 = 42)
+    //        => ToStringAddress(sender, (short)ss58);
+    //    public static string ToStringAddress(this AccountId32? sender, short ss58 = 42)
+    //    {
+    //        if (sender == null) return string.Empty;
 
-            return Utils.GetAddressFrom(sender.Bytes, ss58);
-        }
+    //        return Utils.GetAddressFrom(sender.Bytes, ss58);
+    //    }
 
-        public static bool IsEqual(this AccountId32 a, AccountId32 b)
-        {
-            return a.Value.Encode().SequenceEqual(b.Value.Encode());
-        }
-    }
+    //    public static bool IsEqual(this AccountId32 a, AccountId32 b)
+    //    {
+    //        return a.Value.Encode().SequenceEqual(b.Value.Encode());
+    //    }
+    //}
 }

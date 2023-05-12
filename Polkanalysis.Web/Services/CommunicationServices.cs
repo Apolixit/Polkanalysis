@@ -1,7 +1,6 @@
 ﻿using MediatR.Courier;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
 using FluentValidation;
 using MediatR;

@@ -1,11 +1,14 @@
 ﻿@page "/modules";
 
+@using Polkanalysis.Components.Dto;
+@using Polkanalysis.Components.Services.Http;
 @using Polkanalysis.Domain.Contracts.Dto.Module;
 @using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
-@inject IMediator _mediator;
 
-<Data UseCaseData="moduleDetail">
-    <Table Elems="moduleDetail.Value.Value.ToList()" Context="module">
+<Data Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+    
+    <Table Elems="context" Context="module">
         <ThContent>
             <th>Name</th>
             <th>Calls</th>
@@ -38,10 +41,16 @@
 </Data>
 
 @code {
-    private OperationResult.Result<IEnumerable<ModuleDetailDto>, ErrorResult>? moduleDetail;
+    private ApiRequest<IEnumerable<ModuleDetailDto>> request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        moduleDetail = await _mediator.Send(new ModulesQuery(), CancellationToken.None);
+        request = new ApiRequest<IEnumerable<ModuleDetailDto>>("/api/polkadot/runtimemodule");
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Modules", "/modules")
+        };
     }
 }

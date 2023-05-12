@@ -4,7 +4,6 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
 using Polkanalysis.Domain.Contracts.Core.Display;

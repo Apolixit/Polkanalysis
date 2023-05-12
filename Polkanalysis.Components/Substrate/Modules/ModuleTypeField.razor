@@ -31,19 +31,22 @@
             </table>
         </td>
     </tr>
-    <tr>
+}
+<tr>
         <td class="text-center" colspan="3" @onclick="(e => displayDetails = !displayDetails)">
             @if (displayDetails)
             {
-                <text>Show details</text>
+            <i class="fa-solid fa-eye-slash"></i>
+                <text>Hide details</text>
             }
             else
             {
-                <text>Hide details</text>
+            <i class="fa-solid fa-eye"></i>
+                <text>Show details</text>
             }
         </td>
     </tr>
-}
+
 @code {
     [Parameter] public IEnumerable<TypeFieldDto>? Arguments { get; set; }
     private bool displayDetails = false;

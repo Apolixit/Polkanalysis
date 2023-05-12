@@ -122,7 +122,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res, Is.EqualTo(expectedResult));
+            Assert.That(res.Encode(), Is.EqualTo(expectedResult.Encode()));
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res, Is.EqualTo(expectedResult));
+            Assert.That(res.Encode(), Is.EqualTo(expectedResult.Encode()));
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res, Is.EqualTo(expectedResult));
+            Assert.That(res.Encode(), Is.EqualTo(expectedResult.Encode()));
         }
 
         /// <summary>
@@ -189,7 +189,8 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res, Is.EqualTo(new T()));
+            //Assert.That(res, Is.EqualTo(new T()));
+            Assert.That(res.Encode(), Is.EqualTo(new T().Encode()));
 
             return res;
         }
@@ -203,8 +204,8 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res, Is.EqualTo(new T()));
-
+            //Assert.That(res, Is.EqualTo(new T()));
+            Assert.That(res.Encode(), Is.EqualTo(new T().Encode()));
             return res;
         }
 
@@ -221,8 +222,8 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res, Is.EqualTo(new T()));
-
+            //Assert.That(res, Is.EqualTo(new T()));
+            Assert.That(res.Encode(), Is.EqualTo(new T().Encode()));
             return res;
         }
         protected async Task<T> MockStorageCallNullWithInputAsync<I, T>(I input, Func<I, CancellationToken, Task<T>> storageCall)
@@ -236,8 +237,8 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res, Is.EqualTo(new T()));
-
+            //Assert.That(res, Is.EqualTo(new T()));
+            Assert.That(res.Encode(), Is.EqualTo(new T().Encode()));
             return res;
         }
     }

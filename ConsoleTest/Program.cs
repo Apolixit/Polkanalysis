@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
@@ -16,13 +15,10 @@ using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
-using Polkanalysis.Infrastructure.Contracts;
-using Polkanalysis.Infrastructure.Common.Database;
-using Polkanalysis.Infrastructure.Common.Database.Repository;
 using MediatR.Courier;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Primary;
-using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
+using Polkanalysis.Configuration.Extentions;
 
 namespace ConsoleTest;
 
@@ -62,7 +58,8 @@ public class Program
     {
         services
             //.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Polkanalysis.Domain.UseCase.Module.ModuleDetailUseCase).GetTypeInfo().Assembly))
-            .AddMediatR(cfg => {
+            .AddMediatR(cfg =>
+            {
                 cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
                 cfg.RegisterServicesFromAssembly(typeof(BlockLightCommand).Assembly);
                 //cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
@@ -78,8 +75,6 @@ public class Program
             .AddSingleton<IPalletBuilder, PalletBuilder>()
             .AddSingleton<INodeMapping, EventNodeMapping>()
             .AddSingleton<IBlockchainMapping, PolkadotMapping>()
-            .AddSingleton<IEventAggregateRepository, EventAggregateRepository>()
-            .AddSingleton<ICurrentMetaData, CurrentMetaData>()
-            .AddSingleton<IEventsFactory, EventsFactory>();
+            .AddSingleton<ICurrentMetaData, CurrentMetaData>();
     }
 }

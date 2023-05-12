@@ -4,9 +4,8 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <SonarQubeExclude>true</SonarQubeExclude>
 	</PropertyGroup>
-
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
+	  <PackageReference Include="Substrate.NET.API" Version="0.9.6" />
 	</ItemGroup>
 
 </Project>

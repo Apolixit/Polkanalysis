@@ -1,23 +1,11 @@
-﻿using Substrate.NetApi;
-using Substrate.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
-using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
-using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
 {
@@ -27,22 +15,12 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
         [TestCaseSource(nameof(U128TestCase))]
         public async Task TotalIssuance_ShouldWorkAsync(U128 input)
         {
-            //_substrateRepository.AjunaClient.GetStorageAsync<U128>(Arg.Any<string>(), CancellationToken.None).Returns(new U128().With(new BigInteger(10)));
-
-            //var res = await _substrateRepository.Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
-            //Assert.That(res.Value, Is.EqualTo(new BigInteger(10)));
-
             await MockStorageCallAsync(input, _substrateRepository.Storage.Balances.TotalIssuanceAsync);
         }
 
         [Test]
         public async Task TotalIssuanceNull_ShouldWorkAsync()
         {
-            //_substrateRepository.AjunaClient.GetStorageAsync<U128>(Arg.Any<string>(), CancellationToken.None).ReturnsNull();
-
-            //var res = await _substrateRepository.Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
-            //Assert.That(res, Is.EqualTo(new U128()));
-
             await MockStorageCallNullAsync(_substrateRepository.Storage.Balances.TotalIssuanceAsync);
         }
 

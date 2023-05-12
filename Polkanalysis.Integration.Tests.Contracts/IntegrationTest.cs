@@ -17,7 +17,6 @@ namespace Polkanalysis.Integration.Tests.Contracts
     /// </summary>
     public abstract class IntegrationTest
     {
-        //protected readonly ISubstrateClientRepository _substrateClientRepository;
         protected readonly ISubstrateRepository _substrateRepository;
         protected ISubstrateEndpoint _substrateEndpoint;
 
@@ -32,11 +31,6 @@ namespace Polkanalysis.Integration.Tests.Contracts
                 _substrateEndpoint,
                 Substitute.For<ILogger<PolkadotRepository>>()
                 );
-            //_substrateRepository = Substitute.For<ISubstrateRepository>();
-            //_substrateRepository.IsValidAccountAddress(Arg.Any<string>()).Returns(true);
-
-            //_substrateClientRepository = new PolkadotSubstrateClientRepository(_substrateEndpoint);
-            //_substrateRepository.Api.Returns(_substrateClientRepository);
         }
 
         protected abstract ISubstrateEndpoint GetEndpoint();

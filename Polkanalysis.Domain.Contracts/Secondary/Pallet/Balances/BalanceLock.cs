@@ -1,6 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
 using System;
@@ -15,7 +15,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
     public class BalanceLock : BaseType
     {
         public Nameable Id { get; set; }
-        public U128 Amount { get; set; } = new U128().With(BigInteger.Zero);
+        public U128 Amount { get; set; } = new U128();
         public EnumReasons Reasons { get; set; }
 
         public void Create(Nameable id, U128 amount, EnumReasons reasons)

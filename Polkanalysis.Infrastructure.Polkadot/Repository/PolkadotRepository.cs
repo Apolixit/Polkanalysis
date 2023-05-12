@@ -1,15 +1,7 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Polkanalysis.Infrastructure.Polkadot.Repository;
 using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Infrastructure.Polkadot.Repository.Storage;
@@ -17,12 +9,9 @@ using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Polkanalysis.Domain.Contracts.Secondary.Rpc;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Common.Rpc;
-using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Substrate.NetApi;
 using Polkanalysis.Infrastructure.Polkadot.Repository.Events;
-using Polkanalysis.Domain.Contracts.Runtime;
 
 namespace Polkanalysis.Infrastructure.DirectAccess.Repository
 {

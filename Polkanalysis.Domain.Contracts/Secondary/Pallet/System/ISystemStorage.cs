@@ -23,6 +23,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
         public Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token);
 
         /// <summary>
+        /// Full information from each account
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token);
+
+        /// <summary>
         /// Total extrinsics count for the current block.
         /// </summary>
         /// <param name="token"></param>

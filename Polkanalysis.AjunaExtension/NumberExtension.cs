@@ -10,41 +10,41 @@ using System.Numerics;
 
 namespace Polkanalysis.AjunaExtension
 {
-    public static class NumberExtension
-    {
-        public static U128 With(this U128 prim, BigInteger num)
-        {
-            prim.Create(num);
-            return prim;
-        }
+    //public static class NumberExtension
+    //{
+    //    public static U128 With(this U128 prim, BigInteger num)
+    //    {
+    //        prim.Create(num);
+    //        return prim;
+    //    }
 
-        public static U64 With(this U64 prim, ulong num)
-        {
-            prim.Create(num);
-            return prim;
-        }
+    //    public static U64 With(this U64 prim, ulong num)
+    //    {
+    //        prim.Create(num);
+    //        return prim;
+    //    }
 
-        public static U32 With(this U32 prim, uint num)
-        {
-            prim.Create(num);
-            return prim;
-        }
+    //    public static U32 With(this U32 prim, uint num)
+    //    {
+    //        prim.Create(num);
+    //        return prim;
+    //    }
 
-        public static Id ToParachainId(this uint id)
-        {
-            var paraId = new Id();
-            var u32 = new U32();
-            u32.Create(id);
-            paraId.Value = u32;
+    //    public static Id ToParachainId(this uint id)
+    //    {
+    //        var paraId = new Id();
+    //        var u32 = new U32();
+    //        u32.Create(id);
+    //        paraId.Value = u32;
 
-            return paraId;
-        }
+    //        return paraId;
+    //    }
 
-        public static double ToDouble(this BigInteger num, int tokenDecimals)
-        {
-            var divider = new BigInteger(Math.Pow(10, tokenDecimals));
-            return (double)(num / divider);
-        }
-        public static double ToDouble(this U128 num, int tokenDecimals) => ToDouble(num.Value, tokenDecimals);
-    }
+    //    public static double ToDouble(this BigInteger num, int tokenDecimals)
+    //    {
+    //        var divider = new BigInteger(Math.Pow(10, tokenDecimals));
+    //        return (double)(num / divider);
+    //    }
+    //    public static double ToDouble(this U128 num, int tokenDecimals) => ToDouble(num.Value, tokenDecimals);
+    //}
 }

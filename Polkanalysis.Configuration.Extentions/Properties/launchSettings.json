@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Polkanalysis.Configuration.Extentions": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:60628;http://localhost:60630"
+    }
+  }
+}

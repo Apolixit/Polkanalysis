@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
     <ProjectReference Include="..\Polkanalysis.Integration.Tests.Contracts\Polkanalysis.Integration.Tests.Contracts.csproj" />

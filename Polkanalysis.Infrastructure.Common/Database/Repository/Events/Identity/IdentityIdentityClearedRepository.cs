@@ -1,20 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Infrastructure.Contracts.Database.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Contracts.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events.Identity;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity

@@ -15,7 +15,7 @@ namespace Polkanalysis.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("modules")]
+        [HttpGet]
         public async Task<IActionResult> GetModulesAsync() {
             var result = await _mediator.Send(new ModulesQuery(), CancellationToken.None);
 
@@ -27,12 +27,12 @@ namespace Polkanalysis.Api.Controllers
             return Ok(result.Value);
         }
 
-        [HttpGet("module")]
-        public async Task<IActionResult> GetModuleAsync([FromQuery] ModuleDetailQuery query)
+        [HttpGet("{moduleName}")]
+        public async Task<IActionResult> GetModuleAsync(string moduleName)
         {
-            if (query == null) BadRequest();
+            if (string.IsNullOrEmpty(moduleName)) BadRequest();
 
-            var result = await _mediator.Send(new ModuleDetailQuery(query.ModuleName), CancellationToken.None);
+            var result = await _mediator.Send(new ModuleDetailQuery(moduleName), CancellationToken.None);
 
             if (result.IsError)
             {

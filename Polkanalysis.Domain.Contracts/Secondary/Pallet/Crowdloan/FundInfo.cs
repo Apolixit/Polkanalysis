@@ -1,8 +1,9 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.AjunaExtension;
+using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core;
 using System.Numerics;
+using Polkanalysis.Domain.Contracts.Core.Multi;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan
 {

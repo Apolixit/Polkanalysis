@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  polkanalysis.api:
+    image: ${DOCKER_REGISTRY-}polkanalysisapi
+    build:
+      context: .
+      dockerfile: Polkanalysis.Api/Dockerfile

@@ -18,15 +18,15 @@ namespace Polkanalysis.AjunaExtension
         /// <param name="vec"></param>
         /// <param name="nbToTake"></param>
         /// <returns></returns>
-        public static string TakeAndEncode<T>(this BaseVec<T> vec, int nbToTake)
-            where T : IType, new()
-        {
-            var bv = new BaseVec<T>(vec.Value.Take(nbToTake).ToArray());
-            var bytes = new List<byte>();
-            bytes.AddRange(bv.Encode());
-            var final = Utils.Bytes2HexString(bytes.ToArray());
+        //public static string TakeAndEncode<T>(this BaseVec<T> vec, int nbToTake)
+        //    where T : IType, new()
+        //{
+        //    var bv = new BaseVec<T>(vec.Value.Take(nbToTake).ToArray());
+        //    var bytes = new List<byte>();
+        //    bytes.AddRange(bv.Encode());
+        //    var final = Utils.Bytes2HexString(bytes.ToArray());
 
-            return final;
-        }
+        //    return final;
+        //}
     }
 }

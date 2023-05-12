@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Polkanalysis.AjunaExtension\Polkanalysis.AjunaExtension.csproj" />
+    <ProjectReference Include="..\..\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Common\Polkanalysis.Infrastructure.Common.csproj" />
   </ItemGroup>

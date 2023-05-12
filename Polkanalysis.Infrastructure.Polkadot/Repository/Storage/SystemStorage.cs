@@ -29,12 +29,15 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo,
                 AccountInfo>
                 (accountId32, SystemStorageExt.AccountParams, token);
+        }
 
-            //var result = await GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo>(SystemStorageExt.AccountParams(SubstrateMapper.Instance.Map<SubstrateAccount, AccountId32>(account)), token);
-
-            //if (result == null) return new AccountInfo();
-
-            //return SubstrateMapper.Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo, AccountInfo>(result);
+        public async Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token)
+        {
+            return await GetAllStorageAsync<
+                AccountId32, 
+                SubstrateAccount,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo,
+                AccountInfo>("System", "Account", token);
         }
 
         public async Task<U32> AllExtrinsicsLenAsync(CancellationToken token)

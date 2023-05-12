@@ -91,7 +91,8 @@ namespace Polkanalysis.Domain.Repository
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
-            var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            //var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            var filteredExtrinsic = blockDetails.Block.Extrinsics;
             foreach (var extrinsic in filteredExtrinsic)
             {
                 var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);

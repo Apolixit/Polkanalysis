@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Polkanalysis.AjunaExtension;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;

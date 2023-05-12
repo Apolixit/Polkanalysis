@@ -1,18 +1,9 @@
-﻿using Substrate.NetApi;
-using Polkanalysis.Domain.Contracts.Runtime;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using SystemEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.TransactionPayment.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {

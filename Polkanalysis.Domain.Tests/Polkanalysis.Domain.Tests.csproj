@@ -29,12 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
+    <Folder Include="Runtime\Block\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Runtime\Block\" />
+    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
   </ItemGroup>
 
 </Project>

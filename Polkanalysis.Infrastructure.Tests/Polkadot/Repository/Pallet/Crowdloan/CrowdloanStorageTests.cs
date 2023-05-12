@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Core.Multi;
 
 namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Crowdloan
 {
