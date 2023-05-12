@@ -1,14 +1,12 @@
-﻿using MediatR.Courier;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Domain.UseCase.Explorer.Block;
-using FluentValidation;
+﻿using FluentValidation;
+using MediatR.Courier;
 using MediatR;
+using Polkanalysis.Domain.UseCase.Explorer.Block;
 using Polkanalysis.Domain.UseCase;
 
-namespace Polkanalysis.Web.Services
+namespace Polkanalysis.Api.Services
 {
-    public static class CommunicationServices
+    public static class MediatorService
     {
         public static IServiceCollection AddMediatRAndPipelineBehaviors(this IServiceCollection services)
         {

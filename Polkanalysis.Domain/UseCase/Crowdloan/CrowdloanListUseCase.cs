@@ -12,22 +12,22 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Crowdloan
 {
-    public class CrowdloanDetailUseCase : UseCase<CrowdloanDetailUseCase, CrowdloanDto, CrowdloanQuery>
+    public class CrowdloanListUseCase : UseCase<CrowdloanListUseCase, IEnumerable<CrowdloanListDto>, CrowdloanListQuery>
     {
         private readonly ICrowdloanRepository _crowdloanRepository;
-        public CrowdloanDetailUseCase(
-            ICrowdloanRepository crowdloanRepository, 
-            ILogger<CrowdloanDetailUseCase> logger) : base(logger)
+        public CrowdloanListUseCase(
+            ICrowdloanRepository crowdloanRepository,
+            ILogger<CrowdloanListUseCase> logger) : base(logger)
         {
             _crowdloanRepository = crowdloanRepository;
         }
 
-        public async override Task<Result<CrowdloanDto, ErrorResult>> Handle(CrowdloanQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<CrowdloanListDto>, ErrorResult>> Handle(CrowdloanListQuery request, CancellationToken cancellationToken)
         {
-            if(request == null)
+            if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            var result = await _crowdloanRepository.GetCrowdloanDetailAsync(request.CrowndloanId, cancellationToken);
+            var result = await _crowdloanRepository.GetCrowdloansAsync(cancellationToken);
 
             return Helpers.Ok(result);
         }

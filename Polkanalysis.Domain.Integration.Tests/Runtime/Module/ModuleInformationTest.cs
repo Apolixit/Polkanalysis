@@ -1,23 +1,10 @@
-﻿using Polkanalysis.Infrastructure.DirectAccess.Repository;
-using Polkanalysis.Integration.Tests.Contracts;
-using Castle.Core.Logging;
+﻿using Polkanalysis.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Polkanalysis.Domain.Dto;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
-using Substrate.NetApi.Model.Meta;
-using Microsoft.Win32;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Security.Claims;
-using System.Security.Principal;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {

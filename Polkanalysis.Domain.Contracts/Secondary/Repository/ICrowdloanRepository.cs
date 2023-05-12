@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Dto.Parachain;
+﻿using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
     {
         // Slots storage > leases ?
 
-        public Task<CrowdloanDto> GetCrowdloanDetailAsync(string crowdloanId, CancellationToken cancellationToken);
+        public Task<IEnumerable<CrowdloanListDto>> GetCrowdloansAsync(CancellationToken cancellationToken);
+        public Task<CrowdloanDto> GetCrowdloanDetailAsync(uint crowdloanId, CancellationToken cancellationToken);
     }
 }

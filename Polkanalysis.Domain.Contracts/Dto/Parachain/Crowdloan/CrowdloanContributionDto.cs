@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Parachain
+namespace Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan
 {
     public class CrowdloanContributionDto
     {

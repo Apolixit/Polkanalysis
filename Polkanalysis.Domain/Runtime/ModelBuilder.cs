@@ -8,14 +8,13 @@ using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using Polkanalysis.Domain.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Dto
+namespace Polkanalysis.Domain.Runtime
 {
     public class ModelBuilder : IModelBuilder
     {
@@ -45,7 +44,8 @@ namespace Polkanalysis.Domain.Dto
         public string DisplayElapsedTime(TimeSpan timeSpan)
         {
             var roundDown = (double val) => (int)Math.Floor(val);
-            var spelling = (int val, string word) => {
+            var spelling = (int val, string word) =>
+            {
                 return val switch
                 {
                     > 1 => $"{word}s",
@@ -117,7 +117,7 @@ namespace Polkanalysis.Domain.Dto
                     Block = blockLightDto,
                     EventName = pallet.Children.First().HumanData.ToString(),
                     PalletName = pallet.HumanData.ToString(),
-                },                
+                },
                 Decoded = eventNode,
             };
 
@@ -166,11 +166,11 @@ namespace Polkanalysis.Domain.Dto
         {
             if (doc == null)
                 return string.Empty;
-                //throw new ArgumentNullException($"{nameof(doc)}");
+            //throw new ArgumentNullException($"{nameof(doc)}");
 
             return string.Join("\n", doc);
         }
 
-        
+
     }
 }

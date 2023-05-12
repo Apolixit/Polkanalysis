@@ -67,7 +67,7 @@ var host = Host.CreateDefaultBuilder(args)
     .AddSingleton<IEventAggregateRepository, EventAggregateRepository>()
     .AddSingleton<ICurrentMetaData, CurrentMetaData>()
     .AddSingleton<IEventsFactory, EventsFactory>()
-    .AddSingleton<IModelBuilder, Polkanalysis.Domain.Dto.ModelBuilder>()
+    .AddSingleton<IModelBuilder, Polkanalysis.Domain.Runtime.ModelBuilder>()
     .AddSingleton<BlockPerimeter>()
     .AddDatabaseEvents();
 })

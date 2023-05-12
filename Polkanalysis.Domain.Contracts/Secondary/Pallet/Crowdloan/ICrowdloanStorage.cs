@@ -21,6 +21,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan
         public Task<FundInfo> FundsAsync(Id key, CancellationToken token);
 
         /// <summary>
+        /// Return all crowdloans
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<List<(Id, FundInfo)>> FundsAllAsync(CancellationToken token);
+
+        /// <summary>
         ///  The funds that have had additional contributions during the last block. This is used
         ///  in order to determine which funds should submit new or updated bids.
         /// </summary>

@@ -17,6 +17,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<AccountDto> GetAccountDetailAsync(string accountAddress, CancellationToken cancellationToken);
+        public Task<IEnumerable<AccountListDto>> GetAccountsAsync(CancellationToken cancellationToken);
 
         public Task<UserAddressDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken);
         public Task<UserAddressDto> GetAccountIdentityAsync(string accountAddress, CancellationToken cancellationToken);

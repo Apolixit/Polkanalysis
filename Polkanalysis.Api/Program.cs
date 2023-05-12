@@ -23,6 +23,8 @@ using FluentValidation;
 using Polkanalysis.Domain.Adapter.Block;
 using Serilog;
 using Polkanalysis.Configuration.Extentions;
+using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Api.Services;
 
 namespace Polkanalysis.Api
 {
@@ -55,28 +57,39 @@ namespace Polkanalysis.Api
                 {
                     options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
                 });
-                builder.Services.TryAddSingleton<ISubstrateEndpoint, SubstrateEndpoint>();
-                builder.Services.AddMediatR(cfg => {
-                    cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
-                    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-                });
-                builder.Services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+
+                builder.Services.AddMediatRAndPipelineBehaviors();
+                //builder.Services.AddMediatR(cfg => {
+                //    cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+                //    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+                //});
+                //builder.Services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+                //builder.Services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
+
+                //builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+                //builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+
+                builder.Services.AddEndpoint();
+                builder.Services.AddSubstrateRepositories();
                 builder.Services.AddDatabaseEvents();
-                builder.Services.AddSingleton<ISubstrateRepository, PolkadotRepository>();
-                builder.Services.AddSingleton<IExplorerRepository, PolkadotExplorerRepository>();
-                builder.Services.AddSingleton<IModelBuilder, Domain.Dto.ModelBuilder>();
-                builder.Services.AddSingleton<ISubstrateDecoding, SubstrateDecoding>();
-                builder.Services.AddSingleton<IPalletBuilder, PalletBuilder>();
-                builder.Services.AddSingleton<INodeMapping, EventNodeMapping>();
-                builder.Services.AddSingleton<IBlockchainMapping, PolkadotMapping>();
-                builder.Services.AddSingleton<ICurrentMetaData, CurrentMetaData>();
-                builder.Services.AddSingleton<IModuleInformation, ModuleInformation>();
-                builder.Services.AddSingleton<BlockParameterLike>();
+                builder.Services.AddPolkadotBlockchain();
+                builder.Services.AddSubstrateLogic();
 
-                builder.Services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
+                //builder.Services.AddDatabaseEvents();
+                //builder.Services.AddSingleton<ISubstrateRepository, PolkadotRepository>();
 
-                builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
-                builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
+                //builder.Services.AddSubstrateRepositories();
+
+                //builder.Services.AddSingleton<IModelBuilder, Domain.Runtime.ModelBuilder>();
+                //builder.Services.AddSingleton<ISubstrateDecoding, SubstrateDecoding>();
+                //builder.Services.AddSingleton<IPalletBuilder, PalletBuilder>();
+                //builder.Services.AddSingleton<INodeMapping, EventNodeMapping>();
+                //builder.Services.AddSingleton<IBlockchainMapping, PolkadotMapping>();
+                //builder.Services.AddSingleton<ICurrentMetaData, CurrentMetaData>();
+                //builder.Services.AddSingleton<IModuleInformation, ModuleInformation>();
+                //builder.Services.AddSingleton<BlockParameterLike>();
+
+                
 
                 builder.Services.AddCors(options =>
                 {
@@ -91,7 +104,16 @@ namespace Polkanalysis.Api
 
                 var app = builder.Build();
 
-                await app.Services.GetRequiredService<ISubstrateRepository>().ConnectAsync();
+                var substrateService = app.Services.GetRequiredService<ISubstrateRepository>();
+                await substrateService.ConnectAsync();
+                if(substrateService.IsConnected())
+                {
+                    logger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} !");
+                } else
+                {
+                    logger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
+                }
+                
 
                 // Configure the HTTP request pipeline.
                 if (app.Environment.IsDevelopment())
@@ -109,7 +131,7 @@ namespace Polkanalysis.Api
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Host terminated unexpectedly !");
+                logger.Fatal(ex, "Host terminated unexpectedly !");
             }
             finally
             {

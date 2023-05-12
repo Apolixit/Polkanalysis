@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Polkanalysis.Domain.Contracts.Primary.Crowdloan;
 
 namespace Polkanalysis.Api.Controllers
 {
-    public class CrowdloanController
+    public class CrowdloanController : MasterController
     {
         private readonly IMediator _mediator;
         private readonly ILogger<CrowdloanController> _logger;
@@ -16,13 +17,27 @@ namespace Polkanalysis.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCrowdloansAsync()
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(new CrowdloanListQuery(), CancellationToken.None);
+
+            if (result.IsError)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Value);
         }
 
         [HttpGet("{crowndloanId}")]
-        public async Task<IActionResult> GetCrowdloanAsync(int crowndloanId)
+        public async Task<IActionResult> GetCrowdloanAsync(uint crowndloanId)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(new CrowdloanQuery() { CrowndloanId = crowndloanId }, CancellationToken.None);
+
+            if (result.IsError)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Value);
         }
     }
 }

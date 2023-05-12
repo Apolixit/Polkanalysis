@@ -1,6 +1,6 @@
 ﻿using Polkanalysis.Domain.Contracts.Dto;
-using Polkanalysis.Domain.Dto;
 using NSubstitute;
+using Polkanalysis.Domain.Runtime;
 
 namespace Polkanalysis.Domain.Tests.Dto
 {

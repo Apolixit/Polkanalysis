@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Polkanalysis.Web.Services;
 using Polkanalysis.Components.Services.Http;
+using Polkanalysis.Configuration.Extentions;
+using Polkanalysis.Infrastructure.Common.Database;
+using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Domain.Repository;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,9 +18,11 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IApiService, ApiService>();
 
 builder.Services.AddEndpoint();
-builder.Services.AddCommunication();
-builder.Services.AddInfrastructure();
-builder.Services.AddSubstrate();
+builder.Services.AddSubstrateRepositories();
+builder.Services.AddDatabaseEvents();
+builder.Services.AddPolkadotBlockchain();
+builder.Services.AddSubstrateLogic();
+builder.Services.AddMediatRAndPipelineBehaviors();
 
 var host = builder.Build();
 var logger = host.Services.GetRequiredService<ILoggerFactory>()

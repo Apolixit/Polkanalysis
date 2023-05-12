@@ -9,7 +9,6 @@ using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Dto;
 using Polkanalysis.Domain.Repository;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Runtime.Module;

@@ -6,6 +6,8 @@ using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -26,6 +28,35 @@ namespace Polkanalysis.Domain.Repository
             _substrateNodeRepository.Storage.Identity,
             _substrateNodeRepository.Storage.System
         };
+
+        public async Task<IEnumerable<AccountListDto>> GetAccountsAsync(CancellationToken cancellationToken)
+        {
+            var result = await _substrateNodeRepository.Storage.System.AccountsAsync(cancellationToken);
+
+            var accountsDto = new List<AccountListDto>();
+            if (result == null) return accountsDto;
+
+            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
+
+            foreach (var account in result)
+            {
+                var freeAmount = account.Item2.Data.Free.ToDouble(chainInfo.TokenDecimals);
+                var otherAmount = (account.Item2.Data.MiscFrozen.Value + account.Item2.Data.Reserved.Value).ToDouble(chainInfo.TokenDecimals);
+
+                accountsDto.Add(new AccountListDto()
+                {
+                    Address = AddressDto.BuildFrom(account.Item1),
+                    Balances = new Contracts.Dto.Balances.BalancesDto()
+                    {
+                        Transferable = freeAmount,
+                        Stacking = 0, // TODO mapping
+                        Others = otherAmount
+                    }
+                });
+            }
+
+            return accountsDto;
+        }
 
         public Task<AccountDto> GetAccountDetailAsync(string accountAddress, CancellationToken cancellationToken)
         {
@@ -49,8 +80,6 @@ namespace Polkanalysis.Domain.Repository
             var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.Address.Value
                 , token);
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(token);
-            if (chainInfo == null)
-                throw new InvalidOperationException($"{chainInfo}");
 
             //_substrateNodeRepository.Client.ParasStorage.
             var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
@@ -73,10 +102,7 @@ namespace Polkanalysis.Domain.Repository
             var accountDto = new AccountDto()
             {
                 InformationsDto = userInformation,
-                Address = new AddressDto()
-                {
-                    Address = account.Address.Value
-                },
+                Address = AddressDto.BuildFrom(account),
                 AccountIndex = accountNextindex,
                 Nonce = accountInfo.Nonce.Value,
                 Balances = new Contracts.Dto.Balances.BalancesDto()
@@ -125,7 +151,5 @@ namespace Polkanalysis.Domain.Repository
         {
             return await GetAccountIdentityAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
-
-
     }
 }

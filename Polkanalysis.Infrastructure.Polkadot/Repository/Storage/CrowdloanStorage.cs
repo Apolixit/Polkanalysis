@@ -6,6 +6,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using CrowdloanStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.CrowdloanStorage;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
@@ -27,6 +28,15 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
                 FundInfo>
                 (id, CrowdloanStorageExt.FundsParams, token);
+        }
+
+        public async Task<List<(Id, FundInfo)>> FundsAllAsync(CancellationToken token)
+        {
+            return await GetAllStorageAsync<
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
+                Id,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
+                FundInfo>("Crowdloan", "Funds", token);
         }
 
         public async Task<BaseVec<Id>> NewRaiseAsync(CancellationToken token)

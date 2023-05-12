@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Primary
+namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
-    public class AccountCommand : IRequest<Result<AccountDto, ErrorResult>>
+    public class AccountDetailQuery : IRequest<Result<AccountDto, ErrorResult>>
     {
-        public string? AccountAddress { get; set; }
+        public required string AccountAddress { get; set; }
     }
 }

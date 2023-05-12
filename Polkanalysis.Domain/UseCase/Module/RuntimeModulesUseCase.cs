@@ -27,10 +27,10 @@ namespace Polkanalysis.Domain.UseCase.Module
             _substrateRepository = substrateRepository;
         }
 
-        public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> Handle(ModulesQuery command, CancellationToken cancellationToken)
+        public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> Handle(ModulesQuery request, CancellationToken cancellationToken)
         {
-            if (command == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
+            if (request == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
             List<Task<ModuleDetailDto>> modulesTask = new();
             foreach ( var module in _substrateRepository.RuntimeMetadata.NodeMetadata.Modules) {

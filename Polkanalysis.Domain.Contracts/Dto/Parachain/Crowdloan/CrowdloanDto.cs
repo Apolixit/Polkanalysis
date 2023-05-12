@@ -10,11 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Parachain
+namespace Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan
 {
     public class CrowdloanDto
     {
-        public required string CrowdloanId { get; set; }
+        public required uint CrowdloanId { get; set; }
 
         /// <summary>
         /// Parachain linked

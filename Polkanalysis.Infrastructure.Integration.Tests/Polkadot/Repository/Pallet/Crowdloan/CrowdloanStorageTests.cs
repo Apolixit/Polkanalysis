@@ -26,6 +26,14 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
         }
 
         [Test]
+        public async Task FundsAll_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.Crowdloan.FundsAllAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Count, Is.GreaterThan(2));
+        }
+
+        [Test]
         public async Task NewRaise_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Crowdloan.NewRaiseAsync(CancellationToken.None);
