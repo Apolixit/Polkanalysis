@@ -8,11 +8,11 @@ namespace Polkanalysis.Api.Controllers
 {
     public class RuntimeModuleController : MasterController
     {
-        private readonly IMediator _mediator;
+        private readonly ILogger<RuntimeModuleController> _logger;
 
-        public RuntimeModuleController(IMediator mediator) : base()
+        public RuntimeModuleController(IMediator mediator, ILogger<RuntimeModuleController> logger) : base(mediator)
         {
-            _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]

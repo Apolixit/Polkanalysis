@@ -99,5 +99,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums
         public EnumData(Data t, IType value2) {
             Create(t, value2);
         }
+
+        public string ToHuman()
+        {
+            if(Value2 is Nameable v2)
+            {
+                return v2.Display();
+            }
+            return string.Empty;
+        }
     }
 }

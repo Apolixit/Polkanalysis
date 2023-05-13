@@ -28,8 +28,9 @@ namespace Polkanalysis.Domain.UseCase.Parachain
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            //_parachainRepository.GetParachainDetailAsync(request)
-            return null;
+            var parachainDto = await _parachainRepository.GetParachainDetailAsync(request.ParachainId, cancellationToken);
+
+            return Helpers.Ok(parachainDto);
         }
     }
 }

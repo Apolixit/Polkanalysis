@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Parachain
 {
-    public class ParachainListingUseCase : UseCase<ParachainListingUseCase, ParachainLightDto, ParachainQuery>
+    public class ParachainListingUseCase : UseCase<ParachainListingUseCase, IEnumerable<ParachainLightDto>, ParachainsQuery>
     {
         private readonly IParachainRepository _parachainRepository;
         public ParachainListingUseCase(
@@ -22,12 +22,13 @@ namespace Polkanalysis.Domain.UseCase.Parachain
             _parachainRepository = parachainRepository;
         }
 
-        public async override Task<Result<ParachainLightDto, ErrorResult>> Handle(ParachainQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<ParachainLightDto>, ErrorResult>> Handle(ParachainsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            throw new NotImplementedException();
+            var result = await _parachainRepository.GetParachainsAsync(cancellationToken);
+            return Helpers.Ok(result);
         }
     }
 }

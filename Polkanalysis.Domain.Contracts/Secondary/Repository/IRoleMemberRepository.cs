@@ -11,6 +11,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
     public interface IRoleMemberRepository
     {
+        public Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken);
+
         /// <summary>
         /// Get validator information
         /// </summary>

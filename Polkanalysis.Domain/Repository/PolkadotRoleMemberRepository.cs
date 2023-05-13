@@ -15,6 +15,8 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
+using System.ComponentModel.DataAnnotations;
+using System.Threading;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -240,6 +242,36 @@ namespace Polkanalysis.Domain.Repository
             };
 
             return poolDto;
+        }
+
+        public async Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken)
+        {
+            CheckAddress(accountAddress);
+            var account = new SubstrateAccount(accountAddress);
+
+            var accountTypes = new List<AccountType>();
+
+            var validatorTask = _substrateNodeRepository.Storage.Session.NextKeysAsync(account, cancellationToken);
+            var nominatorTask = _substrateNodeRepository.Storage.Staking.NominatorsAsync(account, cancellationToken);
+            var identityTask = _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, cancellationToken);
+            var poolMemberTask = _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, cancellationToken);
+
+            await Task.WhenAll(new Task[] { validatorTask, nominatorTask, identityTask, poolMemberTask });
+
+            if ((await validatorTask) != null)
+                accountTypes.Add(AccountType.Validator);
+
+            if ((await nominatorTask) != null)
+                accountTypes.Add(AccountType.Nominator);
+
+            if ((await identityTask) != null)
+                accountTypes.Add(AccountType.OnChainIdentity);
+
+            if ((await poolMemberTask) != null)
+                accountTypes.Add(AccountType.PoolMember);
+
+            // Import technical comitee storage ?
+            return accountTypes;
         }
     }
 }

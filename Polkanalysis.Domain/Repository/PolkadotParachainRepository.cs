@@ -44,6 +44,7 @@ namespace Polkanalysis.Domain.Repository
             var parachainsDto = new List<ParachainLightDto>();
             var parachainsId = await _substrateNodeRepository.Storage.Paras.ParachainsAsync(cancellationToken);
 
+            //Storage.Slots.LeasesAsync()
             foreach (var parachainId in parachainsId.Value)
             {
                 var registerStatus = await _substrateNodeRepository.Storage.Paras.ParaLifecyclesAsync(parachainId, cancellationToken);
@@ -53,6 +54,8 @@ namespace Polkanalysis.Domain.Repository
                     ParachainId = parachainId.Value.Value,
                     RegisterStatus = DisplayParachainRegisterStatus(registerStatus)
                 };
+
+                parachainsDto.Add(parachainDto);
             }
 
             return parachainsDto;
@@ -65,15 +68,19 @@ namespace Polkanalysis.Domain.Repository
             var accountRegistar = await _substrateNodeRepository.Storage.Registrar.ParasAsync(paraId, cancellationToken);
 
             var owner = await _accountRepository.GetAccountIdentityAsync(accountRegistar.Manager, cancellationToken);
+            //var fundAccount = accountRegistar.
+            var registerStatus = await _substrateNodeRepository.Storage.Paras.ParaLifecyclesAsync(paraId, cancellationToken);
 
-            //var parachainDto = new ParachainDto();
+            var parachainDto = new ParachainDto();
+            parachainDto.OwnerAccount = owner;
+            parachainDto.RegisterStatus = DisplayParachainRegisterStatus(registerStatus);
 
 
 
 
             //var accountRegistar = await _substrateNodeRepository.Client.RegistrarStorage.PendingSwap(paraId, cancellationToken);
 
-            return null;
+            return parachainDto;
         }
     }
 }

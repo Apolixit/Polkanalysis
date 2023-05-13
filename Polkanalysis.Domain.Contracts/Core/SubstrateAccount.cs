@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.Contracts.Core
     {
         // TODO : override Equals !
         public SubstrateAccount() {
-            Address = new Hash();
+            //Address = new Hash();
             Bytes = new byte[0];
             TypeSize = 32;
         }
@@ -37,7 +37,7 @@ namespace Polkanalysis.Domain.Contracts.Core
 
         // From AccountId32
         public Hexa Value { get; set; }
-        public Hash Address { get; set; }
+        //public Hash Address { get; internal set; }
 
         public override byte[] Encode()
         {

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using OperationResult;
 using Polkanalysis.Api.Controllers;
@@ -22,11 +23,13 @@ namespace Polkanalysis.Api.Tests
     public class RuntimeModuleControllerTests
     {
         private IMediator _mediator;
+        private ILogger<RuntimeModuleController> _logger;
 
         [SetUp]
         public void Setup()
         {
             _mediator = Substitute.For<IMediator>();
+            _logger = Substitute.For<ILogger<RuntimeModuleController>>();
         }
 
         private Result<T, ErrorResult> GetValidResult<T>(T result)
@@ -45,7 +48,7 @@ namespace Polkanalysis.Api.Tests
 
         private RuntimeModuleController defaultUseCase()
         {
-            var controller = new RuntimeModuleController(_mediator);
+            var controller = new RuntimeModuleController(_mediator, _logger);
             controller.ControllerContext = new ControllerContext() {
                 HttpContext = new DefaultHttpContext() { }
             };

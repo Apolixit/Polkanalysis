@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token);
+        public Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token, int? nbMaxAccount = null);
 
         /// <summary>
         /// Total extrinsics count for the current block.

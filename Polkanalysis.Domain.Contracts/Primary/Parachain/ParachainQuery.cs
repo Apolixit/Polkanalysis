@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Parachain
 {
-    public class ParachainQuery : IRequest<Result<ParachainLightDto, ErrorResult>>
+    public class ParachainsQuery : IRequest<Result<IEnumerable<ParachainLightDto>, ErrorResult>>
     {
     }
 }

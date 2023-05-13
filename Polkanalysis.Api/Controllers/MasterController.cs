@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using OperationResult;
+using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Primary.Parachain;
+using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Secondary;
 
 namespace Polkanalysis.Api.Controllers
@@ -8,8 +13,23 @@ namespace Polkanalysis.Api.Controllers
     [Route("api/polkadot/[controller]")]
     public class MasterController : Controller
     {
-        public MasterController()
+        protected readonly IMediator _mediator;
+
+        public MasterController(IMediator mediator)
         {
+            _mediator = mediator;
+        }
+
+        protected async Task<IActionResult> SendAndHandleResponseAsync<TResponse>(IRequest<Result<TResponse, ErrorResult>> request)
+        {
+            var result = await _mediator.Send(request, CancellationToken.None);
+
+            if (result.IsError)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result.Value);
         }
     }
 }

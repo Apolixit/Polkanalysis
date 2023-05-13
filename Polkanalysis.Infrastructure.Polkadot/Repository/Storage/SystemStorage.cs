@@ -31,13 +31,13 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 (accountId32, SystemStorageExt.AccountParams, token);
         }
 
-        public async Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token)
+        public async Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token, int? nbMaxAccount = null)
         {
             return await GetAllStorageAsync<
                 AccountId32, 
                 SubstrateAccount,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo,
-                AccountInfo>("System", "Account", token);
+                AccountInfo>("System", "Account", token ,nbMaxAccount);
         }
 
         public async Task<U32> AllExtrinsicsLenAsync(CancellationToken token)

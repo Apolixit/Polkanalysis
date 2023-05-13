@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,6 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
         public string? Website { get; set; }
         public string? Matrix { get; set; }
         public string? Other { get; set; }
+        public EnumJudgement? IdentityLevel { get; set; }
     }
 }

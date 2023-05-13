@@ -21,12 +21,16 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
         }
 
         [Test]
-        public async Task GetAllAccounts_ShouldWorkAsync()
+        [TestCase(10)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        [TestCase(10000)]
+        public async Task GetAllAccounts_ShouldWorkAsync(int nb)
         {
-            var res = await _substrateRepository.Storage.System.AccountsAsync(CancellationToken.None);
+            var res = await _substrateRepository.Storage.System.AccountsAsync(CancellationToken.None, nb);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.Count, Is.GreaterThan(2));
+            Assert.That(res.Count, Is.LessThanOrEqualTo(nb));
         }
 
         [Test]

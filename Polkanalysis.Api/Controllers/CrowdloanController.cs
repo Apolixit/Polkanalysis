@@ -6,12 +6,11 @@ namespace Polkanalysis.Api.Controllers
 {
     public class CrowdloanController : MasterController
     {
-        private readonly IMediator _mediator;
         private readonly ILogger<CrowdloanController> _logger;
 
-        public CrowdloanController(IMediator mediator) : base()
+        public CrowdloanController(IMediator mediator, ILogger<CrowdloanController> logger) : base(mediator)
         {
-            _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]

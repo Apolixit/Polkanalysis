@@ -7,11 +7,11 @@ namespace Polkanalysis.Api.Controllers
 {
     public class StatsController : MasterController
     {
-        private readonly IMediator _mediator;
+        private readonly ILogger<StatsController> _logger;
 
-        public StatsController(IMediator mediator) : base()
+        public StatsController(IMediator mediator, ILogger<StatsController> logger) : base(mediator)
         {
-            _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]

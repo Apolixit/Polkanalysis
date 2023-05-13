@@ -31,7 +31,7 @@ namespace Polkanalysis.Domain.Repository
 
         public async Task<IEnumerable<AccountListDto>> GetAccountsAsync(CancellationToken cancellationToken)
         {
-            var result = await _substrateNodeRepository.Storage.System.AccountsAsync(cancellationToken);
+            var result = await _substrateNodeRepository.Storage.System.AccountsAsync(cancellationToken, 100);
 
             var accountsDto = new List<AccountListDto>();
             if (result == null) return accountsDto;
@@ -77,25 +77,50 @@ namespace Polkanalysis.Domain.Repository
             var isAccountPoolMember = await _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, token);
 
             var accountInfo = await _substrateNodeRepository.Storage.System.AccountAsync(account, token);
-            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.Address.Value
+            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.ToStringAddress()
                 , token);
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(token);
 
             //_substrateNodeRepository.Client.ParasStorage.
             var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
-            var otherAmount = (accountInfo.Data.MiscFrozen.Value + accountInfo.Data.Reserved.Value).ToDouble(chainInfo.TokenDecimals);
+            var stakingAmount = accountInfo.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
+            var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
+
+            double lockAmount = 0;
+            double stackingAmount = 0;
+            if (locks != null && locks.Value.Any())
+            {
+                // Misc == democracy
+                lockAmount = locks.Value
+                    .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.Misc)
+                    .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
+
+                stackingAmount = locks.Value
+                    .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.All)
+                    .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
+            }
+
+            
+            // Stacking = lock + reason = ALL
+            // other = lock + reason = misc
 
             var userInformation = new UserInformationsDto();
             if (identity != null)
             {
-                //userInformation.Name = identity.Info.Display;
-                //userInformation.Website = identity.Info.Web;
-                //userInformation.Email = identity.Info.Email;
-                //userInformation.Twitter = identity.Info.Twitter;
-                //userInformation.Legal = identity.Info.Legal;
-                //userInformation.Matrix = identity.Info.Riot;
-                //userInformation.Image = identity.Info.Image;
-                //userInformation.Other = identity.Info.Additional;
+                userInformation.Name = identity.Info.Display.ToHuman();
+                userInformation.Website = identity.Info.Web.ToHuman();
+                userInformation.Email = identity.Info.Email.ToHuman();
+                userInformation.Twitter = identity.Info.Twitter.ToHuman();
+                userInformation.Legal = identity.Info.Legal.ToHuman();
+                userInformation.Matrix = identity.Info.Riot.ToHuman();
+                userInformation.Image = identity.Info.Image.ToHuman();
+
+                var additionnal = identity.Info.Additional?.Value?.Select(x => ((Contracts.Secondary.Pallet.Identity.Enums.EnumData)x.Value[1])?.ToHuman());
+                if(additionnal != null)
+                {
+                    userInformation.Other = string.Join(", ", additionnal);
+                }
+                userInformation.IdentityLevel = (Contracts.Secondary.Pallet.Identity.Enums.EnumJudgement?)identity.Judgements?.Value[0]?.Value[1];
             }
 
 
@@ -108,9 +133,10 @@ namespace Polkanalysis.Domain.Repository
                 Balances = new Contracts.Dto.Balances.BalancesDto()
                 {
                     Transferable = freeAmount,
-                    Stacking = 0, // TODO mapping
-                    Others = otherAmount
-                }
+                    Stacking = stackingAmount,
+                    Others = othersAmount
+                },
+                AvatarUrl = string.Empty
             };
             return accountDto;
         }

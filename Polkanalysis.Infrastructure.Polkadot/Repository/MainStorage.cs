@@ -134,7 +134,8 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
             return res;
         }
 
-        protected async Task<List<(TKey, TStorage)>> GetAllStorageAsync<TKeySource, TKey, TStorageSource, TStorage>(string module, string item, CancellationToken token)
+        protected async Task<List<(TKey, TStorage)>> GetAllStorageAsync<TKeySource, TKey, TStorageSource, TStorage>(
+            string module, string item, CancellationToken token, int? maxElems = null)
             where TKey : IType, new()
             where TKeySource : IType, new()
             where TStorage : IType, new()
@@ -144,12 +145,14 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
             Guard.Against.NullOrEmpty(item);
 
             byte[]? startKey = null;
+            int defaultPagination = 1000;
+            uint pageLength = (uint)Math.Min(defaultPagination, maxElems.GetValueOrDefault(defaultPagination));
 
             List<(byte[], TKeySource, TStorageSource)> allPages = new();
-
-            while (true)
+            bool fetch = true;
+            while (fetch)
             {
-                var page = await GetAllStoragePagedAsync<TKeySource, TStorageSource>(module, item, startKey, 1000, token);
+                var page = await GetAllStoragePagedAsync<TKeySource, TStorageSource>(module, item, startKey, pageLength, token);
                 if (page == null || page.Count == 0)
                 {
                     break;
@@ -157,9 +160,10 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
 
                 allPages.AddRange(page);
                 startKey = page.Last().Item1;
+
+                if (allPages.Count >= maxElems) fetch = false;
             }
 
-            //return allPages.Select(x => (x.Item2, x.Item3)).ToList();
             var mapped = allPages
                 .Select(x => (PolkadotMapping.Instance.Map<TKeySource, TKey>(x.Item2), PolkadotMapping.Instance.Map<TStorageSource, TStorage>(x.Item3)))
                 .ToList();

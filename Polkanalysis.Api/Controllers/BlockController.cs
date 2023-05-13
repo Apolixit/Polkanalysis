@@ -7,11 +7,11 @@ namespace Polkanalysis.Api.Controllers
 {
     public class BlockController : MasterController
     {
-        private readonly IMediator _mediator;
+        private readonly ILogger<BlockController> _logger;
 
-        public BlockController(IMediator mediator) : base()
+        public BlockController(IMediator mediator, ILogger<BlockController> logger) : base(mediator)
         {
-            _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet("blockhash")]

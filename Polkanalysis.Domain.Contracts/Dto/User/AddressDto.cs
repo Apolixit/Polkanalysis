@@ -17,8 +17,8 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
         {
             return new AddressDto()
             {
-                Address = account.Address.Value,
-                PublicKey = Utils.Bytes2HexString(Utils.GetPublicKeyFrom(account.Address.Value))
+                Address = account.ToStringAddress(),
+                PublicKey = Utils.Bytes2HexString(Utils.GetPublicKeyFrom(account.ToStringAddress()))
             };
         }
     }
