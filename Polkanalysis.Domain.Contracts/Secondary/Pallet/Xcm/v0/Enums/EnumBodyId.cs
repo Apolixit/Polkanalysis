@@ -30,7 +30,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums
     /// <summary>
     /// >> 128 - Variant[xcm.v0.junction.BodyId]
     /// </summary>
-    public sealed class EnumBodyId : BaseEnumExt<BodyId, BaseVoid, Nameable, BaseCom<U32>, BaseVoid, BaseVoid, BaseVoid, BaseVoid>
+    public sealed class EnumBodyId : BaseEnumExt<BodyId, BaseVoid, FlexibleNameable, BaseCom<U32>, BaseVoid, BaseVoid, BaseVoid, BaseVoid>
     {
     }
 }

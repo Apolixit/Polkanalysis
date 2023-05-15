@@ -156,8 +156,8 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Session
         [Test]
         public async Task KeyOwner_ShouldWorkAsync()
         {
-            var input = new BaseTuple<Nameable, Hexa>();
-            input.Create(new Nameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
+            var input = new BaseTuple<FlexibleNameable, Hexa>();
+            input.Create(new FlexibleNameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
             
             var coreResult = new AccountId32();
             coreResult.Create("0x17316829C406A05CD9CDB8D5DE5FB23D26B3672F8CBCA1FCC6538833589A121A");
@@ -171,8 +171,8 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Session
         public async Task KeyOwnerNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync<
-                BaseTuple<Nameable, Hexa>, AccountId32, SubstrateAccount>(
-                new BaseTuple<Nameable, Hexa>(new Nameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b")), _substrateRepository.Storage.Session.KeyOwnerAsync);
+                BaseTuple<FlexibleNameable, Hexa>, AccountId32, SubstrateAccount>(
+                new BaseTuple<FlexibleNameable, Hexa>(new FlexibleNameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b")), _substrateRepository.Storage.Session.KeyOwnerAsync);
         }
     }
 }

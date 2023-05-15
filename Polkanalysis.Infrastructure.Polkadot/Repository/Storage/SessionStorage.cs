@@ -26,7 +26,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
             return await GetStorageAsync<BaseVec<U32>>(SessionStorageExt.DisabledValidatorsParams, token);
         }
 
-        public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<Nameable, Hexa> key, CancellationToken token)
+        public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa> key, CancellationToken token)
         {
             var param = PolkadotMapping.Instance.Map<BaseTuple<KeyTypeId, BaseVec<U8>>>(key);
             return await GetStorageWithParamsAsync<

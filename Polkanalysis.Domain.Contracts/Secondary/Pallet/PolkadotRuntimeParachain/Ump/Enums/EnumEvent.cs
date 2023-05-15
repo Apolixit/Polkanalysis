@@ -33,7 +33,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachai
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, Nameable, Nameable, BaseTuple<Nameable, EnumOutcome>, BaseTuple<Nameable, Weight, Weight>, BaseTuple<Id, U32, U32>, BaseTuple<Id, Nameable, U64, Weight>, BaseTuple<U64, Weight>>
+    public sealed class EnumEvent : BaseEnumExt<Event, FlexibleNameable, FlexibleNameable, BaseTuple<FlexibleNameable, EnumOutcome>, BaseTuple<FlexibleNameable, Weight, Weight>, BaseTuple<Id, U32, U32>, BaseTuple<Id, FlexibleNameable, U64, Weight>, BaseTuple<U64, Weight>>
     {
     }
 }

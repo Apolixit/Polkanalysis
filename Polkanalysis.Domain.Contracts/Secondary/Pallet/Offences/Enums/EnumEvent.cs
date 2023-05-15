@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Offences.Enums
     /// Events type.
     /// </summary>
     public sealed class EnumEvent : BaseEnumExt<Event, 
-        BaseTuple<Nameable, BaseVec<U8>>>
+        BaseTuple<FlexibleNameable, BaseVec<U8>>>
     {
     }
 }

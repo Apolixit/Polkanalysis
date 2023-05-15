@@ -128,7 +128,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Nameable> MetadataAsync(U32 key, CancellationToken token);
+        public Task<FlexibleNameable> MetadataAsync(U32 key, CancellationToken token);
 
         /// <summary>
         /// Counter for the related counted storage map

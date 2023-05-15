@@ -35,7 +35,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v1.Enums
     /// <summary>
     /// >> 124 - Variant[xcm.v1.junction.Junction]
     /// </summary>
-    public sealed class EnumJunction : BaseEnumExt<Junction, BaseCom<U32>, BaseTuple<EnumNetworkId, Nameable>, BaseTuple<EnumNetworkId, BaseCom<U64>>, BaseTuple<EnumNetworkId, Nameable>, U8, BaseCom<U128>, Nameable, BaseVoid, BaseTuple<EnumBodyId, EnumBodyPart>>
+    public sealed class EnumJunction : BaseEnumExt<Junction, BaseCom<U32>, BaseTuple<EnumNetworkId, FlexibleNameable>, BaseTuple<EnumNetworkId, BaseCom<U64>>, BaseTuple<EnumNetworkId, FlexibleNameable>, U8, BaseCom<U128>, FlexibleNameable, BaseVoid, BaseTuple<EnumBodyId, EnumBodyPart>>
     {
     }
 }

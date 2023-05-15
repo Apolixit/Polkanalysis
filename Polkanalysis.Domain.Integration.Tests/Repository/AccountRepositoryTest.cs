@@ -9,6 +9,7 @@ using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
+using NSubstitute;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
@@ -19,7 +20,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new PolkadotAccountRepository(_substrateRepository);
+            _accountRepository = new PolkadotAccountRepository(_substrateRepository, Substitute.For<IRoleMemberRepository>());
         }
 
         [Test]

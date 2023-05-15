@@ -69,6 +69,6 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Session
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<Nameable, Hexa> key, CancellationToken token);
+        public Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa> key, CancellationToken token);
     }
 }

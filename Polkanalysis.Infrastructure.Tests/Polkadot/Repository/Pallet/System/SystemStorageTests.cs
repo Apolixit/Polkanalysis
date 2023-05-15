@@ -161,11 +161,11 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.System
             var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.digest.Digest();
             coreResult.Create("0x040642414245B501031A0000008609AC100000000076BA4192ED195FA9E3EF8D84158890DE8DB8C120A622E099FBEA285B3088CA11E572C85A8CA3697077E83CEF372C0650C9162F1530F02EBEF579A63736D79F0E28707BED1635DE7C2DA796D1551430DC46B47938C90CE84BBFA35C1F1F222803");
 
-            var name = new Nameable("0x42414245");
+            var name = new FlexibleNameable("0x42414245");
             var vec = new BaseVec<U8>();
             vec.Create("0xB501031A0000008609AC100000000076BA4192ED195FA9E3EF8D84158890DE8DB8C120A622E099FBEA285B3088CA11E572C85A8CA3697077E83CEF372C0650C9162F1530F02EBEF579A63736D79F0E28707BED1635DE7C2DA796D1551430DC46B47938C90CE84BBFA35C1F1F222803");
 
-            var preruntimeValue = new BaseTuple<Nameable, BaseVec<U8>>(name, vec);
+            var preruntimeValue = new BaseTuple<FlexibleNameable, BaseVec<U8>>(name, vec);
 
             var enumDigest = new EnumDigestItem();
             enumDigest.Create(DigestItem.PreRuntime, preruntimeValue);

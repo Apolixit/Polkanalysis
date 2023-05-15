@@ -23,7 +23,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums
         RuntimeEnvironmentUpdated = 8,
     }
 
-    public sealed class EnumDigestItem : BaseEnumExt<DigestItem, BaseVec<U8>, BaseVoid, BaseVoid, BaseVoid, BaseTuple<Nameable, BaseVec<U8>>, BaseTuple<Nameable, BaseVec<U8>>, BaseTuple<Nameable, BaseVec<U8>>, BaseVoid, BaseVoid>
+    public sealed class EnumDigestItem : BaseEnumExt<DigestItem, BaseVec<U8>, BaseVoid, BaseVoid, BaseVoid, BaseTuple<FlexibleNameable, BaseVec<U8>>, BaseTuple<FlexibleNameable, BaseVec<U8>>, BaseTuple<FlexibleNameable, BaseVec<U8>>, BaseVoid, BaseVoid>
     {
     }
 }

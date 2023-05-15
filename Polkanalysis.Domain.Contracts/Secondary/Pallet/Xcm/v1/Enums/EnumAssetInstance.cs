@@ -30,7 +30,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v1.Enums
     /// <summary>
     /// >> 138 - Variant[xcm.v1.multiasset.AssetInstance]
     /// </summary>
-    public sealed class EnumAssetInstance : BaseEnumExt<AssetInstance, BaseVoid, BaseCom<U128>, Nameable, Nameable, Nameable, Nameable, BaseVec<U8>>
+    public sealed class EnumAssetInstance : BaseEnumExt<AssetInstance, BaseVoid, BaseCom<U128>, FlexibleNameable, FlexibleNameable, FlexibleNameable, FlexibleNameable, BaseVec<U8>>
     {
     }
 }

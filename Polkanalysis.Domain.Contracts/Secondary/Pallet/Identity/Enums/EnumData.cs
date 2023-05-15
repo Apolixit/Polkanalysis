@@ -92,17 +92,55 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums
     /// <summary>
     /// >> 267 - Variant[pallet_identity.types.Data]
     /// </summary>
-    public sealed class EnumData : BaseEnumExt<Data, BaseVoid, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable, Nameable>
+    public sealed class EnumData : BaseEnumExt<Data, BaseVoid,
+        NameableSize0,
+        NameableSize1,
+        NameableSize2,
+        NameableSize3,
+        NameableSize4,
+        NameableSize5,
+        NameableSize6,
+        NameableSize7,
+        NameableSize8,
+        NameableSize9,
+        NameableSize10,
+        NameableSize11,
+        NameableSize12,
+        NameableSize13,
+        NameableSize14,
+        NameableSize15,
+        NameableSize16,
+        NameableSize17,
+        NameableSize18,
+        NameableSize19,
+        NameableSize20,
+        NameableSize21,
+        NameableSize22,
+        NameableSize23,
+        NameableSize24,
+        NameableSize25,
+        NameableSize26,
+        NameableSize27,
+        NameableSize28,
+        NameableSize29,
+        NameableSize30,
+        NameableSize31,
+        NameableSize32,
+        NameableSize32,
+        NameableSize32,
+        NameableSize32,
+        NameableSize32>
     {
         public EnumData() { }
 
-        public EnumData(Data t, IType value2) {
+        public EnumData(Data t, IType value2)
+        {
             Create(t, value2);
         }
 
         public string ToHuman()
         {
-            if(Value2 is Nameable v2)
+            if (Value2 is FlexibleNameable v2)
             {
                 return v2.Display();
             }

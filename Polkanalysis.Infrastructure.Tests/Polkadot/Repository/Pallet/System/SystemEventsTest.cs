@@ -60,7 +60,6 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.System
         }
 
         [Test]
-        [Ignore("Not ready")]
         public async Task BalanceWithdraw_ShouldBeMapped()
         {
             var account = new AccountId32();
@@ -75,9 +74,32 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.System
             expectedResult.Create(Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Withdraw, new BaseTuple<SubstrateAccount, U128>(new SubstrateAccount(MockAddress), new U128(10)));
 
             var t = (BaseEnumType)coreEvent;
-            var mapped = PolkadotMapping.Instance.Map<Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>(coreEvent);
+            var mapped = PolkadotMapping.Instance.Map<
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent,
+                Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>(coreEvent);
 
             Assert.That(mapped, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public async Task BagListEnum_ShouldBeMapped()
+        {
+            var account = new AccountId32();
+            account.Create(Utils.GetPublicKeyFrom(MockAddress));
+
+            var coreEvent = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent();
+            var dataAssociated = new BaseTuple<AccountId32, U64, U64>(account, new U64(10), new U64(20));
+            coreEvent.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.Event.Rebagged, dataAssociated);
+
+            var mapped = new Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent();
+            mapped.Create(coreEvent.Bytes);
+
+            //var mapped = PolkadotMapping.Instance.Map<
+            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent,
+            //    Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent>(coreEvent);
+
+            Assert.That(mapped, Is.Not.Null);
+            Assert.IsInstanceOf<BaseTuple<SubstrateAccount, U64, U64>>(mapped.Value2);
         }
     }
 }

@@ -10,7 +10,16 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
     {
         Account,
         Validator,
+        Nominator,
+        Council,
+        TechnicalComitee,
+        Registrar,
         PoolMember,
         System,
+        OnChainIdentity,
+        Proxy,
+        Proxied,
+        Multisig,
+        MultisigMember,
     }
 }

@@ -13,7 +13,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
 {
     public class ReserveData : BaseType
     {
-        public Nameable Id { get; set; }
+        public FlexibleNameable Id { get; set; }
         public U128 Amount { get; set; } = new U128();
 
         public override byte[] Encode()
@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Nameable();
+            Id = new FlexibleNameable();
             Id.Decode(byteArray, ref p);
             Amount = new U128();
             Amount.Decode(byteArray, ref p);

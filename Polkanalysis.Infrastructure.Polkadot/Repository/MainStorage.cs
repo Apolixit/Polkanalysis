@@ -76,9 +76,13 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
             
             var result = await GetStorageAsync<R>(funcParams(input), token, callerName);
 
-            if (result == null) return new T();
+            var mappedType = new T();
+            if (result == null) return mappedType;
 
-            return PolkadotMapping.Instance.Map<R, T>(result);
+            mappedType.Create(result.Encode());
+            return mappedType;
+
+            //return PolkadotMapping.Instance.Map<R, T>(result);
         }
 
         protected async Task<T> GetStorageAsync<T>(
@@ -102,10 +106,12 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
             Guard.Against.Null(funcParams);
 
             var result = await GetStorageAsync<R>(funcParams(), token, callerName);
+            var mappedType = new T();
+            if (result == null) return mappedType;
 
-            if (result == null) return new T();
-
-            return PolkadotMapping.Instance.Map<R, T>(result);
+            mappedType.Create(result.Encode());
+            return mappedType;
+            //return PolkadotMapping.Instance.Map<R, T>(result);
         }
 
         /// <summary>
@@ -164,8 +170,21 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
                 if (allPages.Count >= maxElems) fetch = false;
             }
 
+            //var mapped = allPages
+            //    .Select(x => (PolkadotMapping.Instance.Map<TKeySource, TKey>(x.Item2), PolkadotMapping.Instance.Map<TStorageSource, TStorage>(x.Item3)))
+            //    .ToList();
+
             var mapped = allPages
-                .Select(x => (PolkadotMapping.Instance.Map<TKeySource, TKey>(x.Item2), PolkadotMapping.Instance.Map<TStorageSource, TStorage>(x.Item3)))
+                .Select(x =>
+                {
+                    TKey mappedKey = new();
+                    mappedKey.Create(x.Item2.Encode());
+
+                    TStorage mappedStorage = new();
+                    mappedStorage.Create(x.Item3.Encode());
+
+                    return (mappedKey, mappedStorage);
+                })
                 .ToList();
 
             return mapped;

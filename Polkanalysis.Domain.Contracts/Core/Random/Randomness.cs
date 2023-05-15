@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Core.Random
 {
-    public class Hexa : Nameable
+    public class Hexa : FlexibleNameable
     {
         public Hexa() {
             IntegerSize = 32;

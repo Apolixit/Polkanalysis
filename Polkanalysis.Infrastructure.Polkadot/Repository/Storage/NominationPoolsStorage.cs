@@ -75,12 +75,12 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
             return await GetStorageAsync<U32>(NominationStorageExt.MaxPoolsParams, token);
         }
 
-        public async Task<Nameable> MetadataAsync(U32 key, CancellationToken token)
+        public async Task<FlexibleNameable> MetadataAsync(U32 key, CancellationToken token)
         {
             return await GetStorageWithParamsAsync<
                 U32,
                 BoundedVecT28,
-                Nameable>
+                FlexibleNameable>
                 (key, NominationStorageExt.MetadataParams, token);
         }
 

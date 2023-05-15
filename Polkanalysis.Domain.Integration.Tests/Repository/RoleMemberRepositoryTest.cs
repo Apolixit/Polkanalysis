@@ -20,11 +20,9 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [SetUp]
         public void Setup()
         {
-
-
             _roleMemberRepository = new PolkadotRoleMemberRepository(
                 _substrateRepository,
-                new PolkadotAccountRepository(_substrateRepository),
+                new PolkadotAccountRepository(_substrateRepository, Substitute.For<IRoleMemberRepository>()),
                 new GenericNode());
         }
 

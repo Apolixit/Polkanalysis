@@ -6,21 +6,19 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using System.Text;
 
 namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
 {
     public class IdentityStorageTests : PolkadotRepositoryMock
     {
         [Test]
-        [Ignore("Bytes null")]
         public async Task IdentityOf_ShouldWorkAsync()
         {
             var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration();
             coreResult.Create("0x04010000000200BB34642400000000000000000000000017506F6C6B61646F742E70726F202D205265616C676172001568747470733A2F2F706F6C6B61646F742E70726F14407265616C6761723A6D61747269782E6F72671368656C6C6F40706F6C6B61646F742E70726F00000D4070726F706F6C6B61646F74");
 
-            var identityInfo = new IdentityInfo(
-                "Polkadot.pro - Realgar", null, "https://polkadot.pro", "@realgar:matrix.org", "hello@polkadot.pro", null, "@propolkadot", null, new BaseVec<BaseTuple<EnumData, EnumData>>(new BaseTuple<EnumData, EnumData>[] { }));
-
+            var identityInfo = new IdentityInfo().From("Polkadot.pro - Realgar", null, "https://polkadot.pro", "@realgar:matrix.org", "hello@polkadot.pro", null, "@propolkadot", null, new BaseVec<BaseTuple<EnumData, EnumData>>(new BaseTuple<EnumData, EnumData>[] { }));
             var enumJudgement = new EnumJudgement();
             enumJudgement.Create(Judgement.Reasonable, new BaseVoid());
             var judgements = new BaseVec<BaseTuple<U32, EnumJudgement>>(new BaseTuple<U32, EnumJudgement>[]
@@ -29,7 +27,18 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
             });
             var expectedResult = new Registration(identityInfo, new U128(156300000000),judgements);
 
+            Assert.That(coreResult.Encode(), Is.EqualTo(coreResult.Bytes));
+            var mapped = new Registration();
+            mapped.Create(coreResult.Encode());
+
+            Assert.That(mapped.Deposit.Encode(), Is.EqualTo(coreResult.Deposit.Encode()));
+            Assert.That(mapped.Judgements.Encode(), Is.EqualTo(coreResult.Judgements.Encode()));
+            Assert.That(mapped.Info.Encode(), Is.EqualTo(coreResult.Info.Encode()));
+            Assert.That(mapped.Encode(), Is.EqualTo(coreResult.Encode()));
+
             await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.IdentityOfAsync);
+
+            Assert.That(coreResult.Info.Email.Bytes, Is.EquivalentTo(expectedResult.Info.Email.Bytes));
         }
 
         [Test]
@@ -49,7 +58,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
 
             var expectedResult = new BaseTuple<SubstrateAccount, EnumData>(
                 new SubstrateAccount("1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih"),
-                new EnumData(Data.Raw6, new Nameable().FromText("AZIMUT")));
+                new EnumData(Data.Raw6, new FlexibleNameable().FromText("AZIMUT")));
 
             await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.SuperOfAsync);
         }
@@ -88,7 +97,6 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
         }
 
         [Test]
-        [Ignore("Bytes null")]
         public async Task Registrars_ShouldWorkAsync()
         {
             var coreResult = new BoundedVecT21();

@@ -14,10 +14,13 @@ namespace Polkanalysis.Domain.Repository
     public class PolkadotAccountRepository : IAccountRepository
     {
         private readonly ISubstrateRepository _substrateNodeRepository;
+        private readonly IRoleMemberRepository _roleMemberRepository;
 
-        public PolkadotAccountRepository(ISubstrateRepository substrateNodeRepository)
+        public PolkadotAccountRepository(
+            ISubstrateRepository substrateNodeRepository, IRoleMemberRepository roleMemberRepository)
         {
             _substrateNodeRepository = substrateNodeRepository;
+            _roleMemberRepository = roleMemberRepository;
 
             if (RequiredStorage.Any(s => s == null))
                 throw new PalletNotImplementedException($"{_substrateNodeRepository.BlockchainName} does not implement all storages required by {nameof(IAccountRepository)}");
@@ -86,26 +89,26 @@ namespace Polkanalysis.Domain.Repository
             var stakingAmount = accountInfo.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
             var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
 
-            double lockAmount = 0;
-            double stackingAmount = 0;
-            if (locks != null && locks.Value.Any())
-            {
-                // Misc == democracy
-                lockAmount = locks.Value
-                    .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.Misc)
-                    .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
+            //double lockAmount = 0;
+            //double stackingAmount = 0;
+            //if (locks != null && locks.Value.Any())
+            //{
+            //    // Misc == democracy
+            //    lockAmount = locks.Value
+            //        .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.Misc)
+            //        .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
 
-                stackingAmount = locks.Value
-                    .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.All)
-                    .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
-            }
+            //    stackingAmount = locks.Value
+            //        .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.All)
+            //        .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
+            //}
 
             
             // Stacking = lock + reason = ALL
             // other = lock + reason = misc
 
             var userInformation = new UserInformationsDto();
-            if (identity != null)
+            if (identity != null && identity.Info != null)
             {
                 userInformation.Name = identity.Info.Display.ToHuman();
                 userInformation.Website = identity.Info.Web.ToHuman();
@@ -123,6 +126,7 @@ namespace Polkanalysis.Domain.Repository
                 userInformation.IdentityLevel = (Contracts.Secondary.Pallet.Identity.Enums.EnumJudgement?)identity.Judgements?.Value[0]?.Value[1];
             }
 
+            var accountType = await _roleMemberRepository.GetAccountTypeAsync(account, token);
 
             var accountDto = new AccountDto()
             {
@@ -133,10 +137,11 @@ namespace Polkanalysis.Domain.Repository
                 Balances = new Contracts.Dto.Balances.BalancesDto()
                 {
                     Transferable = freeAmount,
-                    Stacking = stackingAmount,
+                    Stacking = stakingAmount,
                     Others = othersAmount
                 },
-                AvatarUrl = string.Empty
+                AvatarUrl = string.Empty,
+                AccountTypes = accountType
             };
             return accountDto;
         }

@@ -165,8 +165,11 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_babe.pallet.EnumError, Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe.Enums.EnumError>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.EnumListError, Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumListError>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumError, Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
+
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent>().ConvertUsing(typeof(BagListEnumExtConverter));
+
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>()
+                    .ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReleases, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumReleases>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus, Polkanalysis.Domain.Contracts.Secondary.Pallet.Bounties.Enums.EnumBountyStatus>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.pallet.EnumError, Polkanalysis.Domain.Contracts.Secondary.Pallet.Bounties.Enums.EnumError>();
@@ -191,6 +194,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 CreateMap(typeof(BaseCom<>), typeof(BaseCom<>)).ConvertUsing(typeof(BaseComConverter<,>));
                 
                 CreateMap(typeof(BaseEnumExt<,,,>), typeof(BaseEnumExt<,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
+                CreateMap(typeof(BaseEnumExt<,,,,,,,,,,>), typeof(BaseEnumExt<,,,,,,,,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
 
                 BaseComMapping<I8>();
                 BaseComMapping<I16>();
@@ -315,6 +319,25 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 }
             }
 
+            public class BagListEnumExtConverter : ITypeConverter<
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent>
+
+            {
+                public Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent source, Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent destination, ResolutionContext context)
+                {
+                    var x = new BaseEnumExtConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.Event, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U64, Substrate.NetApi.Model.Types.Primitive.U64>, BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U64>, Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.Event, BaseTuple<SubstrateAccount, U64, U64>, BaseTuple<SubstrateAccount, U64>>();
+                    var res = x.Convert(source, destination, context);
+
+                    destination.Create(res.Bytes);
+                    return destination;
+                    //destination = new Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent();
+                    //if (source == null) return destination;
+
+                    ////destination.Create(context.Mapper.Map<D0>(source.Value), context.Mapper.Map<D1>(source.Value2));
+                    //return destination;
+                }
+            }
+
             public class BaseEnumExtConverter<I0, I1, D0, D1> : ITypeConverter<BaseEnumExt<I0, I1>, BaseEnumExt<D0, D1>>
                 where I0 : Enum 
                 where I1 : IType, new()
@@ -394,41 +417,41 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
         {
             public NameableProfile()
             {
-                CreateMap<Arr0U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr1U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr2U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr3U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr4U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr5U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr6U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr7U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr8U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr9U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr10U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr11U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr12U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr13U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr14U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr15U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr16U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr17U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr18U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr19U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr20U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr21U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr22U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr23U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr24U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr25U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr26U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr27U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr28U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr29U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr30U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr31U8, Nameable>().ConvertUsing(new NameableConverter());
-                CreateMap<Arr32U8, Nameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr0U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr1U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr2U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr3U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr4U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr5U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr6U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr7U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr8U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr9U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr10U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr11U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr12U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr13U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr14U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr15U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr16U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr17U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr18U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr19U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr20U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr21U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr22U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr23U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr24U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr25U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr26U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr27U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr28U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr29U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr30U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr31U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+                CreateMap<Arr32U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
                 CreateMap<Arr32U8, Hexa>().ConvertUsing(x => new Hexa(x));
-                CreateMap<WeakBoundedVecT1, Nameable>().ConvertUsing(new NameableConverter());
+                CreateMap<WeakBoundedVecT1, FlexibleNameable>().ConvertUsing(new NameableConverter());
             }
         }
 
@@ -665,7 +688,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner, BondedPoolInner>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState, EnumPoolState>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles, PoolRoles>();
-                CreateMap<BoundedVecT28, Nameable>().ConvertUsing(x => new Nameable().FromU8(x.Value.Value));
+                CreateMap<BoundedVecT28, FlexibleNameable>().ConvertUsing(x => new FlexibleNameable().FromU8(x.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128, U128>().ConvertUsing(x => x.Value);
                 CreateMap<
                     Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1, BaseVec<BaseTuple<U32, U128>>>().ConvertUsing(x => x.Value.Value);
@@ -773,8 +796,8 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
         {
             public SessionStorageProfile()
             {
-                CreateMap<KeyTypeId, Nameable >().ConvertUsing(new KeyTypeIdConverter());
-                CreateMap<Nameable, KeyTypeId>().ConvertUsing(new KeyTypeIdReverseConverter());
+                CreateMap<KeyTypeId, FlexibleNameable >().ConvertUsing(new KeyTypeIdConverter());
+                CreateMap<FlexibleNameable, KeyTypeId>().ConvertUsing(new KeyTypeIdReverseConverter());
                 CreateMap<Hexa, BaseVec<U8>>().ConvertUsing(x => new BaseVec<U8>(x.Value));
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys, SessionKeysPolka>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys, SessionKeysPolka>().ConvertUsing(new SessionKeyConverter());
@@ -799,21 +822,21 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
                 }
             }
 
-            public class KeyTypeIdConverter : ITypeConverter<KeyTypeId, Nameable>
+            public class KeyTypeIdConverter : ITypeConverter<KeyTypeId, FlexibleNameable>
             {
-                public Nameable Convert(KeyTypeId source, Nameable destination, ResolutionContext context)
+                public FlexibleNameable Convert(KeyTypeId source, FlexibleNameable destination, ResolutionContext context)
                 {
-                    destination = new Nameable();
+                    destination = new FlexibleNameable();
                     if (source == null) return destination;
 
-                    context.Mapper.Map<Nameable>(source.Value);
+                    context.Mapper.Map<FlexibleNameable>(source.Value);
                     return destination;
                 }
             }
 
-            public class KeyTypeIdReverseConverter : ITypeConverter<Nameable, KeyTypeId>
+            public class KeyTypeIdReverseConverter : ITypeConverter<FlexibleNameable, KeyTypeId>
             {
-                public KeyTypeId Convert(Nameable source, KeyTypeId destination, ResolutionContext context)
+                public KeyTypeId Convert(FlexibleNameable source, KeyTypeId destination, ResolutionContext context)
                 {
                     destination = new KeyTypeId();
                     if (source == null) return destination;
@@ -1006,11 +1029,11 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
         //    }
         //}
 
-        public class NameableConverter : ITypeConverter<BaseType, Nameable>
+        public class NameableConverter : ITypeConverter<BaseType, FlexibleNameable>
         {
-            public Nameable Convert(BaseType source, Nameable destination, ResolutionContext context)
+            public FlexibleNameable Convert(BaseType source, FlexibleNameable destination, ResolutionContext context)
             {
-                return new Nameable(source);
+                return new FlexibleNameable(source);
             }
         }
 

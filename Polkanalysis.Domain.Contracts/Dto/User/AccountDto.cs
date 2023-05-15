@@ -10,6 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
         public uint AccountIndex { get; set; }
         public required uint Nonce { get; set; }
         public string AvatarUrl { get; set; } = string.Empty;
+        public IEnumerable<AccountType> AccountTypes { get; set; } = Enumerable.Empty<AccountType>();
 
         public AccountDto() { }
         public AccountDto(string name, string ss58Address, string publicKey)

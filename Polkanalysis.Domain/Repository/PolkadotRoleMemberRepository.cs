@@ -244,11 +244,14 @@ namespace Polkanalysis.Domain.Repository
             return poolDto;
         }
 
-        public async Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken)
+        public Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken)
         {
             CheckAddress(accountAddress);
-            var account = new SubstrateAccount(accountAddress);
+            return GetAccountTypeAsync(new SubstrateAccount(accountAddress), cancellationToken);
+        }
 
+        public async Task<IEnumerable<AccountType>> GetAccountTypeAsync(SubstrateAccount account, CancellationToken cancellationToken)
+        {
             var accountTypes = new List<AccountType>();
 
             var validatorTask = _substrateNodeRepository.Storage.Session.NextKeysAsync(account, cancellationToken);

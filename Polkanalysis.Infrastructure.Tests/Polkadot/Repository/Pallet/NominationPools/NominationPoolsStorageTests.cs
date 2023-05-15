@@ -328,7 +328,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
             coreResult.Create("0x99012331202D2050617261646F78207C20506172614E6F6465732E696F20F09F9A80202D204E6F6D696E6174696E6720747275737465642076616C696461746F7273207769746820686967682072657475726E7320616E642074696D656C79207061796F7574732E");
 
             //var expectedResult = new Nameable().FromText("�\u0001#1 - Paradox | ParaNodes.io 🚀 - Nominating trusted validators with high returns and timely payouts.");
-            var expectedResult = new Nameable().FromText("#1 - Paradox | ParaNodes.io 🚀 - Nominating trusted validators with high returns and timely payouts.");
+            var expectedResult = new FlexibleNameable().FromText("#1 - Paradox | ParaNodes.io 🚀 - Nominating trusted validators with high returns and timely payouts.");
 
             await MockStorageCallWithInputAsync
                 (new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.MetadataAsync);
@@ -340,7 +340,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
             await MockStorageCallNullWithInputAsync<
                 U32,
                 BoundedVecT28,
-                Nameable>
+                FlexibleNameable>
                 (new U32(1), _substrateRepository.Storage.NominationPools.MetadataAsync);
         }
 

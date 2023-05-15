@@ -13,14 +13,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
         public EnumData Web { get; set; }
         public EnumData Riot { get; set; }
         public EnumData Email { get; set; }
-        public BaseOpt<Nameable> PgpFingerprint { get; set; }
+        public BaseOpt<FlexibleNameable> PgpFingerprint { get; set; }
         public EnumData Twitter { get; set; }
         public EnumData Image { get; set; }
         public BaseVec<BaseTuple<EnumData, EnumData>> Additional { get; set; }
 
         public IdentityInfo() { }
 
-        public IdentityInfo(
+        public IdentityInfo From(
             string? display, 
             string? legal, 
             string? web, 
@@ -32,8 +32,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
             BaseVec<BaseTuple<EnumData, EnumData>> additional)
         {
             var nameableFingerprint = pgpFingerprint == null ? 
-                new Nameable() : 
-                new Nameable(Utils.Bytes2HexString(Encoding.Default.GetBytes(pgpFingerprint)));
+                null : 
+                new FlexibleNameable(Utils.Bytes2HexString(Encoding.Default.GetBytes(pgpFingerprint)));
 
             Create(
                 BuildEnumData(display),   
@@ -41,16 +41,18 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
                 BuildEnumData(web),   
                 BuildEnumData(riot),   
                 BuildEnumData(email),
-                new BaseOpt<Nameable>(nameableFingerprint),   
+                new BaseOpt<FlexibleNameable>(nameableFingerprint),   
                 BuildEnumData(twitter),   
                 BuildEnumData(image),
                 additional
             );
             //var displayEnumData = new EnumData();
             //displayEnumData.Create(Data.)
+
+            return this;
         }
 
-        public IdentityInfo(EnumData display, EnumData legal, EnumData web, EnumData riot, EnumData email, BaseOpt<Nameable> pgpFingerprint, EnumData twitter, EnumData image, BaseVec<BaseTuple<EnumData, EnumData>> additional)
+        public IdentityInfo(EnumData display, EnumData legal, EnumData web, EnumData riot, EnumData email, BaseOpt<FlexibleNameable> pgpFingerprint, EnumData twitter, EnumData image, BaseVec<BaseTuple<EnumData, EnumData>> additional)
         {
             Create(display, legal, web, riot, email, pgpFingerprint, twitter, image, additional);
         }
@@ -101,14 +103,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
 
         private EnumData BuildEnumData(string? value)
         {
-            var nameable = new Nameable(string.Empty);
+            var nameable = new FlexibleNameable(string.Empty);
             if (!string.IsNullOrEmpty(value))
-                nameable = new Nameable(Utils.Bytes2HexString(Encoding.Default.GetBytes(value)));
+                nameable = new FlexibleNameable(Utils.Bytes2HexString(Encoding.Default.GetBytes(value)));
 
             return new EnumData(CalcData(value), nameable);
         }
 
-        public void Create(EnumData display, EnumData legal, EnumData web, EnumData riot, EnumData email, BaseOpt<Nameable> pgpFingerprint, EnumData twitter, EnumData image, BaseVec<BaseTuple<EnumData, EnumData>> additional)
+        public void Create(EnumData display, EnumData legal, EnumData web, EnumData riot, EnumData email, BaseOpt<FlexibleNameable> pgpFingerprint, EnumData twitter, EnumData image, BaseVec<BaseTuple<EnumData, EnumData>> additional)
         {
             Display = display;
             Legal = legal;
@@ -155,7 +157,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity
             Riot.Decode(byteArray, ref p);
             Email = new EnumData();
             Email.Decode(byteArray, ref p);
-            PgpFingerprint = new BaseOpt<Nameable>();
+            PgpFingerprint = new BaseOpt<FlexibleNameable>();
             PgpFingerprint.Decode(byteArray, ref p);
             Image = new EnumData();
             Image.Decode(byteArray, ref p);

@@ -14,11 +14,11 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
 {
     public class BalanceLock : BaseType
     {
-        public Nameable Id { get; set; }
+        public FlexibleNameable Id { get; set; }
         public U128 Amount { get; set; } = new U128();
         public EnumReasons Reasons { get; set; }
 
-        public void Create(Nameable id, U128 amount, EnumReasons reasons)
+        public void Create(FlexibleNameable id, U128 amount, EnumReasons reasons)
         {
             this.Id = id;
             this.Amount = amount;
@@ -40,7 +40,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Nameable();
+            Id = new FlexibleNameable();
             Id.Decode(byteArray, ref p);
             Amount = new U128();
             Amount.Decode(byteArray, ref p);

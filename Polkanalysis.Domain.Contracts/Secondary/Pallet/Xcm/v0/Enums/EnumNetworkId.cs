@@ -23,7 +23,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums
     /// <summary>
     /// >> 126 - Variant[xcm.v0.junction.NetworkId]
     /// </summary>
-    public sealed class EnumNetworkId : BaseEnumExt<NetworkId, BaseVoid, Nameable, BaseVoid, BaseVoid>
+    public sealed class EnumNetworkId : BaseEnumExt<NetworkId, BaseVoid, FlexibleNameable, BaseVoid, BaseVoid>
     {
     }
 }
