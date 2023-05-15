@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums
 {
@@ -23,7 +24,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Xcm.v0.Enums
     /// <summary>
     /// >> 126 - Variant[xcm.v0.junction.NetworkId]
     /// </summary>
-    public sealed class EnumNetworkId : BaseEnumExt<NetworkId, BaseVoid, FlexibleNameable, BaseVoid, BaseVoid>
+    public sealed class EnumNetworkId : BaseEnumExt<NetworkId, BaseVoid, BaseVec<U8>, BaseVoid, BaseVoid>
     {
     }
 }

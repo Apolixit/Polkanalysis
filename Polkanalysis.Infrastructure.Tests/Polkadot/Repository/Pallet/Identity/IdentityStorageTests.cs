@@ -38,7 +38,15 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Identity
 
             await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.IdentityOfAsync);
 
+            Assert.That(coreResult.Info.Display.Bytes, Is.EquivalentTo(expectedResult.Info.Display.Bytes));
+            Assert.That(coreResult.Info.Legal.Bytes, Is.EquivalentTo(expectedResult.Info.Legal.Bytes));
+            Assert.That(coreResult.Info.Web.Bytes, Is.EquivalentTo(expectedResult.Info.Web.Bytes));
+            Assert.That(coreResult.Info.Riot.Bytes, Is.EquivalentTo(expectedResult.Info.Riot.Bytes));   
             Assert.That(coreResult.Info.Email.Bytes, Is.EquivalentTo(expectedResult.Info.Email.Bytes));
+            Assert.That(coreResult.Info.PgpFingerprint.Bytes, Is.EquivalentTo(expectedResult.Info.PgpFingerprint.Bytes));
+            Assert.That(coreResult.Info.Twitter.Bytes, Is.EquivalentTo(expectedResult.Info.Twitter.Bytes));
+            Assert.That(coreResult.Info.Image.Bytes, Is.EquivalentTo(expectedResult.Info.Image.Bytes));
+            Assert.That(coreResult.Info.Additional.Bytes, Is.EquivalentTo(expectedResult.Info.Additional.Bytes));
         }
 
         [Test]

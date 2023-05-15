@@ -49,15 +49,6 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
         }
         #endregion
 
-        public virtual string Display()
-        {
-            return System.Text.Encoding.Default.GetString(Value.ToBytes());
-        }
-
-        
-
-        
-
         protected override int IntegerSize { get; set; } = 0;
 
         public void Create(U8[] array)

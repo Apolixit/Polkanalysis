@@ -21,7 +21,7 @@ namespace Polkanalysis.Domain.Contracts.Core.Multi
     /// <summary>
     /// >> 197 - Variant[sp_runtime.multiaddress.MultiAddress]
     /// </summary>
-    public sealed class EnumMultiAddress : BaseEnumExt<MultiAddress, SubstrateAccount, BaseCom<BaseTuple>, BaseVec<U8>, FlexibleNameable, FlexibleNameable>
+    public sealed class EnumMultiAddress : BaseEnumExt<MultiAddress, SubstrateAccount, BaseCom<BaseTuple>, BaseVec<U8>, NameableSize32, NameableSize20>
     {
     }
 }

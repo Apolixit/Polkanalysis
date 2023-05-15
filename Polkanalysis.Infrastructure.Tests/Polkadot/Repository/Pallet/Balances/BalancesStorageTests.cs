@@ -79,7 +79,9 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
             reason.Create(Reasons.Misc);
 
             var firstResult = new BalanceLock();
-            firstResult.Create(new Domain.Contracts.Core.Display.FlexibleNameable(extResult.Value.Value[0].Id),
+            var name = new Domain.Contracts.Core.Display.NameableSize8();
+            name.Create(extResult.Value.Value[0].Id.Bytes);
+            firstResult.Create(name,
                 new U128(new BigInteger(10000000000)),
                 reason);
 

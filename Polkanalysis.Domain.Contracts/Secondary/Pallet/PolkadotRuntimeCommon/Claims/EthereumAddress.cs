@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeCommon.C
 {
     public class EthereumAddress : BaseType
     {
-        public FlexibleNameable Value { get; set; }
+        public NameableSize20 Value { get; set; }
         public override byte[] Encode()
         {
             var result = new List<byte>();
@@ -21,7 +21,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeCommon.C
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new FlexibleNameable();
+            Value = new NameableSize20();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

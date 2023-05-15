@@ -33,10 +33,10 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Scheduler.Enums
     public sealed class EnumEvent : BaseEnumExt<Event, 
         BaseTuple<U32>, 
         BaseTuple<U32>, 
-        BaseTuple<BaseTuple<U32>, BaseOpt<FlexibleNameable>, EnumResult>, 
-        BaseTuple<BaseTuple<U32>, BaseOpt<FlexibleNameable>>, 
-        BaseTuple<BaseTuple<U32>, BaseOpt<FlexibleNameable>>, 
-        BaseTuple<BaseTuple<U32>, BaseOpt<FlexibleNameable>>>
+        BaseTuple<BaseTuple<U32>, BaseOpt<NameableSize32>, EnumResult>, 
+        BaseTuple<BaseTuple<U32>, BaseOpt<NameableSize32>>, 
+        BaseTuple<BaseTuple<U32>, BaseOpt<NameableSize32>>, 
+        BaseTuple<BaseTuple<U32>, BaseOpt<NameableSize32>>>
     {
     }
 }

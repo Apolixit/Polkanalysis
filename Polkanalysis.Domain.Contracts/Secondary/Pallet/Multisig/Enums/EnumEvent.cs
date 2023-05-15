@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Multisig.Enums
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<SubstrateAccount, SubstrateAccount, FlexibleNameable>, BaseTuple<SubstrateAccount, Timepoint, SubstrateAccount, FlexibleNameable>, BaseTuple<SubstrateAccount, Timepoint, SubstrateAccount, FlexibleNameable, EnumResult>, BaseTuple<SubstrateAccount, Timepoint, SubstrateAccount, FlexibleNameable>>
+    public sealed class EnumEvent : BaseEnumExt<Event, BaseTuple<SubstrateAccount, SubstrateAccount, NameableSize32>, BaseTuple<SubstrateAccount, Timepoint, SubstrateAccount, NameableSize32>, BaseTuple<SubstrateAccount, Timepoint, SubstrateAccount, NameableSize32, EnumResult>, BaseTuple<SubstrateAccount, Timepoint, SubstrateAccount, NameableSize32>>
     {
     }
 }

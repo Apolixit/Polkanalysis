@@ -1,10 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Substrate.NET.Utils;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Core.Display
 {
@@ -18,6 +15,11 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
             {
                 return IntegerSize;
             }
+        }
+
+        public virtual string Display()
+        {
+            return System.Text.Encoding.Default.GetString(Value.ToBytes());
         }
 
         public override byte[] Encode()

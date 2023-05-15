@@ -140,7 +140,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums
 
         public string ToHuman()
         {
-            if (Value2 is FlexibleNameable v2)
+            if (Value2 is Nameable v2)
             {
                 return v2.Display();
             }
