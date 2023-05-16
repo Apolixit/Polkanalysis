@@ -29,7 +29,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
 
@@ -46,7 +46,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Authorship.DidSetUnclesAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new Bool()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new Bool().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Authorship.DidSetUnclesAsync(CancellationToken.None);
 
@@ -63,7 +63,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Babe.GenesisSlotAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U64()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U64().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Babe.GenesisSlotAsync(CancellationToken.None);
 
@@ -80,7 +80,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U128()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U128().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Balances.TotalIssuanceAsync(CancellationToken.None);
 
@@ -97,7 +97,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Crowdloan.EndingsCountAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Crowdloan.EndingsCountAsync(CancellationToken.None);
 
@@ -135,7 +135,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.NominationPools.MaxPoolsAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.NominationPools.MaxPoolsAsync(CancellationToken.None);
 
@@ -152,7 +152,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.ParaSessionInfo.EarliestStoredSessionAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.ParaSessionInfo.EarliestStoredSessionAsync(CancellationToken.None);
 
@@ -169,7 +169,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Paras.FutureCodeUpgradesAsync(new Id(1),  CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Paras.FutureCodeUpgradesAsync(new Id(1), CancellationToken.None);
 
@@ -187,7 +187,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Registrar.NextFreeParaIdAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new Id()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new Id().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Registrar.NextFreeParaIdAsync(CancellationToken.None);
 
@@ -204,7 +204,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Session.CurrentIndexAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Session.CurrentIndexAsync(CancellationToken.None);
 
@@ -221,7 +221,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Staking.CounterForValidatorsAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Staking.CounterForValidatorsAsync(CancellationToken.None);
 
@@ -238,7 +238,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.System.NumberAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U32()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U32().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.System.NumberAsync(CancellationToken.None);
 
@@ -255,7 +255,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet
 
             var resWithoutBlockHash = await _substrateRepository.Storage.Timestamp.NowAsync(CancellationToken.None);
 
-            Assert.That(resWithoutBlockHash, Is.EqualTo(new U64()));
+            Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U64().Bytes));
 
             var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Timestamp.NowAsync(CancellationToken.None);
 

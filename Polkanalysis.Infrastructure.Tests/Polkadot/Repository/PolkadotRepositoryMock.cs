@@ -4,18 +4,11 @@ using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using NSubstitute.ReturnsExtensions;
-using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
 {
@@ -189,9 +182,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            //Assert.That(res, Is.EqualTo(new T()));
-            Assert.That(res.Encode(), Is.EqualTo(new T().Encode()));
-
+            Assert.That(res.GetBytes(), Is.Null);
             return res;
         }
 
@@ -204,8 +195,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            //Assert.That(res, Is.EqualTo(new T()));
-            Assert.That(res.Encode(), Is.EqualTo(new T().Encode()));
+            Assert.That(res.GetBytes(), Is.Null);
             return res;
         }
 
@@ -222,7 +212,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.TypeSize, Is.EqualTo(0));
+            Assert.That(res.GetBytes(), Is.Null);
             return res;
         }
         protected async Task<T> MockStorageCallNullWithInputAsync<I, T>(I input, Func<I, CancellationToken, Task<T>> storageCall)
@@ -236,7 +226,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.TypeSize, Is.EqualTo(0));
+            Assert.That(res.GetBytes(), Is.Null);
             return res;
         }
     }

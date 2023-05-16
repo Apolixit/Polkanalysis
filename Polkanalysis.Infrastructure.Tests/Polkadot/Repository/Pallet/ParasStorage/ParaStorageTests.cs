@@ -156,7 +156,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.ParasStor
             coreResult.Create("0x00017737DE00");
 
             var expectedResult = new ParaPastCodeMeta(
-                new BaseVec<ReplacementTimes>(),
+                new BaseVec<ReplacementTimes>(new ReplacementTimes[] { }),
                 new BaseOpt<U32>(new U32(14563191)));
 
             await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.PastCodeMetaAsync);
@@ -401,7 +401,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.ParasStor
         }
 
         [Test]
-        [Ignore("Response too long")]
+        [Ignore("Response too long todo debug")]
         public async Task CodeByHash_ShouldWorkAsync()
         {
             var input = new Hash("0x9c900905bf8cb084be9ce07bfc122857071f81d53142b25f5fea04986e5d79ab");

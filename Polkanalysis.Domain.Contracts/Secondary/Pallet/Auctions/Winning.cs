@@ -6,6 +6,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions
 {
     public class Winning : BaseType
     {
+        public override int TypeSize { get; set; } = 36;
         public BaseOpt<BaseTuple<SubstrateAccount, Id, U128>>[] Value { get; set; }
 
         public override byte[] Encode()

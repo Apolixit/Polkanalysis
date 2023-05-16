@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Primary
             BlockHash = blockHash;
         }
 
-        public bool IsSet => BlockNumber != null && BlockHash != null;
+        public bool IsSet => BlockNumber != null || BlockHash != null;
     }
 
     public class BlockDetailsCommand : IRequest<Result<BlockDto, ErrorResult>>

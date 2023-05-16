@@ -62,14 +62,13 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Balances
                 AccountData>(testAccount, _substrateRepository.Storage.Balances.AccountAsync);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.Free, Is.EqualTo(new U128()));
-            Assert.That(res.Reserved, Is.EqualTo(new U128()));
-            Assert.That(res.MiscFrozen, Is.EqualTo(new U128()));
-            Assert.That(res.FeeFrozen, Is.EqualTo(new U128()));
+            Assert.That(res.Free.Bytes, Is.EqualTo(new U128().Bytes));
+            Assert.That(res.Reserved.Bytes, Is.EqualTo(new U128().Bytes));
+            Assert.That(res.MiscFrozen.Bytes, Is.EqualTo(new U128().Bytes));
+            Assert.That(res.FeeFrozen.Bytes, Is.EqualTo(new U128().Bytes));
         }
 
         [Test]
-        [Ignore("Todo Bytes null for BalancesLock")]
         public async Task Locks_ShouldWorkAsync()
         {
             var extResult = new WeakBoundedVecT3();

@@ -7,30 +7,18 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Exception;
 
 namespace Polkanalysis.Domain.Tests.Repository.Block
 {
     public class ExplorerBlockTests : ExplorerRepositoryTests
     {
         [Test]
-        [Ignore("Invalid")]
-        public void InvalidBlockInput_ShouldThrowError()
+        public void InvalidBlockHash_ShouldThrowError()
         {
-            Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetBlockDetailsAsync("invalidBlockHash", CancellationToken.None));
-            Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetEventsAsync("invalidBlockHash", CancellationToken.None));
-            Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetExtrinsicsAsync("invalidBlockHash", CancellationToken.None));
-
-            //_substrateService.Api.Core.InvokeAsync<Hash>("chain_getBlockHash", Arg.Any<object>(), CancellationToken.None).Returns(new Hash());
-            //_substrateService.Rpc.Chain.GetBlockAsync(Arg.Any<Hash>(), Arg.Any<CancellationToken>()).Returns(new Hash());
-
-            Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetBlockDetailsAsync(100, CancellationToken.None));
-            Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetEventsAsync(100, CancellationToken.None));
-            Assert.ThrowsAsync<InvalidOperationException>(async () => await _explorerRepository.GetExtrinsicsAsync(100, CancellationToken.None));
-        }
-
-        public async Task SubscribeNewBlock_ShouldWorkAsync()
-        {
-
+            Assert.ThrowsAsync<BlockException>(async () => await _explorerRepository.GetBlockDetailsAsync("invalidBlockHash", CancellationToken.None));
+            Assert.ThrowsAsync<BlockException>(async () => await _explorerRepository.GetEventsAsync("invalidBlockHash", CancellationToken.None));
+            Assert.ThrowsAsync<BlockException>(async () => await _explorerRepository.GetExtrinsicsAsync("invalidBlockHash", CancellationToken.None));
         }
     }
 }

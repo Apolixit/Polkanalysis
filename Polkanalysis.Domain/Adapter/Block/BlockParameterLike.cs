@@ -1,6 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Substrate.NetApi;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Domain.Adapter.Block
 {
@@ -43,6 +45,7 @@ namespace Polkanalysis.Domain.Adapter.Block
 
         public BlockParameterLike FromBlockHash(string blockAddress)
         {
+            if (!SubstrateCheck.CheckHash(blockAddress)) throw new BlockException("Invalid block format");
             _blockHash = new Hash(blockAddress);
             return this;
         }

@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Contracts.Core
         // TODO : override Equals !
         public SubstrateAccount() {
             //Address = new Hash();
-            Bytes = new byte[0];
+            //Bytes = new byte[0];
             TypeSize = 32;
         }
         public SubstrateAccount(string address) : this(Utils.GetPublicKeyFrom(address))

@@ -1,5 +1,6 @@
 ﻿using NSubstitute;
 using NSubstitute.ReturnsExtensions;
+using NUnit.Framework;
 using Polkanalysis.Domain.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
@@ -47,6 +48,7 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
 
         [Test]
         [TestCase(100)]
+        [Description("Call a block number which has been produce yet. Should fail")]
         public void FromNumber_WithInvalidBlockNumber_ShouldFail(int number)
         {
             _substrateService.Rpc.Chain.GetHeaderAsync().Returns(new Header()
@@ -71,14 +73,18 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
         public async Task ToBlockHash_WithBlockNumberSet_ShouldWorkAsync()
         {
             _blockParameterLike = await _blockParameterLike.FromBlockNumberAsync(10);
-            Assert.That(await _blockParameterLike.ToBlockHashAsync(), Is.EqualTo(new Hash("0x00")));
+
+            var blockHash = await _blockParameterLike.ToBlockHashAsync();
+            Assert.That(blockHash.Bytes, Is.EqualTo(new Hash("0x00").Bytes));
         }
 
         [Test]
         public async Task ToBlockHash_WithBlockHashSet_ShouldReturnSelfAsync()
         {
             _blockParameterLike = _blockParameterLike.FromBlockHash("0x00");
-            Assert.That(await _blockParameterLike.ToBlockHashAsync(), Is.EqualTo(new Hash("0x00")));
+
+            var blockHash = await _blockParameterLike.ToBlockHashAsync();
+            Assert.That(blockHash.Bytes, Is.EqualTo(new Hash("0x00").Bytes));
         }
 
         [Test]

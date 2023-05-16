@@ -115,7 +115,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.System
         [Test]
         public async Task ExtrinsicData_ShouldWorkAsync()
         {
-            var expectedResult = new BaseVec<U8>();
+            var expectedResult = new BaseVec<U8>(new U8[] { new U8(10) });
             await MockStorageCallWithInputAsync(new U32(1), expectedResult, _substrateRepository.Storage.System.ExtrinsicDataAsync);
         }
 

@@ -48,7 +48,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
 
             var p2 = new Perbill(new U32(0));
 
-            Assert.That(p2, Is.EqualTo(PolkadotMapping.Instance.Map<Perbill>(p1)));
+            Assert.That(p2.Bytes, Is.EqualTo(PolkadotMapping.Instance.Map<Perbill>(p1).Bytes));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
                 Domain.Contracts.Core.Id>(s1);
 
-            Assert.That(s1.Value, Is.EqualTo(d1.Value));
+            Assert.That(s1.Value.Bytes, Is.EqualTo(d1.Value.Bytes));
 
             // Reverse
             var s2 = new Domain.Contracts.Core.Id(1);
@@ -70,7 +70,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
                 Domain.Contracts.Core.Id,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(s2);
 
-            Assert.That(s2.Value, Is.EqualTo(d2.Value));
+            Assert.That(s2.Value.Bytes, Is.EqualTo(d2.Value.Bytes));
         }
 
         [Test]
@@ -113,8 +113,8 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
 
             var mapU64 = PolkadotMapping.Instance.Map<BaseCom<U64>, U64>(baseCom);
 
-            Assert.That(targetValue, Is.EqualTo(u64));
-            Assert.That(targetValue, Is.EqualTo(mapU64));
+            Assert.That(targetValue.Bytes, Is.EqualTo(u64.Bytes));
+            Assert.That(targetValue.Bytes, Is.EqualTo(mapU64.Bytes));
         }
 
         [Test]

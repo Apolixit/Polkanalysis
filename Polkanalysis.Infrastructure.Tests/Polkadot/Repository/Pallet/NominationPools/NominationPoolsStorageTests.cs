@@ -5,12 +5,14 @@ using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using Substrate.NET.Utils;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NSubstitute;
 
 namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.NominationPools
 {
@@ -113,11 +115,12 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
             var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember();
             coreResult.Create("0x010000009F5B4BC9B500000000000000000000006A0B97D2D0178D00000000000000000000");
 
+            coreResult.Encode();
             var expectedResult = new PoolMember(
                 new U32(1), 
                 new U128(780766239647), 
                 new U128(39714157369953130), 
-                new BaseVec<BaseTuple<U32, U128>>());
+                new BaseVec<BaseTuple<U32, U128>>(new BaseTuple<U32, U128>[] {}));
 
             await MockStorageCallWithInputAsync
                 (new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.PoolMembersAsync);
@@ -204,7 +207,6 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
         }
 
         [Test]
-        [Ignore("Bytes null")]
         public async Task SubPoolsStorage_ShouldWorkAsync()
         {
             var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools();
@@ -243,7 +245,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
 
                     new BaseTuple<U32, UnbondPool>(
                         new U32(1023),
-                        new UnbondPool(new U128(2900000000000), new U128(1120000000000))),
+                        new UnbondPool(new U128(2900000000000), new U128(2900000000000))),
 
                     new BaseTuple<U32, UnbondPool>(
                         new U32(1026),
@@ -294,6 +296,14 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
                         new UnbondPool(new U128(2615149950444), new U128(2615149950444))),
                 }));
 
+            Assert.That(coreResult.NoEra.Encode(), Is.EqualTo(expectedResult.NoEra.Encode()));
+
+            var coreTab = coreResult.WithEra.Value.Value.Value;
+            for (int i = 0; i < coreTab.Length; i++)
+            {
+                Assert.That(coreTab[i].Encode(), Is.EqualTo(expectedResult.WithEra.Value[i].Encode()));
+            }
+
             await MockStorageCallWithInputAsync
                 (new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.SubPoolsStorageAsync);
         }
@@ -327,11 +337,19 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
             var coreResult = new BoundedVecT28();
             coreResult.Create("0x99012331202D2050617261646F78207C20506172614E6F6465732E696F20F09F9A80202D204E6F6D696E6174696E6720747275737465642076616C696461746F7273207769746820686967682072657475726E7320616E642074696D656C79207061796F7574732E");
 
-            //var expectedResult = new Nameable().FromText("�\u0001#1 - Paradox | ParaNodes.io 🚀 - Nominating trusted validators with high returns and timely payouts.");
             var expectedResult = new FlexibleNameable().FromText("#1 - Paradox | ParaNodes.io 🚀 - Nominating trusted validators with high returns and timely payouts.");
 
-            await MockStorageCallWithInputAsync
-                (new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.MetadataAsync);
+            _substrateRepository.AjunaClient.GetStorageAsync<BoundedVecT28>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(coreResult);
+
+            var res = await _substrateRepository.Storage.NominationPools.MetadataAsync(new U32(1), CancellationToken.None);
+            var nameableUncleaned = new FlexibleNameable(res);
+            var nameableCleaned = new FlexibleNameable(res.Value);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(nameableUncleaned.Bytes, Is.EqualTo(coreResult.Value.Bytes));
+
+            Assert.That(nameableCleaned.Display(), Is.EqualTo(expectedResult.Display()));
+            Assert.That(expectedResult.Display(), Is.EqualTo(Encoding.Default.GetString(coreResult.Value.Value.ToBytes())));
         }
 
         [Test]
@@ -340,7 +358,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Nominatio
             await MockStorageCallNullWithInputAsync<
                 U32,
                 BoundedVecT28,
-                FlexibleNameable>
+                BaseVec<U8>>
                 (new U32(1), _substrateRepository.Storage.NominationPools.MetadataAsync);
         }
 

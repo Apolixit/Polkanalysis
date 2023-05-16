@@ -12,7 +12,13 @@ namespace Polkanalysis.Domain.Contracts.Core.Public
     public abstract class Public : BaseType
     {
         // Check length = 32
-
+        public override int TypeSize
+        {
+            get
+            {
+                return 32;
+            }
+        }
         public U8[] Value { get; set; }
         public abstract KeyType Key { get; }
 

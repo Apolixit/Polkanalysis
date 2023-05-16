@@ -3,6 +3,8 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using System.Text;
+using Substrate.NetApi.Model.Types;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Domain.Contracts.Core.Display
 {
@@ -19,6 +21,7 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
         public FlexibleNameable(U8[] data) => FromU8(data);
 
         public FlexibleNameable(BaseType elem) => FromBaseType(elem);
+        public FlexibleNameable(IType elem) => FromIType(elem);
 
         #region Builder
         public FlexibleNameable FromText(string text)
@@ -45,6 +48,13 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
         {
             IntegerSize = elem.TypeSize;
             Create(elem.Bytes);
+            return this;
+        }
+
+        public FlexibleNameable FromIType(IType elem)
+        {
+            IntegerSize = elem.TypeSize;
+            Create(elem.GetBytes());
             return this;
         }
         #endregion
