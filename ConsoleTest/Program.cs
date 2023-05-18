@@ -16,8 +16,8 @@ using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using MediatR.Courier;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
-using Polkanalysis.Domain.Contracts.Primary;
 using Polkanalysis.Configuration.Extentions;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 
 namespace ConsoleTest;
 
@@ -56,12 +56,10 @@ public class Program
     private static void ConfigureServices(IServiceCollection services)
     {
         services
-            //.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Polkanalysis.Domain.UseCase.Module.ModuleDetailUseCase).GetTypeInfo().Assembly))
             .AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
-                cfg.RegisterServicesFromAssembly(typeof(BlockLightCommand).Assembly);
-                //cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(BlockLightQuery).Assembly);
             })
             .AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly)
             //.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>))

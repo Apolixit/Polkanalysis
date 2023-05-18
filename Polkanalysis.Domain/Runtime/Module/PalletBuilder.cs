@@ -92,7 +92,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                     break;
             }
 
-            Assembly assembly = null; //typeof(Polkadot.NetApiExt.Generated.SubstrateClientExt).Assembly;
+            Assembly assembly = Assembly.Load("Polkanalysis.Polkadot.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"); //typeof(Polkadot.NetApiExt.Generated.SubstrateClientExt).Assembly;
             Type? palletType = assembly.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Model.{dynamicCall}");
             if (palletType == null) throw new FormatException($"Dynamic call to EnumCall for pallet {palletName} has failed");
 

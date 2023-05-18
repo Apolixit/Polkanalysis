@@ -1,5 +1,4 @@
 ﻿using Substrate.NetApi;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
@@ -10,13 +9,10 @@ using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
-using System.ComponentModel.DataAnnotations;
-using System.Threading;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -43,6 +39,11 @@ namespace Polkanalysis.Domain.Repository
 
             if (!_substrateNodeRepository.IsValidAccountAddress(address))
                 throw new AddressException($"{address} is invalid");
+        }
+
+        public Task<IEnumerable<ValidatorLightDto>> GetValidatorsAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<ValidatorDto> GetValidatorDetailAsync(string validatorAddress, CancellationToken cancellationToken)
@@ -125,6 +126,11 @@ namespace Polkanalysis.Domain.Repository
 
             if (account == null) return null;
             return await _accountRepository.GetAccountIdentityAsync(account, cancellationToken);
+        }
+
+        public Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<NominatorDto> GetNominatorDetailAsync(string nominatorAddress, CancellationToken cancellationToken)

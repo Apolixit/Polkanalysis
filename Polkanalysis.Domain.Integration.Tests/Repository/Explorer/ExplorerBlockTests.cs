@@ -35,10 +35,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
         [TestCase("0xd2dfa1ad34d76b8f0fac8b6db4f4bf9f6be23c3608029276ee2cb11155547967")]
         public async Task GetBlockDetails_ValidBlockHash_ShouldWorkAsync(string blockString)
         {
-            var blockHash = new Hash();
-            blockHash.Create(blockString);
-
-            var blockInfo = await _explorerRepository.GetBlockDetailsAsync(blockHash, CancellationToken.None);
+            var blockInfo = await _explorerRepository.GetBlockDetailsAsync(blockString, CancellationToken.None);
             Assert.IsNotNull(blockInfo);
         }
     }

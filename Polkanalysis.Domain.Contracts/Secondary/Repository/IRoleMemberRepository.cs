@@ -21,7 +21,9 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="cancellation"></param>
         /// <returns></returns>
         public Task<ValidatorDto> GetValidatorDetailAsync(string validatorAddress, CancellationToken cancellationToken);
+        public Task<IEnumerable<ValidatorLightDto>> GetValidatorsAsync(CancellationToken cancellationToken);
 
+        public Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken);
         public Task<NominatorDto> GetNominatorDetailAsync(string nominatorAddress, CancellationToken cancellationToken);
 
         public Task<PoolDto> GetPoolDetailAsync(uint poolId, CancellationToken cancellationToken);

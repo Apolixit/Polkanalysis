@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
-    public class AccountDetailQuery : IRequest<Result<AccountDto, ErrorResult>>
+    public class NominatorDetailQuery : IRequest<Result<NominatorDto, ErrorResult>>
     {
-        public required string AccountAddress { get; set; }
-        public AccountType? AccountRole { get; set; }
+        public required string NominatorAddress { get; set; }
     }
 }

@@ -1,18 +1,12 @@
-﻿using Polkanalysis.Domain.Contracts.Primary;
-using Polkanalysis.Domain.UseCase.Module;
-using Polkanalysis.Domain.UseCase.Validator;
+﻿using Polkanalysis.Domain.UseCase.Validator;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Domain.Contracts.Primary.Accounts;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Validator
 {
-    public class ValidatorDetailUseCaseTest : UseCaseTest<ValidatorDetailUseCase, ValidatorDto, ValidatorCommand>
+    public class ValidatorDetailUseCaseTest : UseCaseTest<ValidatorDetailUseCase, ValidatorDto, ValidatorDetailQuery>
     {
         [SetUp]
         public override void Setup()

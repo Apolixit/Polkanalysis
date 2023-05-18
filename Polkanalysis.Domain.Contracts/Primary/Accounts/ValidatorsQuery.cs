@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Primary
+namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
-    public class ValidatorCommand : IRequest<Result<ValidatorDto, ErrorResult>>
+    public class ValidatorsQuery : IRequest<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>
     {
     }
 }

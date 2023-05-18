@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.Auctions
 {

@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Primary
+namespace Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic
 {
-    public class ExtrinsicCommand : IRequest<Result<ExtrinsicDto, ErrorResult>>
+    public class ExtrinsicQuery : IRequest<Result<ExtrinsicDto, ErrorResult>>
     {
         public required uint BlockNumber { get; set; }
         public required uint ExtrinsicIndex { get; set; }

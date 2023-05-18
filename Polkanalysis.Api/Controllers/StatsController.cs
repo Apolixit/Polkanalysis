@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Polkanalysis.Domain.Contracts.Primary.Statistics.Account;
 using Polkanalysis.Domain.Contracts.Primary.Statistics;
+using Polkanalysis.Domain.Contracts.Dto.Stats;
+using Polkanalysis.Domain.Contracts.Dto.Module;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -15,39 +17,22 @@ namespace Polkanalysis.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBlockchainInformationAsync()
+        [Produces(typeof(BlockchainInformationDto))]
+        public async Task<ActionResult<BlockchainInformationDto>> GetBlockchainInformationAsync()
         {
-            var result = await _mediator.Send(new BlockchainInformationQuery(), CancellationToken.None);
-
-            if (result.IsError)
-            {
-                return BadRequest(result);
-            }
-
-            return Ok(result.Value);
+            return await SendAndHandleResponseAsync(new BlockchainInformationQuery());
         }
 
         [HttpGet("sumup")]
-        public async Task<IActionResult> GetMacroStatsSumUpAsync([FromQuery] GlobalStatsQuery macroStatsQuery)
+        [Produces(typeof(GlobalStatsDto))]
+        public async Task<ActionResult<GlobalStatsDto>> GetMacroStatsSumUpAsync([FromQuery] GlobalStatsQuery macroStatsQuery)
         {
-            var result = await _mediator.Send(macroStatsQuery, CancellationToken.None);
-
-            //return Helpers.Error(new ErrorResult()
-            //{
-            //    Status = ErrorResult.ErrorType.InvalidParam,
-            //    Description = string.Join(", ", failures.Select(x => x.ErrorMessage).ToArray())
-            //});
-
-            if (result.IsError)
-            {
-                return BadRequest(result);
-            }
-
-            return Ok(result.Value);
+            return await SendAndHandleResponseAsync(macroStatsQuery);
         }
 
         [HttpGet("holders")]
-        public async Task<IActionResult> GetHoldersAsync()
+        [Produces(typeof(int))]
+        public async Task<ActionResult<int>> GetHoldersAsync()
         {
             var result = await _mediator.Send(new HoldersQuery(), CancellationToken.None);
 

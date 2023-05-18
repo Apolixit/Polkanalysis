@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Polkanalysis.Domain.Contracts.Dto.Block;
+using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -15,42 +17,17 @@ namespace Polkanalysis.Api.Controllers
         }
 
         [HttpGet("blockhash")]
-        public async Task<IActionResult> GetBlockAsync([FromQuery] string blockHash)
+        [Produces(typeof(BlockDto))]
+        public async Task<ActionResult<BlockDto>> GetBlockAsync([FromQuery] string blockHash)
         {
-            var result = await _mediator.Send(new BlockDetailsCommand(blockHash), CancellationToken.None);
-
-            if (result.IsError)
-            {
-                return BadRequest(result);
-            }
-
-            return Ok(result.Value);
+            return await SendAndHandleResponseAsync(new BlockDetailsQuery(blockHash));
         }
 
         [HttpGet("blocknumber")]
-        public async Task<IActionResult> GetBlockAsync([FromQuery] uint blockId)
+        [Produces(typeof(BlockDto))]
+        public async Task<ActionResult<BlockDto>> GetBlockAsync([FromQuery] uint blockId)
         {
-            var result = await _mediator.Send(new BlockDetailsCommand(blockId), CancellationToken.None);
-
-            if (result.IsError)
-            {
-                return BadRequest(result);
-            }
-
-            return Ok(result.Value);
-        }
-
-        [HttpGet("testtimeout")]
-        public IActionResult GetTimeout()
-        {
-            Thread.Sleep(200000);
-            return Ok();
-        }
-
-        [HttpGet("badrequest")]
-        public IActionResult GetBadRequest()
-        {
-            return BadRequest();
+            return await SendAndHandleResponseAsync(new BlockDetailsQuery(blockId));
         }
     }
 }

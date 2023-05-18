@@ -3,7 +3,6 @@ using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
-using Polkanalysis.Domain.Contracts.Primary;
 using Polkanalysis.Domain.UseCase;
 using Polkanalysis.Domain.UseCase.Explorer.Extrinsics;
 using Microsoft.Extensions.Logging;
@@ -11,10 +10,11 @@ using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
 {
-    public class ExtrinsicDetailUseCaseTest : UseCaseTest<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicCommand>
+    public class ExtrinsicDetailUseCaseTest : UseCaseTest<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicQuery>
     {
         private IExplorerRepository _explorerRepository;
 
@@ -31,7 +31,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
         {
             _explorerRepository.GetExtrinsicAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).ReturnsNull();
 
-            var result = await _useCase.Handle(new ExtrinsicCommand()
+            var result = await _useCase.Handle(new ExtrinsicQuery()
             {
                 BlockNumber = 1,
                 ExtrinsicIndex = 1
@@ -48,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
         {
             _explorerRepository.GetExtrinsicAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<ExtrinsicDto>());
 
-            var result = await _useCase.Handle(new ExtrinsicCommand()
+            var result = await _useCase.Handle(new ExtrinsicQuery()
             {
                 BlockNumber = 1,
                 ExtrinsicIndex = 1,
@@ -61,7 +61,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
         [Test]
         public async Task ExtrinsicDetailsUseCaseWithInvalidBlockNumber_ShouldFailedAsync()
         {
-            var result = await _useCase.Handle(new ExtrinsicCommand()
+            var result = await _useCase.Handle(new ExtrinsicQuery()
             {
                 BlockNumber = 0,
                 ExtrinsicIndex = 1,
@@ -76,7 +76,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
         [Test]
         public async Task ExtrinsicDetailsUseCaseWithInvalidExtrinsicIndex_ShouldFailedAsync()
         {
-            var result = await _useCase.Handle(new ExtrinsicCommand()
+            var result = await _useCase.Handle(new ExtrinsicQuery()
             {
                 BlockNumber = 1,
                 ExtrinsicIndex = 0,

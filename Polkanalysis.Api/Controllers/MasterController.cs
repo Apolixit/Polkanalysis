@@ -20,7 +20,7 @@ namespace Polkanalysis.Api.Controllers
             _mediator = mediator;
         }
 
-        protected async Task<IActionResult> SendAndHandleResponseAsync<TResponse>(IRequest<Result<TResponse, ErrorResult>> request)
+        protected async Task<ActionResult<TResponse>> SendAndHandleResponseAsync<TResponse>(IRequest<Result<TResponse, ErrorResult>> request)
         {
             var result = await _mediator.Send(request, CancellationToken.None);
 

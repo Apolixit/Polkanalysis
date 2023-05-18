@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
-using Polkanalysis.Domain.Contracts.Primary;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using System;
@@ -12,13 +11,14 @@ using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using MediatR;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
     /// <summary>
     /// Display condensed informations about a block
     /// </summary>
-    public class BlockLightUseCase : UseCase<BlockLightUseCase, BlockLightDto, BlockLightCommand>
+    public class BlockLightUseCase : UseCase<BlockLightUseCase, BlockLightDto, BlockLightQuery>
     {
         private readonly IExplorerRepository _blockRepository;
 
@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
             _blockRepository = blockRepository;
         }
 
-        public override async Task<Result<BlockLightDto, ErrorResult>> Handle(BlockLightCommand command, CancellationToken cancellationToken)
+        public override async Task<Result<BlockLightDto, ErrorResult>> Handle(BlockLightQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

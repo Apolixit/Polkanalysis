@@ -1,13 +1,13 @@
 ﻿@page "/block/{blockId:int}"
 @page "/block/{blockHash?}"
 
-@using MediatR;
 @using Polkanalysis.Components.Services.Http;
 @using Polkanalysis.Domain.Contracts.Dto.Block;
 @using Polkanalysis.Domain.Contracts.Primary;
 @using Polkanalysis.Domain.Contracts.Primary.Result;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
-@inject IMediator _mediator;
+@using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
+
 @inject IApiService apiService;
 
 
@@ -92,7 +92,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        blockDetail = await apiService.GetHelperAsync<BlockDetailsCommand, BlockDto>("/api/polkadot/block", new BlockDetailsCommand((uint)blockId));
+        blockDetail = await apiService.GetHelperAsync<BlockDetailsQuery, BlockDto>("/api/polkadot/block", new BlockDetailsQuery((uint)blockId));
         StateHasChanged();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Block;
-using Polkanalysis.Domain.Contracts.Primary;
 using Polkanalysis.Domain.UseCase;
 using Polkanalysis.Domain.UseCase.Explorer;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
@@ -14,10 +13,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
-    public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailUseCase, BlockDto, BlockDetailsCommand>
+    public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailUseCase, BlockDto, BlockDetailsQuery>
     {
         protected IExplorerRepository _explorerRepository;
 
@@ -35,7 +35,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerRepository.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
-            var result = await _useCase.Handle(new BlockDetailsCommand(1), CancellationToken.None);
+            var result = await _useCase.Handle(new BlockDetailsQuery(1), CancellationToken.None);
 
             Assert.IsTrue(result.IsError);
             Assert.That(result.Value, Is.Null);
@@ -48,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerRepository.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
-            var result = await _useCase.Handle(new BlockDetailsCommand(1), CancellationToken.None);
+            var result = await _useCase.Handle(new BlockDetailsQuery(1), CancellationToken.None);
 
             Assert.IsTrue(result.IsSuccess);
             Assert.That(result.Value, Is.Not.Null);
@@ -59,7 +59,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerRepository.GetBlockDetailsAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
-            var result = await _useCase.Handle(new BlockDetailsCommand("0x00"), CancellationToken.None);
+            var result = await _useCase.Handle(new BlockDetailsQuery("0x00"), CancellationToken.None);
 
             Assert.IsTrue(result.IsSuccess);
             Assert.That(result.Value, Is.Not.Null);

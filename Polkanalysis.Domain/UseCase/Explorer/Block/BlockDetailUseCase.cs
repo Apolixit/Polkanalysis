@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Block;
-using Polkanalysis.Domain.Contracts.Primary;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,10 +12,11 @@ using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using MediatR;
 using Serilog.Core;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
-    public class BlockDetailUseCase : UseCase<BlockDetailUseCase, BlockDto, BlockDetailsCommand>
+    public class BlockDetailUseCase : UseCase<BlockDetailUseCase, BlockDto, BlockDetailsQuery>
     {
         private readonly IExplorerRepository _explorerRepository;
 
@@ -25,7 +25,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
             _explorerRepository = explorerRepository;
         }
 
-        public async override Task<Result<BlockDto, ErrorResult>> Handle(BlockDetailsCommand command, CancellationToken cancellationToken)
+        public async override Task<Result<BlockDto, ErrorResult>> Handle(BlockDetailsQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

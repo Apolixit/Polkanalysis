@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using OperationResult;
+using Polkanalysis.Domain.Contracts.Dto.Staking;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using System;
@@ -8,11 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Primary.Accounts
+namespace Polkanalysis.Domain.Contracts.Primary.Staking.Pools
 {
-    public class AccountDetailQuery : IRequest<Result<AccountDto, ErrorResult>>
+    public class PoolDetailQuery : IRequest<Result<PoolDto, ErrorResult>>
     {
-        public required string AccountAddress { get; set; }
-        public AccountType? AccountRole { get; set; }
+        public uint poolId { get; set; }
     }
 }

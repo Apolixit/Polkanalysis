@@ -5,14 +5,14 @@ using Polkanalysis.Domain.UseCase.Explorer.Extrinsics;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Event;
-using Polkanalysis.Domain.Contracts.Primary;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 {
-    public class EventDetailUseCaseTest : UseCaseTest<EventDetailUseCase, EventDto, EventCommand>
+    public class EventDetailUseCaseTest : UseCaseTest<EventDetailUseCase, EventDto, EventQuery>
     {
         private IExplorerRepository _explorerRepository;
 
@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         {
             _explorerRepository.GetEventAsync(Arg.Any<uint>(), Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
-            var result = await _useCase.Handle(new EventCommand() { 
+            var result = await _useCase.Handle(new EventQuery() { 
                 BlockNumber = 1, 
                 EventIndex = 1 
             }, CancellationToken.None);
@@ -47,7 +47,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 
             _explorerRepository.GetEventAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<EventDto>());
 
-            var result = await useCase.Handle(new EventCommand()
+            var result = await useCase.Handle(new EventQuery()
             {
                 BlockNumber = 1,
                 EventIndex = 1,
@@ -60,7 +60,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         [Test]
         public async Task EventDetailsUseCaseWithInvalidBlockNumber_ShouldFailedAsync()
         {
-            var result = await _useCase.Handle(new EventCommand()
+            var result = await _useCase.Handle(new EventQuery()
             {
                 BlockNumber = 0,
                 EventIndex = 1,
@@ -75,7 +75,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         [Test]
         public async Task EventDetailsUseCaseWithInvalidExtrinsicIndex_ShouldFailedAsync()
         {
-            var result = await _useCase.Handle(new EventCommand()
+            var result = await _useCase.Handle(new EventQuery()
             {
                 BlockNumber = 1,
                 EventIndex = 0,

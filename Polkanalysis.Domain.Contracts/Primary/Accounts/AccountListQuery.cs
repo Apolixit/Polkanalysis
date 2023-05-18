@@ -12,5 +12,6 @@ namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
     public class AccountListQuery : IRequest<Result<IEnumerable<AccountListDto>, ErrorResult>>
     {
+        public AccountType? AccountRole { get; set; }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Primary.Crowdloan;
+using Polkanalysis.Domain.Contracts.Primary.Parachain;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -15,31 +18,59 @@ namespace Polkanalysis.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAccountsAsync()
+        [Produces(typeof(IEnumerable<AccountListDto>))]
+        public async Task<ActionResult<IEnumerable<AccountListDto>>> GetAccountsAsync()
         {
-            var result = await _mediator.Send(new AccountListQuery(), CancellationToken.None);
-
-            if (result.IsError)
-            {
-                return BadRequest(result);
-            }
-
-            return Ok(result.Value);
+            return await SendAndHandleResponseAsync(new AccountListQuery());
         }
 
         [HttpGet("{address}")]
-        public async Task<IActionResult> GetAccountAsync(string address)
+        [Produces(typeof(AccountDto))]
+        public async Task<ActionResult<AccountDto>> GetAccountAsync(string address)
         {
             if (string.IsNullOrEmpty(address)) return BadRequest();
 
-            var result = await _mediator.Send(new AccountDetailQuery() { AccountAddress = address }, CancellationToken.None);
+            return await SendAndHandleResponseAsync(new AccountDetailQuery() { 
+                AccountAddress = address 
+            });
+        }
 
-            if (result.IsError)
+        [HttpGet("validators")]
+        [Produces(typeof(IEnumerable<ValidatorLightDto>))]
+        public async Task<ActionResult<IEnumerable<ValidatorLightDto>>> GetValidatorsAsync()
+        {
+            return await SendAndHandleResponseAsync(new ValidatorsQuery());
+        }
+
+        [HttpGet("validators/{address}")]
+        [Produces(typeof(ValidatorDto))]
+        public async Task<ActionResult<ValidatorDto>> GetValidatorsAsync(string address)
+        {
+            if (string.IsNullOrEmpty(address)) return BadRequest();
+
+            return await SendAndHandleResponseAsync(new ValidatorDetailQuery()
             {
-                return BadRequest(result);
-            }
+                ValidatorAddress = address
+            });
+        }
 
-            return Ok(result.Value);
+        [HttpGet("nominators")]
+        [Produces(typeof(IEnumerable<NominatorLightDto>))]
+        public async Task<ActionResult<IEnumerable<NominatorLightDto>>> GetNominatorsAsync()
+        {
+            return await SendAndHandleResponseAsync(new NominatorsQuery());
+        }
+
+        [HttpGet("nominators/{address}")]
+        [Produces(typeof(NominatorDto))]
+        public async Task<ActionResult<NominatorDto>> GetNominatorsAsync(string address)
+        {
+            if (string.IsNullOrEmpty(address)) return BadRequest();
+
+            return await SendAndHandleResponseAsync(new NominatorDetailQuery()
+            {
+                NominatorAddress = address
+            });
         }
     }
 }

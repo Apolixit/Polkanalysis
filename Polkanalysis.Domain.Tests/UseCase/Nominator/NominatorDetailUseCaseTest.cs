@@ -3,23 +3,29 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary;
-using Polkanalysis.Domain.UseCase.Module;
+using Polkanalysis.Domain.Contracts.Primary.Accounts;
+using Polkanalysis.Domain.UseCase.Runtime;
 using Polkanalysis.Domain.UseCase.Nominator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Nominator
 {
-    internal class NominatorDetailUseCaseTest : UseCaseTest<NominatorDetailUseCase, NominatorDto, NominatorCommand>
+    public class NominatorDetailUseCaseTest : UseCaseTest<NominatorDetailUseCase, NominatorDto, NominatorDetailQuery>
     {
+        private IRoleMemberRepository _roleMemberRepository;
+
         [SetUp]
         public override void Setup()
         {
             _logger = Substitute.For<ILogger<NominatorDetailUseCase>>();
-            _useCase = new NominatorDetailUseCase(_logger);
+            _roleMemberRepository = Substitute.For<IRoleMemberRepository>();
+
+            _useCase = new NominatorDetailUseCase(_roleMemberRepository, _logger);
             base.Setup();
         }
     }

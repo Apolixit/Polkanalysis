@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.UseCase.Module
+namespace Polkanalysis.Domain.UseCase.Runtime
 {
-    public class RuntimeModulesUseCase : UseCase<RuntimeModulesUseCase, IEnumerable<ModuleDetailDto>, ModulesQuery>
+    public class RuntimeModulesUseCase : UseCase<RuntimeModulesUseCase, IEnumerable<ModuleDetailDto>, RuntimeModulesQuery>
     {
         private readonly IModuleInformation _moduleRepository;
         private readonly ISubstrateRepository _substrateRepository;
@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.UseCase.Module
             _substrateRepository = substrateRepository;
         }
 
-        public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> Handle(ModulesQuery request, CancellationToken cancellationToken)
+        public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> Handle(RuntimeModulesQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

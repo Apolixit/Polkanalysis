@@ -87,12 +87,12 @@ namespace Polkanalysis.Domain.Repository
                 specVersionTask, 
                 blockDetailsTask });
 
-            var blockDetails = blockDetailsTask.Result;
+            var blockDetails = await blockDetailsTask;
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
-            //var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
-            var filteredExtrinsic = blockDetails.Block.Extrinsics;
+            var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            //var filteredExtrinsic = blockDetails.Block.Extrinsics;
             foreach (var extrinsic in filteredExtrinsic)
             {
                 var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);

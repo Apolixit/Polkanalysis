@@ -1,14 +1,14 @@
 ﻿using Polkanalysis.Domain.Contracts.Dto.Event;
-using Polkanalysis.Domain.Contracts.Primary;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using MediatR;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Events
 {
-    public class EventDetailUseCase : UseCase<EventDetailUseCase, EventDto, EventCommand>
+    public class EventDetailUseCase : UseCase<EventDetailUseCase, EventDto, EventQuery>
     {
         private readonly IExplorerRepository _explorerRepository;
         private readonly IMediator _mediator;
@@ -21,7 +21,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<EventDto, ErrorResult>> Handle(EventCommand command, CancellationToken cancellationToken)
+        public override async Task<Result<EventDto, ErrorResult>> Handle(EventQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Primary
+namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
-    public class NominatorCommand : IRequest<Result<NominatorDto, ErrorResult>>
+    public class NominatorsQuery : IRequest<Result<IEnumerable<NominatorLightDto>, ErrorResult>>
     {
     }
 }

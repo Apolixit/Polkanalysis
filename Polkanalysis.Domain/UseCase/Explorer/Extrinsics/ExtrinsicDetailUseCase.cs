@@ -1,13 +1,13 @@
 ﻿using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
-using Polkanalysis.Domain.Contracts.Primary;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 {
-    public class ExtrinsicDetailsUseCase : UseCase<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicCommand>
+    public class ExtrinsicDetailsUseCase : UseCase<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicQuery>
     {
         private readonly IExplorerRepository _explorerRepository;
 
@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<ExtrinsicDto, ErrorResult>> Handle(ExtrinsicCommand command, CancellationToken cancellationToken)
+        public override async Task<Result<ExtrinsicDto, ErrorResult>> Handle(ExtrinsicQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
