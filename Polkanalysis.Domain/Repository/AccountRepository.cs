@@ -11,16 +11,14 @@ using Newtonsoft.Json.Linq;
 
 namespace Polkanalysis.Domain.Repository
 {
-    public class PolkadotAccountRepository : IAccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private readonly ISubstrateRepository _substrateNodeRepository;
-        private readonly IRoleMemberRepository _roleMemberRepository;
 
-        public PolkadotAccountRepository(
-            ISubstrateRepository substrateNodeRepository, IRoleMemberRepository roleMemberRepository)
+        public AccountRepository(
+            ISubstrateRepository substrateNodeRepository)
         {
             _substrateNodeRepository = substrateNodeRepository;
-            _roleMemberRepository = roleMemberRepository;
 
             if (RequiredStorage.Any(s => s == null))
                 throw new PalletNotImplementedException($"{_substrateNodeRepository.BlockchainName} does not implement all storages required by {nameof(IAccountRepository)}");
@@ -31,6 +29,15 @@ namespace Polkanalysis.Domain.Repository
             _substrateNodeRepository.Storage.Identity,
             _substrateNodeRepository.Storage.System
         };
+
+        private void CheckAddress(string address)
+        {
+            if (address == null || string.IsNullOrEmpty(address))
+                throw new ArgumentNullException($"{nameof(address)}");
+
+            if (!_substrateNodeRepository.IsValidAccountAddress(address))
+                throw new AddressException($"{address} is invalid");
+        }
 
         public async Task<IEnumerable<AccountListDto>> GetAccountsAsync(CancellationToken cancellationToken)
         {
@@ -126,7 +133,7 @@ namespace Polkanalysis.Domain.Repository
                 userInformation.IdentityLevel = (Contracts.Secondary.Pallet.Identity.Enums.EnumJudgement?)identity.Judgements?.Value[0]?.Value[1];
             }
 
-            var accountType = await _roleMemberRepository.GetAccountTypeAsync(account, token);
+            var accountType = await GetAccountTypeAsync(account, token);
 
             var accountDto = new AccountDto()
             {
@@ -176,6 +183,39 @@ namespace Polkanalysis.Domain.Repository
                 Name = name,
                 Address = blockchainAddress,
             };
+        }
+
+        public Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken)
+        {
+            CheckAddress(accountAddress);
+            return GetAccountTypeAsync(new SubstrateAccount(accountAddress), cancellationToken);
+        }
+
+        public async Task<IEnumerable<AccountType>> GetAccountTypeAsync(SubstrateAccount account, CancellationToken cancellationToken)
+        {
+            var accountTypes = new List<AccountType>();
+
+            var validatorTask = _substrateNodeRepository.Storage.Session.NextKeysAsync(account, cancellationToken);
+            var nominatorTask = _substrateNodeRepository.Storage.Staking.NominatorsAsync(account, cancellationToken);
+            var identityTask = _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, cancellationToken);
+            var poolMemberTask = _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, cancellationToken);
+
+            await Task.WhenAll(new Task[] { validatorTask, nominatorTask, identityTask, poolMemberTask });
+
+            if ((await validatorTask) != null)
+                accountTypes.Add(AccountType.Validator);
+
+            if ((await nominatorTask) != null)
+                accountTypes.Add(AccountType.Nominator);
+
+            if ((await identityTask) != null)
+                accountTypes.Add(AccountType.OnChainIdentity);
+
+            if ((await poolMemberTask) != null)
+                accountTypes.Add(AccountType.PoolMember);
+
+            // Import technical comitee storage ?
+            return accountTypes;
         }
 
         private async Task<UserAddressDto> GetAccountIdentityInternalAsync(string accountAddress, CancellationToken cancellationToken)

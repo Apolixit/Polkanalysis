@@ -9,8 +9,8 @@ namespace Polkanalysis.Domain.UseCase.Nominator
 {
     public class NominatorDetailUseCase : UseCase<NominatorDetailUseCase, NominatorDto, NominatorDetailQuery>
     {
-        private readonly IRoleMemberRepository _roleMemberRepository;
-        public NominatorDetailUseCase(IRoleMemberRepository roleMemberRepository, ILogger<NominatorDetailUseCase> logger) : base(logger)
+        private readonly IStakingRepository _roleMemberRepository;
+        public NominatorDetailUseCase(IStakingRepository roleMemberRepository, ILogger<NominatorDetailUseCase> logger) : base(logger)
         {
             _roleMemberRepository = roleMemberRepository;
         }

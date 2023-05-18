@@ -16,7 +16,7 @@ namespace Polkanalysis.Domain.Tests.Repository
     {
         protected IExplorerRepository _explorerRepository;
         protected ISubstrateRepository _substrateRepository;
-        private IRoleMemberRepository _roleMemberRepository;
+        private IStakingRepository _roleMemberRepository;
 
         [SetUp]
         public void Setup()
@@ -25,7 +25,7 @@ namespace Polkanalysis.Domain.Tests.Repository
             _substrateRepository = Substitute.For<ISubstrateRepository>();
 
 
-            _roleMemberRepository = new PolkadotRoleMemberRepository(
+            _roleMemberRepository = new StakingRepository(
                 _substrateRepository,
                 Substitute.For<IAccountRepository>(),
                 Substitute.For<INode>());

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Secondary.Repository
+namespace Polkanalysis.Domain.Contracts.Dto.Parachain.Auction
 {
-    public interface IAuctionRepository
+    public class AuctionLightDto
     {
     }
 }

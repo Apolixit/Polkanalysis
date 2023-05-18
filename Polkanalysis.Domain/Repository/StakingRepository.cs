@@ -16,13 +16,13 @@ using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
 namespace Polkanalysis.Domain.Repository
 {
-    public class PolkadotRoleMemberRepository : IRoleMemberRepository
+    public class StakingRepository : IStakingRepository
     {
         private readonly ISubstrateRepository _substrateNodeRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly INode _node;
 
-        public PolkadotRoleMemberRepository(
+        public StakingRepository(
             ISubstrateRepository substrateNodeRepository,
             IAccountRepository accountRepository,
             INode node)
@@ -250,37 +250,6 @@ namespace Polkanalysis.Domain.Repository
             return poolDto;
         }
 
-        public Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken)
-        {
-            CheckAddress(accountAddress);
-            return GetAccountTypeAsync(new SubstrateAccount(accountAddress), cancellationToken);
-        }
-
-        public async Task<IEnumerable<AccountType>> GetAccountTypeAsync(SubstrateAccount account, CancellationToken cancellationToken)
-        {
-            var accountTypes = new List<AccountType>();
-
-            var validatorTask = _substrateNodeRepository.Storage.Session.NextKeysAsync(account, cancellationToken);
-            var nominatorTask = _substrateNodeRepository.Storage.Staking.NominatorsAsync(account, cancellationToken);
-            var identityTask = _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, cancellationToken);
-            var poolMemberTask = _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, cancellationToken);
-
-            await Task.WhenAll(new Task[] { validatorTask, nominatorTask, identityTask, poolMemberTask });
-
-            if ((await validatorTask) != null)
-                accountTypes.Add(AccountType.Validator);
-
-            if ((await nominatorTask) != null)
-                accountTypes.Add(AccountType.Nominator);
-
-            if ((await identityTask) != null)
-                accountTypes.Add(AccountType.OnChainIdentity);
-
-            if ((await poolMemberTask) != null)
-                accountTypes.Add(AccountType.PoolMember);
-
-            // Import technical comitee storage ?
-            return accountTypes;
-        }
+        
     }
 }

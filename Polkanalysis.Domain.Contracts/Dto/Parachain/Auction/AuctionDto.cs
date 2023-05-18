@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Parachain
+namespace Polkanalysis.Domain.Contracts.Dto.Parachain.Auction
 {
     public class AuctionDto
     {

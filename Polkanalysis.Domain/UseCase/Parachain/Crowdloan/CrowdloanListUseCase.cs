@@ -10,24 +10,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.UseCase.Crowdloan
+namespace Polkanalysis.Domain.UseCase.Parachain.Crowdloan
 {
-    public class CrowdloanListUseCase : UseCase<CrowdloanListUseCase, IEnumerable<CrowdloanListDto>, CrowdloanListQuery>
+    public class CrowdloanListUseCase : UseCase<CrowdloanListUseCase, IEnumerable<CrowdloanLightDto>, CrowdloansQuery>
     {
-        private readonly ICrowdloanRepository _crowdloanRepository;
+        private readonly IParachainRepository _parachainRepository;
         public CrowdloanListUseCase(
-            ICrowdloanRepository crowdloanRepository,
+            IParachainRepository parachainRepository,
             ILogger<CrowdloanListUseCase> logger) : base(logger)
         {
-            _crowdloanRepository = crowdloanRepository;
+            _parachainRepository = parachainRepository;
         }
 
-        public async override Task<Result<IEnumerable<CrowdloanListDto>, ErrorResult>> Handle(CrowdloanListQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<CrowdloanLightDto>, ErrorResult>> Handle(CrowdloansQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            var result = await _crowdloanRepository.GetCrowdloansAsync(cancellationToken);
+            var result = await _parachainRepository.GetCrowdloansAsync(cancellationToken);
 
             return Helpers.Ok(result);
         }

@@ -15,9 +15,9 @@ namespace Polkanalysis.Domain.UseCase.Validator
 {
     public class ValidatorsUseCase : UseCase<ValidatorsUseCase, IEnumerable<ValidatorLightDto>, ValidatorsQuery>
     {
-        private readonly IRoleMemberRepository _roleMemberRepository;
+        private readonly IStakingRepository _roleMemberRepository;
 
-        public ValidatorsUseCase(IRoleMemberRepository roleMemberRepository, ILogger<ValidatorsUseCase> logger) : base(logger)
+        public ValidatorsUseCase(IStakingRepository roleMemberRepository, ILogger<ValidatorsUseCase> logger) : base(logger)
         {
             _roleMemberRepository = roleMemberRepository;
         }

@@ -18,21 +18,20 @@ using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 
 namespace Polkanalysis.Domain.Repository
 {
-    public class PolkadotExplorerRepository : IExplorerRepository
+    public class ExplorerRepository : IExplorerRepository
     {
         private readonly ISubstrateRepository _substrateService;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IModelBuilder _modelBuilder;
-        private readonly IBlockchainMapping _mapping;
-        private readonly ILogger<PolkadotExplorerRepository> _logger;
+        private readonly ILogger<ExplorerRepository> _logger;
         private BlockLightDto? _lastBlock;
         private BlockParameterLike _blockParameter;
 
-        public PolkadotExplorerRepository(
+        public ExplorerRepository(
             ISubstrateRepository substrateNodeRepository,
             ISubstrateDecoding substrateDecode,
             IModelBuilder modelBuilder,
-            ILogger<PolkadotExplorerRepository> logger)
+            ILogger<ExplorerRepository> logger)
         {
             _substrateService = substrateNodeRepository;
             _substrateDecode = substrateDecode;

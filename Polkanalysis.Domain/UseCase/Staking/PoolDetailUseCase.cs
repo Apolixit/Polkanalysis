@@ -17,9 +17,9 @@ namespace Polkanalysis.Domain.UseCase.Staking
 {
     public class PoolDetailUseCase : UseCase<PoolDetailUseCase, PoolDto, PoolDetailQuery>
     {
-        private readonly IRoleMemberRepository _roleMemberRepository;
+        private readonly IStakingRepository _roleMemberRepository;
 
-        public PoolDetailUseCase(IRoleMemberRepository roleMemberRepository, ILogger<PoolDetailUseCase> logger) : base(logger)
+        public PoolDetailUseCase(IStakingRepository roleMemberRepository, ILogger<PoolDetailUseCase> logger) : base(logger)
         {
             _roleMemberRepository = roleMemberRepository;
         }

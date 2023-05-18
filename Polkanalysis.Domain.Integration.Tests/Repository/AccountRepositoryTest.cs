@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new PolkadotAccountRepository(_substrateRepository, Substitute.For<IRoleMemberRepository>());
+            _accountRepository = new AccountRepository(_substrateRepository);
         }
 
         [Test]

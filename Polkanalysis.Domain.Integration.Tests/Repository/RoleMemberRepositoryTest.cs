@@ -15,14 +15,14 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
     public class RoleMemberRepositoryTest : PolkadotIntegrationTest
     {
-        private IRoleMemberRepository _roleMemberRepository;
+        private IStakingRepository _roleMemberRepository;
 
         [SetUp]
         public void Setup()
         {
-            _roleMemberRepository = new PolkadotRoleMemberRepository(
+            _roleMemberRepository = new StakingRepository(
                 _substrateRepository,
-                new PolkadotAccountRepository(_substrateRepository, Substitute.For<IRoleMemberRepository>()),
+                new AccountRepository(_substrateRepository),
                 new GenericNode());
         }
 

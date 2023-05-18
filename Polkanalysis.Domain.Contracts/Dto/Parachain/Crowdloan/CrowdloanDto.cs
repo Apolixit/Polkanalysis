@@ -1,6 +1,7 @@
 ﻿using Polkanalysis.Domain.Contracts.Core.Multi;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;

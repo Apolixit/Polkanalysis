@@ -65,7 +65,7 @@ public class Program
             //.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>))
             .AddSingleton<PolkadotMapping>()
             .AddSingleton<ISubstrateRepository, PolkadotRepository>()
-            .AddSingleton<IExplorerRepository, PolkadotExplorerRepository>()
+            .AddSingleton<IExplorerRepository, ExplorerRepository>()
             .AddSingleton<IModelBuilder, ModelBuilder>()
             .AddSingleton<ISubstrateEndpoint, SubstrateEndpoint>()
             .AddSingleton<ISubstrateDecoding, SubstrateDecoding>()

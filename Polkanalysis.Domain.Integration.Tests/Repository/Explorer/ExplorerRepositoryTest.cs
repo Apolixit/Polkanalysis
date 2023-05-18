@@ -32,11 +32,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
                     _currentMetaData),
                 _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
-            _explorerRepository = new PolkadotExplorerRepository(
+            _explorerRepository = new ExplorerRepository(
                 _substrateRepository,
                 _substrateDecoding,
                 new ModelBuilder(),
-                Substitute.For<ILogger<PolkadotExplorerRepository>>());
+                Substitute.For<ILogger<ExplorerRepository>>());
         }
     }
 }

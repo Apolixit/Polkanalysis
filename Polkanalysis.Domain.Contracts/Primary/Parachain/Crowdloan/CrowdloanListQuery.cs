@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
-using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using System;
 using System.Collections.Generic;
@@ -11,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Crowdloan
 {
-    public class CrowdloanQuery : IRequest<Result<CrowdloanDto, ErrorResult>>
+    public class CrowdloansQuery : IRequest<Result<IEnumerable<CrowdloanLightDto>, ErrorResult>>
     {
-        public uint CrowndloanId { get; set; }
     }
 }

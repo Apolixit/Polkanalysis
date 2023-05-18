@@ -59,15 +59,6 @@ namespace Polkanalysis.Api
                 });
 
                 builder.Services.AddMediatRAndPipelineBehaviors();
-                //builder.Services.AddMediatR(cfg => {
-                //    cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
-                //    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-                //});
-                //builder.Services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
-                //builder.Services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
-
-                //builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
-                //builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 
                 builder.Services.AddEndpoint();
                 builder.Services.AddSubstrateRepositories();

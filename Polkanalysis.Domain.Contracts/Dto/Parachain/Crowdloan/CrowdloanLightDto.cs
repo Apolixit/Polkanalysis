@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan
 {
-    public class CrowdloanListDto
+    public class CrowdloanLightDto
     {
         public required string CrowdloanId { get; set; }
         public required LeaseDto Lease { get; set; }

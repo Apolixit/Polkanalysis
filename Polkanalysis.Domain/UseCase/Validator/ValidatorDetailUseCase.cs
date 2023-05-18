@@ -15,13 +15,13 @@ namespace Polkanalysis.Domain.UseCase.Validator
 {
     public class ValidatorDetailUseCase : UseCase<ValidatorDetailUseCase, ValidatorDto, ValidatorDetailQuery>
     {
-        private readonly IRoleMemberRepository _roleMemberRepository;
+        private readonly IStakingRepository _roleMemberRepository;
 
         public ValidatorDetailUseCase(ILogger<ValidatorDetailUseCase> logger) : base(logger)
         {
         }
 
-        public ValidatorDetailUseCase(IRoleMemberRepository roleMemberRepository, ILogger<ValidatorDetailUseCase> logger) : base(logger)
+        public ValidatorDetailUseCase(IStakingRepository roleMemberRepository, ILogger<ValidatorDetailUseCase> logger) : base(logger)
         {
             _roleMemberRepository = roleMemberRepository;
         }

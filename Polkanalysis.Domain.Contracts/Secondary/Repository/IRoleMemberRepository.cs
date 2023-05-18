@@ -9,11 +9,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
-    public interface IRoleMemberRepository
+    public interface IStakingRepository
     {
-        public Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken);
-        public Task<IEnumerable<AccountType>> GetAccountTypeAsync(SubstrateAccount account, CancellationToken cancellationToken);
-
         /// <summary>
         /// Get validator information
         /// </summary>

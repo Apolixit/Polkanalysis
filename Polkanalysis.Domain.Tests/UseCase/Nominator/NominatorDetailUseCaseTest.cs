@@ -17,13 +17,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Nominator
 {
     public class NominatorDetailUseCaseTest : UseCaseTest<NominatorDetailUseCase, NominatorDto, NominatorDetailQuery>
     {
-        private IRoleMemberRepository _roleMemberRepository;
+        private IStakingRepository _roleMemberRepository;
 
         [SetUp]
         public override void Setup()
         {
             _logger = Substitute.For<ILogger<NominatorDetailUseCase>>();
-            _roleMemberRepository = Substitute.For<IRoleMemberRepository>();
+            _roleMemberRepository = Substitute.For<IStakingRepository>();
 
             _useCase = new NominatorDetailUseCase(_roleMemberRepository, _logger);
             base.Setup();

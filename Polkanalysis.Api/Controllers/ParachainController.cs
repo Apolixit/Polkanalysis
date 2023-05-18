@@ -1,9 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
+using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
 using Polkanalysis.Domain.Contracts.Primary.Crowdloan;
 using Polkanalysis.Domain.Contracts.Primary.Parachain;
+using Polkanalysis.Domain.Contracts.Primary.Parachain.Auction;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -31,17 +33,31 @@ namespace Polkanalysis.Api.Controllers
         }
 
         [HttpGet("crowdloans")]
-        [Produces(typeof(IEnumerable<CrowdloanListDto>))]
-        public async Task<ActionResult<IEnumerable<CrowdloanListDto>>> GetCrowdloansAsync()
+        [Produces(typeof(IEnumerable<CrowdloanLightDto>))]
+        public async Task<ActionResult<IEnumerable<CrowdloanLightDto>>> GetCrowdloansAsync()
         {
-            return await SendAndHandleResponseAsync(new CrowdloanListQuery());
+            return await SendAndHandleResponseAsync(new CrowdloansQuery());
         }
 
         [HttpGet("crowdloans/{crowndloanId}")]
         [Produces(typeof(CrowdloanDto))]
         public async Task<ActionResult<CrowdloanDto>> GetCrowdloanAsync(uint crowndloanId)
         {
-            return await SendAndHandleResponseAsync(new CrowdloanQuery() { CrowndloanId = crowndloanId });
+            return await SendAndHandleResponseAsync(new CrowdloanDetailQuery() { CrowndloanId = crowndloanId });
+        }
+
+        [HttpGet("auctions")]
+        [Produces(typeof(IEnumerable<AuctionLightDto>))]
+        public async Task<ActionResult<IEnumerable<AuctionLightDto>>> GetAuctionsAsync()
+        {
+            return await SendAndHandleResponseAsync(new AuctionsQuery());
+        }
+
+        [HttpGet("auctions/{auctionId}")]
+        [Produces(typeof(AuctionDto))]
+        public async Task<ActionResult<AuctionDto>> GetAuctionAsync(uint auctionId)
+        {
+            return await SendAndHandleResponseAsync(new AuctionDetailQuery() { AuctionId = auctionId });
         }
     }
 }

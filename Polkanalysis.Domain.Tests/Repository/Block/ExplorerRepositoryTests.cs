@@ -28,11 +28,11 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
             _substrateService = Substitute.For<ISubstrateRepository>();
             _substrateDecode = Substitute.For<ISubstrateDecoding>();
 
-            _explorerRepository = new PolkadotExplorerRepository(
+            _explorerRepository = new ExplorerRepository(
                 _substrateService,
                 _substrateDecode,
                 Substitute.For<IModelBuilder>(),
-                Substitute.For<ILogger<PolkadotExplorerRepository>>());
+                Substitute.For<ILogger<ExplorerRepository>>());
 
 
         }

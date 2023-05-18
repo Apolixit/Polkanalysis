@@ -15,13 +15,16 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
     public class ParachainRepositoryTest : PolkadotIntegrationTest
     {
         private IParachainRepository _parachainRepository;
+        private IAccountRepository _accountRepository;
+        private IExplorerRepository _explorerRepository;
 
         [SetUp]
         public void Setup()
         {
-            _parachainRepository = new PolkadotParachainRepository(
-                _substrateRepository,
-                Substitute.For<IAccountRepository>());
+            _accountRepository = Substitute.For<IAccountRepository>();
+            _explorerRepository = Substitute.For<IExplorerRepository>();
+
+            _parachainRepository = new ParachainRepository(_substrateRepository, _accountRepository, _explorerRepository);
         }
 
         [Test]

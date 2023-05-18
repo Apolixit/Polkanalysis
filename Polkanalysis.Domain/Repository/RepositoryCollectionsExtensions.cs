@@ -13,13 +13,11 @@ namespace Polkanalysis.Domain.Repository
     {
         public static IServiceCollection AddSubstrateRepositories(this IServiceCollection services)
         {
-            services.AddSingleton<IAccountRepository, PolkadotAccountRepository>();
-            services.AddSingleton<IAuctionRepository, PolkadotAuctionRepository>();
-            services.AddSingleton<ICrowdloanRepository, PolkadotCrowdloanRepository>();
-            services.AddSingleton<IExplorerRepository, PolkadotExplorerRepository>();
-            services.AddSingleton<IParachainRepository, PolkadotParachainRepository>();
-            //services.AddSingleton<IRoleMemberRepository, PolkadotRoleMemberRepository>();
-            
+            services.AddSingleton<IAccountRepository, AccountRepository>();
+            services.AddSingleton<IExplorerRepository, ExplorerRepository>();
+            services.AddSingleton<IParachainRepository, ParachainRepository>();
+            services.AddSingleton<IStakingRepository, StakingRepository>();
+
             services.AddSingleton<BlockParameterLike>();
 
             return services;
