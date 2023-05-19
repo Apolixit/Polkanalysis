@@ -21,10 +21,24 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
         }
 
         [Test]
+        public async Task PoolMembersAll_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.NominationPools.PoolMembersAllAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
         public async Task BondedPools_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.NominationPools.BondedPoolsAsync(
                 new U32(1), CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task BondedPoolsAll_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.NominationPools.BondedPoolsAllAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 

@@ -58,7 +58,7 @@ namespace Polkanalysis.Domain.Contracts.Core
         //    => ToStringAddress((short)ss58);
         public string ToStringAddress(short ss58 = 42)
         {
-            return Utils.GetAddressFrom(Bytes, ss58);
+            return Utils.GetAddressFrom(Encode(), ss58);
         }
 
        

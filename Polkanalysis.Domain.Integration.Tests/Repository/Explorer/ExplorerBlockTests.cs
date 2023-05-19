@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Adapter.Block;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
@@ -23,6 +24,14 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
             var blockInfo = await _explorerRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.IsNotNull(blockInfo);
 
+        }
+
+        [Test]
+        [TestCase(15577810)]
+        public async Task GetBlockAuthor_ValidBlockNumber_ShouldWorkAsync(int blockId)
+        {
+            await _explorerRepository.GetBlockAuthorAsync((uint)blockId, CancellationToken.None);
+            Assert.True(true);
         }
 
         /// <summary>

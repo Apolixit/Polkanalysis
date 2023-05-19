@@ -51,16 +51,16 @@ namespace Polkanalysis.Domain.Repository
             foreach (var account in result)
             {
                 var freeAmount = account.Item2.Data.Free.ToDouble(chainInfo.TokenDecimals);
-                var otherAmount = (account.Item2.Data.MiscFrozen.Value + account.Item2.Data.Reserved.Value).ToDouble(chainInfo.TokenDecimals);
-
+                var stakingAmount = account.Item2.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
+                var othersAmount = account.Item2.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
                 accountsDto.Add(new AccountListDto()
                 {
                     Address = AddressDto.BuildFrom(account.Item1),
                     Balances = new Contracts.Dto.Balances.BalancesDto()
                     {
                         Transferable = freeAmount,
-                        Stacking = 0, // TODO mapping
-                        Others = otherAmount
+                        Stacking = stakingAmount,
+                        Others = othersAmount
                     }
                 });
             }
@@ -169,13 +169,14 @@ namespace Polkanalysis.Domain.Repository
 
             // Default = it's the basic address
             string name = blockchainAddress;
-            if (identity != null)
+            if (identity != null && identity.Info != null)
             {
+                var legal = identity.Info.Legal.ToHuman();
                 // If we got a legal identity set, display it
-                //if (!string.IsNullOrEmpty(identity.Info.Legal.Value2))
-                //{
-                //    name = identity.Info.Legal;
-                //}
+                if (!string.IsNullOrEmpty(legal))
+                {
+                    name = legal;
+                }
             }
 
             return new UserAddressDto()

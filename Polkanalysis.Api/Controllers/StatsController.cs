@@ -34,14 +34,7 @@ namespace Polkanalysis.Api.Controllers
         [Produces(typeof(int))]
         public async Task<ActionResult<int>> GetHoldersAsync()
         {
-            var result = await _mediator.Send(new HoldersQuery(), CancellationToken.None);
-
-            if (result.IsError)
-            {
-                return Forbid();
-            }
-
-            return Ok(result.Value);
+            return await SendAndHandleResponseAsync(new HoldersQuery());
         }
     }
 }

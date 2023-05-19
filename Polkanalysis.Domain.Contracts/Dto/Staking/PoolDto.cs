@@ -21,8 +21,8 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking
         public required UserAddressDto RootAccount { get; set; }
         public required UserAddressDto TogglerAccount { get; set; }
         public required UserAddressDto NominatorAccount { get; set; }
-        public required BigInteger RewardPool { get; set; }
-        public required BigInteger TotalBonded { get; set; }
+        public required double RewardPool { get; set; }
+        public required double TotalBonded { get; set; }
         public uint MemberCount { get; set; }
         public string Metadata { get; set; }
         public NominationPoolStatusDto Status { get; set; }

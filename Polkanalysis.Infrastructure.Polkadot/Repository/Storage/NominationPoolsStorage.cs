@@ -25,6 +25,15 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 (poolId, NominationStorageExt.BondedPoolsParams, token);
         }
 
+        public async Task<List<(U32, BondedPoolInner)>> BondedPoolsAllAsync(CancellationToken token)
+        {
+            return await GetAllStorageAsync<
+                U32, 
+                U32,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner,
+                BondedPoolInner>("NominationPools", "BondedPools", token);
+        }
+
         public async Task<U32> CounterForBondedPoolsAsync(CancellationToken token)
         {
             return await GetStorageAsync<U32>(NominationStorageExt.CounterForBondedPoolsParams, token);
@@ -102,6 +111,15 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 PoolMember>
                 (PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account),
                 NominationStorageExt.PoolMembersParams, token);
+        }
+
+        public async Task<List<(SubstrateAccount, PoolMember)>> PoolMembersAllAsync(CancellationToken token)
+        {
+            return await GetAllStorageAsync<
+                AccountId32,
+                SubstrateAccount,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
+                PoolMember>("NominationPools", "BondedPools", token);
         }
 
         public async Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token)

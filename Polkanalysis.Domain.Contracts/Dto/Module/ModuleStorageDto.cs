@@ -11,9 +11,23 @@ namespace Polkanalysis.Domain.Contracts.Dto.Module
     public class ModuleStorageDto
     {
         public required string Name { get; set; }
-        public required Storage.Type Type { get; set; }
-        public required Storage.Modifier Modifier { get; set; }
+        public required StorageType StorageType { get; set; }
+        public required StorageModifier StorageModifier { get; set; }
         public string? Default { get; set; }
         public string? Documentation { get; set; }
+    }
+
+    public enum StorageType
+    {
+        Plain,
+        Map,
+        DoubleMap,
+        NMap
+    }
+
+    public enum StorageModifier
+    {
+        Optional,
+        Default
     }
 }

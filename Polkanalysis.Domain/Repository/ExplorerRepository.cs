@@ -15,6 +15,8 @@ using Polkanalysis.Domain.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Domain.Contracts.Core.Display;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -39,6 +41,43 @@ namespace Polkanalysis.Domain.Repository
             _logger = logger;
 
             _blockParameter = new BlockParameterLike(_substrateService);
+        }
+
+        public async Task GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
+            => await GetBlockAuthorAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
+
+        /// <summary>
+        /// https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/util.ts
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        protected async Task GetBlockAuthorAsync(BlockParameterLike block, CancellationToken cancellationToken)
+        {
+            var hashHash = await block.ToBlockHashAsync();
+
+            // Get validators from given block
+            var blockValidators = await _substrateService.At(hashHash).Storage.Session.ValidatorsAsync(cancellationToken);
+
+            var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(hashHash, cancellationToken);
+
+            foreach(var log in blockHeader.Digest.Logs)
+            {
+                var buildLog = new EnumDigestItem();
+                buildLog.Create(log);
+
+                // Preruntime => BaseTuple<NameableSize4, BaseVec<U8>>
+                // Consensus => void
+                // Seal => BaseTuple<NameableSize4, BaseVec<U8>>
+
+                if(buildLog.Value == DigestItem.PreRuntime || buildLog.Value == DigestItem.Seal)
+                {
+                    var castedValue = (BaseTuple<NameableSize4, BaseVec<U8>>)buildLog.Value2;
+                    var name = castedValue.Value[0];
+                    var data = castedValue.Value[1];
+
+                }
+            }
         }
 
         public async Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)

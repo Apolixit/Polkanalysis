@@ -29,6 +29,22 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
         }
 
         [Test]
+        public void SubstrateAccount_FromHex_ToAccountId32_ShouldWork()
+        {
+            var substrateAccount = new SubstrateAccount();
+            substrateAccount.Create("0x0000966D74F8027E07B43717B6876D97544FE0D71FACEF06ACC8382749AE944E");
+
+            var accountId32 = new AccountId32();
+            accountId32.Create("0x0000966D74F8027E07B43717B6876D97544FE0D71FACEF06ACC8382749AE944E");
+
+            var accountId32_2 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(substrateAccount);
+
+            Assert.That(Utils.GetAddressFrom(substrateAccount.Bytes), Is.EqualTo(Utils.GetAddressFrom(accountId32.Value.Encode())));
+            Assert.That(substrateAccount.Encode(), Is.EqualTo(accountId32_2.Encode()));
+            Assert.That(accountId32_2.Encode(), Is.EqualTo(accountId32_2.Value.Encode()));
+        }
+
+        [Test]
         public void AccountId32_ToSubstrateAccount_ShouldWork()
         {
             var accountId32 = new AccountId32();

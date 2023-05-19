@@ -27,8 +27,7 @@ namespace Polkanalysis.Domain.Tests.Repository
 
             _roleMemberRepository = new StakingRepository(
                 _substrateRepository,
-                Substitute.For<IAccountRepository>(),
-                Substitute.For<INode>());
+                Substitute.For<IAccountRepository>());
         }
 
         [Test]

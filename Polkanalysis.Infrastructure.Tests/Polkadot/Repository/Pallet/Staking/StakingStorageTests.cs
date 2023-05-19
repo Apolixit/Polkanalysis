@@ -335,14 +335,6 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository.Pallet.Staking
             var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure();
             coreResult.Create("0x0F07B5D5E2A0EC4A000838986B06BB855AD6F44CCFEC6CFFAF6E8BC8AE6D803D8C25EC4D0CF9249900610F636F69D55B8E0350C2E90BF12D5DA2AEFB80C9E3D273E68C357133BFF1E7BD2E3C1013E289926F0F05746DF3C6CE01");
             
-
-            //var c = coreResult.Total.Encode();
-            //var cc = coreResult.Own.Encode();
-            //var ccc = Utils.HexToByteArray(coreResult.Others.TakeAndEncode(2));
-
-            //var tt = c.Concat(cc).Concat(ccc);
-            //var ttt = Utils.Bytes2HexString(tt.ToArray());
-
             var expectedResult = new Exposure(
                 new BaseCom<U128>(new CompactInteger(21089324021167367)),
                 new BaseCom<U128>(new CompactInteger(0)),

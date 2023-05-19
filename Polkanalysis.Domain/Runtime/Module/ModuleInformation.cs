@@ -164,9 +164,19 @@ namespace Polkanalysis.Domain.Runtime.Module
                     {
                         Name = entry.Name,
                         Documentation = _modelBuilder.BuildDocumentation(entry.Docs),
-                        Modifier = entry.Modifier,
+                        StorageModifier = entry.Modifier switch
+                        {
+                            Storage.Modifier.Default => StorageModifier.Default,
+                            Storage.Modifier.Optional => StorageModifier.Optional,
+                        },
                         Default = Utils.Bytes2HexString(entry.Default),
-                        Type = entry.StorageType
+                        StorageType = entry.StorageType switch
+                        {
+                            Storage.Type.Map => StorageType.Map,
+                            Storage.Type.Plain => StorageType.Plain,
+                            Storage.Type.NMap => StorageType.NMap,
+                            Storage.Type.DoubleMap => StorageType.DoubleMap,
+                        }
                     };
                     modulesDto.Add(storage);
                 }

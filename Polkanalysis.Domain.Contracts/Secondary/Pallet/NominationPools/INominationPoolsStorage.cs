@@ -81,6 +81,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<PoolMember> PoolMembersAsync(SubstrateAccount account, CancellationToken token);
+        
+        /// <summary>
+        /// All active members in pool
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<List<(SubstrateAccount, PoolMember)>> PoolMembersAllAsync(CancellationToken token);
 
         /// <summary>
         ///  Storage for bonded pools.
@@ -89,6 +96,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token);
+        
+        
+        /// <summary>
+        /// Get all bounded pools
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task<List<(U32, BondedPoolInner)>> BondedPoolsAllAsync(CancellationToken token);
 
         /// <summary>
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout

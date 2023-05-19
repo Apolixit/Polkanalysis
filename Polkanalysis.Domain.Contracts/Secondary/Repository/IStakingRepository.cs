@@ -23,6 +23,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         public Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken);
         public Task<NominatorDto> GetNominatorDetailAsync(string nominatorAddress, CancellationToken cancellationToken);
 
+        public Task<IEnumerable<PoolLightDto>> GetPoolsAsync(CancellationToken cancellationToken);
         public Task<PoolDto> GetPoolDetailAsync(uint poolId, CancellationToken cancellationToken);
 
         public Task<UserAddressDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken);

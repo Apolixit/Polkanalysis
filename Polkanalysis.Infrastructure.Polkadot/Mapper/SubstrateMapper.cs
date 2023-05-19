@@ -1004,7 +1004,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Mapper
             public AccountId32 Convert(SubstrateAccount source, AccountId32 destination, ResolutionContext context)
             {
                 var account = new AccountId32();
-                account.Create(source.Bytes);
+                account.Create(source.Encode());
 
                 return account;
             }

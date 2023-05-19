@@ -51,6 +51,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <returns></returns>
         Task<BlockDto> GetBlockDetailsAsync(string blockHash, CancellationToken cancellationToken);
 
+        public Task GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken);
+
         /// <summary>
         /// Get some basic information about block
         /// </summary>
