@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pallet.System
 {
@@ -27,10 +28,13 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
         [TestCase(10000)]
         public async Task GetAllAccounts_ShouldWorkAsync(int nb)
         {
-            var res = await _substrateRepository.Storage.System.AccountsAsync(CancellationToken.None, nb);
+            var res = await _substrateRepository.Storage.System.AccountsQuery().Take(nb).ExecuteAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count, Is.LessThanOrEqualTo(nb));
+
+            var addressAccount = res.Select(x => x.Item1.ToStringAddress());
+            Assert.That(addressAccount.Distinct().Count(), Is.EqualTo(res.Count));
         }
 
         [Test]

@@ -13,6 +13,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.dispatch;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using SystemStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.SystemStorage;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
@@ -31,13 +32,13 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 (accountId32, SystemStorageExt.AccountParams, token);
         }
 
-        public async Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token, int? nbMaxAccount = null)
+        public QueryStorage<SubstrateAccount, AccountInfo> AccountsQuery()
         {
-            return await GetAllStorageAsync<
-                AccountId32, 
+            return new QueryStorage<SubstrateAccount, AccountInfo>(
+                GetAllStorageAsync<AccountId32,
                 SubstrateAccount,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo,
-                AccountInfo>("System", "Account", token ,nbMaxAccount);
+                AccountInfo>, "System", "Account");
         }
 
         public async Task<U32> AllExtrinsicsLenAsync(CancellationToken token)

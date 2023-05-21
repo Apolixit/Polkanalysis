@@ -52,6 +52,16 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         }
 
         [Test]
+        public async Task GetNominators_ShouldSucceedAsync()
+        {
+            var validators = await _stakingRepository.GetNominatorsAsync(CancellationToken.None);
+
+            Assert.That(validators, Is.Not.Null);
+            Assert.That(validators.Count(), Is.GreaterThan(2));
+        }
+
+
+        [Test]
         [TestCase("168ADXbadY5FkE2txZkzeqhVqmDkivh41Vgn3bZ4yepv8n9x")]
         public async Task ValidNominator_GetDetails_ShouldWorkAsync(string validatorAddress)
         {

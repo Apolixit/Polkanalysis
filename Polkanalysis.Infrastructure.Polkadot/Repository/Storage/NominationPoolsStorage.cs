@@ -9,6 +9,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using NominationStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.NominationPoolsStorage;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
@@ -24,14 +25,11 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 BondedPoolInner>
                 (poolId, NominationStorageExt.BondedPoolsParams, token);
         }
-
-        public async Task<List<(U32, BondedPoolInner)>> BondedPoolsAllAsync(CancellationToken token)
+        
+        public QueryStorage<U32, BondedPoolInner> BondedPoolsQuery()
         {
-            return await GetAllStorageAsync<
-                U32, 
-                U32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner,
-                BondedPoolInner>("NominationPools", "BondedPools", token);
+            return new QueryStorage<U32, BondedPoolInner>(
+                GetAllStorageAsync<U32, U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner, BondedPoolInner>, "NominationPools", "BondedPools");
         }
 
         public async Task<U32> CounterForBondedPoolsAsync(CancellationToken token)
@@ -113,13 +111,13 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 NominationStorageExt.PoolMembersParams, token);
         }
 
-        public async Task<List<(SubstrateAccount, PoolMember)>> PoolMembersAllAsync(CancellationToken token)
+        public QueryStorage<SubstrateAccount, PoolMember> PoolMembersQuery()
         {
-            return await GetAllStorageAsync<
-                AccountId32,
+            return new QueryStorage<SubstrateAccount, PoolMember>(
+                GetAllStorageAsync<AccountId32,
                 SubstrateAccount,
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
-                PoolMember>("NominationPools", "BondedPools", token);
+                PoolMember>, "NominationPools", "PoolMembers");
         }
 
         public async Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token)

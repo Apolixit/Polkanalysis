@@ -63,7 +63,7 @@ namespace Polkanalysis.Api.Tests
                 .Returns(GetValidResult(Substitute.For<IEnumerable<ModuleDetailDto>>()));
 
             var res = await defaultUseCase().GetModulesAsync();
-            Assert.IsInstanceOf<OkObjectResult>(res);
+            Assert.IsInstanceOf<OkObjectResult>(res.Result);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Polkanalysis.Api.Tests
                 .Returns(GetInvalidResult_EmptyParam<IEnumerable<ModuleDetailDto>>());
 
             var res = await defaultUseCase().GetModulesAsync();
-            Assert.IsInstanceOf<BadRequestObjectResult>(res);
+            Assert.IsInstanceOf<BadRequestObjectResult>(res.Result);
         }
 
 
@@ -85,14 +85,14 @@ namespace Polkanalysis.Api.Tests
 
             var res = await defaultUseCase().GetModuleAsync("system");
 
-            Assert.IsInstanceOf<OkObjectResult>(res);
+            Assert.IsInstanceOf<OkObjectResult>(res.Result);
         }
 
         [Test]
         public async Task GetModule_WithInvalidParam_ShouldReturn400Async()
         {
             var res = await defaultUseCase().GetModuleAsync(string.Empty);
-            Assert.IsInstanceOf<BadRequestObjectResult>(res);
+            Assert.IsInstanceOf<BadRequestObjectResult>(res.Result);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace Polkanalysis.Api.Tests
 
             var res = await defaultUseCase().GetModuleAsync("system");
 
-            Assert.IsInstanceOf<BadRequestObjectResult>(res);
+            Assert.IsInstanceOf<BadRequestObjectResult>(res.Result);
         }
     }
 }

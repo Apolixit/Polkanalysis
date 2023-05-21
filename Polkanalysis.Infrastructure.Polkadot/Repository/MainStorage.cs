@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Substrate.NetApi;
 using Ardalis.GuardClauses;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Repository
 {
@@ -141,7 +142,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
         }
 
         protected async Task<List<(TKey, TStorage)>> GetAllStorageAsync<TKeySource, TKey, TStorageSource, TStorage>(
-            string module, string item, CancellationToken token, int? maxElems = null)
+            string module, string item, CancellationToken token, int? nbTake = null, int? nbSkip = null)
             where TKey : IType, new()
             where TKeySource : IType, new()
             where TStorage : IType, new()
@@ -152,27 +153,46 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
 
             byte[]? startKey = null;
             int defaultPagination = 1000;
-            uint pageLength = (uint)Math.Min(defaultPagination, maxElems.GetValueOrDefault(defaultPagination));
+
+            nbSkip = nbSkip ?? 0;
+            //nbTake = nbTake ?? defaultPagination;
+
+            uint pageLength = (uint)Math.Min(defaultPagination, nbTake.GetValueOrDefault(defaultPagination) + nbSkip.Value);
+
+            var storageId = RequestGenerator.GetStorageKeyBytesHash(module, item);
 
             List<(byte[], TKeySource, TStorageSource)> allPages = new();
             bool fetch = true;
             while (fetch)
             {
-                var page = await GetAllStoragePagedAsync<TKeySource, TStorageSource>(module, item, startKey, pageLength, token);
-                if (page == null || page.Count == 0)
-                {
+                var storageKeys = await _client.State.GetKeysPagedAsync(storageId, pageLength, startKey, token);
+
+                if (storageKeys == null || !storageKeys.Any())
                     break;
+
+                if(storageKeys.Count <= nbSkip)
+                {
+                    nbSkip -= storageKeys.Count;
+                    startKey = Utils.HexToByteArray(storageKeys.Last().ToString());
+
+                    continue;
+                    //_logger.LogWarning($"{nameof(nbSkip)} > storageKeys.Count, no data selected");
+                    //break;
                 }
+
+                var storageElement = storageKeys.Skip(nbSkip.Value).Take(nbTake.GetValueOrDefault((int)pageLength));
+                nbSkip = 0;
+
+                var page = await GetAllStoragePagedAsync<TKeySource, TStorageSource>(module, item, storageElement, storageId, pageLength, token);
+                
+                if (page == null || page.Count == 0)
+                    break;
 
                 allPages.AddRange(page);
                 startKey = page.Last().Item1;
 
-                if (allPages.Count >= maxElems) fetch = false;
+                if (nbTake != null && allPages.Count >= nbTake.Value) fetch = false;
             }
-
-            //var mapped = allPages
-            //    .Select(x => (PolkadotMapping.Instance.Map<TKeySource, TKey>(x.Item2), PolkadotMapping.Instance.Map<TStorageSource, TStorage>(x.Item3)))
-            //    .ToList();
 
             var mapped = allPages
                 .Select(x =>
@@ -191,7 +211,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
         }
 
         protected async Task<List<(byte[], T1, T2)>> GetAllStoragePagedAsync<T1, T2>(
-            string module, string item, byte[]? startKey, uint page, CancellationToken token)
+            string module, string item, IEnumerable<JToken> storageKeys, byte[] storageId, uint page, CancellationToken token)
             where T1 : IType, new()
             where T2 : IType, new()
         {
@@ -201,12 +221,6 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
             }
 
             var result = new List<(byte[], T1, T2)>();
-            var keyBytes = RequestGenerator.GetStorageKeyBytesHash(module, item);
-
-            var storageKeys = await _client.State.GetKeysPagedAsync(keyBytes, page, startKey, token);
-
-            if (storageKeys == null || !storageKeys.Any())
-                return result;
 
             var storageChangeSets = await _client.State.GetQueryStorageAtAsync(
                 storageKeys.Select(p => Utils.HexToByteArray(p.ToString())).ToList(), BlockHash, token);
@@ -218,7 +232,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
                     var storageKeyString = storageChangeSet[0];
 
                     var keyParam = new T1();
-                    keyParam.Create(storageKeyString[^(keyBytes.Length * 2)..]);
+                    keyParam.Create(storageKeyString[^(storageId.Length * 2)..]);
 
                     var valueParam = new T2();
                     valueParam.Create(storageChangeSet[1]);

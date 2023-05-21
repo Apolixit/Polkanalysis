@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
 {
@@ -27,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<List<(SubstrateAccount, AccountInfo)>> AccountsAsync(CancellationToken token, int? nbMaxAccount = null);
+        public QueryStorage<SubstrateAccount, AccountInfo> AccountsQuery();
 
         /// <summary>
         /// Total extrinsics count for the current block.

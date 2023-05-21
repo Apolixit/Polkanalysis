@@ -9,6 +9,7 @@ using Polkanalysis.Infrastructure.Polkadot.Mapper;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using StakingStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.StakingStorage;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
@@ -178,6 +179,12 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 Nominations>(PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.NominatorsParams, token);
         }
 
+        public QueryStorage<SubstrateAccount, Nominations> NominatorsQuery()
+        {
+            return new QueryStorage<SubstrateAccount, Nominations>(
+                GetAllStorageAsync<AccountId32, SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations, Nominations>, "Staking", "Nominators");
+        }
+
         public async Task<U128> NominatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
             return await GetStorageWithParamsAsync<
@@ -269,5 +276,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 BaseTuple<Perbill, U128>
                 >(PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ValidatorSlashInEraParams, token);
         }
+
+        
     }
 }

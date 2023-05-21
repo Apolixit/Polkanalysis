@@ -111,7 +111,7 @@ namespace Polkanalysis.Domain.Repository
 
         public async Task<IEnumerable<CrowdloanLightDto>> GetCrowdloansAsync(CancellationToken cancellationToken)
         {
-            var crowdloans = await _substrateNodeRepository.Storage.Crowdloan.FundsAllAsync(cancellationToken);
+            var crowdloans = await _substrateNodeRepository.Storage.Crowdloan.FundsQuery().ExecuteAsync(cancellationToken);
 
             var crowdloansDto = new List<CrowdloanLightDto>();
             if (crowdloans == null) return crowdloansDto;

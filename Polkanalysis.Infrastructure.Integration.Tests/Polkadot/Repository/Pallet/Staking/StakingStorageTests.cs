@@ -93,6 +93,62 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
         }
 
         [Test]
+        [TestCase(20)]
+        [TestCase(100)]
+        [TestCase(1000)]
+        [TestCase(10000)]
+        public async Task NominatorsAll_ShouldWorkAsync(int nbTake)
+        {
+            var query = _substrateRepository.Storage.Staking.NominatorsQuery();
+            var res = await query.Take(nbTake).ExecuteAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Count, Is.LessThanOrEqualTo(nbTake));
+
+            var addressAccount = res.Select(x => x.Item1.ToStringAddress());
+            Assert.That(addressAccount.Distinct().Count(), Is.EqualTo(res.Count));
+        }
+
+        [Test]
+        [TestCase(10, 20)]
+        [TestCase(1000, 1000)]
+        public async Task NominatorsAll_WithAdvancedQuery_ShouldWorkAsync(int nbSkip, int nbTake)
+        {
+            var query = _substrateRepository.Storage.Staking.NominatorsQuery();
+            var res = await query.Skip(nbSkip).Take(nbTake).ExecuteAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Count, Is.LessThanOrEqualTo(nbTake));
+
+            var addressAccount = res.Select(x => x.Item1.ToStringAddress());
+            Assert.That(addressAccount.Distinct().Count(), Is.EqualTo(res.Count));
+        }
+
+        [Test]
+        public async Task NominatorsAll_EnsurePaginationIsValidAsync()
+        {
+            var nominatorsQuery = _substrateRepository.Storage.Staking.NominatorsQuery();
+            var res_2000 = await nominatorsQuery.Take(2000).ExecuteAsync(CancellationToken.None);
+
+            var res_1200_800 = await nominatorsQuery.Skip(1200).Take(800).ExecuteAsync(CancellationToken.None);
+
+            Assert.That(res_2000[1200].Item2.Bytes, Is.EqualTo(res_1200_800.First().Item2.Bytes));
+            Assert.That(res_2000.Last().Item2.Bytes, Is.EqualTo(res_1200_800.Last().Item2.Bytes));
+
+            var res_15_20 = await nominatorsQuery.Skip(15).Take(20).ExecuteAsync(CancellationToken.None);
+            var res_500_1500 = await nominatorsQuery.Skip(500).Take(1500).ExecuteAsync(CancellationToken.None);
+            var res_3500 = await nominatorsQuery.Skip(3500).Take(1).ExecuteAsync(CancellationToken.None);
+
+            Assert.That(res_2000.Count, Is.GreaterThanOrEqualTo(res_15_20.Count));
+            Assert.That(res_500_1500.Count, Is.GreaterThanOrEqualTo(res_15_20.Count));
+            Assert.That(res_15_20.Count, Is.GreaterThanOrEqualTo(res_3500.Count));
+
+            Assert.That(res_2000[15].Item1.Bytes, Is.EqualTo(res_15_20.First().Item1.Bytes));
+            Assert.That(res_2000[34].Item1.Bytes, Is.EqualTo(res_15_20.Last().Item1.Bytes));
+
+            Assert.That(res_3500.Count, Is.EqualTo(1));
+            Assert.That(res_500_1500.Last().Item1.Bytes, Is.EqualTo(res_1200_800.Last().Item1.Bytes));
+        }
+
+        [Test]
         public async Task CounterForNominators_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Staking.CounterForNominatorsAsync(CancellationToken.None);

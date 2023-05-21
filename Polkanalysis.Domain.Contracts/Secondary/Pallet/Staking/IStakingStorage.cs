@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
 {
@@ -129,6 +130,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<Nominations> NominatorsAsync(SubstrateAccount account, CancellationToken token);
+
+        public QueryStorage<SubstrateAccount, Nominations> NominatorsQuery();
 
         /// <summary>
         /// Counter for the related counted storage map

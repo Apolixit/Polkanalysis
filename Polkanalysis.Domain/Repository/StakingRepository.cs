@@ -219,9 +219,24 @@ namespace Polkanalysis.Domain.Repository
             return await _accountRepository.GetAccountIdentityAsync(account, cancellationToken);
         }
 
-        public Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var nominatorsResult = await _substrateService.Storage.Staking.NominatorsQuery().Take(100).ExecuteAsync(cancellationToken);
+            Guard.Against.Null(nominatorsResult);
+
+            var nominatorsDto = new List<NominatorLightDto>();
+            if (nominatorsResult.Count == 0) return nominatorsDto;
+
+            foreach(var (nominatorAccount, nomination) in nominatorsResult)
+            {
+                var nominatorLight = new NominatorLightDto();
+                nominatorLight.StashAccount = await _accountRepository.GetAccountIdentityAsync(nominatorAccount, cancellationToken);
+                nominatorLight.Bonded = 0;
+                nominatorLight.Status = nomination.Suppressed.Value ? AliveStatusDto.Inactive : AliveStatusDto.Active;
+                nominatorsDto.Add(nominatorLight);
+            }
+
+            return nominatorsDto;
         }
 
         public Task<NominatorDto> GetNominatorDetailAsync(string nominatorAddress, CancellationToken cancellationToken)
@@ -351,7 +366,8 @@ namespace Polkanalysis.Domain.Repository
 
         public async Task<IEnumerable<PoolLightDto>> GetPoolsAsync(CancellationToken cancellationToken)
         {
-            var pools = await _substrateService.Storage.NominationPools.BondedPoolsAllAsync(cancellationToken);
+            var poolsQuery = _substrateService.Storage.NominationPools.BondedPoolsQuery();
+            var pools = await poolsQuery.ExecuteAsync(cancellationToken);
             Guard.Against.Null(pools);
 
             var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);

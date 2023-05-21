@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary.Common;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan
 {
@@ -21,11 +22,11 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan
         public Task<FundInfo> FundsAsync(Id key, CancellationToken token);
 
         /// <summary>
-        /// Return all crowdloans
+        /// Query crowdloans
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<List<(Id, FundInfo)>> FundsAllAsync(CancellationToken token);
+        public QueryStorage<Id, FundInfo> FundsQuery();
 
         /// <summary>
         ///  The funds that have had additional contributions during the last block. This is used
