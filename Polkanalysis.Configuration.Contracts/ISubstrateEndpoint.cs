@@ -11,15 +11,5 @@
         /// Node Uri endpoint
         /// </summary>
         public Uri WsEndpointUri { get; }
-
-        /// <summary>
-        /// Api uri to request
-        /// </summary>
-        public Uri? ApiUri { get; set; }
-
-        /// <summary>
-        /// Prometheus uri
-        /// </summary>
-        public Uri? PrometheusUri { get; set; }
     }
 }

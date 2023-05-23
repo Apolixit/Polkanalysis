@@ -1,4 +1,5 @@
-﻿using Substrate.NetApi.Model.Types;
+﻿using Polkanalysis.Domain.Contracts.Core;
+using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
@@ -14,8 +15,24 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe
         public U32 AuthorityIndex { get; set; }
         public U64 Slot { get; set; }
         public Hash VrfOutput { get; set; }
-        public Hash VrfProof { get; set; }
-        //public Hash64 VrfProof { get; set; }
+        public Hash64 VrfProof { get; set; }
+
+        public SecondaryVRFPreDigest() { }
+        public SecondaryVRFPreDigest(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash64 vrfProof)
+        {
+            Create(authorityIndex, slot, vrfOutput, vrfProof);
+        }
+
+        public void Create(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash64 vrfProof)
+        {
+            AuthorityIndex = authorityIndex;
+            Slot = slot;
+            VrfOutput = vrfOutput;
+            VrfProof = vrfProof;
+
+            Bytes = Encode();
+            TypeSize = AuthorityIndex.TypeSize + Slot.TypeSize + VrfOutput.TypeSize + VrfProof.TypeSize;
+        }
 
         public override byte[] Encode()
         {
@@ -30,13 +47,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            AuthorityIndex = new Substrate.NetApi.Model.Types.Primitive.U32();
+            AuthorityIndex = new U32();
             AuthorityIndex.Decode(byteArray, ref p);
             Slot = new U64();
             Slot.Decode(byteArray, ref p);
             VrfOutput = new Hash();
             VrfOutput.Decode(byteArray, ref p);
-            VrfProof = new Hash();
+            VrfProof = new Hash64();
             VrfProof.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

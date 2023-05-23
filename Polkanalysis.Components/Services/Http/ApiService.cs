@@ -18,15 +18,15 @@ namespace Polkanalysis.Components.Services.Http
 
         public ApiService(
             HttpClient httpClient, 
-            ISubstrateEndpoint _substrateEndpoint,
+            IApiEndpoint _apiEndpoint,
             ILogger<ApiService> logger)
         {
             _httpClient = httpClient;
 
-            if(_substrateEndpoint.ApiUri == null)
-                throw new ArgumentException(nameof(_substrateEndpoint.ApiUri));
+            if(_apiEndpoint.ApiUri == null)
+                throw new ArgumentException(nameof(_apiEndpoint.ApiUri));
 
-            _apiUri = _substrateEndpoint.ApiUri;
+            _apiUri = _apiEndpoint.ApiUri;
             _logger = logger;
         }
 

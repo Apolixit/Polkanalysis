@@ -22,4 +22,14 @@
     <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\images\blockchain\bajun\" />
+    <Folder Include="wwwroot\assets\images\blockchain\ajuna\" />
+    <Folder Include="wwwroot\assets\images\blockchain\moonriver\" />
+    <Folder Include="wwwroot\assets\images\blockchain\kusama\" />
+    <Folder Include="wwwroot\assets\images\blockchain\moonbeam\" />
+    <Folder Include="wwwroot\assets\images\blockchain\astar\" />
+    <Folder Include="wwwroot\assets\images\blockchain\phala\" />
+  </ItemGroup>
+
 </Project>

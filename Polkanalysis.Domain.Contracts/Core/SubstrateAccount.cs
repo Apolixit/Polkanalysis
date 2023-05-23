@@ -18,14 +18,10 @@ namespace Polkanalysis.Domain.Contracts.Core
     {
         // TODO : override Equals !
         public SubstrateAccount() {
-            //Address = new Hash();
-            //Bytes = new byte[0];
             TypeSize = 32;
         }
         public SubstrateAccount(string address) : this(Utils.GetPublicKeyFrom(address))
         {
-            //Address.Create(address);
-            //Bytes = Utils.GetPublicKeyFrom(address);
             
         }
 
@@ -61,6 +57,7 @@ namespace Polkanalysis.Domain.Contracts.Core
             return Utils.GetAddressFrom(Encode(), ss58);
         }
 
-       
+        public string ToPolkadotAddress() => ToStringAddress(0);
+        public string ToKusamaAddress() => ToStringAddress(2);
     }
 }

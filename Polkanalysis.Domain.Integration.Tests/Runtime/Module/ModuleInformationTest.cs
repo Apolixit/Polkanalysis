@@ -5,12 +5,14 @@ using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Domain.Contracts.Secondary;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class ModuleInformationTest : PolkadotIntegrationTest
     {
         private IModuleInformation _moduleRepository;
+        private ISubstrateRepository _substrateService;
 
         [SetUp]
         public void Setup()
@@ -20,7 +22,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
                     _substrateRepository,
                     Substitute.For<ILogger<CurrentMetaData>>()
             ),
-            new ModelBuilder()
+            new ModelBuilder(), _substrateRepository
             );
         }
 

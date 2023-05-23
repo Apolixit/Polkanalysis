@@ -17,6 +17,7 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
         {
             var res = await _substrateRepository.Storage.Paras.ParachainsAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
+            Assert.That(res.Value, Is.Not.Null);
         }
 
         [Test]

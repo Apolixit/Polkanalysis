@@ -10,47 +10,52 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe
 {
-    public class PrimaryPreDigest : IType
+    public class PrimaryPreDigest : BaseType
     {
         public U32 AuthorityIndex { get; set; }
         public U64 Slot { get; set; }
         public Hash VrfOutput { get; set; }
         public Hash64 VrfProof { get; set; }
-        public int TypeSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public void Create(string str)
+        public PrimaryPreDigest() { }
+        public PrimaryPreDigest(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash64 vrfProof)
         {
-            throw new NotImplementedException();
+            Create(authorityIndex, slot, vrfOutput, vrfProof);
         }
 
-        public void Create(byte[] byteArray)
+        public void Create(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash64 vrfProof)
         {
-            throw new NotImplementedException();
+            AuthorityIndex = authorityIndex;
+            Slot = slot;
+            VrfOutput = vrfOutput;
+            VrfProof = vrfProof;
+
+            Bytes = Encode();
+            TypeSize = AuthorityIndex.TypeSize + Slot.TypeSize + VrfOutput.TypeSize + VrfProof.TypeSize;
         }
 
-        public void CreateFromJson(string str)
+        public override byte[] Encode()
         {
-            throw new NotImplementedException();
+            var result = new List<byte>();
+            result.AddRange(AuthorityIndex.Encode());
+            result.AddRange(Slot.Encode());
+            result.AddRange(VrfOutput.Encode());
+            result.AddRange(VrfProof.Encode());
+            return result.ToArray();
         }
 
-        public void Decode(byte[] byteArray, ref int p)
+        public override void Decode(byte[] byteArray, ref int p)
         {
-            throw new NotImplementedException();
-        }
-
-        public byte[] Encode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IType New()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string TypeName()
-        {
-            throw new NotImplementedException();
+            var start = p;
+            AuthorityIndex = new U32();
+            AuthorityIndex.Decode(byteArray, ref p);
+            Slot = new U64();
+            Slot.Decode(byteArray, ref p);
+            VrfOutput = new Hash();
+            VrfOutput.Decode(byteArray, ref p);
+            VrfProof = new Hash64();
+            VrfProof.Decode(byteArray, ref p);
+            TypeSize = p - start;
         }
     }
 }

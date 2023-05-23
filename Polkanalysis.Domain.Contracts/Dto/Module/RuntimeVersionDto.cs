@@ -8,6 +8,11 @@ namespace Polkanalysis.Domain.Contracts.Dto.Module
 {
     public class RuntimeVersionDto
     {
-        public uint VersionNum { get; set; }
+        public int AuthoringVersion { get; set; }
+        public string ImplName { get; set; } = string.Empty;
+        public uint ImplVersion { get; set; }
+        public string SpecName { get; set; } = string.Empty;
+        public uint SpecVersion { get; set; }
+        public uint TransactionVersion { get; set; }
     }
 }

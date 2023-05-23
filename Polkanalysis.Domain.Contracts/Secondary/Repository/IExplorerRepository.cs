@@ -7,6 +7,7 @@ using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Domain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
@@ -51,7 +52,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <returns></returns>
         Task<BlockDto> GetBlockDetailsAsync(string blockHash, CancellationToken cancellationToken);
 
-        public Task GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken);
+        public Task<SubstrateAccount?> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get some basic information about block

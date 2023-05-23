@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Adapter.Block;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
@@ -27,11 +28,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
         }
 
         [Test]
-        [TestCase(15577810)]
-        public async Task GetBlockAuthor_ValidBlockNumber_ShouldWorkAsync(int blockId)
+        [TestCase(15577810, "15AcyKihrmGs9RD4AHUwRvv6LkhbeDyGH3GVADp1Biv4bfFv")]
+        public async Task GetBlockAuthor_ValidBlockNumber_ShouldWorkAsync(int blockId, string validatorAddress)
         {
-            await _explorerRepository.GetBlockAuthorAsync((uint)blockId, CancellationToken.None);
-            Assert.True(true);
+            var validatorAccount = await _explorerRepository.GetBlockAuthorAsync((uint)blockId, CancellationToken.None);
+            Assert.That(validatorAccount.ToPolkadotAddress(), Is.EqualTo(validatorAddress));
         }
 
         /// <summary>

@@ -17,6 +17,12 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Substrate.NetApi.Model.Types.Primitive;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe.Enums;
+using Substrate.NET.Utils;
+using System.ComponentModel.DataAnnotations;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe;
+using System.Xml.Linq;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -43,42 +49,91 @@ namespace Polkanalysis.Domain.Repository
             _blockParameter = new BlockParameterLike(_substrateService);
         }
 
-        public async Task GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
+        public async Task<SubstrateAccount?> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
             => await GetBlockAuthorAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
 
         /// <summary>
         /// https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/util.ts
+        /// https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/type/util.ts
+        /// https://github.com/polkadot-js/api/blob/master/packages/types/src/generic/ConsensusEngineId.ts
         /// </summary>
         /// <param name="blockHash"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        protected async Task GetBlockAuthorAsync(BlockParameterLike block, CancellationToken cancellationToken)
+        protected async Task<SubstrateAccount?> GetBlockAuthorAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var hashHash = await block.ToBlockHashAsync();
+            var blockHash = await block.ToBlockHashAsync();
 
             // Get validators from given block
-            var blockValidators = await _substrateService.At(hashHash).Storage.Session.ValidatorsAsync(cancellationToken);
+            var blockValidators = await _substrateService.At(blockHash).Storage.Session.ValidatorsAsync(cancellationToken);
+            if (blockValidators is null) 
+                throw new InvalidOperationException($"Error while fetching validators for block {blockHash}");
 
-            var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(hashHash, cancellationToken);
+            var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(blockHash, cancellationToken);
 
-            foreach(var log in blockHeader.Digest.Logs)
+            foreach (var log in blockHeader.Digest.Logs)
             {
                 var buildLog = new EnumDigestItem();
                 buildLog.Create(log);
 
-                // Preruntime => BaseTuple<NameableSize4, BaseVec<U8>>
-                // Consensus => void
-                // Seal => BaseTuple<NameableSize4, BaseVec<U8>>
-
-                if(buildLog.Value == DigestItem.PreRuntime || buildLog.Value == DigestItem.Seal)
+                if(buildLog.Value == DigestItem.PreRuntime || buildLog.Value == DigestItem.Consensus || buildLog.Value == DigestItem.Seal)
                 {
                     var castedValue = (BaseTuple<NameableSize4, BaseVec<U8>>)buildLog.Value2;
-                    var name = castedValue.Value[0];
-                    var data = castedValue.Value[1];
+                    var name = (Nameable)castedValue.Value[0];
+                    var data = (BaseVec<U8>)castedValue.Value[1];
 
+                    return extractAuthor(name, data.Value.ToBytes(), blockValidators);
                 }
             }
+
+            return null;
         }
+
+        private SubstrateAccount? extractAuthor(Nameable name, byte[] data, BaseVec<SubstrateAccount> blockValidators)
+        {
+            if (IsBabeConcensus(name))
+            {
+                var preDigest = new EnumPreDigest();
+                preDigest.Create(data);
+
+                U32? authorityIndex = preDigest.Value switch
+                {
+                    PreDigest.Primary => ((PrimaryPreDigest)preDigest.Value2).AuthorityIndex,
+                    PreDigest.SecondaryPlain => ((SecondaryPlainPreDigest)preDigest.Value2).AuthorityIndex,
+                    PreDigest.SecondaryVRF => ((SecondaryVRFPreDigest)preDigest.Value2).AuthorityIndex,
+                    _ => null
+                };
+
+                if (authorityIndex == null) return null;
+                return blockValidators.Value[authorityIndex.Value];
+            }
+            else if (IsAuraConcensus(name))
+            {
+                // Call Aura PreDigest
+                // ConsensusEngineId.ts
+                return null;
+            }
+            // For pow & Nimbus, the bytes are the actual author
+            else if (IsPowConcensus(name) || IsNimbusConcensus(name))
+            {
+                var validatorAccount = new SubstrateAccount();
+                validatorAccount.Create(data);
+
+                return validatorAccount;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// https://github.com/polkadot-js/api/blob/master/packages/types/src/generic/ConsensusEngineId.ts#L11
+        /// </summary>
+        /// <returns></returns>
+        public bool IsBabeConcensus(Nameable nameable) =>nameable.Display() == "BABE";
+        public bool IsAuraConcensus(Nameable nameable) =>nameable.Display() == "aura";
+        public bool IsPowConcensus(Nameable nameable) =>nameable.Display() == "pow_";
+        public bool IsNimbusConcensus(Nameable nameable) =>nameable.Display() == "nmbs";
+        public bool IsGranPaConcensus(Nameable nameable) =>nameable.Display() == "FRNK";
 
         public async Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
             => await GetBlockLightAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);

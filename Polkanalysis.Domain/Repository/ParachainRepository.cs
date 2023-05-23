@@ -127,7 +127,7 @@ namespace Polkanalysis.Domain.Repository
 
                 crowdloansDto.Add(new CrowdloanLightDto()
                 {
-                    CrowdloanId = crowdloan.Item1.ToString(),
+                    CrowdloanId = crowdloan.Item1.Value.Value,
                     FundRaised = fundRaised,
                     FundTarget = fundTarget,
                     Lease = new LeaseDto()

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
@@ -16,11 +17,13 @@ namespace Polkanalysis.Domain.Runtime.Module
     {
         private readonly ICurrentMetaData _currentMetaData;
         private readonly IModelBuilder _modelBuilder;
+        private readonly ISubstrateRepository _substrateService;
 
-        public ModuleInformation(ICurrentMetaData currentMetaData, IModelBuilder modelBuilder)
+        public ModuleInformation(ICurrentMetaData currentMetaData, IModelBuilder modelBuilder, ISubstrateRepository substrateService)
         {
             _currentMetaData = currentMetaData;
             _modelBuilder = modelBuilder;
+            _substrateService = substrateService;
         }
 
         #region Calls
@@ -259,6 +262,24 @@ namespace Polkanalysis.Domain.Runtime.Module
         public Task<int> GetNbCallAsync(string moduleId, DateTime from, DateTime to, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<RuntimeVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken)
+        {
+            var runtimeVersionsDto = new List<RuntimeVersionDto>();
+
+            var runtimeVersionDto = new RuntimeVersionDto()
+            {
+                ImplName = _substrateService.RuntimeVersion.ImplName,
+                SpecName = _substrateService.RuntimeVersion.SpecName,
+                AuthoringVersion = _substrateService.RuntimeVersion.AuthoringVersion,
+                ImplVersion = _substrateService.RuntimeVersion.ImplVersion,
+                TransactionVersion = _substrateService.RuntimeVersion.TransactionVersion,
+                SpecVersion = _substrateService.RuntimeVersion.SpecVersion
+            };
+
+            runtimeVersionsDto.Add(runtimeVersionDto);
+            return runtimeVersionsDto;
         }
     }
 }
