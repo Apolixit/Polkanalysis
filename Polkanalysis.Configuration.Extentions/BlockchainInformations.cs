@@ -34,10 +34,12 @@ namespace Polkanalysis.Configuration.Extentions
                 var blockchainProjects = new List<BlockchainProject>();
                 foreach (var blockchainDetail in blockchainsDetail)
                 {
+                    var name = !string.IsNullOrEmpty(blockchainDetail["name"]) ? blockchainDetail["name"] : throw new ConfigurationErrorsException($"blockchain name have to be filled in appsettings (BlockchainInformation > Informations > name)");
+
                     blockchainProjects.Add(new BlockchainProject()
                     {
-                        Name = blockchainDetail["name"] ?? throw new ConfigurationErrorsException($"blockchain name have to be filled in appsettings (BlockchainInformation > Informations > name)"),
-                        ParachainId = blockchainDetail["parachainId"] != null ? int.Parse(blockchainDetail["parachainId"]) : null,
+                        Name = name,
+                        ParachainId = !string.IsNullOrEmpty(blockchainDetail["parachainId"]) ? int.Parse(blockchainDetail["parachainId"]!) : null,
                         LogoUrl = blockchainDetail["logoUrl"],
                         Telegram = blockchainDetail["telegram"],
                         Founder = blockchainDetail["founder"],

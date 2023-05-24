@@ -20,23 +20,18 @@ namespace Polkanalysis.Configuration.Extentions
             if (configuration == null)
                 throw new ConfigurationErrorsException($"{nameof(configuration)} is not set");
 
-            
-            var pometheusSection = configuration.GetSection("Prometheus").GetChildren().ToList();
-            var grafanaSection = configuration.GetSection("Grafana").GetChildren().ToList();
-            var elasticSearchSection = configuration.GetSection("ElasticSearch").GetChildren().ToList();
-            
-            var prometheusUriSection = pometheusSection.FirstOrDefault(e => e.Key == "uri");
-            var grafanaUriSection = grafanaSection.FirstOrDefault(e => e.Key == "uri");
-            var elasticSearchUriSection = elasticSearchSection.FirstOrDefault(e => e.Key == "uri");
+            var prometheusUri = configuration["Prometheus:uri"];
+            var grafanaUri = configuration["Grafana:uri"];
+            var elasticSearchUri = configuration["ElasticSearch:uri"];
 
-            if (prometheusUriSection != null && prometheusUriSection.Value != null)
-                PrometheusUri = new Uri(prometheusUriSection.Value);
+            if (!string.IsNullOrEmpty(prometheusUri))
+                PrometheusUri = new Uri(prometheusUri);
 
-            if (grafanaUriSection != null && grafanaUriSection.Value != null)
-                GrafanaUri = new Uri(grafanaUriSection.Value);
+            if (!string.IsNullOrEmpty(grafanaUri))
+                GrafanaUri = new Uri(grafanaUri);
 
-            if (elasticSearchUriSection != null && elasticSearchUriSection.Value != null)
-                ElasticSearchUri = new Uri(elasticSearchUriSection.Value);
+            if (!string.IsNullOrEmpty(elasticSearchUri))
+                ElasticSearchUri = new Uri(elasticSearchUri);
         }
     }
 }

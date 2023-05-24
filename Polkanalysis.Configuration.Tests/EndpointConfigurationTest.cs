@@ -6,13 +6,13 @@ using System.Configuration;
 
 namespace Polkanalysis.Configuration.Tests
 {
-    public class ConfigurationTest
+    public class EndpointConfigurationTest
     {
         [Test]
         public void ValidAppSettings_ShouldCreateNewConfiguration()
         {
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings_polkadot_valid.json", false)
+                .AddJsonFile("Configs/Endpoint/appsettings_polkadot_valid.json", false)
                 .Build();
 
             var substrateEndpoint = new SubstrateEndpoint(config);
@@ -27,15 +27,13 @@ namespace Polkanalysis.Configuration.Tests
         public void ValidAppSettingsWithFacultative_ShouldCreateNewConfiguration()
         {
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings_polkadot_valid_with_facultative.json", false)
+                .AddJsonFile("Configs/Endpoint/appsettings_polkadot_valid_with_facultative.json", false)
                 .Build();
 
             var substrateEndpoint = new SubstrateEndpoint(config);
 
             Assert.That(substrateEndpoint.BlockchainName, Is.EqualTo("Polkadot"));
             Assert.That(substrateEndpoint.WsEndpointUri, Is.EqualTo(new Uri("wss://rpc.polkadot.io")));
-            Assert.That(substrateEndpoint.ApiUri, Is.EqualTo(new Uri("https://localhost:7066")));
-            Assert.That(substrateEndpoint.PrometheusUri, Is.EqualTo(new Uri("https://localhost:1234")));
         }
 
         [Test]
@@ -48,7 +46,7 @@ namespace Polkanalysis.Configuration.Tests
         public void EmptyAppSettings_ShouldFailed()
         {
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings_empty.json", false)
+                .AddJsonFile("Configs/Endpoint/appsettings_empty.json", false)
                 .Build();
 
             Assert.Throws<ConfigurationErrorsException>(() => new SubstrateEndpoint(config));
@@ -58,7 +56,7 @@ namespace Polkanalysis.Configuration.Tests
         public void HaflFilledAppSettings_ShouldFailed()
         {
             var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings_haflfilled.json", false)
+                .AddJsonFile("Configs/Endpoint/appsettings_haflfilled.json", false)
                 .Build();
 
             Assert.Throws<ConfigurationErrorsException>(() => new SubstrateEndpoint(config));

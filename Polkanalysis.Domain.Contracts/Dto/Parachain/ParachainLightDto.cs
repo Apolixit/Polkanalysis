@@ -9,6 +9,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain
 {
     public class ParachainLightDto
     {
+        public string Name { get; set; }
         public uint ParachainId { get; set; }
         public int ValidatorCount { get; set; }
 

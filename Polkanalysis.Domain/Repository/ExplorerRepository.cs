@@ -49,10 +49,13 @@ namespace Polkanalysis.Domain.Repository
             _blockParameter = new BlockParameterLike(_substrateService);
         }
 
-        public async Task<SubstrateAccount?> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
+        public async Task<SubstrateAccount> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
             => await GetBlockAuthorAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
 
         /// <summary>
+        /// Return the validator block
+        /// 
+        /// Sources :
         /// https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/chain/util.ts
         /// https://github.com/polkadot-js/api/blob/master/packages/api-derive/src/type/util.ts
         /// https://github.com/polkadot-js/api/blob/master/packages/types/src/generic/ConsensusEngineId.ts
@@ -60,7 +63,7 @@ namespace Polkanalysis.Domain.Repository
         /// <param name="blockHash"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        protected async Task<SubstrateAccount?> GetBlockAuthorAsync(BlockParameterLike block, CancellationToken cancellationToken)
+        protected async Task<SubstrateAccount> GetBlockAuthorAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
             var blockHash = await block.ToBlockHashAsync();
 
@@ -86,10 +89,10 @@ namespace Polkanalysis.Domain.Repository
                 }
             }
 
-            return null;
+            throw new InvalidOperationException($"Unable to retrieve validator from block num {await block.ToBlockNumberAsync()}");
         }
 
-        private SubstrateAccount? extractAuthor(Nameable name, byte[] data, BaseVec<SubstrateAccount> blockValidators)
+        private SubstrateAccount extractAuthor(Nameable name, byte[] data, BaseVec<SubstrateAccount> blockValidators)
         {
             if (IsBabeConcensus(name))
             {
@@ -122,7 +125,7 @@ namespace Polkanalysis.Domain.Repository
                 return validatorAccount;
             }
 
-            return null;
+            throw new InvalidOperationException($"Unable to retrieve validator");
         }
 
         /// <summary>
@@ -234,7 +237,7 @@ namespace Polkanalysis.Domain.Repository
                 NbEvents = (await eventsCountTask).Value,
                 NbLogs = (uint)blockDetails.Block.Header.Digest.Logs.Count,
                 SpecVersion = (await specVersionTask).SpecVersion,
-                Validator = null,
+                Validator = await GetBlockAuthorAsync(block, cancellationToken),
             };
 
             return blockDto;

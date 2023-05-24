@@ -32,6 +32,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
         public async Task GetBlockAuthor_ValidBlockNumber_ShouldWorkAsync(int blockId, string validatorAddress)
         {
             var validatorAccount = await _explorerRepository.GetBlockAuthorAsync((uint)blockId, CancellationToken.None);
+            
+            Assert.That(validatorAccount, Is.Not.Null);
             Assert.That(validatorAccount.ToPolkadotAddress(), Is.EqualTo(validatorAddress));
         }
 

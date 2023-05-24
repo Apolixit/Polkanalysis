@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
+using Polkanalysis.Configuration.Contracts.Information;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -16,15 +17,18 @@ namespace Polkanalysis.Domain.Repository
         private readonly ISubstrateRepository _substrateNodeRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IExplorerRepository _explorerRepository;
+        private readonly IBlockchainInformations _blockchainStaticInformations;
 
         public ParachainRepository(
             ISubstrateRepository substrateNodeRepository,
             IAccountRepository accountRepository,
-            IExplorerRepository explorerRepository)
+            IExplorerRepository explorerRepository,
+            IBlockchainInformations blockchainStaticInformations)
         {
             _substrateNodeRepository = substrateNodeRepository;
             _accountRepository = accountRepository;
             _explorerRepository = explorerRepository;
+            _blockchainStaticInformations = blockchainStaticInformations;
         }
 
         public string DisplayParachainRegisterStatus(EnumParaLifecycle enumPara)
@@ -54,10 +58,16 @@ namespace Polkanalysis.Domain.Repository
             {
                 var registerStatus = await _substrateNodeRepository.Storage.Paras.ParaLifecyclesAsync(parachainId, cancellationToken);
 
+                var infos = _blockchainStaticInformations.RelayChains
+                    .SelectMany(x => x.BlockainInformations)
+                    .Where(x => x.ParachainId is not null)
+                    .SingleOrDefault(x => (uint)x.ParachainId.Value == parachainId.Value.Value);
+
                 var parachainDto = new ParachainLightDto()
                 {
                     ParachainId = parachainId.Value.Value,
-                    RegisterStatus = DisplayParachainRegisterStatus(registerStatus)
+                    RegisterStatus = DisplayParachainRegisterStatus(registerStatus),
+                    Name = infos != null ? infos.Name : string.Empty
                 };
 
                 parachainsDto.Add(parachainDto);
@@ -76,12 +86,15 @@ namespace Polkanalysis.Domain.Repository
             //var fundAccount = accountRegistar.
             var registerStatus = await _substrateNodeRepository.Storage.Paras.ParaLifecyclesAsync(paraId, cancellationToken);
 
+            var infos = _blockchainStaticInformations.RelayChains
+                    .SelectMany(x => x.BlockainInformations)
+                    .Where(x => x.ParachainId is not null)
+                    .SingleOrDefault(x => (uint)x.ParachainId.Value == parachainId);
+
             var parachainDto = new ParachainDto();
             parachainDto.OwnerAccount = owner;
             parachainDto.RegisterStatus = DisplayParachainRegisterStatus(registerStatus);
-
-
-
+            parachainDto.BlockchainInformationDetail = infos;
 
             //var accountRegistar = await _substrateNodeRepository.Client.RegistrarStorage.PendingSwap(paraId, cancellationToken);
 

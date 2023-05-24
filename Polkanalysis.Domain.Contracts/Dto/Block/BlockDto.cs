@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Block
 {
@@ -27,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         public Hash? ParentHash { get; set; }
         public required Hash StateRoot { get; set; }
         public required Hash ExtrinsicsRoot { get; set; }
-        public ValidatorDto? Validator { get; set; }
+        public SubstrateAccount? Validator { get; set; }
         public uint SpecVersion { get; set; }
 
         /// <summary>

@@ -13,11 +13,11 @@ namespace Polkanalysis.Configuration.Extentions
         public Uri? ApiUri { get; init; }
 
         public ApiEndpoint(IConfiguration configuration) {
-            var apiSection = configuration.GetSection("Api").GetChildren().ToList();
-            var apiUriSection = apiSection.FirstOrDefault(e => e.Key == "uri");
 
-            if (apiUriSection != null && apiUriSection.Value != null)
-                ApiUri = new Uri(apiUriSection.Value);
+            var apiUrl = configuration["Api:uri"];
+
+            if (!string.IsNullOrEmpty(apiUrl))
+                ApiUri = new Uri(apiUrl);
         }
     }
 }

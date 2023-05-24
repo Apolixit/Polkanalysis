@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Domain.Contracts.Dto.User;
+﻿using Polkanalysis.Configuration.Contracts.Information;
+using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain
     public class ParachainDto
     {
         public int ParachainId { get; set; }
+        public BlockchainProject? BlockchainInformationDetail { get; set; }
         public UserAddressDto OwnerAccount { get; set; }
         public UserAddressDto FundAccount { get; set; }
         public int ValidatorCount { get; set; }

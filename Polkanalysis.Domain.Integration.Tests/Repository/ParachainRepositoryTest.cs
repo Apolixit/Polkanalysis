@@ -1,5 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
+using Polkanalysis.Configuration.Contracts.Information;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
@@ -17,14 +18,16 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         private IParachainRepository _parachainRepository;
         private IAccountRepository _accountRepository;
         private IExplorerRepository _explorerRepository;
+        private IBlockchainInformations _blockchainInformations;
 
         [SetUp]
         public void Setup()
         {
             _accountRepository = Substitute.For<IAccountRepository>();
             _explorerRepository = Substitute.For<IExplorerRepository>();
+            _blockchainInformations = Substitute.For<IBlockchainInformations>();
 
-            _parachainRepository = new ParachainRepository(_substrateRepository, _accountRepository, _explorerRepository);
+            _parachainRepository = new ParachainRepository(_substrateRepository, _accountRepository, _explorerRepository, _blockchainInformations);
         }
 
         [Test]
