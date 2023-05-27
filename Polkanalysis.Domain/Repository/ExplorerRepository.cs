@@ -23,6 +23,10 @@ using System.ComponentModel.DataAnnotations;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe;
 using System.Xml.Linq;
+using Serilog;
+using Ardalis.GuardClauses;
+using Polkanalysis.Domain.Helper;
+using Polkanalysis.Domain.Contracts.Dto.Logs;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -31,6 +35,7 @@ namespace Polkanalysis.Domain.Repository
         private readonly ISubstrateRepository _substrateService;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IModelBuilder _modelBuilder;
+        private readonly IAccountRepository _accountRepository;
         private readonly ILogger<ExplorerRepository> _logger;
         private BlockLightDto? _lastBlock;
         private BlockParameterLike _blockParameter;
@@ -39,11 +44,13 @@ namespace Polkanalysis.Domain.Repository
             ISubstrateRepository substrateNodeRepository,
             ISubstrateDecoding substrateDecode,
             IModelBuilder modelBuilder,
+            IAccountRepository accountRepository,
             ILogger<ExplorerRepository> logger)
         {
             _substrateService = substrateNodeRepository;
             _substrateDecode = substrateDecode;
             _modelBuilder = modelBuilder;
+            _accountRepository = accountRepository;
             _logger = logger;
 
             _blockParameter = new BlockParameterLike(_substrateService);
@@ -74,25 +81,49 @@ namespace Polkanalysis.Domain.Repository
 
             var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(blockHash, cancellationToken);
 
-            foreach (var log in blockHeader.Digest.Logs)
+            var digestLogs = blockHeader.Digest.Logs.Select(log =>
             {
                 var buildLog = new EnumDigestItem();
                 buildLog.Create(log);
+                return buildLog;
+            });
 
-                if(buildLog.Value == DigestItem.PreRuntime || buildLog.Value == DigestItem.Consensus || buildLog.Value == DigestItem.Seal)
-                {
-                    var castedValue = (BaseTuple<NameableSize4, BaseVec<U8>>)buildLog.Value2;
-                    var name = (Nameable)castedValue.Value[0];
-                    var data = (BaseVec<U8>)castedValue.Value[1];
+            SubstrateAccount? blockAuthor = null;
+            var preruntime = digestLogs.FirstOrDefault(x => x.Value == DigestItem.PreRuntime);
+            var consensus = digestLogs.FirstOrDefault(x => x.Value == DigestItem.Consensus);
+            var seal = digestLogs.FirstOrDefault(x => x.Value == DigestItem.Seal);
 
-                    return extractAuthor(name, data.Value.ToBytes(), blockValidators);
-                }
+            if(preruntime != null)
+            {
+                (Nameable name, BaseVec<U8> data) = BuildAuthorData(preruntime);
+                blockAuthor = extractAuthor(name, data.Value.ToBytes(), blockValidators);
             }
 
+            if(blockAuthor == null && consensus != null)
+            {
+                (Nameable name, BaseVec<U8> data) = BuildAuthorData(consensus);
+                blockAuthor = extractAuthor(name, data.Value.ToBytes(), blockValidators);
+            }
+
+            if(blockAuthor == null && seal != null)
+            {
+                (Nameable name, BaseVec<U8> data) = BuildAuthorData(seal);
+                blockAuthor = extractAuthor(name, data.Value.ToBytes(), blockValidators);
+            }
+
+            if(blockAuthor != null)
+                return blockAuthor;
+
             throw new InvalidOperationException($"Unable to retrieve validator from block num {await block.ToBlockNumberAsync()}");
+
+            static (Nameable name, BaseVec<U8> data) BuildAuthorData(EnumDigestItem digestItem)
+            {
+                var castedValue = (BaseTuple<NameableSize4, BaseVec<U8>>)digestItem.Value2;
+                return ((Nameable)castedValue.Value[0], (BaseVec<U8>)castedValue.Value[1]);
+            }
         }
 
-        private SubstrateAccount extractAuthor(Nameable name, byte[] data, BaseVec<SubstrateAccount> blockValidators)
+        private SubstrateAccount? extractAuthor(Nameable name, byte[] data, BaseVec<SubstrateAccount> blockValidators)
         {
             if (IsBabeConcensus(name))
             {
@@ -125,7 +156,7 @@ namespace Polkanalysis.Domain.Repository
                 return validatorAccount;
             }
 
-            throw new InvalidOperationException($"Unable to retrieve validator");
+            return null;
         }
 
         /// <summary>
@@ -153,9 +184,25 @@ namespace Polkanalysis.Domain.Repository
             if (blockData == null)
                 throw new BlockException($"{blockData} for block hash = {blockHash.Value} is null");
 
-            var blockDate = await GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
+            var blockDateTask = GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
+            var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
+            var blockAuthorTask = GetBlockAuthorAsync(block, cancellationToken);
 
-            return _modelBuilder.BuildBlockLightDto(blockHash, blockData, blockDate);
+            var (blockDate, eventsCount, blockAuthor) = await WaiterHelper.WaitAndReturnAsync(blockDateTask, eventsCountTask, blockAuthorTask);
+
+            var authorIdentity = await _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken);
+
+            return new BlockLightDto()
+            {
+                Hash = blockHash,
+                Number = blockData.Block.Header.Number.Value,
+                Status = GlobalStatusDto.BlockStatusDto.Broadcasted,
+                NbExtrinsics = (uint)blockData.Block.Extrinsics.Length,
+                NbEvents = eventsCount.Value,
+                NbLogs = (uint)blockData.Block.Header.Digest.Logs.Count,
+                When = _modelBuilder.DisplayElapsedTime(blockDate),
+                Validator = authorIdentity
+            };
         }
 
         public async Task<BlockDto> GetBlockDetailsAsync(uint blockId, CancellationToken cancellationToken) => await GetBlockDetailsAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
@@ -224,38 +271,27 @@ namespace Polkanalysis.Domain.Repository
             //var nextEpochConfig = await _substrateService.Client.BabeStorage.NextEpochConfig(cancellationToken);
             //var resMagic2 = await _substrateService.Client.Core.InvokeAsync<object>("grandpa_proveFinality", new object[1] { blockDetails.Block.Header.Number.Value }, cancellationToken);
 
+            var blockAuthor = await GetBlockAuthorAsync(block, cancellationToken);
+            var authorIdentity = await _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken);
+
             var blockDto = new BlockDto()
             {
                 Date = _modelBuilder.BuildDateDto(await currentDateTask),
-                ExtrinsicsRoot = blockDetails.Block.Header.ExtrinsicsRoot,
-                ParentHash = blockDetails.Block.Header.ParentHash,
-                StateRoot = blockDetails.Block.Header.StateRoot,
+                ExtrinsicsRoot = blockDetails.Block.Header.ExtrinsicsRoot.Value,
+                ParentHash = blockDetails.Block.Header.ParentHash.Value,
+                StateRoot = blockDetails.Block.Header.StateRoot.Value,
                 Number = blockDetails.Block.Header.Number.Value,
-                Hash = blockHash,
+                Hash = blockHash.Value,
                 Status = status,
                 NbExtrinsics = (uint)blockDetails.Block.Extrinsics.Length,
                 NbEvents = (await eventsCountTask).Value,
                 NbLogs = (uint)blockDetails.Block.Header.Digest.Logs.Count,
                 SpecVersion = (await specVersionTask).SpecVersion,
-                Validator = await GetBlockAuthorAsync(block, cancellationToken),
+                Validator = authorIdentity,
             };
 
             return blockDto;
         }
-
-        ///// <summary>
-        ///// Typscript implementation here : https://github.com/polkadot-js/api/blob/ed426108f276daaef7e940b8cc773239c05c9b06/packages/api-derive/src/chain/util.ts#L28
-        ///// </summary>
-        ///// <param name="cancellationToken"></param>
-        ///// <returns></returns>
-        //private async Task<ValidatorDto> GetBlockAuthor(Hash blockHash, CancellationToken cancellationToken)
-        //{
-        //    // Get current list of validators
-        //    var validators = await _substrateService.Client.SessionStorage.Validators(cancellationToken);
-
-        //    return 
-        //}
-
 
         public async Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken)
         {
@@ -519,6 +555,58 @@ namespace Polkanalysis.Domain.Repository
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
             return (blockNumber, blockHash, blockDetails);
+        }
+
+        public async Task<IEnumerable<BlockLightDto>> GetBlocksAsync(int nbLastBlocks, CancellationToken cancellationToken)
+        {
+            Guard.Against.NegativeOrZero(nbLastBlocks);
+            if (nbLastBlocks > 1000)
+                throw new ArgumentException($"{nameof(nbLastBlocks)} should be lower than 1000 (currently : {nbLastBlocks}");
+
+            var lastBlockNum = (await _substrateService.Rpc.Chain.GetBlockAsync()).Block.Header.Number.Value;
+
+            var blocksHash = await Task.WhenAll(Enumerable.Range((int)lastBlockNum - nbLastBlocks, (int)lastBlockNum)
+                .Select(x =>
+            {
+                return _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)x));
+            }));
+
+            var blocksData = await Task.WhenAll(blocksHash.Select(hash =>
+            {
+                return GetBlockLightAsync(_blockParameter.FromBlockHash(hash), cancellationToken);
+            }));
+
+            return blocksData;
+        }
+
+        public async Task<IEnumerable<LogDto>> GetLogsAsync(uint blockId, CancellationToken cancellationToken)
+        {
+            var block = await _blockParameter.FromBlockNumberAsync(blockId);
+            var blockHash = await block.ToBlockHashAsync();
+
+            var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(blockHash, cancellationToken);
+
+            var logsDto = new List<LogDto>();
+
+            for(int i = 0; i < blockHeader.Digest.Logs.Count; i++)
+            {
+                var buildLog = new EnumDigestItem();
+                buildLog.Create(blockHeader.Digest.Logs[i]);
+
+                var digestCasted = (BaseTuple<NameableSize4, BaseVec<U8>>)buildLog.Value2;
+
+                var logDto = new LogDto();
+                logDto.BlockNumber = blockId;
+                logDto.LogIndex = i;
+                logDto.LogType = buildLog.Value;
+
+                logDto.ConsensusName = ((Nameable)digestCasted.Value[0]).Display();
+                logDto.DateHex = Utils.Bytes2HexString(((BaseVec<U8>)digestCasted.Value[1]).Value.ToBytes());
+
+                logsDto.Add(logDto);
+            }
+
+            return logsDto;
         }
     }
 }

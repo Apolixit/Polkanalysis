@@ -1,5 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
+using Newtonsoft.Json;
 
 namespace Polkanalysis.Domain.Contracts.Runtime
 {
@@ -11,11 +12,13 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// <summary>
         /// Is this current has been mapped ?
         /// </summary>
+        [JsonIgnore] 
         bool IsIdentified { get; set; }
 
         /// <summary>
         /// Type of current element
         /// </summary>
+        [JsonIgnore]
         Type? DataType { get; set; }
 
         /// <summary>
@@ -36,6 +39,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// <summary>
         /// Custom component use with front app to display this current node
         /// </summary>
+        [JsonIgnore] 
         string ComponentName { get; set; }
 
         /// <summary>
@@ -48,7 +52,10 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// </summary>
         IList<INode> Children { get; set; }
 
+        [JsonIgnore] 
         public bool IsEmpty { get; }
+        
+        [JsonIgnore] 
         public bool IsLeaf { get; }
 
         /// <summary>

@@ -23,7 +23,14 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto
     [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class AccountId32 : BaseType
     {
-        
+        public override int TypeSize
+        {
+            get
+            {
+                return 32;
+            }
+        }
+
         /// <summary>
         /// >> value
         /// </summary>

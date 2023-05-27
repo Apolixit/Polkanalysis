@@ -19,6 +19,13 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Mapping
             PolkadotMapping.Instance.ConfigurationProvider.AssertConfigurationIsValid();
         }
 
+        //[Test]
+        //public void CreateAccount_FromHash_ShouldSuceed()
+        //{
+        //    var subsrateAccount = new SubstrateAccount();
+        //    Assert.That(substrateAccount, Is.Not.Null);
+        //}
+
         [Test]
         public void SubstrateAccount_ToAccountId32_ShouldWork()
         {

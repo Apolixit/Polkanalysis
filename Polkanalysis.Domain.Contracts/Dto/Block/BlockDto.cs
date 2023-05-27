@@ -24,11 +24,11 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         /// </summary>
         public required GlobalStatusDto.BlockStatusDto Status { get; set; }
 
-        public required Hash Hash { get; set; }
-        public Hash? ParentHash { get; set; }
-        public required Hash StateRoot { get; set; }
-        public required Hash ExtrinsicsRoot { get; set; }
-        public SubstrateAccount? Validator { get; set; }
+        public required string Hash { get; set; }
+        public string? ParentHash { get; set; }
+        public required string StateRoot { get; set; }
+        public required string ExtrinsicsRoot { get; set; }
+        public UserAddressDto? Validator { get; set; }
         public uint SpecVersion { get; set; }
 
         /// <summary>

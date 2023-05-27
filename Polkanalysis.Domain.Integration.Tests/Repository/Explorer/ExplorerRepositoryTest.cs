@@ -15,6 +15,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
         protected IExplorerRepository _explorerRepository;
         protected ICurrentMetaData _currentMetaData;
         protected ISubstrateDecoding _substrateDecoding;
+        protected IAccountRepository _accountRepository;
 
         // https://polkadot.subscan.io/block/10219793
         //  Block with extrinsic failed
@@ -23,6 +24,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
         {
             _currentMetaData = new CurrentMetaData(
                 _substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
+
+            _accountRepository = new AccountRepository(_substrateRepository);
 
             _substrateDecoding = new SubstrateDecoding(
                 new EventNodeMapping(),
@@ -36,6 +39,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
                 _substrateRepository,
                 _substrateDecoding,
                 new ModelBuilder(),
+                _accountRepository,
                 Substitute.For<ILogger<ExplorerRepository>>());
         }
     }

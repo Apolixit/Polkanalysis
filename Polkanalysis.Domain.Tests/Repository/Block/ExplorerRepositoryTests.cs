@@ -32,6 +32,7 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
                 _substrateService,
                 _substrateDecode,
                 Substitute.For<IModelBuilder>(),
+                Substitute.For<IAccountRepository>(),
                 Substitute.For<ILogger<ExplorerRepository>>());
 
 

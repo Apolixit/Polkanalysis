@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -146,8 +147,8 @@ namespace Polkanalysis.Domain.Runtime
             var extrinsicDto = new ExtrinsicDto()
             {
                 Block = blockLight,
-                Hash = new Hash(),
-                Decoded = extrinsicNode,
+                Hash = Utils.Bytes2HexString(extrinsic.Encode()),
+                Decoded = null, //extrinsicNode,
                 ExtrinsicId = $"{blockLight.Number}-{extrinsicIndex}",
                 Index = extrinsicIndex,
                 PalletCall = extrinsicNode.HumanData.ToString(),

@@ -9,6 +9,7 @@ using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Configuration.Contracts.Information;
+using Ardalis.GuardClauses;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -48,21 +49,38 @@ namespace Polkanalysis.Domain.Repository
             };
         }
 
+        public BlockchainProject? GetBlockchainProject(string relayChain, uint parachainId)
+        {
+            Guard.Against.NullOrEmpty(relayChain);
+            Guard.Against.Null(parachainId);
+
+            var infos = _blockchainStaticInformations.RelayChains.SingleOrDefault(x => x.RelayChainName == relayChain);
+            if (infos == null)
+                return null;
+
+            var details = infos.BlockainInformations.SingleOrDefault(x => x.ParachainId is not null && x.ParachainId ==  parachainId);
+
+            return details;
+        }
+
         public async Task<IEnumerable<ParachainLightDto>> GetParachainsAsync(CancellationToken cancellationToken)
         {
             var parachainsDto = new List<ParachainLightDto>();
             var parachainsId = await _substrateNodeRepository.Storage.Paras.ParachainsAsync(cancellationToken);
+            
+            if (parachainsId == null) 
+                return parachainsDto;
 
             //Storage.Slots.LeasesAsync()
             foreach (var parachainId in parachainsId.Value)
             {
                 var registerStatus = await _substrateNodeRepository.Storage.Paras.ParaLifecyclesAsync(parachainId, cancellationToken);
 
-                var infos = _blockchainStaticInformations.RelayChains
-                    .SelectMany(x => x.BlockainInformations)
-                    .Where(x => x.ParachainId is not null)
-                    .SingleOrDefault(x => (uint)x.ParachainId.Value == parachainId.Value.Value);
-
+                //var infos = _blockchainStaticInformations.RelayChains
+                //    .SelectMany(x => x.BlockainInformations)
+                //    .Where(x => x.ParachainId is not null)
+                //    .SingleOrDefault(x => (uint)x.ParachainId.Value == parachainId.Value.Value);
+                var infos = GetBlockchainProject(_substrateNodeRepository.BlockchainName, parachainId.Value.Value);
                 var parachainDto = new ParachainLightDto()
                 {
                     ParachainId = parachainId.Value.Value,
@@ -77,8 +95,6 @@ namespace Polkanalysis.Domain.Repository
         }
         public async Task<ParachainDto> GetParachainDetailAsync(uint parachainId, CancellationToken cancellationToken)
         {
-            //if(_substrateNodeRepository.Api.Storage.ParasStorage == null)
-
             var paraId = new Contracts.Core.Id(new U32(parachainId));
             var accountRegistar = await _substrateNodeRepository.Storage.Registrar.ParasAsync(paraId, cancellationToken);
 
@@ -92,6 +108,7 @@ namespace Polkanalysis.Domain.Repository
                     .SingleOrDefault(x => (uint)x.ParachainId.Value == parachainId);
 
             var parachainDto = new ParachainDto();
+            parachainDto.ParachainId = parachainId;
             parachainDto.OwnerAccount = owner;
             parachainDto.RegisterStatus = DisplayParachainRegisterStatus(registerStatus);
             parachainDto.BlockchainInformationDetail = infos;

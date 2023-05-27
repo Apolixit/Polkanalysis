@@ -1,4 +1,5 @@
-﻿using Substrate.NetApi.Model.Types.Base;
+﻿using Polkanalysis.Domain.Contracts.Dto.User;
+using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,9 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         public required Hash Hash { get; set; }
         public required string When { get; set; }
         public required GlobalStatusDto.BlockStatusDto Status { get; set; }
+        public uint NbExtrinsics { get; set; } = 0;
+        public uint NbEvents { get; set; } = 0;
+        public uint NbLogs { get; set; } = 0;
+        public UserAddressDto? Validator { get; set; }
     }
 }

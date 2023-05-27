@@ -232,7 +232,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
                     var storageKeyString = storageChangeSet[0];
 
                     var keyParam = new T1();
-                    keyParam.Create(storageKeyString[^(storageId.Length * 2)..]);
+                    keyParam.Create(storageKeyString[^(keyParam.TypeSize * 2)..]);
 
                     var valueParam = new T2();
                     valueParam.Create(storageChangeSet[1]);

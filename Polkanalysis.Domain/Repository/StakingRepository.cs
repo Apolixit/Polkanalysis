@@ -146,7 +146,7 @@ namespace Polkanalysis.Domain.Repository
                 SelfBonded = nominators.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 TotalBonded = nominators.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 Commission = (double)validatorSettings.Commission.Value.Value,
-                SessionKey = node.Create().AddData(validatorSessionKey),
+                SessionKey = null, //node.Create().AddData(validatorSessionKey),
                 Status = isValidatorActive ? AliveStatusDto.Active : AliveStatusDto.Inactive,
                 Nominators = nominatorsDto,
                 Eras = new List<EraLightDto>(), // TODO mapping

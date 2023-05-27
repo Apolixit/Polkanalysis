@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain
 {
     public class ParachainDto
     {
-        public int ParachainId { get; set; }
+        public uint ParachainId { get; set; }
         public BlockchainProject? BlockchainInformationDetail { get; set; }
         public UserAddressDto OwnerAccount { get; set; }
         public UserAddressDto FundAccount { get; set; }

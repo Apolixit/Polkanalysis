@@ -171,11 +171,11 @@ namespace Polkanalysis.Domain.Repository
             string name = blockchainAddress;
             if (identity != null && identity.Info != null)
             {
-                var legal = identity.Info.Legal.ToHuman();
+                var identityDisplay = identity.Info.Display.ToHuman();
                 // If we got a legal identity set, display it
-                if (!string.IsNullOrEmpty(legal))
+                if (!string.IsNullOrEmpty(identityDisplay))
                 {
-                    name = legal;
+                    name = identityDisplay;
                 }
             }
 

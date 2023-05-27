@@ -7,7 +7,7 @@ using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 {
-    public class ExtrinsicDetailsUseCase : UseCase<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicQuery>
+    public class ExtrinsicDetailsUseCase : UseCase<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicDetailQuery>
     {
         private readonly IExplorerRepository _explorerRepository;
 
@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<ExtrinsicDto, ErrorResult>> Handle(ExtrinsicQuery command, CancellationToken cancellationToken)
+        public override async Task<Result<ExtrinsicDto, ErrorResult>> Handle(ExtrinsicDetailQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

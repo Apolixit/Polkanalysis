@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Dto.Logs;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
@@ -27,6 +28,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken);
+
+        Task<IEnumerable<BlockLightDto>> GetBlocksAsync(int nbLastBlocks, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get full details for this block
@@ -194,6 +197,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<ExtrinsicDto> GetExtrinsicAsync(Hash blockHash, uint extrinsicIndex, CancellationToken cancellationToken);
+
+        Task<IEnumerable<LogDto>> GetLogsAsync(uint blockId, CancellationToken cancellationToken);
         #endregion
 
         #region Time

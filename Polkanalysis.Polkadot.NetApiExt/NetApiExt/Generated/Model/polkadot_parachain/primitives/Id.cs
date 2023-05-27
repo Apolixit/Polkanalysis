@@ -23,7 +23,9 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.pri
     [SubstrateNodeType(TypeDefEnum.Composite)]
     public sealed class Id : BaseType
     {
-        
+        public override int TypeSize { get => 4; set => base.TypeSize = value; }
+
+
         /// <summary>
         /// >> value
         /// </summary>

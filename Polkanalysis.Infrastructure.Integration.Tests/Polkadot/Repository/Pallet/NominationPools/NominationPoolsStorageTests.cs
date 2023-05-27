@@ -50,7 +50,8 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
 
             Assert.That(res, Is.Not.Null);
 
-            var res_10_10 = await boundedPoolsQuery.Skip(10).Take(10).ExecuteAsync(CancellationToken.None);
+            //var res_10_10 = await boundedPoolsQuery.Skip(10).Take(10).ExecuteAsync(CancellationToken.None);
+            var res_10_10 = await boundedPoolsQuery.ExecuteAsync(CancellationToken.None);
             Assert.That(res[10].Item1.Bytes, Is.EqualTo(res_10_10.First().Item1.Bytes));
             Assert.That(res[19].Item1.Bytes, Is.EqualTo(res_10_10.Last().Item1.Bytes));
         }

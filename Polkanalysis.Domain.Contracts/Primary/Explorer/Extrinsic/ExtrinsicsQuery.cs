@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Dto;
+using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using System;
@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic
 {
-    public class ExtrinsicQuery : IRequest<Result<ExtrinsicDto, ErrorResult>>
+    public class ExtrinsicsQuery : IRequest<Result<IEnumerable<ExtrinsicDto>, ErrorResult>>
     {
-        public required uint BlockNumber { get; set; }
-        public required uint ExtrinsicIndex { get; set; }
+        public uint BlockNumber { get; set; }
     }
 }
