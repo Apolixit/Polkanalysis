@@ -48,14 +48,14 @@ namespace Polkanalysis.Domain.Repository
 
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
-            foreach (var account in result)
+            foreach (var (accountAddress, accountInfo) in result)
             {
-                var freeAmount = account.Item2.Data.Free.ToDouble(chainInfo.TokenDecimals);
-                var stakingAmount = account.Item2.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
-                var othersAmount = account.Item2.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
+                var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
+                var stakingAmount = accountInfo.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
+                var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
                 accountsDto.Add(new AccountListDto()
                 {
-                    Address = AddressDto.BuildFrom(account.Item1),
+                    Address = await GetAccountIdentityAsync(accountAddress, cancellationToken),
                     Balances = new Contracts.Dto.Balances.BalancesDto()
                     {
                         Transferable = freeAmount,
@@ -138,7 +138,7 @@ namespace Polkanalysis.Domain.Repository
             var accountDto = new AccountDto()
             {
                 InformationsDto = userInformation,
-                Address = AddressDto.BuildFrom(account),
+                Address = await GetAccountIdentityAsync(account, token),
                 AccountIndex = accountNextindex,
                 Nonce = accountInfo.Nonce.Value,
                 Balances = new Contracts.Dto.Balances.BalancesDto()
@@ -183,6 +183,7 @@ namespace Polkanalysis.Domain.Repository
             {
                 Name = name,
                 Address = blockchainAddress,
+                PublicKey = Utils.Bytes2HexString(Utils.GetPublicKeyFrom(account.ToStringAddress()))
             };
         }
 

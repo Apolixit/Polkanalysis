@@ -28,8 +28,16 @@ namespace Polkanalysis.Domain.UseCase.Nominator
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            var result = await _roleMemberRepository.GetNominatorsAsync(cancellationToken);
+            var result = Enumerable.Empty<NominatorLightDto>();
 
+            if(request.ValidatorAddress != null)
+            {
+                result = await _roleMemberRepository.GetNominatorsBoundedToValidatorAsync(request.ValidatorAddress, cancellationToken);
+            } else
+            {
+                result = await _roleMemberRepository.GetNominatorsAsync(cancellationToken);
+            }
+            
             return Helpers.Ok(result);
         }
     }

@@ -3,6 +3,7 @@ using Substrate.NetApi;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
+    [Timeout(RepositoryMaxTimeout)]
     public class ExplorerEventsTests : ExplorerRepositoryTest
     {
         /// <summary>

@@ -10,5 +10,6 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
     {
         public required string Name { get; set; }
         public required string Address { get; set; }
+        public string PublicKey { get; set; } = string.Empty;
     }
 }

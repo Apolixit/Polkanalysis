@@ -34,7 +34,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             "System", "Scheduler", "Preimage", "Babe", "Timestamp", "Indices", "Balances", "TransactionPayment", "Authorship", "Staking", "Offences", "Historical", "Session", "Grandpa", "ImOnline", "AuthorityDiscovery", "Democracy", "Council", "TechnicalCommittee", "PhragmenElection", "TechnicalMembership", "Treasury", "Claims", "Vesting", "Utility", "Identity", "Proxy", "Multisig", "Bounties", "ChildBounties", "Tips", "ElectionProviderMultiPhase", "VoterList", "NominationPools", "FastUnstake", "ParachainsOrigin", "Configuration", "ParasShared", "ParaInclusion", "ParaInherent", "ParaScheduler", "Paras", "Initializer", "Dmp", "Ump", "Hrmp", "ParaSessionInfo", "ParasDisputes", "Registrar", "Slots", "Auctions", "Crowdloan", "XcmPallet"
         };
 
-        [Test]
+        [Test, Timeout(2000)]
         public void Module_PalletBalances_ShouldWork()
         {
             var res = _moduleRepository.GetModuleDetail("balances");

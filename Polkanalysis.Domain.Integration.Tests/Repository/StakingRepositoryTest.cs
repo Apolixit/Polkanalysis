@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
+    //[Timeout(RepositoryMaxTimeout)]
     public class StakingRepositoryTest : PolkadotIntegrationTest
     {
         private IStakingRepository _stakingRepository;

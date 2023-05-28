@@ -102,7 +102,7 @@ namespace Polkanalysis.Domain.Repository
             //var fundAccount = accountRegistar.
             var registerStatus = await _substrateNodeRepository.Storage.Paras.ParaLifecyclesAsync(paraId, cancellationToken);
 
-            var infos = _blockchainStaticInformations.RelayChains
+            var infos = _blockchainStaticInformations.RelayChains?
                     .SelectMany(x => x.BlockainInformations)
                     .Where(x => x.ParachainId is not null)
                     .SingleOrDefault(x => (uint)x.ParachainId.Value == parachainId);

@@ -20,6 +20,11 @@ namespace Polkanalysis.Integration.Tests.Contracts
         protected readonly ISubstrateRepository _substrateRepository;
         protected ISubstrateEndpoint _substrateEndpoint;
 
+        /// <summary>
+        /// A repository doesn't exceed <see cref="RepositoryMaxTimeout"/> millisecond to respond
+        /// </summary>
+        public const int RepositoryMaxTimeout = 2000;
+
         protected IntegrationTest()
         {
             _substrateEndpoint = GetEndpoint();

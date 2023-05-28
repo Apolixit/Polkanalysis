@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
+    [Timeout(RepositoryMaxTimeout)]
     public class ParachainRepositoryTest : PolkadotIntegrationTest
     {
         private IParachainRepository _parachainRepository;
@@ -36,8 +37,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         {
             var res = await _parachainRepository.GetParachainDetailAsync((uint)parachainId, CancellationToken.None);
 
-            Assert.True(true); // TODO TMP
-            //Assert.That(res, Is.Not.Null);
+            Assert.That(res.ParachainId, Is.EqualTo(parachainId)); 
+            Assert.That(res.RegisterStatus, Is.EqualTo("Parachain")); 
         }
     }
 }

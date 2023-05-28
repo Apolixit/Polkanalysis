@@ -42,9 +42,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Session
             TypeSize = Grandpa.TypeSize + Babe.TypeSize + ImOnline.TypeSize + ParaValidator.TypeSize + ParaAssignment.TypeSize + AuthorityDiscovery.TypeSize;
         }
 
-        public override IEnumerable<Public> Publics => new List<Public>()
+        public override IEnumerable<(string name, Public key)> Publics => new List<(string, Public)>()
         {
-            Grandpa, Babe, ImOnline, ParaValidator, ParaAssignment, AuthorityDiscovery
+            ("Grandpa", Grandpa),
+            ("Babe", Babe),
+            ("ImOnline", ImOnline),
+            ("ParaValidator", ParaValidator),
+            ("ParaAssignment", ParaAssignment),
+            ("AuthorityDiscovery", AuthorityDiscovery)
         };
 
         public override byte[] Encode()

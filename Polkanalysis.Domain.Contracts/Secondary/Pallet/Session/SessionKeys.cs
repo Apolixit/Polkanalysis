@@ -10,6 +10,6 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Session
 {
     public abstract class SessionKeys : BaseType
     {
-        public abstract IEnumerable<Public> Publics { get; }
+        public abstract IEnumerable<(string name, Public key)> Publics { get; }
     }
 }

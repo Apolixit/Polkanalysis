@@ -122,21 +122,15 @@ namespace Polkanalysis.Domain.Repository
             var (activeValidators, chainInfo, boundedAccount, eraRewardPoints, validatorCount, bondedEras, validatorSettings, nominators) = await WaiterHelper.WaitAndReturnAsync(
                 activeValidatorsTask, chainInfoTask, boundedAccountTask, eraRewardPointsTask, validatorCountTask, bondedErasTask, validatorSettingsTask, nominatorsTask);
 
-            var nominatorsDto = await ConvertNominatorsAsync(nominators, chainInfo, cancellationToken);
-
-            //var nominatorsDto = nominators.Others.Value.Select(n =>
-            //{
-            //    var controllerAccount = _substrateService.Storage.Staking.BondedAsync(n.Who, cancellationToken).Result;
-
-            //    return new NominatorDto()
-            //    {
-            //        StashAccount = _accountRepository.GetAccountIdentityAsync(n.Who, cancellationToken).Result,
-            //        ControllerAccount = _accountRepository.GetAccountIdentityAsync(controllerAccount, cancellationToken).Result,
-            //        RewardAccount = PayeeAccountAsync(n.Who, cancellationToken).Result,
-            //        Bonded = n.Value.Value.Value.ToDouble(chainInfo.TokenDecimals)
-            //    };
-            //}).ToList();
-
+            var publicsDto = validatorSessionKey.Publics.Select(x =>
+            {
+                return new PublicDto()
+                {
+                    Name = x.name,
+                    KeyType = x.key.Key,
+                    Data = Utils.Bytes2HexString(x.key.Value.ToBytes())
+                };
+            });
             var isValidatorActive = activeValidatorsTask != null && activeValidators.Value.Any(x => x.Equals(validator));
             var validatorDto = new ValidatorDto()
             {
@@ -146,13 +140,33 @@ namespace Polkanalysis.Domain.Repository
                 SelfBonded = nominators.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 TotalBonded = nominators.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 Commission = (double)validatorSettings.Commission.Value.Value,
-                SessionKey = null, //node.Create().AddData(validatorSessionKey),
+                SessionKey = publicsDto,
                 Status = isValidatorActive ? AliveStatusDto.Active : AliveStatusDto.Inactive,
-                Nominators = nominatorsDto,
+                Nominators = new List<NominatorDto>(),
                 Eras = new List<EraLightDto>(), // TODO mapping
                 Rewards = new List<RewardDto>(), // TODO mapping
             };
             return validatorDto;
+        }
+
+        public async Task<IEnumerable<NominatorLightDto>> GetNominatorsBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken)
+        {
+            var validator = new SubstrateAccount(validatorAddress);
+
+            // Is my account a validator ?
+            var validatorSessionKey = await _substrateService.Storage.Session.NextKeysAsync(validator, cancellationToken);
+
+            // If validator session key is not set => account is not a validator
+            if (validatorSessionKey == null)
+                throw new InvalidOperationException($"Address {validatorAddress} is not a validator");
+
+            var currentEra = await _substrateService.Storage.Staking.CurrentEraAsync(cancellationToken);
+            var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);
+
+            // Era stakers will return something if my validator is currently active in this current Era
+            var nominators = await _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(currentEra, validator), cancellationToken);
+
+            return await ConvertNominatorsAsync(nominators, chainInfo, cancellationToken);
         }
 
         /// <summary>
@@ -162,40 +176,55 @@ namespace Polkanalysis.Domain.Repository
         /// <param name="chainInfo"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<NominatorDto>> ConvertNominatorsAsync(Exposure nominators, Properties chainInfo, CancellationToken cancellationToken)
+        public async Task<IEnumerable<NominatorLightDto>> ConvertNominatorsAsync(Exposure nominators, Properties chainInfo, CancellationToken cancellationToken)
         {
+            // I try to do the most non-blocking asynchronous call to optimize fetching data
             List<(
+                Task<Nominations> nominationsTask,
                 Task<SubstrateAccount> nominatorControllerAccountTask,
                 Task<UserAddressDto> nominatorStashAccountTask,
                 Task<UserAddressDto> nominatorRewardAccountTask,
-                double bounded)> nominatorAccountTask = new List<(Task<SubstrateAccount> nominatorControllerAccountTask, Task<UserAddressDto> nominatorStashAccountTask, Task<UserAddressDto> nominatorRewardAccountTask, double)>();
+                double bounded,
+                Task<UserAddressDto>? userAddressTask)> nominatorsAccountTask = new List<(Task<Nominations>, Task<SubstrateAccount>, Task<UserAddressDto>, Task<UserAddressDto>, double, Task<UserAddressDto>?)>();
 
-            foreach (var n in nominators.Others.Value)
+            // I need to get nominator account result to fetch identity
+            var nominatorsAndBoundedAccount = nominators.Others.Value.Select(x =>
             {
-                nominatorAccountTask.Add(
+                return new { IndividualExposure = x, BoundedAccount = _substrateService.Storage.Staking.BondedAsync(x.Who, cancellationToken) };
+            });
+            await Task.WhenAll(nominatorsAndBoundedAccount.Select(x => x.BoundedAccount));
+
+            // Every asynchronous calls are saved as Task
+            foreach (var n in nominatorsAndBoundedAccount)
+            {
+                nominatorsAccountTask.Add(
                     (
-                    _substrateService.Storage.Staking.BondedAsync(n.Who, cancellationToken),
-                    _accountRepository.GetAccountIdentityAsync(n.Who, cancellationToken),
-                    PayeeAccountAsync(n.Who, cancellationToken),
-                    n.Value.Value.Value.ToDouble(chainInfo.TokenDecimals)
+                    _substrateService.Storage.Staking.NominatorsAsync(n.IndividualExposure.Who, cancellationToken),
+                    n.BoundedAccount,
+                    _accountRepository.GetAccountIdentityAsync(n.IndividualExposure.Who, cancellationToken),
+                    PayeeAccountAsync(n.IndividualExposure.Who, cancellationToken),
+                    n.IndividualExposure.Value.Value.Value.ToDouble(chainInfo.TokenDecimals),
+                    _accountRepository.GetAccountIdentityAsync(n.BoundedAccount.Result, cancellationToken)
                     )
                 );
             }
 
-            var nominatorsDto = new List<NominatorDto>();
-            foreach (var nominatorAccount in nominatorAccountTask)
+            var nominatorsDto = new List<NominatorLightDto>();
+            foreach (var nominatorAccount in nominatorsAccountTask)
             {
-                var (nominatorControllerAccount, nominatorStashAccount, nominatorRewardAccount) = await WaiterHelper.WaitAndReturnAsync(
-                    nominatorAccount.nominatorControllerAccountTask,
+                var (nominations, nominatorStashAccount, nominatorRewardAccount, nominatorIdentityController) = await WaiterHelper.WaitAndReturnAsync(
+                    nominatorAccount.nominationsTask,
                     nominatorAccount.nominatorStashAccountTask,
-                    nominatorAccount.nominatorRewardAccountTask);
+                    nominatorAccount.nominatorRewardAccountTask,
+                    nominatorAccount.userAddressTask);
 
-                nominatorsDto.Add(new NominatorDto()
+                nominatorsDto.Add(new NominatorLightDto()
                 {
                     StashAccount = nominatorStashAccount,
-                    ControllerAccount = await _accountRepository.GetAccountIdentityAsync(nominatorControllerAccount, cancellationToken),
+                    ControllerAccount = nominatorIdentityController,
                     RewardAccount = nominatorRewardAccount,
-                    Bonded = nominatorAccount.bounded
+                    Bonded = nominatorAccount.bounded,
+                    Status = nominations.Suppressed.Value ? AliveStatusDto.Inactive : AliveStatusDto.Active
                 });
             }
 
@@ -227,10 +256,15 @@ namespace Polkanalysis.Domain.Repository
             var nominatorsDto = new List<NominatorLightDto>();
             if (nominatorsResult.Count == 0) return nominatorsDto;
 
-            foreach(var (nominatorAccount, nomination) in nominatorsResult)
+            var stashAccount = await Task.WhenAll(nominatorsResult.Select(x =>
+            {
+                return _accountRepository.GetAccountIdentityAsync(x.Item1, cancellationToken);
+            }));
+
+            foreach(var (nominatorAccount, nomination, stashAccountIdentity) in nominatorsResult.Zip(stashAccount).Select(x => Tuple.Create(x.First.Item1, x.First.Item2, x.Second)))
             {
                 var nominatorLight = new NominatorLightDto();
-                nominatorLight.StashAccount = await _accountRepository.GetAccountIdentityAsync(nominatorAccount, cancellationToken);
+                nominatorLight.StashAccount = stashAccountIdentity;
                 nominatorLight.Bonded = 0;
                 nominatorLight.Status = nomination.Suppressed.Value ? AliveStatusDto.Inactive : AliveStatusDto.Active;
                 nominatorsDto.Add(nominatorLight);

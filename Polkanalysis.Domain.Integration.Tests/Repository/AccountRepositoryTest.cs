@@ -13,6 +13,7 @@ using NSubstitute;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
+    [Timeout(RepositoryMaxTimeout)]
     public class AccountRepositoryTest : PolkadotIntegrationTest
     {
         private IAccountRepository _accountRepository;

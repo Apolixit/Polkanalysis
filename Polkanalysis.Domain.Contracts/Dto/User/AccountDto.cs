@@ -5,7 +5,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
     public class AccountDto
     {
         public required UserInformationsDto InformationsDto { get; set; } = new UserInformationsDto();
-        public AddressDto Address { get; set; }
+        public UserAddressDto Address { get; set; }
         public required BalancesDto Balances { get; set; }
         public uint AccountIndex { get; set; }
         public required uint Nonce { get; set; }
@@ -13,17 +13,17 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
         public IEnumerable<AccountType> AccountTypes { get; set; } = Enumerable.Empty<AccountType>();
 
         public AccountDto() { }
-        public AccountDto(string name, string ss58Address, string publicKey)
-        {
-            InformationsDto = new UserInformationsDto() { Name = name };
-            Address = new AddressDto()
-            {
-                Address = ss58Address,
-                PublicKey = publicKey
-            };
-            Balances = new BalancesDto();
-            AvatarUrl = $"/images/avatars/{name.ToLower()}.png";
-        }
+        //public AccountDto(string name, string ss58Address, string publicKey)
+        //{
+        //    InformationsDto = new UserInformationsDto() { Name = name };
+        //    Address = new AddressDto()
+        //    {
+        //        Address = ss58Address,
+        //        PublicKey = publicKey
+        //    };
+        //    Balances = new BalancesDto();
+        //    AvatarUrl = $"/images/avatars/{name.ToLower()}.png";
+        //}
 
         public AccountDto WithBalance(double balance)
         {

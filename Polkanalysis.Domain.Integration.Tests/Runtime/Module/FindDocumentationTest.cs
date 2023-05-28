@@ -46,11 +46,6 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             Assert.IsNotNull(_palletBuilder.FindDocumentation(e));
         }
 
-        //public void FindDocumentation_Pallet_ShouldSuceed(object e)
-        //{
-        //    Assert.IsNotNull(_palletBuilder.FindDocumentation((Enum)e));
-        //}
-
         [Test]
         public void FindDocumentation_PalletTimestampEventSet_ShouldSuceed()
         {

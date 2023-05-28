@@ -54,6 +54,18 @@ namespace Polkanalysis.Api.Controllers
             });
         }
 
+        [HttpGet("validators/{address}/nominators")]
+        [Produces(typeof(IEnumerable<NominatorLightDto>))]
+        public async Task<ActionResult<IEnumerable<NominatorLightDto>>> GetValidatorNominatorsAsync(string address)
+        {
+            if (string.IsNullOrEmpty(address)) return BadRequest();
+
+            return await SendAndHandleResponseAsync(new NominatorsQuery()
+            {
+                ValidatorAddress = address
+            });
+        }
+
         [HttpGet("nominators")]
         [Produces(typeof(IEnumerable<NominatorLightDto>))]
         public async Task<ActionResult<IEnumerable<NominatorLightDto>>> GetNominatorsAsync()

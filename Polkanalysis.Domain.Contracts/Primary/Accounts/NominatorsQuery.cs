@@ -12,5 +12,6 @@ namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
     public class NominatorsQuery : IRequest<Result<IEnumerable<NominatorLightDto>, ErrorResult>>
     {
+        public string? ValidatorAddress { get; set; }
     }
 }

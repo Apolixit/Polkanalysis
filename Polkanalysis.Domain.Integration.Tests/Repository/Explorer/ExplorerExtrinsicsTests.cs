@@ -14,6 +14,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
+    [Timeout(RepositoryMaxTimeout)]
     public class ExplorerExtrinsicsTests : ExplorerRepositoryTest
     {
         [Test]

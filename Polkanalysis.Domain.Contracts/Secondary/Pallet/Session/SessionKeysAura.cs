@@ -13,9 +13,9 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Session
     {
         public Public Aura { get; set; }
 
-        public override IEnumerable<Public> Publics => new List<Public>()
+        public override IEnumerable<(string name, Public key)> Publics => new List<(string, Public)>()
         {
-            Aura
+            ("Aura", Aura)
         };
 
         public override byte[] Encode()
