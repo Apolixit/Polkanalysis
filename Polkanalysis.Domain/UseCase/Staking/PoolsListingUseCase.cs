@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
-using Polkanalysis.Domain.Contracts.Dto.Staking;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Primary.Parachain;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;

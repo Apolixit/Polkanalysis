@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Staking
+namespace Polkanalysis.Domain.Contracts.Dto.Staking.Reward
 {
     public class RewardDto
     {

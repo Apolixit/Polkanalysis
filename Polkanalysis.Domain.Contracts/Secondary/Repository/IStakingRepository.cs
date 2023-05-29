@@ -1,11 +1,10 @@
 ﻿using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Dto.Staking;
+using Polkanalysis.Domain.Contracts.Dto.Era;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 using Polkanalysis.Domain.Contracts.Dto.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Repository
 {
@@ -19,6 +18,9 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <returns></returns>
         public Task<ValidatorDto> GetValidatorDetailAsync(string validatorAddress, CancellationToken cancellationToken);
         public Task<IEnumerable<ValidatorLightDto>> GetValidatorsAsync(CancellationToken cancellationToken);
+
+        public Task<IEnumerable<EraLightDto>> GetErasBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken);
+        public Task<IEnumerable<RewardDto>> GetRewardsBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken);
         public Task<IEnumerable<NominatorLightDto>> GetNominatorsBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken);
 
         public Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken);

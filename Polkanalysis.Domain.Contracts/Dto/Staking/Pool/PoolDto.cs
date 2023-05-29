@@ -1,5 +1,6 @@
 ﻿using Microsoft;
 using Polkanalysis.Domain.Contracts.Dto.Event;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Staking
+namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
 {
     public class PoolDto
     {

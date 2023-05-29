@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Dto.Staking;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using System;

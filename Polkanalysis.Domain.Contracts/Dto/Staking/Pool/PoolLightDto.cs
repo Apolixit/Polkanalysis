@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Staking
+namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
 {
     public class PoolLightDto
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Dto.User;
-using Polkanalysis.Domain.Contracts.Primary.Accounts;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
 namespace Polkanalysis.Domain.UseCase.Nominator

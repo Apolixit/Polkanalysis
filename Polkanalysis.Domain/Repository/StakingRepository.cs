@@ -4,7 +4,6 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Era;
-using Polkanalysis.Domain.Contracts.Dto.Staking;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Runtime;
@@ -19,6 +18,10 @@ using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Helper;
 using Substrate.NetApi.Model.Rpc;
 using Ardalis.GuardClauses;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -141,12 +144,19 @@ namespace Polkanalysis.Domain.Repository
                 TotalBonded = nominators.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 Commission = (double)validatorSettings.Commission.Value.Value,
                 SessionKey = publicsDto,
-                Status = isValidatorActive ? AliveStatusDto.Active : AliveStatusDto.Inactive,
-                Nominators = new List<NominatorDto>(),
-                Eras = new List<EraLightDto>(), // TODO mapping
-                Rewards = new List<RewardDto>(), // TODO mapping
+                Status = isValidatorActive ? AliveStatusDto.Active : AliveStatusDto.Inactive
             };
             return validatorDto;
+        }
+
+        public async Task<IEnumerable<EraLightDto>> GetErasBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken)
+        {
+            return new List<EraLightDto>();
+        }
+
+        public async Task<IEnumerable<RewardDto>> GetRewardsBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken)
+        {
+            return new List<RewardDto>();
         }
 
         public async Task<IEnumerable<NominatorLightDto>> GetNominatorsBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken)
@@ -284,7 +294,7 @@ namespace Polkanalysis.Domain.Repository
 
             // Is my account a nominator ?
             var nominatorSettings = await _substrateService.Storage.Staking.NominatorsAsync(nominatorAccount, cancellationToken);
-            if (nominatorSettings == null)
+            if (nominatorSettings.Suppressed == null && nominatorSettings.Targets == null && nominatorSettings.SubmittedIn == null)
                 throw new InvalidOperationException($"Address {nominatorAddress} is not a nominator");
 
             // Check for Event<Rewarded>

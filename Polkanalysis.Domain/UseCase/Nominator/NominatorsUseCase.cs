@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking;
-using Polkanalysis.Domain.Contracts.Dto.User;
-using Polkanalysis.Domain.Contracts.Primary.Accounts;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.UseCase.Staking;
@@ -17,10 +17,10 @@ namespace Polkanalysis.Domain.UseCase.Nominator
 {
     public class NominatorsUseCase : UseCase<NominatorsUseCase, IEnumerable<NominatorLightDto>, NominatorsQuery>
     {
-        private readonly IStakingRepository _roleMemberRepository;
+        private readonly IStakingRepository _stakingRepository;
         public NominatorsUseCase(IStakingRepository roleMemberRepository, ILogger<NominatorsUseCase> logger) : base(logger)
         {
-            _roleMemberRepository = roleMemberRepository;
+            _stakingRepository = roleMemberRepository;
         }
 
         public async override Task<Result<IEnumerable<NominatorLightDto>, ErrorResult>> Handle(NominatorsQuery request, CancellationToken cancellationToken)
@@ -32,10 +32,10 @@ namespace Polkanalysis.Domain.UseCase.Nominator
 
             if(request.ValidatorAddress != null)
             {
-                result = await _roleMemberRepository.GetNominatorsBoundedToValidatorAsync(request.ValidatorAddress, cancellationToken);
+                result = await _stakingRepository.GetNominatorsBoundedToValidatorAsync(request.ValidatorAddress, cancellationToken);
             } else
             {
-                result = await _roleMemberRepository.GetNominatorsAsync(cancellationToken);
+                result = await _stakingRepository.GetNominatorsAsync(cancellationToken);
             }
             
             return Helpers.Ok(result);

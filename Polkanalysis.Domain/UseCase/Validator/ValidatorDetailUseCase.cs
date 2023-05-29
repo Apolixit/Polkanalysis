@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Result;
-using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 
 namespace Polkanalysis.Domain.UseCase.Validator
 {

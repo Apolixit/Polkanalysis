@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Staking
+namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
 {
     public class PoolGlobalSettingsDto
     {
@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking
         /// Minimum of token to create a new pool
         /// </summary>
         public required double MinimumCreatePool { get; set; }
-        
+
         /// <summary>
         /// Maximum pool that can exists
         /// Can be nullable if no maximum has been set

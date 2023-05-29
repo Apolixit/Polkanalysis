@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
-using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary;
-using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.UseCase.Runtime;
 using Polkanalysis.Domain.UseCase.Nominator;
 using System;
@@ -12,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Nominator
 {
