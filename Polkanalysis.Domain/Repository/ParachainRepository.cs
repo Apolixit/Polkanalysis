@@ -10,6 +10,9 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Configuration.Contracts.Information;
 using Ardalis.GuardClauses;
+using Polkanalysis.Domain.Contracts.Dto.Informations;
+using Newtonsoft.Json.Linq;
+using Polkanalysis.Domain.Helper;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -62,6 +65,34 @@ namespace Polkanalysis.Domain.Repository
 
             return details;
         }
+
+        public async Task<BlockchainDetailsDto?> GetCurrentBlockchainDetailProjectAsync(CancellationToken cancellationToken)
+        {
+            var (properties, health, fullName, version) = await WaiterHelper.WaitAndReturnAsync(
+                _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken),
+                _substrateNodeRepository.Rpc.System.HealthAsync(cancellationToken),
+                _substrateNodeRepository.Rpc.System.NameAsync(cancellationToken),
+                _substrateNodeRepository.Rpc.System.VersionAsync(cancellationToken)
+            );
+
+            if (_blockchainStaticInformations.RelayChains == null)
+                return null;
+
+            var infos = _blockchainStaticInformations.RelayChains
+                .SelectMany(x => x.BlockainInformations)
+                .SingleOrDefault(x => x.Name == _substrateNodeRepository.BlockchainName);
+
+            return new BlockchainDetailsDto() {
+                BlockchainInformationDetail = infos ?? new BlockchainProject(),
+                IsRelayChain = _blockchainStaticInformations.RelayChains.Any(x => x.RelayChainName == _substrateNodeRepository.BlockchainName),
+                FullName = fullName,
+                IsAlive = health.ShouldHavePeers,
+                TokenDecimal = properties.TokenDecimals,
+                TokenSymbol = properties.TokenSymbol,
+                Version = version
+            };
+        }
+
 
         public async Task<IEnumerable<ParachainLightDto>> GetParachainsAsync(CancellationToken cancellationToken)
         {

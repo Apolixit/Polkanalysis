@@ -79,6 +79,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Tests", "Polkanalysis.Configuration.Tests\Polkanalysis.Configuration.Tests.csproj", "{86F9825A-1466-4D55-8C31-197FAA2FE336}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.WebApp", "Polkanalysis.WebApp\Polkanalysis.WebApp.csproj", "{F5DD510C-6B04-440B-BB53-EBE27C5C561D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +195,10 @@ Global
 		{86F9825A-1466-4D55-8C31-197FAA2FE336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F9825A-1466-4D55-8C31-197FAA2FE336}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F9825A-1466-4D55-8C31-197FAA2FE336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5DD510C-6B04-440B-BB53-EBE27C5C561D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5DD510C-6B04-440B-BB53-EBE27C5C561D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5DD510C-6B04-440B-BB53-EBE27C5C561D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5DD510C-6B04-440B-BB53-EBE27C5C561D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -224,6 +230,7 @@ Global
 		{7515678A-AE79-43B5-9236-2A40AD7B5523} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 		{0F4D590A-2154-4B9C-A058-5A3AA8E531C0} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 		{86F9825A-1466-4D55-8C31-197FAA2FE336} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
+		{F5DD510C-6B04-440B-BB53-EBE27C5C561D} = {CB427406-E3C9-402D-9C25-F35C450D7D2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31C4F337-85EF-42F2-9358-F402619BBAE7}

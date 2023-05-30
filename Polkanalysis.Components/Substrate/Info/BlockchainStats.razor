@@ -30,9 +30,9 @@
 
     protected async override Task OnInitializedAsync()
     {
-        var res = await apiService.GetHelperAsync<GlobalStatsDto>("/api/polkadot/stats/sumup");
+        //var res = await apiService.GetHelperAsync<GlobalStatsDto>("/api/polkadot/stats/sumup");
 
-        AmountTransfer = res.TransfersVolume;
-        IsLoading = false;
+        //AmountTransfer = res.TransfersVolume;
+        //IsLoading = false;
     }
 }

@@ -8,7 +8,6 @@
 @inject IMediator _mediator;
 @inject ILogger<MainLayout> logger;
 
-
 <!-- Start wrapper-->
 <div id="wrapper">
 
@@ -29,7 +28,7 @@
 
     <div class="content-wrapper">
         <div class="container-fluid">
-            @if (_substrateService.IsConnected())
+            @if (isCurrentlyConnected)
             {
                 @Body
 
@@ -91,21 +90,37 @@
 
 @code {
     protected bool isCurrentlyConnected = false;
+    private bool _forceRerender;
 
     protected override async Task OnInitializedAsync()
     {
-        await _substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
-        {
-            if (isCurrentlyConnected != isConnected)
-            {
-                logger.LogInformation($"Is connected : {isConnected}");
-                isCurrentlyConnected = isConnected;
+        await _substrateService.ConnectAsync();
+        isCurrentlyConnected = true;
+        StateHasChanged();
+        //await _substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
+        //{
+        //    if (isCurrentlyConnected != isConnected)
+        //    {
+        //        logger.LogInformation($"Is connected : {isConnected}");
+        //        isCurrentlyConnected = isConnected;
 
-                await _mediator.Send(new SubscribeBlockCommand());
+        //        //await _mediator.Send(new SubscribeBlockCommand());
+        //        //_forceRerender = true;
+        //        //StateHasChanged();
 
-                StateHasChanged();
-            }
+        //        await InvokeAsync(() => StateHasChanged());
+        //    }
 
-        }, CancellationToken.None);
+        //}, CancellationToken.None);
     }
+
+    //protected override bool ShouldRender()
+    //{
+    //    if (_forceRerender)
+    //    {
+    //        _forceRerender = false;
+    //        return true;
+    //    }
+    //    return base.ShouldRender();
+    //}
 }
