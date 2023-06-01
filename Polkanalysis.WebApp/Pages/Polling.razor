@@ -1,0 +1,96 @@
+﻿@page "/polling"
+@using MediatR;
+@using MediatR.Courier;
+@using Polkanalysis.Domain.Contracts.Dto.Block;
+@using Polkanalysis.Domain.Contracts.Primary.Notification;
+@using Polkanalysis.Domain.Contracts.Secondary.Repository;
+@using Polkanalysis.Domain.Contracts.Secondary;
+
+@inject ISubstrateRepository _substrateService;
+@inject IExplorerRepository _blockRepository;
+@inject ICourier _courier;
+@inject IMediator _mediator;
+@inject IPublisher _publisher;
+@inject ILogger<Polling> _logger;
+
+<h3>Polling</h3>
+<div>
+    <p>Fetching @Blocks.Count() blocks</p>
+    <ul>
+        @foreach (var block in Blocks)
+        {
+            <li>@block.Number</li>
+        }
+    </ul>
+</div>
+
+
+@code {
+    [Parameter] public List<BlockLightDto> Blocks { get; set; } = new List<BlockLightDto>();
+    private bool shouldRender;
+
+    protected override bool ShouldRender() => true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _logger.LogInformation($"IsConnected = {_substrateService.IsConnected()}");
+
+        if (!_substrateService.IsConnected())
+        {
+            _logger.LogInformation($"Try to connect");
+            await _substrateService.ConnectAsync();
+            _logger.LogInformation($"Connected !");
+        }
+
+        var blocks = await _blockRepository.GetBlocksAsync(2, CancellationToken.None);
+        Blocks.AddRange(blocks);
+
+        //await InvokeAsync(() => StateHasChanged());
+        await _blockRepository.SubscribeNewBlocksAsync(TestBlockAsync, CancellationToken.None);
+        
+
+        //_courier.Subscribe<BlockNotification>(HandleBlockAsync);
+        //await _mediator.Send(new SubscribeBlockCommand());
+
+        //await _publisher.Publish(new BlockNotification()
+        //    {
+        //        blockLight = null
+        //    });
+        //shouldRender = true;  
+    }
+
+    public Task HandleBlockAsync(BlockNotification notification, CancellationToken cancellationToken)
+    {
+        //Console.WriteLine(notification.blockLight.Number);
+        //_logger.LogInformation("New block handle !");
+
+        return Task.CompletedTask;
+    }
+
+    public void TestBlockAsync(BlockLightDto blockLight)
+    {
+        Blocks.Insert(0, blockLight);
+
+        if (Blocks.Count > 10)
+        {
+            Blocks = Blocks.Take(10).ToList();
+        }
+
+        _logger.LogInformation("New block handle ! Should refresh UI");
+
+        //shouldRender = true;
+        //ShouldRender();
+        //InvokeAsync(() => StateHasChanged());
+        InvokeAsync(() => StateHasChanged());
+    }
+
+    public class HandleNewBlockUseCase : INotificationHandler<BlockNotification>
+    {
+        public Task Handle(BlockNotification notification, CancellationToken cancellationToken)
+        {
+            var x = 1;
+
+            return Task.CompletedTask;
+        }
+    }
+}

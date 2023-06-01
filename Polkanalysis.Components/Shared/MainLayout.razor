@@ -92,35 +92,19 @@
     protected bool isCurrentlyConnected = false;
     private bool _forceRerender;
 
-    protected override async Task OnInitializedAsync()
+    protected override bool ShouldRender() => true;
+
+    protected override void OnInitialized()
     {
-        await _substrateService.ConnectAsync();
-        isCurrentlyConnected = true;
-        StateHasChanged();
-        //await _substrateService.CheckBlockchainStateAsync(async (bool isConnected) =>
-        //{
-        //    if (isCurrentlyConnected != isConnected)
-        //    {
-        //        logger.LogInformation($"Is connected : {isConnected}");
-        //        isCurrentlyConnected = isConnected;
+        _substrateService.CheckBlockchainStateAsync((bool isConnected) =>
+        {
+            if (isCurrentlyConnected != isConnected)
+            {
+                logger.LogInformation($"Is connected : {isConnected}");
+                isCurrentlyConnected = isConnected;
 
-        //        //await _mediator.Send(new SubscribeBlockCommand());
-        //        //_forceRerender = true;
-        //        //StateHasChanged();
-
-        //        await InvokeAsync(() => StateHasChanged());
-        //    }
-
-        //}, CancellationToken.None);
+                InvokeAsync(() => StateHasChanged());
+            }
+        }, CancellationToken.None);
     }
-
-    //protected override bool ShouldRender()
-    //{
-    //    if (_forceRerender)
-    //    {
-    //        _forceRerender = false;
-    //        return true;
-    //    }
-    //    return base.ShouldRender();
-    //}
 }

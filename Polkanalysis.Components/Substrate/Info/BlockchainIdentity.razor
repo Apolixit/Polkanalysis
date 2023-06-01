@@ -1,9 +1,11 @@
-﻿@using Polkanalysis.Components.Services.Http;
+﻿@using OperationResult;
+@using Polkanalysis.Components.Services.Http;
 @using Polkanalysis.Domain.Contracts.Dto.Informations;
 @using Polkanalysis.Domain.Contracts.Primary.Informations;
 @inject IApiService apiService;
+@inject IMediator _mediator;
 
-<Data Request="request">
+<DataMediator Request="request">
     <h5 class="text-white mb-0">
         Blockchain name : @context.BlockchainInformationDetail.Name
         <span class="float-right"><i class="fa fa-shopping-cart"></i></span>
@@ -12,14 +14,15 @@
         @context.TokenSymbol
     </div>
     <p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
-</Data>
+</DataMediator>
 
 @code {
-    private ApiRequest<BlockchainDetailsDto> request;
+    private Task<Result<BlockchainDetailsDto, ErrorResult>> request;
     private BlockchainDetailsDto? blockchainDetail;
 
     protected async override Task OnInitializedAsync()
     {
-        request = new ApiRequest<BlockchainDetailsDto>("/api/polkadot/information");
+        request = _mediator.Send(new BlockchainDetailsQuery(), CancellationToken.None);
+        //request = new ApiRequest<BlockchainDetailsDto>("/api/polkadot/information");
     }
 }

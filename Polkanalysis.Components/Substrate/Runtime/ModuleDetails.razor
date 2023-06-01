@@ -1,0 +1,158 @@
+﻿@page "/module/{moduleName}"
+@using OperationResult;
+@using Polkanalysis.Components.Dto;
+@using Polkanalysis.Components.Services.Http;
+@using Polkanalysis.Domain.Contracts.Dto.Module;
+@using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
+
+@inject IApiService apiService;
+@inject IMediator _mediator;
+
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div class="panel mt-10">
+        <div class="panel-heading p-3">
+            <h2>@context.Information.PalletName details</h2>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-heading p-4">
+            <h4>Calls</h4>
+        </div>
+    </div>
+    <Table Elems="context.Calls" Context="call">
+        <ThContent>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Documentation</th>
+        </ThContent>
+        <TbodyContent>
+            <tr>
+                <td>@call.Name</td>
+                <td>@call.NbParameter</td>
+                <td>@call.Documentation</td>
+            </tr>
+            <ModuleTypeField Arguments="call.Arguments"></ModuleTypeField>
+        </TbodyContent>
+    </Table>
+
+    <div class="panel">
+        <div class="panel-heading p-4">
+            <h4>Events</h4>
+        </div>
+    </div>
+    <Table Elems="context.Events" Context="eventElem">
+        <ThContent>
+            <th>Name</th>
+            <th>Documentation</th>
+            <th>Attributes</th>
+        </ThContent>
+        <TbodyContent>
+            <tr>
+                <td>@eventElem.Name</td>
+                <td>@eventElem.Documentation</td>
+                <td>@eventElem.SumUpArguments()</td>
+            </tr>
+            <ModuleTypeField Arguments="eventElem.Arguments"></ModuleTypeField>
+        </TbodyContent>
+    </Table>
+
+    <div class="panel">
+        <div class="panel-heading p-4">
+            <h4>Storage functions</h4>
+        </div>
+    </div>
+    <Table Elems="context.Storage" Context="storage">
+        <ThContent>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Documentation</th>
+        </ThContent>
+        <TbodyContent>
+            <tr>
+                <td rowspan="4">@storage.Name</td>
+                <td>Type</td>
+                <td>@storage.StorageType</td>
+            </tr>
+            <tr>
+                <td>Documentation</td>
+                <td>@storage.Documentation</td>
+            </tr>
+            <tr>
+                <td>Modifier</td>
+                <td>@storage.StorageModifier</td>
+            </tr>
+            <tr>
+                <td>Default</td>
+                <td>@storage.Default</td>
+            </tr>
+        </TbodyContent>
+    </Table>
+
+    <div class="panel">
+        <div class="panel-heading p-4">
+            <h4>Constants</h4>
+        </div>
+    </div>
+    <Table Elems="context.Constants" Context="constant">
+        <ThContent>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Documentation</th>
+        </ThContent>
+        <TbodyContent>
+            <tr>
+                <td rowspan="3">@constant.Name</td>
+                <td>Type</td>
+                <td>@constant.Type</td>
+            </tr>
+            <tr>
+                <td>Documentation</td>
+                <td>@constant.Documentation</td>
+            </tr>
+            <tr>
+                <td>Value</td>
+                <td>@constant.Value</td>
+            </tr>
+        </TbodyContent>
+    </Table>
+
+    <div class="panel">
+        <div class="panel-heading p-4">
+            <h4>Error</h4>
+        </div>
+    </div>
+    <Table Elems="context.Errors" Context="error">
+        <ThContent>
+            <th>Name</th>
+            <th>Documentation</th>
+        </ThContent>
+        <TbodyContent>
+            <tr>
+                <td>@error.Name</td>
+                <td>@error.Documentation</td>
+            </tr>
+        </TbodyContent>
+    </Table>
+</DataMediator>
+
+@code {
+    [Parameter] public required string ModuleName { get; set; }
+    //private ApiRequest<ModuleDetailDto> request = default!;
+    private Task<Result<ModuleDetailDto, ErrorResult>> request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = default!;
+
+    protected override void OnInitialized()
+    {
+        //request = new ApiRequest<ModuleDetailDto>($"/api/polkadot/runtimemodule/{ModuleName.ToLower()}");
+        request = _mediator.Send(new RuntimeModuleDetailQuery(ModuleName.ToLower()), CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Modules", "/modules"),
+            new BreadcrumbDto(ModuleName, $"/module/{ModuleName}")
+        };
+    }
+}

@@ -1,23 +1,15 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Domain.Contracts.Dto;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Runtime.Mapping;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Domain.Runtime.Module;
-using Polkanalysis.Infrastructure.DirectAccess.Repository;
-using Polkanalysis.Infrastructure.Polkadot.Mapper;
-using MediatR.Courier;
-using Polkanalysis.Domain.UseCase.Explorer.Block;
 using Polkanalysis.Configuration.Extentions;
-using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
+using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Common.Database;
+using Polkanalysis.Domain.UseCase.Explorer.Block;
+using MediatR.Courier;
+using MediatR;
+using Polkanalysis.Domain.UseCase;
 
 namespace ConsoleTest;
 
@@ -55,23 +47,21 @@ public class Program
 
     private static void ConfigureServices(IServiceCollection services)
     {
-        services
-            .AddMediatR(cfg =>
-            {
-                cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
-                cfg.RegisterServicesFromAssembly(typeof(BlockLightQuery).Assembly);
-            })
-            .AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly)
-            //.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>))
-            .AddSingleton<PolkadotMapping>()
-            .AddSingleton<ISubstrateRepository, PolkadotRepository>()
-            .AddSingleton<IExplorerRepository, ExplorerRepository>()
-            .AddSingleton<IModelBuilder, ModelBuilder>()
-            .AddSingleton<ISubstrateEndpoint, SubstrateEndpoint>()
-            .AddSingleton<ISubstrateDecoding, SubstrateDecoding>()
-            .AddSingleton<IPalletBuilder, PalletBuilder>()
-            .AddSingleton<INodeMapping, EventNodeMapping>()
-            .AddSingleton<IBlockchainMapping, PolkadotMapping>()
-            .AddSingleton<ICurrentMetaData, CurrentMetaData>();
+        services.AddEndpoint();
+        services.AddSubstrateRepositories();
+        services.AddPolkadotBlockchain();
+        services.AddDatabaseEvents();
+        services.AddSubstrateLogic();
+
+        services.AddMediatR(cfg => {
+            cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+        });
+        services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+
+        //services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
+
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
     }
 }

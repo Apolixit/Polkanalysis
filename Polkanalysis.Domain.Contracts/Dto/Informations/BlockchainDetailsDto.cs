@@ -9,7 +9,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Informations
 {
     public class BlockchainDetailsDto
     {
-        public required BlockchainProject BlockchainInformationDetail { get; set; }
+        public BlockchainProject BlockchainInformationDetail { get; set; }
         public string FullName { get; set; }
         public bool IsRelayChain { get; set; }
         public bool IsAlive { get; set; }

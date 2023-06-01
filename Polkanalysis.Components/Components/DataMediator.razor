@@ -1,0 +1,56 @@
+﻿@using OperationResult;
+@typeparam TRes
+@inject IMediator _mediator;
+
+@if (querying)
+{
+    <Loader />
+}
+else
+{
+    @if (Response == null)
+    {
+        @if (ErrorTemplate != null)
+        {
+            @ErrorTemplate
+            ;
+        }
+        else
+        {
+            <div>
+                An error occured while fetching data
+            </div>
+        }
+    }
+    else
+    {
+        @ChildContent(Response)
+        ;
+    }
+}
+
+@code {
+    [Parameter] public required Task<Result<TRes, ErrorResult>> Request { get; set; }
+    [Parameter] public required RenderFragment<TRes> ChildContent { get; set; }
+    public TRes? Response { get; set; }
+    public bool querying = true;
+
+    [Parameter] public RenderFragment? ErrorTemplate { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Request == null)
+        {
+            throw new ArgumentNullException($"{nameof(Request)}");
+        }
+
+        var mediatorResponse = await Request;
+        if(mediatorResponse.IsSuccess)
+        {
+            Response = mediatorResponse.Value;
+        }
+        querying = false;
+
+        await InvokeAsync(() => StateHasChanged());
+    }
+}

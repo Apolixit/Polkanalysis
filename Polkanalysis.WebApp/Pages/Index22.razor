@@ -1,0 +1,48 @@
+﻿@using System.Text.Json
+@using System.Text.Json.Serialization
+@using Polkanalysis.Domain.Contracts.Dto.Informations;
+@inject IHttpClientFactory ClientFactory
+
+<h3>Index</h3>
+<a href="/polling">Poll</a>
+@if (isError || blockchainDetailsDto is null)
+{
+    <p>Unable to get blockchain info. Please try again later.</p>
+}
+else
+{
+    <h1>YOUHOUUUU</h1>
+    <div>@blockchainDetailsDto.FullName</div>
+}
+
+@code {
+    private bool shouldRender;
+    public BlockchainDetailsDto? blockchainDetailsDto { get; set; }
+    public bool isError;
+    protected override bool ShouldRender() => shouldRender;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //var request = new HttpRequestMessage(HttpMethod.Get,
+        //    "https://localhost:7066/api/polkadot/information");
+        //request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        //request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+
+        //var client = ClientFactory.CreateClient();
+
+        //var response = await client.SendAsync(request);
+
+        //if (response.IsSuccessStatusCode)
+        //{
+        //    var responseStream = await response.Content.ReadAsStringAsync();
+        //    blockchainDetailsDto = JsonSerializer.Deserialize
+        //        <BlockchainDetailsDto>(responseStream, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+        //}
+        //else
+        //{
+        //    isError = true;
+        //}
+
+        //shouldRender = true;
+    }
+}

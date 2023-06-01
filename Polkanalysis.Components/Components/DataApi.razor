@@ -1,0 +1,96 @@
+﻿@using Microsoft.Extensions.Logging;
+@using Polkanalysis.Components.Services.Http;
+@using Polkanalysis.Domain.Contracts.Primary.Result;
+@typeparam TRes
+
+@inject IApiService apiService;
+
+@if (querying)
+{
+    <Loader />
+}
+else
+{
+    @if (displayErrorTemplate)
+    {
+        @if (ErrorTemplate != null)
+        {
+            @ErrorTemplate
+            ;
+        }
+        else
+        {
+            <div>
+                An error occured while fetching data
+            </div>
+        }
+    }
+    else if (displayErrorHttpTemplate)
+    {
+        @if (ErrorHttpTemplate != null)
+        {
+            @ErrorHttpTemplate
+            ;
+        }
+        else
+        {
+            <div>
+                Polkanalysis API is in trouble and does not respond :'( 
+            </div>
+        }
+    }
+    else
+    {
+        @ChildContent(Response)
+        ;
+    }
+}
+
+
+
+@code {
+    [Parameter] public required ApiRequest<TRes> Request { get; set; }
+    [Parameter] public required RenderFragment<TRes> ChildContent { get; set; }
+
+    public bool querying = true;
+    public TRes? Response { get; set; }
+
+    private bool displayErrorTemplate = false;
+    [Parameter] public RenderFragment? ErrorTemplate { get; set; }
+
+    private bool displayErrorHttpTemplate = false;
+    [Parameter] public RenderFragment? ErrorHttpTemplate { get; set; }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (Request == null)
+        {
+            throw new ArgumentNullException($"{nameof(Request)}");
+        }
+
+        if (Request != null)
+        {
+            try
+            {
+                Request.Result = await apiService.GetHelperAsync<TRes>(Request.Url);
+                Response = Request.Result;
+
+                //Console.WriteLine($"{Request.Url} response received in Data component (response = {Response})");
+            }
+            catch (HttpRequestException)
+            {
+                displayErrorHttpTemplate = true;
+            }
+            catch(Exception)
+            {
+                displayErrorTemplate = true;
+            }
+            finally
+            {
+                querying = false;
+                StateHasChanged();
+            }
+        } 
+    }
+}

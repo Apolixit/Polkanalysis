@@ -1,0 +1,61 @@
+﻿@page "/modules";
+
+@using OperationResult;
+@using Polkanalysis.Components.Dto;
+@using Polkanalysis.Components.Services.Http;
+@using Polkanalysis.Domain.Contracts.Dto.Module;
+@using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
+
+@inject IMediator _mediator;
+
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+    
+    <Table Elems="context" Context="module">
+        <ThContent>
+            <th>Name</th>
+            <th>Calls</th>
+            <th>Events</th>
+            <th>Storage</th>
+            <th>Constants</th>
+            <th>Errors</th>
+            <th>Details</th>
+        </ThContent>
+        <TbodyContent>
+            <tr>
+                <th>@module.Information.PalletName</th>
+                <th>@module.Calls.Count()</th>
+                <th>@module.Events.Count()</th>
+                <th>@module.Storage.Count()</th>
+                <th>@module.Constants.Count()</th>
+                <th>@module.Errors.Count()</th>
+                <th>
+                    @{
+                        string urlDetail = $"/module/{module.Information.PalletName}";
+                    }
+
+                    <Microsoft.AspNetCore.Components.Routing.NavLink class="nav-link" href="@urlDetail">
+                        <img src="_content/Polkanalysis.Components/assets/polkadot-icons/Action Right.svg" /> Details
+                    </Microsoft.AspNetCore.Components.Routing.NavLink>
+                </th>
+            </tr>
+        </TbodyContent>
+    </Table>
+</DataMediator>
+
+@code {
+    //private ApiRequest<IEnumerable<ModuleDetailDto>> request;
+    private Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
+
+    protected override void OnInitialized()
+    {
+        //request = new ApiRequest<IEnumerable<ModuleDetailDto>>("/api/polkadot/runtimemodule");
+        request = _mediator.Send(new RuntimeModulesQuery(), CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Modules", "/modules")
+        };
+    }
+}

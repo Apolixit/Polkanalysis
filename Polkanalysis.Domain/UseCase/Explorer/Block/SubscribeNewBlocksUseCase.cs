@@ -36,16 +36,21 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
 
         public async Task Handle(SubscribeBlockCommand request, CancellationToken cancellationToken)
         {
-            await _explorerRepository.SubscribeNewBlocksAsync(async (BlockLightDto blockLight) =>
+            await _publisher.Publish(new BlockNotification()
             {
-                await _publisher.Publish(new BlockNotification()
-                {
-                    blockLight = blockLight
-                });
-            }, cancellationToken);
+                blockLight = null
+            });
+
+            //await _explorerRepository.SubscribeNewBlocksAsync(async (BlockLightDto blockLight) =>
+            //{
+            //    _publisher.Publish(new BlockNotification()
+            //    {
+            //        blockLight = blockLight
+            //    });
+            //}, cancellationToken);
 
 
-            _courier.SubscribeWeak<BlockNotification>(HandleBlockAsync);
+            //_courier.SubscribeWeak<BlockNotification>(HandleBlockAsync);
             //await Task.CompletedTask;
         }
 

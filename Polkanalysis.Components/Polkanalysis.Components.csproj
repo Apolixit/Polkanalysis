@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Custom\Bajun\Avatar\" />
+    <Folder Include="Substrate\Stats\" />
     <Folder Include="wwwroot\assets\images\blockchain\bajun\" />
     <Folder Include="wwwroot\assets\images\blockchain\ajuna\" />
     <Folder Include="wwwroot\assets\images\blockchain\moonriver\" />

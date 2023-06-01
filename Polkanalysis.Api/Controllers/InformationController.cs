@@ -18,7 +18,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet()]
         [Produces(typeof(BlockchainDetailsDto))]
-        public async Task<ActionResult<BlockchainDetailsDto>> GetBlockAsync()
+        public async Task<ActionResult<BlockchainDetailsDto>> GetBlockchainInformationAsync()
         {
             return await SendAndHandleResponseAsync(new BlockchainDetailsQuery());
         }

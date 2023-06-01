@@ -565,18 +565,21 @@ namespace Polkanalysis.Domain.Repository
 
             var lastBlockNum = (await _substrateService.Rpc.Chain.GetBlockAsync()).Block.Header.Number.Value;
 
-            var blocksHash = await Task.WhenAll(Enumerable.Range((int)lastBlockNum - nbLastBlocks, (int)lastBlockNum)
-                .Select(x =>
-            {
-                return _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)x));
-            }));
+            var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)lastBlockNum), cancellationToken);
+            var bl = await GetBlockLightAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            return new List<BlockLightDto>() { bl };
+            //var blocksHash = await Task.WhenAll(Enumerable.Range((int)lastBlockNum - nbLastBlocks, (int)lastBlockNum)
+            //    .Select(x =>
+            //{
+            //    return _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)x));
+            //}));
 
-            var blocksData = await Task.WhenAll(blocksHash.Select(hash =>
-            {
-                return GetBlockLightAsync(_blockParameter.FromBlockHash(hash), cancellationToken);
-            }));
+            //var blocksData = await Task.WhenAll(blocksHash.Select(hash =>
+            //{
+            //    return GetBlockLightAsync(_blockParameter.FromBlockHash(hash), cancellationToken);
+            //}));
 
-            return blocksData;
+            //return blocksData;
         }
 
         public async Task<IEnumerable<LogDto>> GetLogsAsync(uint blockId, CancellationToken cancellationToken)
