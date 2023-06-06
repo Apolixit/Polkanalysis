@@ -1,5 +1,29 @@
-﻿<h3>ValidatorListing</h3>
+﻿@page "/validators"
+
+@using OperationResult;
+@using Polkanalysis.Components.Dto;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
+
+@inject IMediator _mediator;
+
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div>@context.FirstOrDefault()?.StashAddress</div>
+</DataMediator>
 
 @code {
+    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>> request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
+    protected async override Task OnInitializedAsync()
+    {
+        request = _mediator.Send(new ValidatorsQuery(), CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Validators", "/validators")
+        };
+    }
 }

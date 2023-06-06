@@ -1,5 +1,7 @@
-﻿<h3>Parachain</h3>
+﻿@page "/parachains/{ParachainId:int}"
+
+<h3>Parachain</h3>
 
 @code {
-
+    [Parameter] public int ParachainId { get; set; }
 }

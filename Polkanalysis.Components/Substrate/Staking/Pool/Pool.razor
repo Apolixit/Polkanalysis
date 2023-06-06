@@ -1,5 +1,33 @@
-﻿<h3>Pool</h3>
+﻿@page "/pools/{PoolId:int}"
+@using OperationResult;
+@using Polkanalysis.Components.Dto;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
+
+@inject IMediator _mediator;
+
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div>Reward pool : @context.RewardPool</div>
+</DataMediator>
 
 @code {
+    [Parameter] public int PoolId { get; set; }
+    private Task<Result<PoolDto, ErrorResult>> request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
+    protected async override Task OnInitializedAsync()
+    {
+        request = _mediator.Send(new PoolDetailQuery()
+            {
+                poolId = (uint)PoolId
+            }, CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Pool detail", $"/pools/{PoolId}")
+        };
+    }
 }

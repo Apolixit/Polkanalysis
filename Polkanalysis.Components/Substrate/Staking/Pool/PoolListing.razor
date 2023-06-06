@@ -1,5 +1,26 @@
-﻿<h3>PoolListing</h3>
+﻿@page "/pools"
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject IMediator _mediator;
+
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div>Reward pool : @context.FirstOrDefault()?.RewardPool</div>
+</DataMediator>
 
 @code {
+    private Task<Result<IEnumerable<PoolLightDto>, ErrorResult>> request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
+    protected async override Task OnInitializedAsync()
+    {
+        request = _mediator.Send(new PoolsQuery(), CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Pools", "/pools")
+        };
+    }
 }

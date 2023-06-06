@@ -1,5 +1,26 @@
-﻿<h3>NominatorListing</h3>
+﻿@page "/nominators/"
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
+
+@inject IMediator _mediator;
+
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div>Bonded : @context.FirstOrDefault()?.Bonded</div>
+</DataMediator>
 
 @code {
+    private Task<Result<IEnumerable<NominatorLightDto>, ErrorResult>> request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
+    protected async override Task OnInitializedAsync()
+    {
+        request = _mediator.Send(new NominatorsQuery(), CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Nominators", "/nominators")
+        };
+    }
 }

@@ -1,29 +1,56 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 <ul class="sidebar-menu do-nicescrol">
-    <li class="sidebar-header">MAIN NAVIGATION</li>
+    @*<li class="sidebar-header">MAIN NAVIGATION</li>*@
     <li>
         <NavLink href="/" Match="NavLinkMatch.All">
             <PolkadotIcons IconName="Overview.svg" /> Home
         </NavLink>
     </li>
+    <li class="sidebar-header">Explorer</li>
     <li>
         <NavLink href="blocks">
             <PolkadotIcons IconName="Block Explorer.svg" /> Blocks
         </NavLink>
     </li>
     <li>
+        <NavLink href="extrinsics">
+            <PolkadotIcons IconName="Block Explorer.svg" /> Extrinsics
+        </NavLink>
+    </li>
+
+    <li class="sidebar-header">Runtime</li>
+    <li>
         <NavLink href="modules">
             <PolkadotIcons IconName="Infratructure.svg" /> Modules
         </NavLink>
     </li>
+
+    <li class="sidebar-header">Staking</li>
     <li>
-        <NavLink href="modules">
-            <PolkadotIcons IconName="Staking.svg" /> Staking
+        <NavLink href="pools">
+            <PolkadotIcons IconName="Staking.svg" /> Pools
         </NavLink>
     </li>
     <li>
-        <NavLink href="modules">
-            <PolkadotIcons IconName="Verified Account.svg" /> Accounts
+        <NavLink href="validators">
+            <PolkadotIcons IconName="Staking.svg" /> Validators
+        </NavLink>
+    </li>
+    <li>
+        <NavLink href="nominators">
+            <PolkadotIcons IconName="Staking.svg" /> Nominators
+        </NavLink>
+    </li>
+
+    <li class="sidebar-header">Parachains</li>
+    <li>
+        <NavLink href="parachains">
+            <PolkadotIcons IconName="Verified Account.svg" /> Parachain
+        </NavLink>
+    </li>
+    <li>
+        <NavLink href="crowdloans">
+            <PolkadotIcons IconName="Verified Account.svg" /> Crowloans
         </NavLink>
     </li>
 </ul>
