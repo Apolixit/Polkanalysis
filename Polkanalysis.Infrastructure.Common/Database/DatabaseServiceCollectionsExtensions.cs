@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Polkanalysis.Infrastructure.Common.Database.Repository;
 using Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity;
 using Polkanalysis.Infrastructure.Common.Database.Repository.Events.System;
+using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,8 @@ namespace Polkanalysis.Infrastructure.Common.Database
     {
         public static IServiceCollection AddDatabaseEvents(this IServiceCollection services)
         {
+            services.AddSingleton<IEventsFactory, EventsFactory>();
+
             services.AddScoped<BalancesDustLostRepository>();
             services.AddScoped<BalancesEndowedRepository>();
             services.AddScoped<BalancesReservedRepository>();

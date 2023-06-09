@@ -26,6 +26,8 @@ using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
 using Polkanalysis.DatabaseWorker.Parameters;
 using Serilog;
 using Prometheus;
+using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Domain.UseCase.Explorer.Block;
 
 IConfiguration config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -41,7 +43,7 @@ var host = Host.CreateDefaultBuilder(args)
 .ConfigureServices((hostContext, services) =>
 {
     services
-    .AddHostedService<EventsWorker>()
+    .AddHostedService<MainWorker>()
     .AddSingleton(config)
     .AddDbContext<SubstrateDbContext>(options =>
     {
@@ -56,20 +58,22 @@ var host = Host.CreateDefaultBuilder(args)
         l.SetMinimumLevel(LogLevel.Information);
         l.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
     })
-    .AddSingleton<ISubstrateRepository, PolkadotRepository>()
-    .AddSingleton<PolkadotMapping>()
-    .AddSingleton<IExplorerRepository, ExplorerRepository>()
-    .AddSingleton<ISubstrateEndpoint, SubstrateEndpoint>()
-    .AddSingleton<ISubstrateDecoding, SubstrateDecoding>()
-    .AddSingleton<IPalletBuilder, PalletBuilder>()
-    .AddSingleton<INodeMapping, EventNodeMapping>()
-    .AddSingleton<IBlockchainMapping, PolkadotMapping>()
-    .AddSingleton<IEventAggregateRepository, EventAggregateRepository>()
-    .AddSingleton<ICurrentMetaData, CurrentMetaData>()
-    .AddSingleton<IEventsFactory, EventsFactory>()
-    .AddSingleton<IModelBuilder, Polkanalysis.Domain.Runtime.ModelBuilder>()
     .AddSingleton<BlockPerimeter>()
-    .AddDatabaseEvents();
+    .AddSingleton<EventsWorker>()
+    .AddSingleton<PriceWorker>();
+
+    services.AddEndpoint();
+    services.AddSubstrateRepositories();
+    services.AddPolkadotBlockchain();
+    services.AddDatabaseEvents();
+    services.AddSubstrateLogic();
+
+    services.AddHttpClient();
+
+    services.AddMediatR(cfg => {
+        cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+        cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    });
 })
 .Build();
 

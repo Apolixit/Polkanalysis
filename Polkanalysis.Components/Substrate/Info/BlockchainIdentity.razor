@@ -1,16 +1,19 @@
 ﻿@using OperationResult;
 @using Polkanalysis.Components.Services.Http;
 @using Polkanalysis.Domain.Contracts.Dto.Informations;
+@using Polkanalysis.Domain.Contracts.Dto.Price;
 @using Polkanalysis.Domain.Contracts.Primary.Informations;
+@using Polkanalysis.Domain.Contracts.Primary.Price;
 @inject IApiService apiService;
 @inject IMediator _mediator;
 
-<DataMediator Request="request">
+
     <div class="row">
+    <DataMediator Request="requestDetails">
         <div class="col-sm-4 col-md-3 text-center">
             <img src="@context.BlockchainInformationDetail.LogoUrl" class="img-fluid rounded-start" alt="Logo" width="80">
         </div>
-        <div class="col-sm-8 col-md-9">
+        <div class="col-sm-6 col-md-7">
             <div class="card-body">
                 <h5 class="card-title">
                     @if(context.IsRelayChain)
@@ -70,16 +73,28 @@
                 </p>
             </div>
         </div>
+    </DataMediator>
+    <DataMediator Request="requestPrice">
+        <div class="col-sm-2">
+            <span class="fs-4">@context.Price.ToString("N2") @context.CompareToCurrency.ToString()</span>
+        </div>
+    </DataMediator>
     </div>
-</DataMediator>
+
 
 @code {
-    private Task<Result<BlockchainDetailsDto, ErrorResult>> request;
+    private Task<Result<BlockchainDetailsDto, ErrorResult>>? requestDetails;
+    private Task<Result<TokenPriceDto, ErrorResult>>? requestPrice;
     private BlockchainDetailsDto? blockchainDetail;
 
-    protected async override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        request = _mediator.Send(new BlockchainDetailsQuery(), CancellationToken.None);
+        requestDetails = _mediator.Send(new BlockchainDetailsQuery(), CancellationToken.None);
+        requestPrice = _mediator.Send(new TokenPriceQuery()
+        {
+            CoinId = "polkadot",
+            Date = DateTime.Now 
+        }, CancellationToken.None);
         //request = new ApiRequest<BlockchainDetailsDto>("/api/polkadot/information");
     }
 }

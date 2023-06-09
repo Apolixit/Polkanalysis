@@ -1,13 +1,13 @@
 ﻿@page "/"
 
 <!--Start Dashboard Content-->
-<div class="row">
+<div class="row mb-3">
     <div class="col-sm-6 border-light">
-        <div class="card mb-3">
+        <div class="card h-100">
             <BlockchainIdentity />
         </div>
     </div>
-    <div class="col-sm-6 border-light">
+    <div class="col-sm-6 h-100 border-light">
         <div class="card mb-3">
             <BlockchainStats />
         </div>
@@ -15,12 +15,27 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-3">
     <div class="col-12 col-xl-6">
         <LatestBlock />
     </div>
 
     <div class="col-12 col-xl-6">
         @*<LatestExtrinsics></LatestExtrinsics>*@
+    </div>
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-sm-6 border-light">
+        <div class="card h-100">
+            <StakingSummary />
+        </div>
+    </div>
+    <div class="col-sm-6 h-100 border-light">
+        <div class="card mb-3">
+            <ParachainSummary />
+        </div>
+
     </div>
 </div>

@@ -11,7 +11,7 @@ using Substrate.NET.Utils;
 
 namespace Polkanalysis.DatabaseWorker
 {
-    internal class EventsWorker : BackgroundService
+    public class EventsWorker
     {
         private readonly ISubstrateRepository _polkadotRepository;
         private readonly IExplorerRepository _explorerRepository;
@@ -36,14 +36,8 @@ namespace Polkanalysis.DatabaseWorker
             _logger = logger;
         }
 
-        protected async override Task ExecuteAsync(CancellationToken stoppingToken)
+        public async Task RunAsync(CancellationToken stoppingToken)
         {
-            // Connect to blockchain
-            if (!_polkadotRepository.IsConnected())
-            {
-                await _polkadotRepository.ConnectAsync();
-                _logger.LogInformation($"Succesfully connected to {_polkadotRepository.BlockchainName}");
-            }
 
             if (_blockPerimeter.IsSet())
             {
@@ -52,17 +46,9 @@ namespace Polkanalysis.DatabaseWorker
             // Subscribe to new blocks
             await ListenNewBlockAndInsertInDatabaseAsync(stoppingToken);
             //await ExampleBlockAndInsertInDatabaseAsync(stoppingToken);
-
-            
         }
 
-        public async override Task StopAsync(CancellationToken cancellationToken)
-        {
-            await _polkadotRepository.CloseAsync();
-            _logger.LogInformation($"Succesfully disconnected to {_polkadotRepository.BlockchainName}");
-
-            await base.StopAsync(cancellationToken);
-        }
+        
 
         protected async Task RequestBlocksAsync(CancellationToken stoppingToken)
         {
@@ -157,6 +143,7 @@ namespace Polkanalysis.DatabaseWorker
             }
         }
 
+        
         protected async Task ListenNewBlockAndInsertInDatabaseAsync(CancellationToken stoppingToken)
         {
 #pragma warning disable VSTHRD101 // Avoid unsupported async delegates
