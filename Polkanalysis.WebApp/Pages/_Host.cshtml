@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="~/" />
     
-    @*<link href="css/site.css" rel="stylesheet" />*@
+    <link href="css/site.css" rel="stylesheet" />
     <link href="Polkanalysis.WebApp.styles.css" rel="stylesheet" />
     
     <!--favicon-->
@@ -31,10 +31,10 @@
     <!-- Custom Style-->
     <link href="_content/Polkanalysis.Components/assets/css/app-style.css" rel="stylesheet" />
 
-    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+    <component type="typeof(HeadOutlet)" render-mode="Server" />
 </head>
 <body class="bg-theme bg-theme1">
-    <component type="typeof(App)" render-mode="ServerPrerendered" />
+    <component type="typeof(App)" render-mode="Server" />
 
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
@@ -47,6 +47,24 @@
         <a class="dismiss">🗙</a>
     </div>
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="_content/Polkanalysis.Components/assets/js/popper.min.js"></script>
+
+    <!-- simplebar js -->
+    <script src="_content/Polkanalysis.Components/assets/plugins/simplebar/js/simplebar.js"></script>
+    <!-- sidebar-menu js -->
+    <script src="_content/Polkanalysis.Components/assets/js/sidebar-menu.js"></script>
+    <!-- loader scripts -->
+    <script src="_content/Polkanalysis.Components/assets/js/jquery.loading-indicator.js"></script>
+    <!-- Custom scripts -->
+    <script src="_content/Polkanalysis.Components/assets/js/app-script.js"></script>
+    <!-- Chart js -->
+    <script src="_content/Polkanalysis.Components/assets/plugins/Chart.js/Chart.min.js"></script>
+
+    <!-- Index js -->
+    <script src="_content/Polkanalysis.Components/assets/js/index.js"></script>
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>

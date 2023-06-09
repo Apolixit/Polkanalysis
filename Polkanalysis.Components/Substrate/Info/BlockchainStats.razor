@@ -1,39 +1,73 @@
 ﻿@using OperationResult;
 @using Polkanalysis.Components.Services.Http;
 @using Polkanalysis.Domain.Contracts.Dto.Stats;
+@using Polkanalysis.Domain.Contracts.Primary.Statistics;
 @inject IApiService apiService;
-
+@inject IMediator _mediator;
 <div class="card-body">
-    <h5 class="text-white mb-0">
-        Blockchain name
-        <span class="float-right"><i class="fa fa-shopping-cart"></i></span>
-    </h5>
-    <div class="progress my-3" style="height:3px;">
-        <div class="progress-bar" style="width:55%"></div>
-    </div>
-    @if(IsLoading)
-    {
-        <Loader />
-    } else
-    {
-        <p class="mb-0 text-white small-font">
-            Amount transfered
-            <span class="float-right">@AmountTransfer DOT <i class="zmdi zmdi-long-arrow-up"></i></span>
-        </p>
-    }
-    
+    <h5 class="card-title">Summary datas</h5>
+    <DataMediator Request="request">
+        <div class="card-content">
+            <div class="row row-group m-0">
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="card-body">
+                        <h5 class="text-white mb-0">Transfers volume = @context.TransfersVolume <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
+                        <div class="progress my-3" style="height:3px;">
+                            <div class="progress-bar" style="width:55%"></div>
+                        </div>
+                        <p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="card-body">
+                        <h5 class="text-white mb-0">Active accounts = @context.ActiveAccounts <span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                        <div class="progress my-3" style="height:3px;">
+                            <div class="progress-bar" style="width:55%"></div>
+                        </div>
+                        <p class="mb-0 text-white small-font">Total Revenue <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="card-body">
+                        <h5 class="text-white mb-0">Staking pools = @context.StakingPools <span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                        <div class="progress my-3" style="height:3px;">
+                            <div class="progress-bar" style="width:55%"></div>
+                        </div>
+                        <p class="mb-0 text-white small-font">Visitors <span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="card-body">
+                        <h5 class="text-white mb-0">Runtime upgrades = @context.RuntimeUpgrades <span class="float-right"><i class="fa fa-envira"></i></span></h5>
+                        <div class="progress my-3" style="height:3px;">
+                            <div class="progress-bar" style="width:55%"></div>
+                        </div>
+                        <p class="mb-0 text-white small-font">Messages <span class="float-right">+2.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </DataMediator>
+</div>
+<div class="card-footer text-body-secondary">
+    2 days ago
 </div>
 
 @code {
     public bool IsLoading = true;
     public double AmountTransfer;
+    //private ApiRequest<GlobalStatsDto> request;
+    private Task<Result<GlobalStatsDto, ErrorResult>>? request;
 
     protected async override Task OnInitializedAsync()
     {
         // GlobalStatsQuery
         //var res = await apiService.GetHelperAsync<GlobalStatsDto>("/api/polkadot/stats/sumup");
-
+        //request = new ApiRequest<GlobalStatsDto>("/api/polkadot/stats/sumup");
+        request = _mediator.Send(new GlobalStatsQuery(), CancellationToken.None);
         //AmountTransfer = res.TransfersVolume;
         //IsLoading = false;
+
+
     }
 }

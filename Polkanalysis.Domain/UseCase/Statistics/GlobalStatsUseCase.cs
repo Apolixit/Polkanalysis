@@ -13,6 +13,7 @@ using FluentValidation;
 using Polkanalysis.Domain.Adapter.Block;
 using System.ComponentModel.DataAnnotations;
 using Polkanalysis.Domain.Contracts.Primary.Statistics;
+using Polkanalysis.Domain.Contracts.Secondary;
 
 namespace Polkanalysis.Domain.UseCase.Statistics
 {
@@ -23,7 +24,7 @@ namespace Polkanalysis.Domain.UseCase.Statistics
             return accountAddress.Length >= 10 && accountAddress.Length <= 50;
         }
 
-        public GlobalStatsQueryValidator(BlockParameterLike blockParameter)
+        public GlobalStatsQueryValidator(ISubstrateRepository _substrateService)
         {
             RuleFor(c => c.fromAccount)
                 .Must((_, account) => account == null || IsAccountValid(account));
@@ -32,10 +33,10 @@ namespace Polkanalysis.Domain.UseCase.Statistics
                 .Must((_, account) => account == null || IsAccountValid(account));
 
             RuleFor(c => c.fromBlock)
-                .MustAsync(async (_, block, _) => block == null || await blockParameter.EnsureBlockNumberIsValidAsync((uint)block));
+                .MustAsync(async (_, block, _) => block == null || await new BlockParameterLike((uint)block).EnsureBlockNumberIsValidAsync(_substrateService));
 
             RuleFor(c => c.toBlock)
-                .MustAsync(async (_, block, _) => block == null || await blockParameter.EnsureBlockNumberIsValidAsync((uint)block));
+                .MustAsync(async (_, block, _) => block == null || await new BlockParameterLike((uint)block).EnsureBlockNumberIsValidAsync(_substrateService));
         }
     }
 
@@ -66,7 +67,10 @@ namespace Polkanalysis.Domain.UseCase.Statistics
 
             var globalStatsDto = new GlobalStatsDto()
             {
-                TransfersVolume = res.Sum(x => x.Amount)
+                TransfersVolume = res.Sum(x => x.Amount),
+                ActiveAccounts = 0,
+                RuntimeUpgrades = 0,
+                StakingPools = 0
             };
             return Helpers.Ok(globalStatsDto);
         }

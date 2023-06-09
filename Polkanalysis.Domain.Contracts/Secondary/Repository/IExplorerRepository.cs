@@ -28,8 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken);
-
-        Task<IEnumerable<BlockLightDto>> GetBlocksAsync(int nbLastBlocks, CancellationToken cancellationToken);
+        Task<IEnumerable<BlockLightDto>> GetLastBlocksAsync(int nbBlock, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get full details for this block

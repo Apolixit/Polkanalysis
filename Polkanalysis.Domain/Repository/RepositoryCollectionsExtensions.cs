@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.Repository
             services.AddSingleton<IParachainRepository, ParachainRepository>();
             services.AddSingleton<IStakingRepository, StakingRepository>();
 
-            services.AddSingleton<BlockParameterLike>();
+            //services.AddSingleton<BlockParameterLike>();
 
             return services;
         }

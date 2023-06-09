@@ -10,12 +10,66 @@
 
 <div class="card">
     <div class="card-header">
-        Latest block
+        <i class="bi bi-hash"></i> Latest block
     </div>
-    <div class="table-responsive">
-        <BlockListing NbBlockMax="10"></BlockListing>
+    <div class="card-body">
+        <div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-4">
+            <BlockListing NbBlockMax="10"></BlockListing>
+        </div>
     </div>
 </div>
+@*<div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-4">
+    <div class="col">
+        <div class="card border border-warning h-100">
+            <div class="card-body">
+                <h5 class="card-title">Block 12</h5>
+                <p class="card-text">
+                    This is a wider card with supporting text below as a natural lead-in to additional content.
+                    This content is a little bit longer.
+                </p>
+                <p class="card-text text-end">
+                    <i class="bi bi-person-check-fill"></i> XXXX
+                </p>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border border-success h-100">
+            <div class="card-body">
+                <h5 class="card-title">Block 11</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border border-success h-100">
+            <div class="card-body">
+                <h5 class="card-title">Block 10</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border border-success h-100">
+            <div class="card-body">
+                <h5 class="card-title">Block 10</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+        </div>
+    </div>
+</div>*@
 
 @code {
     [Parameter] public int NbBlockMax { get; set; } = 10;

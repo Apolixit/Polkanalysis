@@ -1,18 +1,23 @@
 ﻿@page "/"
 
 <!--Start Dashboard Content-->
-<div class="row row-group m-0">
-    <div class="col-12 col-xl-6 border-light">
-        <BlockchainIdentity />
+<div class="row">
+    <div class="col-sm-6 border-light">
+        <div class="card mb-3">
+            <BlockchainIdentity />
+        </div>
     </div>
-    <div class="col-12 col-xl-6 border-light">
-        <BlockchainStats />
+    <div class="col-sm-6 border-light">
+        <div class="card mb-3">
+            <BlockchainStats />
+        </div>
+        
     </div>
 </div>
 
 <div class="row">
     <div class="col-12 col-xl-6">
-        <LatestBlock></LatestBlock>
+        <LatestBlock />
     </div>
 
     <div class="col-12 col-xl-6">

@@ -13,6 +13,6 @@ namespace Polkanalysis.Domain.Contracts.Primary.Informations
 {
     public class BlockchainDetailsQuery : IRequest<Result<BlockchainDetailsDto, ErrorResult>>
     {
-        public string BlockchainName { get; set; }
+        public string? BlockchainName { get; set; }
     }
 }

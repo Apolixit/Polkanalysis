@@ -1,0 +1,26 @@
+﻿<div class="inline-block"
+     @onmouseover="(() => this._displayPopover = true)"
+     @onmouseout="(() => this._displayPopover = false)">
+    @TogglePopoverContent
+</div>
+
+<div role="tooltip" class="inline-block absolute text-sm font-light rounded-lg border border-gray-200 shadow-sm transition-opacity duration-300
+@(this._displayPopover ? "visible opacity-100" : "invisible opacity-0")"
+     data-popper-placement="top">
+    @PopoverContent
+    <div data-popper-arrow></div>
+</div>
+
+@code {
+    /// <summary>
+    /// The element to be hover to display the popover
+    /// </summary>
+    [Parameter] public RenderFragment TogglePopoverContent { get; set; }
+
+    /// <summary>
+    /// Popover html content
+    /// </summary>
+    [Parameter] public RenderFragment PopoverContent { get; set; }
+
+    private bool _displayPopover = false;
+}

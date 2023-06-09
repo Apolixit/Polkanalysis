@@ -6,14 +6,71 @@
 @inject IMediator _mediator;
 
 <DataMediator Request="request">
-    <h5 class="text-white mb-0">
-        Blockchain name : @context.BlockchainInformationDetail.Name
-        <span class="float-right"><i class="fa fa-shopping-cart"></i></span>
-    </h5>
-    <div>
-        @context.TokenSymbol
+    <div class="row">
+        <div class="col-sm-4 col-md-3 text-center">
+            <img src="@context.BlockchainInformationDetail.LogoUrl" class="img-fluid rounded-start" alt="Logo" width="80">
+        </div>
+        <div class="col-sm-8 col-md-9">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @if(context.IsRelayChain)
+                    {
+                        <i class="bi bi-bank mr-2"></i>
+                        <div class="mr-2"></div>
+                    }
+                    @context.BlockchainInformationDetail.Name <small><em>(@context.FullName)</em></small>
+                </h5>
+                <div class="card-text">
+                    <p>Token : @context.TokenSymbol</p>
+                    <p>Version : @context.Version</p>
+                </div>
+                <p class="card-text">
+                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Website))
+                    {
+                        <span class="text-body-secondary fs-4 m-1">
+                            <a href="@context.BlockchainInformationDetail.Website"><i class="bi bi-browser-chrome"></i></a>
+                        </span>
+                    }
+                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Whitepaper))
+                    {
+                        <span class="text-body-secondary fs-4 m-1">
+                            <a href="@context.BlockchainInformationDetail.Whitepaper"><i class="bi bi-book"></i></a>
+                        </span>
+                    }
+                    @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Github))
+                    {
+                        <span class="text-body-secondary fs-4 m-1">
+                            <a href="@context.BlockchainInformationDetail.Github"><i class="bi bi-github"></i></a>
+                        </span>
+                    }
+                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Twitter))
+                    {
+                        <span class="text-body-secondary fs-4 m-1">
+                            <a href="@context.BlockchainInformationDetail.Twitter"><i class="bi bi-twitter"></i></a>
+                        </span>
+                    }
+                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Twitter))
+                    {
+                        <span class="text-body-secondary fs-4 m-1">
+                            <a href="@context.BlockchainInformationDetail.Discord"><i class="bi bi-discord"></i></a>
+                        </span>
+                    }
+                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Medium))
+                    {
+                        <span class="text-body-secondary fs-4 m-1">
+                            <a href="@context.BlockchainInformationDetail.Medium"><i class="bi bi-medium"></i></a>
+                        </span>
+                    }
+                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Telegram))
+                    {
+                        <span class="text-body-secondary fs-4 m-1">
+                            <a href="@context.BlockchainInformationDetail.Telegram"><i class="bi bi-telegram"></i></a>
+                        </span>
+                    }
+                </p>
+            </div>
+        </div>
     </div>
-    <p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
 </DataMediator>
 
 @code {

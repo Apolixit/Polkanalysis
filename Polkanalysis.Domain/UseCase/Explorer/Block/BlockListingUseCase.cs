@@ -31,7 +31,7 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
                 request.NbLastBlocksToFetch = 100;
             }
 
-            var result = await _explorerRepository.GetBlocksAsync(request.NbLastBlocksToFetch, cancellationToken);
+            var result = await _explorerRepository.GetLastBlocksAsync(request.NbLastBlocksToFetch, cancellationToken);
 
             if (result == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"{nameof(result)} has no data");

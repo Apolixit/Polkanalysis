@@ -51,5 +51,16 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
             var blockInfo = await _explorerRepository.GetBlockDetailsAsync(blockString, CancellationToken.None);
             Assert.IsNotNull(blockInfo);
         }
+
+        [Test]
+        [TestCase(10)]
+        public async Task GetLastBlocks_ShouldWorkAsync(int nbBlock)
+        {
+            var res = await _explorerRepository.GetLastBlocksAsync(nbBlock, CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Count(), Is.EqualTo(nbBlock));
+            Assert.That(res.Select(x => x.Number).Distinct().Count, Is.EqualTo(nbBlock));
+        }
     }
 }

@@ -1,56 +1,55 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 <ul class="sidebar-menu do-nicescrol">
-    @*<li class="sidebar-header">MAIN NAVIGATION</li>*@
     <li>
         <NavLink href="/" Match="NavLinkMatch.All">
-            <PolkadotIcons IconName="Overview.svg" /> Home
+            <i class="bi bi-house"></i> Home
         </NavLink>
     </li>
     <li class="sidebar-header">Explorer</li>
     <li>
         <NavLink href="blocks">
-            <PolkadotIcons IconName="Block Explorer.svg" /> Blocks
+            <i class="bi bi-hash"></i> Blocks
         </NavLink>
     </li>
     <li>
         <NavLink href="extrinsics">
-            <PolkadotIcons IconName="Block Explorer.svg" /> Extrinsics
+            <i class="bi bi-journal-album"></i> Extrinsics
         </NavLink>
     </li>
 
     <li class="sidebar-header">Runtime</li>
     <li>
         <NavLink href="modules">
-            <PolkadotIcons IconName="Infratructure.svg" /> Modules
+            <i class="bi bi-infinity"></i> Modules
         </NavLink>
     </li>
 
     <li class="sidebar-header">Staking</li>
     <li>
         <NavLink href="pools">
-            <PolkadotIcons IconName="Staking.svg" /> Pools
+            <i class="bi bi-stack"></i> Pools
         </NavLink>
     </li>
     <li>
         <NavLink href="validators">
-            <PolkadotIcons IconName="Staking.svg" /> Validators
+            <i class="bi bi-person-fill-check"></i> Validators
         </NavLink>
     </li>
     <li>
         <NavLink href="nominators">
-            <PolkadotIcons IconName="Staking.svg" /> Nominators
+            <i class="bi bi-person-hearts"></i> Nominators
         </NavLink>
     </li>
 
     <li class="sidebar-header">Parachains</li>
     <li>
         <NavLink href="parachains">
-            <PolkadotIcons IconName="Verified Account.svg" /> Parachain
+            <i class="bi bi-link-45deg"></i> Parachain
         </NavLink>
     </li>
     <li>
         <NavLink href="crowdloans">
-            <PolkadotIcons IconName="Verified Account.svg" /> Crowloans
+            <i class="bi bi-coin"></i> Crowloans
         </NavLink>
     </li>
 </ul>

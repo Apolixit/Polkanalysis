@@ -27,6 +27,8 @@ using Serilog;
 using Ardalis.GuardClauses;
 using Polkanalysis.Domain.Helper;
 using Polkanalysis.Domain.Contracts.Dto.Logs;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -38,7 +40,7 @@ namespace Polkanalysis.Domain.Repository
         private readonly IAccountRepository _accountRepository;
         private readonly ILogger<ExplorerRepository> _logger;
         private BlockLightDto? _lastBlock;
-        private BlockParameterLike _blockParameter;
+        //private BlockParameterLike _blockParameter;
 
         public ExplorerRepository(
             ISubstrateRepository substrateNodeRepository,
@@ -53,11 +55,11 @@ namespace Polkanalysis.Domain.Repository
             _accountRepository = accountRepository;
             _logger = logger;
 
-            _blockParameter = new BlockParameterLike(_substrateService);
+            //_blockParameter = new BlockParameterLike(_substrateService);
         }
 
         public async Task<SubstrateAccount> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
-            => await GetBlockAuthorAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
+            => await GetBlockAuthorAsync(new BlockParameterLike(blockId), cancellationToken);
 
         /// <summary>
         /// Return the validator block
@@ -72,7 +74,7 @@ namespace Polkanalysis.Domain.Repository
         /// <returns></returns>
         protected async Task<SubstrateAccount> GetBlockAuthorAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync();
+            var blockHash = await block.ToBlockHashAsync(_substrateService);
 
             // Get validators from given block
             var blockValidators = await _substrateService.At(blockHash).Storage.Session.ValidatorsAsync(cancellationToken);
@@ -114,7 +116,7 @@ namespace Polkanalysis.Domain.Repository
             if(blockAuthor != null)
                 return blockAuthor;
 
-            throw new InvalidOperationException($"Unable to retrieve validator from block num {await block.ToBlockNumberAsync()}");
+            throw new InvalidOperationException($"Unable to retrieve validator from block num {await block.ToBlockNumberAsync(_substrateService)}");
 
             static (Nameable name, BaseVec<U8> data) BuildAuthorData(EnumDigestItem digestItem)
             {
@@ -170,17 +172,19 @@ namespace Polkanalysis.Domain.Repository
         public bool IsGranPaConcensus(Nameable nameable) =>nameable.Display() == "FRNK";
 
         public async Task<BlockLightDto> GetBlockLightAsync(uint blockId, CancellationToken cancellationToken)
-            => await GetBlockLightAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
+            => await GetBlockLightAsync(new BlockParameterLike(blockId), cancellationToken);
 
         public Task<BlockLightDto> GetBlockLightAsync(string blockHash, CancellationToken cancellationToken)
-            => GetBlockLightAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetBlockLightAsync(new BlockParameterLike(blockHash), cancellationToken);
 
         public Task<BlockLightDto> GetBlockLightAsync(Hash blockHash, CancellationToken cancellationToken)
-            => GetBlockLightAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetBlockLightAsync(new BlockParameterLike(blockHash), cancellationToken);
         protected async Task<BlockLightDto> GetBlockLightAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync();
+            var blockHash = await block.ToBlockHashAsync(_substrateService);
             var blockData = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
+
+            //_logger.LogInformation($"Block hash = {blockHash} / Block num = {blockData.Block.Header.Number}");
             if (blockData == null)
                 throw new BlockException($"{blockData} for block hash = {blockHash.Value} is null");
 
@@ -192,11 +196,17 @@ namespace Polkanalysis.Domain.Repository
 
             var authorIdentity = await _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken);
 
+            // I get the last finalized head (i.e. validate by granpa finality) and assume that every block ahead are not
+            // finalized
+            var lastFinalizedBlockHash = await _substrateService.Rpc.Chain.GetFinalizedHeadAsync(cancellationToken);
+            var finalizedBlockData = await _substrateService.Rpc.Chain.GetBlockAsync(lastFinalizedBlockHash, cancellationToken);
+            var currentBlockStatus = blockData.Block.Header.Number.Value <= finalizedBlockData.Block.Header.Number.Value ? GlobalStatusDto.BlockStatusDto.Finalized : GlobalStatusDto.BlockStatusDto.Broadcasted;
+
             return new BlockLightDto()
             {
                 Hash = blockHash,
                 Number = blockData.Block.Header.Number.Value,
-                Status = GlobalStatusDto.BlockStatusDto.Broadcasted,
+                Status = currentBlockStatus,
                 NbExtrinsics = (uint)blockData.Block.Extrinsics.Length,
                 NbEvents = eventsCount.Value,
                 NbLogs = (uint)blockData.Block.Header.Digest.Logs.Count,
@@ -205,17 +215,17 @@ namespace Polkanalysis.Domain.Repository
             };
         }
 
-        public async Task<BlockDto> GetBlockDetailsAsync(uint blockId, CancellationToken cancellationToken) => await GetBlockDetailsAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
+        public async Task<BlockDto> GetBlockDetailsAsync(uint blockId, CancellationToken cancellationToken) => await GetBlockDetailsAsync(new BlockParameterLike(blockId), cancellationToken);
 
         public Task<BlockDto> GetBlockDetailsAsync(string blockHash, CancellationToken cancellationToken)
-            => GetBlockDetailsAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetBlockDetailsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
         public Task<BlockDto> GetBlockDetailsAsync(Hash blockHash, CancellationToken cancellationToken)
-            => GetBlockDetailsAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetBlockDetailsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
         protected async Task<BlockDto> GetBlockDetailsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync();
+            var blockHash = await block.ToBlockHashAsync(_substrateService);
             var blockDetailsTask = _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
 
             var currentDateTask = GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
@@ -305,9 +315,35 @@ namespace Polkanalysis.Domain.Repository
                 .AddMilliseconds(currentTimestamp.Value);
         }
 
-        public Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken)
+        public async Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken)
         {
-            return Task.Run(() => _lastBlock, cancellationToken);
+            //var lastHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(cancellationToken);
+            //var (_, blockHash, _) = await ExtractInformationsFromHeaderAsync(lastHeader, cancellationToken);
+
+            //return await GetBlockLightAsync(blockHash, cancellationToken);
+            return (await GetLastBlocksAsync(1, cancellationToken)).SingleOrDefault();
+        }
+
+        public async Task<IEnumerable<BlockLightDto>> GetLastBlocksAsync(int nbBlock, CancellationToken cancellationToken)
+        {
+            Guard.Against.NegativeOrZero(nbBlock);
+            if (nbBlock > 1000)
+                throw new ArgumentException($"{nameof(nbBlock)} should be lower than 1000 (currently : {nbBlock}");
+
+            // We get the last produced block
+            var lastHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(cancellationToken);
+
+            int lastBlockNumber = (int)lastHeader.Number.Value;
+
+            var blocksTaskDto = new List<Task<BlockLightDto>>();
+            for (var i = lastBlockNumber - nbBlock; i < lastBlockNumber; i++)
+            {
+                _logger.LogTrace($"Request data from block num {i}");
+                blocksTaskDto.Add(GetBlockLightAsync((uint)i, cancellationToken));
+            }
+
+            var blocksDto = await Task.WhenAll(blocksTaskDto.ToArray());
+            return blocksDto;
         }
 
         public async Task SubscribeNewBlocksAsync(Action<BlockLightDto> blockCallback, CancellationToken cancellationToken)
@@ -324,17 +360,17 @@ namespace Polkanalysis.Domain.Repository
         }
 
         public Task<IEnumerable<EventDto>> GetEventsAsync(string blockHash, CancellationToken cancellationToken)
-            => GetEventsAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetEventsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
         public async Task<IEnumerable<EventDto>> GetEventsAsync(uint blockId, CancellationToken cancellationToken)
-            => await GetEventsAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
+            => await GetEventsAsync(new BlockParameterLike(blockId), cancellationToken);
 
         public Task<IEnumerable<EventDto>> GetEventsAsync(Hash blockHash, CancellationToken cancellationToken)
-            => GetEventsAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetEventsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
         protected async Task<IEnumerable<EventDto>> GetEventsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync();
+            var blockHash = await block.ToBlockHashAsync(_substrateService);
             var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
 
             var eventsDto = new List<EventDto>();
@@ -355,16 +391,16 @@ namespace Polkanalysis.Domain.Repository
 
 
         public Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(string blockHash, CancellationToken cancellationToken)
-            => GetExtrinsicsAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetExtrinsicsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
-        public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(uint blockId, CancellationToken cancellationToken) => await GetExtrinsicsAsync(await _blockParameter.FromBlockNumberAsync(blockId), cancellationToken);
+        public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(uint blockId, CancellationToken cancellationToken) => await GetExtrinsicsAsync(new BlockParameterLike(blockId), cancellationToken);
 
         public Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(Hash blockHash, CancellationToken cancellationToken)
-            => GetExtrinsicsAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+            => GetExtrinsicsAsync(new BlockParameterLike(blockHash), cancellationToken);
 
         public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync();
+            var blockHash = await block.ToBlockHashAsync(_substrateService);
             var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
@@ -470,17 +506,17 @@ namespace Polkanalysis.Domain.Repository
 
 
         public async Task<EventDto> GetEventAsync(uint blockId, uint eventIndex, CancellationToken cancellationToken)
-            => await GetEventAsync(await _blockParameter.FromBlockNumberAsync(blockId), eventIndex, cancellationToken);
+            => await GetEventAsync(new BlockParameterLike(blockId), eventIndex, cancellationToken);
 
         public Task<EventDto> GetEventAsync(string blockHash, uint eventIndex, CancellationToken cancellationToken)
-            => GetEventAsync(_blockParameter.FromBlockHash(blockHash), eventIndex, cancellationToken);
+            => GetEventAsync(new BlockParameterLike(blockHash), eventIndex, cancellationToken);
 
         public Task<EventDto> GetEventAsync(Hash blockHash, uint eventIndex, CancellationToken cancellationToken)
-            => GetEventAsync(_blockParameter.FromBlockHash(blockHash), eventIndex, cancellationToken);
+            => GetEventAsync(new BlockParameterLike(blockHash), eventIndex, cancellationToken);
 
         public async Task<EventDto> GetEventAsync(BlockParameterLike block, uint eventIndex, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync();
+            var blockHash = await block.ToBlockHashAsync(_substrateService);
             var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
 
             var eventNode = _substrateDecode.DecodeEvent(events.Value[(int)eventIndex]);
@@ -522,17 +558,17 @@ namespace Polkanalysis.Domain.Repository
         //}
 
         public async Task<ExtrinsicDto> GetExtrinsicAsync(uint blockId, uint extrinsicIndex, CancellationToken cancellationToken) 
-            => await GetExtrinsicAsync(await _blockParameter.FromBlockNumberAsync(blockId), extrinsicIndex, cancellationToken);
+            => await GetExtrinsicAsync(new BlockParameterLike(blockId), extrinsicIndex, cancellationToken);
 
         public Task<ExtrinsicDto> GetExtrinsicAsync(string blockHash, uint extrinsicIndex, CancellationToken cancellationToken)
-            => GetExtrinsicAsync(_blockParameter.FromBlockHash(blockHash), extrinsicIndex, cancellationToken);
+            => GetExtrinsicAsync(new BlockParameterLike(blockHash), extrinsicIndex, cancellationToken);
 
         public Task<ExtrinsicDto> GetExtrinsicAsync(Hash blockHash, uint extrinsicIndex, CancellationToken cancellationToken)
-            => GetExtrinsicAsync(_blockParameter.FromBlockHash(blockHash), extrinsicIndex, cancellationToken);
+            => GetExtrinsicAsync(new BlockParameterLike(blockHash), extrinsicIndex, cancellationToken);
 
         public Task<ExtrinsicDto> GetExtrinsicAsync(BlockParameterLike block, uint extrinsicIndex, CancellationToken cancellationToken)
         {
-            var blockHash = block.ToBlockHashAsync();
+            var blockHash = block.ToBlockHashAsync(_substrateService);
             //TODO
             throw new NotImplementedException();
         }
@@ -557,35 +593,35 @@ namespace Polkanalysis.Domain.Repository
             return (blockNumber, blockHash, blockDetails);
         }
 
-        public async Task<IEnumerable<BlockLightDto>> GetBlocksAsync(int nbLastBlocks, CancellationToken cancellationToken)
-        {
-            Guard.Against.NegativeOrZero(nbLastBlocks);
-            if (nbLastBlocks > 1000)
-                throw new ArgumentException($"{nameof(nbLastBlocks)} should be lower than 1000 (currently : {nbLastBlocks}");
+        //public async Task<IEnumerable<BlockLightDto>> GetBlocksAsync(int nbLastBlocks, CancellationToken cancellationToken)
+        //{
+        //    Guard.Against.NegativeOrZero(nbLastBlocks);
+        //    if (nbLastBlocks > 1000)
+        //        throw new ArgumentException($"{nameof(nbLastBlocks)} should be lower than 1000 (currently : {nbLastBlocks}");
 
-            var lastBlockNum = (await _substrateService.Rpc.Chain.GetBlockAsync()).Block.Header.Number.Value;
+        //    var lastBlockNum = (await _substrateService.Rpc.Chain.GetBlockAsync()).Block.Header.Number.Value;
 
-            var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)lastBlockNum), cancellationToken);
-            var bl = await GetBlockLightAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
-            return new List<BlockLightDto>() { bl };
-            //var blocksHash = await Task.WhenAll(Enumerable.Range((int)lastBlockNum - nbLastBlocks, (int)lastBlockNum)
-            //    .Select(x =>
-            //{
-            //    return _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)x));
-            //}));
+        //    var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)lastBlockNum), cancellationToken);
+        //    var bl = await GetBlockLightAsync(_blockParameter.FromBlockHash(blockHash), cancellationToken);
+        //    return new List<BlockLightDto>() { bl };
+        //    //var blocksHash = await Task.WhenAll(Enumerable.Range((int)lastBlockNum - nbLastBlocks, (int)lastBlockNum)
+        //    //    .Select(x =>
+        //    //{
+        //    //    return _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)x));
+        //    //}));
 
-            //var blocksData = await Task.WhenAll(blocksHash.Select(hash =>
-            //{
-            //    return GetBlockLightAsync(_blockParameter.FromBlockHash(hash), cancellationToken);
-            //}));
+        //    //var blocksData = await Task.WhenAll(blocksHash.Select(hash =>
+        //    //{
+        //    //    return GetBlockLightAsync(_blockParameter.FromBlockHash(hash), cancellationToken);
+        //    //}));
 
-            //return blocksData;
-        }
+        //    //return blocksData;
+        //}
 
         public async Task<IEnumerable<LogDto>> GetLogsAsync(uint blockId, CancellationToken cancellationToken)
         {
-            var block = await _blockParameter.FromBlockNumberAsync(blockId);
-            var blockHash = await block.ToBlockHashAsync();
+            var block = new BlockParameterLike(blockId);
+            var blockHash = await block.ToBlockHashAsync(_substrateService);
 
             var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(blockHash, cancellationToken);
 

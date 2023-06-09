@@ -35,28 +35,29 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), Arg.Any<CancellationToken>()).Returns(
                 new Hash("0x00"));
 
-            _blockParameterLike = new BlockParameterLike(_substrateService);
+            //_blockParameterLike = new BlockParameterLike(_substrateService);
         }
 
         [Test]
         [TestCase(10)]
         public async Task FromNumber_WithValidBlockNumber_ShouldWorkAsync(int number)
         {
-            var res = await _blockParameterLike.FromBlockNumberAsync((uint)number);
-            Assert.That(res, Is.Not.Null);
+            var res = await new BlockParameterLike((uint)number).EnsureBlockNumberIsValidAsync(_substrateService);
+            Assert.That(res, Is.True);
         }
 
         [Test]
         [TestCase(100)]
         [Description("Call a block number which has been produce yet. Should fail")]
-        public void FromNumber_WithInvalidBlockNumber_ShouldFail(int number)
+        public async Task FromNumber_WithInvalidBlockNumber_ShouldFailAsync(int number)
         {
             _substrateService.Rpc.Chain.GetHeaderAsync().Returns(new Header()
             {
                 Number = new Substrate.NetApi.Model.Types.Primitive.U64(50)
             });
 
-            Assert.ThrowsAsync<BlockException>(async () => await _blockParameterLike.FromBlockNumberAsync((uint)number));
+            var isBlockValid = await new BlockParameterLike((uint)number).EnsureBlockNumberIsValidAsync(_substrateService);
+            Assert.That(isBlockValid, Is.False);
         }
 
         /// <summary>
@@ -65,36 +66,36 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
         [Test]
         public void NoInputs_ShouldFail()
         {
-            Assert.ThrowsAsync<InvalidOperationException>(_blockParameterLike.ToBlockHashAsync);
-            Assert.ThrowsAsync<InvalidOperationException>(_blockParameterLike.ToBlockNumberAsync);
+            Assert.ThrowsAsync<InvalidOperationException>(async () => await new BlockParameterLike(blockHash: null!).ToBlockHashAsync(_substrateService));
+            Assert.ThrowsAsync<InvalidOperationException>(async () => await new BlockParameterLike(blockHash: null!).ToBlockNumberAsync(_substrateService));
         }
 
         [Test]
         public async Task ToBlockHash_WithBlockNumberSet_ShouldWorkAsync()
         {
-            _blockParameterLike = await _blockParameterLike.FromBlockNumberAsync(10);
+            _blockParameterLike = new BlockParameterLike(10);
 
-            var blockHash = await _blockParameterLike.ToBlockHashAsync();
+            var blockHash = await _blockParameterLike.ToBlockHashAsync(_substrateService);
             Assert.That(blockHash.Bytes, Is.EqualTo(new Hash("0x00").Bytes));
         }
 
         [Test]
         public async Task ToBlockHash_WithBlockHashSet_ShouldReturnSelfAsync()
         {
-            _blockParameterLike = _blockParameterLike.FromBlockHash("0x00");
+            _blockParameterLike = new BlockParameterLike("0x00");
 
-            var blockHash = await _blockParameterLike.ToBlockHashAsync();
+            var blockHash = await _blockParameterLike.ToBlockHashAsync(_substrateService);
             Assert.That(blockHash.Bytes, Is.EqualTo(new Hash("0x00").Bytes));
         }
 
         [Test]
         public async Task ToBlockHash_WithBlockError_ShouldFailAsync()
         {
-            _blockParameterLike = await _blockParameterLike.FromBlockNumberAsync(10);
+            _blockParameterLike = new BlockParameterLike(10);
 
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), Arg.Any<CancellationToken>()).ReturnsNull();
 
-            Assert.ThrowsAsync<BlockException>(_blockParameterLike.ToBlockHashAsync);
+            Assert.ThrowsAsync<BlockException>(async () => await _blockParameterLike.ToBlockHashAsync(_substrateService));
         }
     }
 }

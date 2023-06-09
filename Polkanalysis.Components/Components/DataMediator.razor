@@ -30,7 +30,7 @@ else
 }
 
 @code {
-    [Parameter] public required Task<Result<TRes, ErrorResult>> Request { get; set; }
+    [Parameter] public required Task<Result<TRes, ErrorResult>>? Request { get; set; }
     [Parameter] public required RenderFragment<TRes> ChildContent { get; set; }
     public TRes? Response { get; set; }
     public bool querying = true;

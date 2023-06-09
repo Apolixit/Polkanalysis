@@ -1,9 +1,44 @@
 ﻿@using Polkanalysis.Domain.Contracts.Dto.Block;
+@using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
 @inject IExplorerRepository _blockRepository;
+@inject IMediator _mediator;
 @inject NavigationManager _navigationManager;
 
-<Table Elems="Blocks" Context="block">
+@foreach (var block in Blocks)
+{
+    var cssBorder = block.Status switch
+    {
+        GlobalStatusDto.BlockStatusDto.Finalized => "border-success",
+        GlobalStatusDto.BlockStatusDto.Broadcasted => "border-warning",
+        _ => "border-error"
+    };
+
+    <div class="col">
+        <div class="card border @cssBorder h-100 pointer-event" @onclick="(() => GoToBlockDetails(block.Number))">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-hash"></i>
+                    @block.Number
+                </h5>
+                <p class="card-text text-end">
+                    <i class="bi bi-journal-album"></i> @block.NbExtrinsics
+                    <i class="bi bi-calendar2-event"></i> @block.NbEvents
+                    <i class="bi bi-book-half"></i> @block.NbLogs
+                </p>
+                <p class="card-text">
+                    <Polkanalysis.Components.Substrate.Account.AccountSumUp User="@block.Validator" />
+                </p>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">@block.When</small>
+            </div>
+        </div>
+    </div>
+}
+
+
+@*<Table Elems="Blocks" Context="block">
     <TbodyContent>
         <tr @onclick="(() => GoToBlockDetails(block.Number))">
             <td>
@@ -18,7 +53,7 @@
             </td>
         </tr>
     </TbodyContent>
-</Table>
+</Table>*@
 
 @code {
     [Parameter] public int NbBlockMax { get; set; } = 10;
@@ -27,15 +62,14 @@
 
     protected async override Task OnInitializedAsync()
     {
-        await _blockRepository.SubscribeNewBlocksAsync((BlockLightDto blockLight) =>
+        //var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
+        //Blocks.AddRange(blocks.Value);
+
+        await _blockRepository.SubscribeNewBlocksAsync(async (_) =>
         {
-            Blocks.Insert(0, blockLight);
-
-            if (Blocks.Count > NbBlockMax)
-            {
-                Blocks = Blocks.Take(NbBlockMax).ToList();
-            }
-
+            var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
+            Blocks.Clear();
+            Blocks.AddRange(blocks.Value.OrderByDescending(x => x.Number));
             InvokeAsync(() => StateHasChanged());
         }, CancellationToken.None);
     }

@@ -42,7 +42,7 @@
             _logger.LogInformation($"Connected !");
         }
 
-        var blocks = await _blockRepository.GetBlocksAsync(2, CancellationToken.None);
+        var blocks = await _blockRepository.GetLastBlocksAsync(2, CancellationToken.None);
         Blocks.AddRange(blocks);
 
         //await InvokeAsync(() => StateHasChanged());

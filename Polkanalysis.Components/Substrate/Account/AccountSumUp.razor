@@ -1,0 +1,24 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.User;
+
+<Popover>
+    <TogglePopoverContent>
+        <button type="button" class="btn btn-sm btn-light"
+                data-bs-toggle="popover" data-bs-placement="right">
+            @if(User.Name.Length > 10)
+            {
+                <text>@string.Join("", User.Name.Take(10))</text>
+                <text>...</text>
+            } else
+            {
+                <text>@User.Name</text>
+            }
+        </button>
+    </TogglePopoverContent>
+    <PopoverContent>
+        @User.Name
+    </PopoverContent>
+</Popover>
+
+@code {
+    [Parameter] public required UserAddressDto User { get; set; }
+}

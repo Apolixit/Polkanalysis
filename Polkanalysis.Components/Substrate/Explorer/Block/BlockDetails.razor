@@ -9,90 +9,97 @@
 @using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 
 @inject IApiService apiService;
+@inject IMediator _mediator;
 
-
-<div class="card">
-    <div class="card-header">
-        Details block n°@blockId
-        <div class="card-action">
-            <div class="dropdown">
-                <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-                    <i class="icon-options"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="javascript:void();">Export PDF</a>
-                    <a class="dropdown-item" href="javascript:void();">Export Excel</a>
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+    
+    <div class="card">
+        <div class="card-header">
+            Details block n°@blockId
+            <div class="card-action">
+                <div class="dropdown">
+                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                        <i class="icon-options"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="javascript:void();">Export PDF</a>
+                        <a class="dropdown-item" href="javascript:void();">Export Excel</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="table-responsive">
+            <table class="table align-items-center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <i class="bi bi-hash"></i> Block hash
+                        </td>
+                        <td>@context.Hash</td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-hourglass-split"></i> Timestamp</td>
+                        <td>@context.Date.Date</td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-clock"></i> Block time</td>
+                        <td>@context.Date.Date</td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-battery-full"></i> Status</td>
+                        <td>@context.Status</td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-box-arrow-up"></i> Parent hash</td>
+                        <td>@context.ParentHash</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-signal-bars"></i> State root</td>
+                        <td>@context.StateRoot</td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-houses"></i> Extrinsic root</td>
+                        <td>@context.ExtrinsicsRoot</td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-person-fill-check"></i> Validator</td>
+                        <td>@context.Validator</td>
+                    </tr>
+                    <tr>
+                        <td><i class="bi bi-file-diff"></i> Spec version</td>
+                        <td>@context.SpecVersion</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+</DataMediator>
 
-    <div class="card-body">
-        @*<Data UseCaseData="@blockDetail">
-            @if (blockDetail == null)
-            {
-                <Loader />
-            }
-            else
-            {
-                <span>Hash : @blockDetail.Value.Hash</span>
 
-            }
-        </Data>*@
-
-    </div>
-    <div class="table-responsive">
-        <table class="table align-items-center">
-            <tbody>
-                <tr>
-                    <td><PolkadotIcons IconName="Block Number.svg" /> Block hash</td>
-                    <td>@blockDetail.Hash</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-alarm-clock"></i> Timestamp</td>
-                    <td>@blockDetail.Date.Date</td>
-                </tr>
-                <tr>
-                    <td><PolkadotIcons IconName="Time.svg" /> Block time</td>
-                    <td>@blockDetail.Date.Date</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-battery-empty"></i> Status</td>
-                    <td>@blockDetail.Status</td>
-                </tr>
-                <tr>
-                    <td><PolkadotIcons IconName="Blockchain.svg" /> Parent hash</td>
-                    <td>@blockDetail.ParentHash</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-signal-bars"></i> State root</td>
-                    <td>@blockDetail.StateRoot</td>
-                </tr>
-                <tr>
-                    <td><PolkadotIcons IconName="Block Explorer.svg" /> Extrinsic root</td>
-                    <td>@blockDetail.ExtrinsicsRoot</td>
-                </tr>
-                <tr>
-                    <td><PolkadotIcons IconName="Validator.svg" /> Validator</td>
-                    <td>@blockDetail.Validator</td>
-                </tr>
-                <tr>
-                    <td><PolkadotIcons IconName="Version.svg" /> Spec version</td>
-                    <td>@blockDetail.SpecVersion</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
 @code {
     [Parameter] public int? blockId { get; set; }
     [Parameter] public string? blockHash { get; set; }
-    private BlockDto blockDetail;
+    private Task<Result<BlockDto, ErrorResult>>? request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = default!;
 
     protected override async Task OnInitializedAsync()
     {
-        blockDetail = await apiService.GetHelperAsync<BlockDetailsQuery, BlockDto>("/api/polkadot/block", new BlockDetailsQuery((uint)blockId));
-        StateHasChanged();
+        //blockDetail = await apiService.GetHelperAsync<BlockDetailsQuery, BlockDto>("/api/polkadot/block", new BlockDetailsQuery((uint)blockId));
+        if(blockId != null)
+        {
+            request = _mediator.Send(new BlockDetailsQuery((uint)blockId), CancellationToken.None);
+        } else if(!string.IsNullOrEmpty(blockHash))
+        {
+            request = _mediator.Send(new BlockDetailsQuery(blockHash), CancellationToken.None);
+        }
+        //    StateHasChanged();
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Block", "/block"),
+            new BreadcrumbDto("Block detail", $"/block/{(blockId != null ? blockId : blockHash)}")
+        };
     }
 }

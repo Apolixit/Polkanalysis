@@ -1,4 +1,9 @@
-﻿<!--Start topbar header-->
+﻿@using Polkanalysis.Domain.Contracts.Dto.Informations;
+@using Polkanalysis.Domain.Contracts.Primary.Informations;
+@inject ISubstrateRepository _substrateService;
+@inject IMediator _mediator;
+
+<!--Start topbar header-->
 <header class="topbar-nav">
     <nav class="navbar navbar-expand fixed-top">
         <ul class="navbar-nav mr-auto align-items-center">
@@ -26,14 +31,25 @@
                     <i class="fa fa-bell-o"></i>
                 </a>
             </li>
-            <li class="nav-item language">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
-                </ul>
+            <li class="nav-item blockchains">
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect"
+                   data-toggle="dropdown" href="javascript:void();" @onclick="(() => dropdownBlockchain = !dropdownBlockchain)">
+                    <i class="fa fa-flag"></i>
+                </a>
+                
+                    @if (SupportedBlockchain.Count() > 0)
+                    {
+                    <ul class="dropdown-menu dropdown-menu-right @(dropdownBlockchain ? "show" : string.Empty)">
+                        @foreach(var current in SupportedBlockchain)
+                        {
+                            <li class="dropdown-item">
+                                <img src="@current.BlockchainInformationDetail.LogoUrl" />
+                                @current.FullName
+                            </li>
+                        }
+                    </ul>
+                    }
+                
             </li>
             <li class="nav-item">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
@@ -67,5 +83,31 @@
 <!--End topbar header-->
 
 @code {
+    public bool IsCurrentlyConnected { get; set; } = false;
+    public string BlockchainName { get; set; } = string.Empty;
 
+    public IEnumerable<BlockchainDetailsDto> SupportedBlockchain = Enumerable.Empty<BlockchainDetailsDto>();
+
+    private bool dropdownBlockchain = false;
+
+    protected override bool ShouldRender() => true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _substrateService.CheckBlockchainStateAsync((bool isConnected) =>
+        {
+            IsCurrentlyConnected = isConnected;
+            BlockchainName = _substrateService.BlockchainName;
+
+            InvokeAsync(() => StateHasChanged());
+        }, CancellationToken.None);
+
+        var polkadotInfo = await _mediator.Send(new BlockchainDetailsQuery() { BlockchainName = "Polkadot" }, CancellationToken.None);
+        var kusamaInfo = await _mediator.Send(new BlockchainDetailsQuery() { BlockchainName = "Kusama" }, CancellationToken.None);
+        var bajunInfo = await _mediator.Send(new BlockchainDetailsQuery() { BlockchainName = "Bajun" }, CancellationToken.None);
+
+        SupportedBlockchain = new List<BlockchainDetailsDto>() { polkadotInfo.Value, kusamaInfo.Value, bajunInfo.Value };
+
+        InvokeAsync(() => StateHasChanged());
+    }
 }
