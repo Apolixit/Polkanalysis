@@ -32,7 +32,7 @@ namespace Polkanalysis.Domain.UseCase.Informations
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
             var result = await _parachainRepository.GetCurrentBlockchainDetailProjectAsync(cancellationToken);
-
+            
             return Helpers.Ok(result);
         }
     }

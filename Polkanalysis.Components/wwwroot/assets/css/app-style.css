@@ -712,6 +712,11 @@ body.bg-theme15 {
     background-color: rgba(0,0,0,.2);
 }
 
+    .card-hoverable:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 0;

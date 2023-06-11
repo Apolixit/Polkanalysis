@@ -1,15 +1,23 @@
-﻿<div class="card-header">
+﻿@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+@using Polkanalysis.Components.Substrate.Staking.Pool;
+@inject IMediator _mediator;
+
+<div class="card-header">
     <i class="bi bi-hash"></i> Staking
 </div>
 <div class="card-body">
-    <div class="row">
-        <div class="col text-center">
-            TODO...
-        </div>
-    </div>
+    <DataMediator Request="request">
+        <PoolItems Pools="context" />
+    </DataMediator>
 </div>
 
 
 @code {
+    private Task<Result<IEnumerable<PoolLightDto>, ErrorResult>>? request;
 
+    protected async override Task OnInitializedAsync()
+    {
+        request = _mediator.Send(new PoolsQuery(), CancellationToken.None);
+    }
 }

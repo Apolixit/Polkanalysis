@@ -1,0 +1,94 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject IMediator _mediator;
+@inject NavigationManager _navigationManager;
+
+<div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-4">
+</div>
+@if (Pools.Count() == 0)
+{
+    <div class="text-center">No data yet</div>
+}
+else
+{
+    @if (DisplayAsTable)
+    {
+        <Table Elems="Pools" Context="pool">
+            <ThContent>
+                <td>Pool name</td>
+                <td>Nb members</td>
+                <td>Commission</td>
+                <td>Total bonded</td>
+                <td></td>
+            </ThContent>
+            <TbodyContent>
+                <tr>
+                    <td>
+                        @pool.Name
+                    </td>
+                    <td>
+                        @pool.NbPoolMembers
+                    </td>
+                    <td>
+                        @pool.Commission
+                    </td>
+                    <td>
+                        @pool.TotalBonded
+                    </td>
+                    <td>
+                        <button class="btn btn-default icon-link icon-link-hover" 
+                            @onclick="(() => GoToDetails(pool.PoolId))">
+                            Details
+                        </button>
+                    </td>
+                </tr>
+            </TbodyContent>
+        </Table>
+    }
+    else
+    {
+        @foreach (var pool in Pools)
+        {
+            var cssBorder = pool.Status switch
+            {
+                GlobalStatusDto.NominationPoolStatusDto.Open => "border-success",
+                GlobalStatusDto.NominationPoolStatusDto.Blocked => "border-warning",
+                _ => "border-error"
+            };
+
+            <div class="col">
+                <div class="card border h-100 @cssBorder" @onclick="(() => GoToDetails(pool.PoolId))">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-hash"></i>
+                            @pool.Name
+                        </h5>
+                        <p class="card-text text-end">
+                            <i class="bi bi-bank"></i> @pool.TotalBonded
+                            <i class="bi bi-coin"></i> @pool.RewardPool
+                            <i class="bi bi-people"></i> @pool.NbPoolMembers
+                            <i class="bi bi-piggy-bank"></i> @pool.Commission
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<PoolLightDto> Pools { get; set; } = Enumerable.Empty<PoolLightDto>();
+    public bool DisplayAsTable { get; set; } = true;
+
+    protected async override Task OnInitializedAsync()
+    {
+
+    }
+
+    protected void GoToDetails(uint poolId)
+    {
+        _navigationManager.NavigateTo($"pool/{poolId}");
+    }
+}

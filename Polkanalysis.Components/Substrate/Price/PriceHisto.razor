@@ -1,14 +1,43 @@
-﻿<div class="card h-100">
+﻿@using Polkanalysis.Domain.Contracts.Dto.Price;
+@using Polkanalysis.Domain.Contracts.Primary.Price;
+@inject IMediator _mediator;
+
+<div class="card h-100">
     <div class="card-header">
-        <i class="bi bi-hash"></i> Price Histo
+        <i class="bi bi-coin"></i> Price Histo
     </div>
     <div class="card-body">
         <div class="row">
-            TODO...
+            <DataMediator Request="requestHistoricalPrice">
+                <ApexChart 
+                    TItem="TokenPriceDto" 
+                    Title="Chart Title"
+                    XAxisType="XAxisType.Datetime"
+                    Options="@(new ApexChartOptions<TokenPriceDto>() {
+                        Colors = new List<string>() { "#cccccc" }
+                    })">
+
+                <ApexPointSeries 
+                        TItem="TokenPriceDto" 
+                        Items="context.TokenPrices"
+                        Name="Price value"
+                        XValue="@(e => e.Date)"
+                        YValue="@(e => (decimal)Math.Round(e.Price, 2))" />
+                </ApexChart>
+            </DataMediator>
         </div>
     </div>
 </div>
 
 @code {
+    private Task<Result<HistoricalPriceDto, ErrorResult>>? requestHistoricalPrice;
 
+    protected override void OnInitialized()
+    {
+        requestHistoricalPrice = _mediator.Send(new HistoricalPriceQuery()
+        {
+            From = DateTime.Now.AddMonths(-1),
+            To = DateTime.Now
+        }, CancellationToken.None);
+    }
 }

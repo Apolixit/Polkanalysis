@@ -35,11 +35,16 @@
         <Footer />
     } else
     {
-        <div class="row row-group m-0 text-center">
-            <div class="col-12 border-light">
-                <Loader />
-                <div class="mt-2">Waiting blockchain connexion...</div>
-            </div>
+        <div class="d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width: 50em">
+            <main class="m-auto px-3">
+                <h2>Welcome to Polkanalysis</h2>
+                <p class="lead">
+                    Currently waiting for <strong>@_substrateService.BlockchainName</strong> blockchain connexion...
+                </p>
+                <p class="lead">
+                    <Loader />
+                </p>
+            </main>
         </div>
     }
 </div>

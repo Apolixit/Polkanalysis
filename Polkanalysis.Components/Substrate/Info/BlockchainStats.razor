@@ -4,8 +4,12 @@
 @using Polkanalysis.Domain.Contracts.Primary.Statistics;
 @inject IApiService apiService;
 @inject IMediator _mediator;
+
+<div class="card-header">
+    <i class="bi bi-info-circle"></i>
+    Summary datas
+</div>
 <div class="card-body">
-    <h5 class="card-title">Summary datas</h5>
     <DataMediator Request="request">
         <div class="card-content">
             <div class="row row-group m-0">
@@ -15,7 +19,7 @@
                         <div class="progress my-3" style="height:3px;">
                             <div class="progress-bar" style="width:55%"></div>
                         </div>
-                        <p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                        @*<p class="mb-0 text-white small-font">Total Orders <span class="float-right">+4.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>*@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-xl-3 border-light">
@@ -24,7 +28,7 @@
                         <div class="progress my-3" style="height:3px;">
                             <div class="progress-bar" style="width:55%"></div>
                         </div>
-                        <p class="mb-0 text-white small-font">Total Revenue <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                        @*<p class="mb-0 text-white small-font">Total Revenue <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>*@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-xl-3 border-light">
@@ -33,7 +37,7 @@
                         <div class="progress my-3" style="height:3px;">
                             <div class="progress-bar" style="width:55%"></div>
                         </div>
-                        <p class="mb-0 text-white small-font">Visitors <span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                        @*<p class="mb-0 text-white small-font">Visitors <span class="float-right">+5.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>*@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-xl-3 border-light">
@@ -42,15 +46,12 @@
                         <div class="progress my-3" style="height:3px;">
                             <div class="progress-bar" style="width:55%"></div>
                         </div>
-                        <p class="mb-0 text-white small-font">Messages <span class="float-right">+2.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
+                        @*<p class="mb-0 text-white small-font">Messages <span class="float-right">+2.2% <i class="zmdi zmdi-long-arrow-up"></i></span></p>*@
                     </div>
                 </div>
             </div>
         </div>
     </DataMediator>
-</div>
-<div class="card-footer text-body-secondary">
-    2 days ago
 </div>
 
 @code {

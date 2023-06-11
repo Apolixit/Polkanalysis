@@ -7,31 +7,37 @@
 
 @foreach (var block in Blocks)
 {
-    var cssBorder = block.Status switch
+    var (cssBorder, cssColor, cssIcon) = block.Status switch
     {
-        GlobalStatusDto.BlockStatusDto.Finalized => "border-success",
-        GlobalStatusDto.BlockStatusDto.Broadcasted => "border-warning",
-        _ => "border-error"
+        GlobalStatusDto.BlockStatusDto.Finalized => ("border-success", "text-success", "bi bi-hourglass - bottom"),
+        GlobalStatusDto.BlockStatusDto.Broadcasted => ("border-warning", "text-warning", "bi bi-hourglass-top"),
+        _ => ("border-error", "text-error", "bi bi-hourglass")
     };
 
     <div class="col">
-        <div class="card border @cssBorder h-100 pointer-event" @onclick="(() => GoToBlockDetails(block.Number))">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="bi bi-hash"></i>
-                    @block.Number
-                </h5>
-                <p class="card-text text-end">
-                    <i class="bi bi-journal-album"></i> @block.NbExtrinsics
-                    <i class="bi bi-calendar2-event"></i> @block.NbEvents
-                    <i class="bi bi-book-half"></i> @block.NbLogs
+        <div class="card card-hoverable h-100 border @cssBorder" @onclick="(() => GoToBlockDetails(block.Number))" style="cursor:pointer;">
+            <div class="card-body mb-2">
+                <div>
+                    <i class="@cssColor @cssIcon float-start"></i>
+
+                    <h5 class="card-title text-center">
+                        <i class="bi bi-hash"></i>
+                        @block.Number
+                    </h5>
+                    
+                </div>
+
+                <p class="card-text text-end mb-1">
+                    <span class="mr-1"><i class="bi bi-journal-album"></i> @block.NbExtrinsics</span>
+                    <span class="mr-1"><i class="bi bi-calendar2-event"></i> @block.NbEvents</span>
+                    <span><i class="bi bi-book-half"></i> @block.NbLogs</span>
                 </p>
-                <p class="card-text">
+                <p class="card-text mb-1">
                     <Polkanalysis.Components.Substrate.Account.AccountSumUp User="@block.Validator" />
                 </p>
             </div>
             <div class="card-footer">
-                <small class="text-body-secondary">@block.When</small>
+                <small class="text-end">@block.When</small>
             </div>
         </div>
     </div>
@@ -65,13 +71,17 @@
         //var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
         //Blocks.AddRange(blocks.Value);
 
-        await _blockRepository.SubscribeNewBlocksAsync(async (_) =>
-        {
-            var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
-            Blocks.Clear();
-            Blocks.AddRange(blocks.Value.OrderByDescending(x => x.Number));
-            InvokeAsync(() => StateHasChanged());
-        }, CancellationToken.None);
+        var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
+        Blocks.Clear();
+        Blocks.AddRange(blocks.Value.OrderByDescending(x => x.Number));
+        //await _blockRepository.SubscribeNewBlocksAsync(async (_) =>
+        //{
+        //    var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
+        //    Blocks.Clear();
+        //    Blocks.AddRange(blocks.Value.OrderByDescending(x => x.Number));
+
+        //    InvokeAsync(() => StateHasChanged());
+        //}, CancellationToken.None);
     }
 
     protected void GoToBlockDetails(ulong blockId)

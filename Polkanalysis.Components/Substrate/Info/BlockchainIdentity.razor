@@ -8,18 +8,18 @@
 @inject IMediator _mediator;
 
 
-    <div class="row">
+<div class="row">
     <DataMediator Request="requestDetails">
-        <div class="col-sm-4 col-md-3 text-center">
-            <img src="@context.BlockchainInformationDetail.LogoUrl" class="img-fluid rounded-start" alt="Logo" width="80">
+        <div class="col-sm-4 col-md-3 text-center my-auto">
+            <img src="@context.BlockchainInformationDetail.LogoUrl" 
+            class="img-fluid rounded-start" alt="Logo" width="100">
         </div>
         <div class="col-sm-6 col-md-7">
             <div class="card-body">
                 <h5 class="card-title">
-                    @if(context.IsRelayChain)
+                    @if (context.IsRelayChain)
                     {
-                        <i class="bi bi-bank mr-2"></i>
-                        <div class="mr-2"></div>
+                        <i class="bi bi-bank"></i>
                     }
                     @context.BlockchainInformationDetail.Name <small><em>(@context.FullName)</em></small>
                 </h5>
@@ -28,13 +28,13 @@
                     <p>Version : @context.Version</p>
                 </div>
                 <p class="card-text">
-                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Website))
+                    @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Website))
                     {
                         <span class="text-body-secondary fs-4 m-1">
                             <a href="@context.BlockchainInformationDetail.Website"><i class="bi bi-browser-chrome"></i></a>
                         </span>
                     }
-                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Whitepaper))
+                    @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Whitepaper))
                     {
                         <span class="text-body-secondary fs-4 m-1">
                             <a href="@context.BlockchainInformationDetail.Whitepaper"><i class="bi bi-book"></i></a>
@@ -46,25 +46,25 @@
                             <a href="@context.BlockchainInformationDetail.Github"><i class="bi bi-github"></i></a>
                         </span>
                     }
-                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Twitter))
+                    @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Twitter))
                     {
                         <span class="text-body-secondary fs-4 m-1">
                             <a href="@context.BlockchainInformationDetail.Twitter"><i class="bi bi-twitter"></i></a>
                         </span>
                     }
-                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Twitter))
+                    @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Twitter))
                     {
                         <span class="text-body-secondary fs-4 m-1">
                             <a href="@context.BlockchainInformationDetail.Discord"><i class="bi bi-discord"></i></a>
                         </span>
                     }
-                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Medium))
+                    @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Medium))
                     {
                         <span class="text-body-secondary fs-4 m-1">
                             <a href="@context.BlockchainInformationDetail.Medium"><i class="bi bi-medium"></i></a>
                         </span>
                     }
-                    @if(!string.IsNullOrEmpty(context.BlockchainInformationDetail.Telegram))
+                    @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Telegram))
                     {
                         <span class="text-body-secondary fs-4 m-1">
                             <a href="@context.BlockchainInformationDetail.Telegram"><i class="bi bi-telegram"></i></a>
@@ -75,11 +75,12 @@
         </div>
     </DataMediator>
     <DataMediator Request="requestPrice">
-        <div class="col-sm-2">
-            <span class="fs-4">@context.Price.ToString("N2") @context.CompareToCurrency.ToString()</span>
+        <div class="col-sm-2 my-auto">
+            <div>Current price</div>
+            <div class="fs-4">@context.Price.ToString("N2") @context.CompareToCurrency.ToString()</div>
         </div>
     </DataMediator>
-    </div>
+</div>
 
 
 @code {
@@ -91,10 +92,10 @@
     {
         requestDetails = _mediator.Send(new BlockchainDetailsQuery(), CancellationToken.None);
         requestPrice = _mediator.Send(new TokenPriceQuery()
-        {
-            CoinId = "polkadot",
-            Date = DateTime.Now 
-        }, CancellationToken.None);
+            {
+                CoinId = "polkadot",
+                Date = DateTime.Now
+            }, CancellationToken.None);
         //request = new ApiRequest<BlockchainDetailsDto>("/api/polkadot/information");
     }
 }
