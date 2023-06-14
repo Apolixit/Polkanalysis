@@ -26,7 +26,6 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
         /// <summary>
         /// Full information from each account
         /// </summary>
-        /// <param name="token"></param>
         /// <returns></returns>
         public QueryStorage<SubstrateAccount, AccountInfo> AccountsQuery();
 

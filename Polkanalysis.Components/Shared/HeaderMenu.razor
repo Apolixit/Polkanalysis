@@ -46,7 +46,7 @@
 
                     @if (SupportedBlockchain.Count() > 0)
                     {
-                        <ul class="dropdown-menu dropdown-menu-right @(dropdownBlockchain ? "show" : string.Empty)">
+                        <ul class="dropdown-menu dropdown-menu-left @(dropdownBlockchain ? "show" : string.Empty)">
                             @foreach (var current in SupportedBlockchain)
                             {
                                 <li class="dropdown-item">

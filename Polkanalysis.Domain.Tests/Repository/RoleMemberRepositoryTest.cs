@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using Microsoft.Extensions.Logging;
+using NSubstitute;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
@@ -27,7 +28,8 @@ namespace Polkanalysis.Domain.Tests.Repository
 
             _roleMemberRepository = new StakingRepository(
                 _substrateRepository,
-                Substitute.For<IAccountRepository>());
+                Substitute.For<IAccountRepository>(),
+                Substitute.For<ILogger<StakingRepository>>());
         }
 
         [Test]

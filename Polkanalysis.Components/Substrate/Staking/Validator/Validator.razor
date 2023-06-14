@@ -9,7 +9,24 @@
 <DataMediator Request="request">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
+    <div>Stash address : @context.StashAddress</div>
     <div>Controller address : @context.ControllerAddress</div>
+    <div>Reward address : @context.RewardAddress</div>
+    <div>Self bonded : @context.SelfBonded</div>
+    <div>Total bounded : @context.TotalBonded</div>
+    <div>: @context.SelfBonded</div>
+    <div>Commission : @context.Commission</div>
+
+    @if(context.SessionKey is not null)
+    {
+        <ul>
+            @foreach(var sessionKey in context.SessionKey)
+            {
+                <li>[@sessionKey.KeyType] @sessionKey.Name = @sessionKey.Data</li>
+            }
+        </ul>
+    }
+    <div>Session Key: @context.SessionKey</div>
 </DataMediator>
 
 @code {

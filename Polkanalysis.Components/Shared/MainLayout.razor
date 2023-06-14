@@ -8,9 +8,9 @@
 @inject IMediator _mediator;
 @inject ILogger<MainLayout> logger;
 
-<div id="wrapper">
-    @if(isCurrentlyConnected)
-    {
+@if (isCurrentlyConnected)
+{
+    <div id="wrapper">
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo">
                 <a href="index.html">
@@ -33,21 +33,22 @@
         </div>
         <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
         <Footer />
-    } else
-    {
-        <div class="d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width: 50em">
-            <main class="m-auto px-3">
-                <h2>Welcome to Polkanalysis</h2>
-                <p class="lead">
-                    Currently waiting for <strong>@_substrateService.BlockchainName</strong> blockchain connexion...
-                </p>
-                <p class="lead">
-                    <Loader />
-                </p>
-            </main>
-        </div>
-    }
-</div>
+    </div>
+}
+else
+{
+    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width: 50em">
+        <main class="m-auto px-3 text-center">
+            <h2>Welcome to Polkanalysis</h2>
+            <p class="lead">
+                Waiting for <strong>@_substrateService.BlockchainName</strong> blockchain connexion...
+            </p>
+            <p class="lead">
+                <Loader />
+            </p>
+        </main>
+    </div>
+}
 
 @code {
     protected bool isCurrentlyConnected = false;

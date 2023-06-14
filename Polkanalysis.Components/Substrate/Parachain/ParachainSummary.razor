@@ -8,7 +8,10 @@
 <div class="card-body">
     <DataMediator Request="request">
         <div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-4">
-            <ParachainItems Parachains="context" />
+            <ParachainItems Parachains="context
+                                            .Where(x => !string.IsNullOrEmpty(x.Name))
+                                            .OrderBy(x => x.ParachainId)
+                                            .Take(10)" />
         </div>
     </DataMediator>
 </div>

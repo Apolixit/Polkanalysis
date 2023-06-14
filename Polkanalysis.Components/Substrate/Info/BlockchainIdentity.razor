@@ -11,10 +11,10 @@
 <div class="row">
     <DataMediator Request="requestDetails">
         <div class="col-sm-4 col-md-3 text-center my-auto">
-            <img src="@context.BlockchainInformationDetail.LogoUrl" 
-            class="img-fluid rounded-start" alt="Logo" width="100">
+            <img src="@context.BlockchainInformationDetail.LogoUrl"
+                 class="img-fluid rounded-start" alt="Logo" width="100">
         </div>
-        <div class="col-sm-6 col-md-7">
+        <div class="col-sm-6 col-md-6">
             <div class="card-body">
                 <h5 class="card-title">
                     @if (context.IsRelayChain)
@@ -27,7 +27,7 @@
                     <p>Token : @context.TokenSymbol</p>
                     <p>Version : @context.Version</p>
                 </div>
-                <p class="card-text">
+                <p class="card-text mt-3">
                     @if (!string.IsNullOrEmpty(context.BlockchainInformationDetail.Website))
                     {
                         <span class="text-body-secondary fs-4 m-1">
@@ -75,9 +75,13 @@
         </div>
     </DataMediator>
     <DataMediator Request="requestPrice">
-        <div class="col-sm-2 my-auto">
-            <div>Current price</div>
-            <div class="fs-4">@context.Price.ToString("N2") @context.CompareToCurrency.ToString()</div>
+        <div class="col-sm-12 col-md-3 my-auto">
+            <div class="card-body text-center">
+                <div>Current price</div>
+                <div class="fs-4">
+                    @context.Price.ToString("N2") @context.CompareToCurrency.ToString()
+                </div>
+            </div>
         </div>
     </DataMediator>
 </div>

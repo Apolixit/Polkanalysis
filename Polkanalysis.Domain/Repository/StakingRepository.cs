@@ -22,6 +22,7 @@ using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+using Microsoft.Extensions.Logging;
 
 namespace Polkanalysis.Domain.Repository
 {
@@ -29,13 +30,16 @@ namespace Polkanalysis.Domain.Repository
     {
         private readonly ISubstrateRepository _substrateService;
         private readonly IAccountRepository _accountRepository;
+        private readonly ILogger<StakingRepository> _logger;
 
         public StakingRepository(
             ISubstrateRepository substrateService,
-            IAccountRepository accountRepository)
+            IAccountRepository accountRepository,
+            ILogger<StakingRepository> logger)
         {
             _substrateService = substrateService;
             _accountRepository = accountRepository;
+            _logger = logger;
         }
 
         private void CheckAddress(string address)
@@ -72,14 +76,15 @@ namespace Polkanalysis.Domain.Repository
 
             foreach (var task in tasked)
             {
-                await Task.WhenAll(task.exposure, task.identity, task.validatorPrefs);
+                var (exposure, identity, validatorPrefs) = await WaiterHelper.WaitAndReturnAsync(task.exposure, task.identity, task.validatorPrefs);
+                //await Task.WhenAll(task.exposure, task.identity, task.validatorPrefs);
 
                 validatorsDto.Add(new ValidatorLightDto()
                 {
-                    StashAddress = await task.identity,
-                    SelfBonded = (await task.exposure).Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
-                    TotalBonded = (await task.exposure).Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
-                    Commission = (double)(await task.validatorPrefs).Commission.Value.Value
+                    StashAddress = identity,
+                    SelfBonded = exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
+                    TotalBonded = exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
+                    Commission = validatorPrefs.Commission != null ? (double)validatorPrefs.Commission.Value.Value : 0
                 });
             }
 
@@ -151,11 +156,66 @@ namespace Polkanalysis.Domain.Repository
 
         public async Task<IEnumerable<EraLightDto>> GetErasBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken)
         {
-            return new List<EraLightDto>();
+            var validatorAccount = new SubstrateAccount(validatorAddress);
+            var erasResult = new List<EraLightDto>();
+
+            // Active Era give current era id and start block
+            // According to https://wiki.polkadot.network/docs/maintain-polkadot-parameters
+            // One session = 2400 blocks
+            uint nbBlockBySession = 2400; // TODO : change by constant on-chain
+            var activeEra = await _substrateService.Storage.Staking.ActiveEraAsync(cancellationToken);
+            ulong? activeEraBlockStart = activeEra.Start.OptionFlag ? activeEra.Start.Value.Value : null;
+
+            // List eras
+            var bondedEras = await _substrateService.Storage.Staking.BondedErasAsync(cancellationToken);
+            Guard.Against.Null(bondedEras);
+
+            foreach(var bondedEra in bondedEras.Value)
+            {
+                var currentEra = (U32)bondedEra.Value[0];
+                var startSession = (U32)bondedEra.Value[1];
+
+                var rewardPoints = await _substrateService.Storage.Staking.ErasRewardPointsAsync(currentEra, cancellationToken);
+
+                if(rewardPoints == null)
+                {
+                    _logger.LogWarning($"No reward point for Era = {currentEra}");
+                    continue;
+                }
+
+                var validatorReward = rewardPoints.Individual.Value.SingleOrDefault(x =>
+                {
+                    var account = (SubstrateAccount)x.Value[0];
+                    return account.Equals(validatorAccount);
+                });
+
+                if(validatorReward != null)
+                {
+                    var eraLight = new EraLightDto();
+                    eraLight.EraId = currentEra.Value;
+
+                    if(activeEraBlockStart is not null)
+                    {
+                        eraLight.StartBlock = (uint)activeEraBlockStart.Value + (activeEra.Index.Value - currentEra.Value) * nbBlockBySession;
+                        eraLight.EndBlock = (uint)activeEraBlockStart.Value + (activeEra.Index.Value + 1 - currentEra.Value) * nbBlockBySession - 1;
+                    }
+                    
+                    eraLight.BlocksProduced = null; // TODO : for each block need to insert the validator in database to allow fast query
+                    eraLight.NbBlockValidated = 0; //eraLight.BlocksProduced.Count();
+                    eraLight.RewardPoint = ((U32)validatorReward.Value[1]).Value;
+
+                    erasResult.Add(eraLight);
+                }
+            }
+
+            // for each eras => staking.erasRewardPoints: PalletStakingEraRewardPoints
+
+            return erasResult;
         }
 
         public async Task<IEnumerable<RewardDto>> GetRewardsBoundedToValidatorAsync(string validatorAddress, CancellationToken cancellationToken)
         {
+
             return new List<RewardDto>();
         }
 
@@ -415,15 +475,19 @@ namespace Polkanalysis.Domain.Repository
             Guard.Against.Null(pools);
 
             var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);
-
+            
             List<PoolLightDto> poolsDto = new List<PoolLightDto>();
 
-            foreach(var (poolId, bondedPool) in pools)
+            var poolsMetadataTask = pools.Select(x => _substrateService.Storage.NominationPools.MetadataAsync(x.Item1, cancellationToken));
+            var poolsMetadata = await Task.WhenAll(poolsMetadataTask);
+            
+
+            foreach (var ((poolId, bondedPool), poolMetadata) in pools.Zip(poolsMetadata))
             {
                 //var rewardPool = await _substrateService.Storage.NominationPools.RewardPoolsAsync(poolId, cancellationToken);
-
                 var poolLight = new PoolLightDto();
                 poolLight.PoolId = poolId.Value;
+                poolLight.Name = poolMetadata == null ? string.Empty : poolMetadata.Value.ToHuman(); ;
                 poolLight.NbPoolMembers = bondedPool.MemberCounter.Value;
                 poolLight.Commission = 0;
                 poolLight.Status = bondedPool.State.Value switch
@@ -441,6 +505,11 @@ namespace Polkanalysis.Domain.Repository
             }
 
             return poolsDto;
+        }
+
+        public Task<ValidatorDto> GetValidatorElectedByNominatorAsync(string nominatorAddress, CancellationToken cancellationToken)
+        {
+            return null;
         }
     }
 }

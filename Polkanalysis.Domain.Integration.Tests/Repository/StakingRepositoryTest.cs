@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Castle.Core.Logging;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
+using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Repository;
 using Polkanalysis.Integration.Tests.Contracts;
@@ -19,7 +22,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [SetUp]
         public void Setup()
         {
-            _stakingRepository = new StakingRepository(_substrateRepository, new AccountRepository(_substrateRepository));
+            var logger = Substitute.For<ILogger<StakingRepository>>();
+            _stakingRepository = new StakingRepository(_substrateRepository, new AccountRepository(_substrateRepository), logger);
         }
 
         [Test]
@@ -67,6 +71,15 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         public async Task ValidNominator_GetDetails_ShouldWorkAsync(string validatorAddress)
         {
             var res = await _stakingRepository.GetNominatorDetailAsync(validatorAddress, CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        [TestCase("1zugcag7cJVBtVRnFxv5Qftn7xKAnR6YJ9x4x3XLgGgmNnS")]
+        public async Task ValidNominator_GetAssociatedEras_ShouldWorkAsync(string validatorAddress)
+        {
+            var res = await _stakingRepository.GetErasBoundedToValidatorAsync(validatorAddress, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }

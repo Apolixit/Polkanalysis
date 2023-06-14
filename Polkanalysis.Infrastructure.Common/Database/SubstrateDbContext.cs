@@ -3,6 +3,7 @@ using Polkanalysis.Infrastructure.Contracts.Database.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events.Identity;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events.System;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Price;
+using Polkanalysis.Infrastructure.Contracts.Database.Model.Staking;
 
 namespace Polkanalysis.Infrastructure.Common.Database
 {
@@ -33,6 +34,10 @@ namespace Polkanalysis.Infrastructure.Common.Database
 
         #region Historical data price
         public DbSet<TokenPriceModel> TokenPrices => Set<TokenPriceModel>();
+        #endregion
+
+        #region Staking
+        public DbSet<EraStakersModel> EraStakersModels => Set<EraStakersModel>();
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -76,6 +81,7 @@ namespace Polkanalysis.Infrastructure.Common.Database
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account });
 
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });
+            modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.BlockchainName, c.EraId, c.ValidatorAddress });
         }
     }
 }

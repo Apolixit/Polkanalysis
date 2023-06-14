@@ -63,7 +63,7 @@ namespace Polkanalysis.Domain.UseCase.Price
 
     public class TokenPriceCommandValidator : AbstractValidator<TokenPriceCommand>
     {
-        public TokenPriceCommandValidator(ISubstrateRepository _substrateService)
+        public TokenPriceCommandValidator()
         {
             RuleFor(c => c.TokenPrice)
                 .NotNull()

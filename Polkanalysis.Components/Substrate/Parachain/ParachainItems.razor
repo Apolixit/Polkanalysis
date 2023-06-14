@@ -18,12 +18,13 @@ else
                 <div class="card-body">
                     <h5 class="card-title">
                         <i class="bi bi-hash"></i>
-                        @parachain.Name (parachain.RegisterStatus)
+                        @parachain.Name
                     </h5>
                     <p class="card-text text-end">
                         RegisterStatus = @parachain.RegisterStatus
                         ValidatorCount = @parachain.ValidatorCount
-                        ValidatorCount = @parachain.ValidatorCount
+                        Lease = @parachain.Lease
+                        CrowdloanId = @parachain.CrowdloanId
                     </p>
                 </div>
             </div>
@@ -42,6 +43,6 @@ else
 
     protected void GoToDetails(uint parachainId)
     {
-        _navigationManager.NavigateTo($"parachain/{parachainId}");
+        _navigationManager.NavigateTo($"parachains/{parachainId}");
     }
 }

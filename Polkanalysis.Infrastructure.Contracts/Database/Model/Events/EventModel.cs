@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Contracts.Database.Model.Events
 {
-    public class EventModel
+    public class EventModel : BlockchainModel
     {
-        /// <summary>
-        /// Current blockchain name (Polkadot, Kusama, Bajun ...)
-        /// </summary>
-        public required string BlockchainName { get; set; }
-
         /// <summary>
         /// Block number associated to this event
         /// </summary>

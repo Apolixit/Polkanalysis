@@ -160,6 +160,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
         public Task<U32> CurrentEraAsync(CancellationToken token);
 
         /// <summary>
+        /// Subscribe for each new current era
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task SubscribeNewCurrentEraAsync(Action<U32> callbackEra, CancellationToken token);
+
+        /// <summary>
         ///  The active era information, it holds index and start.
         /// 
         ///  The active era is the era being currently rewarded. Validator set of this era must be
@@ -192,6 +199,12 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<Exposure> ErasStakersAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure> ErasStakersQuery(uint eraId);
 
         /// <summary>
         ///  Clipped Exposure of validator at era.

@@ -8,7 +8,10 @@
 </div>
 <div class="card-body">
     <DataMediator Request="request">
-        <PoolItems Pools="context" />
+        <PoolItems Pools="context
+                            .Where(x => !string.IsNullOrEmpty(x.Name))
+                            .OrderByDescending(x => x.NbPoolMembers)
+                            .Take(10)" />
     </DataMediator>
 </div>
 

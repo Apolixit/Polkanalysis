@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Polkanalysis.Domain.Contracts.Core
 {
@@ -48,6 +49,22 @@ namespace Polkanalysis.Domain.Contracts.Core
             Value = new Hexa();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+                return false;
+            else
+            {
+                SubstrateAccount account = (SubstrateAccount)obj;
+                return Encode().SequenceEqual(account.Encode());
+            }
+        }
+
+        public override string ToString()
+        {
+            return ToPolkadotAddress();
         }
 
         //public string ToStringAddress(int ss58 = 42)

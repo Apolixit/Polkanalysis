@@ -7,7 +7,20 @@
 <DataMediator Request="request">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
+    <div>ControllerAccount : @context.ControllerAccount</div>
+    <div>Bonded : @context.Bonded</div>
+    <div>RewardAccount : @context.RewardAccount.Name</div>
     <div>Status : @context.Status</div>
+
+    @if (context.Rewards is not null)
+    {
+        <ul>
+            @foreach (var reward in context.Rewards)
+            {
+                <li>@reward.StashAccount - @reward.EraId - @reward.RewardAmount - @reward.When</li>
+            }
+        </ul>
+    }
 </DataMediator>
 
 @code {

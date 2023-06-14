@@ -10,6 +10,8 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using StakingStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.StakingStorage;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Rpc;
 
 namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
 {
@@ -67,6 +69,11 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
             return await GetStorageAsync<U32>(StakingStorageExt.CurrentEraParams, token);
         }
 
+        public async Task SubscribeNewCurrentEraAsync(Action<U32> callbackEra, CancellationToken token)
+        {
+            await SubscribeToAsync(StakingStorageExt.CurrentEraParams(), callbackEra, token);
+        }
+
         public async Task<U32> CurrentPlannedSessionAsync(CancellationToken token)
         {
             return await GetStorageAsync<U32>(StakingStorageExt.CurrentPlannedSessionParams, token);
@@ -87,6 +94,32 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
                Exposure>(PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasStakersParams, token);
         }
+
+        //public async Task<BaseTuple<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersAsync(U32 key, CancellationToken token)
+        //{
+        //    return await GetStorageWithParamsAsync<
+        //       U32,
+        //       BaseTuple<BaseTuple<U32, AccountId32>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure>,
+        //       BaseTuple<BaseTuple<U32, SubstrateAccount>, Exposure>>(key, ErasStakersParams, token);
+        //}
+        public QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure> ErasStakersQuery(uint eraId)
+        {
+            var x = ErasStakersParams(new U32(1080));
+            return new QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>(
+                GetAllStorageAsync<BaseTuple<U32, AccountId32>,
+                BaseTuple<U32, SubstrateAccount>,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
+                Exposure>, "Staking", "ErasStakers", ErasStakersParams(new U32(eraId)), 36);
+        }
+        private static string ErasStakersParams(U32 key)
+        {
+            return RequestGenerator.GetStorage("Staking", "ErasStakers", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
+                                Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat
+                }, new Substrate.NetApi.Model.Types.IType[] {
+                                            key
+            });
+        }
+
 
         public async Task<Exposure> ErasStakersClippedAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
@@ -135,7 +168,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
         {
             return await GetStorageWithParamsAsync<
                 AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger, 
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger,
                 StakingLedger>(PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.LedgerParams, token);
         }
 
@@ -276,7 +309,5 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository.Storage
                 BaseTuple<Perbill, U128>
                 >(PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ValidatorSlashInEraParams, token);
         }
-
-        
     }
 }

@@ -1,4 +1,5 @@
-﻿@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
 
 @inject IMediator _mediator;
@@ -16,28 +17,28 @@ else
     {
         <Table Elems="Pools" Context="pool">
             <ThContent>
-                <td>Pool name</td>
-                <td>Nb members</td>
-                <td>Commission</td>
-                <td>Total bonded</td>
-                <td></td>
+                <td scope="col">Pool name</td>
+                <td scope="col">Nb members</td>
+                <td scope="col">Commission</td>
+                <td scope="col">Total bonded</td>
+                <td scope="col"></td>
             </ThContent>
             <TbodyContent>
                 <tr>
-                    <td>
-                        @pool.Name
+                    <td scope="row">
+                        @pool.Name.Shorten(20)
                     </td>
-                    <td>
+                    <td class="text-right">
                         @pool.NbPoolMembers
                     </td>
-                    <td>
-                        @pool.Commission
+                    <td class="text-right">
+                        @pool.Commission.ToString("N2")
+                    </td>
+                    <td class="text-right">
+                        @pool.TotalBonded.ToString("N0")
                     </td>
                     <td>
-                        @pool.TotalBonded
-                    </td>
-                    <td>
-                        <button class="btn btn-default icon-link icon-link-hover" 
+                        <button class="btn btn-main btn-sm" 
                             @onclick="(() => GoToDetails(pool.PoolId))">
                             Details
                         </button>

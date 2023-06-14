@@ -194,6 +194,15 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository.Pall
         }
 
         [Test]
+        [TestCase(1104, 297)]
+        public async Task ErasStakersAll_ShouldWorkAsync(int era, int nbValidatorExpected)
+        {
+            var res = await _substrateRepository.Storage.Staking.ErasStakersQuery((uint)era).ExecuteAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Count, Is.EqualTo(nbValidatorExpected));
+        }
+
+        [Test]
         public async Task ErasStakersClipped_ShouldWorkAsync()
         {
             var era = new U32(981);
