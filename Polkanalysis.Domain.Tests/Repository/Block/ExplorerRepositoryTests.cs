@@ -11,29 +11,29 @@ using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Dto;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Repository;
+using Polkanalysis.Domain.Service;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.Repository.Block
 {
     public abstract class ExplorerRepositoryTests
     {
-        protected IExplorerRepository _explorerRepository;
-        protected ISubstrateRepository _substrateService;
+        protected IExplorerService _explorerRepository;
+        protected ISubstrateService _substrateService;
         protected ISubstrateDecoding _substrateDecode;
 
         [SetUp]
         public void Setup()
         {
-            _substrateService = Substitute.For<ISubstrateRepository>();
+            _substrateService = Substitute.For<ISubstrateService>();
             _substrateDecode = Substitute.For<ISubstrateDecoding>();
 
-            _explorerRepository = new ExplorerRepository(
+            _explorerRepository = new ExplorerService(
                 _substrateService,
                 _substrateDecode,
                 Substitute.For<IModelBuilder>(),
-                Substitute.For<IAccountRepository>(),
-                Substitute.For<ILogger<ExplorerRepository>>());
+                Substitute.For<IAccountService>(),
+                Substitute.For<ILogger<ExplorerService>>());
 
 
         }

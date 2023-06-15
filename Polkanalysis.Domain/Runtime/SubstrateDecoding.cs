@@ -19,14 +19,14 @@ namespace Polkanalysis.Domain.Runtime
     public class SubstrateDecoding : ISubstrateDecoding
     {
         private readonly INodeMapping _mapping;
-        private readonly ISubstrateRepository _substrateRepository;
+        private readonly ISubstrateService _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
         private readonly ICurrentMetaData _metaData;
         private readonly ILogger<SubstrateDecoding> _logger;
 
         public SubstrateDecoding(
             INodeMapping mapping, 
-            ISubstrateRepository substrateRepository, 
+            ISubstrateService substrateRepository, 
             IPalletBuilder palletBuilder,
             ICurrentMetaData metaData,
             ILogger<SubstrateDecoding> logger)

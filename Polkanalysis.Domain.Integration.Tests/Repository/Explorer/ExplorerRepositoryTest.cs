@@ -5,18 +5,18 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Runtime.Module;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Repository;
+using Polkanalysis.Domain.Service;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
     [Timeout(RepositoryMaxTimeout)]
     public abstract class ExplorerRepositoryTest : PolkadotIntegrationTest
     {
-        protected IExplorerRepository _explorerRepository;
+        protected IExplorerService _explorerRepository;
         protected ICurrentMetaData _currentMetaData;
         protected ISubstrateDecoding _substrateDecoding;
-        protected IAccountRepository _accountRepository;
+        protected IAccountService _accountRepository;
 
         // https://polkadot.subscan.io/block/10219793
         //  Block with extrinsic failed
@@ -26,7 +26,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
             _currentMetaData = new CurrentMetaData(
                 _substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
 
-            _accountRepository = new AccountRepository(_substrateRepository);
+            _accountRepository = new AccountService(_substrateRepository);
 
             _substrateDecoding = new SubstrateDecoding(
                 new EventNodeMapping(),
@@ -36,12 +36,12 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
                     _currentMetaData),
                 _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
-            _explorerRepository = new ExplorerRepository(
+            _explorerRepository = new ExplorerService(
                 _substrateRepository,
                 _substrateDecoding,
                 new ModelBuilder(),
                 _accountRepository,
-                Substitute.For<ILogger<ExplorerRepository>>());
+                Substitute.For<ILogger<ExplorerService>>());
         }
     }
 }

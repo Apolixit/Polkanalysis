@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
     {
         public IdentityIdentitySetRepository(
             SubstrateDbContext context,
-            ISubstrateRepository substrateNodeRepository,
+            ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
             ILogger<IdentityIdentitySetRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {

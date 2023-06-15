@@ -20,13 +20,13 @@ namespace Polkanalysis.DatabaseWorker
 {
     internal class StakingWorker
     {
-        private readonly ISubstrateRepository _polkadotService;
+        private readonly ISubstrateService _polkadotService;
         private readonly StakingDatabaseRepository _stakingDatabaseRepository;
         private readonly IMediator _mediator;
         private readonly ILogger<StakingWorker> _logger;
 
         public StakingWorker(
-            ISubstrateRepository polkadotRepository,
+            ISubstrateService polkadotRepository,
             IMediator mediator,
             StakingDatabaseRepository stakingDatabaseRepository,
             ILogger<StakingWorker> logger)

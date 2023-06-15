@@ -12,13 +12,13 @@ namespace Polkanalysis.DatabaseWorker
 {
     public class MainWorker : BackgroundService
     {
-        private readonly ISubstrateRepository _polkadotRepository;
+        private readonly ISubstrateService _polkadotRepository;
         private readonly EventsWorker _eventsWorker;
         private readonly PriceWorker _priceWorker;
         private readonly ILogger<MainWorker> _logger;
 
         public MainWorker(
-            ISubstrateRepository polkadotRepository,
+            ISubstrateService polkadotRepository,
             EventsWorker eventsWorker, 
             PriceWorker priceWorker, 
             ILogger<MainWorker> logger)

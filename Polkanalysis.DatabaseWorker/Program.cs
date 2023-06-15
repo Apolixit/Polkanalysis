@@ -18,7 +18,6 @@ using Polkanalysis.Infrastructure.Common.Database.Repository;
 using Polkanalysis.Infrastructure.Contracts;
 using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Polkanalysis.Infrastructure.Polkadot.Mapper;
-using Polkanalysis.Domain.Repository;
 using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
@@ -31,6 +30,7 @@ using Polkanalysis.Domain.UseCase.Explorer.Block;
 using MediatR.Courier;
 using MediatR;
 using Polkanalysis.Domain.UseCase;
+using Polkanalysis.Domain.Service;
 
 IConfiguration config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -66,7 +66,7 @@ var host = Host.CreateDefaultBuilder(args)
     .AddSingleton<PriceWorker>();
 
     services.AddEndpoint();
-    services.AddSubstrateRepositories();
+    services.AddSubstrateService();
     services.AddPolkadotBlockchain();
     services.AddDatabaseEvents();
     services.AddSubstrateLogic();
@@ -74,10 +74,10 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddHttpClient();
 
     services.AddMediatR(cfg => {
-        cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+        cfg.RegisterServicesFromAssembly(typeof(BlockLightHandler).Assembly);
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
     });
-    services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+    services.AddCourier(typeof(SubscribeNewBlocksHandler).Assembly, typeof(Program).Assembly);
 
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));

@@ -16,12 +16,12 @@ namespace Polkanalysis.Domain.Tests.Repository.Block
 {
     public class BlockParameterLikeTest
     {
-        private readonly ISubstrateRepository _substrateService;
+        private readonly ISubstrateService _substrateService;
         public BlockParameterLike _blockParameterLike;
 
         public BlockParameterLikeTest()
         {
-            _substrateService = Substitute.For<ISubstrateRepository>();
+            _substrateService = Substitute.For<ISubstrateService>();
         }
 
         [SetUp]

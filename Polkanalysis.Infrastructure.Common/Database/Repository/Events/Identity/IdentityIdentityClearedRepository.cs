@@ -17,7 +17,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
     {
         public IdentityIdentityClearedRepository(
             SubstrateDbContext context,
-            ISubstrateRepository substrateNodeRepository,
+            ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
             ILogger<IdentityIdentityClearedRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {

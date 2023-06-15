@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
     {
         public SystemNewAccountRepository(
             SubstrateDbContext context,
-            ISubstrateRepository substrateNodeRepository,
+            ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
             ILogger<SystemNewAccountRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {

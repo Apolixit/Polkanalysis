@@ -13,12 +13,12 @@ namespace Polkanalysis.WebApp.Services
         public static IServiceCollection AddMediatRAndPipelineBehaviors(this IServiceCollection services)
         {
             services.AddMediatR(cfg => {
-                cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(BlockLightHandler).Assembly);
                 cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
             });
-            services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+            services.AddCourier(typeof(SubscribeNewBlocksHandler).Assembly, typeof(Program).Assembly);
 
-            services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
+            services.AddValidatorsFromAssembly(typeof(BlockLightHandler).Assembly);
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));

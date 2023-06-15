@@ -9,23 +9,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Nominator
 {
-    public class NominatorDetailUseCaseTest : UseCaseTest<NominatorDetailUseCase, NominatorDto, NominatorDetailQuery>
+    public class NominatorDetailUseCaseTest : UseCaseTest<NominatorDetailHandler, NominatorDto, NominatorDetailQuery>
     {
-        private IStakingRepository _roleMemberRepository;
+        private IStakingService _roleMemberRepository;
 
         [SetUp]
         public override void Setup()
         {
-            _logger = Substitute.For<ILogger<NominatorDetailUseCase>>();
-            _roleMemberRepository = Substitute.For<IStakingRepository>();
+            _logger = Substitute.For<ILogger<NominatorDetailHandler>>();
+            _roleMemberRepository = Substitute.For<IStakingService>();
 
-            _useCase = new NominatorDetailUseCase(_roleMemberRepository, _logger);
+            _useCase = new NominatorDetailHandler(_roleMemberRepository, _logger);
             base.Setup();
         }
     }

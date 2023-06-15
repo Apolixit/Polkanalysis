@@ -6,22 +6,22 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 {
-    public class EventDetailUseCaseTest : UseCaseTest<EventDetailUseCase, EventDto, EventDetailQuery>
+    public class EventDetailUseCaseTest : UseCaseTest<EventDetailHandler, EventDto, EventDetailQuery>
     {
-        private IExplorerRepository _explorerRepository;
+        private IExplorerService _explorerRepository;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerRepository>();
-            _logger = Substitute.For<ILogger<EventDetailUseCase>>();
-            _useCase = new EventDetailUseCase(_explorerRepository, _logger);
+            _explorerRepository = Substitute.For<IExplorerService>();
+            _logger = Substitute.For<ILogger<EventDetailHandler>>();
+            _useCase = new EventDetailHandler(_explorerRepository, _logger);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         [Test]
         public async Task EventDetailsUseCaseWithValidParameters_ShouldSucceedAsync()
         {
-            var useCase = new EventDetailUseCase(_explorerRepository, _logger);
+            var useCase = new EventDetailHandler(_explorerRepository, _logger);
 
             _explorerRepository.GetEventAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<EventDto>());
 

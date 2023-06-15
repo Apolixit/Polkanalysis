@@ -1,27 +1,20 @@
 ﻿using Polkanalysis.Integration.Tests.Contracts;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Polkanalysis.Infrastructure.DirectAccess.Repository;
 using Substrate.NetApi;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Repository;
-using NSubstitute;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
     [Timeout(RepositoryMaxTimeout)]
     public class AccountRepositoryTest : PolkadotIntegrationTest
     {
-        private IAccountRepository _accountRepository;
+        private IAccountService _accountRepository;
 
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new AccountRepository(_substrateRepository);
+            _accountRepository = new AccountService(_substrateRepository);
         }
 
         [Test]

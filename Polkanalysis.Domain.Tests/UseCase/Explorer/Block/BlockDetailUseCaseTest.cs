@@ -11,22 +11,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
-    public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailUseCase, BlockDto, BlockDetailsQuery>
+    public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailHandler, BlockDto, BlockDetailsQuery>
     {
-        protected IExplorerRepository _explorerRepository;
+        protected IExplorerService _explorerRepository;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerRepository>();
-            _logger = Substitute.For<ILogger<BlockDetailUseCase>>();
-            _useCase = new BlockDetailUseCase(_explorerRepository, _logger);
+            _explorerRepository = Substitute.For<IExplorerService>();
+            _logger = Substitute.For<ILogger<BlockDetailHandler>>();
+            _useCase = new BlockDetailHandler(_explorerRepository, _logger);
             base.Setup();
         }
 

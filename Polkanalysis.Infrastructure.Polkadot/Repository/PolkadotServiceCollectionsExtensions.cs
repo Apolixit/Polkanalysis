@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Polkadot.Repository
     {
         public static IServiceCollection AddPolkadotBlockchain(this IServiceCollection services)
         {
-            services.AddSingleton<ISubstrateRepository, PolkadotRepository>();
+            services.AddSingleton<ISubstrateService, PolkadotService>();
             services.AddSingleton<IBlockchainMapping, PolkadotMapping>();
 
             return services;

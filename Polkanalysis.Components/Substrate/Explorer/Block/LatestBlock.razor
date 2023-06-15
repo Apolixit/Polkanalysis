@@ -4,8 +4,9 @@
 @using Polkanalysis.Domain.Contracts.Primary.Notification;
 @using Polkanalysis.Domain.Contracts.Primary;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
+@using Polkanalysis.Domain.Contracts.Service;
 
-@inject IExplorerRepository _blockRepository;
+@inject IExplorerService _explorerService;
 @inject NavigationManager _navigationManager;
 
 <div class="card h-100">

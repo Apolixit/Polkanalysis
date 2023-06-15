@@ -11,13 +11,13 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
 {
     public class PalletBuilderTest
     {
-        protected readonly ISubstrateRepository _substrateRepository;
+        protected readonly ISubstrateService _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
         private readonly ICurrentMetaData _currentMetaData;
 
         public PalletBuilderTest()
         {
-            _substrateRepository = Substitute.For<ISubstrateRepository>();
+            _substrateRepository = Substitute.For<ISubstrateService>();
 
             //var mockClient = Substitute.For<SubstrateClientExt>(default, default);
             //var mockClient = Substitute.For<ISubstrateClientRepository>();

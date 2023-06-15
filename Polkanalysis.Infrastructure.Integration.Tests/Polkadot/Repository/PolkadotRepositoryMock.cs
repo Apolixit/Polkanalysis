@@ -15,14 +15,14 @@ namespace Polkanalysis.Infrastructure.Integration.Tests.Polkadot.Repository
 {
     public abstract class PolkadotRepositoryMock
     {
-        protected ISubstrateRepository _substrateRepository;
+        protected ISubstrateService _substrateRepository;
 
         [SetUp]
         public void Setup()
         {
-            _substrateRepository = new PolkadotRepository(
+            _substrateRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
-                Substitute.For<ILogger<PolkadotRepository>>()
+                Substitute.For<ILogger<PolkadotService>>()
                 );
         }
     }

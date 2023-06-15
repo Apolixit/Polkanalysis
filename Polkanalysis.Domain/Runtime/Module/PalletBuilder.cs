@@ -16,10 +16,10 @@ namespace Polkanalysis.Domain.Runtime.Module
 {
     public class PalletBuilder : IPalletBuilder
     {
-        private readonly ISubstrateRepository _substrateRepository;
+        private readonly ISubstrateService _substrateRepository;
         private readonly ICurrentMetaData _currentMetaData;
 
-        public PalletBuilder(ISubstrateRepository substrateRepository, ICurrentMetaData currentMetaData)
+        public PalletBuilder(ISubstrateService substrateRepository, ICurrentMetaData currentMetaData)
         {
             _substrateRepository = substrateRepository;
             _currentMetaData = currentMetaData;

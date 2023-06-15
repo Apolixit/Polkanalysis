@@ -23,7 +23,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Identity
     {
         public IdentityIdentityKilledRepository(
             SubstrateDbContext context,
-            ISubstrateRepository substrateNodeRepository,
+            ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
             ILogger<IdentityIdentityKilledRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {

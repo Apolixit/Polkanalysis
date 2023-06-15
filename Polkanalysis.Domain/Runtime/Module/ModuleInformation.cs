@@ -17,9 +17,9 @@ namespace Polkanalysis.Domain.Runtime.Module
     {
         private readonly ICurrentMetaData _currentMetaData;
         private readonly IModelBuilder _modelBuilder;
-        private readonly ISubstrateRepository _substrateService;
+        private readonly ISubstrateService _substrateService;
 
-        public ModuleInformation(ICurrentMetaData currentMetaData, IModelBuilder modelBuilder, ISubstrateRepository substrateService)
+        public ModuleInformation(ICurrentMetaData currentMetaData, IModelBuilder modelBuilder, ISubstrateService substrateService)
         {
             _currentMetaData = currentMetaData;
             _modelBuilder = modelBuilder;

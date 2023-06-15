@@ -3,8 +3,8 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Repository;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +15,21 @@ namespace Polkanalysis.Domain.Tests.Repository
 {
     public class RoleMemberRepositoryTest
     {
-        protected IExplorerRepository _explorerRepository;
-        protected ISubstrateRepository _substrateRepository;
-        private IStakingRepository _roleMemberRepository;
+        protected IExplorerService _explorerRepository;
+        protected ISubstrateService _substrateRepository;
+        private IStakingService _roleMemberRepository;
 
         [SetUp]
         public void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerRepository>();
-            _substrateRepository = Substitute.For<ISubstrateRepository>();
+            _explorerRepository = Substitute.For<IExplorerService>();
+            _substrateRepository = Substitute.For<ISubstrateService>();
 
 
-            _roleMemberRepository = new StakingRepository(
+            _roleMemberRepository = new StakingService(
                 _substrateRepository,
-                Substitute.For<IAccountRepository>(),
-                Substitute.For<ILogger<StakingRepository>>());
+                Substitute.For<IAccountService>(),
+                Substitute.For<ILogger<StakingService>>());
         }
 
         [Test]

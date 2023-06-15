@@ -12,21 +12,21 @@ using Polkanalysis.Domain.UseCase.Account;
 using Polkanalysis.Domain.Contracts.Primary;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Account
 {
-    public class AccountDetailUseCaseTest : UseCaseTest<AccountDetailUseCase, AccountDto, AccountDetailQuery>
+    public class AccountDetailUseCaseTest : UseCaseTest<AccountDetailHandler, AccountDto, AccountDetailQuery>
     {
-        private IAccountRepository _accountRepository;
+        private IAccountService _accountRepository;
 
         [SetUp]
         public override void Setup()
         {
-            _logger = Substitute.For<ILogger<AccountDetailUseCase>>();
-            _accountRepository = Substitute.For<IAccountRepository>();
+            _logger = Substitute.For<ILogger<AccountDetailHandler>>();
+            _accountRepository = Substitute.For<IAccountService>();
 
-            _useCase = new AccountDetailUseCase(_accountRepository, _logger);
+            _useCase = new AccountDetailHandler(_accountRepository, _logger);
             base.Setup();
         }
     }

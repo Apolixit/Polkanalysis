@@ -17,7 +17,7 @@ namespace Polkanalysis.Integration.Tests.Contracts
     /// </summary>
     public abstract class IntegrationTest
     {
-        protected readonly ISubstrateRepository _substrateRepository;
+        protected readonly ISubstrateService _substrateRepository;
         protected ISubstrateEndpoint _substrateEndpoint;
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace Polkanalysis.Integration.Tests.Contracts
             if (_substrateEndpoint == null)
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
 
-            _substrateRepository = new PolkadotRepository(
+            _substrateRepository = new PolkadotService(
                 _substrateEndpoint,
-                Substitute.For<ILogger<PolkadotRepository>>()
+                Substitute.For<ILogger<PolkadotService>>()
                 );
         }
 

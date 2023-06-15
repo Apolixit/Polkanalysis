@@ -1,10 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Substrate.NetApi;
 using Substrate.NET.Utils;
-using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Repository;
 
 namespace Polkanalysis.Domain.Adapter.Block
 {
@@ -12,7 +9,7 @@ namespace Polkanalysis.Domain.Adapter.Block
     {
         private uint? _blockNumber;
         private Hash? _blockHash;
-        private readonly ISubstrateRepository _substrateService;
+        private readonly ISubstrateService _substrateService;
 
         public BlockParameterLike(uint blockNumber)
         {
@@ -35,7 +32,7 @@ namespace Polkanalysis.Domain.Adapter.Block
         //    _substrateService = substrateService;
         //}
 
-        public async Task<bool> EnsureBlockNumberIsValidAsync(ISubstrateRepository substrateService)
+        public async Task<bool> EnsureBlockNumberIsValidAsync(ISubstrateService substrateService)
         {
             var lastHeader = await substrateService.Rpc.Chain.GetHeaderAsync();
 
@@ -72,7 +69,7 @@ namespace Polkanalysis.Domain.Adapter.Block
         //    return this;
         //}
 
-        private async Task EnsureDataIsSetAsync(ISubstrateRepository substrateService)
+        private async Task EnsureDataIsSetAsync(ISubstrateService substrateService)
         {
             if (_blockHash == null && _blockNumber == null)
                 throw new InvalidOperationException("No block has been set");
@@ -91,7 +88,7 @@ namespace Polkanalysis.Domain.Adapter.Block
             _blockHash = null;
         }
 
-        public async Task<Hash> ToBlockHashAsync(ISubstrateRepository substrateService)
+        public async Task<Hash> ToBlockHashAsync(ISubstrateService substrateService)
         {
             EnsureDataIsSetAsync(substrateService);
 
@@ -107,7 +104,7 @@ namespace Polkanalysis.Domain.Adapter.Block
             return blockHash;
         }
 
-        public async Task<BlockNumber> ToBlockNumberAsync(ISubstrateRepository substrateService)
+        public async Task<BlockNumber> ToBlockNumberAsync(ISubstrateService substrateService)
         {
             await EnsureDataIsSetAsync(substrateService);
 

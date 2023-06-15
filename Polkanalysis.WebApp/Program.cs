@@ -1,11 +1,11 @@
 using Polkanalysis.Components.Services.Http;
 using Polkanalysis.Configuration.Extentions;
-using Polkanalysis.Domain.Repository;
 using Polkanalysis.Infrastructure.Polkadot.Repository;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.WebApp.Services;
 using Polkanalysis.Infrastructure.Common.Database;
 using Microsoft.EntityFrameworkCore;
+using Polkanalysis.Domain.Service;
 
 namespace Polkanalysis.WebApp
 {
@@ -29,7 +29,7 @@ namespace Polkanalysis.WebApp
             builder.Services.AddScoped<IApiService, ApiService>();
 
             builder.Services.AddEndpoint();
-            builder.Services.AddSubstrateRepositories();
+            builder.Services.AddSubstrateService();
             builder.Services.AddPolkadotBlockchain();
             builder.Services.AddDatabaseEvents();
             builder.Services.AddSubstrateLogic();

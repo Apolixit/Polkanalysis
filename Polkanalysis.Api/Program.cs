@@ -9,7 +9,6 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Repository;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
@@ -25,6 +24,7 @@ using Serilog;
 using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Infrastructure.Polkadot.Repository;
 using Polkanalysis.Api.Services;
+using Polkanalysis.Domain.Service;
 
 namespace Polkanalysis.Api
 {
@@ -61,7 +61,7 @@ namespace Polkanalysis.Api
                 builder.Services.AddMediatRAndPipelineBehaviors();
 
                 builder.Services.AddEndpoint();
-                builder.Services.AddSubstrateRepositories();
+                builder.Services.AddSubstrateService();
                 builder.Services.AddDatabaseEvents();
                 builder.Services.AddPolkadotBlockchain();
                 builder.Services.AddSubstrateLogic();
@@ -95,7 +95,7 @@ namespace Polkanalysis.Api
 
                 var app = builder.Build();
 
-                var substrateService = app.Services.GetRequiredService<ISubstrateRepository>();
+                var substrateService = app.Services.GetRequiredService<ISubstrateService>();
                 await substrateService.ConnectAsync();
                 if(substrateService.IsConnected())
                 {

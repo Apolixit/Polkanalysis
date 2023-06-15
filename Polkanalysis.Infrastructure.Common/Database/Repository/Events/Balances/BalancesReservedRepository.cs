@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances
     {
         public BalancesReservedRepository(
             SubstrateDbContext context,
-            ISubstrateRepository substrateNodeRepository,
+            ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
             ILogger<BalancesReservedRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {

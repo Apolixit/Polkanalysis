@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Tests.UseCase
         where TRequest : IRequest<Result<TDto, ErrorResult>>
     {
         protected ILogger<TLogger> _logger;
-        protected UseCase<TLogger, TDto, TRequest> _useCase;
+        protected Handler<TLogger, TDto, TRequest> _useCase;
 
         //protected UseCaseTest(ILogger<TLogger> logger, UseCase<TLogger, TDto, TRequest> useCase)
         //{

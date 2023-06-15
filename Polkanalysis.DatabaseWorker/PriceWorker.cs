@@ -13,13 +13,13 @@ namespace Polkanalysis.DatabaseWorker
 {
     public class PriceWorker
     {
-        private readonly ISubstrateRepository _polkadotRepository;
+        private readonly ISubstrateService _polkadotRepository;
         private readonly IMediator _mediator;
         private readonly ILogger<PriceWorker> _logger;
 
         private bool canUpdate = true;
         public PriceWorker(
-            ISubstrateRepository polkadotRepository,
+            ISubstrateService polkadotRepository,
             IMediator mediator, 
             ILogger<PriceWorker> logger)
         {

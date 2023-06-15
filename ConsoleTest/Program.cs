@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Repository;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Infrastructure.Polkadot.Repository;
@@ -10,6 +9,7 @@ using Polkanalysis.Domain.UseCase.Explorer.Block;
 using MediatR.Courier;
 using MediatR;
 using Polkanalysis.Domain.UseCase;
+using Polkanalysis.Domain.Service;
 
 namespace ConsoleTest;
 
@@ -48,16 +48,16 @@ public class Program
     private static void ConfigureServices(IServiceCollection services)
     {
         services.AddEndpoint();
-        services.AddSubstrateRepositories();
+        services.AddSubstrateService();
         services.AddPolkadotBlockchain();
         services.AddDatabaseEvents();
         services.AddSubstrateLogic();
 
         services.AddMediatR(cfg => {
-            cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(BlockLightHandler).Assembly);
             cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
         });
-        services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+        services.AddCourier(typeof(SubscribeNewBlocksHandler).Assembly, typeof(Program).Assembly);
 
         //services.AddValidatorsFromAssembly(typeof(BlockLightUseCase).Assembly);
 

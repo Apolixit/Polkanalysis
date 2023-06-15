@@ -14,7 +14,7 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
 {
     public abstract class PolkadotRepositoryMock
     {
-        protected PolkadotRepository _substrateRepository;
+        protected PolkadotService _substrateRepository;
 
         public const string MockAddress = "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS";
         public const string MockAddress2 = "13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY";
@@ -54,9 +54,9 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
         [SetUp]
         public void Setup()
         {
-            var polkadotRepository = new PolkadotRepository(
+            var polkadotRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
-                Substitute.For<ILogger<PolkadotRepository>>()
+                Substitute.For<ILogger<PolkadotService>>()
                 );
 
             // Mock a part of Substrate Client call
@@ -75,9 +75,9 @@ namespace Polkanalysis.Infrastructure.Tests.Polkadot.Repository
 
         public void BuildRepository()
         {
-            var polkadotRepository = new PolkadotRepository(
+            var polkadotRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
-                Substitute.For<ILogger<PolkadotRepository>>()
+                Substitute.For<ILogger<PolkadotService>>()
                 );
 
             _substrateRepository = polkadotRepository;

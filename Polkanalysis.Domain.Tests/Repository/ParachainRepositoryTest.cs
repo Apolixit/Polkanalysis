@@ -2,33 +2,28 @@
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Configuration.Contracts.Information;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Service;
 
 namespace Polkanalysis.Domain.Tests.Repository
 {
     public class ParachainRepositoryTest
     {
-        private IParachainRepository _parachainRepository;
-        private ISubstrateRepository _substrateRepository;
-        private IAccountRepository _accountRepository;
-        private IExplorerRepository _explorerRepository;
+        private IParachainService _parachainRepository;
+        private ISubstrateService _substrateRepository;
+        private IAccountService _accountRepository;
+        private IExplorerService _explorerRepository;
         private IBlockchainInformations _blockchainInformations;
 
         [SetUp]
         public void Setup()
         {
-            _substrateRepository = Substitute.For<ISubstrateRepository>();
-            _accountRepository = Substitute.For<IAccountRepository>();
-            _explorerRepository = Substitute.For<IExplorerRepository>();
+            _substrateRepository = Substitute.For<ISubstrateService>();
+            _accountRepository = Substitute.For<IAccountService>();
+            _explorerRepository = Substitute.For<IExplorerService>();
             _blockchainInformations = Substitute.For<IBlockchainInformations>();
 
-            _parachainRepository = new ParachainRepository(_substrateRepository, _accountRepository, _explorerRepository, _blockchainInformations);
+            _parachainRepository = new ParachainService(_substrateRepository, _accountRepository, _explorerRepository, _blockchainInformations);
         }
 
         [Test]

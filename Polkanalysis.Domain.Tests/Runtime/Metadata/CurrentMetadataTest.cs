@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Metadata
             var logger = Substitute.For<ILogger<CurrentMetaData>>();
 
             _currentMetaData = new CurrentMetaData(
-                Substitute.For<ISubstrateRepository>(),
+                Substitute.For<ISubstrateService>(),
                 logger
             );
         }

@@ -1,41 +1,35 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts.Information;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Repository;
-using Polkanalysis.Infrastructure.DirectAccess.Repository;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Service;
 using Polkanalysis.Integration.Tests.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
     [Timeout(RepositoryMaxTimeout)]
     public class ParachainRepositoryTest : PolkadotIntegrationTest
     {
-        private IParachainRepository _parachainRepository;
-        private IAccountRepository _accountRepository;
-        private IExplorerRepository _explorerRepository;
+        private IParachainService _parachainService;
+        private IAccountService _accountRepository;
+        private IExplorerService _explorerRepository;
         private IBlockchainInformations _blockchainInformations;
 
         [SetUp]
         public void Setup()
         {
-            _accountRepository = Substitute.For<IAccountRepository>();
-            _explorerRepository = Substitute.For<IExplorerRepository>();
+            _accountRepository = Substitute.For<IAccountService>();
+            _explorerRepository = Substitute.For<IExplorerService>();
             _blockchainInformations = Substitute.For<IBlockchainInformations>();
 
-            _parachainRepository = new ParachainRepository(_substrateRepository, _accountRepository, _explorerRepository, _blockchainInformations);
+            _parachainService = new ParachainService(_substrateRepository, _accountRepository, _explorerRepository, _blockchainInformations);
         }
 
         [Test]
         [TestCase(2051)]
         public async Task ValidParachain_GetDetails_ShouldWorkAsync(int parachainId)
         {
-            var res = await _parachainRepository.GetParachainDetailAsync((uint)parachainId, CancellationToken.None);
+            var res = await _parachainService.GetParachainDetailAsync((uint)parachainId, CancellationToken.None);
 
             Assert.That(res.ParachainId, Is.EqualTo(parachainId)); 
             Assert.That(res.RegisterStatus, Is.EqualTo("Parachain")); 

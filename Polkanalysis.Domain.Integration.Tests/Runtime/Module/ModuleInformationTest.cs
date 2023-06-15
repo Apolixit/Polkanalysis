@@ -12,7 +12,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
     public class ModuleInformationTest : PolkadotIntegrationTest
     {
         private IModuleInformation _moduleRepository;
-        private ISubstrateRepository _substrateService;
+        private ISubstrateService _substrateService;
 
         [SetUp]
         public void Setup()

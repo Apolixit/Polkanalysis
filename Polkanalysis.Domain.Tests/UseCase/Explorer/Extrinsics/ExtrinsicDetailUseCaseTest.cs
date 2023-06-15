@@ -8,22 +8,22 @@ using Polkanalysis.Domain.UseCase.Explorer.Extrinsics;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
 {
-    public class ExtrinsicDetailUseCaseTest : UseCaseTest<ExtrinsicDetailsUseCase, ExtrinsicDto, ExtrinsicDetailQuery>
+    public class ExtrinsicDetailUseCaseTest : UseCaseTest<ExtrinsicDetailsHandler, ExtrinsicDto, ExtrinsicDetailQuery>
     {
-        private IExplorerRepository _explorerRepository;
+        private IExplorerService _explorerRepository;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerRepository>();
-            _logger = Substitute.For<ILogger<ExtrinsicDetailsUseCase>>();
-            _useCase = new ExtrinsicDetailsUseCase(_explorerRepository, _logger);
+            _explorerRepository = Substitute.For<IExplorerService>();
+            _logger = Substitute.For<ILogger<ExtrinsicDetailsHandler>>();
+            _useCase = new ExtrinsicDetailsHandler(_explorerRepository, _logger);
         }
 
         [Test]

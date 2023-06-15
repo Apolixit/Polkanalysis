@@ -2,27 +2,27 @@
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Infrastructure.Contracts.Database.Model.Events;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Polkanalysis.DatabaseWorker.Parameters;
 using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.DatabaseWorker
 {
     public class EventsWorker
     {
-        private readonly ISubstrateRepository _polkadotRepository;
-        private readonly IExplorerRepository _explorerRepository;
+        private readonly ISubstrateService _polkadotRepository;
+        private readonly IExplorerService _explorerRepository;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IEventsFactory _eventsFactory;
         private readonly BlockPerimeter _blockPerimeter;
         private readonly ILogger<EventsWorker> _logger;
 
         public EventsWorker(
-            ISubstrateRepository polkadotRepository,
-            IExplorerRepository explorerRepository,
+            ISubstrateService polkadotRepository,
+            IExplorerService explorerRepository,
             IEventsFactory eventsFactory,
             ISubstrateDecoding substrateDecode,
             BlockPerimeter blockPerimeter,

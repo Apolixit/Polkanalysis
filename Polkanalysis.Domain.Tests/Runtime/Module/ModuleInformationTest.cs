@@ -18,14 +18,14 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Tests.Repository
         private IModuleInformation _moduleRepository;
         private ICurrentMetaData _currentMetaData;
         private IModelBuilder _modelBuilder;
-        private ISubstrateRepository _substrateService;
+        private ISubstrateService _substrateService;
 
         [SetUp]
         public void Setup()
         {
             _currentMetaData = Substitute.For<ICurrentMetaData>();
             _modelBuilder = Substitute.For<IModelBuilder>();
-            _substrateService = Substitute.For<ISubstrateRepository>();
+            _substrateService = Substitute.For<ISubstrateService>();
             _moduleRepository = new ModuleInformation(_currentMetaData, _modelBuilder, _substrateService);
         }
 

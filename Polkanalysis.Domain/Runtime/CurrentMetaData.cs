@@ -10,10 +10,10 @@ namespace Polkanalysis.Domain.Runtime
 {
     public class CurrentMetaData : ICurrentMetaData
     {
-        public readonly ISubstrateRepository _substrateNodeRepository;
+        public readonly ISubstrateService _substrateNodeRepository;
         private readonly ILogger<CurrentMetaData> _logger;
 
-        public CurrentMetaData(ISubstrateRepository substrateNodeRepository, ILogger<CurrentMetaData> logger)
+        public CurrentMetaData(ISubstrateService substrateNodeRepository, ILogger<CurrentMetaData> logger)
         {
             this._substrateNodeRepository = substrateNodeRepository;
             _logger = logger;

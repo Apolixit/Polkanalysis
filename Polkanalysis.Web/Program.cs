@@ -7,7 +7,7 @@ using Polkanalysis.Configuration.Extentions;
 using Polkanalysis.Infrastructure.Common.Database;
 using Polkanalysis.Infrastructure.Polkadot.Repository;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Domain.Repository;
+using Polkanalysis.Domain.Service;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -18,7 +18,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IApiService, ApiService>();
 
 builder.Services.AddEndpoint();
-builder.Services.AddSubstrateRepositories();
+builder.Services.AddSubstrateService();
 builder.Services.AddDatabaseEvents();
 builder.Services.AddPolkadotBlockchain();
 builder.Services.AddSubstrateLogic();

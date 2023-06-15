@@ -10,17 +10,17 @@ using Polkanalysis.Domain.UseCase.Runtime;
 namespace Polkanalysis.Domain.Tests.UseCase.Module
 {
     public class ModuleDetailUseCaseTest : 
-        UseCaseTest<RuntimeModuleDetailUseCase, ModuleDetailDto, RuntimeModuleDetailQuery>
+        UseCaseTest<RuntimeModuleDetailHandler, ModuleDetailDto, RuntimeModuleDetailQuery>
     {
         private IModuleInformation _moduleRepository;
 
         [SetUp]
         public override void Setup()
         {
-            _logger = Substitute.For<ILogger<RuntimeModuleDetailUseCase>>();
+            _logger = Substitute.For<ILogger<RuntimeModuleDetailHandler>>();
             _moduleRepository = Substitute.For<IModuleInformation>();
 
-            _useCase = new RuntimeModuleDetailUseCase(_logger, _moduleRepository);
+            _useCase = new RuntimeModuleDetailHandler(_logger, _moduleRepository);
             base.Setup();
         }
 

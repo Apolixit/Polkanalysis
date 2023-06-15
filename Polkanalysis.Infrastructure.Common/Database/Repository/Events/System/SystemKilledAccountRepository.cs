@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository.Events.System
     {
         public SystemKilledAccountRepository(
             SubstrateDbContext context,
-            ISubstrateRepository substrateNodeRepository,
+            ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
             ILogger<SystemKilledAccountRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {

@@ -10,22 +10,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
-    public class BlockLightUseCaseTest : UseCaseTest<BlockLightUseCase, BlockLightDto, BlockLightQuery>
+    public class BlockLightUseCaseTest : UseCaseTest<BlockLightHandler, BlockLightDto, BlockLightQuery>
     {
-        private IExplorerRepository _explorerRepository;
+        private IExplorerService _explorerRepository;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerRepository>();
-            _logger = Substitute.For<ILogger<BlockLightUseCase>>();
-            _useCase = new BlockLightUseCase(_explorerRepository, _logger);
+            _explorerRepository = Substitute.For<IExplorerService>();
+            _logger = Substitute.For<ILogger<BlockLightHandler>>();
+            _useCase = new BlockLightHandler(_explorerRepository, _logger);
         }
 
         [Test]

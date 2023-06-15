@@ -1,7 +1,9 @@
 ﻿@using Polkanalysis.Domain.Contracts.Dto.Event;
 @using Polkanalysis.Domain.Contracts.Secondary;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
-@inject IExplorerRepository blockRepository;
+@using Polkanalysis.Domain.Contracts.Service;
+
+@inject IExplorerService _explorerService;
 
 @foreach(var ev in Events)
 {
@@ -15,7 +17,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-        await blockRepository.SubscribeEventAsync((EventLightDto newEvent) =>
+        await _explorerService.SubscribeEventAsync((EventLightDto newEvent) =>
         {
             Events.Add(newEvent);
             StateHasChanged();

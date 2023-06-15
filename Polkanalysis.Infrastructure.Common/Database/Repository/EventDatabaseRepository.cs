@@ -15,13 +15,13 @@ namespace Polkanalysis.Infrastructure.Common.Database.Repository
     public abstract class EventDatabaseRepository : IDatabaseInsert
     {
         protected readonly SubstrateDbContext _context;
-        protected readonly ISubstrateRepository _substrateNodeRepository;
+        protected readonly ISubstrateService _substrateNodeRepository;
         protected readonly ILogger<EventDatabaseRepository> _logger;
         protected readonly IBlockchainMapping _mapping;
 
         protected EventDatabaseRepository(
             SubstrateDbContext context,
-            ISubstrateRepository substrateNodeRepository,
+            ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
             ILogger<EventDatabaseRepository> logger)
         {

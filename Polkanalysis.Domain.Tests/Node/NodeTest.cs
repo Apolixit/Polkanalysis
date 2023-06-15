@@ -90,7 +90,7 @@ namespace Polkanalysis.Domain.Tests.Node
         {
             var decode = new SubstrateDecoding(
                 new EventNodeMapping(),
-                Substitute.For<ISubstrateRepository>(),
+                Substitute.For<ISubstrateService>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
@@ -135,7 +135,7 @@ namespace Polkanalysis.Domain.Tests.Node
         {
             var decode = new SubstrateDecoding(
                 new EventNodeMapping(),
-                Substitute.For<ISubstrateRepository>(),
+                Substitute.For<ISubstrateService>(),
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());

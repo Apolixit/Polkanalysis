@@ -1,7 +1,9 @@
 ﻿@using Polkanalysis.Domain.Contracts.Dto.Block;
 @using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
-@inject IExplorerRepository _blockRepository;
+@using Polkanalysis.Domain.Contracts.Service;
+
+@inject IExplorerService _explorerService;
 @inject IMediator _mediator;
 @inject NavigationManager _navigationManager;
 
