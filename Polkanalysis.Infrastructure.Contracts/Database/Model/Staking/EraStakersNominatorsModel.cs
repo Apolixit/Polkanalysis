@@ -2,6 +2,8 @@
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace Polkanalysis.Infrastructure.Contracts.Database.Model.Staking
@@ -11,12 +13,18 @@ namespace Polkanalysis.Infrastructure.Contracts.Database.Model.Staking
         public string NominatorAddress { get; set; } = string.Empty;
         public BigInteger ValueStake { get; set; }
 
+        public int EraStakersId { get; set; }
+        public required EraStakersModel EraStakers { get; set; }
+
         public EraStakersNominatorsModel() { }
 
-        public EraStakersNominatorsModel(IndividualExposure exposure)
+        [SetsRequiredMembers]
+        public EraStakersNominatorsModel(IndividualExposure exposure, EraStakersModel eraStakers)
         {
-            this.NominatorAddress = exposure.Who.ToPolkadotAddress();
-            this.ValueStake = exposure.Value.Value.Value;
+            NominatorAddress = exposure.Who.ToPolkadotAddress();
+            ValueStake = exposure.Value.Value.Value;
+
+            EraStakers = eraStakers;
         }
 
         public IndividualExposure ToCore()

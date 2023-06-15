@@ -28,6 +28,9 @@ using Serilog;
 using Prometheus;
 using Polkanalysis.Infrastructure.Polkadot.Repository;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
+using MediatR.Courier;
+using MediatR;
+using Polkanalysis.Domain.UseCase;
 
 IConfiguration config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -74,6 +77,10 @@ var host = Host.CreateDefaultBuilder(args)
         cfg.RegisterServicesFromAssembly(typeof(BlockLightUseCase).Assembly);
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
     });
+    services.AddCourier(typeof(SubscribeNewBlocksUseCase).Assembly, typeof(Program).Assembly);
+
+    services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+    services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 })
 .Build();
 

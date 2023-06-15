@@ -5,18 +5,21 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Polkanalysis.Infrastructure.Contracts.Database.Model.Staking
 {
     public class EraStakersModel : BlockchainModel
     {
+        public int EraStakersId { get; set; }
+
         public int EraId { get; set; }
         public string ValidatorAddress { get; set; } = string.Empty;
 
         public BigInteger TotalStake { get; set; }
         public BigInteger OwnStake { get; set; }
 
-        public IEnumerable<EraStakersNominatorsModel> EraNominatorsVote { get; set; } = Enumerable.Empty<EraStakersNominatorsModel>();
+        public ICollection<EraStakersNominatorsModel> EraNominatorsVote { get; set; } = new List<EraStakersNominatorsModel>();
 
         public EraStakersModel() { }
 
@@ -30,7 +33,7 @@ namespace Polkanalysis.Infrastructure.Contracts.Database.Model.Staking
             ValidatorAddress = validatorAccount.ToPolkadotAddress();
             OwnStake = exposure.Own.Value.Value;
             TotalStake = exposure.Total.Value.Value;
-            EraNominatorsVote = exposure.Others.Value.Select(x => new EraStakersNominatorsModel(x));
+            EraNominatorsVote = exposure.Others.Value.Select(x => new EraStakersNominatorsModel(x, this)).ToList();
         }
 
         public (BaseTuple<U32, SubstrateAccount>, Exposure) ToCore()

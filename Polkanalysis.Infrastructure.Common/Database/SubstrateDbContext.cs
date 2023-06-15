@@ -81,7 +81,15 @@ namespace Polkanalysis.Infrastructure.Common.Database
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account });
 
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });
-            modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.BlockchainName, c.EraId, c.ValidatorAddress });
+
+            modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.EraStakersId, c.BlockchainName, c.EraId, c.ValidatorAddress });
+            modelBuilder.Entity<EraStakersModel>().Property(c => c.EraStakersId).ValueGeneratedOnAdd();
+            modelBuilder.Entity<EraStakersModel>()
+                .HasMany(c => c.EraNominatorsVote)
+                .WithOne(c => c.EraStakers)
+                .HasForeignKey(c => c.EraStakersId)
+                .HasPrincipalKey(c => c.EraStakersId);
+            modelBuilder.Entity<EraStakersNominatorsModel>().HasNoKey();
         }
     }
 }
