@@ -2,11 +2,6 @@
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.DatabaseWorker.Parameters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Worker.Tests
 {

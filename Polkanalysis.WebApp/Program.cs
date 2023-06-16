@@ -1,11 +1,11 @@
 using Polkanalysis.Components.Services.Http;
-using Polkanalysis.Configuration.Extentions;
-using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Configuration.Extensions;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.WebApp.Services;
-using Polkanalysis.Infrastructure.Common.Database;
 using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Domain.Service;
+using Polkanalysis.Infrastructure.Database;
 
 namespace Polkanalysis.WebApp
 {

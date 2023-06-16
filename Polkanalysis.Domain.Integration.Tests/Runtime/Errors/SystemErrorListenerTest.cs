@@ -1,12 +1,10 @@
-﻿using Polkanalysis.Domain.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Runtime;
+﻿using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Runtime.Module;
+using Polkanalysis.Domain.Integration.Tests.Polkadot;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 {

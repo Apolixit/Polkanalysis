@@ -3,8 +3,8 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Price;
 using Polkanalysis.Domain.Contracts.Primary.Price;
 using Polkanalysis.Domain.Contracts.Primary.Result;
-using Polkanalysis.Infrastructure.Common.Database;
-using Polkanalysis.Infrastructure.Contracts.Database.Model.Price;
+using Polkanalysis.Infrastructure.Database;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Price;
 
 namespace Polkanalysis.Domain.UseCase.Price
 {

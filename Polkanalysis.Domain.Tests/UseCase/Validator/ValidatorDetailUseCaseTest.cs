@@ -1,8 +1,8 @@
-﻿using Polkanalysis.Domain.UseCase.Validator;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+using Polkanalysis.Domain.UseCase.Staking.Validator;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Validator
 {

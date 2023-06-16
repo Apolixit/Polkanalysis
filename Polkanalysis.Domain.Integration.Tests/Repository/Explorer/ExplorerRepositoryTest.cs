@@ -1,12 +1,12 @@
 ﻿using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Integration.Tests.Contracts;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Integration.Tests.Polkadot;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {

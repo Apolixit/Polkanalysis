@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Adapter\Block\" />
     <Folder Include="Core\Encoding\" />
     <Folder Include="Core\Sp\" />
     <Folder Include="Primary\Statistics\Balances\" />

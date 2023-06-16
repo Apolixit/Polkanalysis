@@ -2,14 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Configuration.Extentions;
-using Polkanalysis.Infrastructure.Polkadot.Repository;
-using Polkanalysis.Infrastructure.Common.Database;
+using Polkanalysis.Configuration.Extensions;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
 using MediatR.Courier;
 using MediatR;
 using Polkanalysis.Domain.UseCase;
 using Polkanalysis.Domain.Service;
+using Polkanalysis.Infrastructure.Database;
 
 namespace ConsoleTest;
 

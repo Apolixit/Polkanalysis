@@ -54,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Polkanalysis.DatabaseWorker\Polkanalysis.DatabaseWorker.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Worker\Polkanalysis.Worker.csproj" />
   </ItemGroup>
 
 </Project>

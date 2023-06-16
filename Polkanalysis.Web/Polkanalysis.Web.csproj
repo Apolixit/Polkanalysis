@@ -17,10 +17,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Components\Polkanalysis.Components.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Configuration.Extentions\Polkanalysis.Configuration.Extentions.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Infrastructure.Polkadot\Polkanalysis.Infrastructure.Polkadot.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using Polkanalysis.Configuration.Extentions;
-using System;
-using System.Collections.Generic;
+using Polkanalysis.Configuration.Extensions;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Configuration.Tests
 {

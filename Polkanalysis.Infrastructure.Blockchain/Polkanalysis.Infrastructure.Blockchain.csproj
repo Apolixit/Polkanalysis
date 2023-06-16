@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Helpers\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <None Remove="Helpers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.EnumMapping" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Kusama\" />
+    <Folder Include="Bajun\" />
+  </ItemGroup>
+
+</Project>

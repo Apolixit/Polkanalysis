@@ -4,7 +4,8 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Price;
 using Polkanalysis.Domain.Contracts.Primary.Price;
 using Polkanalysis.Domain.Contracts.Primary.Result;
-using Polkanalysis.Infrastructure.Common.Database;
+using Polkanalysis.Infrastructure.Database;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Price;
 using System.Text.Json;
 
 namespace Polkanalysis.Domain.UseCase.Price
@@ -77,7 +78,7 @@ namespace Polkanalysis.Domain.UseCase.Price
 
         public async override Task<Result<bool, ErrorResult>> Handle(TokenPriceCommand command, CancellationToken cancellationToken)
         {
-            _dbContext.TokenPrices.Add(new Infrastructure.Contracts.Database.Model.Price.TokenPriceModel()
+            _dbContext.TokenPrices.Add(new TokenPriceModel()
             {
                 BlockchainName = command.BlockchainName,
                 Date = command.TokenPrice.Date,

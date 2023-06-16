@@ -1,16 +1,5 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
-using Polkanalysis.Integration.Tests.Contracts;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Types;
-using System.Runtime.InteropServices;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {
@@ -31,11 +20,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
             Assert.IsNotNull(extrinsicInfoWithHash);
 
             // One of these extrinsics should have Timestamp.Set defined
-            Assert.That(
-                extrinsicInfoWithNumber.Any(x =>
-                x.Decoded.Has(Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.Call.set)),
-                Is.True);
-
+            //Assert.That(
+            //    extrinsicInfoWithNumber.Any(x =>
+            //    x.Decoded.Has(Domain.Contracts.Secondary.Pallet.Timestamp.ITimestampStorage Call.set)),
+            //    Is.True);
+            Assert.Fail();
         }
 
         /// <summary>

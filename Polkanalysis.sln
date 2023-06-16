@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Web", "Polkana
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components", "Polkanalysis.Components\Polkanalysis.Components.csproj", "{F791AB81-450D-473C-A37F-7D388CC89C20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Polkadot", "Polkanalysis.Infrastructure.Polkadot\Polkanalysis.Infrastructure.Polkadot.csproj", "{7827F798-B3C5-4432-9679-75E21F0CAB87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain", "Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj", "{7827F798-B3C5-4432-9679-75E21F0CAB87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Tests", "Polkanalysis.Infrastructure.Tests\Polkanalysis.Infrastructure.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Tests", "Polkanalysis.Infrastructure.Blockchain.Tests\Polkanalysis.Infrastructure.Blockchain.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components.Tests", "Polkanalysis.Components.Tests\Polkanalysis.Components.Tests.csproj", "{E85B9C73-8F2D-4FFB-A873-8863921DC52E}"
 EndProject
@@ -45,21 +45,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain", "Polk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Integration.Tests", "Polkanalysis.Domain.Integration.Tests\Polkanalysis.Domain.Integration.Tests.csproj", "{B46291D1-85C6-47FE-AC87-910C73772ED8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Integration.Tests", "Polkanalysis.Infrastructure.Integration.Tests\Polkanalysis.Infrastructure.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Integration.Tests", "Polkanalysis.Infrastructure.Blockchain.Integration.Tests\Polkanalysis.Infrastructure.Blockchain.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Integration.Tests.Contracts", "Polkanalysis.Integration.Tests.Contracts\Polkanalysis.Integration.Tests.Contracts.csproj", "{C8614077-A9DD-46B1-BD51-22C7D0F2F9AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Blockchains", "05.Blockchains", "{B6463D88-968C-4EEB-A7B4-A56007B3FDF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Kusama", "Polkanalysis.Infrastructure.Kusama\Polkanalysis.Infrastructure.Kusama.csproj", "{F3B296A5-3EEF-4916-9D55-BAFFF563624E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database", "Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj", "{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Bajun", "Polkanalysis.Infrastructure.Bajun\Polkanalysis.Infrastructure.Bajun.csproj", "{9EE6AC2A-5811-484F-8C23-0CF308AF3894}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database.Contracts", "Polkanalysis.Infrastructure.Database.Contracts\Polkanalysis.Infrastructure.Database.Contracts.csproj", "{1629D073-4A84-4842-8A12-20C8EEC0AFD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Common", "Polkanalysis.Infrastructure.Common\Polkanalysis.Infrastructure.Common.csproj", "{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Contracts", "Polkanalysis.Infrastructure.Contracts\Polkanalysis.Infrastructure.Contracts.csproj", "{1629D073-4A84-4842-8A12-20C8EEC0AFD3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.DatabaseWorker", "Polkanalysis.DatabaseWorker\Polkanalysis.DatabaseWorker.csproj", "{7F717E79-E78B-4295-9293-04DA5472B5B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Worker", "Polkanalysis.Worker\Polkanalysis.Worker.csproj", "{7F717E79-E78B-4295-9293-04DA5472B5B3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Api", "Polkanalysis.Api\Polkanalysis.Api.csproj", "{D68C4B4B-0781-45EF-A8B5-A54F459ADE2E}"
 EndProject
@@ -73,13 +69,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substrate.NET.Utils", "..\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj", "{6592D507-C277-42D5-96E5-B7C6351E7D2F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Extentions", "Polkanalysis.Configuration.Extentions\Polkanalysis.Configuration.Extentions.csproj", "{7515678A-AE79-43B5-9236-2A40AD7B5523}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Contracts", "Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj", "{0F4D590A-2154-4B9C-A058-5A3AA8E531C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Extensions", "Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj", "{7515678A-AE79-43B5-9236-2A40AD7B5523}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Tests", "Polkanalysis.Configuration.Tests\Polkanalysis.Configuration.Tests.csproj", "{86F9825A-1466-4D55-8C31-197FAA2FE336}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.WebApp", "Polkanalysis.WebApp\Polkanalysis.WebApp.csproj", "{F5DD510C-6B04-440B-BB53-EBE27C5C561D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Contracts", "Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj", "{D8EDB6A8-1993-4585-99E7-85A7D2333405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,14 +135,6 @@ Global
 		{C8614077-A9DD-46B1-BD51-22C7D0F2F9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8614077-A9DD-46B1-BD51-22C7D0F2F9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8614077-A9DD-46B1-BD51-22C7D0F2F9AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3B296A5-3EEF-4916-9D55-BAFFF563624E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3B296A5-3EEF-4916-9D55-BAFFF563624E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3B296A5-3EEF-4916-9D55-BAFFF563624E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3B296A5-3EEF-4916-9D55-BAFFF563624E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9EE6AC2A-5811-484F-8C23-0CF308AF3894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9EE6AC2A-5811-484F-8C23-0CF308AF3894}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9EE6AC2A-5811-484F-8C23-0CF308AF3894}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9EE6AC2A-5811-484F-8C23-0CF308AF3894}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -187,10 +175,6 @@ Global
 		{7515678A-AE79-43B5-9236-2A40AD7B5523}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7515678A-AE79-43B5-9236-2A40AD7B5523}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7515678A-AE79-43B5-9236-2A40AD7B5523}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F4D590A-2154-4B9C-A058-5A3AA8E531C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F4D590A-2154-4B9C-A058-5A3AA8E531C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F4D590A-2154-4B9C-A058-5A3AA8E531C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F4D590A-2154-4B9C-A058-5A3AA8E531C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86F9825A-1466-4D55-8C31-197FAA2FE336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86F9825A-1466-4D55-8C31-197FAA2FE336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F9825A-1466-4D55-8C31-197FAA2FE336}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -199,6 +183,10 @@ Global
 		{F5DD510C-6B04-440B-BB53-EBE27C5C561D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DD510C-6B04-440B-BB53-EBE27C5C561D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5DD510C-6B04-440B-BB53-EBE27C5C561D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8EDB6A8-1993-4585-99E7-85A7D2333405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8EDB6A8-1993-4585-99E7-85A7D2333405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8EDB6A8-1993-4585-99E7-85A7D2333405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8EDB6A8-1993-4585-99E7-85A7D2333405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -217,8 +205,6 @@ Global
 		{B46291D1-85C6-47FE-AC87-910C73772ED8} = {6BD8838E-552B-417B-8B30-841C712E6696}
 		{A46E4983-FE43-4224-A6A9-56892A66286B} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{C8614077-A9DD-46B1-BD51-22C7D0F2F9AA} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
-		{F3B296A5-3EEF-4916-9D55-BAFFF563624E} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
-		{9EE6AC2A-5811-484F-8C23-0CF308AF3894} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{7AF607CA-1D2E-4B98-978D-EAF814E77FBC} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{1629D073-4A84-4842-8A12-20C8EEC0AFD3} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{7F717E79-E78B-4295-9293-04DA5472B5B3} = {CB427406-E3C9-402D-9C25-F35C450D7D2C}
@@ -228,9 +214,9 @@ Global
 		{968B4687-209B-49CF-9DFC-D25471C07FD9} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 		{6592D507-C277-42D5-96E5-B7C6351E7D2F} = {B6463D88-968C-4EEB-A7B4-A56007B3FDF6}
 		{7515678A-AE79-43B5-9236-2A40AD7B5523} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
-		{0F4D590A-2154-4B9C-A058-5A3AA8E531C0} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 		{86F9825A-1466-4D55-8C31-197FAA2FE336} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 		{F5DD510C-6B04-440B-BB53-EBE27C5C561D} = {CB427406-E3C9-402D-9C25-F35C450D7D2C}
+		{D8EDB6A8-1993-4585-99E7-85A7D2333405} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31C4F337-85EF-42F2-9358-F402619BBAE7}

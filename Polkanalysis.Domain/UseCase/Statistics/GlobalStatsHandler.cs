@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Primary.Result;
-using Polkanalysis.Infrastructure.Common.Database.Repository.Events.Balances;
 using Polkanalysis.Domain.Contracts.Dto.Stats;
 using FluentValidation;
 using Polkanalysis.Domain.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Primary.Statistics;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 
 namespace Polkanalysis.Domain.UseCase.Statistics
 {

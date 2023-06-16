@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using Polkanalysis.Configuration.Extentions;
+using Polkanalysis.Configuration.Extensions;
 
 namespace Polkanalysis.Configuration.Tests
 {

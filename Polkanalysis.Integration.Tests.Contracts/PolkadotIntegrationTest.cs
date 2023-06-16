@@ -7,18 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Polkanalysis.Integration.Tests.Contracts
-{
-    public abstract class PolkadotIntegrationTest : IntegrationTest
-    {
-        protected override ISubstrateEndpoint GetEndpoint()
-        {
-            var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
+//namespace Polkanalysis.Integration.Tests.Contracts
+//{
+//    public abstract class PolkadotIntegrationTest : IntegrationTest
+//    {
+//        protected override ISubstrateEndpoint GetEndpoint()
+//        {
+//            var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
 
-            substrateConfigurationMock.BlockchainName.Returns("Polkadot");
-            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://rpc.polkadot.io"));
+//            substrateConfigurationMock.BlockchainName.Returns("Polkadot");
+//            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://rpc.polkadot.io"));
 
-            return substrateConfigurationMock;
-        }
-    }
-}
+//            return substrateConfigurationMock;
+//        }
+//    }
+//}

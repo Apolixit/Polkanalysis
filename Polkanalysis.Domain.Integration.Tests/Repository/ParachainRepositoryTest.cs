@@ -2,8 +2,8 @@
 using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts.Information;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Service;
-using Polkanalysis.Integration.Tests.Contracts;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {

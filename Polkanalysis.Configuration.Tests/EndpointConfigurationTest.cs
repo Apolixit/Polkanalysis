@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Configuration.Extentions;
+﻿using Polkanalysis.Configuration.Extensions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using NUnit.Framework;

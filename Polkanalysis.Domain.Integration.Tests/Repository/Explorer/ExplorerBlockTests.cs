@@ -1,13 +1,4 @@
-﻿using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Integration.Tests.Contracts;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Polkanalysis.Domain.Adapter.Block;
-using Substrate.NetApi;
+﻿using NUnit.Framework;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 {

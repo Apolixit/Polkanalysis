@@ -1,8 +1,8 @@
-﻿using Polkanalysis.Integration.Tests.Contracts;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
+using Polkanalysis.Domain.Integration.Tests.Polkadot;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {

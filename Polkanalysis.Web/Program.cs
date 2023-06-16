@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Polkanalysis.Web.Services;
 using Polkanalysis.Components.Services.Http;
-using Polkanalysis.Configuration.Extentions;
-using Polkanalysis.Infrastructure.Common.Database;
-using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Configuration.Extensions;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Service;
+using Polkanalysis.Infrastructure.Database;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

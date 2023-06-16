@@ -3,7 +3,6 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Primary;
 using Polkanalysis.Domain.UseCase.Runtime;
-using Polkanalysis.Domain.UseCase.Nominator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,7 @@ using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.UseCase.Staking.Nominator;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Nominator
 {

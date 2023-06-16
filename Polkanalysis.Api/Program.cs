@@ -1,30 +1,13 @@
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Domain.Contracts.Dto;
-using Polkanalysis.Domain.Contracts.Runtime.Mapping;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Domain.UseCase.Explorer.Block;
-using Polkanalysis.Infrastructure.Common.Database;
-using Polkanalysis.Infrastructure.DirectAccess.Repository;
-using Polkanalysis.Infrastructure.Polkadot.Mapper;
-using MediatR.Courier;
-using MediatR;
-using Polkanalysis.Domain.UseCase;
-using FluentValidation;
-using Polkanalysis.Domain.Adapter.Block;
 using Serilog;
-using Polkanalysis.Configuration.Extentions;
-using Polkanalysis.Infrastructure.Polkadot.Repository;
+using Polkanalysis.Configuration.Extensions;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Api.Services;
 using Polkanalysis.Domain.Service;
+using Polkanalysis.Infrastructure.Database;
 
 namespace Polkanalysis.Api
 {

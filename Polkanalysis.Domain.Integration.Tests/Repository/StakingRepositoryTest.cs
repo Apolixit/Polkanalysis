@@ -1,16 +1,9 @@
-﻿using Castle.Core.Logging;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Service;
-using Polkanalysis.Integration.Tests.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
