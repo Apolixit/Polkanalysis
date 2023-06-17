@@ -8,7 +8,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
     public interface IStakingDatabaseRepository
     {
         IEnumerable<(BaseTuple<U32, SubstrateAccount>, Exposure)> GetAllEraStackers(int eraId);
-        (BaseTuple<U32, SubstrateAccount>, Exposure)? GetEraValidator(int eraId, SubstrateAccount validatoraccount);
-        void InsertEraStakers((BaseTuple<U32, SubstrateAccount>, Exposure) eraStakers);
+        (BaseTuple<U32, SubstrateAccount>, Exposure)? GetEraValidator(int eraId, SubstrateAccount validatorAccount);
+        void InsertEraStakers(string blockchainName, U32 eraId, (BaseTuple<U32, SubstrateAccount>, Exposure) eraStakers);
     }
 }

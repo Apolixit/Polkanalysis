@@ -19,7 +19,8 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
         public BigInteger TotalStake { get; set; }
         public BigInteger OwnStake { get; set; }
 
-        public ICollection<EraStakersNominatorsModel> EraNominatorsVote { get; set; } = new List<EraStakersNominatorsModel>();
+        public IEnumerable<EraStakersNominatorsModel> EraNominatorsVote { get; set; } 
+            = new List<EraStakersNominatorsModel>();
 
         public EraStakersModel() { }
 

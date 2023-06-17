@@ -10,11 +10,13 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
 {
     public class EraStakersNominatorsModel
     {
+        //public int EraStakersNominatorsId { get; set; }
         public string NominatorAddress { get; set; } = string.Empty;
         public BigInteger ValueStake { get; set; }
 
-        public int EraStakersId { get; set; }
-        public required EraStakersModel EraStakers { get; set; }
+        //[ForeignKey("EraStakers")]
+        //public int EraStakersId { get; set; }
+        public EraStakersModel EraStakers { get; set; }
 
         public EraStakersNominatorsModel() { }
 
@@ -24,13 +26,21 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
             NominatorAddress = exposure.Who.ToPolkadotAddress();
             ValueStake = exposure.Value.Value.Value;
 
-            EraStakers = eraStakers;
+            //EraStakers = eraStakers;
         }
 
         public IndividualExposure ToCore()
         {
             return new IndividualExposure(new Domain.Contracts.Core.SubstrateAccount(NominatorAddress),
                 new BaseCom<U128>(new Substrate.NetApi.CompactInteger(ValueStake)));
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is EraStakersNominatorsModel model &&
+                   NominatorAddress == model.NominatorAddress &&
+                   ValueStake.Equals(model.ValueStake) &&
+                   EraStakers.EraStakersId == model.EraStakers.EraStakersId;
         }
     }
 }

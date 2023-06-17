@@ -4,6 +4,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Staking;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Staking
 {
@@ -22,9 +23,10 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Staking
         {
             try
             {
-                _context.EraStakersModels.Add(new EraStakersModel(eraStakers, blockchainName, eraId));
+                var model = new EraStakersModel(eraStakers, blockchainName, eraId);
+                _context.EraStakersModels.Add(model);
                 var nbRows = _context.SaveChanges();
-                if (nbRows != 1)
+                if (nbRows != 1 + model.EraNominatorsVote.Count())
                     throw new InvalidOperationException("Inserted rows are inconsistent");
             }
             catch (Exception ex)
