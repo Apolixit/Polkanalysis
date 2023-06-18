@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.DatabaseWorker;
 using Polkanalysis.Configuration.Extensions;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.DatabaseWorker.Parameters;
 using Serilog;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
 using MediatR.Courier;
@@ -15,6 +14,8 @@ using Polkanalysis.Domain.UseCase;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Infrastructure.Database;
+using Polkanalysis.Worker.Parameters.Context;
+using Polkanalysis.Worker.Parameters;
 
 IConfiguration config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -45,8 +46,9 @@ var host = Host.CreateDefaultBuilder(args)
         l.SetMinimumLevel(LogLevel.Information);
         l.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
     })
-    .AddSingleton<BlockPerimeter>()
+    .AddSingleton<PerimeterService>()
     .AddSingleton<EventsWorker>()
+    .AddSingleton<StakingWorker>()
     .AddSingleton<PriceWorker>();
 
     services.AddEndpoint();

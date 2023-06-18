@@ -12,5 +12,6 @@ namespace Polkanalysis.Domain.Contracts.Primary.Staking.Validators
 {
     public class ValidatorsQuery : IRequest<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>
     {
+        public string ElectedByNominator { get; set; } = string.Empty;
     }
 }

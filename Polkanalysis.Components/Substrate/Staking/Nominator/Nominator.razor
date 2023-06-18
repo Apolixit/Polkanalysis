@@ -1,6 +1,8 @@
 ﻿@page "/nominators/{NominatorAddress}"
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
 
 @inject IMediator _mediator;
 
@@ -21,19 +23,41 @@
             }
         </ul>
     }
+    <DataMediator Request="requestVotedValidator" Context="votedValidatorContext">
+        @if (votedValidatorContext != null && votedValidatorContext.Any())
+        {
+            <ul>
+                @foreach (var votedValidator in votedValidatorContext)
+            {
+                <li>@votedValidator.StashAddress</li>
+            }
+            </ul>
+        } else
+        {
+            <div>No validators voted by this nominator</div>
+        }
+    </DataMediator>
+
 </DataMediator>
 
 @code {
     [Parameter] public required string NominatorAddress { get; set; }
-    private Task<Result<NominatorDto, ErrorResult>> request;
+    private Task<Result<NominatorDto, ErrorResult>>? request;
+    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>? requestVotedValidator;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
     protected async override Task OnInitializedAsync()
     {
         request = _mediator.Send(new NominatorDetailQuery()
-            {
-                NominatorAddress = NominatorAddress
-            }, CancellationToken.None);
+        {
+            NominatorAddress = NominatorAddress
+        }, CancellationToken.None);
+
+        // Get validators voted by this nominator account
+        requestVotedValidator = _mediator.Send(new ValidatorsQuery()
+        {
+            ElectedByNominator = NominatorAddress
+        }, CancellationToken.None);
 
         breadcrumbDtos = new List<BreadcrumbDto>()
         {

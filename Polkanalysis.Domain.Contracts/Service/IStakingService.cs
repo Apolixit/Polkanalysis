@@ -20,12 +20,13 @@ namespace Polkanalysis.Domain.Contracts.Service
         public Task<ValidatorDto> GetValidatorDetailAsync(string validatorAddress, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Get the validator voted by current nominator
+        /// Get the validator voted by current nominator (for current era)
         /// </summary>
         /// <param name="nominatorAddress"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<ValidatorDto> GetValidatorElectedByNominatorAsync(string nominatorAddress, CancellationToken cancellationToken);
+        public Task<IEnumerable<ValidatorLightDto>> GetValidatorsElectedByNominatorAsync(string nominatorAddress, CancellationToken cancellationToken);
+        public Task<IEnumerable<ValidatorLightDto>> GetValidatorsElectedByNominatorAsync(uint eraId, string nominatorAddress, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get all current validators (active and inactive)

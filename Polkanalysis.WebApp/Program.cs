@@ -6,6 +6,9 @@ using Polkanalysis.WebApp.Services;
 using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
+using ApexCharts;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using Polkanalysis.Infrastructure.Database.Repository.Staking;
 
 namespace Polkanalysis.WebApp
 {
@@ -23,11 +26,11 @@ namespace Polkanalysis.WebApp
             {
                 options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
             });
-
             builder.Services.AddHttpClient();
 
             builder.Services.AddScoped<IApiService, ApiService>();
 
+            builder.Services.AddSingleton<IStakingDatabaseRepository, StakingDatabaseRepository>();
             builder.Services.AddEndpoint();
             builder.Services.AddSubstrateService();
             builder.Services.AddPolkadotBlockchain();

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Service;
@@ -16,7 +17,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         public void Setup()
         {
             var logger = Substitute.For<ILogger<StakingService>>();
-            _stakingRepository = new StakingService(_substrateRepository, new AccountService(_substrateRepository), logger);
+            _stakingRepository = new StakingService(
+                _substrateRepository, 
+                new AccountService(_substrateRepository),
+                Substitute.For<IStakingDatabaseRepository>(),
+                logger);
         }
 
         [Test]

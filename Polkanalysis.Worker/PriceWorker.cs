@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Primary.Price;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Worker.Parameters;
+using Polkanalysis.Worker.Parameters.Context;
 
 namespace Polkanalysis.DatabaseWorker
 {
@@ -10,16 +12,29 @@ namespace Polkanalysis.DatabaseWorker
         private readonly ISubstrateService _polkadotRepository;
         private readonly IMediator _mediator;
         private readonly ILogger<PriceWorker> _logger;
+        private readonly PerimeterService _perimeterService;
+
+        private TokenPricePerimeter _priceTokenPerimeter;
+
 
         private bool canUpdate = true;
         public PriceWorker(
             ISubstrateService polkadotRepository,
-            IMediator mediator, 
+            IMediator mediator,
+            PerimeterService perimeterService,
             ILogger<PriceWorker> logger)
         {
             _polkadotRepository = polkadotRepository;
             _mediator = mediator;
+            _perimeterService = perimeterService;
             _logger = logger;
+
+            //_priceTokenPerimeter = perimeterService.GetTokenPricePerimeter(FirstDayToken);
+        }
+
+        protected DateTime FirstDayToken()
+        {
+            return new DateTime(2022, 01, 01);
         }
 
         /// <summary>

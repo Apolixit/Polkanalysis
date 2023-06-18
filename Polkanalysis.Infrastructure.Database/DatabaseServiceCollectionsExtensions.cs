@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Repository.Events.System;
+using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +34,8 @@ namespace Polkanalysis.Infrastructure.Database
 
             services.AddScoped<SystemKilledAccountRepository>();
             services.AddScoped<SystemNewAccountRepository>();
+            
+            //services.AddScoped<IStakingDatabaseRepository, StakingDatabaseRepository>();
 
             return services;
         }

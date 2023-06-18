@@ -4,10 +4,11 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
-using Polkanalysis.DatabaseWorker.Parameters;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Polkanalysis.Worker.Parameters.Context;
+using Polkanalysis.Worker.Parameters;
 
 namespace Polkanalysis.DatabaseWorker
 {
@@ -16,30 +17,33 @@ namespace Polkanalysis.DatabaseWorker
         private readonly ISubstrateService _polkadotRepository;
         private readonly IExplorerService _explorerRepository;
         private readonly ISubstrateDecoding _substrateDecode;
+        private readonly PerimeterService _perimeterService;
         private readonly IEventsFactory _eventsFactory;
-        private readonly BlockPerimeter _blockPerimeter;
         private readonly ILogger<EventsWorker> _logger;
+
+        private BlockPerimeter _blockPerimeter;
 
         public EventsWorker(
             ISubstrateService polkadotRepository,
             IExplorerService explorerRepository,
             IEventsFactory eventsFactory,
             ISubstrateDecoding substrateDecode,
-            BlockPerimeter blockPerimeter,
+            PerimeterService perimeterService,
             ILogger<EventsWorker> logger)
         {
             _polkadotRepository = polkadotRepository;
             _explorerRepository = explorerRepository;
             _eventsFactory = eventsFactory;
             _substrateDecode = substrateDecode;
-            _blockPerimeter = blockPerimeter;
+            _perimeterService = perimeterService;
             _logger = logger;
         }
 
         public async Task RunAsync(CancellationToken stoppingToken)
         {
+            _blockPerimeter = _perimeterService.GetBlockPerimeter(GetLastBlockId);
 
-            if (_blockPerimeter.IsSet())
+            if (_blockPerimeter.IsSet)
             {
                 await RequestBlocksAsync(stoppingToken);
             }
@@ -48,27 +52,31 @@ namespace Polkanalysis.DatabaseWorker
             //await ExampleBlockAndInsertInDatabaseAsync(stoppingToken);
         }
 
-        
+        protected uint GetLastBlockId()
+        {
+            var lastHeader = _polkadotRepository.Rpc.Chain.GetHeaderAsync(CancellationToken.None).Result;
+            return (uint)lastHeader.Number.Value;
+        }
 
         protected async Task RequestBlocksAsync(CancellationToken stoppingToken)
         {
+            if (!_blockPerimeter.IsSet) throw new InvalidOperationException("Block perimeter is not properly set");
+
             var lastBlockdata = await _polkadotRepository.Rpc.Chain.GetBlockAsync(stoppingToken);
 
-            if (_blockPerimeter.FromBlock != null && lastBlockdata.Block.Header.Number.Value < _blockPerimeter.FromBlock.Value)
+            if (lastBlockdata.Block.Header.Number.Value < _blockPerimeter.From)
             {
-                _logger.LogWarning($"Current block number (={lastBlockdata.Block.Header.Number.Value}) is lower than FromBlock param (={_blockPerimeter.FromBlock.Value}), just go to subscribe new block");
+                _logger.LogWarning($"Current block number (={lastBlockdata.Block.Header.Number.Value}) is lower than FromBlock param (={_blockPerimeter.From}), just go to subscribe new block");
                 return;
             }
 
-            _blockPerimeter.ToBlock = _blockPerimeter.ToBlock ?? (uint)lastBlockdata.Block.Header.Number.Value;
-
-            if (_blockPerimeter.ToBlock > lastBlockdata.Block.Header.Number.Value)
+            if (_blockPerimeter.To > lastBlockdata.Block.Header.Number.Value)
             {
-                _logger.LogWarning($"_blockPerimeter.ToBlock block number (={_blockPerimeter.ToBlock.Value}) is greater than current max block (={lastBlockdata.Block.Header.Number.Value})");
-                _blockPerimeter.ToBlock = (uint)lastBlockdata.Block.Header.Number.Value;
+                _logger.LogWarning($"_blockPerimeter.ToBlock block number (={_blockPerimeter.To}) is greater than current max block (={lastBlockdata.Block.Header.Number.Value})");
+                _blockPerimeter.To = (uint)lastBlockdata.Block.Header.Number.Value;
             }
 
-            for (uint i = _blockPerimeter.FromBlock!.Value; i < _blockPerimeter.ToBlock!.Value; i++)
+            for (uint i = _blockPerimeter.From; i < _blockPerimeter.To; i++)
             {
                 var blockNumber = new BlockNumber(i);
                 var hash = await _polkadotRepository.Rpc.Chain.GetBlockHashAsync(blockNumber, stoppingToken);

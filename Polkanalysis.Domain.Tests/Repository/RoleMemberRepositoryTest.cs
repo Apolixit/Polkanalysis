@@ -3,6 +3,7 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using System;
@@ -29,6 +30,7 @@ namespace Polkanalysis.Domain.Tests.Repository
             _roleMemberRepository = new StakingService(
                 _substrateRepository,
                 Substitute.For<IAccountService>(),
+                Substitute.For<IStakingDatabaseRepository>(),
                 Substitute.For<ILogger<StakingService>>());
         }
 

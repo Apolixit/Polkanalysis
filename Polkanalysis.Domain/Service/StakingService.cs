@@ -23,6 +23,9 @@ using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Contracts.Secondary.Repository;
+using System.Security.Principal;
+using System.Threading;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -30,15 +33,18 @@ namespace Polkanalysis.Domain.Service
     {
         private readonly ISubstrateService _substrateService;
         private readonly IAccountService _accountRepository;
+        private readonly IStakingDatabaseRepository _stakingDatabaseRepository;
         private readonly ILogger<StakingService> _logger;
 
         public StakingService(
             ISubstrateService substrateService,
             IAccountService accountRepository,
+            IStakingDatabaseRepository stakingDatabaseRepository,
             ILogger<StakingService> logger)
         {
             _substrateService = substrateService;
             _accountRepository = accountRepository;
+            _stakingDatabaseRepository = stakingDatabaseRepository;
             _logger = logger;
         }
 
@@ -55,6 +61,56 @@ namespace Polkanalysis.Domain.Service
         {
             var validators = await _substrateService.Storage.Session.ValidatorsAsync(cancellationToken);
             var currentEra = await _substrateService.Storage.Staking.CurrentEraAsync(cancellationToken);
+
+            return await BuildFromSubsrateAccountAsync(currentEra.Value, validators.Value, cancellationToken);
+            //List<ValidatorLightDto> validatorsDto = new List<ValidatorLightDto>();
+
+            //List<(
+            //    Task<Exposure> exposure,
+            //    Task<UserAddressDto> identity,
+            //    Task<ValidatorPrefs> validatorPrefs)> tasked =
+            //    new List<(Task<Exposure> exposure, Task<UserAddressDto> identity, Task<ValidatorPrefs> validatorPrefs)>();
+
+            //foreach (var validator in validators.Value)
+            //{
+            //    var exposureTask = _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(currentEra, validator), cancellationToken);
+            //    var identityTask = _accountRepository.GetAccountIdentityAsync(validator, cancellationToken);
+            //    var validatorSettingsTask = _substrateService.Storage.Staking.ValidatorsAsync(validator, cancellationToken);
+
+            //    tasked.Add((exposureTask, identityTask, validatorSettingsTask));
+            //}
+
+            //foreach (var task in tasked)
+            //{
+            //    var (exposure, identity, validatorPrefs) = await WaiterHelper.WaitAndReturnAsync(task.exposure, task.identity, task.validatorPrefs);
+            //    //await Task.WhenAll(task.exposure, task.identity, task.validatorPrefs);
+
+            //    validatorsDto.Add(new ValidatorLightDto()
+            //    {
+            //        StashAddress = identity,
+            //        SelfBonded = exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
+            //        TotalBonded = exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
+            //        Commission = validatorPrefs.Commission != null ? (double)validatorPrefs.Commission.Value.Value : 0
+            //    });
+            //}
+
+            //return validatorsDto;
+        }
+
+        /// <summary>
+        /// Build a ValidatorLightDto from validator substrate account
+        /// /!\ This function is private and assume every accounts are valid validator accounts, there is no verification
+        /// here so please proceed verification before call this function
+        /// </summary>
+        /// <param name="eraId"></param>
+        /// <param name="validators"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        private async Task<IEnumerable<ValidatorLightDto>> BuildFromSubsrateAccountAsync(
+            uint eraId,
+            IEnumerable<SubstrateAccount> validators, 
+            CancellationToken cancellationToken)
+        {
             var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);
 
             List<ValidatorLightDto> validatorsDto = new List<ValidatorLightDto>();
@@ -65,9 +121,9 @@ namespace Polkanalysis.Domain.Service
                 Task<ValidatorPrefs> validatorPrefs)> tasked =
                 new List<(Task<Exposure> exposure, Task<UserAddressDto> identity, Task<ValidatorPrefs> validatorPrefs)>();
 
-            foreach (var validator in validators.Value)
+            foreach (var validator in validators)
             {
-                var exposureTask = _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(currentEra, validator), cancellationToken);
+                var exposureTask = _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(new U32(eraId), validator), cancellationToken);
                 var identityTask = _accountRepository.GetAccountIdentityAsync(validator, cancellationToken);
                 var validatorSettingsTask = _substrateService.Storage.Staking.ValidatorsAsync(validator, cancellationToken);
 
@@ -507,9 +563,54 @@ namespace Polkanalysis.Domain.Service
             return poolsDto;
         }
 
-        public Task<ValidatorDto> GetValidatorElectedByNominatorAsync(string nominatorAddress, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ValidatorLightDto>> GetValidatorsElectedByNominatorAsync(string nominatorAddress, CancellationToken cancellationToken)
         {
-            return null;
+            var activeEra = await _substrateService.Storage.Staking.ActiveEraAsync(cancellationToken);
+            return await GetValidatorsElectedByNominatorAsync(activeEra.Index.Value, nominatorAddress, cancellationToken);
+        }
+
+        public async Task<IEnumerable<ValidatorLightDto>> GetValidatorsElectedByNominatorAsync(uint eraId, string nominatorAddress, CancellationToken cancellationToken)
+        {
+            var validators = _stakingDatabaseRepository.GetValidatorsVotedByNominator((int)eraId, new SubstrateAccount(nominatorAddress));
+
+            var validatorsDto = new List<ValidatorLightDto>();
+            if(validators is null || !validators.Any())
+            {
+                _logger.LogWarning($"No validator has been elected by nominator {nominatorAddress} for era {eraId}");
+                return validatorsDto;
+            }
+
+            var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);
+
+            List<(
+                Task<Exposure> exposure,
+                Task<UserAddressDto> identity,
+                Task<ValidatorPrefs> validatorPrefs)> tasked =
+                new List<(Task<Exposure> exposure, Task< UserAddressDto> identity, Task<ValidatorPrefs> validatorPrefs)>();
+
+            foreach (var (validatorAccount, validatorExposure) in validators)
+            {
+                var exposureTask = Task.Run(() => validatorExposure);
+                var identityTask = _accountRepository.GetAccountIdentityAsync(validatorAccount, cancellationToken);
+                var validatorSettingsTask = _substrateService.Storage.Staking.ValidatorsAsync(validatorAccount, cancellationToken);
+
+                tasked.Add((exposureTask, identityTask, validatorSettingsTask));
+            }
+
+            foreach (var task in tasked)
+            {
+                var (exposure, identity, validatorPrefs) = await WaiterHelper.WaitAndReturnAsync(task.exposure, task.identity, task.validatorPrefs);
+
+                validatorsDto.Add(new ValidatorLightDto()
+                {
+                    StashAddress = identity,
+                    SelfBonded = exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
+                    TotalBonded = exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
+                    Commission = validatorPrefs.Commission != null ? (double)validatorPrefs.Commission.Value.Value : 0
+                });
+            }
+
+            return validatorsDto;
         }
     }
 }

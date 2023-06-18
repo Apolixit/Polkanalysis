@@ -15,7 +15,8 @@ namespace Polkanalysis.Domain.Contracts.Primary.Result
         {
             EmptyParam,
             InvalidParam,
-            EmptyModel
+            EmptyModel,
+            BusinessError
         }
     }
 }

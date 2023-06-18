@@ -1,14 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Polkanalysis.Domain.Contracts.Dto.Era;
-using Polkanalysis.Domain.Contracts.Dto.Parachain;
-using Polkanalysis.Domain.Contracts.Dto.Staking;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
-using Polkanalysis.Domain.Contracts.Primary.Crowdloan;
-using Polkanalysis.Domain.Contracts.Primary.Eras;
-using Polkanalysis.Domain.Contracts.Primary.Parachain;
-using Polkanalysis.Domain.Contracts.Primary.Staking.Rewards;
 
 namespace Polkanalysis.Api.Controllers
 {

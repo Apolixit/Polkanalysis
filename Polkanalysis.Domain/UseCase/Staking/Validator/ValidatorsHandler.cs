@@ -9,11 +9,11 @@ namespace Polkanalysis.Domain.UseCase.Staking.Validator
 {
     public class ValidatorsHandler : Handler<ValidatorsHandler, IEnumerable<ValidatorLightDto>, ValidatorsQuery>
     {
-        private readonly IStakingService _roleMemberRepository;
+        private readonly IStakingService _stakingService;
 
-        public ValidatorsHandler(IStakingService roleMemberRepository, ILogger<ValidatorsHandler> logger) : base(logger)
+        public ValidatorsHandler(IStakingService stakingService, ILogger<ValidatorsHandler> logger) : base(logger)
         {
-            _roleMemberRepository = roleMemberRepository;
+            _stakingService = stakingService;
         }
 
         public async override Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>> Handle(ValidatorsQuery request, CancellationToken cancellationToken)
@@ -21,7 +21,12 @@ namespace Polkanalysis.Domain.UseCase.Staking.Validator
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            var result = await _roleMemberRepository.GetValidatorsAsync(cancellationToken);
+            if (!string.IsNullOrEmpty(request.ElectedByNominator))
+            {
+                return Helpers.Ok(await _stakingService.GetValidatorsElectedByNominatorAsync(request.ElectedByNominator, cancellationToken));
+            }
+
+            var result = await _stakingService.GetValidatorsAsync(cancellationToken);
 
             return Helpers.Ok(result);
         }

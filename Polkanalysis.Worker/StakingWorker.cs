@@ -1,31 +1,54 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
+using Polkanalysis.Worker.Parameters;
+using Polkanalysis.Worker.Parameters.Context;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.DatabaseWorker
 {
-    internal class StakingWorker
+    public class StakingWorker
     {
         private readonly ISubstrateService _polkadotService;
-        private readonly StakingDatabaseRepository _stakingDatabaseRepository;
         private readonly IMediator _mediator;
         private readonly ILogger<StakingWorker> _logger;
+        private readonly PerimeterService _perimeterService;
+
+        private EraPerimeter _eraPerimeter;
 
         public StakingWorker(
             ISubstrateService polkadotRepository,
             IMediator mediator,
-            StakingDatabaseRepository stakingDatabaseRepository,
+            PerimeterService perimeterService,
             ILogger<StakingWorker> logger)
         {
             _polkadotService = polkadotRepository;
             _mediator = mediator;
-            _stakingDatabaseRepository = stakingDatabaseRepository;
             _logger = logger;
+            _perimeterService = perimeterService;
+        }
+
+        protected uint GetLastEraId()
+        {
+            var lastEra= _polkadotService.Storage.Staking.CurrentEraAsync(CancellationToken.None).Result;
+            return lastEra.Value;
+        }
+
+        public async Task RunAsync(CancellationToken stoppingToken)
+        {
+            _eraPerimeter = _perimeterService.GetEraPerimeter(GetLastEraId);
+            if (_eraPerimeter.IsSet)
+            {
+                await RequestEraAsync(stoppingToken);
+            }
+
+            // Subscribe to new Era
+            //await SubscribeErasAndSaveAsync(stoppingToken);
         }
 
         /// <summary>
@@ -37,35 +60,30 @@ namespace Polkanalysis.DatabaseWorker
         /// <returns></returns>
         public async Task SubscribeErasAndSaveAsync(CancellationToken cancellationToken)
         {
-            var chainProperty = await _polkadotService.Rpc.System.PropertiesAsync(cancellationToken);
-
             await _polkadotService.Storage.Staking.SubscribeNewCurrentEraAsync(async (U32 eraId) =>
             {
-                // A new Era start
                 _logger.LogInformation($"New Era {eraId.Value} just started at {DateTime.Now}");
 
-                var result = await _polkadotService.Storage.Staking.ErasStakersQuery(eraId.Value).ExecuteAsync(cancellationToken);
-
-                if(result == null || !result.Any())
+                await _mediator.Send(new EraStakersCommand()
                 {
-                    _logger.LogError($"Era {eraId.Value} - Request for all EraStackers failed and give no answer");
-                } else
-                {
-                    _logger.LogInformation($"Era {eraId.Value} - Request for all EraStackers give {result.Count} result");
+                    EraId = eraId.Value
+                }, cancellationToken);
 
-                    // Let's insert each record in database
-
-                    foreach((BaseTuple<U32, SubstrateAccount>, Exposure) v in result)
-                    {
-                        var validatorAccount = (SubstrateAccount)v.Item1.Value[1];
-                        var exposure = v.Item2;
-
-                        _stakingDatabaseRepository.InsertEraStakers(_polkadotService.BlockchainName, eraId, v);
-
-                        _logger.LogDebug($"Era num {eraId.Value} - Validator {validatorAccount.ToPolkadotAddress()} linked to {exposure.Others.Value.Length} nominators successfully inserted in database");
-                    }
-                }
             },  cancellationToken);
+        }
+
+        public async Task RequestEraAsync(CancellationToken cancellationToken)
+        {
+            if (!_eraPerimeter.IsSet) throw new InvalidOperationException("Era perimeter is not properly set, please check your configuration file.");
+
+            for (uint i = _eraPerimeter.From; i < _eraPerimeter.To; i++)
+            {
+                await _mediator.Send(new EraStakersCommand()
+                {
+                    EraId = i,
+                    OverrideIfAlreadyExist = _eraPerimeter.OverrideIfAlreadyExists
+                }, cancellationToken);
+            }
         }
     }
 }

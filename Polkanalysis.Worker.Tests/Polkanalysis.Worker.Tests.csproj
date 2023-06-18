@@ -14,30 +14,35 @@
     <None Remove="appsettings_valid_1.json" />
     <None Remove="appsettings_valid_2.json" />
     <None Remove="appsettings_valid_3.json" />
+    <None Remove="block_appsettings_invalid_1.json" />
+    <None Remove="block_appsettings_invalid_2.json" />
+    <None Remove="block_appsettings_valid_1.json" />
+    <None Remove="block_appsettings_valid_2.json" />
+    <None Remove="block_appsettings_valid_3.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings_invalid_2.json">
+    <Content Include="Service\appsettings_invalid_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="appsettings_invalid_1.json">
+    <Content Include="Service\appsettings_invalid_2.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="appsettings_valid_3.json">
+    <Content Include="Service\appsettings_valid_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="appsettings_valid_2.json">
+    <Content Include="Service\appsettings_valid_2.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="appsettings_valid_1.json">
+    <Content Include="Service\appsettings_valid_3.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

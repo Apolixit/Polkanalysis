@@ -5,7 +5,7 @@ using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
-using Polkanalysis.Domain.Contracts.Primary.Eras;
+using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Rewards;

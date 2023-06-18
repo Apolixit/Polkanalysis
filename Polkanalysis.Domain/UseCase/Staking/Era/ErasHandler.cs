@@ -1,11 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Era;
-using Polkanalysis.Domain.Contracts.Primary.Eras;
 using Polkanalysis.Domain.Contracts.Primary.Result;
+using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 using Polkanalysis.Domain.Contracts.Service;
 
-namespace Polkanalysis.Domain.UseCase.Staking.Validator
+namespace Polkanalysis.Domain.UseCase.Staking.Era
 {
     public class ErasHandler : Handler<ErasHandler, IEnumerable<EraLightDto>, ErasQuery>
     {

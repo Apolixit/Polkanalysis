@@ -8,17 +8,20 @@ namespace Polkanalysis.DatabaseWorker
     {
         private readonly ISubstrateService _polkadotRepository;
         private readonly EventsWorker _eventsWorker;
+        private readonly StakingWorker _stakingWorker;
         private readonly PriceWorker _priceWorker;
         private readonly ILogger<MainWorker> _logger;
 
         public MainWorker(
             ISubstrateService polkadotRepository,
-            EventsWorker eventsWorker, 
+            EventsWorker eventsWorker,
+            StakingWorker stakingWorker,
             PriceWorker priceWorker, 
             ILogger<MainWorker> logger)
         {
             _polkadotRepository = polkadotRepository;
             _eventsWorker = eventsWorker;
+            _stakingWorker = stakingWorker;
             _priceWorker = priceWorker;
             _logger = logger;
         }
@@ -44,6 +47,9 @@ namespace Polkanalysis.DatabaseWorker
 
             // Listen event and insert it in database
             //await _eventsWorker.RunAsync(stoppingToken);
+
+            // Subscribe to new Era
+            await _stakingWorker.RunAsync(stoppingToken);
 
             // Store blockchain price in database every hour
             await _priceWorker.PriceFeedAsync(stoppingToken);
