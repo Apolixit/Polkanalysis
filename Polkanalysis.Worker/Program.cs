@@ -46,10 +46,10 @@ var host = Host.CreateDefaultBuilder(args)
         l.SetMinimumLevel(LogLevel.Information);
         l.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
     })
-    .AddSingleton<PerimeterService>()
-    .AddSingleton<EventsWorker>()
-    .AddSingleton<StakingWorker>()
-    .AddSingleton<PriceWorker>();
+    .AddScoped<PerimeterService>()
+    .AddScoped<EventsWorker>()
+    .AddScoped<StakingWorker>()
+    .AddScoped<PriceWorker>();
 
     services.AddEndpoint();
     services.AddSubstrateService();

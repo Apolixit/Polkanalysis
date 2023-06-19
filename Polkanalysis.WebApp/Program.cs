@@ -30,10 +30,9 @@ namespace Polkanalysis.WebApp
 
             builder.Services.AddScoped<IApiService, ApiService>();
 
-            builder.Services.AddSingleton<IStakingDatabaseRepository, StakingDatabaseRepository>();
+            builder.Services.AddPolkadotBlockchain();
             builder.Services.AddEndpoint();
             builder.Services.AddSubstrateService();
-            builder.Services.AddPolkadotBlockchain();
             builder.Services.AddDatabaseEvents();
             builder.Services.AddSubstrateLogic();
             builder.Services.AddMediatRAndPipelineBehaviors();

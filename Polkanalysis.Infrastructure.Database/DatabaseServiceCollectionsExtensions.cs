@@ -18,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Database
     {
         public static IServiceCollection AddDatabaseEvents(this IServiceCollection services)
         {
-            services.AddSingleton<IEventsFactory, EventsFactory>();
+            services.AddScoped<IEventsFactory, EventsFactory>();
 
             services.AddScoped<BalancesDustLostRepository>();
             services.AddScoped<BalancesEndowedRepository>();
@@ -35,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Database
             services.AddScoped<SystemKilledAccountRepository>();
             services.AddScoped<SystemNewAccountRepository>();
             
-            //services.AddScoped<IStakingDatabaseRepository, StakingDatabaseRepository>();
+            services.AddScoped<IStakingDatabaseRepository, StakingDatabaseRepository>();
 
             return services;
         }

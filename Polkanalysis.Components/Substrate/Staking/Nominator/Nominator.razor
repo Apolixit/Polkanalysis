@@ -1,4 +1,4 @@
-﻿@page "/nominators/{NominatorAddress}"
+﻿@page "/nominator/{NominatorAddress}"
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
@@ -8,36 +8,72 @@
 
 <DataMediator Request="request">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
-
-    <div>ControllerAccount : @context.ControllerAccount</div>
-    <div>Bonded : @context.Bonded</div>
-    <div>RewardAccount : @context.RewardAccount.Name</div>
-    <div>Status : @context.Status</div>
-
-    @if (context.Rewards is not null)
-    {
-        <ul>
-            @foreach (var reward in context.Rewards)
-            {
-                <li>@reward.StashAccount - @reward.EraId - @reward.RewardAmount - @reward.When</li>
-            }
-        </ul>
-    }
-    <DataMediator Request="requestVotedValidator" Context="votedValidatorContext">
-        @if (votedValidatorContext != null && votedValidatorContext.Any())
-        {
-            <ul>
-                @foreach (var votedValidator in votedValidatorContext)
-            {
-                <li>@votedValidator.StashAddress</li>
-            }
-            </ul>
-        } else
-        {
-            <div>No validators voted by this nominator</div>
-        }
-    </DataMediator>
-
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <PolkadotIcons IconName="Nominating.svg" />
+                Informations about nominator @NominatorAddress
+            </div>
+            <div class="card-body">
+                <Alert>
+                    Todo wiki
+                    https://wiki.polkadot.network/docs/learn-nominator
+                </Alert>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div>ControllerAccount : <AccountSumUp User="context.ControllerAccount" /></div>
+                        <div>RewardAccount : <AccountSumUp User="context.RewardAccount" /></div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div>Bonded : @context.Bonded</div>
+                        <div>Status : @context.Status</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                Nominator rewards
+            </div>
+            <div class="card-body">
+                @if (context.Rewards is not null)
+                {
+                    <ul>
+                        @foreach (var reward in context.Rewards)
+                        {
+                            <li>@reward.StashAccount - @reward.EraId - @reward.RewardAmount - @reward.When</li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                Validators voted
+            </div>
+            <div class="card-body">
+                <DataMediator Request="requestVotedValidator" Context="votedValidatorContext">
+                    @if (votedValidatorContext != null && votedValidatorContext.Any())
+                    {
+                        <ul>
+                            @foreach (var votedValidator in votedValidatorContext)
+                            {
+                                <li>@votedValidator.StashAddress.Name</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div>No validators voted by this nominator</div>
+                    }
+                </DataMediator>
+            </div>
+        </div>
+    </div>
 </DataMediator>
 
 @code {
@@ -49,19 +85,20 @@
     protected async override Task OnInitializedAsync()
     {
         request = _mediator.Send(new NominatorDetailQuery()
-        {
-            NominatorAddress = NominatorAddress
-        }, CancellationToken.None);
+            {
+                NominatorAddress = NominatorAddress
+            }, CancellationToken.None);
 
         // Get validators voted by this nominator account
         requestVotedValidator = _mediator.Send(new ValidatorsQuery()
-        {
-            ElectedByNominator = NominatorAddress
-        }, CancellationToken.None);
+            {
+                ElectedByNominator = NominatorAddress
+            }, CancellationToken.None);
 
         breadcrumbDtos = new List<BreadcrumbDto>()
         {
-            new BreadcrumbDto("Nominator detail", $"/nominators/{NominatorAddress}")
+            new BreadcrumbDto("Nominators", $"/nominators"),
+            new BreadcrumbDto("Nominator detail", $"/nominator/{NominatorAddress}")
         };
     }
 }

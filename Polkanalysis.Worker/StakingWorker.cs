@@ -35,7 +35,7 @@ namespace Polkanalysis.DatabaseWorker
 
         protected uint GetLastEraId()
         {
-            var lastEra= _polkadotService.Storage.Staking.CurrentEraAsync(CancellationToken.None).Result;
+            var lastEra = _polkadotService.Storage.Staking.CurrentEraAsync(CancellationToken.None).Result;
             return lastEra.Value;
         }
 
@@ -76,7 +76,7 @@ namespace Polkanalysis.DatabaseWorker
         {
             if (!_eraPerimeter.IsSet) throw new InvalidOperationException("Era perimeter is not properly set, please check your configuration file.");
 
-            for (uint i = _eraPerimeter.From; i < _eraPerimeter.To; i++)
+            for (uint i = _eraPerimeter.From; i <= _eraPerimeter.To; i++)
             {
                 await _mediator.Send(new EraStakersCommand()
                 {

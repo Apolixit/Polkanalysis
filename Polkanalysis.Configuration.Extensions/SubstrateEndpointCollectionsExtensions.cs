@@ -14,10 +14,10 @@ namespace Polkanalysis.Configuration.Extensions
     {
         public static IServiceCollection AddEndpoint(this IServiceCollection services)
         {
-            services.TryAddSingleton<ISubstrateEndpoint, SubstrateEndpoint>();
-            services.TryAddSingleton<IApiEndpoint, ApiEndpoint>();
-            services.TryAddSingleton<IMonitoringEndpoint, MonitoringEndpoint>();
-            services.TryAddSingleton<IBlockchainInformations, BlockchainInformations>();
+            services.TryAddScoped<ISubstrateEndpoint, SubstrateEndpoint>();
+            services.TryAddScoped<IApiEndpoint, ApiEndpoint>();
+            services.TryAddScoped<IMonitoringEndpoint, MonitoringEndpoint>();
+            services.TryAddScoped<IBlockchainInformations, BlockchainInformations>();
 
             return services;
         }

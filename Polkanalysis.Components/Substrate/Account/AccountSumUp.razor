@@ -3,10 +3,16 @@
 
 <Popover>
     <TogglePopoverContent>
-        <button type="button" class="btn btn-sm btn-light"
+        <a href="/account/@User.Address" class="btn btn-sm btn-light"
                 data-bs-toggle="popover" data-bs-placement="right">
-            @User.Name.Shorten(10)
-        </button>
+            @if(Limit is null)
+            {
+                @User.Name
+            } else
+            {
+                @User.Name.Shorten(Limit.Value)
+            }
+        </a>
     </TogglePopoverContent>
     <PopoverContent>
         @User.Name
@@ -15,4 +21,5 @@
 
 @code {
     [Parameter] public required UserAddressDto User { get; set; }
+    [Parameter] public int? Limit { get; set; } = 10;
 }

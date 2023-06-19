@@ -16,12 +16,12 @@ namespace Polkanalysis.Domain.Runtime
     {
         public static IServiceCollection AddSubstrateLogic(this IServiceCollection services)
         {
-            services.AddSingleton<IModelBuilder, ModelBuilder>();
-            services.AddSingleton<ISubstrateDecoding, SubstrateDecoding>();
-            services.AddSingleton<IPalletBuilder, PalletBuilder>();
-            services.AddSingleton<INodeMapping, EventNodeMapping>();
-            services.AddSingleton<ICurrentMetaData, CurrentMetaData>();
-            services.AddSingleton<IModuleInformation, ModuleInformation>();
+            services.AddScoped<IModelBuilder, ModelBuilder>();
+            services.AddScoped<ISubstrateDecoding, SubstrateDecoding>();
+            services.AddScoped<IPalletBuilder, PalletBuilder>();
+            services.AddScoped<INodeMapping, EventNodeMapping>();
+            services.AddScoped<ICurrentMetaData, CurrentMetaData>();
+            services.AddScoped<IModuleInformation, ModuleInformation>();
 
             return services;
         }
