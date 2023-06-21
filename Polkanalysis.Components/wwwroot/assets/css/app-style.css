@@ -425,6 +425,34 @@ hr {
     transition: background .3s;
 }
 
+/* https://brandpalettes.com/polkadot-colors/ */
+/*
+PINK
+    HEX: #E6007A
+    RGB: (230, 0, 122)
+    CMYK: (3, 100, 17, 0)
+    PANTONE: PMS 213 C
+*/
+body.bg-theme-polkadot {
+    background-image: linear-gradient(180deg, #E6007A, #661F45);
+}
+
+/*
+    BLACK
+    HEX: #000000
+    RGB: (0, 0, 0)
+    CMYK: (60, 40, 40, 100)
+    PANTONE: PMS BLACK 6 C
+*/
+body.bg-theme-kusama {
+    background-image: linear-gradient(180deg, #000000, #661F45);
+}
+
+body.bg-theme-bajun {
+    background-image: linear-gradient(180deg, #f5736d, #ffffff);
+    /*linear-gradient(180deg, #f5736d 0%, #2d3a6d 79.17%) !important*/
+}
+
 body.bg-theme1 {
     background-image: url(../images/bg-themes/1.png);
     /* background: rgb(220,5,125);

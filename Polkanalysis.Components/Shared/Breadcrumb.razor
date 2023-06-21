@@ -1,28 +1,31 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 @using Polkanalysis.Components.Dto;
 
-<div>
-    <span>
-        <NavLink href="/">
-            <i class="bi bi-house"></i> Home
-        </NavLink>
-    </span>
-    @if(Elements.Any())
-    {
-        @foreach (var elem in Elements)
+<div class="row my-3">
+    <div class="col">
+        <span>
+            <NavLink href="/">
+                <i class="bi bi-house"></i> Home
+            </NavLink>
+        </span>
+        @if (Elements.Any())
         {
-            <span> / </span>
-            if(!string.IsNullOrEmpty(elem.Url))
+            @foreach (var elem in Elements)
             {
-                <NavLink href="@elem.Url">
-                    @elem.Name
-                </NavLink>
-            } else
-            {
-                <text>@elem.Name</text>
+                <span> / </span>
+                if (!string.IsNullOrEmpty(elem.Url))
+                {
+                    <NavLink href="@elem.Url">
+                        @elem.Name
+                    </NavLink>
+                }
+                else
+                {
+                    <text>@elem.Name</text>
+                }
             }
         }
-    }
+    </div>
 </div>
 
 @code {

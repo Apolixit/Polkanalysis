@@ -20,11 +20,11 @@ namespace Polkanalysis.Domain.UseCase
 
         public async Task<TRes> Handle(TReq request, RequestHandlerDelegate<TRes> next, CancellationToken cancellationToken)
         {
-            _logger.LogTrace($"Handling {typeof(TReq).Name}");
+            _logger.LogTrace($"LoggingPipelineBehavior request : {typeof(TReq).Name}");
 
             var response = await next();
 
-            _logger.LogTrace($"Handled {typeof(TRes).Name}");
+            _logger.LogTrace($"LoggingPipelineBehavior response : {typeof(TRes).Name}");
 
             return response;
         }

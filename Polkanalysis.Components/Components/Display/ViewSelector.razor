@@ -1,0 +1,20 @@
+﻿@using static Polkanalysis.Components.Shared.GlobalSettings;
+<div class="d-flex flex-row justify-content-end">
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-light p-1" @onclick="(() => OnViewChanged(ViewDisplayType.CardElement))">
+            <i class="bi bi-card-text"></i>
+        </button>
+        <button type="button" class="btn btn-light p-1" @onclick="(() => OnViewChanged(ViewDisplayType.TableRaw))">
+            <i class="bi bi-table"></i>
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public EventCallback<ViewDisplayType> OnViewSelected { get; set; }
+
+    public void OnViewChanged(ViewDisplayType viewType)
+    {
+        OnViewSelected.InvokeAsync(viewType);
+    }
+}

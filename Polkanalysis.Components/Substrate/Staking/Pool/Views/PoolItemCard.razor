@@ -1,0 +1,37 @@
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject NavigationManager _navigationManager;
+
+<div class="card border h-100 @CssBorder()" @onclick="(() => GoToDetails(Pool.PoolId))">
+    <div class="card-body">
+        <h5 class="card-title">
+            <i class="bi bi-hash"></i>
+            @Pool.Name
+        </h5>
+        <p class="card-text text-end">
+            <i class="bi bi-bank"></i> @Pool.TotalBonded
+            <i class="bi bi-coin"></i> @Pool.RewardPool
+            <i class="bi bi-people"></i> @Pool.NbPoolMembers
+            <i class="bi bi-piggy-bank"></i> @Pool.Commission
+        </p>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public PoolLightDto Pool { get; set; }
+
+    protected void GoToDetails(uint poolId)
+    {
+        _navigationManager.NavigateTo($"pool/{poolId}");
+    }
+
+    private string CssBorder() => Pool.Status switch
+    {
+        GlobalStatusDto.NominationPoolStatusDto.Open => "border-success",
+        GlobalStatusDto.NominationPoolStatusDto.Blocked => "border-warning",
+        _ => "border-error"
+    };
+}

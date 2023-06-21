@@ -1,0 +1,31 @@
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Module;
+
+@inject NavigationManager _navigationManager;
+
+<div class="card border h-100" @onclick="(() => GoToDetails(Module.Information.PalletName))">
+    <div class="card-body">
+        <h5 class="card-title">
+            <i class="bi bi-hash"></i>
+            @Module.Information.PalletName
+        </h5>
+        <p class="card-text text-end">
+            <i class="bi bi-piggy-bank"></i> @Module.Information
+            <i class="bi bi-bank"></i> @Module.Calls.Count()
+            <i class="bi bi-coin"></i> @Module.Storage.Count()
+            <i class="bi bi-people"></i> @Module.Constants.Count()
+            <i class="bi bi-piggy-bank"></i> @Module.Events.Count()
+            <i class="bi bi-piggy-bank"></i> @Module.Events.Count()
+        </p>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public ModuleDetailDto Module { get; set; }
+
+    protected void GoToDetails(string moduleName)
+    {
+        _navigationManager.NavigateTo($"module/{moduleName}");
+    }
+}

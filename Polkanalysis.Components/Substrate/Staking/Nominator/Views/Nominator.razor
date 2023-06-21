@@ -6,6 +6,16 @@
 
 @inject IMediator _mediator;
 
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        <Alert Title="What is a nominator ?">
+            Todo wiki
+            https://wiki.polkadot.network/docs/learn-nominator
+        </Alert>
+    </div>
+</div>
+
+
 <DataMediator Request="request">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
     <div class="row">
@@ -15,10 +25,6 @@
                 Informations about nominator @NominatorAddress
             </div>
             <div class="card-body">
-                <Alert>
-                    Todo wiki
-                    https://wiki.polkadot.network/docs/learn-nominator
-                </Alert>
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <div>ControllerAccount : <AccountSumUp User="context.ControllerAccount" /></div>

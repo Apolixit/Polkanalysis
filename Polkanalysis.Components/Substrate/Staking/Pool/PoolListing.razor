@@ -4,23 +4,55 @@
 
 @inject IMediator _mediator;
 
-<DataMediator Request="request">
-    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+<DataMediator Request="request" Context="Pools">
+    <Breadcrumb Elements="breadcrumbDtos" />
 
-    <div>Reward pool : @context.FirstOrDefault()?.RewardPool</div>
+    <div class="card">
+        <div class="card-body">
+            <ComponentListView Elems="Pools">
+                <CardView>
+                    <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolItemCard Pool="context" />
+                    @*<div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-4">
+                        <Enumerable Elems="Pools" Context="cardPool">
+                            <EmptyContent>
+                                <div class="text-center">No data yet</div>
+                            </EmptyContent>
+                            <ElemsContent>
+                                <div class="col">
+                                    <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolItemCard Pool="cardPool" />
+                                </div>
+                            </ElemsContent>
+                        </Enumerable>
+                    </div>*@
+                </CardView>
+                <TableView>
+                    <Table Elems="Pools" Context="tablePool">
+                        <ThContent>
+                            <td scope="col">Pool name</td>
+                            <td scope="col">Nb members</td>
+                            <td scope="col">Commission</td>
+                            <td scope="col">Total bonded</td>
+                            <td scope="col"></td>
+                        </ThContent>
+                        <TbodyContent>
+                            <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolItemTable Pool="tablePool" />
+                        </TbodyContent>
+                    </Table>
+                </TableView>
+            </ComponentListView>
+        </div>
+    </div>
 </DataMediator>
 
 @code {
-    private Task<Result<IEnumerable<PoolLightDto>, ErrorResult>> request;
-    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
+    private Task<Result<IEnumerable<PoolLightDto>, ErrorResult>>? request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
+    {
+        new BreadcrumbDto("Pools", "/pools")
+    };
 
-    protected async override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         request = _mediator.Send(new PoolsQuery(), CancellationToken.None);
-
-        breadcrumbDtos = new List<BreadcrumbDto>()
-        {
-            new BreadcrumbDto("Pools", "/pools")
-        };
     }
 }

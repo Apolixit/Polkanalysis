@@ -1,0 +1,39 @@
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject IMediator _mediator;
+@inject NavigationManager _navigationManager;
+
+
+<tr>
+    <td scope="row">
+        @Pool.Name.Shorten(40)
+    </td>
+    <td class="text-right">
+        @Pool.NbPoolMembers
+    </td>
+    <td class="text-right">
+        @Pool.Commission.ToString("N2")
+    </td>
+    <td class="text-right">
+        @Pool.TotalBonded.ToString("N0")
+    </td>
+    <td>
+        <button class="btn btn-primary btn-sm"
+                @onclick="(() => GoToDetails(Pool.PoolId))">
+            <i class="bi bi-eye"></i>
+            Details
+        </button>
+    </td>
+</tr>
+
+@code {
+    [Parameter]
+    public PoolLightDto Pool { get; set; }
+
+    protected void GoToDetails(uint poolId)
+    {
+        _navigationManager.NavigateTo($"pool/{poolId}");
+    }
+}

@@ -1,13 +1,16 @@
-﻿<div class="inline-block"
+﻿<span class="inline-block"
      @onmouseover="(() => this._displayPopover = true)"
      @onmouseout="(() => this._displayPopover = false)">
     @TogglePopoverContent
-</div>
+</span>
 
-<div role="tooltip" class="absolute text-sm shadow-sm transition-opacity duration-300
-@(this._displayPopover ? "visible opacity-100" : "invisible opacity-0")"
+<div role="tooltip" class="collapse @(this._displayPopover ? "show" : string.Empty)"
      data-popper-placement="top">
-    @PopoverContent
+     <div class="card">
+         <div class="card-body">
+            @PopoverContent
+         </div>
+     </div>
     <div data-popper-arrow></div>
 </div>
 

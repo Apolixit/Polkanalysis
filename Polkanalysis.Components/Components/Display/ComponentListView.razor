@@ -1,0 +1,49 @@
+﻿@using static Polkanalysis.Components.Shared.GlobalSettings;
+@typeparam T
+
+<div>
+    <div>
+        <ViewSelector OnViewSelected="OnViewChanged"></ViewSelector>
+    </div>
+
+    @if (DefaultDisplay == ViewDisplayType.CardElement)
+    {
+        <div class="row row-cols-@DefaultNbCardByColumn row-cols-sm-@SmNbCardByColumn row-cols-md-@MdNbCardByColumn row-cols-lg-@LgNbCardByColumn g-4">
+            <Enumerable Elems="Elems">
+                <EmptyContent>
+                    <div class="text-center">No data yet</div>
+                </EmptyContent>
+                <ElemsContent>
+                    <div class="col">
+                        @CardView(context)
+                        ;
+                    </div>
+                </ElemsContent>
+            </Enumerable>
+        </div>
+    } else
+    {
+        @TableView(Elems)
+        ;
+    }
+</div>
+
+@code {
+    //[CascadingParameter] public required GlobalSettings globalSettings { get; set; }
+    [Parameter] public RenderFragment<T> CardView { get; set; }
+    [Parameter] public RenderFragment<IEnumerable<T>> TableView { get; set; }
+
+    [Parameter] public IEnumerable<T> Elems { get; set; } = Enumerable.Empty<T>();
+
+    [Parameter] public int DefaultNbCardByColumn { get; set; } = 2;
+    [Parameter] public int SmNbCardByColumn { get; set; } = 3;
+    [Parameter] public int MdNbCardByColumn { get; set; } = 4;
+    [Parameter] public int LgNbCardByColumn { get; set; } = 5;
+
+    public ViewDisplayType DefaultDisplay = ViewDisplayType.TableRaw;
+
+    private void OnViewChanged(ViewDisplayType viewType)
+    {
+        DefaultDisplay = viewType;
+    }
+}

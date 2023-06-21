@@ -9,7 +9,7 @@
     {
         <Loader />
     }
-} else if(Elems.Count == 0)
+} else if(Elems.Count() == 0)
 {
     @if(EmptyContent != null)
     {
@@ -22,7 +22,7 @@
 {
     foreach(var elem in Elems)
     {
-        @ElemsContent(elem);
+        @ElemsContent!(elem);
     }
 }
 
@@ -30,20 +30,26 @@
     /// <summary>
     /// Fragment displays if list is null
     /// </summary>
-    [Parameter] public RenderFragment NullContent { get; set; } = null;
+    [Parameter] public RenderFragment? NullContent { get; set; } = null;
 
     /// <summary>
     /// Fragment displays if list is empty
     /// </summary>
-    [Parameter] public RenderFragment EmptyContent { get; set; } = null;
+    [Parameter] public RenderFragment? EmptyContent { get; set; } = null;
 
     /// <summary>
     /// Fragment displays for each elements of the list
     /// </summary>
-    [Parameter] public RenderFragment<T> ElemsContent { get; set; } = null;
+    [Parameter] public RenderFragment<T>? ElemsContent { get; set; } = null;
 
     /// <summary>
     /// The list we are working on
     /// </summary>
-    [Parameter] public IList<T> Elems { get; set; } = null;
+    [Parameter] public IEnumerable<T> Elems { get; set; } = Enumerable.Empty<T>();
+
+    protected override void OnInitialized()
+    {
+        if (ElemsContent == null)
+            throw new ArgumentNullException(nameof(ElemsContent));
+    }
 }

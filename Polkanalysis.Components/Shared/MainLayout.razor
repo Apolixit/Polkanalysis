@@ -51,6 +51,7 @@ else
 }
 
 @code {
+    protected GlobalSettings? globalSettings { get; set; }
     protected bool isCurrentlyConnected = false;
     private bool _forceRerender;
 
@@ -58,6 +59,11 @@ else
 
     protected override void OnInitialized()
     {
+        globalSettings = new GlobalSettings()
+        {
+            DisplayType = GlobalSettings.ViewDisplayType.CardElement
+        };
+
         _substrateService.CheckBlockchainStateAsync((bool isConnected) =>
         {
             if (isCurrentlyConnected != isConnected)
