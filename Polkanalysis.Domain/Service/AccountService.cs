@@ -39,11 +39,11 @@ namespace Polkanalysis.Domain.Service
                 throw new AddressException($"{address} is invalid");
         }
 
-        public async Task<IEnumerable<AccountListDto>> GetAccountsAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<AccountLightDto>> GetAccountsAsync(CancellationToken cancellationToken)
         {
             var result = await _substrateNodeRepository.Storage.System.AccountsQuery().Take(100).ExecuteAsync(cancellationToken);
 
-            var accountsDto = new List<AccountListDto>();
+            var accountsDto = new List<AccountLightDto>();
             if (result == null) return accountsDto;
 
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
@@ -53,7 +53,7 @@ namespace Polkanalysis.Domain.Service
                 var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
                 var stakingAmount = accountInfo.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
                 var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
-                accountsDto.Add(new AccountListDto()
+                accountsDto.Add(new AccountLightDto()
                 {
                     Address = await GetAccountIdentityAsync(accountAddress, cancellationToken),
                     Balances = new Contracts.Dto.Balances.BalancesDto()

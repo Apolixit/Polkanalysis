@@ -1,5 +1,49 @@
-﻿<h3>StakingListing</h3>
+﻿@page "/staking"
+@using Microsoft.AspNetCore.Components.Routing;
 
-@code {
+<Polkanalysis.Components.Substrate.Staking.Era.EraSumUp />
 
-}
+<div class="card-group">
+    <div class="card">
+        <img src="_content/Polkanalysis.Components/assets/icons/polkadot/validators.svg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Become a validator</h5>
+            <p class="card-text">....</p>
+        </div>
+        <div class="card-footer">
+            <NavLink class="nav-link" href="/validators">
+                <button class="btn btn-primary btn-sm">
+                    See all validators
+                </button>
+            </NavLink>
+        </div>
+    </div>
+    <div class="card">
+        <img src="_content/Polkanalysis.Components/assets/icons/polkadot/nominators.svg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Become a nominator</h5>
+            <p class="card-text">...</p>
+        </div>
+        <div class="card-footer">
+            <NavLink class="nav-link" href="/nominators">
+                <button class="btn btn-primary btn-sm">
+                    See all nominators
+                </button>
+            </NavLink>
+        </div>
+    </div>
+    <div class="card">
+        <img src="_content/Polkanalysis.Components/assets/icons/polkadot/Existential Deposit.svg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Participate in a pool</h5>
+            <p class="card-text">...</p>
+        </div>
+        <div class="card-footer">
+            <NavLink class="nav-link" href="/pools">
+                <button class="btn btn-primary btn-sm">
+                    See all pools
+                </button>
+            </NavLink>
+        </div>
+    </div>
+</div>

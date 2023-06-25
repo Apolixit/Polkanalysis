@@ -1,7 +1,46 @@
 ﻿@page "/parachains"
+@using OperationResult;
+@using Polkanalysis.Domain.Contracts.Dto.Parachain;
+@using Polkanalysis.Domain.Contracts.Primary.Parachain;
+@inject IMediator _mediator;
 
-<h3>ParachainListing</h3>
+<DataMediator Request="request" Context="Parachains">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div class="card">
+        <div class="card-body">
+            <ComponentListView Elems="Parachains">
+                <CardView>
+                    <Polkanalysis.Components.Substrate.Parachain.Views.ParachainItemCard Parachain="context" />
+                </CardView>
+                <TableView>
+                    <Table Elems="Parachains" Context="tableParachains">
+                        <ThContent>
+                            <td scope="col">Id</td>
+                            <td scope="col">Name</td>
+                            <td scope="col">Validator count</td>
+                            <td scope="col">Crowdloan Id</td>
+                            <td scope="col"></td>
+                        </ThContent>
+                        <TbodyContent>
+                            <Polkanalysis.Components.Substrate.Parachain.Views.ParachainItemTable Parachain="tableParachains" />
+                        </TbodyContent>
+                    </Table>
+                </TableView>
+            </ComponentListView>
+        </div>
+    </div>
+</DataMediator>
 
 @code {
+    private Task<Result<IEnumerable<ParachainLightDto>, ErrorResult>>? request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Parachains", "/parachains")
+        };
 
+    protected override void OnInitialized()
+    {
+        request = _mediator.Send(new ParachainsQuery(), CancellationToken.None);
+    }
 }

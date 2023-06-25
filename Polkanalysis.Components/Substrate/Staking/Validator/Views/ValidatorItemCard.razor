@@ -1,5 +1,30 @@
-﻿<h3>ValidatorItemCard</h3>
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject NavigationManager _navigationManager;
+
+<div class="card border h-100" @onclick="(() => GoToDetails(Validator.StashAddress.Address))">
+    <div class="card-body">
+        <h5 class="card-title">
+            <i class="bi bi-hash"></i>
+            <AccountSumUp User="Validator.StashAddress" Limit="20"></AccountSumUp>
+        </h5>
+        <p class="card-text text-end">
+            <i class="bi bi-bank"></i> @Validator.TotalBonded
+            <i class="bi bi-coin"></i> @Validator.SelfBonded
+            <i class="bi bi-piggy-bank"></i> @Validator.Commission
+        </p>
+    </div>
+</div>
+
 
 @code {
+    [Parameter] public ValidatorLightDto Validator { get; set; }
 
+    protected void GoToDetails(string validatorAddress)
+    {
+        _navigationManager.NavigateTo($"validator/{validatorAddress}");
+    }
 }

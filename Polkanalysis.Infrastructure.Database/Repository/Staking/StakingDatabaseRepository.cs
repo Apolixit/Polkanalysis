@@ -48,14 +48,17 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Staking
             return eraStackersModel.Select(x => x.ToCore());
         }
 
-        public (BaseTuple<U32, SubstrateAccount>, Exposure)? GetEraValidator(int eraId, SubstrateAccount validatorAccount)
+        public async Task<(BaseTuple<U32, SubstrateAccount>, Exposure)?> GetEraValidatorAsync(int eraId, SubstrateAccount validatorAccount, CancellationToken cancellationToken)
         {
-            return _context.EraStakersModels
-                .SingleOrDefault(x => 
+            var res = await _context.EraStakersModels
+                .SingleOrDefaultAsync(x => 
                 x.EraId == eraId &&
                 x.ValidatorAddress == validatorAccount.ToPolkadotAddress() &&
-                x.BlockchainName == _substrateService.BlockchainName)?
-                .ToCore();
+                x.BlockchainName == _substrateService.BlockchainName, cancellationToken);
+
+            if(res == null) { return null; }
+
+            return res.ToCore();
         }
 
         public IEnumerable<(SubstrateAccount, Exposure)> GetValidatorsVotedByNominator(int eraId, SubstrateAccount nominatorAccount)
@@ -69,6 +72,14 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Staking
                         new BaseCom<U128>(new Substrate.NetApi.CompactInteger(x.OwnStake)),
                         new BaseVec<IndividualExposure>(x.EraNominatorsVote.Select(x => x.ToCore()).ToArray())
                 )));
+        }
+
+        public async Task<int> GetNominatorCountVotedForValidatorAsync(int eraId, SubstrateAccount validatorAccount, CancellationToken cancellationToken)
+        {
+            var stackersValidator = await GetEraValidatorAsync(eraId, validatorAccount, cancellationToken);
+            if (stackersValidator == null) return 0;
+
+            return stackersValidator.Value.Item2.Others.Value.Length;
         }
     }
 }

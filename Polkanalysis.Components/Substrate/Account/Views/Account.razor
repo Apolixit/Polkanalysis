@@ -1,0 +1,32 @@
+﻿@page "/account/{AccountAddress}"
+@using Polkanalysis.Domain.Contracts.Dto.User;
+@using Polkanalysis.Domain.Contracts.Primary.Accounts;
+@inject IMediator _mediator;
+
+<DataMediator Request="request" Context="account">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div>@account.Address</div>
+</DataMediator>
+
+@code {
+    [Parameter]
+    public required string AccountAddress { get; set; }
+    private Task<Result<AccountDto, ErrorResult>>? request;
+
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
+
+    protected override void OnInitialized()
+    {
+        request = _mediator.Send(new AccountDetailQuery()
+            {
+                AccountAddress = AccountAddress
+            }, CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Accounts", $"/accounts"),
+            new BreadcrumbDto("Account detail", $"/validators/{AccountAddress}")
+        };
+    }
+}

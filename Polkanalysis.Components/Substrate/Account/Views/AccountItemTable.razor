@@ -1,26 +1,22 @@
 ﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+@using Polkanalysis.Domain.Contracts.Dto.User;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
 
 @inject NavigationManager _navigationManager;
 
 <tr>
     <td scope="row">
-        @Validator.StashAddress.Name.Shorten(30)
+        @Account.Address.Name.Shorten(30)
     </td>
     <td class="text-right">
-        @Validator.SelfBonded
-    </td>
-    <td class="text-right">
-        @Validator.TotalBonded
-    </td>
-    <td class="text-right">
-        @Validator.NbNominatorsVote
+        @Account.Balances.TotalCurrency
     </td>
     <td>
         <button class="btn btn-primary btn-sm"
-                @onclick="(() => GoToDetails(Validator.StashAddress.Address))">
+                @onclick="(() => GoToDetails(Account.Address.Address))">
             <i class="bi bi-eye"></i>
             Details
         </button>
@@ -28,10 +24,10 @@
 </tr>
 
 @code {
-    [Parameter] public ValidatorLightDto Validator { get; set; }
+    [Parameter] public AccountLightDto Account { get; set; }
 
-    protected void GoToDetails(string validatorAddress)
+    protected void GoToDetails(string accountAddress)
     {
-        _navigationManager.NavigateTo($"validator/{validatorAddress}");
+        _navigationManager.NavigateTo($"account/{accountAddress}");
     }
 }

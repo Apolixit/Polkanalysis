@@ -15,10 +15,10 @@ namespace Polkanalysis.Api.Controllers
         }
 
         [HttpGet]
-        [Produces(typeof(IEnumerable<AccountListDto>))]
-        public async Task<ActionResult<IEnumerable<AccountListDto>>> GetAccountsAsync()
+        [Produces(typeof(IEnumerable<AccountLightDto>))]
+        public async Task<ActionResult<IEnumerable<AccountLightDto>>> GetAccountsAsync()
         {
-            return await SendAndHandleResponseAsync(new AccountListQuery());
+            return await SendAndHandleResponseAsync(new AccountsQuery());
         }
 
         [HttpGet("{address}")]

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Dto.User
 {
-    public class AccountListDto
+    public class AccountLightDto
     {
         public UserAddressDto Address { get; set; }
         public required BalancesDto Balances { get; set; }

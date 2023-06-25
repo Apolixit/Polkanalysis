@@ -13,6 +13,6 @@ namespace Polkanalysis.Domain.Contracts.Primary.Parachain
 {
     public class ParachainDetailQuery : IRequest<Result<ParachainDto, ErrorResult>>
     {
-        public uint ParachainId { get; set; }
+        public required uint ParachainId { get; set; }
     }
 }

@@ -1,0 +1,30 @@
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+@using Polkanalysis.Domain.Contracts.Dto.User;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject NavigationManager _navigationManager;
+
+<div class="card border h-100" @onclick="(() => GoToDetails(Account.Address.Address))">
+    <div class="card-body">
+        <h5 class="card-title">
+            <i class="bi bi-hash"></i>
+            <AccountSumUp User="Account.Address" Limit="20"></AccountSumUp>
+        </h5>
+        <p class="card-text text-end">
+            <i class="bi bi-bank"></i> @Account.Balances
+        </p>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public AccountLightDto Account { get; set; }
+
+    protected void GoToDetails(string accountAddress)
+    {
+        _navigationManager.NavigateTo($"validator/{accountAddress}");
+    }
+}

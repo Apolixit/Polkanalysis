@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Account
 {
-    public class AccountListHandler : Handler<AccountListHandler, IEnumerable<AccountListDto>, AccountListQuery>
+    public class AccountListHandler : Handler<AccountListHandler, IEnumerable<AccountLightDto>, AccountsQuery>
     {
         private readonly IAccountService _accountRepository;
         public AccountListHandler(IAccountService accountRepository, ILogger<AccountListHandler> logger) : base(logger)
@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.UseCase.Account
             _accountRepository = accountRepository;
         }
 
-        public async override Task<Result<IEnumerable<AccountListDto>, ErrorResult>> Handle(AccountListQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<AccountLightDto>, ErrorResult>> Handle(AccountsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

@@ -19,8 +19,8 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
 
         public async override Task<Result<IEnumerable<EraLightDto>, ErrorResult>> Handle(ErasQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
+                if (request == null)
+                    return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
             var result = Enumerable.Empty<EraLightDto>();
             if (request.ValidatorAddress != null)

@@ -98,5 +98,13 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
 
             Assert.That(res, Is.Not.Null);
         }
+
+        [Test]
+        public async Task CurrentEraInformation_ShouldWorkAsync()
+        {
+            var res = await _stakingRepository.CurrentEraInformationAsync(CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+        }
     }
 }

@@ -7,23 +7,43 @@
 
 @inject IMediator _mediator;
 
-<DataMediator Request="request">
+<DataMediator Request="request" Context="Validators">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
-    <div>@context.FirstOrDefault()?.StashAddress</div>
+    <div class="card">
+        <div class="card-body">
+            <ComponentListView Elems="Validators">
+                <CardView>
+                    <Polkanalysis.Components.Substrate.Staking.Validator.Views.ValidatorItemCard Validator="context" />
+                </CardView>
+                <TableView>
+                    <Table Elems="Validators" Context="tableValidator">
+                        <ThContent>
+                            <td scope="col">Stash address</td>
+                            <td scope="col">Self bonded</td>
+                            <td scope="col">Total bonded</td>
+                            <td scope="col">Nb nominators vote</td>
+                            <td scope="col"></td>
+                        </ThContent>
+                        <TbodyContent>
+                            <Polkanalysis.Components.Substrate.Staking.Validator.Views.ValidatorItemTable Validator="tableValidator" />
+                        </TbodyContent>
+                    </Table>
+                </TableView>
+            </ComponentListView>
+        </div>
+    </div>
 </DataMediator>
 
 @code {
-    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>> request;
-    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
-
-    protected async override Task OnInitializedAsync()
-    {
-        request = _mediator.Send(new ValidatorsQuery(), CancellationToken.None);
-
-        breadcrumbDtos = new List<BreadcrumbDto>()
+    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>? request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
         {
             new BreadcrumbDto("Validators", "/validators")
         };
+
+    protected override void OnInitialized()
+    {
+        request = _mediator.Send(new ValidatorsQuery(), CancellationToken.None);
     }
 }

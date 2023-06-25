@@ -13,5 +13,6 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Validator
         public required double SelfBonded { get; set; }
         public required double TotalBonded { get; set; }
         public required double Commission { get; set; }
+        public required double NbNominatorsVote { get; set; }
     }
 }

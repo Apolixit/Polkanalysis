@@ -1,5 +1,36 @@
-﻿<h3>NominatorItemCard</h3>
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject NavigationManager _navigationManager;
+
+<div class="card border h-100 @CssBorder()" @onclick="(() => GoToDetails(Nominator.StashAccount.Address))">
+    <div class="card-body">
+        <h5 class="card-title">
+            <i class="bi bi-hash"></i>
+            <AccountSumUp User="Nominator.StashAccount" Limit="20"></AccountSumUp>
+        </h5>
+        <p class="card-text text-end">
+            <i class="bi bi-bank"></i> @Nominator.Bonded
+        </p>
+    </div>
+</div>
+
 
 @code {
+    [Parameter] public NominatorLightDto Nominator { get; set; }
 
+    protected void GoToDetails(string validatorAddress)
+    {
+        _navigationManager.NavigateTo($"validator/{validatorAddress}");
+    }
+
+    private string CssBorder() => Nominator.Status switch
+    {
+        GlobalStatusDto.AliveStatusDto.Active => "border-success",
+        GlobalStatusDto.AliveStatusDto.Inactive => "border-warning",
+        _ => "border-error"
+    };
 }

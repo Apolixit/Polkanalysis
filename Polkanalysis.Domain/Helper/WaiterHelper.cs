@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.Threading;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Polkanalysis.Domain.Helper
     public static class WaiterHelper
     {
         public static async Task<(T1, T2)> WaitAndReturnAsync<T1, T2>(
-            Task<T1> t1, Task<T2> t2) 
+            Task<T1> t1, Task<T2> t2)
             => (await t1, await t2);
 
         public static async Task<(T1, T2, T3)> WaitAndReturnAsync<T1, T2, T3>(

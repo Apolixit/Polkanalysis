@@ -1,5 +1,41 @@
-﻿<h3>NominatorItemTable</h3>
+﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+
+@inject NavigationManager _navigationManager;
+
+<tr>
+    <td scope="row">
+        @Nominator.StashAccount.Name.Shorten(30)
+    </td>
+    <td scope="row">
+        @Nominator.ControllerAccount?.Name.Shorten(30)
+    </td>
+    <td scope="row">
+        @Nominator.RewardAccount?.Name.Shorten(30)
+    </td>
+    <td class="text-right">
+        @Nominator.Bonded
+    </td>
+    <td class="text-right">
+        @Nominator.Status
+    </td>
+    <td>
+        <button class="btn btn-primary btn-sm"
+                @onclick="(() => GoToDetails(Nominator.StashAccount.Address))">
+            <i class="bi bi-eye"></i>
+            Details
+        </button>
+    </td>
+</tr>
 
 @code {
+    [Parameter] public NominatorLightDto Nominator { get; set; }
 
+    protected void GoToDetails(string nominatorAddress)
+    {
+        _navigationManager.NavigateTo($"nominator/{nominatorAddress}");
+    }
 }

@@ -1,4 +1,5 @@
 ﻿@using Polkanalysis.Components.Services;
+@using Polkanalysis.Domain.Contracts.Dto.Parachain;
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
@@ -6,21 +7,21 @@
 @inject NavigationManager _navigationManager;
 
 <tr>
+    <td class="text-right">
+        @Parachain.ParachainId
+    </td>
     <td scope="row">
-        @Validator.StashAddress.Name.Shorten(30)
+        @Parachain.Name.Shorten(30)
     </td>
     <td class="text-right">
-        @Validator.SelfBonded
+        @Parachain.ValidatorCount
     </td>
     <td class="text-right">
-        @Validator.TotalBonded
-    </td>
-    <td class="text-right">
-        @Validator.NbNominatorsVote
+        @Parachain.CrowdloanId
     </td>
     <td>
         <button class="btn btn-primary btn-sm"
-                @onclick="(() => GoToDetails(Validator.StashAddress.Address))">
+                @onclick="(() => GoToDetails(Parachain.ParachainId))">
             <i class="bi bi-eye"></i>
             Details
         </button>
@@ -28,10 +29,10 @@
 </tr>
 
 @code {
-    [Parameter] public ValidatorLightDto Validator { get; set; }
+    [Parameter] public ParachainLightDto Parachain { get; set; }
 
-    protected void GoToDetails(string validatorAddress)
+    protected void GoToDetails(uint parachainId)
     {
-        _navigationManager.NavigateTo($"validator/{validatorAddress}");
+        _navigationManager.NavigateTo($"parachain/{parachainId}");
     }
 }

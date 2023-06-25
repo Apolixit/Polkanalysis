@@ -1,10 +1,19 @@
-﻿@page "/validators/{ValidatorAddress}"
+﻿@page "/validator/{ValidatorAddress}"
 @using OperationResult;
 @using Polkanalysis.Components.Dto;
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
 
 @inject IMediator _mediator;
+
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        <Alert Title="What is a validator ?">
+            Todo wiki
+            https://wiki.polkadot.network/docs/learn-nominator
+        </Alert>
+    </div>
+</div>
 
 <DataMediator Request="request">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
@@ -43,6 +52,7 @@
 
         breadcrumbDtos = new List<BreadcrumbDto>()
         {
+            new BreadcrumbDto("Validators", $"/validators"),
             new BreadcrumbDto("Validator detail", $"/validators/{ValidatorAddress}")
         };
     }

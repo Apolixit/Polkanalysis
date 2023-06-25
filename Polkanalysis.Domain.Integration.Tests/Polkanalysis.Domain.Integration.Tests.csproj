@@ -28,7 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Infrastructure.Substrate\Polkanalysis.Infrastructure.Substrate.csproj" />
   </ItemGroup>
 
 </Project>

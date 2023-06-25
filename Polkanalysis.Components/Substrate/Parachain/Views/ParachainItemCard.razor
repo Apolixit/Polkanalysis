@@ -1,0 +1,25 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Parachain;
+@inject NavigationManager _navigationManager;
+
+<div class="card border h-100" @onclick="(() => GoToDetails(Parachain.ParachainId))">
+    <div class="card-body">
+        <h5 class="card-title">
+            @Parachain.ParachainId - @Parachain.Name
+        </h5>
+        <p class="card-text text-end">
+            Validator count = @Parachain.ValidatorCount
+            Parachain.RegisterStatus = @Parachain.RegisterStatus
+            Parachain.CrowdloanId = @Parachain.CrowdloanId
+        </p>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public ParachainLightDto Parachain { get; set; }
+
+    protected void GoToDetails(uint parachainId)
+    {
+        _navigationManager.NavigateTo($"parachain/{parachainId}");
+    }
+}

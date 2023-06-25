@@ -1,0 +1,28 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
+@using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
+@inject IMediator _mediator;
+
+<DataMediator Request="request" Context="currentEra">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                NbMaxNominators = @currentEra.NbMaxNominators
+                NbTotalNominators = @currentEra.NbTotalNominators
+                MinAmountBondNominator = @currentEra.MinAmountBondNominator
+                NbMaxValidators = @currentEra.NbMaxValidators
+                EraId = @currentEra.EraId
+                SessionCurrentIndex = @currentEra.SessionCurrentIndex
+            </div>
+        </div>
+    </div>
+    
+</DataMediator>
+
+@code {
+    private Task<Result<CurrentEraDto, ErrorResult>>? request;
+
+    protected override void OnInitialized()
+    {
+        request = _mediator.Send(new CurrentEraInformationQuery(), CancellationToken.None);
+    }
+}

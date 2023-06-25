@@ -48,7 +48,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
                     var validatorAccount = (SubstrateAccount)v.Item1.Value[1];
                     var exposure = v.Item2;
 
-                    var alreadyExist = _stakingDatabaseRepository.GetEraValidator((int)eraId.Value, validatorAccount) != null;
+                    var alreadyExist = await _stakingDatabaseRepository.GetEraValidatorAsync((int)eraId.Value, validatorAccount, cancellationToken) != null;
                     bool canBeInserted = true;
 
                     if(alreadyExist)

@@ -1,0 +1,34 @@
+﻿@page "/parachain/{ParachainId:int}"
+@using Polkanalysis.Domain.Contracts.Dto.Parachain;
+@using Polkanalysis.Domain.Contracts.Primary.Parachain;
+@inject IMediator _mediator;
+
+<DataMediator Request="request">
+    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+
+    <div class="card">
+        <div class="card-body">
+            @context.ParachainId
+        </div>
+    </div>
+</DataMediator>
+
+@code {
+    [Parameter] public int ParachainId { get; set; }
+    private Task<Result<ParachainDto, ErrorResult>>? request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
+
+    protected override void OnInitialized()
+    {
+        request = _mediator.Send(new ParachainDetailQuery()
+        {
+            ParachainId = (uint)ParachainId
+        }, CancellationToken.None);
+
+        breadcrumbDtos = new List<BreadcrumbDto>()
+        {
+            new BreadcrumbDto("Parachains", "/parachains"),
+            new BreadcrumbDto("Parachain detail", $"/parachain/{ParachainId}")
+        };
+    }
+}

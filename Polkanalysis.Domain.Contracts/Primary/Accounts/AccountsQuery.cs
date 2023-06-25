@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
-    public class AccountListQuery : IRequest<Result<IEnumerable<AccountListDto>, ErrorResult>>
+    public class AccountsQuery : IRequest<Result<IEnumerable<AccountLightDto>, ErrorResult>>
     {
         public AccountType? AccountRole { get; set; }
     }

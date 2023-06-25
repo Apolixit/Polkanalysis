@@ -1,5 +1,43 @@
-﻿<h3>AccountListing</h3>
+﻿@page "/accounts"
+@using Polkanalysis.Domain.Contracts.Dto.User;
+@using Polkanalysis.Domain.Contracts.Primary.Accounts;
+@inject IMediator _mediator;
+
+<DataMediator Request="request" Context="Accounts">
+    <Breadcrumb Elements="breadcrumbDtos" />
+
+    <div class="card">
+        <div class="card-body">
+            <ComponentListView Elems="Accounts">
+                <CardView>
+                    <Polkanalysis.Components.Substrate.Account.Views.AccountItemCard Account="context" />
+                </CardView>
+                <TableView>
+                    <Table Elems="Accounts" Context="tableAccount">
+                        <ThContent>
+                            <td scope="col">Address</td>
+                            <td scope="col">Balance</td>
+                            <td scope="col"></td>
+                        </ThContent>
+                        <TbodyContent>
+                            <Polkanalysis.Components.Substrate.Account.Views.AccountItemTable Account="tableAccount" />
+                        </TbodyContent>
+                    </Table>
+                </TableView>
+            </ComponentListView>
+        </div>
+    </div>
+</DataMediator>
 
 @code {
+    private Task<Result<IEnumerable<AccountLightDto>, ErrorResult>>? request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
+    {
+        new BreadcrumbDto("Accounts", "/accounts")
+    };
 
+    protected override void OnInitialized()
+    {
+        request = _mediator.Send(new AccountsQuery(), CancellationToken.None);
+    }
 }

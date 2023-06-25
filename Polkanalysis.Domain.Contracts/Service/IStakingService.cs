@@ -1,5 +1,6 @@
 ﻿using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Era;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
@@ -101,5 +102,9 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<UserAddressDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken);
+
+        #region Era
+        public Task<CurrentEraDto> CurrentEraInformationAsync(CancellationToken cancellationToken);
+        #endregion
     }
 }

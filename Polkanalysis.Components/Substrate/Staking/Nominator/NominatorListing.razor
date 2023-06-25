@@ -4,23 +4,44 @@
 
 @inject IMediator _mediator;
 
-<DataMediator Request="request">
-    <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
+<DataMediator Request="request" Context="Nominators">
+    <Breadcrumb Elements="breadcrumbDtos" />
 
-    <div>Bonded : @context.FirstOrDefault()?.Bonded</div>
+    <div class="card">
+        <div class="card-body">
+            <ComponentListView Elems="Nominators">
+                <CardView>
+                    <Polkanalysis.Components.Substrate.Staking.Nominator.Views.NominatorItemCard Nominator="context" />
+                </CardView>
+                <TableView>
+                    <Table Elems="Nominators" Context="tableNominator">
+                        <ThContent>
+                            <td scope="col">Stash account</td>
+                            <td scope="col">Controller account</td>
+                            <td scope="col">Reward account</td>
+                            <td scope="col">Amount bonded</td>
+                            <td scope="col">Status</td>
+                            <td scope="col"></td>
+                        </ThContent>
+                        <TbodyContent>
+                            <Polkanalysis.Components.Substrate.Staking.Nominator.Views.NominatorItemTable Nominator="tableNominator" />
+                        </TbodyContent>
+                    </Table>
+                </TableView>
+            </ComponentListView>
+        </div>
+    </div>
 </DataMediator>
 
 @code {
-    private Task<Result<IEnumerable<NominatorLightDto>, ErrorResult>> request;
-    private IEnumerable<BreadcrumbDto> breadcrumbDtos;
-
-    protected async override Task OnInitializedAsync()
-    {
-        request = _mediator.Send(new NominatorsQuery(), CancellationToken.None);
-
-        breadcrumbDtos = new List<BreadcrumbDto>()
+    private Task<Result<IEnumerable<NominatorLightDto>, ErrorResult>>? request;
+    private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
         {
             new BreadcrumbDto("Nominators", "/nominators")
         };
+
+    protected override void OnInitialized()
+    {
+        request = _mediator.Send(new NominatorsQuery(), CancellationToken.None);
     }
 }

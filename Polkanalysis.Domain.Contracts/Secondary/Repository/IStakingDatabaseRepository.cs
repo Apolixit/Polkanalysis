@@ -20,7 +20,16 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Repository
         /// <param name="eraId"></param>
         /// <param name="validatorAccount"></param>
         /// <returns></returns>
-        (BaseTuple<U32, SubstrateAccount>, Exposure)? GetEraValidator(int eraId, SubstrateAccount validatorAccount);
+        Task<(BaseTuple<U32, SubstrateAccount>, Exposure)?> GetEraValidatorAsync(int eraId, SubstrateAccount validatorAccount, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Return the number of nominators who voted for the given validator in specific Era
+        /// </summary>
+        /// <param name="eraId"></param>
+        /// <param name="validatorAccount"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<int> GetNominatorCountVotedForValidatorAsync(int eraId, SubstrateAccount validatorAccount, CancellationToken cancellationToken);
 
         IEnumerable<(SubstrateAccount, Exposure)> GetValidatorsVotedByNominator(int eraId, SubstrateAccount nominatorAccount);
 
