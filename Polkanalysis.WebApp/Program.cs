@@ -26,10 +26,10 @@ namespace Polkanalysis.WebApp
             {
                 options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
             });
-            builder.Services.AddHttpClient();
-
+            
             builder.Services.AddScoped<IApiService, ApiService>();
 
+            builder.Services.AddHttpClient();
             builder.Services.AddPolkadotBlockchain();
             builder.Services.AddEndpoint();
             builder.Services.AddSubstrateService();

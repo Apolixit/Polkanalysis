@@ -8,6 +8,7 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Api.Services;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Polkanalysis.Api
 {
@@ -41,29 +42,13 @@ namespace Polkanalysis.Api
                     options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
                 });
 
-                builder.Services.AddMediatRAndPipelineBehaviors();
-
+                builder.Services.AddPolkadotBlockchain();
+                builder.Services.AddHttpClient();
                 builder.Services.AddEndpoint();
                 builder.Services.AddSubstrateService();
                 builder.Services.AddDatabaseEvents();
-                builder.Services.AddPolkadotBlockchain();
                 builder.Services.AddSubstrateLogic();
-
-                //builder.Services.AddDatabaseEvents();
-                //builder.Services.AddSingleton<ISubstrateRepository, PolkadotRepository>();
-
-                //builder.Services.AddSubstrateRepositories();
-
-                //builder.Services.AddSingleton<IModelBuilder, Domain.Runtime.ModelBuilder>();
-                //builder.Services.AddSingleton<ISubstrateDecoding, SubstrateDecoding>();
-                //builder.Services.AddSingleton<IPalletBuilder, PalletBuilder>();
-                //builder.Services.AddSingleton<INodeMapping, EventNodeMapping>();
-                //builder.Services.AddSingleton<IBlockchainMapping, PolkadotMapping>();
-                //builder.Services.AddSingleton<ICurrentMetaData, CurrentMetaData>();
-                //builder.Services.AddSingleton<IModuleInformation, ModuleInformation>();
-                //builder.Services.AddSingleton<BlockParameterLike>();
-
-                
+                builder.Services.AddMediatRAndPipelineBehaviors();
 
                 builder.Services.AddCors(options =>
                 {
@@ -76,18 +61,55 @@ namespace Polkanalysis.Api
                                       });
                 });
 
-                var app = builder.Build();
+                #region API Rate limiter
+                // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit
 
-                var substrateService = app.Services.GetRequiredService<ISubstrateService>();
-                await substrateService.ConnectAsync();
-                if(substrateService.IsConnected())
+                builder.Services.Configure<ApiRateLimitOptions>(builder.Configuration.GetSection(ApiRateLimitOptions.ApiRateLimit));
+                var rateLimitOptions = new ApiRateLimitOptions();
+                builder.Configuration.GetSection(ApiRateLimitOptions.ApiRateLimit).Bind(rateLimitOptions);
+
+                // This FixedWindowLimiter will be use for CoinGecko API to avoid exceed to free quota limit
+                builder.Services.AddRateLimiter(_ =>
+                    _.AddFixedWindowLimiter(policyName: ApiRateLimitOptions.FixedPolicy, options =>
                 {
-                    logger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} !");
-                } else
-                {
-                    logger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
-                }
-                
+                    // A maximum of "NbMaxRequests" requests every "Frequency" seconds
+                    options.PermitLimit = rateLimitOptions.NbMaxRequests;
+
+                    // Period of refresh limit rate
+                    options.Window = TimeSpan.FromSeconds(rateLimitOptions.Frequency);
+
+                    // When token are now available, the process applies to give token to client in the queue
+                    options.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
+
+                    // Maximum client in the queue when no tokens are available
+                    options.QueueLimit = rateLimitOptions.QueueLimit;
+                }));
+
+                // This TokenBucketLimiter will be use for general API calls
+                builder.Services.AddRateLimiter(_ =>
+                    _.AddTokenBucketLimiter(policyName: ApiRateLimitOptions.TokenBucketPolicy, options =>
+                    {
+                        // Nb maximum tokens available
+                        options.TokenLimit = rateLimitOptions.TokenLimit;
+
+                        // When token are now available, the process applies to give token to client in the queue
+                        options.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
+
+                        // Maximum client in the queue when no tokens are available
+                        options.QueueLimit = rateLimitOptions.QueueLimit;
+
+                        // Frequence tokens will be refreshed
+                        options.ReplenishmentPeriod = TimeSpan.FromSeconds(rateLimitOptions.ReplenishmentPeriod);
+
+                        // Nb token added every "ReplenishmentPeriod" period
+                        options.TokensPerPeriod = rateLimitOptions.TokensPerPeriod;
+
+                        // If "AutoReplenishment" is set to true, tokens will be replenish every "ReplenishmentPeriod" period
+                        options.AutoReplenishment = rateLimitOptions.AutoReplenishment;
+                    }));
+                #endregion
+
+                var app = builder.Build();
 
                 // Configure the HTTP request pipeline.
                 if (app.Environment.IsDevelopment())
@@ -100,6 +122,20 @@ namespace Polkanalysis.Api
                 app.UseAuthorization();
                 app.UseCors();
                 app.MapControllers();
+
+                app.UseRateLimiter();
+                app.MapDefaultControllerRoute().RequireRateLimiting(ApiRateLimitOptions.TokenBucketPolicy);
+
+                //var substrateService = app.Services.GetRequiredService<ISubstrateService>();
+                //await substrateService.ConnectAsync();
+                //if (substrateService.IsConnected())
+                //{
+                //    logger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} !");
+                //}
+                //else
+                //{
+                //    logger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
+                //}
 
                 await app.RunAsync();
             }

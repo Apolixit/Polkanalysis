@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Polkanalysis.Domain.Contracts.Dto.Era;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
@@ -20,6 +21,13 @@ namespace Polkanalysis.Api.Controllers
         public StakingController(IMediator mediator, ILogger<StakingController> logger) : base(mediator)
         {
             _logger = logger;
+        }
+
+        [HttpGet("era")]
+        [Produces(typeof(CurrentEraDto))]
+        public async Task<ActionResult<CurrentEraDto>> GetCurrentEraAsync()
+        {
+            return await SendAndHandleResponseAsync(new CurrentEraInformationQuery());
         }
 
         [HttpGet("validators")]
@@ -93,6 +101,16 @@ namespace Polkanalysis.Api.Controllers
             return await SendAndHandleResponseAsync(new NominatorDetailQuery()
             {
                 NominatorAddress = address
+            });
+        }
+
+        [HttpGet("nominators/{nominatorAddress}/votes")]
+        [Produces(typeof(IEnumerable<ValidatorLightDto>))]
+        public async Task<ActionResult<IEnumerable<ValidatorLightDto>>> GetValidatorsElectedByNominatorAsync(string nominatorAddress)
+        {
+            return await SendAndHandleResponseAsync(new ValidatorsQuery()
+            {
+                ElectedByNominator = nominatorAddress
             });
         }
 

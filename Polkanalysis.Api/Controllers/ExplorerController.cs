@@ -13,11 +13,11 @@ using Polkanalysis.Domain.Contracts.Primary.Explorer.Logs;
 
 namespace Polkanalysis.Api.Controllers
 {
-    public class BlockController : MasterController
+    public class ExplorerController : MasterController
     {
-        private readonly ILogger<BlockController> _logger;
+        private readonly ILogger<ExplorerController> _logger;
 
-        public BlockController(IMediator mediator, ILogger<BlockController> logger) : base(mediator)
+        public ExplorerController(IMediator mediator, ILogger<ExplorerController> logger) : base(mediator)
         {
             _logger = logger;
         }
