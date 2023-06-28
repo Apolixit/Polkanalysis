@@ -6,6 +6,7 @@ using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Dto.Price;
 using Polkanalysis.Domain.Contracts.Primary.Price;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
+using System.ComponentModel;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -21,6 +22,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet]
         [Produces(typeof(TokenPriceDto))]
+        [Description("Get token price for current connected blockchain at given date")]
         public async Task<ActionResult<TokenPriceDto>> GetPriceAtDateAsync(DateTime date)
         {
             return await SendAndHandleResponseAsync(new TokenPriceQuery()
@@ -32,6 +34,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("{from}/{to}")]
         [Produces(typeof(HistoricalPriceDto))]
+        [Description("Retrieve token price for current connected blockchain between two dates")]
         public async Task<ActionResult<HistoricalPriceDto>> GetPriceBetweenDateAsync(DateTime from, DateTime to)
         {
             return await SendAndHandleResponseAsync(new HistoricalPriceQuery()

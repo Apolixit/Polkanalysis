@@ -1,8 +1,66 @@
 version: '3.4'
 
+volumes:
+  polkanalysis_data:
+
+networks:
+  polkanalysis_network:
+    driver: bridge
+
 services:
   polkanalysis.api:
-    image: ${DOCKER_REGISTRY-}polkanalysisapi
+    container_name: Polkanalysis_Api
+    image: ${DOCKER_REGISTRY-}polkanalysis.api
     build:
       context: .
-      dockerfile: Polkanalysis.Api/Dockerfile
+      dockerfile: api.dockerfile
+    ports:
+      - 5000:80
+    depends_on:
+      - db
+    networks:
+      - polkanalysis_network
+    
+  db:
+    container_name: Polkanalysis_Database
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+    expose:
+    - "5433" # Publishes 5433 to other containers but NOT to host machine
+    ports:
+    - "5433:5433"
+    command: -p 5433
+    volumes:
+      - polkanalysis_data:/var/lib/postgresql/data
+    networks:
+      - polkanalysis_network
+
+  elasticsearch:
+    container_name: "Polkanalysis_Elasticsearch"
+    image : docker.elastic.co/elasticsearch/elasticsearch:8.7.1
+    ports:
+      - 9200:9200
+    volumes:
+      - polkanalysis_data:/usr/share/elasticsearch/data
+    environment:
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - discovery.type=single-node
+    networks:
+      - polkanalysis_network
+  
+  kibana:
+    container_name: Polkanalysis_Kibana
+    image : docker.elastic.co/kibana/kibana:8.7.1
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTICSEARCH_URL=http://localhost:9200
+    depends_on: 
+      - elasticsearch
+    networks:
+      - polkanalysis_network
+

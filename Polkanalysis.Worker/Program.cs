@@ -54,7 +54,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddEndpoint();
     services.AddSubstrateService();
     services.AddPolkadotBlockchain();
-    services.AddDatabaseEvents();
+    services.AddDatabase();
     services.AddSubstrateLogic();
 
     services.AddHttpClient();

@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Logs;
+using System.ComponentModel;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -24,6 +25,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("blockhash")]
         [Produces(typeof(BlockDto))]
+        [Description("Retrieve block by his block hash")]
         public async Task<ActionResult<BlockDto>> GetBlockAsync([FromQuery] string blockHash)
         {
             return await SendAndHandleResponseAsync(new BlockDetailsQuery(blockHash));
@@ -31,6 +33,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("blocknumber")]
         [Produces(typeof(BlockDto))]
+        [Description("Retrieve block by his block number")]
         public async Task<ActionResult<BlockDto>> GetBlockAsync(uint blockId)
         {
             return await SendAndHandleResponseAsync(new BlockDetailsQuery(blockId));
@@ -38,6 +41,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("{blockId}/extrinsics")]
         [Produces(typeof(IEnumerable<ExtrinsicDto>))]
+        [Description("Return extrinsics link to given block")]
         public async Task<ActionResult<IEnumerable<ExtrinsicDto>>> GetExtrinsicsAsync(uint blockId)
         {
             return await SendAndHandleResponseAsync(new ExtrinsicsQuery()
@@ -48,6 +52,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("{blockId}/events")]
         [Produces(typeof(IEnumerable<EventDto>))]
+        [Description("Return events linked to given block")]
         public async Task<ActionResult<IEnumerable<EventDto>>> GetEventsAsync(uint blockId)
         {
             return await SendAndHandleResponseAsync(new EventsQuery()
@@ -58,7 +63,8 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("{blockId}/logs")]
         [Produces(typeof(IEnumerable<LogDto>))]
-        public async Task<ActionResult<IEnumerable<LogDto>>> GetLogs(uint blockId)
+        [Description("Return logs link to given block")]
+        public async Task<ActionResult<IEnumerable<LogDto>>> GetLogsAsync(uint blockId)
         {
             return await SendAndHandleResponseAsync(new LogsQuery()
             {
@@ -68,6 +74,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("extrinsic/{blockId}/{extrinsicIndex}")]
         [Produces(typeof(ExtrinsicDto))]
+        [Description("Return an extrinsic link to given block and extrinsic index")]
         public async Task<ActionResult<ExtrinsicDto>> GetExtrinsicDetailAsync(uint blockId, uint extrinsicIndex)
         {
             return await SendAndHandleResponseAsync(new ExtrinsicDetailQuery()
@@ -79,6 +86,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("event/{blockId}/{eventIndex}")]
         [Produces(typeof(EventDto))]
+        [Description("Return an event link to given block and event index")]
         public async Task<ActionResult<EventDto>> GetEventDetailAsync(uint blockId, uint eventIndex)
         {
             return await SendAndHandleResponseAsync(new EventDetailQuery()

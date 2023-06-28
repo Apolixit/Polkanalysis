@@ -16,7 +16,7 @@ namespace Polkanalysis.Infrastructure.Database
 {
     public static class DatabaseServiceCollectionsExtensions
     {
-        public static IServiceCollection AddDatabaseEvents(this IServiceCollection services)
+        public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
             services.AddScoped<IEventsFactory, EventsFactory>();
 

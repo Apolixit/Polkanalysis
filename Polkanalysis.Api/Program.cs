@@ -9,6 +9,10 @@ using Polkanalysis.Api.Services;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.AspNetCore.RateLimiting;
+using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Polkanalysis.Configuration.Contracts;
+using System.Text.Json.Serialization;
 
 namespace Polkanalysis.Api
 {
@@ -23,11 +27,17 @@ namespace Polkanalysis.Api
 
             try
             {
+                logger.Information("Starting Polkanalysis API ...");
+
                 var builder = WebApplication.CreateBuilder(args);
                 builder.Host.UseSerilog(logger);
                 // Add services to the container.
 
-                builder.Services.AddControllers();
+                builder.Services.AddControllers().AddJsonOptions(x =>
+                {
+                    x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
+
                 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
                 builder.Services.AddEndpointsApiExplorer();
                 builder.Services.AddSwaggerGen();
@@ -39,14 +49,16 @@ namespace Polkanalysis.Api
 
                 builder.Services.AddDbContext<SubstrateDbContext>(options =>
                 {
-                    options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
+                    options.UseNpgsql(builder.Configuration.GetConnectionString("SubstrateDb"));
                 });
 
-                builder.Services.AddPolkadotBlockchain();
+                
+                // For the API, we register Polkadot as singleton
+                builder.Services.AddPolkadotBlockchain(registerAsSingleton: true);
                 builder.Services.AddHttpClient();
-                builder.Services.AddEndpoint();
+                builder.Services.AddEndpoint(registerAsSingleton: true);
                 builder.Services.AddSubstrateService();
-                builder.Services.AddDatabaseEvents();
+                builder.Services.AddDatabase();
                 builder.Services.AddSubstrateLogic();
                 builder.Services.AddMediatRAndPipelineBehaviors();
 
@@ -126,16 +138,41 @@ namespace Polkanalysis.Api
                 app.UseRateLimiter();
                 app.MapDefaultControllerRoute().RequireRateLimiting(ApiRateLimitOptions.TokenBucketPolicy);
 
-                //var substrateService = app.Services.GetRequiredService<ISubstrateService>();
-                //await substrateService.ConnectAsync();
-                //if (substrateService.IsConnected())
-                //{
-                //    logger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} !");
-                //}
-                //else
-                //{
-                //    logger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
-                //}
+                logger.Information("Ensure database is ready and created");
+                using(var scope = app.Services.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    try
+                    {
+                        Thread.Sleep(10_000);
+                        var dbContext = services.GetRequiredService<SubstrateDbContext>();
+                        string sqlScript = dbContext.Database.GenerateCreateScript();
+                        var created = dbContext.Database.EnsureCreated();
+
+                        if(created)
+                        {
+                            logger.Information("Database created succesfully !");
+                        } else
+                        {
+
+                            logger.Information("Database already exists !");
+                        }
+                    } catch(Exception ex)
+                    {
+                        logger.Error(ex, "Error when try to create database");
+                    }
+                }
+
+                var substrateService = app.Services.GetRequiredService<ISubstrateService>();
+                await substrateService.ConnectAsync();
+                if (substrateService.IsConnected())
+                {
+                    logger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");
+                }
+                else
+                {
+                    logger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
+                }
 
                 await app.RunAsync();
             }

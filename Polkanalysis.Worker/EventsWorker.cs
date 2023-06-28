@@ -1,14 +1,13 @@
-﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
-using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Worker.Parameters.Context;
 using Polkanalysis.Worker.Parameters;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.DatabaseWorker
 {

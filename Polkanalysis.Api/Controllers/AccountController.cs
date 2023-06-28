@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
+using System.ComponentModel;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -16,6 +17,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet]
         [Produces(typeof(IEnumerable<AccountLightDto>))]
+        [Description("Return blockchain accounts")]
         public async Task<ActionResult<IEnumerable<AccountLightDto>>> GetAccountsAsync()
         {
             return await SendAndHandleResponseAsync(new AccountsQuery());
@@ -23,6 +25,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("{address}")]
         [Produces(typeof(AccountDto))]
+        [Description("Retrieve account by his Polkadot address")]
         public async Task<ActionResult<AccountDto>> GetAccountAsync(string address)
         {
             if (string.IsNullOrEmpty(address)) return BadRequest();

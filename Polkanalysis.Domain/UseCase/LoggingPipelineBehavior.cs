@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using OperationResult;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,11 @@ namespace Polkanalysis.Domain.UseCase
 
         public async Task<TRes> Handle(TReq request, RequestHandlerDelegate<TRes> next, CancellationToken cancellationToken)
         {
-            _logger.LogTrace($"LoggingPipelineBehavior request : {typeof(TReq).Name}");
+            _logger.LogDebug("Starting request : {@RequestName}, {@DateTimeUtc}", typeof(TReq).Name, DateTime.UtcNow);
 
             var response = await next();
 
-            _logger.LogTrace($"LoggingPipelineBehavior response : {typeof(TRes).Name}");
+            _logger.LogDebug("Completed request : {@RequestName}, {@DateTimeUtc}", typeof(TReq).Name, DateTime.UtcNow);
 
             return response;
         }

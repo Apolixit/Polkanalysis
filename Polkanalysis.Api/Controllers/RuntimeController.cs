@@ -4,6 +4,7 @@ using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
 using Polkanalysis.Domain.Contracts.Secondary;
+using System.ComponentModel;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -18,12 +19,14 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("modules")]
         [Produces(typeof(IEnumerable<ModuleDetailDto>))]
+        [Description("Get runtimes modules for current runtime version")]
         public async Task<ActionResult<IEnumerable<ModuleDetailDto>>> GetModulesAsync() {
             return await SendAndHandleResponseAsync(new RuntimeModulesQuery());
         }
 
         [HttpGet("modules/{moduleName}")]
         [Produces(typeof(ModuleDetailDto))]
+        [Description("Get runtime module by his name")]
         public async Task<ActionResult<ModuleDetailDto>> GetModuleAsync(string moduleName)
         {
             return await SendAndHandleResponseAsync(new RuntimeModuleDetailQuery(moduleName));
@@ -31,6 +34,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet]
         [Produces(typeof(IEnumerable<RuntimeVersionDto>))]
+        [Description("Get list of runtimes")]
         public async Task<ActionResult<IEnumerable<RuntimeVersionDto>>> GetRuntimesAsync()
         {
             return await SendAndHandleResponseAsync(new RuntimeVersionQuery());
@@ -38,6 +42,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("runtimeId")]
         [Produces(typeof(IEnumerable<ModuleDetailDto>))]
+        [Description("Get a runtime by it runtime number")]
         public async Task<ActionResult<IEnumerable<ModuleDetailDto>>> GetRuntimeAsync(uint runtimeId)
         {
             return await SendAndHandleResponseAsync(new RuntimeModulesQuery()

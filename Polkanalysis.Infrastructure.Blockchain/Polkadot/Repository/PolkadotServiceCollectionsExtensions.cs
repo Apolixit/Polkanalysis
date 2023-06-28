@@ -12,14 +12,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Polkanalysis.Configuration.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
     public static class PolkadotServiceCollectionsExtensions
     {
-        public static IServiceCollection AddPolkadotBlockchain(this IServiceCollection services)
+        public static IServiceCollection AddPolkadotBlockchain(this IServiceCollection services, bool registerAsSingleton = false)
         {
-            services.AddScoped<ISubstrateService, PolkadotService>();
+            if (registerAsSingleton)
+            {
+                services.AddSingleton<ISubstrateService, PolkadotService>();
+            }
+            else
+            {
+                services.AddScoped<ISubstrateService, PolkadotService>();
+            }
             services.AddScoped<IBlockchainMapping, PolkadotMapping>();
 
             return services;

@@ -12,12 +12,19 @@ namespace Polkanalysis.Configuration.Extensions
 {
     public static class SubstrateEndpointCollectionsExtensions
     {
-        public static IServiceCollection AddEndpoint(this IServiceCollection services)
+        public static IServiceCollection AddEndpoint(this IServiceCollection services, bool registerAsSingleton = false)
         {
-            services.TryAddScoped<ISubstrateEndpoint, SubstrateEndpoint>();
-            services.TryAddScoped<IApiEndpoint, ApiEndpoint>();
-            services.TryAddScoped<IMonitoringEndpoint, MonitoringEndpoint>();
-            services.TryAddScoped<IBlockchainInformations, BlockchainInformations>();
+            if(registerAsSingleton)
+            {
+                services.AddSingleton<ISubstrateEndpoint, SubstrateEndpoint>();
+            } else
+            {
+                services.AddScoped<ISubstrateEndpoint, SubstrateEndpoint>();
+            }
+            
+            services.AddScoped<IApiEndpoint, ApiEndpoint>();
+            services.AddScoped<IMonitoringEndpoint, MonitoringEndpoint>();
+            services.AddScoped<IBlockchainInformations, BlockchainInformations>();
 
             return services;
         }
