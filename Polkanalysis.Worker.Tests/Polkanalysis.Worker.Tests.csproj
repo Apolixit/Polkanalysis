@@ -19,6 +19,7 @@
     <None Remove="block_appsettings_valid_1.json" />
     <None Remove="block_appsettings_valid_2.json" />
     <None Remove="block_appsettings_valid_3.json" />
+    <None Remove="Service\appsettings_valid_4.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,11 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Service\appsettings_valid_2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Service\appsettings_valid_4.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

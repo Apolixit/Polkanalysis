@@ -52,7 +52,7 @@ namespace Polkanalysis.DatabaseWorker
             await _stakingWorker.RunAsync(stoppingToken);
 
             // Store blockchain price in database every hour
-            await _priceWorker.PriceFeedAsync(stoppingToken);
+            await _priceWorker.RunAsync(stoppingToken);
         }
 
         /// <summary>

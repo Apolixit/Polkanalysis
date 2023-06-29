@@ -96,6 +96,25 @@ namespace Polkanalysis.Worker.Tests.Service
         }
 
         [Test]
+        public void PerimeterService_WithValidConfiguration_4_ShouldHaveNotSetForEveryone_ShouldSucceed()
+        {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("Service/appsettings_valid_4.json", false)
+                .Build();
+
+            _perimeterService = new PerimeterService(config, _logger);
+
+            var blockPerimeter = _perimeterService.GetBlockPerimeter(() => 100);
+            Assert.That(blockPerimeter.IsSet, Is.False);
+
+            var eraPerimeter = _perimeterService.GetEraPerimeter(() => 2000);
+            Assert.That(eraPerimeter.IsSet, Is.False);
+
+            var tokenPricePerimeter = _perimeterService.GetTokenPricePerimeter(() => new DateTime(2022, 01, 01));
+            Assert.That(tokenPricePerimeter.IsSet, Is.False);
+        }
+
+        [Test]
         public void BlockPerimeter_WithValidBlockData_1_ShouldWork()
         {
             var config = new ConfigurationBuilder()

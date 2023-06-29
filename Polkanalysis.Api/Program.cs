@@ -54,7 +54,7 @@ namespace Polkanalysis.Api
 
                 
                 // For the API, we register Polkadot as singleton
-                builder.Services.AddPolkadotBlockchain(registerAsSingleton: true);
+                builder.Services.AddPolkadotBlockchain("polkadot", registerAsSingleton: true);
                 builder.Services.AddHttpClient();
                 builder.Services.AddEndpoint(registerAsSingleton: true);
                 builder.Services.AddSubstrateService();
@@ -146,7 +146,7 @@ namespace Polkanalysis.Api
                     {
                         Thread.Sleep(10_000);
                         var dbContext = services.GetRequiredService<SubstrateDbContext>();
-                        string sqlScript = dbContext.Database.GenerateCreateScript();
+                        //string sqlScript = dbContext.Database.GenerateCreateScript();
                         var created = dbContext.Database.EnsureCreated();
 
                         if(created)

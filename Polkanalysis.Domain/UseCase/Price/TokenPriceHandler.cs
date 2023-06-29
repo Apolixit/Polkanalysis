@@ -81,7 +81,7 @@ namespace Polkanalysis.Domain.UseCase.Price
             _dbContext.TokenPrices.Add(new TokenPriceModel()
             {
                 BlockchainName = command.BlockchainName,
-                Date = command.TokenPrice.Date,
+                Date = command.TokenPrice.Date.ToUniversalTime(),
                 Price = command.TokenPrice.Price,
             });
 
@@ -89,7 +89,7 @@ namespace Polkanalysis.Domain.UseCase.Price
             if (nbRows != 1)
                 throw new InvalidOperationException("Inserted rows are inconsistent");
 
-            _logger.LogInformation($"{command.BlockchainName} token price : {command.TokenPrice.Price} at date {command.TokenPrice.Date} successfully inserted is database");
+            _logger.LogInformation("{BlockchainName} token price : {price} at date {priceDate} successfully inserted is database", command.BlockchainName, command.TokenPrice.Price, command.TokenPrice.Date);
 
             return Helpers.Ok(true);
         }

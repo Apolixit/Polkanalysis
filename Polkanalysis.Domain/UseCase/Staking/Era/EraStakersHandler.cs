@@ -40,7 +40,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
             }
             else
             {
-                _logger.LogInformation($"Era {eraId.Value} - Request for all EraStackers give {result.Count} result");
+                _logger.LogInformation("Era {eraId} - Request for all EraStackers give {count} result", eraId.Value, result.Count);
 
                 // Let's insert each record in database
                 foreach ((BaseTuple<U32, SubstrateAccount>, Exposure) v in result)
@@ -53,14 +53,14 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
 
                     if(alreadyExist)
                     {
-                        _logger.LogWarning($"The tuple (Era {eraId.Value}, ValidatorAddress = {validatorAccount.ToPolkadotAddress()}) already exist in database");
+                        _logger.LogDebug($"The tuple (Era {eraId.Value}, ValidatorAddress = {validatorAccount.ToPolkadotAddress()}) already exist in database");
 
                         if(request.OverrideIfAlreadyExist)
                         {
-                            _logger.LogWarning("It will be override with new value");
+                            _logger.LogWarning($"Existing tuple (Era {eraId.Value}, ValidatorAddress = {validatorAccount.ToPolkadotAddress()}) will be override with new value");
                         } else
                         {
-                            _logger.LogWarning("It won't be override, go to next item");
+                            _logger.LogDebug("It won't be override, go to next item");
                             canBeInserted = false;
                         }
                     }

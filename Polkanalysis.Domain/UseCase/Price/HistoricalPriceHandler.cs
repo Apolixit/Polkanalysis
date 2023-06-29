@@ -34,7 +34,7 @@ namespace Polkanalysis.Domain.UseCase.Price
             return await Task.Run(() => Helpers.Ok(new HistoricalPriceDto() { TokenPrices = prices.Select(x => new TokenPriceDto()
             {
                 CompareToCurrency = CurrencyDto.USD,
-                Date = x.Date,
+                Date = x.Date.ToUniversalTime(),
                 Price = x.Price,
             }) }));
         }

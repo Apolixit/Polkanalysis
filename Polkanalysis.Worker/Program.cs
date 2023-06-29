@@ -26,6 +26,8 @@ var logger = new LoggerConfiguration().ReadFrom.Configuration(config)
     .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
     .CreateLogger();
 
+logger.Information("Starting Polkanalysis Worker hosted service...");
+
 var host = Host.CreateDefaultBuilder(args)
 .UseSerilog(logger)
 .ConfigureServices((hostContext, services) =>
@@ -53,7 +55,7 @@ var host = Host.CreateDefaultBuilder(args)
 
     services.AddEndpoint();
     services.AddSubstrateService();
-    services.AddPolkadotBlockchain();
+    services.AddPolkadotBlockchain("polkadot");
     services.AddDatabase();
     services.AddSubstrateLogic();
 
@@ -69,6 +71,9 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 })
 .Build();
+
+logger.Information("Waiting 20s to ensure database is created...");
+Thread.Sleep(20_000);
 
 await host.RunAsync();
 

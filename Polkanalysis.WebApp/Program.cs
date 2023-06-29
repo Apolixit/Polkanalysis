@@ -9,6 +9,7 @@ using Polkanalysis.Infrastructure.Database;
 using ApexCharts;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
+using Serilog;
 
 namespace Polkanalysis.WebApp
 {
@@ -16,7 +17,15 @@ namespace Polkanalysis.WebApp
     {
         public static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var logger = new LoggerConfiguration().ReadFrom.Configuration(configuration)
+                .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
+                .CreateLogger();
+
+            logger.Information("Starting Polkanalysis Web application ...");
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Host.UseSerilog(logger);
 
             // Add services to the container.
             builder.Services.AddRazorPages();
@@ -24,13 +33,13 @@ namespace Polkanalysis.WebApp
 
             builder.Services.AddDbContext<SubstrateDbContext>(options =>
             {
-                options.UseNpgsql("Host=localhost:5432; Username=postgres; Password=test; Database=Polkanalysis");
+                options.UseNpgsql(builder.Configuration.GetConnectionString("SubstrateDb"));
             });
             
             builder.Services.AddScoped<IApiService, ApiService>();
 
             builder.Services.AddHttpClient();
-            builder.Services.AddPolkadotBlockchain();
+            builder.Services.AddPolkadotBlockchain("polkadot");
             builder.Services.AddEndpoint();
             builder.Services.AddSubstrateService();
             builder.Services.AddDatabase();
@@ -38,6 +47,9 @@ namespace Polkanalysis.WebApp
             builder.Services.AddMediatRAndPipelineBehaviors();
 
             var app = builder.Build();
+
+            logger.Information("Waiting 20s to ensure database is created...");
+            Thread.Sleep(20_000);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
