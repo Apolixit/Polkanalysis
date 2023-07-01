@@ -1,10 +1,10 @@
 ﻿@using static Polkanalysis.Components.Shared.GlobalSettings;
 <div class="d-flex flex-row justify-content-end mb-3">
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-light p-1" @onclick="(() => OnViewChanged(ViewDisplayType.CardElement))">
+        <button type="button" class="btn btn-light p-1 btn-card-element" @onclick="(() => OnViewChanged(ViewDisplayType.CardElement))">
             <i class="bi bi-card-text"></i>
         </button>
-        <button type="button" class="btn btn-light p-1" @onclick="(() => OnViewChanged(ViewDisplayType.TableRaw))">
+        <button type="button" class="btn btn-light p-1 btn-table-element" @onclick="(() => OnViewChanged(ViewDisplayType.TableRaw))">
             <i class="bi bi-table"></i>
         </button>
     </div>

@@ -16,7 +16,7 @@ namespace Polkanalysis.Worker.Parameters
         public T? From { get; set; }
         public T? To { get; set; }
         public bool OverrideIfAlreadyExists { get; set; } = false;
-        public bool IsSet => From != null && To != null;
+        public bool IsSet => From != null && !From.Equals(default(T)) && To != null && !To.Equals(default(T));
 
         protected GenericPerimeter(
             IConfiguration configuration,
