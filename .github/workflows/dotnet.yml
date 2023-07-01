@@ -1,0 +1,39 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build Web app
+      run: dotnet build .\Polkanalysis.WebApp --no-restore
+    - name: Test Web app
+      run: dotnet test .\Polkanalysis.Web.Tests --no-build --verbosity normal
+      
+    - name: Build API
+      run: dotnet build .\Polkanalysis.Api --no-restore
+    - name: Test API
+      run: dotnet test .\Polkanalysis.Api.Tests --no-build --verbosity normal
+      
+    - name: Build Worker
+      run: dotnet build .\Polkanalysis.Worker --no-restore
+    - name: Test API
+      run: dotnet test .\Polkanalysis.Worker.Tests --no-build --verbosity normal
