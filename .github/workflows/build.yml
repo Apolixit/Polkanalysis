@@ -18,17 +18,16 @@ jobs:
         dotnet-version: [ '6.0.x', '7.0.x' ]
 
     steps:
+    - name: Checkout
     - uses: actions/checkout@v3
+
     - name: Setup .NET Core ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
 
-    # - name: Restore dependencies
-    #   run: dotnet restore Polkanalysis.sln
+    - name: Build Solution
+      run: dotnet build Polkanalysis.sln
 
-    - name: Build API
-      run: dotnet build Polkanalysis.sln --configuration Release
-
-    - name: Test API
-      run: dotnet test .\Polkanalysis.Api.Tests --no-build --verbosity normal
+    - name: Test Solution
+      run: dotnet test Polkanalysis.sln --verbosity normal
