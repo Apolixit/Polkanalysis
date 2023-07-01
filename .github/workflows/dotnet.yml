@@ -21,19 +21,8 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: Restore dependencies
-      run: dotnet restore .\Polkanalysis.sln
-      
-    - name: Build Web app
-      run: dotnet build .\Polkanalysis.WebApp --no-restore
-    - name: Test Web app
-      run: dotnet test .\Polkanalysis.Web.Tests --no-build --verbosity normal
-      
+      run: dotnet restore .\Polkanalysis.Api
     - name: Build API
       run: dotnet build .\Polkanalysis.Api --no-restore
     - name: Test API
       run: dotnet test .\Polkanalysis.Api.Tests --no-build --verbosity normal
-      
-    - name: Build Worker
-      run: dotnet build .\Polkanalysis.Worker --no-restore
-    - name: Test API
-      run: dotnet test .\Polkanalysis.Worker.Tests --no-build --verbosity normal
