@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />
   </ItemGroup>
 
   <ItemGroup>

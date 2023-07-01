@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Contracts", "Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj", "{A72F0959-6B7E-41A3-8295-42D9166DFBEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Contracts", "src\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj", "{A72F0959-6B7E-41A3-8295-42D9166DFBEA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Deployment", "00.Deployment", "{95DEEDB4-3C7D-4D06-9A97-CC16D7721152}"
 EndProject
@@ -13,17 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Infrastructure", "03.Inf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Core", "04.Core", "{F8743F78-109F-4E69-BA71-02047B4BB2D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Tests", "Polkanalysis.Domain.Tests\Polkanalysis.Domain.Tests.csproj", "{8B5DC9BD-7E9C-498C-96B5-BDA460A1CC29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Tests", "src\Domain\Polkanalysis.Domain.Tests\Polkanalysis.Domain.Tests.csproj", "{8B5DC9BD-7E9C-498C-96B5-BDA460A1CC29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Domain", "02.Domain", "{6BD8838E-552B-417B-8B30-841C712E6696}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components", "Polkanalysis.Components\Polkanalysis.Components.csproj", "{F791AB81-450D-473C-A37F-7D388CC89C20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components", "src\Applications\Polkanalysis.Components\Polkanalysis.Components.csproj", "{F791AB81-450D-473C-A37F-7D388CC89C20}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain", "Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj", "{7827F798-B3C5-4432-9679-75E21F0CAB87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain", "src\Infrastructure\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj", "{7827F798-B3C5-4432-9679-75E21F0CAB87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Tests", "Polkanalysis.Infrastructure.Blockchain.Tests\Polkanalysis.Infrastructure.Blockchain.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Tests", "src\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Tests\Polkanalysis.Infrastructure.Blockchain.Tests.csproj", "{C73C84FA-2AB5-429E-BA85-CDA4C199D974}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components.Tests", "Polkanalysis.Components.Tests\Polkanalysis.Components.Tests.csproj", "{E85B9C73-8F2D-4FFB-A873-8863921DC52E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Components.Tests", "src\Applications\Polkanalysis.Components.Tests\Polkanalysis.Components.Tests.csproj", "{E85B9C73-8F2D-4FFB-A873-8863921DC52E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3408C24-D6EC-4B44-B140-B8C1B3EF6D80}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,39 +35,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Roadmap.md = Roadmap.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Web.Tests", "Polkanalysis.Web.Tests\Polkanalysis.Web.Tests.csproj", "{214A2068-9758-49FA-ADB6-C3454DF59367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Web.Tests", "src\Applications\Polkanalysis.Web.Tests\Polkanalysis.Web.Tests.csproj", "{214A2068-9758-49FA-ADB6-C3454DF59367}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain", "Polkanalysis.Domain\Polkanalysis.Domain.csproj", "{A2B9E326-4639-4F3E-9301-CA5C6BD17298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain", "src\Domain\Polkanalysis.Domain\Polkanalysis.Domain.csproj", "{A2B9E326-4639-4F3E-9301-CA5C6BD17298}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Integration.Tests", "Polkanalysis.Domain.Integration.Tests\Polkanalysis.Domain.Integration.Tests.csproj", "{B46291D1-85C6-47FE-AC87-910C73772ED8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Domain.Integration.Tests", "src\Domain\Polkanalysis.Domain.Integration.Tests\Polkanalysis.Domain.Integration.Tests.csproj", "{B46291D1-85C6-47FE-AC87-910C73772ED8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Integration.Tests", "Polkanalysis.Infrastructure.Blockchain.Integration.Tests\Polkanalysis.Infrastructure.Blockchain.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Integration.Tests", "src\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Integration.Tests\Polkanalysis.Infrastructure.Blockchain.Integration.Tests.csproj", "{A46E4983-FE43-4224-A6A9-56892A66286B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Blockchains", "05.Blockchains", "{B6463D88-968C-4EEB-A7B4-A56007B3FDF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database", "Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj", "{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database", "src\Infrastructure\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj", "{7AF607CA-1D2E-4B98-978D-EAF814E77FBC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database.Contracts", "Polkanalysis.Infrastructure.Database.Contracts\Polkanalysis.Infrastructure.Database.Contracts.csproj", "{1629D073-4A84-4842-8A12-20C8EEC0AFD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database.Contracts", "src\Infrastructure\Polkanalysis.Infrastructure.Database.Contracts\Polkanalysis.Infrastructure.Database.Contracts.csproj", "{1629D073-4A84-4842-8A12-20C8EEC0AFD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Worker", "Polkanalysis.Worker\Polkanalysis.Worker.csproj", "{7F717E79-E78B-4295-9293-04DA5472B5B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Worker", "src\Applications\Polkanalysis.Worker\Polkanalysis.Worker.csproj", "{7F717E79-E78B-4295-9293-04DA5472B5B3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Api", "Polkanalysis.Api\Polkanalysis.Api.csproj", "{D68C4B4B-0781-45EF-A8B5-A54F459ADE2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Api", "src\Applications\Polkanalysis.Api\Polkanalysis.Api.csproj", "{D68C4B4B-0781-45EF-A8B5-A54F459ADE2E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Api.Tests", "Polkanalysis.Api.Tests\Polkanalysis.Api.Tests.csproj", "{283AF5AF-B567-45EB-9610-2A785A1AB6AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Api.Tests", "src\Applications\Polkanalysis.Api.Tests\Polkanalysis.Api.Tests.csproj", "{283AF5AF-B567-45EB-9610-2A785A1AB6AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Worker.Tests", "Polkanalysis.Worker.Tests\Polkanalysis.Worker.Tests.csproj", "{F1A0E819-4164-4C72-BFB6-09B0C22CA5D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Worker.Tests", "src\Applications\Polkanalysis.Worker.Tests\Polkanalysis.Worker.Tests.csproj", "{F1A0E819-4164-4C72-BFB6-09B0C22CA5D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substrate.NET.Utils", "Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj", "{968B4687-209B-49CF-9DFC-D25471C07FD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substrate.NET.Utils", "src\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj", "{968B4687-209B-49CF-9DFC-D25471C07FD9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Polkadot.NetApiExt", "Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj", "{6592D507-C277-42D5-96E5-B7C6351E7D2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Polkadot.NetApiExt", "src\Blockchains\Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj", "{6592D507-C277-42D5-96E5-B7C6351E7D2F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Extensions", "Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj", "{7515678A-AE79-43B5-9236-2A40AD7B5523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Extensions", "src\Core\Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj", "{7515678A-AE79-43B5-9236-2A40AD7B5523}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Tests", "Polkanalysis.Configuration.Tests\Polkanalysis.Configuration.Tests.csproj", "{86F9825A-1466-4D55-8C31-197FAA2FE336}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Tests", "src\Core\Polkanalysis.Configuration.Tests\Polkanalysis.Configuration.Tests.csproj", "{86F9825A-1466-4D55-8C31-197FAA2FE336}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.WebApp", "Polkanalysis.WebApp\Polkanalysis.WebApp.csproj", "{F5DD510C-6B04-440B-BB53-EBE27C5C561D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.WebApp", "src\Applications\Polkanalysis.WebApp\Polkanalysis.WebApp.csproj", "{F5DD510C-6B04-440B-BB53-EBE27C5C561D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Contracts", "Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj", "{D8EDB6A8-1993-4585-99E7-85A7D2333405}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Configuration.Contracts", "src\Core\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj", "{D8EDB6A8-1993-4585-99E7-85A7D2333405}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BF32D691-7EE7-46A9-AE31-CBFDC358A978}"
 EndProject
@@ -75,7 +75,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8DD9E693
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AFAF2756-9527-4817-AD28-0799B544A4F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database.Tests", "Polkanalysis.Infrastructure.Database.Tests\Polkanalysis.Infrastructure.Database.Tests.csproj", "{1B02CAEB-37FC-4F3D-BE8F-CB994D150584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Database.Tests", "src\Infrastructure\Polkanalysis.Infrastructure.Database.Tests\Polkanalysis.Infrastructure.Database.Tests.csproj", "{1B02CAEB-37FC-4F3D-BE8F-CB994D150584}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F54F8885-056B-4991-8E99-518851FC9CCF}"
 EndProject
