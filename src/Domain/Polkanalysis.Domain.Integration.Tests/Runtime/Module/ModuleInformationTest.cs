@@ -42,19 +42,19 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             Assert.That(res, Is.Not.Null);
 
             Assert.That(res.Events, Is.Not.Null);
-            Assert.That(res.Events.Count, Is.EqualTo(10));
+            Assert.That(res.Events.Count, Is.EqualTo(21));
 
             Assert.That(res.Calls, Is.Not.Null);
-            Assert.That(res.Calls.Count, Is.EqualTo(6));
+            Assert.That(res.Calls.Count, Is.EqualTo(9));
 
             Assert.That(res.Storage, Is.Not.Null);
-            Assert.That(res.Storage.Count, Is.EqualTo(5));
+            Assert.That(res.Storage.Count, Is.EqualTo(7));
 
             Assert.That(res.Constants, Is.Not.Null);
-            Assert.That(res.Constants.Count, Is.EqualTo(3));
+            Assert.That(res.Constants.Count, Is.EqualTo(5));
 
             Assert.That(res.Errors, Is.Not.Null);
-            Assert.That(res.Errors.Count, Is.EqualTo(8));
+            Assert.That(res.Errors.Count, Is.EqualTo(10));
         }
 
         [Test]

@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.DatabaseWorker;
 using Polkanalysis.Configuration.Extensions;
 using Polkanalysis.Domain.Runtime;
 using Serilog;
@@ -16,6 +15,7 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Worker.Parameters.Context;
 using Polkanalysis.Worker.Parameters;
+using Polkanalysis.Worker.Tasks;
 
 IConfiguration config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -51,6 +51,7 @@ var host = Host.CreateDefaultBuilder(args)
     .AddScoped<PerimeterService>()
     .AddScoped<EventsWorker>()
     .AddScoped<StakingWorker>()
+    .AddScoped<VersionWorker>()
     .AddScoped<PriceWorker>();
 
     services.AddEndpoint();

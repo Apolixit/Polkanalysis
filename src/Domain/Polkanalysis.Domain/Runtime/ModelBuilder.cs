@@ -148,7 +148,7 @@ namespace Polkanalysis.Domain.Runtime
             {
                 Block = blockLight,
                 Hash = Utils.Bytes2HexString(extrinsic.Encode()),
-                Decoded = null, //extrinsicNode,
+                Decoded = extrinsicNode,
                 ExtrinsicId = $"{blockLight.Number}-{extrinsicIndex}",
                 Index = extrinsicIndex,
                 PalletCall = extrinsicNode.HumanData.ToString(),

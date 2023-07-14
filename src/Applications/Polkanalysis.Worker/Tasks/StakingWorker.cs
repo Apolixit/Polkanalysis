@@ -10,7 +10,7 @@ using Polkanalysis.Worker.Parameters.Context;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 
-namespace Polkanalysis.DatabaseWorker
+namespace Polkanalysis.Worker.Tasks
 {
     public class StakingWorker
     {
@@ -48,7 +48,7 @@ namespace Polkanalysis.DatabaseWorker
             }
 
             // Subscribe to new Era
-            //await SubscribeErasAndSaveAsync(stoppingToken);
+            await SubscribeErasAndSaveAsync(stoppingToken);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Polkanalysis.DatabaseWorker
         /// <returns></returns>
         public async Task SubscribeErasAndSaveAsync(CancellationToken cancellationToken)
         {
-            await _polkadotService.Storage.Staking.SubscribeNewCurrentEraAsync(async (U32 eraId) =>
+            await _polkadotService.Storage.Staking.SubscribeNewCurrentEraAsync(async (eraId) =>
             {
                 _logger.LogInformation($"New Era {eraId.Value} just started at {DateTime.Now}");
 
@@ -69,7 +69,7 @@ namespace Polkanalysis.DatabaseWorker
                     EraId = eraId.Value
                 }, cancellationToken);
 
-            },  cancellationToken);
+            }, cancellationToken);
         }
 
         public async Task RequestEraAsync(CancellationToken cancellationToken)

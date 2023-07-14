@@ -264,11 +264,11 @@ namespace Polkanalysis.Domain.Runtime.Module
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<RuntimeVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<SpecVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken)
         {
-            var runtimeVersionsDto = new List<RuntimeVersionDto>();
+            var runtimeVersionsDto = new List<SpecVersionDto>();
 
-            var runtimeVersionDto = new RuntimeVersionDto()
+            var runtimeVersionDto = new SpecVersionDto()
             {
                 ImplName = _substrateService.RuntimeVersion.ImplName,
                 SpecName = _substrateService.RuntimeVersion.SpecName,

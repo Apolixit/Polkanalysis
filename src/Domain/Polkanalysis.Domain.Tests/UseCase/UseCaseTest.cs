@@ -24,17 +24,10 @@ namespace Polkanalysis.Domain.Tests.UseCase
     /// <typeparam name="TLogger"></typeparam>
     public abstract class UseCaseTest<TLogger, TDto, TRequest> 
         where TLogger : class
-        where TDto : class
         where TRequest : IRequest<Result<TDto, ErrorResult>>
     {
-        protected ILogger<TLogger> _logger;
-        protected Handler<TLogger, TDto, TRequest> _useCase;
-
-        //protected UseCaseTest(ILogger<TLogger> logger, UseCase<TLogger, TDto, TRequest> useCase)
-        //{
-        //    _logger = logger;
-        //    _useCase = useCase;
-        //}
+        protected ILogger<TLogger>? _logger;
+        protected Handler<TLogger, TDto, TRequest>? _useCase;
 
         public virtual void Setup()
         {
@@ -48,7 +41,7 @@ namespace Polkanalysis.Domain.Tests.UseCase
         [Test]
         public async Task GenericUseCaseWithNullRequest_ShouldFailedAsync()
         {
-            var result = await _useCase.Handle(default!, CancellationToken.None);
+            var result = await _useCase!.Handle(default!, CancellationToken.None);
 
             Assert.IsTrue(result.IsError);
             Assert.That(result.Value, Is.Null);

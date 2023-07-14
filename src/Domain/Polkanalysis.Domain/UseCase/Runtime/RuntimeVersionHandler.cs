@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Runtime
 {
-    public class RuntimeVersionHandler : Handler<RuntimeModulesHandler, IEnumerable<RuntimeVersionDto>, RuntimeVersionQuery>
+    public class RuntimeVersionHandler : Handler<RuntimeModulesHandler, IEnumerable<SpecVersionDto>, RuntimeVersionQuery>
     {
         private readonly IModuleInformation _moduleRepository;
 
@@ -21,7 +21,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime
             _moduleRepository = moduleRepository;
         }
 
-        public async override Task<Result<IEnumerable<RuntimeVersionDto>, ErrorResult>> Handle(RuntimeVersionQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> Handle(RuntimeVersionQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

@@ -33,9 +33,9 @@ namespace Polkanalysis.Api.Controllers
         }
 
         [HttpGet]
-        [Produces(typeof(IEnumerable<RuntimeVersionDto>))]
+        [Produces(typeof(IEnumerable<SpecVersionDto>))]
         [Description("Get list of runtimes")]
-        public async Task<ActionResult<IEnumerable<RuntimeVersionDto>>> GetRuntimesAsync()
+        public async Task<ActionResult<IEnumerable<SpecVersionDto>>> GetRuntimesAsync()
         {
             return await SendAndHandleResponseAsync(new RuntimeVersionQuery());
         }

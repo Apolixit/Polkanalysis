@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Module
 {
-    public class RuntimeVersionDto
+    public class SpecVersionDto
     {
         public int AuthoringVersion { get; set; }
         public string ImplName { get; set; } = string.Empty;

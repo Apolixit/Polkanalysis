@@ -40,6 +40,6 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <returns></returns>
         public Task<int> GetNbCallAsync(string moduleId, DateTime from, DateTime to, CancellationToken cancellationToken);
 
-        public Task<IEnumerable<RuntimeVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken);
+        public Task<IEnumerable<SpecVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken);
     }
 }

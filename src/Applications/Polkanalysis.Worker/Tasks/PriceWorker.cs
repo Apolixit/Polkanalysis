@@ -5,7 +5,7 @@ using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Parameters.Context;
 
-namespace Polkanalysis.DatabaseWorker
+namespace Polkanalysis.Worker.Tasks
 {
     public class PriceWorker
     {
@@ -48,7 +48,7 @@ namespace Polkanalysis.DatabaseWorker
             // First of all, we check if we need to fetch previous days and if we have token price in our database
             var missingDates = new List<DateTime>();
 
-            if(_priceTokenPerimeter.IsSet)
+            if (_priceTokenPerimeter.IsSet)
             {
                 var historicalPrice = await _mediator.Send(new HistoricalPriceQuery()
                 {
@@ -60,7 +60,7 @@ namespace Polkanalysis.DatabaseWorker
                 var rangeDateTimeFromBeggining = Enumerable.Range(0, dayRange)
                     .Select(day => _priceTokenPerimeter.From.AddDays(day));
 
-                if(rangeDateTimeFromBeggining is not null && rangeDateTimeFromBeggining.Any())
+                if (rangeDateTimeFromBeggining is not null && rangeDateTimeFromBeggining.Any())
                 {
                     missingDates = rangeDateTimeFromBeggining
                         .Select(d => d.Date)
@@ -71,22 +71,24 @@ namespace Polkanalysis.DatabaseWorker
 
             using PeriodicTimer timer = new PeriodicTimer(_checkPeriod);
 
-            while(!cancellationToken.IsCancellationRequested && await timer.WaitForNextTickAsync()) {
+            while (!cancellationToken.IsCancellationRequested && await timer.WaitForNextTickAsync())
+            {
                 _logger.LogDebug("Price new {second}s ticks ", _checkPeriod.Seconds);
 
                 var hasInsert = await PriceFeedAsync(cancellationToken);
 
-                if(!hasInsert && missingDates.Any())
+                if (!hasInsert && missingDates.Any())
                 {
                     var missingDate = missingDates.First();
                     _logger.LogInformation("Price feed : no new price has been inserted, keep insert old date {oldDate}", missingDate);
 
                     await GetPriceAndInsertAsync(missingDate, cancellationToken);
 
-                    if(missingDates.Remove(missingDate))
+                    if (missingDates.Remove(missingDate))
                     {
                         _logger.LogDebug("{missingDate} successfully remove from missing dates", missingDate);
-                    } else
+                    }
+                    else
                     {
                         _logger.LogError("Error when trying to remove {missingDate} from missing dates", missingDate);
                     }
@@ -103,7 +105,7 @@ namespace Polkanalysis.DatabaseWorker
         {
             // We start a new day
             var currentDate = DateTime.Now;
-            if(currentDate.Hour == 0)
+            if (currentDate.Hour == 0)
             {
                 _logger.LogInformation("New hour start ({currentDate}), fetch price feed for {BlockchainName} network", currentDate.ToString("dd-MM-yyyy HH:mm:ss"), _polkadotRepository.BlockchainName);
                 await GetPriceAndInsertAsync(currentDate, cancellationToken);

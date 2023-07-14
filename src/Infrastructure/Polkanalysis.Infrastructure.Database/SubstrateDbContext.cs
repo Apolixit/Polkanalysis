@@ -4,7 +4,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Price;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Staking;
-using System.Security.Cryptography.X509Certificates;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
 
 namespace Polkanalysis.Infrastructure.Database
 {
@@ -41,6 +41,11 @@ namespace Polkanalysis.Infrastructure.Database
         public DbSet<EraStakersModel> EraStakersModels => Set<EraStakersModel>();
         #endregion
 
+
+        #region
+        public DbSet<SpecVersionModel> SpecVersionModels => Set<SpecVersionModel>();
+        public DbSet<PalletVersionModel> PalletVersionModels => Set<PalletVersionModel>();
+        #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BalancesBalanceSetModel>()
@@ -85,16 +90,10 @@ namespace Polkanalysis.Infrastructure.Database
 
             modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.EraStakersId, c.BlockchainName, c.EraId, c.ValidatorAddress });
             modelBuilder.Entity<EraStakersModel>().Property(c => c.EraStakersId).ValueGeneratedOnAdd();
-            //modelBuilder.Entity<EraStakersModel>()
-            //    .HasMany(c => c.EraNominatorsVote)
-            //    .WithOne(c => c.EraStakers)
-            //    .HasForeignKey(c => c.EraStakersId)
-            //    .HasPrincipalKey(c => c.EraStakersId);
 
             modelBuilder.Entity<EraStakersNominatorsModel>(table =>
             {
                 table.Property<int>("EraStakersId");
-                //table.HasKey(c => c.EraStakersNominatorsId);
 
                 table
                     .HasOne(c => c.EraStakers)
@@ -104,6 +103,9 @@ namespace Polkanalysis.Infrastructure.Database
                     .OnDelete(DeleteBehavior.Cascade);
             });
             modelBuilder.Entity<EraStakersNominatorsModel>().HasKey("EraStakersId", "NominatorAddress");
+
+            modelBuilder.Entity<SpecVersionModel>().HasKey(c => new { c.BlockchainName, c.SpecVersion});
+            modelBuilder.Entity<PalletVersionModel>().HasKey(c => new { c.BlockchainName, c.PalletName, c.PalletVersion});
         }
     }
 }

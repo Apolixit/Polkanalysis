@@ -37,7 +37,6 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
                 .Options;
 
             _substrateService = Substitute.For<ISubstrateService>();
-            //_substrateService.BlockchainName = "Polkadot";
 
             _substrateDbContext = new SubstrateDbContext(contextOption);
             _stakingDatabaseRepository = new StakingDatabaseRepository(

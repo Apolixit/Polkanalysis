@@ -143,13 +143,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         {
             return await GetStorageAsync<
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo, LastRuntimeUpgradeInfo>(SystemStorageExt.LastRuntimeUpgradeParams, token);
+        }
 
-            //var result = await GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.LastRuntimeUpgradeInfo>(SystemStorageExt.LastRuntimeUpgradeParams(), token);
-
-            //if (result == null) return new LastRuntimeUpgradeInfo();
-
-            //return SubstrateMapper.Instance.Map<
-            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EnumPhase, LastRuntimeUpgradeInfo>(result);
+        public async Task SubscribeNewLastRuntimeUpgradeAsync(Action<LastRuntimeUpgradeInfo> callback, CancellationToken token)
+        {
+            await SubscribeToAsync(SystemStorageExt.LastRuntimeUpgradeParams(), callback, token);
         }
 
         public async Task<U32> NumberAsync(CancellationToken token)

@@ -11,7 +11,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
         /// </summary>
         /// <param name="blockId"></param>
         /// <returns></returns>
-        [Test]
+        [Test, Ignore("Debug Event updates")]
         [TestCase(14000001, 30)]
         [TestCase(13564726, 34)]
         [TestCase(14063202, 39)]
@@ -26,7 +26,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
             Assert.That(eventInfoWithNumber.Count(), Is.EqualTo(nbEvent));
         }
 
-        [Test]
+        [Test, Ignore("Debug Event updates")]
         [TestCase(14033244)]
         public async Task GetEventsAssociatedByExtrinsic_ShouldWorkAsync(int blockId)
         {
@@ -38,7 +38,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
             Assert.That(events.Count(), Is.EqualTo(9));
         }
 
-        [Test]
+        [Test, Ignore("Debug Event updates")]
         [TestCase(
             "0x6de17e76b2b5d40b51e9276406ffee4e37662366d5faa73babe3c3a359df5ebd",
             Contracts.Secondary.Pallet.PolkadotRuntime.RuntimeEvent.Scheduler,

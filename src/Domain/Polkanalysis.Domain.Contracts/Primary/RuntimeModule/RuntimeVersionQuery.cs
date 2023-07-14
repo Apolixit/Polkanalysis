@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.RuntimeModule
 {
-    public class RuntimeVersionQuery : IRequest<Result<IEnumerable<RuntimeVersionDto>, ErrorResult>>
+    public class RuntimeVersionQuery : IRequest<Result<IEnumerable<SpecVersionDto>, ErrorResult>>
     {
     }
 }

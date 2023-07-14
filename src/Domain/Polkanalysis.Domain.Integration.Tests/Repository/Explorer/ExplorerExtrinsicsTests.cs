@@ -18,13 +18,14 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
 
             Assert.IsNotNull(extrinsicInfoWithNumber);
             Assert.IsNotNull(extrinsicInfoWithHash);
+            var x1 = extrinsicInfoWithNumber.First().Decoded.Has("Timestamp");
+            //var x2 = extrinsicInfoWithNumber.First().Decoded.Has("set");
 
             // One of these extrinsics should have Timestamp.Set defined
-            //Assert.That(
-            //    extrinsicInfoWithNumber.Any(x =>
-            //    x.Decoded.Has(Domain.Contracts.Secondary.Pallet.Timestamp.ITimestampStorage Call.set)),
-            //    Is.True);
-            Assert.Fail();
+            Assert.That(
+                extrinsicInfoWithNumber.Any(x =>
+                x.Decoded.Has("Timestamp")),
+                Is.True);
         }
 
         /// <summary>

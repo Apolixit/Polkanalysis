@@ -133,9 +133,15 @@ namespace Polkanalysis.Domain.Runtime
 
         private IEnumerable<INode> FindInner(List<INode> list, object obj)
         {
-            if (HumanData != null && HumanData?.Equals(obj))
+            if (HumanData != null)
             {
-                list.Add(this);
+                if(HumanData?.Equals(obj) || 
+                    (obj is string objString && 
+                    HumanData is string humanDataString && 
+                    humanDataString.ToLower().Equals(objString.ToLower())))
+                {
+                    list.Add(this);
+                }
             }
 
             if (Children == null) return list;

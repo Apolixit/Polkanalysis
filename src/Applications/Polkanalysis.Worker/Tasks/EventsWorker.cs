@@ -9,7 +9,7 @@ using Polkanalysis.Worker.Parameters.Context;
 using Polkanalysis.Worker.Parameters;
 using Substrate.NET.Utils;
 
-namespace Polkanalysis.DatabaseWorker
+namespace Polkanalysis.Worker.Tasks
 {
     public class EventsWorker
     {
@@ -80,7 +80,7 @@ namespace Polkanalysis.DatabaseWorker
                 var blockNumber = new BlockNumber(i);
                 var hash = await _polkadotRepository.Rpc.Chain.GetBlockHashAsync(blockNumber, stoppingToken);
 
-                if(hash == null)
+                if (hash == null)
                 {
                     _logger.LogError($"Block hash for block number {i} is null");
                     break;
@@ -113,7 +113,7 @@ namespace Polkanalysis.DatabaseWorker
                 15328960, 15328997, 15328854, 14148296, 15329002, 15328862, 15316948, 15317368, 15328960, 15328966
             };
 
-            foreach(var blockNum in blockNumbers)
+            foreach (var blockNum in blockNumbers)
             {
                 var hash = await _polkadotRepository.Rpc.Chain.GetBlockHashAsync(new BlockNumber(blockNum), stoppingToken);
                 var blockData = await _polkadotRepository.Rpc.Chain.GetBlockAsync(hash, stoppingToken);
@@ -150,7 +150,7 @@ namespace Polkanalysis.DatabaseWorker
             }
         }
 
-        
+
         protected async Task ListenNewBlockAndInsertInDatabaseAsync(CancellationToken stoppingToken)
         {
 #pragma warning disable VSTHRD101 // Avoid unsupported async delegates

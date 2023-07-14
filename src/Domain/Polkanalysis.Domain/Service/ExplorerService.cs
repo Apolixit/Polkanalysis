@@ -413,9 +413,9 @@ namespace Polkanalysis.Domain.Service
                 var extrinsicHash = new Hash();
                 extrinsicHash.Create(hexExtrinsic);
                 var extrinsicFromEncoded = new Extrinsic(hexExtrinsic, ChargeTransactionPayment.Default());
-                var extrinsicFromOfficial = new Extrinsic("0x280403000b207eba5c8501", ChargeTransactionPayment.Default());
+                //var extrinsicFromOfficial = new Extrinsic("0x280403000b207eba5c8501", ChargeTransactionPayment.Default());
                 var isEqual = extrinsic.Equals(extrinsicFromEncoded);
-                var isEqual2 = extrinsic.Equals(extrinsicFromOfficial);
+                //var isEqual2 = extrinsic.Equals(extrinsicFromOfficial);
 
                 var blockLight = await GetBlockLightAsync(blockHash, cancellationToken);
                 var extrinsicNode = _substrateDecode.DecodeExtrinsic(extrinsic);

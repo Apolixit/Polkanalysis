@@ -132,6 +132,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore
         public Task<LastRuntimeUpgradeInfo> LastRuntimeUpgradeAsync(CancellationToken token);
 
         /// <summary>
+        /// Subscribe for each new runtime upgrade
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Task SubscribeNewLastRuntimeUpgradeAsync(Action<LastRuntimeUpgradeInfo> callback, CancellationToken token);
+
+        /// <summary>
         /// True if we have upgraded so that `type RefCount` is `u32`. False (default) if not.
         /// </summary>
         /// <param name="token"></param>
