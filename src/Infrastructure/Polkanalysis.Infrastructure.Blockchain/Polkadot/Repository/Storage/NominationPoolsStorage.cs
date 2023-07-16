@@ -10,6 +10,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using NominationStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.NominationPoolsStorage;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -143,6 +144,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools,
                 SubPools>
                 (key, NominationStorageExt.SubPoolsStorageParams, token);
+        }
+
+        protected static string palletVersionStorage() => RequestGenerator.GetStorage("NominationPools", "PalletVersion", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+        public async Task<U16> PalletVersionAsync(CancellationToken token)
+        {
+            return await GetStorageAsync<U16>(palletVersionStorage, token);
         }
     }
 }

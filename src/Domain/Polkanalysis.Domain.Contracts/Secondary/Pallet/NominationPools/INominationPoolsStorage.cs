@@ -177,5 +177,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<U32> CounterForReversePoolIdLookupAsync(CancellationToken token);
+
+        public Task<U16> PalletVersionAsync(CancellationToken token);
     }
 }

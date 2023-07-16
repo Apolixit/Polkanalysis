@@ -28,8 +28,6 @@ namespace Polkanalysis.Worker.Tasks
 
         public async Task RequestUpgradeVersionAsync(CancellationToken cancellationToken)
         {
-            //if (!_eraPerimeter.IsSet) throw new InvalidOperationException("Era perimeter is not properly set, please check your configuration file.");
-
             var storedVersions = await _mediator.Send(new SpecVersionsQuery() {
                 BlockchainName = _polkadotService.BlockchainName
             }, cancellationToken);
@@ -42,7 +40,7 @@ namespace Polkanalysis.Worker.Tasks
             }
             
             //for (uint i = 7400000; i <= lastBlockNum.Value; i++)
-            for (uint i = 100_000; i <= lastBlockNum.Value; i++)
+            for (uint i = 320_000; i <= lastBlockNum.Value; i++)
             {
                 var blockHash = await _polkadotService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(i), cancellationToken);
                 var res = await _polkadotService.At(blockHash).Storage.System.LastRuntimeUpgradeAsync(cancellationToken);

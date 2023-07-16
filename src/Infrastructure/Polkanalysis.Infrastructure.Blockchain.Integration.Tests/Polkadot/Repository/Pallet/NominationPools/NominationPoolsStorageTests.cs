@@ -88,5 +88,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
                 new U32(1), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
+
+        [Test]
+        public async Task CurrentVersion_ShouldWorkAsync()
+        {
+            // Pallet ID = 39
+            var res = await _substrateRepository.Storage.NominationPools.PalletVersionAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task CounterForSubPoolsStorage_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.Storage.NominationPools.CounterForSubPoolsStorageAsync(CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
     }
 }
