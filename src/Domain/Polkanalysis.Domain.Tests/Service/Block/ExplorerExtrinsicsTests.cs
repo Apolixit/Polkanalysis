@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Tests.Runtime.Metadata
+namespace Polkanalysis.Domain.Tests.Service.Block
 {
-    internal class SpecVersionComparisonTest
+    internal class ExplorerExtrinsicsTests
     {
     }
 }

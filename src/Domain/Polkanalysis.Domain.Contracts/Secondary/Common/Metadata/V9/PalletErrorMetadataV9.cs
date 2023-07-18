@@ -11,8 +11,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
 {
     public class PalletErrorMetadataV9 : BaseType
     {
-        public Str Name { get; private set; }
-        public BaseVec<Str> Docs { get; private set; }
+        public Str Name { get; set; }
+        public BaseVec<Str> Docs { get; set; }
 
         public override byte[] Encode()
         {

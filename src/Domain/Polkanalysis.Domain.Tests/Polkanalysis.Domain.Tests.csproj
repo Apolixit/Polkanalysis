@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <Folder Include="Runtime\Block\" />
+    <Folder Include="Tmp\" />
   </ItemGroup>
 
   <ItemGroup>

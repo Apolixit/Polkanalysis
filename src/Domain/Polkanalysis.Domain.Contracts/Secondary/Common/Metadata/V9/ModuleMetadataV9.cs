@@ -12,11 +12,11 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
     public class ModuleMetadataV9 : BaseType
     {
         public Str Name { get; private set; }
-        public BaseOpt<StorageMetadataV9> Storage { get; private set; }
+        public BaseOpt<PalletStorageMetadataV9> Storage { get; private set; }
         public BaseOpt<BaseVec<PalletCallMetadataV9>> Calls { get; private set; }
         public BaseOpt<BaseVec<PalletEventMetadataV9>> Events { get; private set; }
         public BaseVec<PalletConstantMetadataV9> Constants { get; private set; }
-        public BaseVec<PalletErrorMetadataV9> Errors { get; private set; }
+        public BaseVec<PalletErrorMetadataV9> Errors { get; private set; }  
 
         public override void Decode(byte[] byteArray, ref int p)
         {
@@ -25,7 +25,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
             Name = new Str();
             Name.Decode(byteArray, ref p);
 
-            Storage = new BaseOpt<StorageMetadataV9>();
+            Storage = new BaseOpt<PalletStorageMetadataV9>();
             Storage.Decode(byteArray, ref p);
 
             Calls = new BaseOpt<BaseVec<PalletCallMetadataV9>>();

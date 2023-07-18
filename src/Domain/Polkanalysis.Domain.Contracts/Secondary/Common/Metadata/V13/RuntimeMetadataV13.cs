@@ -12,7 +12,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13
     public class RuntimeMetadataV13 : BaseType
     {
         public BaseVec<ModuleMetadataV13> Modules { get; private set; }
-        public ExtrinsicMetadataV11 Extrinsic { get; private set; }
+        public ExtrinsicMetadataV13 Extrinsic { get; private set; }
 
         public override void Decode(byte[] byteArray, ref int p)
         {
@@ -21,7 +21,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13
             Modules = new BaseVec<ModuleMetadataV13>();
             Modules.Decode(byteArray, ref p);
 
-            Extrinsic = new ExtrinsicMetadataV11();
+            Extrinsic = new ExtrinsicMetadataV13();
             Extrinsic.Decode(byteArray, ref p);
 
             TypeSize = p - start;

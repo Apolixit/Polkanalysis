@@ -14,9 +14,9 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Contracts.Service;
 
-namespace Polkanalysis.Domain.Tests.Repository.Block
+namespace Polkanalysis.Domain.Tests.Service.Block
 {
-    public abstract class ExplorerRepositoryTests
+    public abstract class ExplorerServiceTests
     {
         protected IExplorerService _explorerRepository;
         protected ISubstrateService _substrateService;

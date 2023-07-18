@@ -5,9 +5,9 @@ using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 
-namespace Polkanalysis.Domain.Tests.Repository
+namespace Polkanalysis.Domain.Tests.Service
 {
-    public class ParachainRepositoryTest
+    public class ParachainServiceTest
     {
         private IParachainService _parachainRepository;
         private ISubstrateService _substrateRepository;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
 {
-    public class StorageMetadataV9 : BaseType
+    public class PalletStorageMetadataV9 : BaseType
     {
         public override byte[] Encode()
         {

@@ -11,13 +11,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
 {
     public class PalletConstantMetadataV9 : BaseType
     {
-        public Str ConstantName { get; private set; }
+        public Str Name { get; set; }
 
-        public Str ConstantType { get; private set; }
+        public Str ConstantType { get; set; }
 
-        public ByteGetter ConstantValue { get; private set; }
+        public ByteGetter Value { get; set; }
 
-        public BaseVec<Str> Documentation { get; private set; }
+        public BaseVec<Str> Documentation { get; set; }
 
         public override byte[] Encode()
         {
@@ -27,12 +27,12 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
         public override void Decode(byte[] byteArray, ref int p)
         {
             int num = p;
-            ConstantName = new Str();
-            ConstantName.Decode(byteArray, ref p);
+            Name = new Str();
+            Name.Decode(byteArray, ref p);
             ConstantType = new Str();
             ConstantType.Decode(byteArray, ref p);
-            ConstantValue = new ByteGetter();
-            ConstantValue.Decode(byteArray, ref p);
+            Value = new ByteGetter();
+            Value.Decode(byteArray, ref p);
             Documentation = new BaseVec<Str>();
             Documentation.Decode(byteArray, ref p);
             TypeSize = p - num;

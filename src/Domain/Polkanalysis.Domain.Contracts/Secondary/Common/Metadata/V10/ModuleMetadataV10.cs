@@ -12,11 +12,11 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10
     public class ModuleMetadataV10 : BaseType
     {
         public Str Name { get; private set; }
-        public BaseOpt<StorageMetadataV10> Storage { get; private set; }
-        public BaseOpt<BaseVec<PalletCallMetadataV9>> Calls { get; private set; }
-        public BaseOpt<BaseVec<PalletEventMetadataV9>> Events { get; private set; }
-        public BaseVec<PalletConstantMetadataV9> Constants { get; private set; }
-        public BaseVec<PalletErrorMetadataV9> Errors { get; private set; }
+        public BaseOpt<PalletStorageMetadataV10> Storage { get; private set; }
+        public BaseOpt<BaseVec<PalletCallMetadataV10>> Calls { get; private set; }
+        public BaseOpt<BaseVec<PalletEventMetadataV10>> Events { get; private set; }
+        public BaseVec<PalletConstantMetadataV10> Constants { get; private set; }
+        public BaseVec<PalletErrorMetadataV10> Errors { get; private set; }
 
         public override void Decode(byte[] byteArray, ref int p)
         {
@@ -25,19 +25,19 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10
             Name = new Str();
             Name.Decode(byteArray, ref p);
 
-            Storage = new BaseOpt<StorageMetadataV10>();
+            Storage = new BaseOpt<PalletStorageMetadataV10>();
             Storage.Decode(byteArray, ref p);
 
-            Calls = new BaseOpt<BaseVec<PalletCallMetadataV9>>();
+            Calls = new BaseOpt<BaseVec<PalletCallMetadataV10>>();
             Calls.Decode(byteArray, ref p);
 
-            Events = new BaseOpt<BaseVec<PalletEventMetadataV9>>();
+            Events = new BaseOpt<BaseVec<PalletEventMetadataV10>>();
             Events.Decode(byteArray, ref p);
 
-            Constants = new BaseVec<PalletConstantMetadataV9>();
+            Constants = new BaseVec<PalletConstantMetadataV10>();
             Constants.Decode(byteArray, ref p);
 
-            Errors = new BaseVec<PalletErrorMetadataV9>();
+            Errors = new BaseVec<PalletErrorMetadataV10>();
             Errors.Decode(byteArray, ref p);
 
             TypeSize = p - start;

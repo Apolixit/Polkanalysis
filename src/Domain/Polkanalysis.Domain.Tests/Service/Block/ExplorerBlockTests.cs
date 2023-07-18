@@ -9,9 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Exception;
 
-namespace Polkanalysis.Domain.Tests.Repository.Block
+namespace Polkanalysis.Domain.Tests.Service.Block
 {
-    public class ExplorerBlockTests : ExplorerRepositoryTests
+    public class ExplorerBlockTests : ExplorerServiceTests
     {
         [Test]
         public void InvalidBlockHash_ShouldThrowError()

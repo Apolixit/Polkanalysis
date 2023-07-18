@@ -32,8 +32,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
             TypeSize = p - start;
         }
 
-        public Str Name { get; private set; }
-        public BaseVec<Str> Args { get; private set; }
-        public BaseVec<Str> Docs { get; private set; }
+        public Str Name { get; set; }
+        public BaseVec<Str> Args { get; set; }
+        public BaseVec<Str> Docs { get; set; }
     }
 }

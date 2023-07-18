@@ -111,7 +111,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task GetMetadata_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Rpc.State.GetMetaDataAtAsync("0x657e61aa6d889c1e8bbb31315ddacd9d5b6ae797836ef3966ffab9d96ee16c15", CancellationToken.None);
+            var res = await _substrateRepository.Rpc.State.GetMetaDataAtAsync("0x9a8acc5f764be5e083340d5eacf9f72b4302c5ac158cc66bf5667ddc48ef92ac", CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }

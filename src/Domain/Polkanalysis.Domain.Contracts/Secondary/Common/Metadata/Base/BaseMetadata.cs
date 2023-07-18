@@ -12,6 +12,17 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
     public abstract class BaseMetadata<T> : BaseType
         where T : BaseType, new()
     {
+        protected BaseMetadata()
+        {
+        }
+
+        protected BaseMetadata(string hex)
+        {
+            Create(hex);
+        }
+
+        public abstract MetadataVersion Version { get; }
+
         public override byte[] Encode()
         {
             throw new NotImplementedException();

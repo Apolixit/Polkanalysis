@@ -12,9 +12,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Tests.Repository
+namespace Polkanalysis.Domain.Tests.Service
 {
-    public class RoleMemberRepositoryTest
+    public class StakingServiceTest
     {
         protected IExplorerService _explorerRepository;
         protected ISubstrateService _substrateRepository;

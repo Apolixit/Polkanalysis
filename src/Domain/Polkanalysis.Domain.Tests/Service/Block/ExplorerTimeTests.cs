@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Tests.Repository.Block
+namespace Polkanalysis.Domain.Tests.Service.Block
 {
-    public class ExplorerEventsTests
+    internal class ExplorerTimeTests
     {
-        
+
+
     }
 }

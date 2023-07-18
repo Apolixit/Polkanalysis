@@ -10,6 +10,15 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13
 {
     public class MetadataV13 : BaseMetadata<RuntimeMetadataV13>
     {
+        public MetadataV13() : base()
+        {
+        }
+
+        public MetadataV13(string hex) : base(hex)
+        {
+        }
+
+        public override MetadataVersion Version => MetadataVersion.V13;
         public override string TypeName() => nameof(MetadataV13);
     }
 }

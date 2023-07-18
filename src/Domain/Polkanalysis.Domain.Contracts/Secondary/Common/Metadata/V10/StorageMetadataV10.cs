@@ -4,7 +4,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10
 {
-    public class StorageMetadataV10 : BaseType
+    public class PalletStorageMetadataV10 : BaseType
     {
         public override byte[] Encode()
         {
