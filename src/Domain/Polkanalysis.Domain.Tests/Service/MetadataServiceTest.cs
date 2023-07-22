@@ -50,7 +50,7 @@ namespace Polkanalysis.Domain.Tests.Service
         {
             var u8 = new U8();
             u8.Create(byte.MaxValue);
-            var value = new Substrate.NetApi.Model.Types.Metadata.V14.ByteGetter();
+            var value = new ByteGetter();
             value.Create(new U8[] { u8 });
 
             return Enumerable.Range(1, nb).Select(x => new PalletConstantMetadataV9()

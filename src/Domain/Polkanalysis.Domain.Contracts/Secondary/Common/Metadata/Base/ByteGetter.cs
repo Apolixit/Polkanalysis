@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +8,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
 {
-    public enum MetadataVersion
+    public class ByteGetter : BaseVec<U8>
     {
-        V9,
-        V10,
-        V11,
-        V12,
-        V13,
-        V14,
-        V15
     }
 }
