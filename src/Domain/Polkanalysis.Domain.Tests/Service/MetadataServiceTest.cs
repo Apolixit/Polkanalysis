@@ -1,15 +1,12 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Tests.Runtime.Metadata;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Tests.Service
 {
@@ -147,17 +144,285 @@ namespace Polkanalysis.Domain.Tests.Service
         }
 
         [Test]
-        public async Task MetadataV11_RealUseCaseBetween_V0_And_V1_ShouldSucceedAsync()
+        public void Metadata_CheckDifferentialPallet_ShouldSuceed()
+        {
+            var m1 = new List<ModuleMetadataV11>()
+            {
+                new ModuleMetadataV11()
+                {
+                    Name = new Str("Module_1")
+                },
+                new ModuleMetadataV11()
+                {
+                    Name = new Str("Module_2")
+                },
+                new ModuleMetadataV11()
+                {
+                    Name = new Str("Module_3")
+                }
+            };
+
+            var m2 = new List<ModuleMetadataV11>()
+            {
+                new ModuleMetadataV11()
+                {
+                    Name = new Str("Module_2")
+                },
+                new ModuleMetadataV11()
+                {
+                    Name = new Str("Module_3")
+                },
+                new ModuleMetadataV11()
+                {
+                    Name = new Str("Module_4")
+                }
+            };
+
+            Assert.That(_metadataService.PalletNameDiff<ModuleMetadataV11>(null, null).Count(), Is.EqualTo(0));
+
+            var resOnlyFirstListNull = _metadataService.PalletNameDiff(m1, null);
+            Assert.That(resOnlyFirstListNull.All(x => x.Item1 == CompareStatus.Removed), Is.True);
+            Assert.That(resOnlyFirstListNull.Count(), Is.EqualTo(m1.Count));
+
+            var resOnlyFirstListEmpty = _metadataService.PalletNameDiff(m1, new List<ModuleMetadataV11>());
+            Assert.That(resOnlyFirstListEmpty.All(x => x.Item1 == CompareStatus.Removed), Is.True);
+            Assert.That(resOnlyFirstListEmpty.Count(), Is.EqualTo(m1.Count));
+
+            var resOnlySecondListNull = _metadataService.PalletNameDiff(null, m2);
+            Assert.That(resOnlySecondListNull.All(x => x.Item1 == CompareStatus.Added), Is.True);
+            Assert.That(resOnlySecondListNull.Count(), Is.EqualTo(m2.Count));
+
+            var resOnlySecondListEmpty = _metadataService.PalletNameDiff(null, m2);
+            Assert.That(resOnlySecondListEmpty.All(x => x.Item1 == CompareStatus.Added), Is.True);
+            Assert.That(resOnlySecondListEmpty.Count(), Is.EqualTo(m2.Count));
+
+            var res = _metadataService.PalletNameDiff(m1, m2).ToList();
+            Assert.That(res[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(res[1].Item1, Is.EqualTo(CompareStatus.Removed));
+
+        }
+
+        [Test]
+        public async Task MetadataV11_SpecVersionCompare_V0_And_V1_ShouldSucceedAsync()
         {
             Assert.That(_metadataService.EnsureMetadataVersion(
-                    MetadataParsingTest.MetadataV11_Version_0, 
-                    MetadataParsingTest.MetadataV11_Version_1), Is.EqualTo(MetadataVersion.V11));
+                    MetadataMocks.MetadataV11_0,
+                    MetadataMocks.MetadataV11_1), Is.EqualTo(MetadataVersion.V11));
 
             var res = await _metadataService.MetadataCompareV11Async(
-                new MetadataV11(MetadataParsingTest.MetadataV11_Version_0), 
-                new MetadataV11(MetadataParsingTest.MetadataV11_Version_1));
+                new MetadataV11(MetadataMocks.MetadataV11_0),
+                new MetadataV11(MetadataMocks.MetadataV11_1));
 
             Assert.That(res, Is.Not.Null);
+            Assert.That(res.AllModulesDiff.Count(), Is.EqualTo(31));
+            Assert.That(res.UnchangedModules.Count(), Is.EqualTo(30));
+            Assert.That(res.ChangedModules.Count(), Is.EqualTo(1));
+
+            Assert.That(res.ChangedModules.First().ModuleName, Is.EqualTo("Claims"));
+            var errors = res.ChangedModules.First().Errors.ToList();
+
+            Assert.That(errors.Count, Is.EqualTo(2));
+
+            // VestedBalanceExists error has been added
+            Assert.That(errors[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(errors[0].Item2.Name.Value, Is.EqualTo("VestedBalanceExists"));
+
+            // DestinationVesting error has been removed
+            Assert.That(errors[1].Item1, Is.EqualTo(CompareStatus.Removed));
+            Assert.That(errors[1].Item2.Name.Value, Is.EqualTo("DestinationVesting"));
+        }
+
+        [Test]
+        public async Task MetadataV11_SpecVersionCompare_V6_And_V7_ShouldSucceedAsync()
+        {
+            Assert.That(_metadataService.EnsureMetadataVersion(
+                    MetadataMocks.MetadataV11_6,
+                    MetadataMocks.MetadataV11_7), Is.EqualTo(MetadataVersion.V11));
+
+            var res = await _metadataService.MetadataCompareV11Async(
+                new MetadataV11(MetadataMocks.MetadataV11_6),
+                new MetadataV11(MetadataMocks.MetadataV11_7));
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.AllModulesDiff.Count(), Is.EqualTo(34));
+            Assert.That(res.UnchangedModules.Count(), Is.EqualTo(33));
+            Assert.That(res.ChangedModules.Count(), Is.EqualTo(1));
+
+            Assert.That(res.ChangedModules.First().ModuleName, Is.EqualTo("Indices"));
+            
+            var calls = res.ChangedModules.First().Calls.ToList();
+            Assert.That(calls.Count, Is.EqualTo(1));
+            Assert.That(calls[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(calls[0].Item2.Name.Value, Is.EqualTo("freeze"));
+
+            var events = res.ChangedModules.First().Events.ToList();
+            Assert.That(events.Count, Is.EqualTo(1));
+            Assert.That(events[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(events[0].Item2.Name.Value, Is.EqualTo("IndexFrozen"));
+        }
+
+        [Test]
+        public async Task MetadataV11_SpecVersionCompare_V23_And_V24_ShouldSucceedAsync()
+        {
+            Assert.That(_metadataService.EnsureMetadataVersion(
+                    MetadataMocks.MetadataV11_23,
+                    MetadataMocks.MetadataV11_24), Is.EqualTo(MetadataVersion.V11));
+
+            var res = await _metadataService.MetadataCompareV11Async(
+                new MetadataV11(MetadataMocks.MetadataV11_23),
+                new MetadataV11(MetadataMocks.MetadataV11_24));
+
+            Assert.That(res, Is.Not.Null);
+
+            Assert.That(res.AddedModules, Is.Not.Null);
+            Assert.That(res.AddedModules.First().ModuleName, Is.EqualTo("DummyPurchase"));
+
+            Assert.That(res.RemovedModules, Is.Not.Null);
+            Assert.That(res.RemovedModules.First().ModuleName, Is.EqualTo("Purchase"));
+
+            Assert.That(res.ChangedModules.Count(), Is.EqualTo(3));
+
+            if (res.ChangedModules.ToList() is [var first, var second, var third])
+            {
+                Assert.That(first.ModuleName, Is.EqualTo("DummyRegistrar"));
+                Assert.That(first.Events.Count, Is.EqualTo(1));
+                Assert.That(first.Events.First().Item1, Is.EqualTo(CompareStatus.Added));
+                Assert.That(first.Events.First().Item2.Name.Value, Is.EqualTo("Dummy"));
+
+                Assert.That(second.ModuleName, Is.EqualTo("DummySlots"));
+                Assert.That(second.Events.Count, Is.EqualTo(1));
+                Assert.That(second.Events.First().Item1, Is.EqualTo(CompareStatus.Added));
+                Assert.That(second.Events.First().Item2.Name.Value, Is.EqualTo("Dummy"));
+
+                Assert.That(third.ModuleName, Is.EqualTo("Multisig"));
+                var constants = third.Constants.ToList();
+                Assert.That(constants.Count, Is.EqualTo(3));
+
+                Assert.That(constants[0].Item2.Name.Value, Is.EqualTo("DepositBase"));
+                Assert.That(constants[0].Item2.ConstantType.Value, Is.EqualTo("BalanceOf<T>"));
+
+                Assert.That(constants[1].Item2.Name.Value, Is.EqualTo("DepositFactor"));
+                Assert.That(constants[1].Item2.ConstantType.Value, Is.EqualTo("BalanceOf<T>"));
+
+                Assert.That(constants[2].Item2.Name.Value, Is.EqualTo("MaxSignatories"));
+                Assert.That(constants[2].Item2.ConstantType.Value, Is.EqualTo("u16"));
+
+            } else
+                Assert.Fail();
+        }
+
+        [Test]
+        public async Task MetadataV12_SpecVersionCompare_V27_And_V28_ShouldSucceedAsync()
+        {
+            Assert.That(_metadataService.EnsureMetadataVersion(
+                    MetadataMocks.MetadataV12_27,
+                    MetadataMocks.MetadataV12_28), Is.EqualTo(MetadataVersion.V12));
+
+            var res = await _metadataService.MetadataCompareV12Async(
+                new MetadataV12(MetadataMocks.MetadataV12_27),
+                new MetadataV12(MetadataMocks.MetadataV12_28));
+
+            Assert.That(res, Is.Not.Null);
+
+            var addedModules = res.AddedModules.ToList();
+            Assert.That(addedModules.Count, Is.EqualTo(2));
+
+            Assert.That(addedModules[0].ModuleName, Is.EqualTo("Bounties"));
+            Assert.That(addedModules[1].ModuleName, Is.EqualTo("Tips"));
+
+            var changedModules = res.ChangedModules.ToList();
+            Assert.That(changedModules.Count, Is.EqualTo(7));
+
+            Assert.That(changedModules[0].ModuleName, Is.EqualTo("Babe"));
+            Assert.That(changedModules[0].Storage.First().Item2.status, Is.EqualTo(CompareStatus.Added));
+            Assert.That(changedModules[0].Storage.First().Item2.storage.Name.Value, Is.EqualTo("NextAuthorities"));
+            Assert.IsTrue(changedModules[0].HasStorageAdded("NextAuthorities"));
+
+            // Now let's test ElectionsPhragmen which changed a lot
+            var electionPhragmenModule = changedModules[1];
+            Assert.That(electionPhragmenModule.ModuleName, Is.EqualTo("ElectionsPhragmen"));
+
+            // No storage changes
+            var electionPhragmenStorages = electionPhragmenModule.Storage.ToList();
+            Assert.That(electionPhragmenStorages.Count, Is.EqualTo(0));
+
+            var electionPhragmenCalls = electionPhragmenModule.Calls.ToList();
+            Assert.That(electionPhragmenCalls[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(electionPhragmenCalls[0].Item2.Name.Value, Is.EqualTo("clean_defunct_voters"));
+            Assert.IsTrue(electionPhragmenModule.HasCallAdded("clean_defunct_voters"));
+
+            Assert.That(electionPhragmenCalls[1].Item1, Is.EqualTo(CompareStatus.Removed));
+            Assert.That(electionPhragmenCalls[1].Item2.Name.Value, Is.EqualTo("report_defunct_voter"));
+            Assert.IsTrue(electionPhragmenModule.HasCallRemoved("report_defunct_voter"));
+
+            var electionPhragmenConstants = electionPhragmenModule.Constants.ToList();
+            Assert.That(electionPhragmenConstants[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(electionPhragmenConstants[0].Item2.Name.Value, Is.EqualTo("VotingBondBase"));
+            Assert.IsTrue(electionPhragmenModule.HasConstantAdded("VotingBondBase"));
+
+            Assert.That(electionPhragmenConstants[1].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(electionPhragmenConstants[1].Item2.Name.Value, Is.EqualTo("VotingBondFactor"));
+
+            Assert.That(electionPhragmenConstants[2].Item1, Is.EqualTo(CompareStatus.Removed));
+            Assert.That(electionPhragmenConstants[2].Item2.Name.Value, Is.EqualTo("VotingBond"));
+            Assert.IsTrue(electionPhragmenModule.HasConstantRemoved("VotingBond"));
+
+            var electionPhragmenEvents = electionPhragmenModule.Events.ToList();
+            Assert.That(electionPhragmenEvents[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(electionPhragmenEvents[0].Item2.Name.Value, Is.EqualTo("Renounced"));
+            Assert.IsTrue(electionPhragmenModule.HasEventAdded("Renounced"));
+
+            Assert.That(electionPhragmenEvents[1].Item1, Is.EqualTo(CompareStatus.Removed));
+            Assert.That(electionPhragmenEvents[1].Item2.Name.Value, Is.EqualTo("MemberRenounced"));
+            Assert.IsTrue(electionPhragmenModule.HasEventRemoved("MemberRenounced"));
+
+            Assert.That(electionPhragmenEvents[2].Item1, Is.EqualTo(CompareStatus.Removed));
+            Assert.That(electionPhragmenEvents[2].Item2.Name.Value, Is.EqualTo("VoterReported"));
+
+            var electionPhragmenErrors = electionPhragmenModule.Errors.ToList();
+            Assert.That(electionPhragmenErrors[0].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(electionPhragmenErrors[0].Item2.Name.Value, Is.EqualTo("RunnerUpSubmit"));
+            Assert.IsTrue(electionPhragmenModule.HasErrorAdded("RunnerUpSubmit"));
+
+            Assert.That(electionPhragmenErrors[1].Item1, Is.EqualTo(CompareStatus.Added));
+            Assert.That(electionPhragmenErrors[1].Item2.Name.Value, Is.EqualTo("InvalidWitnessData"));
+
+            Assert.That(electionPhragmenErrors[2].Item1, Is.EqualTo(CompareStatus.Removed));
+            Assert.That(electionPhragmenErrors[2].Item2.Name.Value, Is.EqualTo("RunnerSubmit"));
+
+            Assert.That(electionPhragmenErrors[3].Item1, Is.EqualTo(CompareStatus.Removed));
+            Assert.That(electionPhragmenErrors[3].Item2.Name.Value, Is.EqualTo("InvalidCandidateCount"));
+            Assert.IsTrue(electionPhragmenModule.HasErrorRemoved("InvalidCandidateCount"));
+        }
+
+        [Test]
+        public async Task MetadataV13_SpecVersionCompare_V9080_And_V9090_ShouldSucceedAsync()
+        {
+            Assert.That(_metadataService.EnsureMetadataVersion(
+                    MetadataMocks.MetadataV13_9080,
+                    MetadataMocks.MetadataV13_9090), Is.EqualTo(MetadataVersion.V13));
+
+            var res = await _metadataService.MetadataCompareV13Async(
+                new MetadataV13(MetadataMocks.MetadataV13_9080),
+                new MetadataV13(MetadataMocks.MetadataV13_9090));
+
+            Assert.That(res, Is.Not.Null);
+            var changedModules = res.ChangedModules.ToList();
+
+            Assert.That(changedModules[0].ModuleName, Is.EqualTo("Authorship"));
+            Assert.IsTrue(changedModules[0].HasConstantAdded("UncleGenerations"));
+
+            Assert.That(changedModules[1].ModuleName, Is.EqualTo("Balances"));
+            Assert.IsTrue(changedModules[1].HasConstantAdded("MaxLocks"));
+            Assert.IsTrue(changedModules[1].HasConstantAdded("MaxReserves"));
+
+            Assert.That(changedModules[2].ModuleName, Is.EqualTo("Democracy"));
+            Assert.That(changedModules[2].Constants.Count(), Is.EqualTo(2));
+            Assert.IsTrue(changedModules[2].HasConstantAdded("InstantAllowed"));
+            Assert.IsTrue(changedModules[2].HasConstantAdded("MaxProposals"));
+            Assert.That(changedModules[2].Errors.Count(), Is.EqualTo(5));
+            Assert.IsFalse(changedModules[2].HasErrorAdded("test"));
+            Assert.IsFalse(changedModules[2].HasErrorRemoved("test2"));
         }
     }
 }

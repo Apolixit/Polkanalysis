@@ -1,11 +1,12 @@
-﻿using Substrate.NetApi.Model.Meta;
+﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
+using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Metadata.V14;
 using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
 {
-    public class StorageEntryMetadataV9 : BaseType
+    public class StorageEntryMetadataV9 : BaseType, IMetadataName
     {
         public override byte[] Encode()
         {
@@ -16,17 +17,17 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
         {
             var start = p;
 
-            StorageName = new Str();
-            StorageName.Decode(byteArray, ref p);
+            Name = new Str();
+            Name.Decode(byteArray, ref p);
 
-            StorageModifier = new BaseEnum<StorageType.ModifierV9>();
-            StorageModifier.Decode(byteArray, ref p);
+            Modifier = new BaseEnum<StorageType.ModifierV9>();
+            Modifier.Decode(byteArray, ref p);
 
             StorageType = new BaseEnumExt<StorageType.TypeV9, Str, StorageEntryTypeMapV9, StorageEntryTypeDoubleMapV9>();
             StorageType.Decode(byteArray, ref p);
 
-            StorageDefault = new ByteGetter();
-            StorageDefault.Decode(byteArray, ref p);
+            Default = new ByteGetter();
+            Default.Decode(byteArray, ref p);
 
             Documentation = new BaseVec<Str>();
             Documentation.Decode(byteArray, ref p);
@@ -34,10 +35,10 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
             TypeSize = p - start;
         }
 
-        public Str StorageName { get; private set; }
-        public BaseEnum<StorageType.ModifierV9> StorageModifier { get; private set; }
+        public Str Name { get; private set; }
+        public BaseEnum<StorageType.ModifierV9> Modifier { get; private set; }
         public BaseEnumExt<StorageType.TypeV9, Str, StorageEntryTypeMapV9, StorageEntryTypeDoubleMapV9> StorageType { get; private set; }
-        public ByteGetter StorageDefault { get; private set; }
+        public ByteGetter Default { get; private set; }
         public BaseVec<Str> Documentation { get; private set; }
     }
 }

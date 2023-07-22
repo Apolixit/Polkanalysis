@@ -1,4 +1,5 @@
-﻿using Substrate.NetApi.Model.Types.Base;
+﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
+using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Metadata.V14;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
 {
-    public class PalletConstantMetadataV9 : BaseType
+    public class PalletConstantMetadataV9 : BaseType, IMetadataName
     {
         public Str Name { get; set; }
 

@@ -1,11 +1,14 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
+﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Compare;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12
 {
-    public class ModuleMetadataV12 : BaseType
+    public class ModuleMetadataV12 : BaseType, IMetadataName
     {
         public Str Name { get; private set; }
         public BaseOpt<PalletStorageMetadataV12> Storage { get; private set; }
@@ -46,6 +49,22 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12
         public override byte[] Encode()
         {
             throw new NotImplementedException();
+        }
+
+        public MetadataDifferentialModulesV12 ToDifferentialModules(CompareStatus status)
+        {
+            return new MetadataDifferentialModulesV12()
+            {
+                ModuleName = Name.Value,
+                CompareStatus = status,
+                Calls = Calls.Value.Value.Select(y => (status, y)),
+                Events = Events.Value.Value.Select(y => (status, y)),
+                Constants = Constants.Value.Select(y => (status, y)),
+                Errors = Errors.Value.Select(y => (status, y)),
+                Storage = Storage.Value != null ?
+                    Storage.Value.Entries.Value.Select(x => (Storage.Value.Prefix.Value, (status, x))) :
+                    Enumerable.Empty<(string, (CompareStatus, StorageEntryMetadataV11))>(),
+            };
         }
     }
 }

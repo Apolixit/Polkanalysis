@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10;
+﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Metadata.V14;
@@ -6,7 +7,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11
 {
-    public class StorageEntryMetadataV11 : BaseType
+    public class StorageEntryMetadataV11 : BaseType, IMetadataName
     {
         public override byte[] Encode()
         {
@@ -17,8 +18,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11
         {
             var start = p;
 
-            StorageName = new Str();
-            StorageName.Decode(byteArray, ref p);
+            Name = new Str();
+            Name.Decode(byteArray, ref p);
 
             StorageModifier = new BaseEnum<StorageType.ModifierV9>();
             StorageModifier.Decode(byteArray, ref p);
@@ -35,7 +36,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11
             TypeSize = p - start;
         }
 
-        public Str StorageName { get; private set; }
+        public Str Name { get; private set; }
         public BaseEnum<StorageType.ModifierV9> StorageModifier { get; private set; }
         public BaseEnumExt<StorageType.TypeV9, Str, StorageEntryTypeMapV11, StorageEntryTypeDoubleMapV11> StorageType { get; private set; }
         public ByteGetter StorageDefault { get; private set; }

@@ -8,6 +8,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
 {
     public enum CompareStatus
     {
+        AlreadyPresent,
         Added,
         Removed,
         Edited

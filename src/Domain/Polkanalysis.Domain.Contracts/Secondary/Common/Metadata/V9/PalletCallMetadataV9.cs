@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Metadata.V14;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9
 {
-    public class PalletCallMetadataV9 : BaseType
+    public class PalletCallMetadataV9 : BaseType, IMetadataName
     {
         public override byte[] Encode()
         {

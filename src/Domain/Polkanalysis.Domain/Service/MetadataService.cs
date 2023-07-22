@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,26 +60,38 @@ namespace Polkanalysis.Domain.Service
             };
         }
 
-        //public Task<MetadataDiffV9> MetadataCompareV9Async(string hexMetadata1, string hexMetadata2)
-        //{
-        //    Guard.Against.NullOrEmpty(hexMetadata1);
-        //    Guard.Against.NullOrEmpty(hexMetadata2);
+        /// <summary>
+        /// Compare element by name
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
+        /// <returns></returns>
+        public IEnumerable<(CompareStatus, T)> PalletNameDiff<T>(
+            IEnumerable<T>? source,
+            IEnumerable<T>? destination)
+            where T : IMetadataName
+            => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
-        //    // To be compared, Metadata should have same Major version
-        //    CheckRuntimeMetadata checkVersion1 = new(hexMetadata1);
-        //    CheckRuntimeMetadata checkVersion2 = new(hexMetadata2);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="modulesStart"></param>
+        /// <param name="uncommonModules"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public IEnumerable<T> FilterModuleByStatus<T>(IEnumerable<T> modulesStart, IEnumerable<(CompareStatus, T)> uncommonModules, CompareStatus status)
+            where T : IMetadataName, IType, new()
+        {
+            if (uncommonModules.Any())
+            {
+                var modulesToRemove = uncommonModules.Where(x => x.Item1 == status);
+                modulesStart = modulesStart.Where(x => !modulesToRemove.Any(y => y.Item2.Name.Value == x.Name.Value));
+            }
 
-        //    if (checkVersion1.MetaDataInfo.Version.Value != checkVersion2.MetaDataInfo.Version.Value)
-        //        throw new InvalidOperationException($"Cannot compare metadata v{checkVersion1.MetaDataInfo.Version.Value} and v{checkVersion2.MetaDataInfo.Version.Value}. Major version have to be the same.");
-
-        //    var m1 = new MetadataV9();
-        //    m1.Create(hexMetadata1);
-
-        //    var m2 = new MetadataV9();
-        //    m2.Create(hexMetadata2);
-
-        //    return MetadataCompareV9Async(m1, m2);
-        //}
+            return modulesStart.OrderBy(x => x.Name.Value);
+        }
 
         #endregion
 
@@ -124,18 +137,6 @@ namespace Polkanalysis.Domain.Service
             return res;
         }
 
-        private IEnumerable<T> Sanitize<T>(IEnumerable<BaseOpt<T>> elems)
-            where T : IType, new()
-        {
-            if (elems == null) return Enumerable.Empty<T>();
-
-            var res = elems
-                .Where(x => x.OptionFlag)
-                .Select(x => x.Value);
-
-            return res;
-        }
-
         private IEnumerable<T> Sanitize<T>(IEnumerable<BaseVec<T>> elems)
             where T : IType, new()
         {
@@ -146,32 +147,62 @@ namespace Polkanalysis.Domain.Service
 
             return res;
         }
+
+        private IEnumerable<T> Sanitize<T>(BaseOpt<BaseVec<T>> elems)
+            where T : IType, new()
+        {
+            if (elems == null || !elems.OptionFlag) return Enumerable.Empty<T>();
+
+            return elems.Value.Value;
+        }
+
+        private IEnumerable<T> Sanitize<T>(BaseVec<T> elems)
+            where T : IType, new()
+        {
+            if (elems == null) return Enumerable.Empty<T>();
+
+            return elems.Value;
+        }
         #endregion
 
         #region Compare V9
         public Task<MetadataDiffV9> MetadataCompareV9Async(MetadataV9 m1, MetadataV9 m2)
         {
+            var resModulesDiff = new List<MetadataDifferentialModulesV9>();
+
+            // Check added / removed pallet
+            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+
+            resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
+
+            // We insert added modules
+            var m1CommonModules = FilterModuleByStatus(m1.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Removed);
+            var m2CommonModules = FilterModuleByStatus(m2.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Added);
+
+            foreach (var elem in m1CommonModules.Zip(m2CommonModules))
+            {
+                resModulesDiff.Add(new MetadataDifferentialModulesV9()
+                {
+                    ModuleName = elem.First.Name.Value,
+                    Storage = CompareModuleStorageV9(elem.First.Storage.Value, elem.Second.Storage.Value),
+                    Calls = CompareModuleCallsV9(Sanitize(elem.First.Calls), Sanitize(elem.Second.Calls)),
+                    Events = CompareModuleEventsV9(Sanitize(elem.First.Events), Sanitize(elem.Second.Events)),
+                    Constants = CompareModuleConstantsV9(Sanitize(elem.First.Constants), Sanitize(elem.Second.Constants)),
+                    Errors = CompareModuleErrorsV9(Sanitize(elem.First.Errors), Sanitize(elem.Second.Errors))
+                });
+            }
+
             return Task.FromResult(new MetadataDiffV9()
             {
-                Storage = CompareModuleStorageV9(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Calls = CompareModuleCallsV9(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Events = CompareModuleEventsV9(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Constants = CompareModuleConstantsV9(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Errors = CompareModuleErrorsV9(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules)
+                AllModulesDiff = resModulesDiff
             });
         }
-
-        public IEnumerable<(CompareStatus, PalletCallMetadataV9)> CompareModuleCallsV9(BaseVec<ModuleMetadataV9> source, BaseVec<ModuleMetadataV9> destination)
-            => CompareModuleCallsV9(
-                Sanitize(source.Value.Select(x => x.Calls)),
-                Sanitize(destination.Value.Select(x => x.Calls)));
 
         public IEnumerable<(CompareStatus, PalletCallMetadataV9)> CompareModuleCallsV9(
             IEnumerable<PalletCallMetadataV9>? source, 
             IEnumerable<PalletCallMetadataV9>? destination)
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
-        
         public IEnumerable<(CompareStatus, PalletEventMetadataV9)> CompareModuleEventsV9(BaseVec<ModuleMetadataV9> source, BaseVec<ModuleMetadataV9> destination)
             => CompareModuleEventsV9(
                 Sanitize(source.Value.Select(x => x.Events)),
@@ -197,33 +228,60 @@ namespace Polkanalysis.Domain.Service
                 Sanitize(source.Value.Select(x => x.Errors)),
                 Sanitize(destination.Value.Select(x => x.Errors)));
 
-
         public IEnumerable<(CompareStatus, PalletErrorMetadataV9)> CompareModuleErrorsV9(
             IEnumerable<PalletErrorMetadataV9>? source,
             IEnumerable<PalletErrorMetadataV9>? destination)
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV9)> CompareModuleStorageV9(BaseVec<ModuleMetadataV9> source, BaseVec<ModuleMetadataV9> destination)
-            => CompareModuleStorageV9(
-                Sanitize(source.Value.Select(x => x.Storage)),
-                Sanitize(destination.Value.Select(x => x.Storage)));
+        public IEnumerable<(string prefix, (CompareStatus status, StorageEntryMetadataV9 storage))> CompareModuleStorageV9(
+            PalletStorageMetadataV9 source,
+            PalletStorageMetadataV9 destination)
+        {
+            if (source.Prefix.Value != destination.Prefix.Value)
+                throw new InvalidOperationException("Source and Destination prefix should be equals !");
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV9)> CompareModuleStorageV9(
-            IEnumerable<PalletStorageMetadataV9>? source,
-            IEnumerable<PalletStorageMetadataV9>? destination)
-            => MetadataModuleCompare(source, destination, (x, y) => x.Prefix.Value == y.Prefix.Value);
+            var res = PalletNameDiff(
+                Sanitize(source.Entries), 
+                Sanitize(destination.Entries))
+                .Select(x => (source.Prefix.Value, x));
+
+            return res;
+        }
+
         #endregion
 
         #region Compare V10
         public Task<MetadataDiffV10> MetadataCompareV10Async(MetadataV10 m1, MetadataV10 m2)
         {
+            var resModulesDiff = new List<MetadataDifferentialModulesV10>();
+
+            // Check added / removed pallet
+            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+
+            resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
+
+            // We insert added modules
+            var m1CommonModules = FilterModuleByStatus(m1.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Removed);
+            var m2CommonModules = FilterModuleByStatus(m2.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Added);
+
+            if (m1CommonModules.Count() != m2CommonModules.Count()) throw new InvalidOperationException("Metadata modules should be equals !");
+
+            foreach (var elem in m1CommonModules.Zip(m2CommonModules))
+            {
+                resModulesDiff.Add(new MetadataDifferentialModulesV10()
+                {
+                    ModuleName = elem.First.Name.Value,
+                    Storage = CompareModuleStorageV10(elem.First.Storage.Value, elem.Second.Storage.Value),
+                    Calls = CompareModuleCallsV10(Sanitize(elem.First.Calls), Sanitize(elem.Second.Calls)),
+                    Events = CompareModuleEventsV10(Sanitize(elem.First.Events), Sanitize(elem.Second.Events)),
+                    Constants = CompareModuleConstantsV10(Sanitize(elem.First.Constants), Sanitize(elem.Second.Constants)),
+                    Errors = CompareModuleErrorsV10(Sanitize(elem.First.Errors), Sanitize(elem.Second.Errors))
+                });
+            }
+
             return Task.FromResult(new MetadataDiffV10()
             {
-                Storage = CompareModuleStorageV10(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Calls = CompareModuleCallsV10(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Events = CompareModuleEventsV10(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Constants = CompareModuleConstantsV10(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Errors = CompareModuleErrorsV10(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules)
+                AllModulesDiff = resModulesDiff
             });
         }
 
@@ -269,27 +327,54 @@ namespace Polkanalysis.Domain.Service
             IEnumerable<PalletErrorMetadataV10>? destination)
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV10)> CompareModuleStorageV10(BaseVec<ModuleMetadataV10> source, BaseVec<ModuleMetadataV10> destination)
-            => CompareModuleStorageV10(
-                Sanitize(source.Value.Select(x => x.Storage)),
-                Sanitize(destination.Value.Select(x => x.Storage)));
+        public IEnumerable<(string prefix, (CompareStatus status, StorageEntryMetadataV10 storage))> CompareModuleStorageV10(
+            PalletStorageMetadataV10? source,
+            PalletStorageMetadataV10? destination)
+        {
+            if (source == null && destination == null)
+                return Enumerable.Empty<(string prefix, (CompareStatus status, StorageEntryMetadataV10 storage))>();
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV10)> CompareModuleStorageV10(
-            IEnumerable<PalletStorageMetadataV10>? source,
-            IEnumerable<PalletStorageMetadataV10>? destination)
-            => MetadataModuleCompare(source, destination, (x, y) => x.Prefix.Value == y.Prefix.Value);
+            string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
+
+            return PalletNameDiff(
+                source != null ? Sanitize(source.Entries) : null,
+                destination != null ? Sanitize(destination.Entries) : null)
+                .Select(x => (prefix, x));
+        }
         #endregion
 
         #region Compare V11
         public Task<MetadataDiffV11> MetadataCompareV11Async(MetadataV11 m1, MetadataV11 m2)
         {
+            var resModulesDiff = new List<MetadataDifferentialModulesV11>();
+
+            // Check added / removed pallet
+            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+
+            resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModule(x.Item1)));
+
+            // We insert added modules
+            var m1CommonModules = FilterModuleByStatus(m1.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Removed);
+            var m2CommonModules = FilterModuleByStatus(m2.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Added);
+
+            if (m1CommonModules.Count() != m2CommonModules.Count()) throw new InvalidOperationException("Metadata modules should be equals !");
+
+            foreach (var elem in m1CommonModules.Zip(m2CommonModules))
+            {
+                resModulesDiff.Add(new MetadataDifferentialModulesV11()
+                {
+                    ModuleName = elem.First.Name.Value,
+                    Storage = CompareModuleStorageV11(elem.First.Storage.Value, elem.Second.Storage.Value),
+                    Calls = CompareModuleCallsV11(Sanitize(elem.First.Calls), Sanitize(elem.Second.Calls)),
+                    Events = CompareModuleEventsV11(Sanitize(elem.First.Events), Sanitize(elem.Second.Events)),
+                    Constants = CompareModuleConstantsV11(Sanitize(elem.First.Constants), Sanitize(elem.Second.Constants)),
+                    Errors = CompareModuleErrorsV11(Sanitize(elem.First.Errors), Sanitize(elem.Second.Errors))
+                });
+            }
+
             return Task.FromResult(new MetadataDiffV11()
             {
-                Storage = CompareModuleStorageV11(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Calls = CompareModuleCallsV11(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Events = CompareModuleEventsV11(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Constants = CompareModuleConstantsV11(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Errors = CompareModuleErrorsV11(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules)
+                AllModulesDiff = resModulesDiff
             });
         }
 
@@ -335,27 +420,54 @@ namespace Polkanalysis.Domain.Service
             IEnumerable<PalletErrorMetadataV11>? destination)
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV11)> CompareModuleStorageV11(BaseVec<ModuleMetadataV11> source, BaseVec<ModuleMetadataV11> destination)
-            => CompareModuleStorageV11(
-                Sanitize(source.Value.Select(x => x.Storage)),
-                Sanitize(destination.Value.Select(x => x.Storage)));
+        public IEnumerable<(string prefix, (CompareStatus status, StorageEntryMetadataV11 storage))> CompareModuleStorageV11(
+            PalletStorageMetadataV11? source,
+            PalletStorageMetadataV11? destination)
+        {
+            if (source == null && destination == null) 
+                return Enumerable.Empty<(string prefix, (CompareStatus status, StorageEntryMetadataV11 storage))>();
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV11)> CompareModuleStorageV11(
-            IEnumerable<PalletStorageMetadataV11>? source,
-            IEnumerable<PalletStorageMetadataV11>? destination)
-            => MetadataModuleCompare(source, destination, (x, y) => x.Prefix.Value == y.Prefix.Value);
+            string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
+
+            return PalletNameDiff(
+                source != null ? Sanitize(source.Entries) : null,
+                destination != null ? Sanitize(destination.Entries) : null)
+                .Select(x => (prefix, x));
+        }
         #endregion
 
         #region Compare V12
         public Task<MetadataDiffV12> MetadataCompareV12Async(MetadataV12 m1, MetadataV12 m2)
         {
+            var resModulesDiff = new List<MetadataDifferentialModulesV12>();
+
+            // Check added / removed pallet
+            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+
+            resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
+
+            // We insert added modules
+            var m1CommonModules = FilterModuleByStatus(m1.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Removed);
+            var m2CommonModules = FilterModuleByStatus(m2.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Added);
+
+            if (m1CommonModules.Count() != m2CommonModules.Count()) throw new InvalidOperationException("Metadata modules should be equals !");
+
+            foreach (var elem in m1CommonModules.Zip(m2CommonModules))
+            {
+                resModulesDiff.Add(new MetadataDifferentialModulesV12()
+                {
+                    ModuleName = elem.First.Name.Value,
+                    Storage = CompareModuleStorageV12(elem.First.Storage.Value, elem.Second.Storage.Value),
+                    Calls = CompareModuleCallsV12(Sanitize(elem.First.Calls), Sanitize(elem.Second.Calls)),
+                    Events = CompareModuleEventsV12(Sanitize(elem.First.Events), Sanitize(elem.Second.Events)),
+                    Constants = CompareModuleConstantsV12(Sanitize(elem.First.Constants), Sanitize(elem.Second.Constants)),
+                    Errors = CompareModuleErrorsV12(Sanitize(elem.First.Errors), Sanitize(elem.Second.Errors))
+                });
+            }
+
             return Task.FromResult(new MetadataDiffV12()
             {
-                Storage = CompareModuleStorageV12(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Calls = CompareModuleCallsV12(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Events = CompareModuleEventsV12(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Constants = CompareModuleConstantsV12(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Errors = CompareModuleErrorsV12(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules)
+                AllModulesDiff = resModulesDiff
             });
         }
 
@@ -401,27 +513,54 @@ namespace Polkanalysis.Domain.Service
             IEnumerable<PalletErrorMetadataV12>? destination)
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV12)> CompareModuleStorageV12(BaseVec<ModuleMetadataV12> source, BaseVec<ModuleMetadataV12> destination)
-            => CompareModuleStorageV12(
-                Sanitize(source.Value.Select(x => x.Storage)),
-                Sanitize(destination.Value.Select(x => x.Storage)));
+        public IEnumerable<(string prefix, (CompareStatus status, StorageEntryMetadataV11 storage))> CompareModuleStorageV12(
+            PalletStorageMetadataV12? source,
+            PalletStorageMetadataV12? destination)
+        {
+            if (source == null && destination == null)
+                return Enumerable.Empty<(string prefix, (CompareStatus status, StorageEntryMetadataV11 storage))>();
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV12)> CompareModuleStorageV12(
-            IEnumerable<PalletStorageMetadataV12>? source,
-            IEnumerable<PalletStorageMetadataV12>? destination)
-            => MetadataModuleCompare(source, destination, (x, y) => x.Prefix.Value == y.Prefix.Value);
+            string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
+
+            return PalletNameDiff(
+                source != null ? Sanitize(source.Entries) : null,
+                destination != null ? Sanitize(destination.Entries) : null)
+                .Select(x => (prefix, x));
+        }
         #endregion
 
         #region Compare V13
         public Task<MetadataDiffV13> MetadataCompareV13Async(MetadataV13 m1, MetadataV13 m2)
         {
+            var resModulesDiff = new List<MetadataDifferentialModulesV13>();
+
+            // Check added / removed pallet
+            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+
+            resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
+
+            // We insert added modules
+            var m1CommonModules = FilterModuleByStatus(m1.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Removed);
+            var m2CommonModules = FilterModuleByStatus(m2.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Added);
+
+            if (m1CommonModules.Count() != m2CommonModules.Count()) throw new InvalidOperationException("Metadata modules should be equals !");
+
+            foreach (var elem in m1CommonModules.Zip(m2CommonModules))
+            {
+                resModulesDiff.Add(new MetadataDifferentialModulesV13()
+                {
+                    ModuleName = elem.First.Name.Value,
+                    Storage = CompareModuleStorageV13(elem.First.Storage.Value, elem.Second.Storage.Value),
+                    Calls = CompareModuleCallsV13(Sanitize(elem.First.Calls), Sanitize(elem.Second.Calls)),
+                    Events = CompareModuleEventsV13(Sanitize(elem.First.Events), Sanitize(elem.Second.Events)),
+                    Constants = CompareModuleConstantsV13(Sanitize(elem.First.Constants), Sanitize(elem.Second.Constants)),
+                    Errors = CompareModuleErrorsV13(Sanitize(elem.First.Errors), Sanitize(elem.Second.Errors))
+                });
+            }
+
             return Task.FromResult(new MetadataDiffV13()
             {
-                Storage = CompareModuleStorageV13(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Calls = CompareModuleCallsV13(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Events = CompareModuleEventsV13(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Constants = CompareModuleConstantsV13(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules),
-                Errors = CompareModuleErrorsV13(m1.RuntimeMetadataData.Modules, m2.RuntimeMetadataData.Modules)
+                AllModulesDiff = resModulesDiff
             });
         }
 
@@ -467,15 +606,20 @@ namespace Polkanalysis.Domain.Service
             IEnumerable<PalletErrorMetadataV13>? destination)
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV13)> CompareModuleStorageV13(BaseVec<ModuleMetadataV13> source, BaseVec<ModuleMetadataV13> destination)
-            => CompareModuleStorageV13(
-                Sanitize(source.Value.Select(x => x.Storage)),
-                Sanitize(destination.Value.Select(x => x.Storage)));
+        public IEnumerable<(string prefix, (CompareStatus status, StorageEntryMetadataV13 storage))> CompareModuleStorageV13(
+            PalletStorageMetadataV13? source,
+            PalletStorageMetadataV13? destination)
+        {
+            if (source == null && destination == null)
+                return Enumerable.Empty<(string prefix, (CompareStatus status, StorageEntryMetadataV13 storage))>();
 
-        public IEnumerable<(CompareStatus, PalletStorageMetadataV13)> CompareModuleStorageV13(
-            IEnumerable<PalletStorageMetadataV13>? source,
-            IEnumerable<PalletStorageMetadataV13>? destination)
-            => MetadataModuleCompare(source, destination, (x, y) => x.Prefix.Value == y.Prefix.Value);
+            string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
+
+            return PalletNameDiff(
+                source != null ? Sanitize(source.Entries) : null,
+                destination != null ? Sanitize(destination.Entries) : null)
+                .Select(x => (prefix, x));
+        }
         #endregion
     }
 }
