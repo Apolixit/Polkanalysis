@@ -2,6 +2,7 @@
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Tests.Runtime.Metadata;
@@ -13,11 +14,16 @@ namespace Polkanalysis.Domain.Tests.Service
     public class MetadataServiceTest
     {
         private MetadataService _metadataService;
-
+        protected string MockFiles = "\\Runtime\\Metadata\\Mocks\\";
         [SetUp]
         public void Setup()
         {
             _metadataService = new MetadataService();
+        }
+
+        private string readMetadataFromFile(string metadataName)
+        {
+            return File.ReadAllText($"{AppContext.BaseDirectory}{MockFiles}{metadataName}.txt");
         }
 
         private IList<PalletCallMetadataV9> generatePalletCallMetadataV9(int nb)
@@ -178,25 +184,25 @@ namespace Polkanalysis.Domain.Tests.Service
                 }
             };
 
-            Assert.That(_metadataService.PalletNameDiff<ModuleMetadataV11>(null, null).Count(), Is.EqualTo(0));
+            Assert.That(_metadataService.NameDiff<ModuleMetadataV11>(null, null).Count(), Is.EqualTo(0));
 
-            var resOnlyFirstListNull = _metadataService.PalletNameDiff(m1, null);
+            var resOnlyFirstListNull = _metadataService.NameDiff(m1, null);
             Assert.That(resOnlyFirstListNull.All(x => x.Item1 == CompareStatus.Removed), Is.True);
             Assert.That(resOnlyFirstListNull.Count(), Is.EqualTo(m1.Count));
 
-            var resOnlyFirstListEmpty = _metadataService.PalletNameDiff(m1, new List<ModuleMetadataV11>());
+            var resOnlyFirstListEmpty = _metadataService.NameDiff(m1, new List<ModuleMetadataV11>());
             Assert.That(resOnlyFirstListEmpty.All(x => x.Item1 == CompareStatus.Removed), Is.True);
             Assert.That(resOnlyFirstListEmpty.Count(), Is.EqualTo(m1.Count));
 
-            var resOnlySecondListNull = _metadataService.PalletNameDiff(null, m2);
+            var resOnlySecondListNull = _metadataService.NameDiff(null, m2);
             Assert.That(resOnlySecondListNull.All(x => x.Item1 == CompareStatus.Added), Is.True);
             Assert.That(resOnlySecondListNull.Count(), Is.EqualTo(m2.Count));
 
-            var resOnlySecondListEmpty = _metadataService.PalletNameDiff(null, m2);
+            var resOnlySecondListEmpty = _metadataService.NameDiff(null, m2);
             Assert.That(resOnlySecondListEmpty.All(x => x.Item1 == CompareStatus.Added), Is.True);
             Assert.That(resOnlySecondListEmpty.Count(), Is.EqualTo(m2.Count));
 
-            var res = _metadataService.PalletNameDiff(m1, m2).ToList();
+            var res = _metadataService.NameDiff(m1, m2).ToList();
             Assert.That(res[0].Item1, Is.EqualTo(CompareStatus.Added));
             Assert.That(res[1].Item1, Is.EqualTo(CompareStatus.Removed));
 
@@ -205,13 +211,14 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public async Task MetadataV11_SpecVersionCompare_V0_And_V1_ShouldSucceedAsync()
         {
-            Assert.That(_metadataService.EnsureMetadataVersion(
-                    MetadataMocks.MetadataV11_0,
-                    MetadataMocks.MetadataV11_1), Is.EqualTo(MetadataVersion.V11));
+            var metadataSource = readMetadataFromFile("V11\\MetadataV11_0");
+            var metadataDestination = readMetadataFromFile("V11\\MetadataV11_1");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V11));
 
             var res = await _metadataService.MetadataCompareV11Async(
-                new MetadataV11(MetadataMocks.MetadataV11_0),
-                new MetadataV11(MetadataMocks.MetadataV11_1));
+                new MetadataV11(metadataSource),
+                new MetadataV11(metadataDestination));
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.AllModulesDiff.Count(), Is.EqualTo(31));
@@ -235,13 +242,14 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public async Task MetadataV11_SpecVersionCompare_V6_And_V7_ShouldSucceedAsync()
         {
-            Assert.That(_metadataService.EnsureMetadataVersion(
-                    MetadataMocks.MetadataV11_6,
-                    MetadataMocks.MetadataV11_7), Is.EqualTo(MetadataVersion.V11));
+            var metadataSource = readMetadataFromFile("V11\\MetadataV11_6");
+            var metadataDestination = readMetadataFromFile("V11\\MetadataV11_7");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V11));
 
             var res = await _metadataService.MetadataCompareV11Async(
-                new MetadataV11(MetadataMocks.MetadataV11_6),
-                new MetadataV11(MetadataMocks.MetadataV11_7));
+                new MetadataV11(metadataSource),
+                new MetadataV11(metadataDestination));
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.AllModulesDiff.Count(), Is.EqualTo(34));
@@ -264,13 +272,14 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public async Task MetadataV11_SpecVersionCompare_V23_And_V24_ShouldSucceedAsync()
         {
-            Assert.That(_metadataService.EnsureMetadataVersion(
-                    MetadataMocks.MetadataV11_23,
-                    MetadataMocks.MetadataV11_24), Is.EqualTo(MetadataVersion.V11));
+            var metadataSource = readMetadataFromFile("V11\\MetadataV11_23");
+            var metadataDestination = readMetadataFromFile("V11\\MetadataV11_24");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V11));
 
             var res = await _metadataService.MetadataCompareV11Async(
-                new MetadataV11(MetadataMocks.MetadataV11_23),
-                new MetadataV11(MetadataMocks.MetadataV11_24));
+                new MetadataV11(metadataSource),
+                new MetadataV11(metadataDestination));
 
             Assert.That(res, Is.Not.Null);
 
@@ -314,13 +323,14 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public async Task MetadataV12_SpecVersionCompare_V27_And_V28_ShouldSucceedAsync()
         {
-            Assert.That(_metadataService.EnsureMetadataVersion(
-                    MetadataMocks.MetadataV12_27,
-                    MetadataMocks.MetadataV12_28), Is.EqualTo(MetadataVersion.V12));
+            var metadataSource = readMetadataFromFile("V12\\MetadataV12_27");
+            var metadataDestination = readMetadataFromFile("V12\\MetadataV12_28");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V12));
 
             var res = await _metadataService.MetadataCompareV12Async(
-                new MetadataV12(MetadataMocks.MetadataV12_27),
-                new MetadataV12(MetadataMocks.MetadataV12_28));
+                new MetadataV12(metadataSource),
+                new MetadataV12(metadataDestination));
 
             Assert.That(res, Is.Not.Null);
 
@@ -398,13 +408,14 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public async Task MetadataV13_SpecVersionCompare_V9080_And_V9090_ShouldSucceedAsync()
         {
-            Assert.That(_metadataService.EnsureMetadataVersion(
-                    MetadataMocks.MetadataV13_9080,
-                    MetadataMocks.MetadataV13_9090), Is.EqualTo(MetadataVersion.V13));
+            var metadataSource = readMetadataFromFile("V13\\MetadataV13_9080");
+            var metadataDestination = readMetadataFromFile("V13\\MetadataV13_9090");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V13));
 
             var res = await _metadataService.MetadataCompareV13Async(
-                new MetadataV13(MetadataMocks.MetadataV13_9080),
-                new MetadataV13(MetadataMocks.MetadataV13_9090));
+                new MetadataV13(metadataSource),
+                new MetadataV13(metadataDestination));
 
             Assert.That(res, Is.Not.Null);
             var changedModules = res.ChangedModules.ToList();
@@ -423,6 +434,73 @@ namespace Polkanalysis.Domain.Tests.Service
             Assert.That(changedModules[2].Errors.Count(), Is.EqualTo(5));
             Assert.IsFalse(changedModules[2].HasErrorAdded("test"));
             Assert.IsFalse(changedModules[2].HasErrorRemoved("test2"));
+        }
+
+        [Test]
+        public async Task MetadataV14_SpecVersionCompare_V9110_And_V9122_ShouldSucceedAsync()
+        {
+            var metadataSource = readMetadataFromFile("V14\\MetadataV14_9110");
+            var metadataDestination = readMetadataFromFile("V14\\MetadataV14_9122");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V14));
+
+            var res = await _metadataService.MetadataCompareV14Async(
+                new MetadataV14(metadataSource),
+                new MetadataV14(metadataDestination));
+
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task MetadataV14_SpecVersionCompare_V9420_And_V9430_ShouldSucceedAsync()
+        {
+            var metadataSource = readMetadataFromFile("V14\\MetadataV14_9420");
+            var metadataDestination = readMetadataFromFile("V14\\MetadataV14_9430");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V14));
+
+            var res = await _metadataService.MetadataCompareV14Async(
+                new MetadataV14(metadataSource),
+                new MetadataV14(metadataDestination));
+
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task MetadataV14_SpecVersionCompare_V9370_And_V9420_ShouldSucceedAsync()
+        {
+            var metadataSource = readMetadataFromFile("V14\\MetadataV14_9370");
+            var metadataDestination = readMetadataFromFile("V14\\MetadataV14_9420");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V14));
+
+            var res = await _metadataService.MetadataCompareV14Async(
+                new MetadataV14(metadataSource),
+                new MetadataV14(metadataDestination));
+
+            Assert.That(res, Is.Not.Null);
+
+            Assert.IsTrue(res.AddedModules.Any(x => x.ModuleName == "ConvictionVoting"));
+            Assert.IsTrue(res.AddedModules.Any(x => x.ModuleName == "Referenda"));
+            Assert.IsTrue(res.AddedModules.Any(x => x.ModuleName == "Whitelist"));
+        }
+
+        [Test]
+        public async Task MetadataV14_SpecVersionCompare_V9270_And_V9280_ShouldSucceedAsync()
+        {
+            var metadataSource = readMetadataFromFile("V14\\MetadataV14_9270");
+            var metadataDestination = readMetadataFromFile("V14\\MetadataV14_9280");
+
+            Assert.That(_metadataService.EnsureMetadataVersion(metadataSource, metadataDestination), Is.EqualTo(MetadataVersion.V14));
+
+            var res = await _metadataService.MetadataCompareV14Async(
+                new MetadataV14(metadataSource),
+                new MetadataV14(metadataDestination));
+
+            // For this version, NominationPools pallet has been added
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.AddedModules.Count, Is.EqualTo(1));
+            Assert.That(res.AddedModules.First().ModuleName, Is.EqualTo("NominationPools"));
         }
     }
 }

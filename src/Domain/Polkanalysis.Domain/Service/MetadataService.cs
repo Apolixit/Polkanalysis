@@ -1,23 +1,19 @@
 ﻿using Ardalis.GuardClauses;
-using MediatR.Wrappers;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base.Portable;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Compare;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Compare.TypeDef;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
 using Polkanalysis.Domain.Contracts.Service;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -33,7 +29,7 @@ namespace Polkanalysis.Domain.Service
             throw new NotImplementedException();
         }
 
-        
+
 
         #region Metadata compare
         public MetadataVersion EnsureMetadataVersion(string hexMetadata1, string hexMetadata2)
@@ -67,11 +63,22 @@ namespace Polkanalysis.Domain.Service
         /// <param name="source"></param>
         /// <param name="destination"></param>
         /// <returns></returns>
-        public IEnumerable<(CompareStatus, T)> PalletNameDiff<T>(
+        public IEnumerable<(CompareStatus, T)> NameDiff<T>(
             IEnumerable<T>? source,
             IEnumerable<T>? destination)
             where T : IMetadataName
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
+
+        public IEnumerable<(CompareStatus, T)> TypeDiff<T>(
+            IEnumerable<T>? source,
+            IEnumerable<T>? destination)
+            where T : IMetadataType
+            => MetadataModuleCompare(source, destination, (x, y) => x.ItemType.Value == y.ItemType.Value);
+
+        public IEnumerable<(CompareStatus, TType)> TypeDiff(
+            IEnumerable<TType>? source,
+            IEnumerable<TType>? destination)
+            => MetadataModuleCompare(source, destination, (x, y) => x.Value == y.Value);
 
         /// <summary>
         /// 
@@ -125,10 +132,18 @@ namespace Polkanalysis.Domain.Service
             return res;
         }
 
+        private bool AreStringsEquals(BaseVec<Str> source, BaseVec<Str> target)
+            => AreStringsEquals(source.Value, target.Value);
+
+        private bool AreStringsEquals(IEnumerable<Str> source, IEnumerable<Str> target)
+        {
+            return !source.Select(x => x.Value).Except(target.Select(x => x.Value)).Any();
+        }
+
         private IEnumerable<T> Sanitize<T>(IEnumerable<BaseOpt<BaseVec<T>>> elems)
             where T : IType, new()
         {
-            if(elems == null) return Enumerable.Empty<T>();
+            if (elems == null) return Enumerable.Empty<T>();
 
             var res = elems
                 .Where(x => x.OptionFlag)
@@ -163,6 +178,7 @@ namespace Polkanalysis.Domain.Service
 
             return elems.Value;
         }
+
         #endregion
 
         #region Compare V9
@@ -171,7 +187,7 @@ namespace Polkanalysis.Domain.Service
             var resModulesDiff = new List<MetadataDifferentialModulesV9>();
 
             // Check added / removed pallet
-            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+            var nonCommonModules = NameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
 
             resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
 
@@ -199,7 +215,7 @@ namespace Polkanalysis.Domain.Service
         }
 
         public IEnumerable<(CompareStatus, PalletCallMetadataV9)> CompareModuleCallsV9(
-            IEnumerable<PalletCallMetadataV9>? source, 
+            IEnumerable<PalletCallMetadataV9>? source,
             IEnumerable<PalletCallMetadataV9>? destination)
             => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
 
@@ -240,8 +256,8 @@ namespace Polkanalysis.Domain.Service
             if (source.Prefix.Value != destination.Prefix.Value)
                 throw new InvalidOperationException("Source and Destination prefix should be equals !");
 
-            var res = PalletNameDiff(
-                Sanitize(source.Entries), 
+            var res = NameDiff(
+                Sanitize(source.Entries),
                 Sanitize(destination.Entries))
                 .Select(x => (source.Prefix.Value, x));
 
@@ -256,7 +272,7 @@ namespace Polkanalysis.Domain.Service
             var resModulesDiff = new List<MetadataDifferentialModulesV10>();
 
             // Check added / removed pallet
-            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+            var nonCommonModules = NameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
 
             resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
 
@@ -336,7 +352,7 @@ namespace Polkanalysis.Domain.Service
 
             string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
 
-            return PalletNameDiff(
+            return NameDiff(
                 source != null ? Sanitize(source.Entries) : null,
                 destination != null ? Sanitize(destination.Entries) : null)
                 .Select(x => (prefix, x));
@@ -349,7 +365,7 @@ namespace Polkanalysis.Domain.Service
             var resModulesDiff = new List<MetadataDifferentialModulesV11>();
 
             // Check added / removed pallet
-            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+            var nonCommonModules = NameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
 
             resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModule(x.Item1)));
 
@@ -424,12 +440,12 @@ namespace Polkanalysis.Domain.Service
             PalletStorageMetadataV11? source,
             PalletStorageMetadataV11? destination)
         {
-            if (source == null && destination == null) 
+            if (source == null && destination == null)
                 return Enumerable.Empty<(string prefix, (CompareStatus status, StorageEntryMetadataV11 storage))>();
 
             string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
 
-            return PalletNameDiff(
+            return NameDiff(
                 source != null ? Sanitize(source.Entries) : null,
                 destination != null ? Sanitize(destination.Entries) : null)
                 .Select(x => (prefix, x));
@@ -442,7 +458,7 @@ namespace Polkanalysis.Domain.Service
             var resModulesDiff = new List<MetadataDifferentialModulesV12>();
 
             // Check added / removed pallet
-            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+            var nonCommonModules = NameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
 
             resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
 
@@ -522,7 +538,7 @@ namespace Polkanalysis.Domain.Service
 
             string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
 
-            return PalletNameDiff(
+            return NameDiff(
                 source != null ? Sanitize(source.Entries) : null,
                 destination != null ? Sanitize(destination.Entries) : null)
                 .Select(x => (prefix, x));
@@ -535,7 +551,7 @@ namespace Polkanalysis.Domain.Service
             var resModulesDiff = new List<MetadataDifferentialModulesV13>();
 
             // Check added / removed pallet
-            var nonCommonModules = PalletNameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+            var nonCommonModules = NameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
 
             resModulesDiff.AddRange(nonCommonModules.Select(x => x.Item2.ToDifferentialModules(x.Item1)));
 
@@ -615,11 +631,363 @@ namespace Polkanalysis.Domain.Service
 
             string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
 
-            return PalletNameDiff(
+            return NameDiff(
                 source != null ? Sanitize(source.Entries) : null,
                 destination != null ? Sanitize(destination.Entries) : null)
                 .Select(x => (prefix, x));
         }
+        #endregion
+
+        #region Compare V14
+        public Task<MetadataDiffV14> MetadataCompareV14Async(MetadataV14 m1, MetadataV14 m2)
+        {
+            var resModulesDiff = new List<MetadataDifferentialModulesV14>();
+
+            // Check added / removed pallet
+            var nonCommonModules = NameDiff(Sanitize(m1.RuntimeMetadataData.Modules), Sanitize(m2.RuntimeMetadataData.Modules));
+
+
+            resModulesDiff.AddRange(nonCommonModules.Select(x =>
+            {
+                if (x.Item1 == CompareStatus.Added)
+                    return x.Item2.ToDifferentialModules(x.Item1, m2.RuntimeMetadataData.Lookup);
+                else
+                    return x.Item2.ToDifferentialModules(x.Item1, m1.RuntimeMetadataData.Lookup);
+
+
+            }));
+
+            // We insert added modules
+            var m1CommonModules = FilterModuleByStatus(m1.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Removed);
+            var m2CommonModules = FilterModuleByStatus(m2.RuntimeMetadataData.Modules.Value, nonCommonModules, CompareStatus.Added);
+
+            if (m1CommonModules.Count() != m2CommonModules.Count()) throw new InvalidOperationException("Metadata modules should be equals !");
+
+            foreach (var elem in m1CommonModules.Zip(m2CommonModules))
+            {
+                resModulesDiff.Add(new MetadataDifferentialModulesV14()
+                {
+                    ModuleName = elem.First.Name.Value,
+                    Storage = CompareModuleStorageV14(elem.First.Storage.Value, elem.Second.Storage.Value),
+                    Calls = CompareModuleV14(elem.First.Calls, elem.Second.Calls, m1.RuntimeMetadataData.Lookup, m2.RuntimeMetadataData.Lookup),
+                    Events = CompareModuleV14(elem.First.Events, elem.Second.Events, m1.RuntimeMetadataData.Lookup, m2.RuntimeMetadataData.Lookup),
+                    Constants = CompareModuleConstantsV14(Sanitize(elem.First.Constants), Sanitize(elem.Second.Constants)),
+                    Errors = CompareModuleV14(elem.First.Errors, elem.Second.Errors, m1.RuntimeMetadataData.Lookup, m2.RuntimeMetadataData.Lookup)
+                });
+            }
+
+            return Task.FromResult(new MetadataDiffV14()
+            {
+                AllModulesDiff = resModulesDiff
+            });
+        }
+
+        //public IEnumerable<(CompareStatus, PalletCallMetadataV14)> CompareModuleCallsV14(BaseOpt<ModuleMetadataV14> source, BaseOpt<ModuleMetadataV14> destination)
+        //    => CompareModuleCallsV14(
+        //        Sanitize(source.Value.Select(x => x.Calls)),
+        //        Sanitize(destination.Value.Select(x => x.Calls)));
+
+        public LookupDifferential CompareModuleV14<T>(
+            BaseOpt<T> source,
+            BaseOpt<T> destination,
+            PortableRegistry lookupSource,
+            PortableRegistry lookupDestination)
+            where T : BaseType, IMetadataType, new()
+        {
+            if (!source.OptionFlag && !destination.OptionFlag)
+                return new LookupDifferential();
+
+            if (source.OptionFlag && !destination.OptionFlag)
+                return LookupDifferential.FromLookup(CompareStatus.Removed, LookupDifferential.FindType(lookupSource, source.Value.ItemType));
+
+            if (!source.OptionFlag && destination.OptionFlag)
+                return LookupDifferential.FromLookup(CompareStatus.Added, LookupDifferential.FindType(lookupDestination, destination.Value.ItemType));
+
+            return CompareLookup(source.Value.ItemType, destination.Value.ItemType, lookupSource, lookupDestination);
+        }
+
+        //public LookupDifferential CompareModuleCallsV14(
+        //    BaseOpt<PalletCallMetadataV14> source,
+        //    BaseOpt<PalletCallMetadataV14> destination,
+        //    PortableRegistry lookupSource,
+        //    PortableRegistry lookupDestination)
+        //{
+        //    return CompareModuleV14(source, destination, lookupSource, lookupDestination);
+        //}
+
+        //public IEnumerable<LookupDifferential> CompareModuleEventsV14(
+        //    BaseOpt<PalletEventMetadataV14> source,
+        //    BaseOpt<PalletEventMetadataV14> destination,
+        //    PortableRegistry lookupSource,
+        //    PortableRegistry lookupDestination)
+        //{
+        //    return CompareModuleV14(source, destination, lookupSource, lookupDestination);
+        //}
+
+        //public IEnumerable<LookupDifferential> CompareModuleErrorsV14(
+        //    BaseOpt<PalletErrorMetadataV14> source,
+        //    BaseOpt<PalletErrorMetadataV14> destination,
+        //    PortableRegistry lookupSource,
+        //    PortableRegistry lookupDestination)
+        //{
+        //    if (!source.OptionFlag && !destination.OptionFlag) return new List<LookupDifferential>();
+        //    if (source.OptionFlag && !destination.OptionFlag) return new List<LookupDifferential>() {
+        //        LookupDifferential.FromLookup(CompareStatus.Removed, LookupDifferential.FindType(lookupSource, source.Value.ErrorType))
+        //    };
+
+        //    if (!source.OptionFlag && destination.OptionFlag) return new List<LookupDifferential>() {
+        //        LookupDifferential.FromLookup(CompareStatus.Added, LookupDifferential.FindType(lookupDestination, destination.Value.ErrorType))
+        //    };
+
+        //    return new List<LookupDifferential>() {
+        //        CompareLookup(source.Value.ErrorType, destination.Value.ErrorType, lookupSource, lookupDestination)
+        //    };
+        //}
+
+
+        //public IEnumerable<(CompareStatus, PalletEventMetadataV14)> CompareModuleEventsV14(BaseVec<ModuleMetadataV14> source, BaseVec<ModuleMetadataV14> destination)
+        //    => CompareModuleEventsV14(
+        //        Sanitize(source.Value.Select(x => x.Events)),
+        //        Sanitize(destination.Value.Select(x => x.Events)));
+
+        //public IEnumerable<(CompareStatus, PalletEventMetadataV14)> CompareModuleEventsV14(
+        //    IEnumerable<PalletEventMetadataV14>? source,
+        //    IEnumerable<PalletEventMetadataV14>? destination)
+        //    => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
+
+        public IEnumerable<(CompareStatus, PalletConstantMetadataV14)> CompareModuleConstantsV14(BaseVec<ModuleMetadataV14> source, BaseVec<ModuleMetadataV14> destination)
+            => CompareModuleConstantsV14(
+                Sanitize(source.Value.Select(x => x.Constants)),
+                Sanitize(destination.Value.Select(x => x.Constants)));
+
+        public IEnumerable<(CompareStatus, PalletConstantMetadataV14)> CompareModuleConstantsV14(
+            IEnumerable<PalletConstantMetadataV14>? source,
+            IEnumerable<PalletConstantMetadataV14>? destination)
+            => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
+
+        //public IEnumerable<(CompareStatus, PalletErrorMetadataV14)> CompareModuleErrorsV14(BaseVec<ModuleMetadataV14> source, BaseVec<ModuleMetadataV14> destination)
+        //    => CompareModuleErrorsV14(
+        //        Sanitize(source.Value.Select(x => x.Errors)),
+        //        Sanitize(destination.Value.Select(x => x.Errors)));
+
+
+        //public IEnumerable<(CompareStatus, PalletErrorMetadataV14)> CompareModuleErrorsV14(
+        //    IEnumerable<PalletErrorMetadataV14>? source,
+        //    IEnumerable<PalletErrorMetadataV14>? destination)
+        //    => MetadataModuleCompare(source, destination, (x, y) => x.Name.Value == y.Name.Value);
+
+        public IEnumerable<(string prefix, (CompareStatus status, StorageEntryMetadataV14 storage))> CompareModuleStorageV14(
+            PalletStorageMetadataV14? source,
+            PalletStorageMetadataV14? destination)
+        {
+            if (source == null && destination == null)
+                return Enumerable.Empty<(string prefix, (CompareStatus status, StorageEntryMetadataV14 storage))>();
+
+            string prefix = source != null ? source.Prefix.Value : destination!.Prefix.Value;
+
+            return NameDiff(
+                source != null ? Sanitize(source.Entries) : null,
+                destination != null ? Sanitize(destination.Entries) : null)
+                .Select(x => (prefix, x));
+        }
+
+        public LookupDifferential CompareLookup(TType idSource, TType idDestination, PortableRegistry lookupSource, PortableRegistry lookupDestination)
+            => CompareLookup((uint)idSource.Value.Value, (uint)idDestination.Value.Value, lookupSource, lookupDestination);
+
+        public LookupDifferential CompareLookup(
+            uint idSource, uint idDestination, PortableRegistry lookupSource, PortableRegistry lookupDestination)
+        {
+            var result = new LookupDifferential();
+
+            Guard.Against.NegativeOrZero(idSource);
+            Guard.Against.NegativeOrZero(idDestination);
+
+            var typeSource = lookupSource.Value.Single(x => x.Id.Value == idSource);
+            var typeDestination = lookupDestination.Value.Single(x => x.Id.Value == idDestination);
+
+            result.Id = CompareId(typeSource, typeDestination);
+            result.Path = ComparePath(typeSource, typeDestination);
+            result.Params = CompareParams(typeSource, typeDestination);
+            result.LookupDifferentialType = CompareTypeDef(typeSource, typeDestination);
+            result.Docs = CompareDocs(typeSource, typeDestination);
+
+            return result;
+
+        }
+
+        private IList<(CompareStatus status, U32 docs)> CompareId(PortableType typeSource, PortableType typeDestination)
+        {
+            var res = new List<(CompareStatus status, U32 docs)>();
+            if (typeSource.Id.Value != typeDestination.Id.Value)
+            {
+                res = new()
+                {
+                    (CompareStatus.Removed, typeSource.Id),
+                    (CompareStatus.Added, typeDestination.Id)
+                };
+            }
+
+            return res;
+        }
+
+        private IList<(CompareStatus status, BaseVec<Str> docs)> ComparePath(PortableType typeSource, PortableType typeDestination)
+        {
+            var res = new List<(CompareStatus status, BaseVec<Str> docs)>();
+            if (!AreStringsEquals(typeSource.Ty.Path, typeDestination.Ty.Path))
+            {
+                res = new()
+                {
+                    (CompareStatus.Removed, typeSource.Ty.Path),
+                    (CompareStatus.Added, typeDestination.Ty.Path)
+                };
+            }
+
+            return res;
+        }
+
+        private IList<(CompareStatus status, BaseVec<TypeParameter> param)> CompareParams(PortableType typeSource, PortableType typeDestination)
+        {
+            var res = new List<(CompareStatus status, BaseVec<TypeParameter> param)>();
+
+            if (!AreStringsEquals(
+                typeSource.Ty.TypeParams.Value.Select(x => x.Name),
+                typeDestination.Ty.TypeParams.Value.Select(x => x.Name)))
+            {
+                res = new()
+                {
+                    (CompareStatus.Removed, typeSource.Ty.TypeParams),
+                    (CompareStatus.Added, typeDestination.Ty.TypeParams)
+                };
+            }
+
+            return res;
+        }
+
+        private LookupDifferentialTypeDef CompareTypeDef(PortableType typeSource, PortableType typeDestination)
+        {
+            var result = new LookupDifferentialTypeDef();
+            if (typeSource.Ty.TypeDef.Value != typeDestination.Ty.TypeDef.Value)
+            {
+                LookupDifferential.AddTypeDefAction(result, CompareStatus.Removed, typeSource);
+                LookupDifferential.AddTypeDefAction(result, CompareStatus.Added, typeDestination);
+            }
+            else
+            {
+                // We got the same type, let's check if methods has been added or removed
+                switch (typeSource.Ty.TypeDef.Value)
+                {
+                    case TypeDefEnum.Composite:
+                        result.TypeComposite = CompareComposite(
+                                (TypeDefComposite)typeSource.Ty.TypeDef.Value2,
+                                (TypeDefComposite)typeDestination.Ty.TypeDef.Value2);
+                        break;
+                    case TypeDefEnum.Variant:
+                        result.TypeVariant = new DifferentialVariant()
+                        {
+                            Elems = CompareVariant(
+                                (TypeDefVariant)typeSource.Ty.TypeDef.Value2,
+                                (TypeDefVariant)typeDestination.Ty.TypeDef.Value2)
+                        };
+                        break;
+                    case TypeDefEnum.Sequence:
+                        var sequenceSource = (TypeDefSequence)typeSource.Ty.TypeDef.Value2;
+                        var sequenceDestination = (TypeDefSequence)typeDestination.Ty.TypeDef.Value2;
+                        if (sequenceSource.TypeParam != sequenceDestination.TypeParam)
+                        {
+                            result.TypeSequence.Add((CompareStatus.Removed, sequenceSource));
+                            result.TypeSequence.Add((CompareStatus.Added, sequenceDestination));
+                        }
+                        break;
+                    case TypeDefEnum.Array:
+                        result.TypeArray = CompareTypeBased(
+                            (TypeDefArray)typeSource.Ty.TypeDef.Value2, 
+                            (TypeDefArray)typeDestination.Ty.TypeDef.Value2);
+                        break;
+                    case TypeDefEnum.Primitive:
+                        var primSource = (BaseEnum<TypeDefPrimitive>)typeSource.Ty.TypeDef.Value2;
+                        var primDestination = (BaseEnum<TypeDefPrimitive>)typeDestination.Ty.TypeDef.Value2;
+                        if (primSource.Value != primDestination.Value)
+                        {
+                            result.TypePrimitive.Add((CompareStatus.Removed, primSource));
+                            result.TypePrimitive.Add((CompareStatus.Added, primDestination));
+                        }
+                        break;
+                    case TypeDefEnum.Compact:
+                        result.TypeCompact = CompareTypeBased(
+                            (TypeDefCompact)typeSource.Ty.TypeDef.Value2, 
+                            (TypeDefCompact)typeDestination.Ty.TypeDef.Value2);
+                        break;
+                    case TypeDefEnum.BitSequence:
+                        result.TypeSequence = CompareTypeBased(
+                            (TypeDefSequence)typeSource.Ty.TypeDef.Value2,
+                            (TypeDefSequence)typeDestination.Ty.TypeDef.Value2);
+                        break;
+                    case TypeDefEnum.Tuple:
+                        result.TypeTuple = CompareTuple(
+                            (TypeDefTuple)typeSource.Ty.TypeDef.Value2,
+                            (TypeDefTuple)typeDestination.Ty.TypeDef.Value2);
+                        break;
+                    default:
+                        throw new NotImplementedException("TypeDefEnum not implemented !?");
+                }
+
+            }
+            return result;
+        }
+
+        private IList<(CompareStatus, T)> CompareTypeBased<T>(T source, T destination)
+            where T : BaseType, IMetadataType, new()
+        {
+            if (source.ItemType != destination.ItemType)
+            {
+                return new List<(CompareStatus, T)>()
+                {
+                    (CompareStatus.Removed, source),
+                    (CompareStatus.Added, destination)
+                };
+            }
+
+            return new List<(CompareStatus, T)>();
+        }
+
+        private DifferentialComposite CompareComposite(TypeDefComposite source, TypeDefComposite destination)
+        {
+            return new DifferentialComposite()
+            {
+                Elems = TypeDiff(Sanitize(source.Fields), Sanitize(destination.Fields))
+            };
+        }
+
+        private IEnumerable<(CompareStatus, Variant)> CompareVariant(TypeDefVariant variantSource, TypeDefVariant variantDestination)
+        {
+            var res = NameDiff(variantSource.TypeParam.Value, variantDestination.TypeParam.Value);
+
+            return res;
+        }
+
+        private DifferentialTuple CompareTuple(TypeDefTuple source, TypeDefTuple destination)
+        {
+            return new DifferentialTuple()
+            {
+                Elems = TypeDiff(Sanitize(source.Fields), Sanitize(destination.Fields))
+            };
+        }
+
+        private IList<(CompareStatus status, BaseVec<Str> docs)> CompareDocs(PortableType typeSource, PortableType typeDestination)
+        {
+            var res = new List<(CompareStatus status, BaseVec<Str> docs)>();
+            if (!AreStringsEquals(typeSource.Ty.Docs, typeDestination.Ty.Docs))
+            {
+                res = new()
+                {
+                    (CompareStatus.Removed, typeSource.Ty.Docs),
+                    (CompareStatus.Added, typeDestination.Ty.Docs)
+                };
+            }
+            return res;
+        }
+
+
         #endregion
     }
 }

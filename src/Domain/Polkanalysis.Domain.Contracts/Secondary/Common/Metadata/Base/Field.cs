@@ -4,7 +4,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
 {
-    public class Field : BaseType
+    public class Field : BaseType, IMetadataType
     {
         public override string TypeName() => "Field<T: Form = MetaForm>";
 
@@ -17,8 +17,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
         {
             var start = p;
 
-            FieldName = new BaseOpt<Str>();
-            FieldName.Decode(byteArray, ref p);
+            Name = new BaseOpt<Str>();
+            Name.Decode(byteArray, ref p);
 
             FieldTy = new TType();
             FieldTy.Decode(byteArray, ref p);
@@ -32,9 +32,11 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
             TypeSize = p - start;
         }
 
-        public BaseOpt<Str> FieldName { get; private set; }
+        public BaseOpt<Str> Name { get; private set; }
         public TType FieldTy { get; private set; }
         public BaseOpt<Str> FieldTypeName { get; private set; }
         public BaseVec<Str> Docs { get; private set; }
+
+        public TType ItemType => FieldTy;
     }
 }

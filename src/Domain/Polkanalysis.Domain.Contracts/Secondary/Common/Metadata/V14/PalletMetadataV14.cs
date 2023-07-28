@@ -91,7 +91,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14
         public TType Value { get; private set; }
     }
 
-    public class PalletCallMetadata14 : BaseType, IMetadataName
+    public class PalletCallMetadataV14 : BaseType, IMetadataName, IMetadataType
     {
         public override byte[] Encode()
         {
@@ -110,9 +110,10 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14
 
         public TType CallType { get; private set; }
         public Str Name => new Str(CallType.ToString());
+        public TType ItemType => CallType;
     }
 
-    public class PalletEventMetadataV14 : BaseType, IMetadataName
+    public class PalletEventMetadataV14 : BaseType, IMetadataName, IMetadataType
     {
         public override byte[] Encode()
         {
@@ -132,6 +133,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14
         public TType EventType { get; private set; }
 
         public Str Name => new Str(EventType.ToString());
+
+        public TType ItemType => EventType;
     }
 
     public class PalletConstantMetadataV14 : BaseType, IMetadataName
@@ -166,7 +169,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14
         public BaseVec<Str> Documentation { get; private set; }
     }
 
-    public class PalletErrorMetadataV14 : BaseType, IMetadataName
+    public class PalletErrorMetadataV14 : BaseType, IMetadataName, IMetadataType
     {
         public override byte[] Encode()
         {
@@ -185,5 +188,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14
 
         public TType ErrorType { get; private set; }
         public Str Name => new Str(ErrorType.ToString());
+
+        public TType ItemType => ErrorType;
     }
 }

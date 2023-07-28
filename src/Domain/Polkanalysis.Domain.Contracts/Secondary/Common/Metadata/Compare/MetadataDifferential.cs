@@ -4,8 +4,10 @@ using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13;
+using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
 using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata.V14;
 using System.Xml.Linq;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Compare
@@ -88,6 +90,57 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Compare
     }
 
     public class MetadataDifferentialModulesV13 : MetadataDifferentialModules<StorageEntryMetadataV13, PalletCallMetadataV13, PalletEventMetadataV13, PalletConstantMetadataV13, PalletErrorMetadataV13>
+    {
+    }
+
+    public class MetadataDiffV14
+    {
+        public IEnumerable<MetadataDifferentialModulesV14> AllModulesDiff { get; set; }
+            = Enumerable.Empty<MetadataDifferentialModulesV14>();
+
+        public IEnumerable<MetadataDifferentialModulesV14> UnchangedModules
+            => AllModulesDiff.Where(x =>
+                !x.Storage.Any() &&
+                !x.Calls.HasChanges() &&
+                !x.Events.HasChanges() &&
+                !x.Constants.Any() &&
+                !x.Errors.HasChanges()
+            );
+
+        public IEnumerable<MetadataDifferentialModulesV14> ChangedModules
+            => AllModulesDiff.Where(x =>
+                !UnchangedModules.Any(y => y.ModuleName == x.ModuleName) &&
+                !AddedModules.Any(y => y.ModuleName == x.ModuleName) &&
+                !RemovedModules.Any(y => y.ModuleName == x.ModuleName));
+
+        public IEnumerable<MetadataDifferentialModulesV14> AddedModules
+            => AllModulesDiff.Where(x => x.CompareStatus == CompareStatus.Added);
+
+        public IEnumerable<MetadataDifferentialModulesV14> RemovedModules
+            => AllModulesDiff.Where(x => x.CompareStatus == CompareStatus.Removed);
+    }
+
+    public class MetadataDifferentialModulesV14
+    {
+        public string ModuleName { get; set; } = string.Empty;
+
+        public CompareStatus CompareStatus { get; set; } = CompareStatus.AlreadyPresent;
+
+        public IEnumerable<(string prefix, (CompareStatus status, StorageEntryMetadataV14 storage))> Storage { get; set; }
+            = Enumerable.Empty<(string, (CompareStatus, StorageEntryMetadataV14))>();
+        public LookupDifferential Calls { get; set; } = new LookupDifferential();
+        public LookupDifferential Events { get; set; } = new LookupDifferential();
+        public IEnumerable<(CompareStatus, PalletConstantMetadataV14)> Constants { get; set; }
+            = Enumerable.Empty<(CompareStatus, PalletConstantMetadataV14)>();
+        public LookupDifferential Errors { get; set; } = new LookupDifferential();
+    }
+
+    public class MetadataDiffV15 : MetadataDiff<
+        MetadataDifferentialModulesV15, StorageEntryMetadataV14, PalletCallMetadataV14, PalletEventMetadataV14, PalletConstantMetadataV14, PalletErrorMetadataV14>
+    {
+    }
+
+    public class MetadataDifferentialModulesV15 : MetadataDifferentialModules<StorageEntryMetadataV14, PalletCallMetadataV14, PalletEventMetadataV14, PalletConstantMetadataV14, PalletErrorMetadataV14>
     {
 
     }

@@ -4,7 +4,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
 {
-    public class Variant : BaseType
+    public class Variant : BaseType, IMetadataName
     {
         public override string TypeName() => "Variant<T: Form = MetaForm>";
 
@@ -17,8 +17,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
         {
             var start = p;
 
-            VariantName = new Str();
-            VariantName.Decode(byteArray, ref p);
+            Name = new Str();
+            Name.Decode(byteArray, ref p);
 
             VariantFields = new BaseVec<Field>();
             VariantFields.Decode(byteArray, ref p);
@@ -32,7 +32,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
             TypeSize = p - start;
         }
 
-        public Str VariantName { get; private set; }
+        public Str Name { get; private set; }
         public BaseVec<Field> VariantFields { get; private set; }
         public U8 Index { get; private set; }
         public BaseVec<Str> Docs { get; private set; }

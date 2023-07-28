@@ -44,7 +44,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base.Portable
         public override string TypeName() => "Path<T: Form = MetaForm>";
     }
 
-    public class TypeParameter : BaseType
+    public class TypeParameter : BaseType, IMetadataName
     {
         public override string TypeName() => "TypeParameter<T: Form = MetaForm>";
 
@@ -57,8 +57,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base.Portable
         {
             var start = p;
 
-            TypeParameterName = new Str();
-            TypeParameterName.Decode(byteArray, ref p);
+            Name = new Str();
+            Name.Decode(byteArray, ref p);
 
             TypeParameterType = new BaseOpt<TType>();
             TypeParameterType.Decode(byteArray, ref p);
@@ -66,7 +66,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base.Portable
             TypeSize = p - start;
         }
 
-        public Str TypeParameterName { get; private set; }
+        public Str Name { get; private set; }
         public BaseOpt<TType> TypeParameterType { get; private set; }
     }
 }

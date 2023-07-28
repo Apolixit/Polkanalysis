@@ -7,13 +7,19 @@ namespace Polkanalysis.Domain.Tests.Runtime.Metadata
 {
     public class MetadataParsingTest
     {
+        protected string MockFiles = "\\Runtime\\Metadata\\Mocks\\";
+        private string readMetadataFromFile(string metadataName)
+        {
+            return File.ReadAllText($"{AppContext.BaseDirectory}{MockFiles}{metadataName}.txt");
+        }
+
         [Test]
-        [TestCase(MetadataMocks.MetadataV11_0, 11)]
-        [TestCase(MetadataMocks.MetadataV12_26, 12)]
-        [TestCase(MetadataMocks.MetadataV13_9050, 13)]
+        [TestCase("V11\\MetadataV11_0", 11)]
+        [TestCase("V12\\MetadataV12_26", 12)]
+        [TestCase("V13\\MetadataV13_9050", 13)]
         public void ValidMetadata_CheckVersion_ShouldWork(string metadata, int version)
         {
-            var metadataInfo = new CheckRuntimeMetadata(metadata);
+            var metadataInfo = new CheckRuntimeMetadata(readMetadataFromFile(metadata));
 
             Assert.That(metadataInfo.MetaDataInfo, Is.Not.Null);
             Assert.That(metadataInfo.MetaDataInfo.Version.Value, Is.EqualTo(version));
@@ -28,7 +34,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Metadata
         public void MetadataV11_ShouldBeParsed()
         {
             var metadataV11 = new MetadataV11();
-            metadataV11.Create(MetadataMocks.MetadataV11_0);
+            metadataV11.Create(readMetadataFromFile("V11\\MetadataV11_0"));
 
             Assert.That(metadataV11, Is.Not.Null);
             Assert.That(metadataV11.RuntimeMetadataData.Modules.Value.Count, Is.EqualTo(31));
@@ -43,7 +49,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Metadata
         public void MetadataV12_ShouldBeParsed()
         {
             var metadataV12 = new MetadataV12();
-            metadataV12.Create(MetadataMocks.MetadataV12_26);
+            metadataV12.Create(readMetadataFromFile("V12\\MetadataV12_26"));
 
             Assert.That(metadataV12, Is.Not.Null);
             Assert.That(metadataV12.RuntimeMetadataData.Modules.Value.Count, Is.EqualTo(28));
@@ -58,7 +64,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Metadata
         public void MetadataV13_ShouldBeParsed()
         {
             var metadataV13 = new MetadataV13();
-            metadataV13.Create(MetadataMocks.MetadataV13_9050);
+            metadataV13.Create(readMetadataFromFile("V13\\MetadataV13_9050"));
 
             Assert.That(metadataV13, Is.Not.Null);
             Assert.That(metadataV13.RuntimeMetadataData.Modules.Value.Count, Is.EqualTo(31));

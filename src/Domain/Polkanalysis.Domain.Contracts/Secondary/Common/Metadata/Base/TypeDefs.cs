@@ -122,7 +122,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
         public BaseVec<Variant> TypeParam { get; private set; }
     }
 
-    public class TypeDefSequence : BaseType
+    public class TypeDefSequence : BaseType, IMetadataType
     {
         public override string TypeName() => "TypeDefSequence<T: Form = MetaForm>";
 
@@ -142,9 +142,11 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
         }
 
         public TType TypeParam { get; private set; }
+
+        public TType ItemType => TypeParam;
     }
 
-    public class TypeDefArray : BaseType
+    public class TypeDefArray : BaseType, IMetadataType
     {
         public override string TypeName() => "TypeDefArray<T: Form = MetaForm>";
 
@@ -168,6 +170,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
 
         public U32 Len { get; private set; }
         public TType TypeParam { get; private set; }
+
+        public TType ItemType => TypeParam;
     }
 
     public class TypeDefTuple : BaseType
@@ -240,7 +244,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
         I256,
     }
 
-    public class TypeDefCompact : BaseType
+    public class TypeDefCompact : BaseType, IMetadataType
     {
         public override string TypeName() => "TypeDefCompact<T: Form = MetaForm>";
 
@@ -260,6 +264,8 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base
         }
 
         public TType TypeParam { get; private set; }
+
+        public TType ItemType => TypeParam;
     }
 
     public class TypeDefBitSequence : BaseType
