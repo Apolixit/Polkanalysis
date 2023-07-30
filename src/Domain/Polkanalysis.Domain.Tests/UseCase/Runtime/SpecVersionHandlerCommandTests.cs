@@ -4,6 +4,8 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.UseCase.Runtime.SpecVersion;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
@@ -21,11 +23,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
     {
         private SubstrateDbContext _substrateDbContext;
         private ISubstrateService _substrateService;
+        private IMetadataService _metadataService;
 
         [SetUp]
         public override void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionCommandHandler>>();
+            _metadataService = new MetadataService();
 
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")
@@ -38,7 +42,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 
             _substrateDbContext = new SubstrateDbContext(contextOption);
 
-            _useCase = new SpecVersionCommandHandler(_substrateDbContext, _logger, _substrateService);
+            _useCase = new SpecVersionCommandHandler(_substrateDbContext, _substrateService, _metadataService, _logger);
             base.Setup();
         }
 

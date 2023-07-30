@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14;
 using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
+using Polkanalysis.Domain.Contracts.Secondary.Repository.Models;
 using Polkanalysis.Domain.Contracts.Service;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
@@ -24,9 +25,22 @@ namespace Polkanalysis.Domain.Service
             throw new NotImplementedException();
         }
 
-        public Task<bool> HasPalletChangedVersionBetweenAsync(string palletName, string hexMetadata1, string hexMetadata2)
+        public async Task<bool> HasPalletChangedVersionBetweenAsync(string palletName, string hexMetadata1, string hexMetadata2)
         {
-            throw new NotImplementedException();
+            Guard.Against.NullOrEmpty(palletName);
+            Guard.Against.NullOrEmpty(hexMetadata1);
+            Guard.Against.NullOrEmpty(hexMetadata2);
+
+            var version = EnsureMetadataVersion(hexMetadata1, hexMetadata2);
+
+            if(version == MetadataVersion.V14)
+            {
+                var v14Compare = await MetadataCompareV14Async(new MetadataV14(hexMetadata1), new MetadataV14(hexMetadata2));
+
+                return v14Compare.ChangedModules.Any(x => x.ModuleName == palletName);
+            }
+
+            return false;
         }
 
 

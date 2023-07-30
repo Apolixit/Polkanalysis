@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
+using StreamJsonRpc;
+using System.Threading;
 
 namespace Polkanalysis.Worker.Tasks
 {

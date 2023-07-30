@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Version
+namespace Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion
 {
-    public class SpecVersionModel : BlockchainModel
+    public class SpecVersionDto
     {
         public uint SpecVersion { get; set; }
         public uint BlockStart { get; set; }
+        public string BlockStartHash { get; set; } = string.Empty;
         public uint? BlockEnd { get; set; }
+        public string? BlockEndHash { get; set; }
         public uint MetadataVersion { get; set; }
-        public string Metadata { get; set; } = string.Empty;
     }
 }

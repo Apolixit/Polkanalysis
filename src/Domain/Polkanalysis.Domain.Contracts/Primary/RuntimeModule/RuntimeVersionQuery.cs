@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using System;
 using System.Collections.Generic;

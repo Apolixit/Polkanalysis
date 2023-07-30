@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
@@ -24,11 +24,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         UseCaseTest<SpecVersionHandler, IEnumerable<SpecVersionDto>, SpecVersionsQuery>
     {
         private SubstrateDbContext _substrateDbContext;
+        private ISubstrateService _substrateService;
 
         [SetUp]
         public override void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionHandler>>();
+            _substrateService = Substitute.For<ISubstrateService>();
 
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")
@@ -36,7 +38,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 
             _substrateDbContext = new SubstrateDbContext(contextOption);
 
-            _useCase = new SpecVersionHandler(_substrateDbContext, _logger);
+            _useCase = new SpecVersionHandler(_substrateDbContext, _substrateService, _logger);
             base.Setup();
         }
 

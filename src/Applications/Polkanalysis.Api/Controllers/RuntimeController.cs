@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
+using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
 using System.ComponentModel;
 
@@ -49,6 +51,30 @@ namespace Polkanalysis.Api.Controllers
             {
                 runtimeId = runtimeId
             });
+        }
+
+        [HttpGet("versions")]
+        [Produces(typeof(IEnumerable<SpecVersionDto>))]
+        [Description("Return all runtime versions")]
+        public async Task<ActionResult<IEnumerable<SpecVersionDto>>> GetSpecVersionAsync()
+        {
+            return await SendAndHandleResponseAsync(new SpecVersionsQuery()
+            {
+            });
+        }
+
+        [HttpGet("version/{versionNumber}")]
+        [Produces(typeof(SpecVersionDto))]
+        [Description("Return given runtime version")]
+        public async Task<ActionResult<SpecVersionDto?>> GetSpecVersionByNumberAsync(uint versionNumber)
+        {
+            var res = await SendAndHandleResponseAsync(new SpecVersionsQuery()
+            {
+                SpecVersionNumber = versionNumber
+            });
+            if (res == null) return Ok(null);
+
+            return res!.Value.FirstOrDefault();
         }
     }
 }

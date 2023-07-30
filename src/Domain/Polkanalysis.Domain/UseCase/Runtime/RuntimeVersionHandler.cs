@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
 using Polkanalysis.Domain.Contracts.Runtime.Module;

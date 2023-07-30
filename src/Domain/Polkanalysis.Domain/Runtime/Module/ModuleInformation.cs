@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
@@ -270,11 +271,6 @@ namespace Polkanalysis.Domain.Runtime.Module
 
             var runtimeVersionDto = new SpecVersionDto()
             {
-                ImplName = _substrateService.RuntimeVersion.ImplName,
-                SpecName = _substrateService.RuntimeVersion.SpecName,
-                AuthoringVersion = _substrateService.RuntimeVersion.AuthoringVersion,
-                ImplVersion = _substrateService.RuntimeVersion.ImplVersion,
-                TransactionVersion = _substrateService.RuntimeVersion.TransactionVersion,
                 SpecVersion = _substrateService.RuntimeVersion.SpecVersion
             };
 

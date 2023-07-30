@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 
 namespace Polkanalysis.Domain.Contracts.Runtime.Module
 {
