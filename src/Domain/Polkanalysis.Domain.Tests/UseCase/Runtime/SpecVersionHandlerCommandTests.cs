@@ -9,6 +9,7 @@ using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.UseCase.Runtime.SpecVersion;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
+using Substrate.NET.Metadata.Service;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;

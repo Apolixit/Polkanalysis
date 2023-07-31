@@ -1,16 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Compare;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V15;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Substrate.NET.Metadata.Compare;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion
 {

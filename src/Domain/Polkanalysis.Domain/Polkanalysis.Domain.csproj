@@ -12,6 +12,7 @@
     <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="MediatR.Courier" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Substrate.NET.Metadata" Version="0.1.2" />
   </ItemGroup>
 
   <ItemGroup>

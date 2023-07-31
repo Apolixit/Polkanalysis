@@ -5,11 +5,12 @@ using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
-using Polkanalysis.Domain.Contracts.Service;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata;
 using Polkanalysis.Domain.Helper.Enumerables;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
+using Substrate.NET.Metadata;
+using Substrate.NET.Metadata.Service;
+using Substrate.NET.Metadata.Base;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
@@ -114,9 +115,10 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 
                 // Just ensure previous block was on previous Metadata, otherwise we got a huge problem
                 var previousVersion = new CheckRuntimeMetadata(previousMetadata);
+                if (previousVersion.MetaDataInfo.Version.Value != metadataInfo.MetaDataInfo.Version.Value - 1)
+                    throw new InvalidOperationException($"Metadata (v{previousVersion.MetaDataInfo.Version.Value}) from previous block is not previous from current metadata block (v{metadataInfo.MetaDataInfo.Version.Value})");
 
-
-                await OnUpgradeVersionCheckPalletChangedAsync(previousMetadata, newMetadata);
+                await OnUpgradeVersionCheckPalletChangedAsync(previousMetadata, newMetadata, MetadataVersion.V14);
             }
 
             return true;
@@ -126,12 +128,13 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
         /// Check pallets which changed when a new spec version is release and increment their version in database
         /// </summary>
         /// <returns></returns>
-        public async Task OnUpgradeVersionCheckPalletChangedAsync(string oldMetadata, string newMetadata)
+        public async Task OnUpgradeVersionCheckPalletChangedAsync(
+            string oldMetadata, string newMetadata, MetadataVersion version)
         {
-            //var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockStart), cancellationToken);
-            //var metadata = await _substrateService.Rpc.State.GetMetaDataAtAsync(startBlockHash.Value, cancellationToken);
 
-            // Loop on every pallet and check 
+
+            // Loop on every pallet and check
+
         }
     }
 }

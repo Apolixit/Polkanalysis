@@ -5,7 +5,7 @@
     <SonarQubeExclude>true</SonarQubeExclude>
 	</PropertyGroup>
 	<ItemGroup>
-	  <PackageReference Include="Substrate.NET.API" Version="0.9.6" />
+	  <PackageReference Include="Substrate.NET.API" Version="0.9.7" />
 	</ItemGroup>
 
 </Project>

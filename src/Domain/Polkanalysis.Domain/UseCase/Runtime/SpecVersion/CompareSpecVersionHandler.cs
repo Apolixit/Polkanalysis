@@ -1,31 +1,24 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.Base;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V10;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V11;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V12;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V13;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V14;
-using Polkanalysis.Domain.Contracts.Secondary.Common.Metadata.V9;
-using Polkanalysis.Domain.Contracts.Service;
-using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Substrate.NET.Metadata.Base;
+using Substrate.NET.Metadata.Service;
+using Substrate.NET.Metadata.V10;
+using Substrate.NET.Metadata.V11;
+using Substrate.NET.Metadata.V12;
+using Substrate.NET.Metadata.V13;
+using Substrate.NET.Metadata.V14;
+using Substrate.NET.Metadata.V9;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
     public class CompareSpecVersionHandler : Handler<CompareSpecVersionHandler, CompareSpecVersionDto, CompareSpecVersionsQuery>
     {
-        private readonly MetadataService _metadataService;
+        private readonly IMetadataService _metadataService;
         private readonly ISubstrateService _substrateService;
         private readonly SubstrateDbContext _dbContext;
 
@@ -83,12 +76,12 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 
             var dto = checkVersion switch
             {
-                MetadataVersion.V9 => new CompareSpecVersionDto(await _metadataService.MetadataCompareV9Async(new MetadataV9(metadataSource), new MetadataV9(metadataTarget))),
-                MetadataVersion.V10 => new CompareSpecVersionDto(await _metadataService.MetadataCompareV10Async(new MetadataV10(metadataSource), new MetadataV10(metadataTarget))),
-                MetadataVersion.V11 => new CompareSpecVersionDto(await _metadataService.MetadataCompareV11Async(new MetadataV11(metadataSource), new MetadataV11(metadataTarget))),
-                MetadataVersion.V12 => new CompareSpecVersionDto(await _metadataService.MetadataCompareV12Async(new MetadataV12(metadataSource), new MetadataV12(metadataTarget))),
-                MetadataVersion.V13 => new CompareSpecVersionDto(await _metadataService.MetadataCompareV13Async(new MetadataV13(metadataSource), new MetadataV13(metadataTarget))),
-                MetadataVersion.V14 => new CompareSpecVersionDto(await _metadataService.MetadataCompareV14Async(new MetadataV14(metadataSource), new MetadataV14(metadataTarget))),
+                MetadataVersion.V9 => new CompareSpecVersionDto(_metadataService.MetadataCompareV9(new MetadataV9(metadataSource), new MetadataV9(metadataTarget))),
+                MetadataVersion.V10 => new CompareSpecVersionDto(_metadataService.MetadataCompareV10(new MetadataV10(metadataSource), new MetadataV10(metadataTarget))),
+                MetadataVersion.V11 => new CompareSpecVersionDto(_metadataService.MetadataCompareV11(new MetadataV11(metadataSource), new MetadataV11(metadataTarget))),
+                MetadataVersion.V12 => new CompareSpecVersionDto(_metadataService.MetadataCompareV12(new MetadataV12(metadataSource), new MetadataV12(metadataTarget))),
+                MetadataVersion.V13 => new CompareSpecVersionDto(_metadataService.MetadataCompareV13(new MetadataV13(metadataSource), new MetadataV13(metadataTarget))),
+                MetadataVersion.V14 => new CompareSpecVersionDto(_metadataService.MetadataCompareV14(new MetadataV14(metadataSource), new MetadataV14(metadataTarget))),
                 _ => throw new InvalidOperationException("MetadataV15 comparison is not yet supported ! Stay tuned.")
             };
 
