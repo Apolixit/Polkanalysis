@@ -4,11 +4,7 @@ using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Substrate.NET.Metadata.Service;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -22,6 +18,7 @@ namespace Polkanalysis.Domain.Runtime
             services.AddScoped<INodeMapping, EventNodeMapping>();
             services.AddScoped<ICurrentMetaData, CurrentMetaData>();
             services.AddScoped<IModuleInformation, ModuleInformation>();
+            services.AddScoped<IMetadataService, MetadataService>();
 
             return services;
         }

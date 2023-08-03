@@ -12,6 +12,7 @@ using Substrate.NetApi;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage;
 using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events;
+using Substrate.NetApi.Model.Rpc;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
@@ -106,15 +107,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             }
         }
 
-        private IRuntimeVersion? _runtimeVersion = null;
-        public IRuntimeVersion RuntimeVersion
+        private RuntimeVersion? _runtimeVersion = null;
+        public RuntimeVersion RuntimeVersion
         {
             get
             {
-                if (_runtimeVersion == null)
-                    _runtimeVersion = new RuntimeVersion(PolkadotClient);
-
-                return _runtimeVersion;
+                return AjunaClient.RuntimeVersion;
             }
         }
 

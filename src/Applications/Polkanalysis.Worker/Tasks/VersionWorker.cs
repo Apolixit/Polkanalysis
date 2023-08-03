@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
 using StreamJsonRpc;
@@ -58,13 +59,18 @@ namespace Polkanalysis.Worker.Tasks
                         BlockStart = i
                     }, cancellationToken);
 
-                    if(dbRes.IsSuccess)
+                    if (dbRes.IsSuccess)
                     {
                         _logger.LogInformation("New runtime successfully inserted in database");
+
+                        // Now let's insert pallet version
+                        await _mediator.Send(new PalletVersionCommand()
+                        {
+                            SpecVersion = lastStoredVersion.Value,
+                            BlockStart = i,
+                        }, cancellationToken);
                     } else
-                    {
                         _logger.LogError("An error occured when insert new runtime in database");
-                    }
                 } else
                 {
                     if(i % 5000 == 0)

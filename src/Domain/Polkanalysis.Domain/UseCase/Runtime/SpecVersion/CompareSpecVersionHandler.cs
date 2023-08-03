@@ -23,7 +23,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
         private readonly SubstrateDbContext _dbContext;
 
         public CompareSpecVersionHandler(
-            MetadataService metadataService,
+            IMetadataService metadataService,
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
             ILogger<CompareSpecVersionHandler> logger) : base(logger)

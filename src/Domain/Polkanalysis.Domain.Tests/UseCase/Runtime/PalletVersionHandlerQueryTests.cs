@@ -40,7 +40,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         {
             var model = new PalletVersionModel()
             {
-                PalletId = Faker.RandomNumber.Next(1000),
                 BlockchainName = "Polkadot",
                 PalletVersion = i,
                 BlockStart = (uint)(10 * i),

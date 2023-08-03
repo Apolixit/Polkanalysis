@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using OperationResult;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Dto.Price;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using System;
@@ -14,6 +15,5 @@ namespace Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion
     {
         public uint SpecVersion { get; set; }
         public uint BlockStart { get; set; }
-        public uint? BlockEnd { get; set; }
     }
 }

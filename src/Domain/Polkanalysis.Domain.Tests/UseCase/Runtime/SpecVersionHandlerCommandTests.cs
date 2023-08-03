@@ -10,6 +10,7 @@ using Polkanalysis.Domain.UseCase.Runtime.SpecVersion;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
 using Substrate.NET.Metadata.Service;
+using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
@@ -38,13 +39,23 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 
             _substrateService = Substitute.For<ISubstrateService>();
             _substrateService.BlockchainName.Returns("Polkadot");
-            _substrateService.Storage.System.BlockHashAsync(Arg.Any<U32>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Types.Base.Hash("0x22959625a0a149e2a5e1a9f05bc645f5742a1331f785e98a5569a4157fb68b69"));
-            _substrateService.Rpc.State.GetMetaDataAtAsync(Arg.Any<string>(), CancellationToken.None).Returns("AwesomeMetadata");
+
+            _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), CancellationToken.None).Returns(new Hash("0xfc7ed4b4ca798d49e2824868026ddcaf05d7fdd3ebd79a28b5872084c07af210"));
+            _substrateService.Rpc.State.GetMetaDataAtAsync(Arg.Any<string>(), CancellationToken.None).Returns(PalletVersionHandlerCommandTests.MetadataV14_9280);
 
             _substrateDbContext = new SubstrateDbContext(contextOption);
 
-            _useCase = new SpecVersionCommandHandler(_substrateDbContext, _substrateService, _metadataService, _logger);
+            _useCase = new SpecVersionCommandHandler(
+                _substrateDbContext, 
+                _substrateService,
+                _logger);
             base.Setup();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _substrateDbContext.Database.EnsureDeleted();
         }
 
         [Test]
@@ -53,8 +64,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             var res = await _useCase!.Handle(new SpecVersionCommand()
             {
                 SpecVersion = 1_000,
-                BlockStart = 10000,
-                BlockEnd = 100_000,
+                BlockStart = 10000
             }, CancellationToken.None);
 
             Assert.That(res.IsSuccess, Is.True);
@@ -62,7 +72,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             var lastRecord = _substrateDbContext.SpecVersionModels.Last();
             Assert.That(lastRecord.BlockchainName, Is.EqualTo("Polkadot"));
             Assert.That(lastRecord.BlockStart, Is.EqualTo(10_000));
-            Assert.That(lastRecord.BlockEnd, Is.EqualTo(100_000));
+            Assert.That(lastRecord.BlockEnd, Is.Null);
+            Assert.That(lastRecord.MetadataVersion, Is.EqualTo(14));
+            Assert.That(lastRecord.Metadata, Is.EqualTo(PalletVersionHandlerCommandTests.MetadataV14_9280));
         }
     }
 }

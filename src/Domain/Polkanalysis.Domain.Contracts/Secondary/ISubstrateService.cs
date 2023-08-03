@@ -4,6 +4,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Secondary.Rpc;
+using Substrate.NetApi.Model.Rpc;
 
 namespace Polkanalysis.Domain.Contracts.Secondary
 {
@@ -13,7 +14,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary
         public string BlockchainName { get; }
         public Hash GenesisHash { get; }
         public IMetadata RuntimeMetadata { get; }
-        public IRuntimeVersion RuntimeVersion { get; }
+        public RuntimeVersion RuntimeVersion { get; }
 
         public ITimeQueryable At(U32 blockNumber);
         public ITimeQueryable At(BlockNumber blockNumber);
