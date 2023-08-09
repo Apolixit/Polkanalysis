@@ -1,21 +1,28 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Substrate.NET.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Versionning;
+using Polkanalysis.Domain.Contracts.Secondary.Repository.Models;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
 {
+    [PalletVersion("Polkadot", nameof(AccountData), 1, uint.MaxValue)]
     public class AccountData : BaseType
     {
         public U128 Free { get; set; } = new U128();
         public U128 Reserved { get; set; } = new U128();
         public U128 MiscFrozen { get; set; } = new U128();
         public U128 FeeFrozen { get; set; } = new U128();
+
+        //public IEnumerable<DataVersion> Versions => new List<DataVersion>()
+        //{
+        //    new DataVersion()
+        //    {
+        //        BlockchainName = "Polkadot",
+        //        BlockStart = 1,
+        //        BlockEnd = null,
+        //        PalletVersion = 1
+        //    }
+        //};
 
         public void Create(U128 free, U128 reserved, U128 miscFrozen, U128 feeFrozen)
         {

@@ -81,11 +81,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            // Now let's check pallet changed and also insert them in database to keep try of every
-            if (request.BlockStart == 0)
-                return UseCaseError(ErrorResult.ErrorType.EmptyModel, "Block start is 0, skip this one");
-
-            var endPreviousBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart - 1), cancellationToken);
+            var endPreviousBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(Math.Min(request.BlockStart - 1, 0)), cancellationToken);
             var metadataSource = await _substrateService.Rpc.State.GetMetaDataAtAsync(endPreviousBlockHash.Value, cancellationToken);
 
             var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart), cancellationToken);
@@ -115,11 +111,24 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
                 _ => throw new InvalidOperationException($"MetadataV{sourceVersion} comparison is not yet supported ! Stay tuned.")
             };
 
+            _logger.LogInformation("Metadata version {version} comparison ok", sourceVersion);
+
+            var addedModules = res.AddedModules.ToList();
+            var changedModules = res.ChangedModules.ToList();
             if (!res.ChangedModules.Any())
-                _logger.LogWarning("No modules has changed, please check...");
+            {
+                if(request.BlockStart == 0)
+                {
+                    addedModules = res.AllModulesDiff.ToList();
+                    changedModules.Clear();
+                }
+                else
+                    _logger.LogWarning("No modules has changed, please check...");
+            }
+                
 
             // First let's insert new modules
-            foreach (var moduleName in res.AddedModules.Select(x => x.ModuleName))
+            foreach (var moduleName in addedModules.Select(x => x.ModuleName))
             {
                 await _dbContext.AddAsync(new PalletVersionModel()
                 {
@@ -128,10 +137,11 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
                     PalletVersion = 1,
                     BlockStart = request.BlockStart,
                     BlockEnd = null,
+                    SpecVersion = request.SpecVersion,
                 }, cancellationToken);
             }
 
-            foreach (var moduleName in res.ChangedModules.Select(x => x.ModuleName))
+            foreach (var moduleName in changedModules.Select(x => x.ModuleName))
             {
                 var lastVersion = UpdateLastVersionWithBlockEnd(request.BlockStart, moduleName);
 
@@ -139,9 +149,10 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
                 {
                     BlockchainName = _substrateService.BlockchainName,
                     PalletName = moduleName,
-                    PalletVersion = lastVersion.PalletVersion + 1,
+                    PalletVersion = lastVersion is not null ? lastVersion.PalletVersion + 1 : 0,
                     BlockStart = request.BlockStart,
                     BlockEnd = null,
+                    SpecVersion = request.SpecVersion,
                 }, cancellationToken);
             }
 
@@ -151,16 +162,18 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
             }
 
             var nbRows = _dbContext.SaveChanges();
-            if (nbRows != res.AddedModules.Count() + res.ChangedModules.Count() * 2 + res.RemovedModules.Count())
+            if (nbRows != addedModules.Count + changedModules.Count * 2 + res.RemovedModules.Count())
                 throw new InvalidOperationException("Inserted rows are inconsistent");
 
+            _logger.LogInformation("Pallet version (nb total rows = {rows} : {added} new modules added / {changed} modules changed / {removed} modules removed from database !", nbRows, addedModules.Count, changedModules.Count * 2, res.RemovedModules.Count());
             return true;
         }
 
-        private PalletVersionModel UpdateLastVersionWithBlockEnd(uint blockStart, string moduleName)
+        private PalletVersionModel? UpdateLastVersionWithBlockEnd(uint blockStart, string moduleName)
         {
-            var palletDb = _dbContext.PalletVersionModels.Where(x => x.PalletName.ToLowerInvariant() == moduleName.ToLowerInvariant());
+            var palletDb = _dbContext.PalletVersionModels.Where(x => x.PalletName == moduleName);
 
+            // This case when a 'changed' module is not already present in database
             if (!palletDb.Any())
                 throw new InvalidOperationException($"{moduleName} has changed but is not present in the database");
 

@@ -87,6 +87,13 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
             if (string.IsNullOrEmpty(metadataTarget))
                 throw new InvalidOperationException($"Metadata from block {request.BlockStart} is empty...");
 
+            // Is it already inserted ?
+            if(_dbContext.SpecVersionModels.Any(x => (x.BlockchainName == _substrateService.BlockchainName) && (x.SpecVersion == request.SpecVersion)))
+            {
+                _logger.LogInformation("SpecVersion = {version} for blockchain {blockchainName} already exists in database !", request.SpecVersion, _substrateService.BlockchainName);
+                return true;
+            }
+
             var metadataInfo = new CheckRuntimeMetadata(metadataTarget);
 
             var model = new SpecVersionModel()

@@ -44,9 +44,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<Winning> WinningAsync(U32 key, CancellationToken token)
         {
             return await GetStorageWithParamsAsync<U32, Arr36BaseOpt, Winning>(key, AuctionsStorageExt.WinningParams, token);
-
-            //return SubstrateMapper.Instance.Map<Arr36BaseOpt, BaseOpt<BaseTuple<SubstrateAccount, Id, U128>>[]>(result)
-            //    ?? new BaseOpt<BaseTuple<SubstrateAccount, Id, U128>>[0];
         }
     }
 }

@@ -45,6 +45,19 @@ namespace Polkanalysis.Worker.Tasks
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            try
+            {
+                await ExecuteTaskAsync(stoppingToken);
+            } catch(Exception ex)
+            {
+                _logger.LogError(ex, "An error occured, try to connect again !");
+                await ExecuteAsync(stoppingToken);
+            }
+            
+        }
+
+        public async Task ExecuteTaskAsync(CancellationToken stoppingToken)
+        {
             // Connect to current blockchain
             await ConnectAsync(stoppingToken);
 

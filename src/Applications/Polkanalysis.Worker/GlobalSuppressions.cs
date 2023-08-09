@@ -7,3 +7,4 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Usage", "VSTHRD101:Avoid unsupported async delegates", Justification = "<Pending>", Scope = "member", Target = "~M:Polkanalysis.Worker.Tasks.StakingWorker.SubscribeErasAndSaveAsync(System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
 [assembly: SuppressMessage("Usage", "VSTHRD101:Avoid unsupported async delegates", Justification = "<Pending>", Scope = "member", Target = "~M:Polkanalysis.Worker.Tasks.VersionWorker.SubscribeNewMetadataAsync(System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
+[assembly: SuppressMessage("Usage", "VSTHRD101:Avoid unsupported async delegates", Justification = "<Pending>", Scope = "member", Target = "~M:Polkanalysis.Worker.Tasks.VersionWorker.SubscribeNewUpgradeVersionAsync(System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
