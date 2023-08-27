@@ -4,8 +4,11 @@
 [![SubstrateGaming](https://img.shields.io/badge/Substrate_Gaming-Substrate.NET.Toolchain-blue)](https://github.com/SubstrateGaming)
 
 
-Polkanalysis is a Substrate-based blockchain explorer written in .NET
+Polkanalysis is a Substrate-based blockchain explorer written in .NET.  
 It provide front end application and display aggregated data from the blockchain.
+
+## Developpement state
+__This application is under heavy developpement. It plans to be release Q4 2023 / Q1 2024 !__
 
 The application currently support :
 * [Polkadot](https://polkadot.network)

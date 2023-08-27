@@ -181,7 +181,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         }
 
         [Test]
-        [Ignore("Bytes null")]
         public async Task Events_ShouldWorkAsync()
         {
             var coreResult = new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>();

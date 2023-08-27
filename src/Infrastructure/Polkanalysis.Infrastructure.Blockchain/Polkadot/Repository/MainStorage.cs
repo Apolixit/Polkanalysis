@@ -68,6 +68,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 
             var result = await GetStorageAsync<R>(funcParams(input), token, callerName);
 
+            // TODO : manage version !
             var mappedType = new T();
             if (result == null) return mappedType;
 
