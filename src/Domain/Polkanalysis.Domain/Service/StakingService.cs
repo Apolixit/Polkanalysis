@@ -169,7 +169,6 @@ namespace Polkanalysis.Domain.Service
         public async Task<ValidatorDto> GetValidatorDetailInternalAsync(string validatorAddress, CancellationToken cancellationToken)
         {
             var validator = new SubstrateAccount(validatorAddress);
-            var node = new GenericNode();
 
             // Is my account a validator ?
             var validatorSessionKey = await _substrateService.Storage.Session.NextKeysAsync(validator, cancellationToken);
@@ -515,7 +514,7 @@ namespace Polkanalysis.Domain.Service
                 StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken), // TODO change with real stash account
                 TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken),
                 RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken),
-                Metadata = Utils.Bytes2HexString(poolMetadata.Value.ToBytes()),
+                Metadata = poolMetadata is not null ? Utils.Bytes2HexString(poolMetadata.Value.ToBytes()) : string.Empty,
                 MemberCount = bondedPool.MemberCounter.Value,
                 TotalBonded = bondedPool.Points.Value.ToDouble(chainInfo.TokenDecimals),
                 RewardPool = rewardPool.LastRecordedTotalPayouts.Value.ToDouble(chainInfo.TokenDecimals),

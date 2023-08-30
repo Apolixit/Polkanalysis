@@ -2870,7 +2870,7 @@ table.grid {
 #accordion7 .card-header button:before,
 #accordion8 .card-header button:before {
     float: left !important;
-    font-family: FontAwesome;
+    font-family: FontAwesome, sans-serif;
     content: "\f105";
     padding-right: 15px;
     -webkit-transition: all 0.3s ease;

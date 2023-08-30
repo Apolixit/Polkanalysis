@@ -14,7 +14,8 @@ namespace Polkanalysis.Domain.UseCase.Statistics.Acount
 
         public override Task<Result<int, ErrorResult>> Handle(HoldersQuery request, CancellationToken cancellationToken)
         {
-            return null;
+            // TODO : implementation
+            throw new NotImplementedException();
         }
     }
 }

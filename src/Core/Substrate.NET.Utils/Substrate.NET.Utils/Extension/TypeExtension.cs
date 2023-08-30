@@ -44,5 +44,15 @@ namespace Substrate.NET.Utils
             else
                 return null;
         }
+
+        public static T As<T>(this IType sender)
+        {
+            if(sender is T typed)
+            {
+                return typed;
+            }
+
+            throw new InvalidCastException();
+        }
     }
 }

@@ -622,20 +622,21 @@ TODO: more distinction between this file and common.css
 /* Icons (inline elements with styled text that mock arrow icons)
 --------------------------------------------------------------------------------------------------*/
 .fc-icon {
-  display: inline-block;
-  height: 1em;
-  line-height: 1em;
-  font-size: 1em;
-  text-align: center;
-  overflow: hidden;
-  font-family: "Courier New", Courier, monospace;
-  /* don't allow browser text-selection */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+    display: inline-block;
+    height: 1em;
+    line-height: 1em;
+    font-size: 1em;
+    text-align: center;
+    overflow: hidden;
+    font-family: "Courier New", Courier, monospace, sans-serif;
+    /* don't allow browser text-selection */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 /*
 Acceptable font-family overrides for individual icons:
@@ -1138,17 +1139,18 @@ be a descendant of the grid when it is being dragged.
   /* undo padding from above */ }
 
 /* resizer (cursor device) */
-.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 8px;
-  overflow: hidden;
-  line-height: 8px;
-  font-size: 11px;
-  font-family: monospace;
-  text-align: center;
-  cursor: s-resize; }
+    .fc-time-grid-event.fc-allow-mouse-resize .fc-resizer {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 8px;
+        overflow: hidden;
+        line-height: 8px;
+        font-size: 11px;
+        font-family: monospace, sans-serif;
+        text-align: center;
+        cursor: s-resize;
+    }
 
 .fc-time-grid-event.fc-allow-mouse-resize .fc-resizer:after {
   content: "="; }

@@ -1,8 +1,6 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
-using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
@@ -10,23 +8,24 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
 {
     public class EraStakersNominatorsModel
     {
-        //public int EraStakersNominatorsId { get; set; }
-        public string NominatorAddress { get; set; } = string.Empty;
+        public string NominatorAddress { get; set; }
         public BigInteger ValueStake { get; set; }
-
-        //[ForeignKey("EraStakers")]
-        //public int EraStakersId { get; set; }
         public EraStakersModel EraStakers { get; set; }
 
-        public EraStakersNominatorsModel() { }
+        public EraStakersNominatorsModel(string nominatorAddress, BigInteger valueStake, EraStakersModel eraStakers)
+        {
+            NominatorAddress = nominatorAddress;
+            ValueStake = valueStake;
+            EraStakers = eraStakers;
+        }
+
 
         [SetsRequiredMembers]
         public EraStakersNominatorsModel(IndividualExposure exposure, EraStakersModel eraStakers)
         {
             NominatorAddress = exposure.Who.ToPolkadotAddress();
             ValueStake = exposure.Value.Value.Value;
-
-            //EraStakers = eraStakers;
+            EraStakers = eraStakers;
         }
 
         public IndividualExposure ToCore()
@@ -41,6 +40,11 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
                    NominatorAddress == model.NominatorAddress &&
                    ValueStake.Equals(model.ValueStake) &&
                    EraStakers.EraStakersId == model.EraStakers.EraStakersId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(NominatorAddress, ValueStake, EraStakers);
         }
     }
 }

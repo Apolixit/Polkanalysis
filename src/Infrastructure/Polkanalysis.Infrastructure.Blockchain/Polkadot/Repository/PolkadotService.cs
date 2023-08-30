@@ -107,7 +107,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             }
         }
 
-        private RuntimeVersion? _runtimeVersion = null;
         public RuntimeVersion RuntimeVersion
         {
             get

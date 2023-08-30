@@ -53,7 +53,7 @@ namespace Polkanalysis.Domain.Contracts.Core
 
         public override bool Equals(object obj)
         {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
                 return false;
             else
             {
@@ -62,13 +62,16 @@ namespace Polkanalysis.Domain.Contracts.Core
             }
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TypeSize, Bytes, Value);
+        }
+
         public override string ToString()
         {
             return ToPolkadotAddress();
         }
 
-        //public string ToStringAddress(int ss58 = 42)
-        //    => ToStringAddress((short)ss58);
         public string ToStringAddress(short ss58 = 42)
         {
             return Utils.GetAddressFrom(Encode(), ss58);

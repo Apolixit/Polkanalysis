@@ -120,19 +120,14 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
             Assert.That(lastEraStaker.OwnStake, Is.EqualTo(new BigInteger(ownStaker)));
 
             Assert.That(lastEraStaker.EraNominatorsVote.Count, Is.EqualTo(2));
-            Assert.That(lastEraStaker.EraNominatorsVote.First(), Is.EqualTo(new EraStakersNominatorsModel()
+            Assert.That(lastEraStaker.EraNominatorsVote.First(), Is.EqualTo(new EraStakersNominatorsModel(nominator1, nominatorStake1, lastEraStaker)
             {
                 EraStakers = lastEraStaker,
                 NominatorAddress = nominator1,
                 ValueStake = nominatorStake1
             }));
 
-            Assert.That(lastEraStaker.EraNominatorsVote.Last(), Is.EqualTo(new EraStakersNominatorsModel()
-            {
-                EraStakers = lastEraStaker,
-                NominatorAddress = nominator2,
-                ValueStake = nominatorStake2
-            }));
+            Assert.That(lastEraStaker.EraNominatorsVote.Last(), Is.EqualTo(new EraStakersNominatorsModel(nominator2, nominatorStake2, lastEraStaker)));
         }
 
         [Test]

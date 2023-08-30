@@ -431,7 +431,7 @@ a.fc-more:hover {
 	height: 1em;
 	line-height: 1em;
 	font-size: 1em;
-	font-family: "Courier New", Courier, monospace;
+	font-family: "Courier New", Courier, monospace, sans-serif;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -768,7 +768,7 @@ a.fc-more:hover {
 	overflow: hidden;
 	line-height: 8px;
 	font-size: 11px;
-	font-family: monospace;
+	font-family: monospace, sans-serif;
 	text-align: center;
 	cursor: s-resize
 }

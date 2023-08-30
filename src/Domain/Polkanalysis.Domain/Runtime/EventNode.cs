@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Domain.Contracts.Runtime;
+﻿using Ardalis.GuardClauses;
+using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,10 @@ namespace Polkanalysis.Domain.Runtime
                 if (_module == null)
                 {
                     var runtimeEvent = getRuntimeEvent();
-                    if (runtimeEvent == null || runtimeEvent.HumanData == null)
-                        throw new InvalidOperationException("Runtime event is null !");
-
+                    
+                    Guard.Against.Null(runtimeEvent);
                     _module = (RuntimeEvent)runtimeEvent.HumanData;
+                    Guard.Against.Null(_module);
                 }
 
                 return _module.Value;
@@ -39,18 +40,16 @@ namespace Polkanalysis.Domain.Runtime
                 if (_method == null)
                 {
                     var runtimeEvent = getRuntimeEvent();
-                    if (runtimeEvent == null || runtimeEvent.HumanData == null)
-                        throw new InvalidOperationException("Runtime event is null !");
+                    Guard.Against.Null(runtimeEvent);
 
                     var palletEvent = runtimeEvent.Children[0];
 
-                    if (palletEvent == null || palletEvent.HumanData == null)
-                        throw new InvalidOperationException("Pallet event is null !");
-
-                    _method = (Enum)palletEvent.HumanData;
+                    Guard.Against.Null(palletEvent);
+                    _method = (Enum?)palletEvent.HumanData;
+                    Guard.Against.Null(_method);
                 }
 
-                return _method;
+                return _method!;
             }
             internal set
             {

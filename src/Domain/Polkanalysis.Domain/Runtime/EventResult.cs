@@ -45,11 +45,6 @@ namespace Polkanalysis.Domain.Runtime
             return Create(palletEventName, eventName, details);
         }
 
-        private static EventDetailsResult AddDetails(LinkedList<GenericNode> nodes)
-        {
-            return null;
-        }
-
         public static EventResult Create(string palletEventName, string eventName)
         {
             return Create(palletEventName, eventName, new List<EventDetailsResult>());
@@ -88,7 +83,7 @@ namespace Polkanalysis.Domain.Runtime
 
         public void AddEvent(string ev)
         {
-            int nextIndex = _events.Count > 0 ? _events.LastOrDefault().Key + 1 : default(int);
+            int nextIndex = _events.Count > 0 ? _events.LastOrDefault().Key + 1 : default;
             _events.Add(nextIndex, ev);
         }
 
@@ -97,15 +92,6 @@ namespace Polkanalysis.Domain.Runtime
             if (Details == null) Details = new List<EventDetailsResult>();
 
             Details.Add(mappingCategory.ToEventDetailsResult(value, mapper));
-        }
-
-
-        public override bool Equals(object? obj)
-        {
-            return obj is EventResult result &&
-                   PalletEventName == result.PalletEventName &&
-                   EventName == result.EventName &&
-                   Details.SequenceEqual(result.Details);
         }
     }
 
@@ -118,12 +104,5 @@ namespace Polkanalysis.Domain.Runtime
         public string Title { get; set; } = string.Empty;
         public dynamic? Value { get; set; }
         public List<EventDetailsResult> Details { get; set; } = new List<EventDetailsResult>();
-
-        public override bool Equals(object? obj)
-        {
-            return obj is EventDetailsResult result &&
-                   ComponentName == result.ComponentName &&
-                   EqualityComparer<dynamic>.Default.Equals(Value, result.Value);
-        }
     }
 }
