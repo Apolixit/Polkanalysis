@@ -9,14 +9,11 @@ using Polkanalysis.Api.Services;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.AspNetCore.RateLimiting;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
-using Polkanalysis.Configuration.Contracts;
 using System.Text.Json.Serialization;
 
 namespace Polkanalysis.Api
 {
-    public class Program
+    public static class Program
     {
         public async static Task Main(string[] args)
         {
@@ -144,9 +141,8 @@ namespace Polkanalysis.Api
                     var services = scope.ServiceProvider;
                     try
                     {
-                        Thread.Sleep(10_000);
+                        Thread.Sleep(5_000);
                         var dbContext = services.GetRequiredService<SubstrateDbContext>();
-                        //string sqlScript = dbContext.Database.GenerateCreateScript();
                         var created = dbContext.Database.EnsureCreated();
 
                         if(created)
@@ -182,7 +178,7 @@ namespace Polkanalysis.Api
             }
             finally
             {
-                Log.CloseAndFlush();
+                await Log.CloseAndFlushAsync();
             }
         }
     }

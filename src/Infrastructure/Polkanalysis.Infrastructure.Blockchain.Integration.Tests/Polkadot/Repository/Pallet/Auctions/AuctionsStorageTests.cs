@@ -35,6 +35,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             //var blockHashWithAuction = "0x5d257ad59f00bbaaefe7bbc2a170842d77e6ac3d68b140dc4999c2e053209926";
             //var res = await _substrateRepository.At(blockHashWithAuction).Storage.Auctions.ReservedAmountsAsync(CancellationToken.None);
             //Assert.That(res, Is.Not.Null);
+            Assert.Fail();
         }
 
         [Test]

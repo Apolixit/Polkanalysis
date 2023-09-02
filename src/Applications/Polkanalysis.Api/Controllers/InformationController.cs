@@ -10,11 +10,8 @@ namespace Polkanalysis.Api.Controllers
 {
     public class InformationController : MasterController
     {
-        private readonly ILogger<InformationController> _logger;
-
-        public InformationController(IMediator mediator, ILogger<InformationController> logger) : base(mediator)
+        public InformationController(IMediator mediator, ILogger<InformationController> logger) : base(mediator, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet()]

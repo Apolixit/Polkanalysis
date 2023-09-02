@@ -13,7 +13,7 @@ using Serilog;
 
 namespace Polkanalysis.WebApp
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

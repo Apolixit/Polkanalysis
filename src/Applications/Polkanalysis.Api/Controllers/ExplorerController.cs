@@ -16,11 +16,8 @@ namespace Polkanalysis.Api.Controllers
 {
     public class ExplorerController : MasterController
     {
-        private readonly ILogger<ExplorerController> _logger;
-
-        public ExplorerController(IMediator mediator, ILogger<ExplorerController> logger) : base(mediator)
+        public ExplorerController(IMediator mediator, ILogger<ExplorerController> logger) : base(mediator, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet("blockhash")]

@@ -12,11 +12,8 @@ namespace Polkanalysis.Api.Controllers
 {
     public class RuntimeController : MasterController
     {
-        private readonly ILogger<RuntimeController> _logger;
-
-        public RuntimeController(IMediator mediator, ILogger<RuntimeController> logger) : base(mediator)
+        public RuntimeController(IMediator mediator, ILogger<RuntimeController> logger) : base(mediator, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet("modules")]
@@ -72,9 +69,10 @@ namespace Polkanalysis.Api.Controllers
             {
                 SpecVersionNumber = versionNumber
             });
-            if (res == null) return Ok(null);
 
-            return res!.Value.FirstOrDefault();
+            if (res is null || res.Value is null) return Ok(null);
+
+            return res.Value.FirstOrDefault();
         }
     }
 }

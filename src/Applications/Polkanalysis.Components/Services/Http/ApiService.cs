@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System.Net;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Configuration.Contracts;
+using Ardalis.GuardClauses;
 
 namespace Polkanalysis.Components.Services.Http
 {
@@ -47,7 +48,7 @@ namespace Polkanalysis.Components.Services.Http
             }
             else
             {
-                return new HttpResponseWrapper<T>(default, false, responseHTTP);
+                return new HttpResponseWrapper<T>(default!, false, responseHTTP);
             }
         }
 
@@ -56,15 +57,7 @@ namespace Polkanalysis.Components.Services.Http
             var dataJson = JsonSerializer.Serialize(data);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(getUrl(url), stringContent);
-            return new HttpResponseWrapper<object>(null, response.IsSuccessStatusCode, response);
-        }
-
-        public async Task<HttpResponseWrapper<object>> Put<T>(string url, T data)
-        {
-            var dataJson = JsonSerializer.Serialize(data);
-            var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PutAsync(getUrl(url), stringContent);
-            return new HttpResponseWrapper<object>(default, response.IsSuccessStatusCode, response);
+            return new HttpResponseWrapper<object>(null!, response.IsSuccessStatusCode, response);
         }
 
         public async Task<HttpResponseWrapper<TResponse>> Post<T, TResponse>(string url, T data)
@@ -83,10 +76,18 @@ namespace Polkanalysis.Components.Services.Http
             }
         }
 
+        public async Task<HttpResponseWrapper<object>> Put<T>(string url, T data)
+        {
+            var dataJson = JsonSerializer.Serialize(data);
+            var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PutAsync(getUrl(url), stringContent);
+            return new HttpResponseWrapper<object>(default!, response.IsSuccessStatusCode, response);
+        }
+
         public async Task<HttpResponseWrapper<object>> Delete(string url)
         {
             var responseHTTP = await _httpClient.DeleteAsync(getUrl(url));
-            return new HttpResponseWrapper<object>(null, responseHTTP.IsSuccessStatusCode, responseHTTP);
+            return new HttpResponseWrapper<object>(null!, responseHTTP.IsSuccessStatusCode, responseHTTP);
         }
 
         private async Task<T> Deserialize<T>(HttpResponseMessage httpResponse, JsonSerializerOptions options)
@@ -94,7 +95,10 @@ namespace Polkanalysis.Components.Services.Http
             var responseString = await httpResponse.Content.ReadAsStringAsync();
 
             _logger.LogInformation($"Json response : {responseString}");
-            return JsonSerializer.Deserialize<T>(responseString, options);
+            var res = JsonSerializer.Deserialize<T>(responseString, options);
+            Guard.Against.Null(res);
+
+            return res;
         }
     }
 }

@@ -17,15 +17,12 @@ namespace Polkanalysis.Api.Controllers
 {
     public class StakingController : MasterController
     {
-        private readonly ILogger<StakingController> _logger;
-
         /* TODO : add era as parameter to allow query in the past
          * [HttpGet("{eraId}/validators/{address}/nominators")]
          * [HttpGet("{eraId}/validators")]
          */
-        public StakingController(IMediator mediator, ILogger<StakingController> logger) : base(mediator)
+        public StakingController(IMediator mediator, ILogger<StakingController> logger) : base(mediator, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet("era")]

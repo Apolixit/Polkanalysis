@@ -13,11 +13,8 @@ namespace Polkanalysis.Api.Controllers
     [EnableRateLimiting(ApiRateLimitOptions.FixedPolicy)]
     public class PriceController : MasterController
     {
-        private readonly ILogger<PriceController> _logger;
-
-        public PriceController(IMediator mediator, ILogger<PriceController> logger) : base(mediator)
+        public PriceController(IMediator mediator, ILogger<PriceController> logger) : base(mediator, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet]

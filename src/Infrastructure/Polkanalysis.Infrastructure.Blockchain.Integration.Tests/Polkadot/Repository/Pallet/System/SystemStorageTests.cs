@@ -90,6 +90,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             //var res = await _substrateRepository.Storage.System.EventTopicsAsync(CancellationToken.None);
 
             //Assert.That(res, Is.Not.Null);
+            Assert.Fail();
         }
 
         [Test]

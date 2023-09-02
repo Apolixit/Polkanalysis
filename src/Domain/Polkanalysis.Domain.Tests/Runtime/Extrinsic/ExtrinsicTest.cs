@@ -36,6 +36,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Extrinsic
         {
             //var extrinsic = new Extrinsic();
             //_substrateDecode.DecodeExtrinsic()
+            Assert.Fail();
         }
     }
 }

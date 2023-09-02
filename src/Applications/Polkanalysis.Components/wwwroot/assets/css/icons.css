@@ -20,7 +20,7 @@ File: app-style
 }
 .zmdi {
   display: inline-block;
-  font: normal normal normal 14px/1 'Material-Design-Iconic-Font';
+  font: normal normal normal 14px/1 'Material-Design-Iconic-Font', sans-serif;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -5194,7 +5194,7 @@ File: app-style
 }
 .fa {
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
+  font: normal normal normal 14px/1 FontAwesome, sans-serif;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -7532,7 +7532,7 @@ File: app-style
 }
 
 [class^="ti-"], [class*=" ti-"] {
-  font-family: 'themify';
+  font-family: 'themify', sans-serif;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -8808,7 +8808,7 @@ File: app-style
 .icon-social-dropbox,
 .icon-social-vkontakte,
 .icon-social-steam {
-  font-family: 'simple-line-icons';
+  font-family: 'simple-line-icons', sans-serif;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -9420,13 +9420,13 @@ File: app-style
   font-style: normal;
 }
 .wi {
-  display: inline-block;
-  font-family: 'weathericons';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    font-family: 'weathericons', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 .wi-fw {
   text-align: center;

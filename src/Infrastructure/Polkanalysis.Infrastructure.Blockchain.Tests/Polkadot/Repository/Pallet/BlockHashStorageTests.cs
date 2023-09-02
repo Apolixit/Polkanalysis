@@ -114,6 +114,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 Fields = new U64(100)
             };
 
+            Assert.Fail();
             //_substrateRepository.PolkadotClient.GetStorageAsync<RegistarInfo>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), Arg.Is(CancellationToken.None)).Returns(expectedResult);
 
             //var resWithoutBlockHash = await _substrateRepository.Storage.Identity.RegistrarsAsync(CancellationToken.None);

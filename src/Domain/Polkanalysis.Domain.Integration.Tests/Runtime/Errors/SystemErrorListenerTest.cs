@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 {
     public class SystemErrorListenerTest : PolkadotIntegrationTest
     {
-        private ISubstrateDecoding _substrateDecode;
+        private readonly ISubstrateDecoding _substrateDecode;
 
         public SystemErrorListenerTest()
         {
@@ -30,6 +30,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
             var result = EventResult.Create(nodeResult);
+
+            Assert.That(result.EventName, Is.EqualTo("ExtrinsicFailed"));
         }
 
         [Test]
@@ -38,6 +40,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
             var result = EventResult.Create(nodeResult);
+
+            Assert.That(result.EventName, Is.EqualTo("RuntimeEvent"));
         }
     }
 }

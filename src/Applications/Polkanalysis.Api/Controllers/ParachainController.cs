@@ -12,11 +12,8 @@ namespace Polkanalysis.Api.Controllers
 {
     public class ParachainController : MasterController
     {
-        private readonly ILogger<ParachainController> _logger;
-
-        public ParachainController(IMediator mediator, ILogger<ParachainController> logger) : base(mediator)
+        public ParachainController(IMediator mediator, ILogger<ParachainController> logger) : base(mediator, logger)
         {
-            _logger = logger;
         }
 
         [HttpGet]
