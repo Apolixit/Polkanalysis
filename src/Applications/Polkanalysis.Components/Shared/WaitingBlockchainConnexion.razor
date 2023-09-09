@@ -1,0 +1,15 @@
+﻿<div class="d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width: 50em">
+    <main class="m-auto px-3 text-center">
+        <h2>Welcome to Polkanalysis</h2>
+        <p class="lead">
+            Waiting for <strong>@BlockchainName</strong> blockchain connexion...
+        </p>
+        <p class="lead">
+            <Loader />
+        </p>
+    </main>
+</div>
+
+@code {
+    [Parameter] public string BlockchainName { get; set; } = string.Empty;
+}

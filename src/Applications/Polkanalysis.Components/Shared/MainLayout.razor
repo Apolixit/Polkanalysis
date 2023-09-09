@@ -1,5 +1,7 @@
 ﻿@using MediatR;
+@using Microsoft.Extensions.Configuration;
 @using Microsoft.Extensions.Logging;
+@using Polkanalysis.Configuration.Contracts;
 @using Polkanalysis.Domain.Contracts.Primary.Notification;
 @using Polkanalysis.Domain.Contracts.Secondary;
 
@@ -7,47 +9,45 @@
 @inject ISubstrateService _substrateService;
 @inject IMediator _mediator;
 @inject ILogger<MainLayout> logger;
+@inject IWebsiteConfiguration _websiteConfiguration;
 
-@if (isCurrentlyConnected)
+@if (_websiteConfiguration.Maintenance.IsActivated)
 {
-    <div id="wrapper">
-        <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-            <div class="brand-logo">
-                <a href="index.html">
-                    <img src="_content/Polkanalysis.Components/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-                    <h5 class="logo-text">Polkanalysis</h5>
-                </a>
-            </div>
-            <SideMenu></SideMenu>
-        </div>
-        <HeaderMenu></HeaderMenu>
-
-        <div class="clearfix"></div>
-
-        <div class="content-wrapper">
-            <div class="container-fluid">
-                @Body
-                <div class="overlay toggle-menu"></div>
-            </div>
-
-        </div>
-        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-        <Footer />
-    </div>
+    <Maintenance />
 }
 else
 {
-    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width: 50em">
-        <main class="m-auto px-3 text-center">
-            <h2>Welcome to Polkanalysis</h2>
-            <p class="lead">
-                Waiting for <strong>@_substrateService.BlockchainName</strong> blockchain connexion...
-            </p>
-            <p class="lead">
-                <Loader />
-            </p>
-        </main>
-    </div>
+    @if (isCurrentlyConnected)
+    {
+        <div id="wrapper">
+            <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+                <div class="brand-logo">
+                    <a href="index.html">
+                        <img src="_content/Polkanalysis.Components/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                        <h5 class="logo-text">Polkanalysis</h5>
+                    </a>
+                </div>
+                <SideMenu></SideMenu>
+            </div>
+            <HeaderMenu></HeaderMenu>
+
+            <div class="clearfix"></div>
+
+            <div class="content-wrapper">
+                <div class="container-fluid">
+                    @Body
+                    <div class="overlay toggle-menu"></div>
+                </div>
+
+            </div>
+            <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+            <Footer />
+        </div>
+    }
+    else
+    {
+        <WaitingBlockchainConnexion BlockchainName="@_substrateService.BlockchainName" />
+    }
 }
 
 @code {

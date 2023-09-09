@@ -15,6 +15,7 @@
     <PackageReference Include="Blazor-ApexCharts" Version="0.9.21-beta" />
     <PackageReference Include="MediatR.Courier" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

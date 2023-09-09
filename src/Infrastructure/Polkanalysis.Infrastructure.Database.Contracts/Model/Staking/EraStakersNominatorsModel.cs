@@ -1,6 +1,8 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
@@ -8,17 +10,12 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
 {
     public class EraStakersNominatorsModel
     {
-        public string NominatorAddress { get; set; }
+        public string NominatorAddress { get; set; } = string.Empty;
         public BigInteger ValueStake { get; set; }
+
         public EraStakersModel EraStakers { get; set; }
 
-        public EraStakersNominatorsModel(string nominatorAddress, BigInteger valueStake, EraStakersModel eraStakers)
-        {
-            NominatorAddress = nominatorAddress;
-            ValueStake = valueStake;
-            EraStakers = eraStakers;
-        }
-
+        public EraStakersNominatorsModel() { }
 
         [SetsRequiredMembers]
         public EraStakersNominatorsModel(IndividualExposure exposure, EraStakersModel eraStakers)

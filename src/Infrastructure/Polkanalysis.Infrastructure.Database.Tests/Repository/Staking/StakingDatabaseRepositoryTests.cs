@@ -19,11 +19,11 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
 {
-    internal class StakingDatabaseRepositoryTests
+    internal class StakingDatabaseRepositoryTests : DatabaseTests
     {
         private ISubstrateService _substrateService;
         private IStakingDatabaseRepository _stakingDatabaseRepository;
-        private SubstrateDbContext _substrateDbContext;
+        
 
         public const string MockAddress = "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS";
         public const string MockAddress2 = "13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY";
@@ -32,13 +32,11 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
         [SetUp]
         public void Setup()
         {
-            var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
-                .UseInMemoryDatabase("SubstrateTest")
-                .Options;
+            base.SetupBase();
 
             _substrateService = Substitute.For<ISubstrateService>();
+            _substrateService.BlockchainName.Returns("Polkadot");
 
-            _substrateDbContext = new SubstrateDbContext(contextOption);
             _stakingDatabaseRepository = new StakingDatabaseRepository(
                 _substrateDbContext,
                 Substitute.For<ILogger<StakingDatabaseRepository>>(),
@@ -120,14 +118,19 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
             Assert.That(lastEraStaker.OwnStake, Is.EqualTo(new BigInteger(ownStaker)));
 
             Assert.That(lastEraStaker.EraNominatorsVote.Count, Is.EqualTo(2));
-            Assert.That(lastEraStaker.EraNominatorsVote.First(), Is.EqualTo(new EraStakersNominatorsModel(nominator1, nominatorStake1, lastEraStaker)
+            Assert.That(lastEraStaker.EraNominatorsVote.First(), Is.EqualTo(new EraStakersNominatorsModel()
             {
                 EraStakers = lastEraStaker,
                 NominatorAddress = nominator1,
                 ValueStake = nominatorStake1
             }));
 
-            Assert.That(lastEraStaker.EraNominatorsVote.Last(), Is.EqualTo(new EraStakersNominatorsModel(nominator2, nominatorStake2, lastEraStaker)));
+            Assert.That(lastEraStaker.EraNominatorsVote.Last(), Is.EqualTo(new EraStakersNominatorsModel()
+            {
+                EraStakers = lastEraStaker,
+                NominatorAddress = nominator2,
+                ValueStake = nominatorStake2
+            }));
         }
 
         [Test]

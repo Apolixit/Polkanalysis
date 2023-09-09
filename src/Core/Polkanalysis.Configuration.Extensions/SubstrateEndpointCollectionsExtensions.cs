@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Polkanalysis.Components.Configuration;
 using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Configuration.Contracts.Information;
 using System;
@@ -25,6 +26,7 @@ namespace Polkanalysis.Configuration.Extensions
             services.AddScoped<IApiEndpoint, ApiEndpoint>();
             services.AddScoped<IMonitoringEndpoint, MonitoringEndpoint>();
             services.AddScoped<IBlockchainInformations, BlockchainInformations>();
+            services.AddScoped<IWebsiteConfiguration, WebsiteConfiguration>();
 
             return services;
         }
