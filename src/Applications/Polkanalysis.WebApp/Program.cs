@@ -48,8 +48,7 @@ namespace Polkanalysis.WebApp
 
             var app = builder.Build();
 
-            logger.Information("Waiting 20s to ensure database is created...");
-            Thread.Sleep(20_000);
+            
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -57,6 +56,9 @@ namespace Polkanalysis.WebApp
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            } else {
+                logger.Information("Waiting 20s to ensure database is created...");
+                Thread.Sleep(20_000);
             }
 
             app.UseHttpsRedirection();
