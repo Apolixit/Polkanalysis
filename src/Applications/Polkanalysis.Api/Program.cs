@@ -120,12 +120,9 @@ namespace Polkanalysis.Api
 
                 var app = builder.Build();
 
-                // Configure the HTTP request pipeline.
-                if (app.Environment.IsDevelopment())
-                {
-                    app.UseSwagger();
-                    app.UseSwaggerUI();
-                }
+                // For now Swagger is available even in production
+                app.UseSwagger();
+                app.UseSwaggerUI();
 
                 app.UseHttpsRedirection();
                 app.UseAuthorization();
@@ -141,7 +138,10 @@ namespace Polkanalysis.Api
                     var services = scope.ServiceProvider;
                     try
                     {
-                        Thread.Sleep(5_000);
+                        if (app.Environment.IsDevelopment()) {
+                            Thread.Sleep(5_000);
+                        }
+                        
                         var dbContext = services.GetRequiredService<SubstrateDbContext>();
                         var created = dbContext.Database.EnsureCreated();
 
