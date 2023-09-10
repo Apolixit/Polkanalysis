@@ -1,8 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Blazor WebApp
-
+name: Build and deploy ASP.Net Core API
 on:
   push:
     branches:
@@ -23,16 +22,16 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build .\src\Applications\Polkanalysis.WebApp\Polkanalysis.WebApp.csproj --configuration Release
+        run: dotnet build .\src\Applications\Polkanalysis.Api\Polkanalysis.Api.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish .\src\Applications\Polkanalysis.WebApp\Polkanalysis.WebApp.csproj -c Release -o ${{env.DOTNET_ROOT}}/webapp
+        run: dotnet publish .\src\Applications\Polkanalysis.Api\Polkanalysis.Api.csproj -c Release -o ${{env.DOTNET_ROOT}}/api
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/webapp
+          path: ${{env.DOTNET_ROOT}}/api
 
   deploy:
     runs-on: windows-latest
@@ -51,7 +50,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'polkanalysis'
+          app-name: 'api-polkanalysis'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_78B66747DF2344AD8339FA2BF830DA28 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7E403814919B4C34B02BC78D96B79EF5 }}
           package: .
