@@ -120,9 +120,13 @@ namespace Polkanalysis.Api
 
                 var app = builder.Build();
 
-                // For now Swagger is available even in production
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                // Swagger will be available even in production, but not for now (need first release)
+                if(app.Environment.IsDevelopment())
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUI();
+                }
+                
 
                 app.UseHttpsRedirection();
                 app.UseAuthorization();

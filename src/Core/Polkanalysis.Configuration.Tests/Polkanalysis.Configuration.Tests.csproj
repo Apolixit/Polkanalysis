@@ -17,6 +17,9 @@
     <None Remove="Configs\BlockchainInfo\appsettings_invalid_blockchaininfo_1.json" />
     <None Remove="Configs\BlockchainInfo\appsettings_valid_blockchaininfo.json" />
     <None Remove="Configs\Monitoring\appsettings_valid_monitoring.json" />
+    <None Remove="Configs\Website\appsettings_valid_website.json" />
+    <None Remove="Configs\Website\appsettings_valid_website_empty.json" />
+    <None Remove="Configs\Website\appsettings_valid_website_empty_hard.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +69,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Configs\Monitoring\appsettings_valid_monitoring.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Configs\Website\appsettings_valid_website_empty_hard.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Configs\Website\appsettings_valid_website_empty.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Configs\Website\appsettings_valid_website.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

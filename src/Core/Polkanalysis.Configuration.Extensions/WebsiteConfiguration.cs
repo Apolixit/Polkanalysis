@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Polkanalysis.Configuration.Contracts;
 
-namespace Polkanalysis.Components.Configuration
+namespace Polkanalysis.Configuration.Extensions
 {
     public class WebsiteConfiguration : IWebsiteConfiguration
     {
@@ -17,7 +17,7 @@ namespace Polkanalysis.Components.Configuration
             string? isMaintenanceActivated = null;
             string? hasMaintenanceEndtime = null;
 
-            if(websiteSection is not null && websiteSection.Any())
+            if (websiteSection.Any())
             {
                 isMaintenanceActivated = configuration["Website:Maintenance:IsActivated"];
                 hasMaintenanceEndtime = configuration["Website:Maintenance:EndTime"];
