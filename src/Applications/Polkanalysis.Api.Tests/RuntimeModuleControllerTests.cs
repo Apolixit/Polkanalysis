@@ -32,12 +32,12 @@ namespace Polkanalysis.Api.Tests
             _logger = Substitute.For<ILogger<RuntimeController>>();
         }
 
-        private Result<T, ErrorResult> GetValidResult<T>(T result)
+        private static Result<T, ErrorResult> GetValidResult<T>(T result)
         {
             return Helpers.Ok(result);
         }
 
-        private Result<T, ErrorResult> GetInvalidResult_EmptyParam<T>()
+        private static Result<T, ErrorResult> GetInvalidResult_EmptyParam<T>()
         {
             return Helpers.Error(new ErrorResult()
             {
@@ -63,7 +63,7 @@ namespace Polkanalysis.Api.Tests
                 .Returns(GetValidResult(Substitute.For<IEnumerable<ModuleDetailDto>>()));
 
             var res = await defaultUseCase().GetModulesAsync();
-            Assert.IsInstanceOf<OkObjectResult>(res.Result);
+            Assert.That(res.Result, Is.InstanceOf<OkObjectResult>());
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Polkanalysis.Api.Tests
                 .Returns(GetInvalidResult_EmptyParam<IEnumerable<ModuleDetailDto>>());
 
             var res = await defaultUseCase().GetModulesAsync();
-            Assert.IsInstanceOf<BadRequestObjectResult>(res.Result);
+            Assert.That(res.Result, Is.InstanceOf<BadRequestObjectResult>());
         }
 
 
@@ -85,7 +85,7 @@ namespace Polkanalysis.Api.Tests
 
             var res = await defaultUseCase().GetModuleAsync("system");
 
-            Assert.IsInstanceOf<OkObjectResult>(res.Result);
+            Assert.That(res.Result, Is.InstanceOf<OkObjectResult>());
         }
 
         [Test]
@@ -93,6 +93,7 @@ namespace Polkanalysis.Api.Tests
         {
             var res = await defaultUseCase().GetModuleAsync(string.Empty);
             Assert.IsInstanceOf<BadRequestObjectResult>(res.Result);
+            Assert.That(res.Result, Is.InstanceOf<BadRequestObjectResult>());
         }
 
         [Test]
@@ -103,7 +104,7 @@ namespace Polkanalysis.Api.Tests
 
             var res = await defaultUseCase().GetModuleAsync("system");
 
-            Assert.IsInstanceOf<BadRequestObjectResult>(res.Result);
+            Assert.That(res.Result, Is.InstanceOf<BadRequestObjectResult>());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Ardalis.GuardClauses;
+using Microsoft.Extensions.Configuration;
 using Polkanalysis.Configuration.Contracts.Information;
 using System;
 using System.Collections.Generic;
@@ -35,11 +36,14 @@ namespace Polkanalysis.Configuration.Extensions
                 var blockchainProjects = new List<BlockchainProject>();
                 foreach (var blockchainDetail in blockchainsDetail)
                 {
-                    var name = !string.IsNullOrEmpty(blockchainDetail["name"]) ? blockchainDetail["name"] : throw new ConfigurationErrorsException($"blockchain name have to be filled in appsettings (BlockchainInformation > Informations > name)");
+                    if(string.IsNullOrEmpty(blockchainDetail["name"]))
+                    {
+                        throw new ConfigurationErrorsException("Blockchain name have to be filled in appsettings (BlockchainInformation > Informations > name)");
+                    };
 
                     blockchainProjects.Add(new BlockchainProject()
                     {
-                        Name = name,
+                        Name = blockchainDetail["name"]!.ToString(),
                         ParachainId = !string.IsNullOrEmpty(blockchainDetail["parachainId"]) ? int.Parse(blockchainDetail["parachainId"]!) : null,
                         LogoUrl = blockchainDetail["logoUrl"],
                         Telegram = blockchainDetail["telegram"],
@@ -53,11 +57,7 @@ namespace Polkanalysis.Configuration.Extensions
                     });
                 }
 
-                RelayChains.Add(new RelayChain()
-                {
-                    RelayChainName = relayChainName,
-                    BlockainInformations = blockchainProjects
-                });
+                RelayChains.Add(new RelayChain(relayChainName, blockchainProjects));
             }
         }
     }

@@ -18,10 +18,8 @@ namespace Polkanalysis.Configuration.Extensions
 
             var substrateSection = configuration.GetSection("SubstrateEndpoint").GetChildren().ToList();
 
-
-            var blockchainNameSection = substrateSection.FirstOrDefault(e => e.Key == "Name");
-            var substrateEndpointSection = substrateSection.FirstOrDefault(e => e.Key == "Endpoint");
-
+            var blockchainNameSection = substrateSection.Find(e => e.Key == "Name");
+            var substrateEndpointSection = substrateSection.Find(e => e.Key == "Endpoint");
 
             if (blockchainNameSection == null || blockchainNameSection.Value == null)
                 throw new ConfigurationErrorsException($"{nameof(blockchainNameSection)} is not set");

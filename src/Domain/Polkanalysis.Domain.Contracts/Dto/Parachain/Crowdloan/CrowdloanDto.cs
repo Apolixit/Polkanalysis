@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan
         /// <summary>
         /// Parachain linked
         /// </summary>
-        public ParachainDto Parachain { get; set; }
+        public ParachainDto? Parachain { get; set; }
 
         /// <summary>
         /// Crownloan creator

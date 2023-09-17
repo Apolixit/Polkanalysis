@@ -2,53 +2,96 @@
 @inject IWebsiteConfiguration _websiteConfiguration;
 
 
-<div class="home-animated-bg d-flex w-100 h-100 p-3 mx-auto flex-column">
+<div class="home-animated-bg d-flex p-3 flex-column">
     <main class="m-auto px-3 text-center">
         @*<img src="_content/Polkanalysis.Components/assets/images/logo-icon.png" class="logo-icon" style="width:150px" alt="logo icon">*@
-        <h2>Welcome to Polkanalysis</h2>
-        <p class="lead">
-            This application is currently under developpement.
-        </p>
-        <p class="lead">
-            Release in Q1 2024, stay tuned !
-        </p>
+        <div class="row mt-4">
+            <div class="col sum-up">
+                <h2>Welcome to Polkanalysis</h2>
+                <p class="lead">
+                    This application is currently under developpement.
+                </p>
+                <p class="lead">
+                    Release in Q1 2024, stay tuned !
+                </p>
+            </div>
+        </div>
 
         <div class="row mt-4">
-            <div class="col">
-                <div class="timeline-steps aos-init aos-animate" data-aos="fade-up">
-                    <div class="timeline-step">
-                        <div class="timeline-content timeline-achieved" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2003">
-                            <div class="inner-circle"></div>
-                            <p class="h6 mt-3 mb-1">Q4 2022</p>
-                            <p class="h6 mb-0 mb-lg-0">Project started</p>
+            <div class="col-md-10 offset-md-1">
+                <div class="main-timeline">
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="month">Q4</span>
+                                    <span class="year">2022</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h5 class="title">Project start !</h5>
+                            <p class="description">
+                                After discussing with the <a href="https://ajuna.io">Ajuna Network Team</a> at the
+                                <a href="https://www.polkadot.network/ecosystem/events/sub0">Sub0 2022 developer conference</a>,
+                                I've decided to initiate the development of a Substrate-based blockchain explorer based
+                                on the <a href="https://github.com/SubstrateGaming">Substrate Gaming Ecosystem</a>
+                            </p>
                         </div>
                     </div>
-                    <div class="timeline-step">
-                        <div class="timeline-content timeline-achieved" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2004">
-                            <div class="inner-circle"></div>
-                            <p class="h6 mt-3 mb-1">Q1 2023</p>
-                            <p class="h6 mb-0 mb-lg-0">Setup basic functionnalities</p>
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="month">Q1-Q2</span>
+                                    <span class="year">2023</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h5 class="title">Core functionnalities developpement</h5>
+                            <p class="description">
+                                At the heart of our project lies the development of core functionalities.
+                                These essential components form the foundation of our system, driving its capabilities and performance.
+                            </p>
                         </div>
                     </div>
-                    <div class="timeline-step">
-                        <div class="timeline-content timeline-achieved" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2005">
-                            <div class="inner-circle"></div>
-                            <p class="h6 mt-3 mb-1">Q2 2023</p>
-                            <p class="h6 mb-0 mb-lg-0">Start website & Polkadot blockchain analysis</p>
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="month">Q3</span>
+                                    <span class="year">2023</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <h5 class="title">Web application and API developpement</h5>
+                            <p class="description">
+                                The development of our website and API is currently in progress.
+                                Our dedicated team is hard at work to bring you a user-friendly website and a robust API
+                            </p>
                         </div>
                     </div>
-                    <div class="timeline-step">
-                        <div class="timeline-content timeline-next-step" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2010">
-                            <div class="inner-circle"></div>
-                            <p class="h6 mt-3 mb-1">Q4 2023</p>
-                            <p class="h6 mb-0 mb-lg-0">Start API developpement</p>
+                    <div class="timeline">
+                        <div class="icon"></div>
+                        <div class="date-content">
+                            <div class="date-outer">
+                                <span class="date">
+                                    <span class="month">Q1</span>
+                                    <span class="year">2024</span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="timeline-step mb-0">
-                        <div class="timeline-content" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2020">
-                            <div class="inner-circle"></div>
-                            <p class="h6 mt-3 mb-1">Q1 2024</p>
-                            <p class="h6 mb-0 mb-lg-0">Application release and open to public</p>
+                        <div class="timeline-content">
+                            <h5 class="title">Application release</h5>
+                            <p class="description">
+                                We are thrilled to announce that our application is set to be released in the first quarter of 2024.
+                                This marks a significant milestone in our journey, and we can't wait to share our innovative solution with you
+                            </p>
                         </div>
                     </div>
                 </div>

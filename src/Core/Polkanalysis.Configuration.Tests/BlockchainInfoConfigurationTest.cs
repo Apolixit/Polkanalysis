@@ -16,17 +16,21 @@ namespace Polkanalysis.Configuration.Tests
 
             var blockchainConfig = new BlockchainInformations(config);
 
-            Assert.That(blockchainConfig, Is.Not.Null);
-            Assert.That(blockchainConfig.RelayChains, Is.Not.Null);
-            Assert.That(blockchainConfig.RelayChains.Count, Is.EqualTo(2));
-            Assert.That(blockchainConfig.RelayChains[0].RelayChainName, Is.EqualTo("Polkadot"));
-            Assert.That(blockchainConfig.RelayChains[0].BlockainInformations, Is.Not.Null);
-            Assert.That(blockchainConfig.RelayChains[0].BlockainInformations.Skip(1).Take(1).First().Name, Is.EqualTo("Astar"));
+            Assert.Multiple(() =>
+            {
+                Assert.That(blockchainConfig, Is.Not.Null);
+                Assert.That(blockchainConfig.RelayChains, Is.Not.Null);
+                Assert.That(blockchainConfig.RelayChains, Has.Count.EqualTo(2));
+                Assert.That(blockchainConfig.RelayChains[0].RelayChainName, Is.EqualTo("Polkadot"));
+                Assert.That(blockchainConfig.RelayChains[0].BlockainInformations, Is.Not.Null);
+                Assert.That(blockchainConfig.RelayChains[0].BlockainInformations.Skip(1).Take(1).First().Name, Is.EqualTo("Astar"));
+            });
 
-
-            Assert.That(blockchainConfig.RelayChains[1].RelayChainName, Is.EqualTo("Kusama"));
-            Assert.That(blockchainConfig.RelayChains[1].BlockainInformations, Is.Not.Null);
-            Assert.That(blockchainConfig.RelayChains[1].BlockainInformations.Skip(2).Take(1).First().Name, Is.EqualTo("Bajun"));
+            Assert.Multiple(() => {
+                Assert.That(blockchainConfig.RelayChains[1].RelayChainName, Is.EqualTo("Kusama"));
+                Assert.That(blockchainConfig.RelayChains[1].BlockainInformations, Is.Not.Null);
+                Assert.That(blockchainConfig.RelayChains[1].BlockainInformations.Skip(2).Take(1).First().Name, Is.EqualTo("Bajun"));
+            });
         }
 
         [Test]
