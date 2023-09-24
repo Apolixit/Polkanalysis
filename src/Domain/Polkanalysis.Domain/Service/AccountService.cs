@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using Polkanalysis.Domain.Contracts.Service;
+using System.Threading;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -30,7 +31,7 @@ namespace Polkanalysis.Domain.Service
             _substrateNodeRepository.Storage.System
         };
 
-        private void CheckAddress(string address)
+        private void EnsureAddressIsValid(string address)
         {
             if (address == null || string.IsNullOrEmpty(address))
                 throw new ArgumentNullException($"{nameof(address)}");
@@ -70,8 +71,7 @@ namespace Polkanalysis.Domain.Service
 
         public Task<AccountDto> GetAccountDetailAsync(string accountAddress, CancellationToken cancellationToken)
         {
-            if (accountAddress == null) throw new ArgumentNullException($"{nameof(accountAddress)}");
-
+            EnsureAddressIsValid(accountAddress);
             return GetAccountDetailInternalAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
 
@@ -127,6 +127,7 @@ namespace Polkanalysis.Domain.Service
 
                 var additionnal = identity.Info.Additional?.Value?.Select(x => ((Contracts.Secondary.Pallet.Identity.Enums.EnumData)x.Value[1])?.ToHuman());
                 if (additionnal != null)
+                    await GetAccountIdentityAsync(account, token);
                 {
                     userInformation.Other = string.Join(", ", additionnal);
                 }
@@ -156,9 +157,8 @@ namespace Polkanalysis.Domain.Service
         public Task<UserAddressDto> GetAccountIdentityAsync
             (string accountAddress, CancellationToken cancellationToken)
         {
-            if (accountAddress == null) throw new ArgumentNullException($"{nameof(accountAddress)}");
-
-            return GetAccountIdentityInternalAsync(accountAddress, cancellationToken);
+            EnsureAddressIsValid(accountAddress);
+            return GetAccountIdentityAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
 
         public async Task<UserAddressDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken)
@@ -189,7 +189,7 @@ namespace Polkanalysis.Domain.Service
 
         public Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken)
         {
-            CheckAddress(accountAddress);
+            EnsureAddressIsValid(accountAddress);
             return GetAccountTypeAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
 
@@ -218,11 +218,6 @@ namespace Polkanalysis.Domain.Service
 
             // Import technical comitee storage ?
             return accountTypes;
-        }
-
-        private async Task<UserAddressDto> GetAccountIdentityInternalAsync(string accountAddress, CancellationToken cancellationToken)
-        {
-            return await GetAccountIdentityAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
     }
 }

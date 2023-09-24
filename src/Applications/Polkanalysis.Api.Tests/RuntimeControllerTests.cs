@@ -6,47 +6,24 @@ using NSubstitute;
 using OperationResult;
 using Polkanalysis.Api.Controllers;
 using Polkanalysis.Domain.Contracts.Dto.Module;
-using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Polkanalysis.Domain.Contracts.Primary.Result.ErrorResult;
 
 namespace Polkanalysis.Api.Tests
 {
-    [ExcludeFromCodeCoverage]
-    public class RuntimeModuleControllerTests
+    public class RuntimeControllerTests : MasterTests<RuntimeController>
     {
-        private IMediator _mediator;
         private ILogger<RuntimeController> _logger;
 
         [SetUp]
         public void Setup()
         {
-            _mediator = Substitute.For<IMediator>();
             _logger = Substitute.For<ILogger<RuntimeController>>();
         }
 
-        private static Result<T, ErrorResult> GetValidResult<T>(T result)
-        {
-            return Helpers.Ok(result);
-        }
-
-        private static Result<T, ErrorResult> GetInvalidResult_EmptyParam<T>()
-        {
-            return Helpers.Error(new ErrorResult()
-            {
-                Status = ErrorType.EmptyParam,
-                Description = string.Empty
-            });
-        }
-
-        private RuntimeController defaultUseCase()
+        protected override RuntimeController defaultUseCase()
         {
             var controller = new RuntimeController(_mediator, _logger);
             controller.ControllerContext = new ControllerContext() {

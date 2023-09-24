@@ -18,13 +18,13 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Common
         public int? NbSkip { get; internal set; } = null;
         public int Pagination { get; internal set; } = DefaultPagination;
 
-        public Func<string, string, CancellationToken, int?, int?, Task<List<(TKey, TStorage)>>> StorageFunctionAsync;
-        public Func<string, string, string, CancellationToken, int?, int?, int?, Task<List<(TKey, TStorage)>>> StorageFunctionAsyncFull;
+        public Func<string, string, CancellationToken, int?, int?, Task<List<(TKey, TStorage)>>> StorageFunctionAsync { get; set; }
+        public Func<string, string, string, CancellationToken, int?, int?, int?, Task<List<(TKey, TStorage)>>> StorageFunctionAsyncFull { get; set; }
         public string ModuleName { get; init; }
         public string ItemName { get; init; }
 
         public string StorageParam { get; init; }
-        public int KeyParamSize { get; init; } // Todo : need to talk with Cedric
+        public int KeyParamSize { get; init; }
 
         public QueryStorage(Func<string, string, string, CancellationToken, int?, int?, int?, Task<List<(TKey, TStorage)>>> storageFunctionAsync, string module, string item, string storageParam, int keyParamSize)
         {

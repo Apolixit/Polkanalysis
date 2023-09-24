@@ -36,10 +36,5 @@ namespace Polkanalysis.Api.Controllers
 
             return Ok(result.Value);
         }
-
-        public override Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
-        {
-            return base.OnActionExecutionAsync(context, next);
-        }
     }
 }

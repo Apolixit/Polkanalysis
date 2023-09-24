@@ -7,7 +7,7 @@ using Polkanalysis.Domain.Integration.Tests.Polkadot;
 namespace Polkanalysis.Domain.Integration.Tests.Repository
 {
     [Timeout(RepositoryMaxTimeout)]
-    public class AccountRepositoryTest : PolkadotIntegrationTest
+    public class AccountServiceTest : PolkadotIntegrationTest
     {
         private IAccountService _accountRepository;
 
