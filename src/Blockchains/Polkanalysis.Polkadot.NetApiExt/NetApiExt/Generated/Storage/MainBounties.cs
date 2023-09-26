@@ -6,303 +6,1538 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class BountiesStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public BountiesStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "Bounties"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyDescriptions"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Bounties", "BountyApprovals"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage _bountiesStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage _bountiesStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage _bountiesStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage _bountiesStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage _bountiesStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage _bountiesStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage _bountiesStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage _bountiesStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage _bountiesStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage _bountiesStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage _bountiesStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage _bountiesStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage _bountiesStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage _bountiesStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage _bountiesStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage _bountiesStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage _bountiesStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage _bountiesStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage _bountiesStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage _bountiesStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage _bountiesStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage _bountiesStorageV9430;
         /// <summary>
         /// >> BountyCountParams
         ///  Number of bounty proposals that have been made.
         /// </summary>
-        public static string BountyCountParams()
+        public static string BountyCountParams(uint version)
         {
-            return RequestGenerator.GetStorage("Bounties", "BountyCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountyCountParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountyCountParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountyCountParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountyCountParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountyCountParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountyCountParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountyCountParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountyCountParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountyCountParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountyCountParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountyCountParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountyCountParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountyCountParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountyCountParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountyCountParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountyCountParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountyCountParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountyCountParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountyCountParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountyCountParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountyCountParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountyCountParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyCountDefault
         /// Default value as hex string
         /// </summary>
-        public static string BountyCountDefault()
+        public static string BountyCountDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountyCountDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountyCountDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountyCountDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountyCountDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountyCountDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountyCountDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountyCountDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountyCountDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountyCountDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountyCountDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountyCountDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountyCountDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountyCountDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountyCountDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountyCountDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountyCountDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountyCountDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountyCountDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountyCountDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountyCountDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountyCountDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountyCountDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyCount
         ///  Number of bounty proposals that have been made.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> BountyCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> BountyCountAsync(CancellationToken token)
         {
-            string parameters = BountiesStorage.BountyCountParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _bountiesStorageV9110.blockHash = blockHash;
+                param = await _bountiesStorageV9110.BountyCount(token);
+            }
+
+            if (version == 9122U)
+            {
+                _bountiesStorageV9122.blockHash = blockHash;
+                param = await _bountiesStorageV9122.BountyCount(token);
+            }
+
+            if (version == 9140U)
+            {
+                _bountiesStorageV9140.blockHash = blockHash;
+                param = await _bountiesStorageV9140.BountyCount(token);
+            }
+
+            if (version == 9151U)
+            {
+                _bountiesStorageV9151.blockHash = blockHash;
+                param = await _bountiesStorageV9151.BountyCount(token);
+            }
+
+            if (version == 9170U)
+            {
+                _bountiesStorageV9170.blockHash = blockHash;
+                param = await _bountiesStorageV9170.BountyCount(token);
+            }
+
+            if (version == 9180U)
+            {
+                _bountiesStorageV9180.blockHash = blockHash;
+                param = await _bountiesStorageV9180.BountyCount(token);
+            }
+
+            if (version == 9190U)
+            {
+                _bountiesStorageV9190.blockHash = blockHash;
+                param = await _bountiesStorageV9190.BountyCount(token);
+            }
+
+            if (version == 9200U)
+            {
+                _bountiesStorageV9200.blockHash = blockHash;
+                param = await _bountiesStorageV9200.BountyCount(token);
+            }
+
+            if (version == 9220U)
+            {
+                _bountiesStorageV9220.blockHash = blockHash;
+                param = await _bountiesStorageV9220.BountyCount(token);
+            }
+
+            if (version == 9230U)
+            {
+                _bountiesStorageV9230.blockHash = blockHash;
+                param = await _bountiesStorageV9230.BountyCount(token);
+            }
+
+            if (version == 9250U)
+            {
+                _bountiesStorageV9250.blockHash = blockHash;
+                param = await _bountiesStorageV9250.BountyCount(token);
+            }
+
+            if (version == 9260U)
+            {
+                _bountiesStorageV9260.blockHash = blockHash;
+                param = await _bountiesStorageV9260.BountyCount(token);
+            }
+
+            if (version == 9270U)
+            {
+                _bountiesStorageV9270.blockHash = blockHash;
+                param = await _bountiesStorageV9270.BountyCount(token);
+            }
+
+            if (version == 9280U)
+            {
+                _bountiesStorageV9280.blockHash = blockHash;
+                param = await _bountiesStorageV9280.BountyCount(token);
+            }
+
+            if (version == 9281U)
+            {
+                _bountiesStorageV9281.blockHash = blockHash;
+                param = await _bountiesStorageV9281.BountyCount(token);
+            }
+
+            if (version == 9291U)
+            {
+                _bountiesStorageV9291.blockHash = blockHash;
+                param = await _bountiesStorageV9291.BountyCount(token);
+            }
+
+            if (version == 9300U)
+            {
+                _bountiesStorageV9300.blockHash = blockHash;
+                param = await _bountiesStorageV9300.BountyCount(token);
+            }
+
+            if (version == 9340U)
+            {
+                _bountiesStorageV9340.blockHash = blockHash;
+                param = await _bountiesStorageV9340.BountyCount(token);
+            }
+
+            if (version == 9360U)
+            {
+                _bountiesStorageV9360.blockHash = blockHash;
+                param = await _bountiesStorageV9360.BountyCount(token);
+            }
+
+            if (version == 9370U)
+            {
+                _bountiesStorageV9370.blockHash = blockHash;
+                param = await _bountiesStorageV9370.BountyCount(token);
+            }
+
+            if (version == 9420U)
+            {
+                _bountiesStorageV9420.blockHash = blockHash;
+                param = await _bountiesStorageV9420.BountyCount(token);
+            }
+
+            if (version == 9430U)
+            {
+                _bountiesStorageV9430.blockHash = blockHash;
+                param = await _bountiesStorageV9430.BountyCount(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountiesParams
         ///  Bounties that have been made.
         /// </summary>
-        public static string BountiesParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string BountiesParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("Bounties", "Bounties", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountiesParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountiesDefault
         /// Default value as hex string
         /// </summary>
-        public static string BountiesDefault()
+        public static string BountiesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountiesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountiesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountiesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountiesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountiesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountiesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountiesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountiesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountiesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountiesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountiesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountiesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountiesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountiesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountiesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountiesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountiesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountiesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountiesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountiesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountiesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountiesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Bounties
         ///  Bounties that have been made.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty> Bounties(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_bounties.BountyBase> BountiesAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = BountiesStorage.BountiesParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.Bounty>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_bounties.BountyBase param = null;
+            if (version == 9110U)
+            {
+                _bountiesStorageV9110.blockHash = blockHash;
+                param = await _bountiesStorageV9110.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _bountiesStorageV9122.blockHash = blockHash;
+                param = await _bountiesStorageV9122.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _bountiesStorageV9140.blockHash = blockHash;
+                param = await _bountiesStorageV9140.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _bountiesStorageV9151.blockHash = blockHash;
+                param = await _bountiesStorageV9151.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _bountiesStorageV9170.blockHash = blockHash;
+                param = await _bountiesStorageV9170.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _bountiesStorageV9180.blockHash = blockHash;
+                param = await _bountiesStorageV9180.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _bountiesStorageV9190.blockHash = blockHash;
+                param = await _bountiesStorageV9190.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _bountiesStorageV9200.blockHash = blockHash;
+                param = await _bountiesStorageV9200.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _bountiesStorageV9220.blockHash = blockHash;
+                param = await _bountiesStorageV9220.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _bountiesStorageV9230.blockHash = blockHash;
+                param = await _bountiesStorageV9230.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _bountiesStorageV9250.blockHash = blockHash;
+                param = await _bountiesStorageV9250.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _bountiesStorageV9260.blockHash = blockHash;
+                param = await _bountiesStorageV9260.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _bountiesStorageV9270.blockHash = blockHash;
+                param = await _bountiesStorageV9270.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _bountiesStorageV9280.blockHash = blockHash;
+                param = await _bountiesStorageV9280.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _bountiesStorageV9281.blockHash = blockHash;
+                param = await _bountiesStorageV9281.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _bountiesStorageV9291.blockHash = blockHash;
+                param = await _bountiesStorageV9291.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _bountiesStorageV9300.blockHash = blockHash;
+                param = await _bountiesStorageV9300.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _bountiesStorageV9340.blockHash = blockHash;
+                param = await _bountiesStorageV9340.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _bountiesStorageV9360.blockHash = blockHash;
+                param = await _bountiesStorageV9360.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _bountiesStorageV9370.blockHash = blockHash;
+                param = await _bountiesStorageV9370.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _bountiesStorageV9420.blockHash = blockHash;
+                param = await _bountiesStorageV9420.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _bountiesStorageV9430.blockHash = blockHash;
+                param = await _bountiesStorageV9430.Bounties((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyDescriptionsParams
         ///  The description of each bounty.
         /// </summary>
-        public static string BountyDescriptionsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string BountyDescriptionsParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("Bounties", "BountyDescriptions", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountyDescriptionsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyDescriptionsDefault
         /// Default value as hex string
         /// </summary>
-        public static string BountyDescriptionsDefault()
+        public static string BountyDescriptionsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountyDescriptionsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountyDescriptionsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyDescriptions
         ///  The description of each bounty.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25> BountyDescriptions(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> BountyDescriptionsAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = BountiesStorage.BountyDescriptionsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT25>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _bountiesStorageV9110.blockHash = blockHash;
+                param = await _bountiesStorageV9110.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _bountiesStorageV9122.blockHash = blockHash;
+                param = await _bountiesStorageV9122.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _bountiesStorageV9140.blockHash = blockHash;
+                param = await _bountiesStorageV9140.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _bountiesStorageV9151.blockHash = blockHash;
+                param = await _bountiesStorageV9151.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _bountiesStorageV9170.blockHash = blockHash;
+                param = await _bountiesStorageV9170.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _bountiesStorageV9180.blockHash = blockHash;
+                param = await _bountiesStorageV9180.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _bountiesStorageV9190.blockHash = blockHash;
+                param = await _bountiesStorageV9190.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _bountiesStorageV9200.blockHash = blockHash;
+                param = await _bountiesStorageV9200.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _bountiesStorageV9220.blockHash = blockHash;
+                param = await _bountiesStorageV9220.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _bountiesStorageV9230.blockHash = blockHash;
+                param = await _bountiesStorageV9230.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _bountiesStorageV9250.blockHash = blockHash;
+                param = await _bountiesStorageV9250.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _bountiesStorageV9260.blockHash = blockHash;
+                param = await _bountiesStorageV9260.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _bountiesStorageV9270.blockHash = blockHash;
+                param = await _bountiesStorageV9270.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _bountiesStorageV9280.blockHash = blockHash;
+                param = await _bountiesStorageV9280.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _bountiesStorageV9281.blockHash = blockHash;
+                param = await _bountiesStorageV9281.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _bountiesStorageV9291.blockHash = blockHash;
+                param = await _bountiesStorageV9291.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _bountiesStorageV9300.blockHash = blockHash;
+                param = await _bountiesStorageV9300.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _bountiesStorageV9340.blockHash = blockHash;
+                param = await _bountiesStorageV9340.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _bountiesStorageV9360.blockHash = blockHash;
+                param = await _bountiesStorageV9360.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _bountiesStorageV9370.blockHash = blockHash;
+                param = await _bountiesStorageV9370.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _bountiesStorageV9420.blockHash = blockHash;
+                param = await _bountiesStorageV9420.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _bountiesStorageV9430.blockHash = blockHash;
+                param = await _bountiesStorageV9430.BountyDescriptions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyApprovalsParams
         ///  Bounty indices that have been approved but not yet funded.
         /// </summary>
-        public static string BountyApprovalsParams()
+        public static string BountyApprovalsParams(uint version)
         {
-            return RequestGenerator.GetStorage("Bounties", "BountyApprovals", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountyApprovalsParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountyApprovalsParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountyApprovalsParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountyApprovalsParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountyApprovalsParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountyApprovalsParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountyApprovalsParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountyApprovalsParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountyApprovalsParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountyApprovalsParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountyApprovalsParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountyApprovalsParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountyApprovalsParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountyApprovalsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountyApprovalsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountyApprovalsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountyApprovalsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountyApprovalsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountyApprovalsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountyApprovalsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountyApprovalsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountyApprovalsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyApprovalsDefault
         /// Default value as hex string
         /// </summary>
-        public static string BountyApprovalsDefault()
+        public static string BountyApprovalsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage.BountyApprovalsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage.BountyApprovalsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BountyApprovals
         ///  Bounty indices that have been approved but not yet funded.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17> BountyApprovals(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> BountyApprovalsAsync(CancellationToken token)
         {
-            string parameters = BountiesStorage.BountyApprovalsParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT17>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _bountiesStorageV9110.blockHash = blockHash;
+                param = await _bountiesStorageV9110.BountyApprovals(token);
+            }
+
+            if (version == 9122U)
+            {
+                _bountiesStorageV9122.blockHash = blockHash;
+                param = await _bountiesStorageV9122.BountyApprovals(token);
+            }
+
+            if (version == 9140U)
+            {
+                _bountiesStorageV9140.blockHash = blockHash;
+                param = await _bountiesStorageV9140.BountyApprovals(token);
+            }
+
+            if (version == 9151U)
+            {
+                _bountiesStorageV9151.blockHash = blockHash;
+                param = await _bountiesStorageV9151.BountyApprovals(token);
+            }
+
+            if (version == 9170U)
+            {
+                _bountiesStorageV9170.blockHash = blockHash;
+                param = await _bountiesStorageV9170.BountyApprovals(token);
+            }
+
+            if (version == 9180U)
+            {
+                _bountiesStorageV9180.blockHash = blockHash;
+                param = await _bountiesStorageV9180.BountyApprovals(token);
+            }
+
+            if (version == 9190U)
+            {
+                _bountiesStorageV9190.blockHash = blockHash;
+                param = await _bountiesStorageV9190.BountyApprovals(token);
+            }
+
+            if (version == 9200U)
+            {
+                _bountiesStorageV9200.blockHash = blockHash;
+                param = await _bountiesStorageV9200.BountyApprovals(token);
+            }
+
+            if (version == 9220U)
+            {
+                _bountiesStorageV9220.blockHash = blockHash;
+                param = await _bountiesStorageV9220.BountyApprovals(token);
+            }
+
+            if (version == 9230U)
+            {
+                _bountiesStorageV9230.blockHash = blockHash;
+                param = await _bountiesStorageV9230.BountyApprovals(token);
+            }
+
+            if (version == 9250U)
+            {
+                _bountiesStorageV9250.blockHash = blockHash;
+                param = await _bountiesStorageV9250.BountyApprovals(token);
+            }
+
+            if (version == 9260U)
+            {
+                _bountiesStorageV9260.blockHash = blockHash;
+                param = await _bountiesStorageV9260.BountyApprovals(token);
+            }
+
+            if (version == 9270U)
+            {
+                _bountiesStorageV9270.blockHash = blockHash;
+                param = await _bountiesStorageV9270.BountyApprovals(token);
+            }
+
+            if (version == 9280U)
+            {
+                _bountiesStorageV9280.blockHash = blockHash;
+                param = await _bountiesStorageV9280.BountyApprovals(token);
+            }
+
+            if (version == 9281U)
+            {
+                _bountiesStorageV9281.blockHash = blockHash;
+                param = await _bountiesStorageV9281.BountyApprovals(token);
+            }
+
+            if (version == 9291U)
+            {
+                _bountiesStorageV9291.blockHash = blockHash;
+                param = await _bountiesStorageV9291.BountyApprovals(token);
+            }
+
+            if (version == 9300U)
+            {
+                _bountiesStorageV9300.blockHash = blockHash;
+                param = await _bountiesStorageV9300.BountyApprovals(token);
+            }
+
+            if (version == 9340U)
+            {
+                _bountiesStorageV9340.blockHash = blockHash;
+                param = await _bountiesStorageV9340.BountyApprovals(token);
+            }
+
+            if (version == 9360U)
+            {
+                _bountiesStorageV9360.blockHash = blockHash;
+                param = await _bountiesStorageV9360.BountyApprovals(token);
+            }
+
+            if (version == 9370U)
+            {
+                _bountiesStorageV9370.blockHash = blockHash;
+                param = await _bountiesStorageV9370.BountyApprovals(token);
+            }
+
+            if (version == 9420U)
+            {
+                _bountiesStorageV9420.blockHash = blockHash;
+                param = await _bountiesStorageV9420.BountyApprovals(token);
+            }
+
+            if (version == 9430U)
+            {
+                _bountiesStorageV9430.blockHash = blockHash;
+                param = await _bountiesStorageV9430.BountyApprovals(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public BountiesStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _bountiesStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesStorage(_client);
+            _bountiesStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesStorage(_client);
+            _bountiesStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesStorage(_client);
+            _bountiesStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesStorage(_client);
+            _bountiesStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesStorage(_client);
+            _bountiesStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesStorage(_client);
+            _bountiesStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesStorage(_client);
+            _bountiesStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesStorage(_client);
+            _bountiesStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesStorage(_client);
+            _bountiesStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesStorage(_client);
+            _bountiesStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesStorage(_client);
+            _bountiesStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesStorage(_client);
+            _bountiesStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesStorage(_client);
+            _bountiesStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesStorage(_client);
+            _bountiesStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesStorage(_client);
+            _bountiesStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesStorage(_client);
+            _bountiesStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesStorage(_client);
+            _bountiesStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesStorage(_client);
+            _bountiesStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesStorage(_client);
+            _bountiesStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesStorage(_client);
+            _bountiesStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesStorage(_client);
+            _bountiesStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesStorage(_client);
         }
     }
-    
-    public sealed class BountiesCalls
-    {
-        
-        /// <summary>
-        /// >> propose_bounty
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ProposeBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> value, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> description)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(value.Encode());
-            byteArray.AddRange(description.Encode());
-            return new Method(34, "Bounties", 0, "propose_bounty", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> approve_bounty
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ApproveBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            return new Method(34, "Bounties", 1, "approve_bounty", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> propose_curator
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ProposeCurator(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress curator, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> fee)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            byteArray.AddRange(curator.Encode());
-            byteArray.AddRange(fee.Encode());
-            return new Method(34, "Bounties", 2, "propose_curator", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> unassign_curator
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method UnassignCurator(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            return new Method(34, "Bounties", 3, "unassign_curator", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> accept_curator
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method AcceptCurator(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            return new Method(34, "Bounties", 4, "accept_curator", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> award_bounty
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method AwardBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress beneficiary)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            byteArray.AddRange(beneficiary.Encode());
-            return new Method(34, "Bounties", 5, "award_bounty", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> claim_bounty
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ClaimBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            return new Method(34, "Bounties", 6, "claim_bounty", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> close_bounty
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CloseBounty(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            return new Method(34, "Bounties", 7, "close_bounty", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> extend_bounty_expiry
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ExtendBountyExpiry(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> bounty_id, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> remark)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(bounty_id.Encode());
-            byteArray.AddRange(remark.Encode());
-            return new Method(34, "Bounties", 8, "extend_bounty_expiry", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class BountiesConstants
     {
-        
         /// <summary>
         /// >> BountyDepositBase
         ///  The amount held on deposit for placing a bounty proposal.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 BountyDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 BountyDepositBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E40B54020000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesConstants().BountyDepositBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesConstants().BountyDepositBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesConstants().BountyDepositBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesConstants().BountyDepositBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesConstants().BountyDepositBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesConstants().BountyDepositBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().BountyDepositBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().BountyDepositBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().BountyDepositBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().BountyDepositBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().BountyDepositBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().BountyDepositBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().BountyDepositBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().BountyDepositBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().BountyDepositBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().BountyDepositBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().BountyDepositBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().BountyDepositBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().BountyDepositBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().BountyDepositBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().BountyDepositBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().BountyDepositBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> BountyDepositPayoutDelay
         ///  The delay period for which a bounty beneficiary need to wait before claim the payout.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 BountyDepositPayoutDelay()
+        public Substrate.NetApi.Model.Types.Primitive.U32 BountyDepositPayoutDelay(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x00C20100");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().BountyDepositPayoutDelay();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().BountyDepositPayoutDelay();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> BountyUpdatePeriod
         ///  Bounty duration in blocks.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 BountyUpdatePeriod()
+        public Substrate.NetApi.Model.Types.Primitive.U32 BountyUpdatePeriod(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x80C61300");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().BountyUpdatePeriod();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().BountyUpdatePeriod();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
+        /// <summary>
+        /// >> BountyCuratorDeposit
+        ///  Percentage of the curator fee that will be reserved upfront as deposit for bounty
+        ///  curator.
+        /// </summary>
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PermillBase BountyCuratorDeposit(uint version)
+        {
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PermillBase result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesConstants().BountyCuratorDeposit();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesConstants().BountyCuratorDeposit();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesConstants().BountyCuratorDeposit();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesConstants().BountyCuratorDeposit();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesConstants().BountyCuratorDeposit();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesConstants().BountyCuratorDeposit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> BountyValueMinimum
+        ///  Minimum value for a bounty.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U128 BountyValueMinimum(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesConstants().BountyValueMinimum();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesConstants().BountyValueMinimum();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesConstants().BountyValueMinimum();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesConstants().BountyValueMinimum();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesConstants().BountyValueMinimum();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesConstants().BountyValueMinimum();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().BountyValueMinimum();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().BountyValueMinimum();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().BountyValueMinimum();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().BountyValueMinimum();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().BountyValueMinimum();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().BountyValueMinimum();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().BountyValueMinimum();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().BountyValueMinimum();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().BountyValueMinimum();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().BountyValueMinimum();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().BountyValueMinimum();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().BountyValueMinimum();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().BountyValueMinimum();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().BountyValueMinimum();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().BountyValueMinimum();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().BountyValueMinimum();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> DataDepositPerByte
+        ///  The amount held on deposit per byte within the tip report reason or bounty description.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U128 DataDepositPerByte(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesConstants().DataDepositPerByte();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesConstants().DataDepositPerByte();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesConstants().DataDepositPerByte();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesConstants().DataDepositPerByte();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesConstants().DataDepositPerByte();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesConstants().DataDepositPerByte();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().DataDepositPerByte();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().DataDepositPerByte();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().DataDepositPerByte();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().DataDepositPerByte();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().DataDepositPerByte();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().DataDepositPerByte();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().DataDepositPerByte();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().DataDepositPerByte();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().DataDepositPerByte();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().DataDepositPerByte();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().DataDepositPerByte();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().DataDepositPerByte();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().DataDepositPerByte();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().DataDepositPerByte();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().DataDepositPerByte();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().DataDepositPerByte();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> MaximumReasonLength
+        ///  Maximum acceptable reason length.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaximumReasonLength(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BountiesConstants().MaximumReasonLength();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BountiesConstants().MaximumReasonLength();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BountiesConstants().MaximumReasonLength();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BountiesConstants().MaximumReasonLength();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BountiesConstants().MaximumReasonLength();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BountiesConstants().MaximumReasonLength();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().MaximumReasonLength();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().MaximumReasonLength();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().MaximumReasonLength();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().MaximumReasonLength();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().MaximumReasonLength();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().MaximumReasonLength();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().MaximumReasonLength();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().MaximumReasonLength();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().MaximumReasonLength();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().MaximumReasonLength();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().MaximumReasonLength();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().MaximumReasonLength();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().MaximumReasonLength();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().MaximumReasonLength();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().MaximumReasonLength();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().MaximumReasonLength();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
         /// <summary>
         /// >> CuratorDepositMultiplier
         ///  The curator deposit is calculated as a percentage of the curator fee.
@@ -310,139 +1545,192 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This deposit has optional upper and lower bounds with `CuratorDepositMax` and
         ///  `CuratorDepositMin`.
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill CuratorDepositMultiplier()
+        public IType CuratorDepositMultiplier(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Permill();
-            result.Create("0x20A10700");
+            IType result = null;
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().CuratorDepositMultiplier();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().CuratorDepositMultiplier();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> CuratorDepositMax
         ///  Maximum amount of funds that should be placed in a deposit for making a proposal.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128> CuratorDepositMax()
+        public Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue CuratorDepositMax(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128>();
-            result.Create("0x0100204AA9D10100000000000000000000");
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue result = null;
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().CuratorDepositMax();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().CuratorDepositMax();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().CuratorDepositMax();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().CuratorDepositMax();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().CuratorDepositMax();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().CuratorDepositMax();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().CuratorDepositMax();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().CuratorDepositMax();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().CuratorDepositMax();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().CuratorDepositMax();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().CuratorDepositMax();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().CuratorDepositMax();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().CuratorDepositMax();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().CuratorDepositMax();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().CuratorDepositMax();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().CuratorDepositMax();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> CuratorDepositMin
         ///  Minimum amount of funds that should be placed in a deposit for making a proposal.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128> CuratorDepositMin()
+        public Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue CuratorDepositMin(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U128>();
-            result.Create("0x0100E87648170000000000000000000000");
-            return result;
-        }
-        
-        /// <summary>
-        /// >> BountyValueMinimum
-        ///  Minimum value for a bounty.
-        /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 BountyValueMinimum()
-        {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E87648170000000000000000000000");
-            return result;
-        }
-        
-        /// <summary>
-        /// >> DataDepositPerByte
-        ///  The amount held on deposit per byte within the tip report reason or bounty description.
-        /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
-        {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E1F505000000000000000000000000");
-            return result;
-        }
-        
-        /// <summary>
-        /// >> MaximumReasonLength
-        ///  Maximum acceptable reason length.
-        /// 
-        ///  Benchmarks depend on this value, be sure to update weights file when changing this value
-        /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaximumReasonLength()
-        {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x00400000");
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue result = null;
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BountiesConstants().CuratorDepositMin();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BountiesConstants().CuratorDepositMin();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BountiesConstants().CuratorDepositMin();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BountiesConstants().CuratorDepositMin();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BountiesConstants().CuratorDepositMin();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BountiesConstants().CuratorDepositMin();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BountiesConstants().CuratorDepositMin();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BountiesConstants().CuratorDepositMin();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BountiesConstants().CuratorDepositMin();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BountiesConstants().CuratorDepositMin();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BountiesConstants().CuratorDepositMin();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BountiesConstants().CuratorDepositMin();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BountiesConstants().CuratorDepositMin();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BountiesConstants().CuratorDepositMin();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BountiesConstants().CuratorDepositMin();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BountiesConstants().CuratorDepositMin();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum BountiesErrors
     {
-        
         /// <summary>
         /// >> InsufficientProposersBalance
         /// Proposer's balance is too low.
         /// </summary>
         InsufficientProposersBalance,
-        
         /// <summary>
         /// >> InvalidIndex
         /// No proposal or bounty at that index.
         /// </summary>
         InvalidIndex,
-        
         /// <summary>
         /// >> ReasonTooBig
         /// The reason given is just too big.
         /// </summary>
         ReasonTooBig,
-        
         /// <summary>
         /// >> UnexpectedStatus
         /// The bounty status is unexpected.
         /// </summary>
         UnexpectedStatus,
-        
         /// <summary>
         /// >> RequireCurator
         /// Require bounty curator.
         /// </summary>
         RequireCurator,
-        
         /// <summary>
         /// >> InvalidValue
         /// Invalid bounty value.
         /// </summary>
         InvalidValue,
-        
         /// <summary>
         /// >> InvalidFee
         /// Invalid bounty fee.
         /// </summary>
         InvalidFee,
-        
         /// <summary>
         /// >> PendingPayout
         /// A bounty payout is pending.
         /// To cancel the bounty, you must unassign and slash the curator.
         /// </summary>
         PendingPayout,
-        
         /// <summary>
         /// >> Premature
         /// The bounties cannot be claimed/closed because it's still in the countdown period.
         /// </summary>
         Premature,
-        
         /// <summary>
         /// >> HasActiveChildBounty
-        /// The bounty cannot be closed because it has active child bounties.
+        /// The bounty cannot be closed because it has active child-bounties.
         /// </summary>
         HasActiveChildBounty,
-        
         /// <summary>
         /// >> TooManyQueued
         /// Too many approvals are already queued.
         /// </summary>
-        TooManyQueued,
+        TooManyQueued
     }
 }

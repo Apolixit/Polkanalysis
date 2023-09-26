@@ -6,166 +6,613 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class VoterListStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public VoterListStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("VoterList", "ListNodes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("VoterList", "CounterForListNodes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("VoterList", "ListBags"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U64), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage _voterListStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage _voterListStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage _voterListStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage _voterListStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage _voterListStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage _voterListStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage _voterListStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage _voterListStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage _voterListStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage _voterListStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage _voterListStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage _voterListStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage _voterListStorageV9430;
         /// <summary>
         /// >> ListNodesParams
         ///  A single node, within some bag.
         /// 
         ///  Nodes store links forward and back within their respective bags.
         /// </summary>
-        public static string ListNodesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string ListNodesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("VoterList", "ListNodes", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage.ListNodesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ListNodesDefault
         /// Default value as hex string
         /// </summary>
-        public static string ListNodesDefault()
+        public static string ListNodesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage.ListNodesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage.ListNodesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage.ListNodesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage.ListNodesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage.ListNodesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage.ListNodesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage.ListNodesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage.ListNodesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage.ListNodesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage.ListNodesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage.ListNodesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage.ListNodesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage.ListNodesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ListNodes
         ///  A single node, within some bag.
         /// 
         ///  Nodes store links forward and back within their respective bags.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node> ListNodes(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_bags_list.list.NodeBase> ListNodesAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = VoterListStorage.ListNodesParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Node>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_bags_list.list.NodeBase param = null;
+            if (version == 9230U)
+            {
+                _voterListStorageV9230.blockHash = blockHash;
+                param = await _voterListStorageV9230.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _voterListStorageV9250.blockHash = blockHash;
+                param = await _voterListStorageV9250.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _voterListStorageV9260.blockHash = blockHash;
+                param = await _voterListStorageV9260.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _voterListStorageV9270.blockHash = blockHash;
+                param = await _voterListStorageV9270.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _voterListStorageV9280.blockHash = blockHash;
+                param = await _voterListStorageV9280.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _voterListStorageV9281.blockHash = blockHash;
+                param = await _voterListStorageV9281.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _voterListStorageV9291.blockHash = blockHash;
+                param = await _voterListStorageV9291.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _voterListStorageV9300.blockHash = blockHash;
+                param = await _voterListStorageV9300.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _voterListStorageV9340.blockHash = blockHash;
+                param = await _voterListStorageV9340.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _voterListStorageV9360.blockHash = blockHash;
+                param = await _voterListStorageV9360.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _voterListStorageV9370.blockHash = blockHash;
+                param = await _voterListStorageV9370.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _voterListStorageV9420.blockHash = blockHash;
+                param = await _voterListStorageV9420.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _voterListStorageV9430.blockHash = blockHash;
+                param = await _voterListStorageV9430.ListNodes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForListNodesParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForListNodesParams()
+        public static string CounterForListNodesParams(uint version)
         {
-            return RequestGenerator.GetStorage("VoterList", "CounterForListNodes", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage.CounterForListNodesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage.CounterForListNodesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage.CounterForListNodesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage.CounterForListNodesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage.CounterForListNodesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage.CounterForListNodesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage.CounterForListNodesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage.CounterForListNodesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage.CounterForListNodesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage.CounterForListNodesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage.CounterForListNodesParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage.CounterForListNodesParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage.CounterForListNodesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForListNodesDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForListNodesDefault()
+        public static string CounterForListNodesDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage.CounterForListNodesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage.CounterForListNodesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForListNodes
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForListNodes(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForListNodesAsync(CancellationToken token)
         {
-            string parameters = VoterListStorage.CounterForListNodesParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9230U)
+            {
+                _voterListStorageV9230.blockHash = blockHash;
+                param = await _voterListStorageV9230.CounterForListNodes(token);
+            }
+
+            if (version == 9250U)
+            {
+                _voterListStorageV9250.blockHash = blockHash;
+                param = await _voterListStorageV9250.CounterForListNodes(token);
+            }
+
+            if (version == 9260U)
+            {
+                _voterListStorageV9260.blockHash = blockHash;
+                param = await _voterListStorageV9260.CounterForListNodes(token);
+            }
+
+            if (version == 9270U)
+            {
+                _voterListStorageV9270.blockHash = blockHash;
+                param = await _voterListStorageV9270.CounterForListNodes(token);
+            }
+
+            if (version == 9280U)
+            {
+                _voterListStorageV9280.blockHash = blockHash;
+                param = await _voterListStorageV9280.CounterForListNodes(token);
+            }
+
+            if (version == 9281U)
+            {
+                _voterListStorageV9281.blockHash = blockHash;
+                param = await _voterListStorageV9281.CounterForListNodes(token);
+            }
+
+            if (version == 9291U)
+            {
+                _voterListStorageV9291.blockHash = blockHash;
+                param = await _voterListStorageV9291.CounterForListNodes(token);
+            }
+
+            if (version == 9300U)
+            {
+                _voterListStorageV9300.blockHash = blockHash;
+                param = await _voterListStorageV9300.CounterForListNodes(token);
+            }
+
+            if (version == 9340U)
+            {
+                _voterListStorageV9340.blockHash = blockHash;
+                param = await _voterListStorageV9340.CounterForListNodes(token);
+            }
+
+            if (version == 9360U)
+            {
+                _voterListStorageV9360.blockHash = blockHash;
+                param = await _voterListStorageV9360.CounterForListNodes(token);
+            }
+
+            if (version == 9370U)
+            {
+                _voterListStorageV9370.blockHash = blockHash;
+                param = await _voterListStorageV9370.CounterForListNodes(token);
+            }
+
+            if (version == 9420U)
+            {
+                _voterListStorageV9420.blockHash = blockHash;
+                param = await _voterListStorageV9420.CounterForListNodes(token);
+            }
+
+            if (version == 9430U)
+            {
+                _voterListStorageV9430.blockHash = blockHash;
+                param = await _voterListStorageV9430.CounterForListNodes(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ListBagsParams
         ///  A bag stored in storage.
         /// 
         ///  Stores a `Bag` struct, which stores head and tail pointers to itself.
         /// </summary>
-        public static string ListBagsParams(Substrate.NetApi.Model.Types.Primitive.U64 key)
+        public static string ListBagsParams(Substrate.NetApi.Model.Types.Primitive.U64 key, uint version)
         {
-            return RequestGenerator.GetStorage("VoterList", "ListBags", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage.ListBagsParams((Substrate.NetApi.Model.Types.Primitive.U64)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ListBagsDefault
         /// Default value as hex string
         /// </summary>
-        public static string ListBagsDefault()
+        public static string ListBagsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage.ListBagsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage.ListBagsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage.ListBagsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage.ListBagsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage.ListBagsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage.ListBagsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage.ListBagsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage.ListBagsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage.ListBagsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage.ListBagsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage.ListBagsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage.ListBagsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage.ListBagsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ListBags
         ///  A bag stored in storage.
         /// 
         ///  Stores a `Bag` struct, which stores head and tail pointers to itself.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag> ListBags(Substrate.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_bags_list.list.BagBase> ListBagsAsync(Substrate.NetApi.Model.Types.Primitive.U64 key, CancellationToken token)
         {
-            string parameters = VoterListStorage.ListBagsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.Bag>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_bags_list.list.BagBase param = null;
+            if (version == 9230U)
+            {
+                _voterListStorageV9230.blockHash = blockHash;
+                param = await _voterListStorageV9230.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _voterListStorageV9250.blockHash = blockHash;
+                param = await _voterListStorageV9250.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _voterListStorageV9260.blockHash = blockHash;
+                param = await _voterListStorageV9260.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _voterListStorageV9270.blockHash = blockHash;
+                param = await _voterListStorageV9270.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _voterListStorageV9280.blockHash = blockHash;
+                param = await _voterListStorageV9280.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _voterListStorageV9281.blockHash = blockHash;
+                param = await _voterListStorageV9281.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _voterListStorageV9291.blockHash = blockHash;
+                param = await _voterListStorageV9291.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _voterListStorageV9300.blockHash = blockHash;
+                param = await _voterListStorageV9300.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _voterListStorageV9340.blockHash = blockHash;
+                param = await _voterListStorageV9340.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _voterListStorageV9360.blockHash = blockHash;
+                param = await _voterListStorageV9360.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _voterListStorageV9370.blockHash = blockHash;
+                param = await _voterListStorageV9370.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _voterListStorageV9420.blockHash = blockHash;
+                param = await _voterListStorageV9420.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _voterListStorageV9430.blockHash = blockHash;
+                param = await _voterListStorageV9430.ListBags((Substrate.NetApi.Model.Types.Primitive.U64)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public VoterListStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _voterListStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListStorage(_client);
+            _voterListStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListStorage(_client);
+            _voterListStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListStorage(_client);
+            _voterListStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListStorage(_client);
+            _voterListStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListStorage(_client);
+            _voterListStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListStorage(_client);
+            _voterListStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListStorage(_client);
+            _voterListStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListStorage(_client);
+            _voterListStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListStorage(_client);
+            _voterListStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListStorage(_client);
+            _voterListStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListStorage(_client);
+            _voterListStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListStorage(_client);
+            _voterListStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListStorage(_client);
         }
     }
-    
-    public sealed class VoterListCalls
-    {
-        
-        /// <summary>
-        /// >> rebag
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Rebag(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress dislocated)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(dislocated.Encode());
-            return new Method(37, "VoterList", 0, "rebag", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> put_in_front_of
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method PutInFrontOf(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress lighter)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(lighter.Encode());
-            return new Method(37, "VoterList", 1, "put_in_front_of", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class VoterListConstants
     {
-        
         /// <summary>
         /// >> BagThresholds
         ///  The list of thresholds separating the various bags.
@@ -212,61 +659,47 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  In the event that this list ever changes, a copy of the old bags list must be retained.
         ///  With that `List::migrate` can be called, which will perform the appropriate migration.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U64> BagThresholds()
+        public Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable BagThresholds(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U64>();
-            result.Create("0x210300E40B5402000000F39E809702000000A8B197E20200000094492E3603000000279C3A93030" +
-                    "0000003BCCEFA0300000042C01B6E040000001B4775EE04000000385E557D0500000046DC601C060" +
-                    "0000089386CCD06000000B6EE809207000000FE7EE36D08000000E81B1A6209000000B019F4710A0" +
-                    "00000103592A00B000000CFC96FF10C00000041146D680E000000E79BDA0910000000CEE885DA110" +
-                    "0000028A9C7DF13000000BB70931F160000008E4089A018000000810A096A1B000000366A48841E0" +
-                    "000005BD36AF821000000807C9CD025000000C95530182A000000BD63C1DB2E00000071E05729340" +
-                    "00000689092103A000000EDC4D4A240000000699379F3470000008FD80C18500000004BAF8A28590" +
-                    "000006A16A63F630000000995177B6E00000078C5F4FB7A00000062C811E78800000051BF6D65980" +
-                    "00000048EABA4A9000000544698D7BC00000091CAC036D2000000175F1801EA000000BD15B27C040" +
-                    "1000043358FF721010000B8FC84C84201000099673C506701000007E44EFA8F010000B341833EBD0" +
-                    "10000027F2EA2EF0100009883BCB927020000164D652A66020000B49513ACAB0200002D8E820BF90" +
-                    "20000A1E6982C4F030000A616080DAF030000CC9D37C719040000A0D584959004000042E7E0D5140" +
-                    "50000028CD70DA80500000F750AEF4B060000EA8D2E5C02070000C3CB996ECD070000B1E5717CAF0" +
-                    "80000AA2B8E1FAB090000B5C1203DC30A000026D03D0EFB0B000070C75929560D0000EBADDA8CD80" +
-                    "E0000F797DBAA86100000CFF04476651200001F2660717A14000009A611BECB1600001DFBE82F601" +
-                    "90000943A3C603F1C00008AFE89C4711F0000CED963C70023000003A92AE4F6260000FE72EEC55F2" +
-                    "B000036C9CC6948300000DAE33245BF350000062A7470D43B00007C9732D69942000084A32468234" +
-                    "A0000571AD45987520000E7F10262DE5B00000DB8760344660000AE0401DED67100007D9EB308B97" +
-                    "E00001E044A76108D00003A1DF064079D0000E04FAFDACCAE00005679F02F95C2000095C3AAA99AD" +
-                    "80000967C05251EF10000177A66D6670C010028CB1F1EC82A0100FA282F75984C0100D57DC8743C7" +
-                    "201007DC4B3FB229C0100365CDE74C7CA01009EB8E142B3FE01000C31AE547F3802005FE101E8D57" +
-                    "802006373DA7E74C0020051D1A60D2E100300C7E9A468ED68030061C091F7B7CB0300BF27A1B7B03" +
-                    "904007B1499941BB404008523ED22613C050069A5D4C512D40500EC8C934DEF7C0600F5AA901BE83" +
-                    "807008CBE5DDB260A080002978CE113F30800FAE314435DF60900DDF12DBAFE160B002EBADC6F4A5" +
-                    "80C000C5518C4F2BD0D00F0BB5431154C0F00498E866B46071100B2C153DE9FF41200278A2FB2CE1" +
-                    "91500B2399F84247D1700E199E704AA251A00BA13F5AB331B1D00264785CC7866200088BF803F2D1" +
-                    "124001C9823F81D262800CCC422D450B12C00F088820528C03100367C6D7E896137006E9329D30AA" +
-                    "63D008CBC6C1322A044000070F32A5C644C00B43B84699909550080B4ABE450A95E00A0CDA979DB5" +
-                    "F69004CC27F4CC74C7500D0AC0EBA34938200483E0CCF3D5A910068C68E7469CDA100281E6FA52B1" +
-                    "DB40098A92326747FC800F09A74634D30DF0080CDFC4B8D72F8009014602D9A901401F0B413D945D" +
-                    "D330120973596C1B4560150DCFBAEAD7D7D01E01198B947AAA80130C7EE16BBB9D801206E4886973" +
-                    "90E02A0FA4B1D72C74902C0117170B5128C02808A1643A6DED502C0F823B1A204280380AF5970A27" +
-                    "68303C06F2D87FF41E90340937FAC8F925A040091097117B6D804400FDF5B212065050049C149446" +
-                    "E0106008EBCA6E56CAF0600595686851C71078068AA34A4B7480880A1E29E52B9380900BDABE880E" +
-                    "4430A002A72B4204C6D0B80F1C013335CB80C00A03CCBDCE3280E80B8629A9E20C30F00DE5693D2C" +
-                    "A8B11005D7F4C93238813001A87DF3504BE1500A7CE4B84EF3318000110FBEA24F11A00802AE5D1B" +
-                    "5FD1D0022A134609D62210044216BF0DA2925000261F1828F5E29006620CF851E0D2E00841019525" +
-                    "2433300A0C18FCA8410390026AD1493CC853F00D0CD24662FB646009CE19A1CDAB64E0058CCC20C5" +
-                    "F9F5700200A7578FB89610030BBBBD6E4936C0060CBA7DC9EDD7800B83BC0425B8B8600B88623616" +
-                    "4C59500F8F15FDC93B8A600206A91C0D696B900D8EFE28FC097CE0068299BF52EF9E5FFFFFFFFFFF" +
-                    "FFFFF");
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable result = null;
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.VoterListConstants().BagThresholds();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.VoterListConstants().BagThresholds();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.VoterListConstants().BagThresholds();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.VoterListConstants().BagThresholds();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.VoterListConstants().BagThresholds();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.VoterListConstants().BagThresholds();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.VoterListConstants().BagThresholds();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.VoterListConstants().BagThresholds();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.VoterListConstants().BagThresholds();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.VoterListConstants().BagThresholds();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.VoterListConstants().BagThresholds();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.VoterListConstants().BagThresholds();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.VoterListConstants().BagThresholds();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum VoterListErrors
     {
-        
         /// <summary>
         /// >> List
         /// A error in the list interface implementation.
         /// </summary>
-        List,
+        List
     }
 }

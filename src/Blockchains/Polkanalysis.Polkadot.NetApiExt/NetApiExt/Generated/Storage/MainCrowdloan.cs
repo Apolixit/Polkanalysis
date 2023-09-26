@@ -6,453 +6,1502 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class CrowdloanStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public CrowdloanStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "Funds"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "NewRaise"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "EndingsCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Crowdloan", "NextFundIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage _crowdloanStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage _crowdloanStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage _crowdloanStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage _crowdloanStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage _crowdloanStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage _crowdloanStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage _crowdloanStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage _crowdloanStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage _crowdloanStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage _crowdloanStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage _crowdloanStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage _crowdloanStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage _crowdloanStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage _crowdloanStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage _crowdloanStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage _crowdloanStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage _crowdloanStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage _crowdloanStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage _crowdloanStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage _crowdloanStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage _crowdloanStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage _crowdloanStorageV9430;
         /// <summary>
         /// >> FundsParams
         ///  Info on all of the funds.
         /// </summary>
-        public static string FundsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string FundsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Crowdloan", "Funds", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.FundsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> FundsDefault
         /// Default value as hex string
         /// </summary>
-        public static string FundsDefault()
+        public static string FundsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.FundsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.FundsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.FundsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.FundsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.FundsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.FundsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.FundsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.FundsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.FundsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.FundsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.FundsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.FundsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.FundsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.FundsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.FundsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.FundsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.FundsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.FundsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.FundsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.FundsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.FundsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.FundsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Funds
         ///  Info on all of the funds.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo> Funds(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase> FundsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, CancellationToken token)
         {
-            string parameters = CrowdloanStorage.FundsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase param = null;
+            if (version == 9110U)
+            {
+                _crowdloanStorageV9110.blockHash = blockHash;
+                param = await _crowdloanStorageV9110.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _crowdloanStorageV9122.blockHash = blockHash;
+                param = await _crowdloanStorageV9122.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _crowdloanStorageV9140.blockHash = blockHash;
+                param = await _crowdloanStorageV9140.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _crowdloanStorageV9151.blockHash = blockHash;
+                param = await _crowdloanStorageV9151.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _crowdloanStorageV9170.blockHash = blockHash;
+                param = await _crowdloanStorageV9170.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _crowdloanStorageV9180.blockHash = blockHash;
+                param = await _crowdloanStorageV9180.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _crowdloanStorageV9190.blockHash = blockHash;
+                param = await _crowdloanStorageV9190.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _crowdloanStorageV9200.blockHash = blockHash;
+                param = await _crowdloanStorageV9200.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _crowdloanStorageV9220.blockHash = blockHash;
+                param = await _crowdloanStorageV9220.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _crowdloanStorageV9230.blockHash = blockHash;
+                param = await _crowdloanStorageV9230.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _crowdloanStorageV9250.blockHash = blockHash;
+                param = await _crowdloanStorageV9250.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _crowdloanStorageV9260.blockHash = blockHash;
+                param = await _crowdloanStorageV9260.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _crowdloanStorageV9270.blockHash = blockHash;
+                param = await _crowdloanStorageV9270.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _crowdloanStorageV9280.blockHash = blockHash;
+                param = await _crowdloanStorageV9280.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _crowdloanStorageV9281.blockHash = blockHash;
+                param = await _crowdloanStorageV9281.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _crowdloanStorageV9291.blockHash = blockHash;
+                param = await _crowdloanStorageV9291.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _crowdloanStorageV9300.blockHash = blockHash;
+                param = await _crowdloanStorageV9300.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _crowdloanStorageV9340.blockHash = blockHash;
+                param = await _crowdloanStorageV9340.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _crowdloanStorageV9360.blockHash = blockHash;
+                param = await _crowdloanStorageV9360.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _crowdloanStorageV9370.blockHash = blockHash;
+                param = await _crowdloanStorageV9370.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _crowdloanStorageV9420.blockHash = blockHash;
+                param = await _crowdloanStorageV9420.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _crowdloanStorageV9430.blockHash = blockHash;
+                param = await _crowdloanStorageV9430.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NewRaiseParams
         ///  The funds that have had additional contributions during the last block. This is used
         ///  in order to determine which funds should submit new or updated bids.
         /// </summary>
-        public static string NewRaiseParams()
+        public static string NewRaiseParams(uint version)
         {
-            return RequestGenerator.GetStorage("Crowdloan", "NewRaise", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.NewRaiseParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.NewRaiseParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.NewRaiseParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.NewRaiseParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.NewRaiseParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.NewRaiseParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.NewRaiseParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.NewRaiseParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.NewRaiseParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.NewRaiseParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.NewRaiseParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.NewRaiseParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.NewRaiseParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.NewRaiseParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.NewRaiseParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.NewRaiseParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.NewRaiseParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.NewRaiseParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.NewRaiseParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.NewRaiseParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.NewRaiseParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.NewRaiseParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NewRaiseDefault
         /// Default value as hex string
         /// </summary>
-        public static string NewRaiseDefault()
+        public static string NewRaiseDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.NewRaiseDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.NewRaiseDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NewRaise
         ///  The funds that have had additional contributions during the last block. This is used
         ///  in order to determine which funds should submit new or updated bids.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> NewRaise(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> NewRaiseAsync(CancellationToken token)
         {
-            string parameters = CrowdloanStorage.NewRaiseParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _crowdloanStorageV9110.blockHash = blockHash;
+                param = await _crowdloanStorageV9110.NewRaise(token);
+            }
+
+            if (version == 9122U)
+            {
+                _crowdloanStorageV9122.blockHash = blockHash;
+                param = await _crowdloanStorageV9122.NewRaise(token);
+            }
+
+            if (version == 9140U)
+            {
+                _crowdloanStorageV9140.blockHash = blockHash;
+                param = await _crowdloanStorageV9140.NewRaise(token);
+            }
+
+            if (version == 9151U)
+            {
+                _crowdloanStorageV9151.blockHash = blockHash;
+                param = await _crowdloanStorageV9151.NewRaise(token);
+            }
+
+            if (version == 9170U)
+            {
+                _crowdloanStorageV9170.blockHash = blockHash;
+                param = await _crowdloanStorageV9170.NewRaise(token);
+            }
+
+            if (version == 9180U)
+            {
+                _crowdloanStorageV9180.blockHash = blockHash;
+                param = await _crowdloanStorageV9180.NewRaise(token);
+            }
+
+            if (version == 9190U)
+            {
+                _crowdloanStorageV9190.blockHash = blockHash;
+                param = await _crowdloanStorageV9190.NewRaise(token);
+            }
+
+            if (version == 9200U)
+            {
+                _crowdloanStorageV9200.blockHash = blockHash;
+                param = await _crowdloanStorageV9200.NewRaise(token);
+            }
+
+            if (version == 9220U)
+            {
+                _crowdloanStorageV9220.blockHash = blockHash;
+                param = await _crowdloanStorageV9220.NewRaise(token);
+            }
+
+            if (version == 9230U)
+            {
+                _crowdloanStorageV9230.blockHash = blockHash;
+                param = await _crowdloanStorageV9230.NewRaise(token);
+            }
+
+            if (version == 9250U)
+            {
+                _crowdloanStorageV9250.blockHash = blockHash;
+                param = await _crowdloanStorageV9250.NewRaise(token);
+            }
+
+            if (version == 9260U)
+            {
+                _crowdloanStorageV9260.blockHash = blockHash;
+                param = await _crowdloanStorageV9260.NewRaise(token);
+            }
+
+            if (version == 9270U)
+            {
+                _crowdloanStorageV9270.blockHash = blockHash;
+                param = await _crowdloanStorageV9270.NewRaise(token);
+            }
+
+            if (version == 9280U)
+            {
+                _crowdloanStorageV9280.blockHash = blockHash;
+                param = await _crowdloanStorageV9280.NewRaise(token);
+            }
+
+            if (version == 9281U)
+            {
+                _crowdloanStorageV9281.blockHash = blockHash;
+                param = await _crowdloanStorageV9281.NewRaise(token);
+            }
+
+            if (version == 9291U)
+            {
+                _crowdloanStorageV9291.blockHash = blockHash;
+                param = await _crowdloanStorageV9291.NewRaise(token);
+            }
+
+            if (version == 9300U)
+            {
+                _crowdloanStorageV9300.blockHash = blockHash;
+                param = await _crowdloanStorageV9300.NewRaise(token);
+            }
+
+            if (version == 9340U)
+            {
+                _crowdloanStorageV9340.blockHash = blockHash;
+                param = await _crowdloanStorageV9340.NewRaise(token);
+            }
+
+            if (version == 9360U)
+            {
+                _crowdloanStorageV9360.blockHash = blockHash;
+                param = await _crowdloanStorageV9360.NewRaise(token);
+            }
+
+            if (version == 9370U)
+            {
+                _crowdloanStorageV9370.blockHash = blockHash;
+                param = await _crowdloanStorageV9370.NewRaise(token);
+            }
+
+            if (version == 9420U)
+            {
+                _crowdloanStorageV9420.blockHash = blockHash;
+                param = await _crowdloanStorageV9420.NewRaise(token);
+            }
+
+            if (version == 9430U)
+            {
+                _crowdloanStorageV9430.blockHash = blockHash;
+                param = await _crowdloanStorageV9430.NewRaise(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EndingsCountParams
         ///  The number of auctions that have entered into their ending period so far.
         /// </summary>
-        public static string EndingsCountParams()
+        public static string EndingsCountParams(uint version)
         {
-            return RequestGenerator.GetStorage("Crowdloan", "EndingsCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.EndingsCountParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.EndingsCountParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.EndingsCountParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.EndingsCountParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.EndingsCountParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.EndingsCountParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.EndingsCountParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.EndingsCountParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.EndingsCountParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.EndingsCountParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.EndingsCountParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.EndingsCountParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.EndingsCountParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.EndingsCountParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.EndingsCountParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.EndingsCountParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.EndingsCountParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.EndingsCountParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.EndingsCountParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.EndingsCountParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.EndingsCountParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.EndingsCountParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EndingsCountDefault
         /// Default value as hex string
         /// </summary>
-        public static string EndingsCountDefault()
+        public static string EndingsCountDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.EndingsCountDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.EndingsCountDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EndingsCount
         ///  The number of auctions that have entered into their ending period so far.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> EndingsCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> EndingsCountAsync(CancellationToken token)
         {
-            string parameters = CrowdloanStorage.EndingsCountParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _crowdloanStorageV9110.blockHash = blockHash;
+                param = await _crowdloanStorageV9110.EndingsCount(token);
+            }
+
+            if (version == 9122U)
+            {
+                _crowdloanStorageV9122.blockHash = blockHash;
+                param = await _crowdloanStorageV9122.EndingsCount(token);
+            }
+
+            if (version == 9140U)
+            {
+                _crowdloanStorageV9140.blockHash = blockHash;
+                param = await _crowdloanStorageV9140.EndingsCount(token);
+            }
+
+            if (version == 9151U)
+            {
+                _crowdloanStorageV9151.blockHash = blockHash;
+                param = await _crowdloanStorageV9151.EndingsCount(token);
+            }
+
+            if (version == 9170U)
+            {
+                _crowdloanStorageV9170.blockHash = blockHash;
+                param = await _crowdloanStorageV9170.EndingsCount(token);
+            }
+
+            if (version == 9180U)
+            {
+                _crowdloanStorageV9180.blockHash = blockHash;
+                param = await _crowdloanStorageV9180.EndingsCount(token);
+            }
+
+            if (version == 9190U)
+            {
+                _crowdloanStorageV9190.blockHash = blockHash;
+                param = await _crowdloanStorageV9190.EndingsCount(token);
+            }
+
+            if (version == 9200U)
+            {
+                _crowdloanStorageV9200.blockHash = blockHash;
+                param = await _crowdloanStorageV9200.EndingsCount(token);
+            }
+
+            if (version == 9220U)
+            {
+                _crowdloanStorageV9220.blockHash = blockHash;
+                param = await _crowdloanStorageV9220.EndingsCount(token);
+            }
+
+            if (version == 9230U)
+            {
+                _crowdloanStorageV9230.blockHash = blockHash;
+                param = await _crowdloanStorageV9230.EndingsCount(token);
+            }
+
+            if (version == 9250U)
+            {
+                _crowdloanStorageV9250.blockHash = blockHash;
+                param = await _crowdloanStorageV9250.EndingsCount(token);
+            }
+
+            if (version == 9260U)
+            {
+                _crowdloanStorageV9260.blockHash = blockHash;
+                param = await _crowdloanStorageV9260.EndingsCount(token);
+            }
+
+            if (version == 9270U)
+            {
+                _crowdloanStorageV9270.blockHash = blockHash;
+                param = await _crowdloanStorageV9270.EndingsCount(token);
+            }
+
+            if (version == 9280U)
+            {
+                _crowdloanStorageV9280.blockHash = blockHash;
+                param = await _crowdloanStorageV9280.EndingsCount(token);
+            }
+
+            if (version == 9281U)
+            {
+                _crowdloanStorageV9281.blockHash = blockHash;
+                param = await _crowdloanStorageV9281.EndingsCount(token);
+            }
+
+            if (version == 9291U)
+            {
+                _crowdloanStorageV9291.blockHash = blockHash;
+                param = await _crowdloanStorageV9291.EndingsCount(token);
+            }
+
+            if (version == 9300U)
+            {
+                _crowdloanStorageV9300.blockHash = blockHash;
+                param = await _crowdloanStorageV9300.EndingsCount(token);
+            }
+
+            if (version == 9340U)
+            {
+                _crowdloanStorageV9340.blockHash = blockHash;
+                param = await _crowdloanStorageV9340.EndingsCount(token);
+            }
+
+            if (version == 9360U)
+            {
+                _crowdloanStorageV9360.blockHash = blockHash;
+                param = await _crowdloanStorageV9360.EndingsCount(token);
+            }
+
+            if (version == 9370U)
+            {
+                _crowdloanStorageV9370.blockHash = blockHash;
+                param = await _crowdloanStorageV9370.EndingsCount(token);
+            }
+
+            if (version == 9420U)
+            {
+                _crowdloanStorageV9420.blockHash = blockHash;
+                param = await _crowdloanStorageV9420.EndingsCount(token);
+            }
+
+            if (version == 9430U)
+            {
+                _crowdloanStorageV9430.blockHash = blockHash;
+                param = await _crowdloanStorageV9430.EndingsCount(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
+        /// <summary>
+        /// >> NextTrieIndexParams
+        ///  Tracker for the next available trie index
+        /// </summary>
+        public static string NextTrieIndexParams(uint version)
+        {
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.NextTrieIndexParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.NextTrieIndexParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.NextTrieIndexParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.NextTrieIndexParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.NextTrieIndexParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> NextTrieIndexDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string NextTrieIndexDefault(uint version)
+        {
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage.NextTrieIndexDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage.NextTrieIndexDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage.NextTrieIndexDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage.NextTrieIndexDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage.NextTrieIndexDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> NextTrieIndex
+        ///  Tracker for the next available trie index
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> NextTrieIndexAsync(CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _crowdloanStorageV9110.blockHash = blockHash;
+                param = await _crowdloanStorageV9110.NextTrieIndex(token);
+            }
+
+            if (version == 9122U)
+            {
+                _crowdloanStorageV9122.blockHash = blockHash;
+                param = await _crowdloanStorageV9122.NextTrieIndex(token);
+            }
+
+            if (version == 9140U)
+            {
+                _crowdloanStorageV9140.blockHash = blockHash;
+                param = await _crowdloanStorageV9140.NextTrieIndex(token);
+            }
+
+            if (version == 9151U)
+            {
+                _crowdloanStorageV9151.blockHash = blockHash;
+                param = await _crowdloanStorageV9151.NextTrieIndex(token);
+            }
+
+            if (version == 9170U)
+            {
+                _crowdloanStorageV9170.blockHash = blockHash;
+                param = await _crowdloanStorageV9170.NextTrieIndex(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
         /// <summary>
         /// >> NextFundIndexParams
         ///  Tracker for the next available fund index
         /// </summary>
-        public static string NextFundIndexParams()
+        public static string NextFundIndexParams(uint version)
         {
-            return RequestGenerator.GetStorage("Crowdloan", "NextFundIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.NextFundIndexParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.NextFundIndexParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextFundIndexDefault
         /// Default value as hex string
         /// </summary>
-        public static string NextFundIndexDefault()
+        public static string NextFundIndexDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage.NextFundIndexDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage.NextFundIndexDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextFundIndex
         ///  Tracker for the next available fund index
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> NextFundIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> NextFundIndexAsync(CancellationToken token)
         {
-            string parameters = CrowdloanStorage.NextFundIndexParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9180U)
+            {
+                _crowdloanStorageV9180.blockHash = blockHash;
+                param = await _crowdloanStorageV9180.NextFundIndex(token);
+            }
+
+            if (version == 9190U)
+            {
+                _crowdloanStorageV9190.blockHash = blockHash;
+                param = await _crowdloanStorageV9190.NextFundIndex(token);
+            }
+
+            if (version == 9200U)
+            {
+                _crowdloanStorageV9200.blockHash = blockHash;
+                param = await _crowdloanStorageV9200.NextFundIndex(token);
+            }
+
+            if (version == 9220U)
+            {
+                _crowdloanStorageV9220.blockHash = blockHash;
+                param = await _crowdloanStorageV9220.NextFundIndex(token);
+            }
+
+            if (version == 9230U)
+            {
+                _crowdloanStorageV9230.blockHash = blockHash;
+                param = await _crowdloanStorageV9230.NextFundIndex(token);
+            }
+
+            if (version == 9250U)
+            {
+                _crowdloanStorageV9250.blockHash = blockHash;
+                param = await _crowdloanStorageV9250.NextFundIndex(token);
+            }
+
+            if (version == 9260U)
+            {
+                _crowdloanStorageV9260.blockHash = blockHash;
+                param = await _crowdloanStorageV9260.NextFundIndex(token);
+            }
+
+            if (version == 9270U)
+            {
+                _crowdloanStorageV9270.blockHash = blockHash;
+                param = await _crowdloanStorageV9270.NextFundIndex(token);
+            }
+
+            if (version == 9280U)
+            {
+                _crowdloanStorageV9280.blockHash = blockHash;
+                param = await _crowdloanStorageV9280.NextFundIndex(token);
+            }
+
+            if (version == 9281U)
+            {
+                _crowdloanStorageV9281.blockHash = blockHash;
+                param = await _crowdloanStorageV9281.NextFundIndex(token);
+            }
+
+            if (version == 9291U)
+            {
+                _crowdloanStorageV9291.blockHash = blockHash;
+                param = await _crowdloanStorageV9291.NextFundIndex(token);
+            }
+
+            if (version == 9300U)
+            {
+                _crowdloanStorageV9300.blockHash = blockHash;
+                param = await _crowdloanStorageV9300.NextFundIndex(token);
+            }
+
+            if (version == 9340U)
+            {
+                _crowdloanStorageV9340.blockHash = blockHash;
+                param = await _crowdloanStorageV9340.NextFundIndex(token);
+            }
+
+            if (version == 9360U)
+            {
+                _crowdloanStorageV9360.blockHash = blockHash;
+                param = await _crowdloanStorageV9360.NextFundIndex(token);
+            }
+
+            if (version == 9370U)
+            {
+                _crowdloanStorageV9370.blockHash = blockHash;
+                param = await _crowdloanStorageV9370.NextFundIndex(token);
+            }
+
+            if (version == 9420U)
+            {
+                _crowdloanStorageV9420.blockHash = blockHash;
+                param = await _crowdloanStorageV9420.NextFundIndex(token);
+            }
+
+            if (version == 9430U)
+            {
+                _crowdloanStorageV9430.blockHash = blockHash;
+                param = await _crowdloanStorageV9430.NextFundIndex(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public CrowdloanStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _crowdloanStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanStorage(_client);
+            _crowdloanStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanStorage(_client);
+            _crowdloanStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanStorage(_client);
+            _crowdloanStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanStorage(_client);
+            _crowdloanStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanStorage(_client);
+            _crowdloanStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanStorage(_client);
+            _crowdloanStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanStorage(_client);
+            _crowdloanStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanStorage(_client);
+            _crowdloanStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanStorage(_client);
+            _crowdloanStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanStorage(_client);
+            _crowdloanStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanStorage(_client);
+            _crowdloanStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanStorage(_client);
+            _crowdloanStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanStorage(_client);
+            _crowdloanStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanStorage(_client);
+            _crowdloanStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanStorage(_client);
+            _crowdloanStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanStorage(_client);
+            _crowdloanStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanStorage(_client);
+            _crowdloanStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanStorage(_client);
+            _crowdloanStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanStorage(_client);
+            _crowdloanStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanStorage(_client);
+            _crowdloanStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanStorage(_client);
+            _crowdloanStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanStorage(_client);
         }
     }
-    
-    public sealed class CrowdloanCalls
-    {
-        
-        /// <summary>
-        /// >> create
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Create(Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> cap, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> first_period, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> last_period, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> end, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> verifier)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(cap.Encode());
-            byteArray.AddRange(first_period.Encode());
-            byteArray.AddRange(last_period.Encode());
-            byteArray.AddRange(end.Encode());
-            byteArray.AddRange(verifier.Encode());
-            return new Method(73, "Crowdloan", 0, "create", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> contribute
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Contribute(Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> value, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumMultiSignature> signature)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(value.Encode());
-            byteArray.AddRange(signature.Encode());
-            return new Method(73, "Crowdloan", 1, "contribute", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> withdraw
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Withdraw(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(who.Encode());
-            byteArray.AddRange(index.Encode());
-            return new Method(73, "Crowdloan", 2, "withdraw", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> refund
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Refund(Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            return new Method(73, "Crowdloan", 3, "refund", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> dissolve
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Dissolve(Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            return new Method(73, "Crowdloan", 4, "dissolve", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> edit
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Edit(Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> cap, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> first_period, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> last_period, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> end, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner> verifier)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(cap.Encode());
-            byteArray.AddRange(first_period.Encode());
-            byteArray.AddRange(last_period.Encode());
-            byteArray.AddRange(end.Encode());
-            byteArray.AddRange(verifier.Encode());
-            return new Method(73, "Crowdloan", 5, "edit", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> add_memo
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method AddMemo(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id index, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> memo)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(memo.Encode());
-            return new Method(73, "Crowdloan", 6, "add_memo", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> poke
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Poke(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            return new Method(73, "Crowdloan", 7, "poke", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> contribute_all
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ContributeAll(Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> index, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumMultiSignature> signature)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(signature.Encode());
-            return new Method(73, "Crowdloan", 8, "contribute_all", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class CrowdloanConstants
     {
-        
         /// <summary>
         /// >> PalletId
         ///  `PalletId` for the crowdloan pallet. An appropriate value could be `PalletId(*b"py/cfund")`
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId PalletId()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.PalletIdBase PalletId(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId();
-            result.Create("0x70792F6366756E64");
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.PalletIdBase result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanConstants().PalletId();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanConstants().PalletId();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanConstants().PalletId();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanConstants().PalletId();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanConstants().PalletId();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanConstants().PalletId();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanConstants().PalletId();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanConstants().PalletId();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanConstants().PalletId();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanConstants().PalletId();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanConstants().PalletId();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanConstants().PalletId();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanConstants().PalletId();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanConstants().PalletId();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanConstants().PalletId();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanConstants().PalletId();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanConstants().PalletId();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanConstants().PalletId();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanConstants().PalletId();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanConstants().PalletId();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanConstants().PalletId();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanConstants().PalletId();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MinContribution
         ///  The minimum amount that may be contributed into a crowdloan. Should almost certainly be at
         ///  least `ExistentialDeposit`.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 MinContribution()
+        public Substrate.NetApi.Model.Types.Primitive.U128 MinContribution(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00743BA40B0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanConstants().MinContribution();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanConstants().MinContribution();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanConstants().MinContribution();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanConstants().MinContribution();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanConstants().MinContribution();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanConstants().MinContribution();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanConstants().MinContribution();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanConstants().MinContribution();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanConstants().MinContribution();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanConstants().MinContribution();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanConstants().MinContribution();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanConstants().MinContribution();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanConstants().MinContribution();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanConstants().MinContribution();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanConstants().MinContribution();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanConstants().MinContribution();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanConstants().MinContribution();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanConstants().MinContribution();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanConstants().MinContribution();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanConstants().MinContribution();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanConstants().MinContribution();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanConstants().MinContribution();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> RemoveKeysLimit
         ///  Max number of storage keys to remove per extrinsic call.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 RemoveKeysLimit()
+        public Substrate.NetApi.Model.Types.Primitive.U32 RemoveKeysLimit(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0xE8030000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CrowdloanConstants().RemoveKeysLimit();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CrowdloanConstants().RemoveKeysLimit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum CrowdloanErrors
     {
-        
         /// <summary>
         /// >> FirstPeriodInPast
         /// The current lease period is more than the first lease period.
         /// </summary>
         FirstPeriodInPast,
-        
         /// <summary>
         /// >> FirstPeriodTooFarInFuture
         /// The first lease period needs to at least be less than 3 `max_value`.
         /// </summary>
         FirstPeriodTooFarInFuture,
-        
         /// <summary>
         /// >> LastPeriodBeforeFirstPeriod
         /// Last lease period must be greater than first lease period.
         /// </summary>
         LastPeriodBeforeFirstPeriod,
-        
         /// <summary>
         /// >> LastPeriodTooFarInFuture
         /// The last lease period cannot be more than 3 periods after the first period.
         /// </summary>
         LastPeriodTooFarInFuture,
-        
         /// <summary>
         /// >> CannotEndInPast
         /// The campaign ends before the current block number. The end must be in the future.
         /// </summary>
         CannotEndInPast,
-        
         /// <summary>
         /// >> EndTooFarInFuture
         /// The end date for this crowdloan is not sensible.
         /// </summary>
         EndTooFarInFuture,
-        
         /// <summary>
         /// >> Overflow
         /// There was an overflow.
         /// </summary>
         Overflow,
-        
         /// <summary>
         /// >> ContributionTooSmall
         /// The contribution was below the minimum, `MinContribution`.
         /// </summary>
         ContributionTooSmall,
-        
         /// <summary>
         /// >> InvalidParaId
         /// Invalid fund index.
         /// </summary>
         InvalidParaId,
-        
         /// <summary>
         /// >> CapExceeded
         /// Contributions exceed maximum amount.
         /// </summary>
         CapExceeded,
-        
         /// <summary>
         /// >> ContributionPeriodOver
         /// The contribution period has already ended.
         /// </summary>
         ContributionPeriodOver,
-        
         /// <summary>
         /// >> InvalidOrigin
         /// The origin of this call is invalid.
         /// </summary>
         InvalidOrigin,
-        
         /// <summary>
         /// >> NotParachain
         /// This crowdloan does not correspond to a parachain.
         /// </summary>
         NotParachain,
-        
         /// <summary>
         /// >> LeaseActive
         /// This parachain lease is still active and retirement cannot yet begin.
         /// </summary>
         LeaseActive,
-        
         /// <summary>
         /// >> BidOrLeaseActive
         /// This parachain's bid or lease is still active and withdraw cannot yet begin.
         /// </summary>
         BidOrLeaseActive,
-        
         /// <summary>
         /// >> FundNotEnded
         /// The crowdloan has not yet ended.
         /// </summary>
         FundNotEnded,
-        
         /// <summary>
         /// >> NoContributions
         /// There are no contributions stored in this crowdloan.
         /// </summary>
         NoContributions,
-        
         /// <summary>
         /// >> NotReadyToDissolve
         /// The crowdloan is not ready to dissolve. Potentially still has a slot or in retirement period.
         /// </summary>
         NotReadyToDissolve,
-        
         /// <summary>
         /// >> InvalidSignature
         /// Invalid signature.
         /// </summary>
         InvalidSignature,
-        
         /// <summary>
         /// >> MemoTooLarge
         /// The provided memo is too large.
         /// </summary>
         MemoTooLarge,
-        
         /// <summary>
         /// >> AlreadyInNewRaise
         /// The fund is already in `NewRaise`
         /// </summary>
         AlreadyInNewRaise,
-        
         /// <summary>
         /// >> VrfDelayInProgress
         /// No contributions allowed during the VRF delay
         /// </summary>
         VrfDelayInProgress,
-        
         /// <summary>
         /// >> NoLeasePeriod
         /// A lease period has not started yet, due to an offset in the starting block.
         /// </summary>
-        NoLeasePeriod,
+        NoLeasePeriod
     }
 }

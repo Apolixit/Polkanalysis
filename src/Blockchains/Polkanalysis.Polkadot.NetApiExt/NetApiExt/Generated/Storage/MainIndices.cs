@@ -6,174 +6,489 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class IndicesStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public IndicesStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Indices", "Accounts"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.Bool>)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IndicesStorage _indicesStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IndicesStorage _indicesStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IndicesStorage _indicesStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IndicesStorage _indicesStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IndicesStorage _indicesStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IndicesStorage _indicesStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IndicesStorage _indicesStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IndicesStorage _indicesStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IndicesStorage _indicesStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IndicesStorage _indicesStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IndicesStorage _indicesStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IndicesStorage _indicesStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IndicesStorage _indicesStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IndicesStorage _indicesStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IndicesStorage _indicesStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IndicesStorage _indicesStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IndicesStorage _indicesStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IndicesStorage _indicesStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IndicesStorage _indicesStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IndicesStorage _indicesStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IndicesStorage _indicesStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IndicesStorage _indicesStorageV9430;
         /// <summary>
         /// >> AccountsParams
         ///  The lookup from index to account.
         /// </summary>
-        public static string AccountsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string AccountsParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("Indices", "Accounts", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IndicesStorage.AccountsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AccountsDefault
         /// Default value as hex string
         /// </summary>
-        public static string AccountsDefault()
+        public static string AccountsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IndicesStorage.AccountsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IndicesStorage.AccountsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IndicesStorage.AccountsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IndicesStorage.AccountsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IndicesStorage.AccountsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IndicesStorage.AccountsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IndicesStorage.AccountsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IndicesStorage.AccountsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IndicesStorage.AccountsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IndicesStorage.AccountsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IndicesStorage.AccountsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IndicesStorage.AccountsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IndicesStorage.AccountsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IndicesStorage.AccountsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IndicesStorage.AccountsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IndicesStorage.AccountsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IndicesStorage.AccountsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IndicesStorage.AccountsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IndicesStorage.AccountsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IndicesStorage.AccountsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IndicesStorage.AccountsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IndicesStorage.AccountsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Accounts
         ///  The lookup from index to account.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.Bool>> Accounts(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> AccountsAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = IndicesStorage.AccountsParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.Bool>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _indicesStorageV9110.blockHash = blockHash;
+                param = await _indicesStorageV9110.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _indicesStorageV9122.blockHash = blockHash;
+                param = await _indicesStorageV9122.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _indicesStorageV9140.blockHash = blockHash;
+                param = await _indicesStorageV9140.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _indicesStorageV9151.blockHash = blockHash;
+                param = await _indicesStorageV9151.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _indicesStorageV9170.blockHash = blockHash;
+                param = await _indicesStorageV9170.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _indicesStorageV9180.blockHash = blockHash;
+                param = await _indicesStorageV9180.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _indicesStorageV9190.blockHash = blockHash;
+                param = await _indicesStorageV9190.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _indicesStorageV9200.blockHash = blockHash;
+                param = await _indicesStorageV9200.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _indicesStorageV9220.blockHash = blockHash;
+                param = await _indicesStorageV9220.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _indicesStorageV9230.blockHash = blockHash;
+                param = await _indicesStorageV9230.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _indicesStorageV9250.blockHash = blockHash;
+                param = await _indicesStorageV9250.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _indicesStorageV9260.blockHash = blockHash;
+                param = await _indicesStorageV9260.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _indicesStorageV9270.blockHash = blockHash;
+                param = await _indicesStorageV9270.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _indicesStorageV9280.blockHash = blockHash;
+                param = await _indicesStorageV9280.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _indicesStorageV9281.blockHash = blockHash;
+                param = await _indicesStorageV9281.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _indicesStorageV9291.blockHash = blockHash;
+                param = await _indicesStorageV9291.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _indicesStorageV9300.blockHash = blockHash;
+                param = await _indicesStorageV9300.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _indicesStorageV9340.blockHash = blockHash;
+                param = await _indicesStorageV9340.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _indicesStorageV9360.blockHash = blockHash;
+                param = await _indicesStorageV9360.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _indicesStorageV9370.blockHash = blockHash;
+                param = await _indicesStorageV9370.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _indicesStorageV9420.blockHash = blockHash;
+                param = await _indicesStorageV9420.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _indicesStorageV9430.blockHash = blockHash;
+                param = await _indicesStorageV9430.Accounts((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public IndicesStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _indicesStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IndicesStorage(_client);
+            _indicesStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IndicesStorage(_client);
+            _indicesStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IndicesStorage(_client);
+            _indicesStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IndicesStorage(_client);
+            _indicesStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IndicesStorage(_client);
+            _indicesStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IndicesStorage(_client);
+            _indicesStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IndicesStorage(_client);
+            _indicesStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IndicesStorage(_client);
+            _indicesStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IndicesStorage(_client);
+            _indicesStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IndicesStorage(_client);
+            _indicesStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IndicesStorage(_client);
+            _indicesStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IndicesStorage(_client);
+            _indicesStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IndicesStorage(_client);
+            _indicesStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IndicesStorage(_client);
+            _indicesStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IndicesStorage(_client);
+            _indicesStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IndicesStorage(_client);
+            _indicesStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IndicesStorage(_client);
+            _indicesStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IndicesStorage(_client);
+            _indicesStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IndicesStorage(_client);
+            _indicesStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IndicesStorage(_client);
+            _indicesStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IndicesStorage(_client);
+            _indicesStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IndicesStorage(_client);
         }
     }
-    
-    public sealed class IndicesCalls
-    {
-        
-        /// <summary>
-        /// >> claim
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Claim(Substrate.NetApi.Model.Types.Primitive.U32 index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            return new Method(4, "Indices", 0, "claim", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> transfer
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Transfer(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new, Substrate.NetApi.Model.Types.Primitive.U32 index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            byteArray.AddRange(index.Encode());
-            return new Method(4, "Indices", 1, "transfer", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> free
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Free(Substrate.NetApi.Model.Types.Primitive.U32 index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            return new Method(4, "Indices", 2, "free", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> force_transfer
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ForceTransfer(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new, Substrate.NetApi.Model.Types.Primitive.U32 index, Substrate.NetApi.Model.Types.Primitive.Bool freeze)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(freeze.Encode());
-            return new Method(4, "Indices", 3, "force_transfer", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> freeze
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Freeze(Substrate.NetApi.Model.Types.Primitive.U32 index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            return new Method(4, "Indices", 4, "freeze", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class IndicesConstants
     {
-        
         /// <summary>
         /// >> Deposit
         ///  The deposit needed for reserving an index.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit()
+        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E87648170000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IndicesConstants().Deposit();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IndicesConstants().Deposit();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IndicesConstants().Deposit();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IndicesConstants().Deposit();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IndicesConstants().Deposit();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IndicesConstants().Deposit();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IndicesConstants().Deposit();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IndicesConstants().Deposit();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IndicesConstants().Deposit();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IndicesConstants().Deposit();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IndicesConstants().Deposit();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IndicesConstants().Deposit();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IndicesConstants().Deposit();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IndicesConstants().Deposit();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IndicesConstants().Deposit();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IndicesConstants().Deposit();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IndicesConstants().Deposit();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IndicesConstants().Deposit();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IndicesConstants().Deposit();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IndicesConstants().Deposit();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IndicesConstants().Deposit();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IndicesConstants().Deposit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum IndicesErrors
     {
-        
         /// <summary>
         /// >> NotAssigned
         /// The index was not already assigned.
         /// </summary>
         NotAssigned,
-        
         /// <summary>
         /// >> NotOwner
         /// The index is assigned to another account.
         /// </summary>
         NotOwner,
-        
         /// <summary>
         /// >> InUse
         /// The index was not available.
         /// </summary>
         InUse,
-        
         /// <summary>
         /// >> NotTransfer
         /// The source and destination accounts are identical.
         /// </summary>
         NotTransfer,
-        
         /// <summary>
         /// >> Permanent
         /// The index is permanent and may not be freed/changed.
         /// </summary>
-        Permanent,
+        Permanent
     }
 }

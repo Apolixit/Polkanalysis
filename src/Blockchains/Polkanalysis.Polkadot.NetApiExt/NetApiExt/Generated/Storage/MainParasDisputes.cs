@@ -6,135 +6,909 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ParasDisputesStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ParasDisputesStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "LastPrunedSession"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Disputes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash>), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Included"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash>), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParasDisputes", "Frozen"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32>)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage _parasDisputesStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage _parasDisputesStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage _parasDisputesStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage _parasDisputesStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage _parasDisputesStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage _parasDisputesStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage _parasDisputesStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage _parasDisputesStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage _parasDisputesStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage _parasDisputesStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage _parasDisputesStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage _parasDisputesStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage _parasDisputesStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage _parasDisputesStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage _parasDisputesStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage _parasDisputesStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage _parasDisputesStorageV9430;
         /// <summary>
         /// >> LastPrunedSessionParams
         ///  The last pruned session, if any. All data stored by this module
         ///  references sessions.
         /// </summary>
-        public static string LastPrunedSessionParams()
+        public static string LastPrunedSessionParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParasDisputes", "LastPrunedSession", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.LastPrunedSessionParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.LastPrunedSessionParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LastPrunedSessionDefault
         /// Default value as hex string
         /// </summary>
-        public static string LastPrunedSessionDefault()
+        public static string LastPrunedSessionDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.LastPrunedSessionDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LastPrunedSession
         ///  The last pruned session, if any. All data stored by this module
         ///  references sessions.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LastPrunedSession(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LastPrunedSessionAsync(CancellationToken token)
         {
-            string parameters = ParasDisputesStorage.LastPrunedSessionParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9180U)
+            {
+                _parasDisputesStorageV9180.blockHash = blockHash;
+                param = await _parasDisputesStorageV9180.LastPrunedSession(token);
+            }
+
+            if (version == 9190U)
+            {
+                _parasDisputesStorageV9190.blockHash = blockHash;
+                param = await _parasDisputesStorageV9190.LastPrunedSession(token);
+            }
+
+            if (version == 9200U)
+            {
+                _parasDisputesStorageV9200.blockHash = blockHash;
+                param = await _parasDisputesStorageV9200.LastPrunedSession(token);
+            }
+
+            if (version == 9220U)
+            {
+                _parasDisputesStorageV9220.blockHash = blockHash;
+                param = await _parasDisputesStorageV9220.LastPrunedSession(token);
+            }
+
+            if (version == 9230U)
+            {
+                _parasDisputesStorageV9230.blockHash = blockHash;
+                param = await _parasDisputesStorageV9230.LastPrunedSession(token);
+            }
+
+            if (version == 9250U)
+            {
+                _parasDisputesStorageV9250.blockHash = blockHash;
+                param = await _parasDisputesStorageV9250.LastPrunedSession(token);
+            }
+
+            if (version == 9260U)
+            {
+                _parasDisputesStorageV9260.blockHash = blockHash;
+                param = await _parasDisputesStorageV9260.LastPrunedSession(token);
+            }
+
+            if (version == 9270U)
+            {
+                _parasDisputesStorageV9270.blockHash = blockHash;
+                param = await _parasDisputesStorageV9270.LastPrunedSession(token);
+            }
+
+            if (version == 9280U)
+            {
+                _parasDisputesStorageV9280.blockHash = blockHash;
+                param = await _parasDisputesStorageV9280.LastPrunedSession(token);
+            }
+
+            if (version == 9281U)
+            {
+                _parasDisputesStorageV9281.blockHash = blockHash;
+                param = await _parasDisputesStorageV9281.LastPrunedSession(token);
+            }
+
+            if (version == 9291U)
+            {
+                _parasDisputesStorageV9291.blockHash = blockHash;
+                param = await _parasDisputesStorageV9291.LastPrunedSession(token);
+            }
+
+            if (version == 9300U)
+            {
+                _parasDisputesStorageV9300.blockHash = blockHash;
+                param = await _parasDisputesStorageV9300.LastPrunedSession(token);
+            }
+
+            if (version == 9340U)
+            {
+                _parasDisputesStorageV9340.blockHash = blockHash;
+                param = await _parasDisputesStorageV9340.LastPrunedSession(token);
+            }
+
+            if (version == 9360U)
+            {
+                _parasDisputesStorageV9360.blockHash = blockHash;
+                param = await _parasDisputesStorageV9360.LastPrunedSession(token);
+            }
+
+            if (version == 9370U)
+            {
+                _parasDisputesStorageV9370.blockHash = blockHash;
+                param = await _parasDisputesStorageV9370.LastPrunedSession(token);
+            }
+
+            if (version == 9420U)
+            {
+                _parasDisputesStorageV9420.blockHash = blockHash;
+                param = await _parasDisputesStorageV9420.LastPrunedSession(token);
+            }
+
+            if (version == 9430U)
+            {
+                _parasDisputesStorageV9430.blockHash = blockHash;
+                param = await _parasDisputesStorageV9430.LastPrunedSession(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DisputesParams
         ///  All ongoing or concluded disputes for the last several sessions.
         /// </summary>
-        public static string DisputesParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key)
+        public static string DisputesParams(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, uint version)
         {
-            return RequestGenerator.GetStorage("ParasDisputes", "Disputes", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.DisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_core_primitives.CandidateHash>)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DisputesDefault
         /// Default value as hex string
         /// </summary>
-        public static string DisputesDefault()
+        public static string DisputesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.DisputesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.DisputesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.DisputesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.DisputesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.DisputesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.DisputesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.DisputesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.DisputesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.DisputesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.DisputesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.DisputesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.DisputesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.DisputesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.DisputesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.DisputesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.DisputesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.DisputesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Disputes
         ///  All ongoing or concluded disputes for the last several sessions.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState> Disputes(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
+        public async Task<IType> DisputesAsync(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, CancellationToken token)
         {
-            string parameters = ParasDisputesStorage.DisputesParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.DisputeState>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            IType param = null;
+            if (version == 9180U)
+            {
+                _parasDisputesStorageV9180.blockHash = blockHash;
+                param = await _parasDisputesStorageV9180.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _parasDisputesStorageV9190.blockHash = blockHash;
+                param = await _parasDisputesStorageV9190.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _parasDisputesStorageV9200.blockHash = blockHash;
+                param = await _parasDisputesStorageV9200.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _parasDisputesStorageV9220.blockHash = blockHash;
+                param = await _parasDisputesStorageV9220.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _parasDisputesStorageV9230.blockHash = blockHash;
+                param = await _parasDisputesStorageV9230.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _parasDisputesStorageV9250.blockHash = blockHash;
+                param = await _parasDisputesStorageV9250.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _parasDisputesStorageV9260.blockHash = blockHash;
+                param = await _parasDisputesStorageV9260.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _parasDisputesStorageV9270.blockHash = blockHash;
+                param = await _parasDisputesStorageV9270.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _parasDisputesStorageV9280.blockHash = blockHash;
+                param = await _parasDisputesStorageV9280.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _parasDisputesStorageV9281.blockHash = blockHash;
+                param = await _parasDisputesStorageV9281.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _parasDisputesStorageV9291.blockHash = blockHash;
+                param = await _parasDisputesStorageV9291.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _parasDisputesStorageV9300.blockHash = blockHash;
+                param = await _parasDisputesStorageV9300.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _parasDisputesStorageV9340.blockHash = blockHash;
+                param = await _parasDisputesStorageV9340.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _parasDisputesStorageV9360.blockHash = blockHash;
+                param = await _parasDisputesStorageV9360.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _parasDisputesStorageV9370.blockHash = blockHash;
+                param = await _parasDisputesStorageV9370.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _parasDisputesStorageV9420.blockHash = blockHash;
+                param = await _parasDisputesStorageV9420.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _parasDisputesStorageV9430.blockHash = blockHash;
+                param = await _parasDisputesStorageV9430.Disputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> IncludedParams
         ///  All included blocks on the chain, as well as the block number in this chain that
         ///  should be reverted back to if the candidate is disputed and determined to be invalid.
         /// </summary>
-        public static string IncludedParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key)
+        public static string IncludedParams(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, uint version)
         {
-            return RequestGenerator.GetStorage("ParasDisputes", "Included", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.IncludedParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_core_primitives.CandidateHash>)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> IncludedDefault
         /// Default value as hex string
         /// </summary>
-        public static string IncludedDefault()
+        public static string IncludedDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.IncludedDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.IncludedDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.IncludedDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.IncludedDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.IncludedDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.IncludedDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.IncludedDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.IncludedDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.IncludedDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.IncludedDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.IncludedDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.IncludedDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.IncludedDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.IncludedDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.IncludedDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.IncludedDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.IncludedDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Included
         ///  All included blocks on the chain, as well as the block number in this chain that
         ///  should be reverted back to if the candidate is disputed and determined to be invalid.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> Included(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.CandidateHash> key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> IncludedAsync(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, CancellationToken token)
         {
-            string parameters = ParasDisputesStorage.IncludedParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9180U)
+            {
+                _parasDisputesStorageV9180.blockHash = blockHash;
+                param = await _parasDisputesStorageV9180.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _parasDisputesStorageV9190.blockHash = blockHash;
+                param = await _parasDisputesStorageV9190.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _parasDisputesStorageV9200.blockHash = blockHash;
+                param = await _parasDisputesStorageV9200.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _parasDisputesStorageV9220.blockHash = blockHash;
+                param = await _parasDisputesStorageV9220.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _parasDisputesStorageV9230.blockHash = blockHash;
+                param = await _parasDisputesStorageV9230.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _parasDisputesStorageV9250.blockHash = blockHash;
+                param = await _parasDisputesStorageV9250.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _parasDisputesStorageV9260.blockHash = blockHash;
+                param = await _parasDisputesStorageV9260.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _parasDisputesStorageV9270.blockHash = blockHash;
+                param = await _parasDisputesStorageV9270.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _parasDisputesStorageV9280.blockHash = blockHash;
+                param = await _parasDisputesStorageV9280.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _parasDisputesStorageV9281.blockHash = blockHash;
+                param = await _parasDisputesStorageV9281.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _parasDisputesStorageV9291.blockHash = blockHash;
+                param = await _parasDisputesStorageV9291.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _parasDisputesStorageV9300.blockHash = blockHash;
+                param = await _parasDisputesStorageV9300.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _parasDisputesStorageV9340.blockHash = blockHash;
+                param = await _parasDisputesStorageV9340.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _parasDisputesStorageV9360.blockHash = blockHash;
+                param = await _parasDisputesStorageV9360.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _parasDisputesStorageV9370.blockHash = blockHash;
+                param = await _parasDisputesStorageV9370.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _parasDisputesStorageV9420.blockHash = blockHash;
+                param = await _parasDisputesStorageV9420.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _parasDisputesStorageV9430.blockHash = blockHash;
+                param = await _parasDisputesStorageV9430.Included((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
+        /// <summary>
+        /// >> SpamSlotsParams
+        ///  Maps session indices to a vector indicating the number of potentially-spam disputes
+        ///  each validator is participating in. Potentially-spam disputes are remote disputes which have
+        ///  fewer than `byzantine_threshold + 1` validators.
+        /// 
+        ///  The i'th entry of the vector corresponds to the i'th validator in the session.
+        /// </summary>
+        public static string SpamSlotsParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
+        {
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.SpamSlotsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> SpamSlotsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SpamSlotsDefault(uint version)
+        {
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.SpamSlotsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.SpamSlotsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> SpamSlots
+        ///  Maps session indices to a vector indicating the number of potentially-spam disputes
+        ///  each validator is participating in. Potentially-spam disputes are remote disputes which have
+        ///  fewer than `byzantine_threshold + 1` validators.
+        /// 
+        ///  The i'th entry of the vector corresponds to the i'th validator in the session.
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> SpamSlotsAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9180U)
+            {
+                _parasDisputesStorageV9180.blockHash = blockHash;
+                param = await _parasDisputesStorageV9180.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _parasDisputesStorageV9190.blockHash = blockHash;
+                param = await _parasDisputesStorageV9190.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _parasDisputesStorageV9200.blockHash = blockHash;
+                param = await _parasDisputesStorageV9200.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _parasDisputesStorageV9220.blockHash = blockHash;
+                param = await _parasDisputesStorageV9220.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _parasDisputesStorageV9230.blockHash = blockHash;
+                param = await _parasDisputesStorageV9230.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _parasDisputesStorageV9250.blockHash = blockHash;
+                param = await _parasDisputesStorageV9250.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _parasDisputesStorageV9260.blockHash = blockHash;
+                param = await _parasDisputesStorageV9260.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _parasDisputesStorageV9270.blockHash = blockHash;
+                param = await _parasDisputesStorageV9270.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _parasDisputesStorageV9280.blockHash = blockHash;
+                param = await _parasDisputesStorageV9280.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _parasDisputesStorageV9281.blockHash = blockHash;
+                param = await _parasDisputesStorageV9281.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _parasDisputesStorageV9291.blockHash = blockHash;
+                param = await _parasDisputesStorageV9291.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _parasDisputesStorageV9300.blockHash = blockHash;
+                param = await _parasDisputesStorageV9300.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _parasDisputesStorageV9340.blockHash = blockHash;
+                param = await _parasDisputesStorageV9340.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _parasDisputesStorageV9360.blockHash = blockHash;
+                param = await _parasDisputesStorageV9360.SpamSlots((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
         /// <summary>
         /// >> FrozenParams
         ///  Whether the chain is frozen. Starts as `None`. When this is `Some`,
@@ -142,20 +916,94 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  and its value indicates the last valid block number in the chain.
         ///  It can only be set back to `None` by governance intervention.
         /// </summary>
-        public static string FrozenParams()
+        public static string FrozenParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParasDisputes", "Frozen", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.FrozenParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.FrozenParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.FrozenParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.FrozenParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.FrozenParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.FrozenParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.FrozenParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.FrozenParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.FrozenParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.FrozenParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.FrozenParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.FrozenParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.FrozenParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.FrozenParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.FrozenParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.FrozenParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.FrozenParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> FrozenDefault
         /// Default value as hex string
         /// </summary>
-        public static string FrozenDefault()
+        public static string FrozenDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage.FrozenDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage.FrozenDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage.FrozenDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage.FrozenDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage.FrozenDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage.FrozenDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage.FrozenDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage.FrozenDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage.FrozenDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage.FrozenDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage.FrozenDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage.FrozenDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage.FrozenDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage.FrozenDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage.FrozenDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.FrozenDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.FrozenDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Frozen
         ///  Whether the chain is frozen. Starts as `None`. When this is `Some`,
@@ -163,75 +1011,254 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  and its value indicates the last valid block number in the chain.
         ///  It can only be set back to `None` by governance intervention.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32>> Frozen(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue> FrozenAsync(CancellationToken token)
         {
-            string parameters = ParasDisputesStorage.FrozenParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue param = null;
+            if (version == 9180U)
+            {
+                _parasDisputesStorageV9180.blockHash = blockHash;
+                param = await _parasDisputesStorageV9180.Frozen(token);
+            }
+
+            if (version == 9190U)
+            {
+                _parasDisputesStorageV9190.blockHash = blockHash;
+                param = await _parasDisputesStorageV9190.Frozen(token);
+            }
+
+            if (version == 9200U)
+            {
+                _parasDisputesStorageV9200.blockHash = blockHash;
+                param = await _parasDisputesStorageV9200.Frozen(token);
+            }
+
+            if (version == 9220U)
+            {
+                _parasDisputesStorageV9220.blockHash = blockHash;
+                param = await _parasDisputesStorageV9220.Frozen(token);
+            }
+
+            if (version == 9230U)
+            {
+                _parasDisputesStorageV9230.blockHash = blockHash;
+                param = await _parasDisputesStorageV9230.Frozen(token);
+            }
+
+            if (version == 9250U)
+            {
+                _parasDisputesStorageV9250.blockHash = blockHash;
+                param = await _parasDisputesStorageV9250.Frozen(token);
+            }
+
+            if (version == 9260U)
+            {
+                _parasDisputesStorageV9260.blockHash = blockHash;
+                param = await _parasDisputesStorageV9260.Frozen(token);
+            }
+
+            if (version == 9270U)
+            {
+                _parasDisputesStorageV9270.blockHash = blockHash;
+                param = await _parasDisputesStorageV9270.Frozen(token);
+            }
+
+            if (version == 9280U)
+            {
+                _parasDisputesStorageV9280.blockHash = blockHash;
+                param = await _parasDisputesStorageV9280.Frozen(token);
+            }
+
+            if (version == 9281U)
+            {
+                _parasDisputesStorageV9281.blockHash = blockHash;
+                param = await _parasDisputesStorageV9281.Frozen(token);
+            }
+
+            if (version == 9291U)
+            {
+                _parasDisputesStorageV9291.blockHash = blockHash;
+                param = await _parasDisputesStorageV9291.Frozen(token);
+            }
+
+            if (version == 9300U)
+            {
+                _parasDisputesStorageV9300.blockHash = blockHash;
+                param = await _parasDisputesStorageV9300.Frozen(token);
+            }
+
+            if (version == 9340U)
+            {
+                _parasDisputesStorageV9340.blockHash = blockHash;
+                param = await _parasDisputesStorageV9340.Frozen(token);
+            }
+
+            if (version == 9360U)
+            {
+                _parasDisputesStorageV9360.blockHash = blockHash;
+                param = await _parasDisputesStorageV9360.Frozen(token);
+            }
+
+            if (version == 9370U)
+            {
+                _parasDisputesStorageV9370.blockHash = blockHash;
+                param = await _parasDisputesStorageV9370.Frozen(token);
+            }
+
+            if (version == 9420U)
+            {
+                _parasDisputesStorageV9420.blockHash = blockHash;
+                param = await _parasDisputesStorageV9420.Frozen(token);
+            }
+
+            if (version == 9430U)
+            {
+                _parasDisputesStorageV9430.blockHash = blockHash;
+                param = await _parasDisputesStorageV9430.Frozen(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-    }
-    
-    public sealed class ParasDisputesCalls
-    {
-        
+
         /// <summary>
-        /// >> force_unfreeze
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
+        /// >> BackersOnDisputesParams
+        ///  Backing votes stored for each dispute.
+        ///  This storage is used for slashing.
         /// </summary>
-        public static Method ForceUnfreeze()
+        public static string BackersOnDisputesParams(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, uint version)
         {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(62, "ParasDisputes", 0, "force_unfreeze", byteArray.ToArray());
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.BackersOnDisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_core_primitives.CandidateHash>)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.BackersOnDisputesParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_core_primitives.CandidateHash>)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> BackersOnDisputesDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string BackersOnDisputesDefault(uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage.BackersOnDisputesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage.BackersOnDisputesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> BackersOnDisputes
+        ///  Backing votes stored for each dispute.
+        ///  This storage is used for slashing.
+        /// </summary>
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.BTreeSetBase> BackersOnDisputesAsync(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.BTreeSetBase param = null;
+            if (version == 9420U)
+            {
+                _parasDisputesStorageV9420.blockHash = blockHash;
+                param = await _parasDisputesStorageV9420.BackersOnDisputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _parasDisputesStorageV9430.blockHash = blockHash;
+                param = await _parasDisputesStorageV9430.BackersOnDisputes((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_core_primitives.CandidateHash>)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ParasDisputesStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _parasDisputesStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParasDisputesStorage(_client);
+            _parasDisputesStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParasDisputesStorage(_client);
         }
     }
-    
+
     public sealed class ParasDisputesConstants
     {
     }
-    
+
     public enum ParasDisputesErrors
     {
-        
         /// <summary>
         /// >> DuplicateDisputeStatementSets
         /// Duplicate dispute statement sets provided.
         /// </summary>
         DuplicateDisputeStatementSets,
-        
         /// <summary>
         /// >> AncientDisputeStatement
         /// Ancient dispute statement provided.
         /// </summary>
         AncientDisputeStatement,
-        
         /// <summary>
         /// >> ValidatorIndexOutOfBounds
         /// Validator index on statement is out of bounds for session.
         /// </summary>
         ValidatorIndexOutOfBounds,
-        
         /// <summary>
         /// >> InvalidSignature
         /// Invalid signature on statement.
         /// </summary>
         InvalidSignature,
-        
         /// <summary>
         /// >> DuplicateStatement
         /// Validator vote submitted more than once to dispute.
         /// </summary>
         DuplicateStatement,
-        
+        /// <summary>
+        /// >> PotentialSpam
+        /// Too many spam slots used by some specific validator.
+        /// </summary>
+        PotentialSpam,
         /// <summary>
         /// >> SingleSidedDispute
         /// A dispute where there are only votes on one side.
         /// </summary>
         SingleSidedDispute,
-        
         /// <summary>
         /// >> UnconfirmedDispute
         /// Unconfirmed dispute statement sets provided
         /// </summary>
         UnconfirmedDispute,
+        /// <summary>
+        /// >> MaliciousBacker
+        /// A dispute vote from a malicious backer.
+        /// </summary>
+        MaliciousBacker,
+        /// <summary>
+        /// >> MissingBackingVotes
+        /// No backing votes were provides along dispute statements.
+        /// </summary>
+        MissingBackingVotes
     }
 }

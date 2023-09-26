@@ -6,34 +6,119 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ParaInherentStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ParaInherentStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "Included"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaInherent", "OnChainVotes"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaInherentStorage _paraInherentStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaInherentStorage _paraInherentStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaInherentStorage _paraInherentStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaInherentStorage _paraInherentStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaInherentStorage _paraInherentStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaInherentStorage _paraInherentStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaInherentStorage _paraInherentStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaInherentStorage _paraInherentStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaInherentStorage _paraInherentStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaInherentStorage _paraInherentStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaInherentStorage _paraInherentStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaInherentStorage _paraInherentStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaInherentStorage _paraInherentStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaInherentStorage _paraInherentStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaInherentStorage _paraInherentStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaInherentStorage _paraInherentStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaInherentStorage _paraInherentStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaInherentStorage _paraInherentStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaInherentStorage _paraInherentStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaInherentStorage _paraInherentStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaInherentStorage _paraInherentStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaInherentStorage _paraInherentStorageV9430;
         /// <summary>
         /// >> IncludedParams
         ///  Whether the paras inherent was included within this block.
@@ -43,20 +128,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  If this is `None` at the end of the block, we panic and render the block invalid.
         /// </summary>
-        public static string IncludedParams()
+        public static string IncludedParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaInherent", "Included", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaInherentStorage.IncludedParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaInherentStorage.IncludedParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaInherentStorage.IncludedParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaInherentStorage.IncludedParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaInherentStorage.IncludedParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaInherentStorage.IncludedParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaInherentStorage.IncludedParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaInherentStorage.IncludedParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaInherentStorage.IncludedParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaInherentStorage.IncludedParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaInherentStorage.IncludedParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaInherentStorage.IncludedParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaInherentStorage.IncludedParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaInherentStorage.IncludedParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaInherentStorage.IncludedParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaInherentStorage.IncludedParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaInherentStorage.IncludedParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaInherentStorage.IncludedParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaInherentStorage.IncludedParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaInherentStorage.IncludedParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaInherentStorage.IncludedParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaInherentStorage.IncludedParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> IncludedDefault
         /// Default value as hex string
         /// </summary>
-        public static string IncludedDefault()
+        public static string IncludedDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaInherentStorage.IncludedDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaInherentStorage.IncludedDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaInherentStorage.IncludedDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaInherentStorage.IncludedDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaInherentStorage.IncludedDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaInherentStorage.IncludedDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaInherentStorage.IncludedDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaInherentStorage.IncludedDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaInherentStorage.IncludedDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaInherentStorage.IncludedDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaInherentStorage.IncludedDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaInherentStorage.IncludedDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaInherentStorage.IncludedDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaInherentStorage.IncludedDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaInherentStorage.IncludedDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaInherentStorage.IncludedDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaInherentStorage.IncludedDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaInherentStorage.IncludedDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaInherentStorage.IncludedDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaInherentStorage.IncludedDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaInherentStorage.IncludedDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaInherentStorage.IncludedDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Included
         ///  Whether the paras inherent was included within this block.
@@ -66,100 +245,458 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  If this is `None` at the end of the block, we panic and render the block invalid.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple> Included(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> IncludedAsync(CancellationToken token)
         {
-            string parameters = ParaInherentStorage.IncludedParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _paraInherentStorageV9110.blockHash = blockHash;
+                param = await _paraInherentStorageV9110.Included(token);
+            }
+
+            if (version == 9122U)
+            {
+                _paraInherentStorageV9122.blockHash = blockHash;
+                param = await _paraInherentStorageV9122.Included(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraInherentStorageV9140.blockHash = blockHash;
+                param = await _paraInherentStorageV9140.Included(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraInherentStorageV9151.blockHash = blockHash;
+                param = await _paraInherentStorageV9151.Included(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraInherentStorageV9170.blockHash = blockHash;
+                param = await _paraInherentStorageV9170.Included(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraInherentStorageV9180.blockHash = blockHash;
+                param = await _paraInherentStorageV9180.Included(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraInherentStorageV9190.blockHash = blockHash;
+                param = await _paraInherentStorageV9190.Included(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraInherentStorageV9200.blockHash = blockHash;
+                param = await _paraInherentStorageV9200.Included(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraInherentStorageV9220.blockHash = blockHash;
+                param = await _paraInherentStorageV9220.Included(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraInherentStorageV9230.blockHash = blockHash;
+                param = await _paraInherentStorageV9230.Included(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraInherentStorageV9250.blockHash = blockHash;
+                param = await _paraInherentStorageV9250.Included(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraInherentStorageV9260.blockHash = blockHash;
+                param = await _paraInherentStorageV9260.Included(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraInherentStorageV9270.blockHash = blockHash;
+                param = await _paraInherentStorageV9270.Included(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraInherentStorageV9280.blockHash = blockHash;
+                param = await _paraInherentStorageV9280.Included(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraInherentStorageV9281.blockHash = blockHash;
+                param = await _paraInherentStorageV9281.Included(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraInherentStorageV9291.blockHash = blockHash;
+                param = await _paraInherentStorageV9291.Included(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraInherentStorageV9300.blockHash = blockHash;
+                param = await _paraInherentStorageV9300.Included(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraInherentStorageV9340.blockHash = blockHash;
+                param = await _paraInherentStorageV9340.Included(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraInherentStorageV9360.blockHash = blockHash;
+                param = await _paraInherentStorageV9360.Included(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraInherentStorageV9370.blockHash = blockHash;
+                param = await _paraInherentStorageV9370.Included(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraInherentStorageV9420.blockHash = blockHash;
+                param = await _paraInherentStorageV9420.Included(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraInherentStorageV9430.blockHash = blockHash;
+                param = await _paraInherentStorageV9430.Included(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> OnChainVotesParams
         ///  Scraped on chain data for extracting resolved disputes as well as backing votes.
         /// </summary>
-        public static string OnChainVotesParams()
+        public static string OnChainVotesParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaInherent", "OnChainVotes", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaInherentStorage.OnChainVotesParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaInherentStorage.OnChainVotesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> OnChainVotesDefault
         /// Default value as hex string
         /// </summary>
-        public static string OnChainVotesDefault()
+        public static string OnChainVotesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaInherentStorage.OnChainVotesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaInherentStorage.OnChainVotesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> OnChainVotes
         ///  Scraped on chain data for extracting resolved disputes as well as backing votes.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes> OnChainVotes(CancellationToken token)
+        public async Task<IType> OnChainVotesAsync(CancellationToken token)
         {
-            string parameters = ParaInherentStorage.OnChainVotesParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ScrapedOnChainVotes>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            IType param = null;
+            if (version == 9122U)
+            {
+                _paraInherentStorageV9122.blockHash = blockHash;
+                param = await _paraInherentStorageV9122.OnChainVotes(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraInherentStorageV9140.blockHash = blockHash;
+                param = await _paraInherentStorageV9140.OnChainVotes(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraInherentStorageV9151.blockHash = blockHash;
+                param = await _paraInherentStorageV9151.OnChainVotes(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraInherentStorageV9170.blockHash = blockHash;
+                param = await _paraInherentStorageV9170.OnChainVotes(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraInherentStorageV9180.blockHash = blockHash;
+                param = await _paraInherentStorageV9180.OnChainVotes(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraInherentStorageV9190.blockHash = blockHash;
+                param = await _paraInherentStorageV9190.OnChainVotes(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraInherentStorageV9200.blockHash = blockHash;
+                param = await _paraInherentStorageV9200.OnChainVotes(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraInherentStorageV9220.blockHash = blockHash;
+                param = await _paraInherentStorageV9220.OnChainVotes(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraInherentStorageV9230.blockHash = blockHash;
+                param = await _paraInherentStorageV9230.OnChainVotes(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraInherentStorageV9250.blockHash = blockHash;
+                param = await _paraInherentStorageV9250.OnChainVotes(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraInherentStorageV9260.blockHash = blockHash;
+                param = await _paraInherentStorageV9260.OnChainVotes(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraInherentStorageV9270.blockHash = blockHash;
+                param = await _paraInherentStorageV9270.OnChainVotes(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraInherentStorageV9280.blockHash = blockHash;
+                param = await _paraInherentStorageV9280.OnChainVotes(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraInherentStorageV9281.blockHash = blockHash;
+                param = await _paraInherentStorageV9281.OnChainVotes(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraInherentStorageV9291.blockHash = blockHash;
+                param = await _paraInherentStorageV9291.OnChainVotes(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraInherentStorageV9300.blockHash = blockHash;
+                param = await _paraInherentStorageV9300.OnChainVotes(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraInherentStorageV9340.blockHash = blockHash;
+                param = await _paraInherentStorageV9340.OnChainVotes(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraInherentStorageV9360.blockHash = blockHash;
+                param = await _paraInherentStorageV9360.OnChainVotes(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraInherentStorageV9370.blockHash = blockHash;
+                param = await _paraInherentStorageV9370.OnChainVotes(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraInherentStorageV9420.blockHash = blockHash;
+                param = await _paraInherentStorageV9420.OnChainVotes(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraInherentStorageV9430.blockHash = blockHash;
+                param = await _paraInherentStorageV9430.OnChainVotes(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ParaInherentStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _paraInherentStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaInherentStorage(_client);
+            _paraInherentStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaInherentStorage(_client);
+            _paraInherentStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaInherentStorage(_client);
+            _paraInherentStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaInherentStorage(_client);
+            _paraInherentStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaInherentStorage(_client);
+            _paraInherentStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaInherentStorage(_client);
+            _paraInherentStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaInherentStorage(_client);
+            _paraInherentStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaInherentStorage(_client);
+            _paraInherentStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaInherentStorage(_client);
+            _paraInherentStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaInherentStorage(_client);
+            _paraInherentStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaInherentStorage(_client);
+            _paraInherentStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaInherentStorage(_client);
+            _paraInherentStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaInherentStorage(_client);
+            _paraInherentStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaInherentStorage(_client);
+            _paraInherentStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaInherentStorage(_client);
+            _paraInherentStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaInherentStorage(_client);
+            _paraInherentStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaInherentStorage(_client);
+            _paraInherentStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaInherentStorage(_client);
+            _paraInherentStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaInherentStorage(_client);
+            _paraInherentStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaInherentStorage(_client);
+            _paraInherentStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaInherentStorage(_client);
+            _paraInherentStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaInherentStorage(_client);
         }
     }
-    
-    public sealed class ParaInherentCalls
-    {
-        
-        /// <summary>
-        /// >> enter
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Enter(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.InherentData data)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(data.Encode());
-            return new Method(54, "ParaInherent", 0, "enter", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class ParaInherentConstants
     {
     }
-    
+
     public enum ParaInherentErrors
     {
-        
         /// <summary>
         /// >> TooManyInclusionInherents
         /// Inclusion inherent called more than once per block.
         /// </summary>
         TooManyInclusionInherents,
-        
         /// <summary>
         /// >> InvalidParentHeader
         /// The hash of the submitted parent header doesn't correspond to the saved block hash of
         /// the parent.
         /// </summary>
         InvalidParentHeader,
-        
         /// <summary>
         /// >> CandidateConcludedInvalid
         /// Disputed candidate that was concluded invalid.
         /// </summary>
         CandidateConcludedInvalid,
-        
         /// <summary>
         /// >> InherentOverweight
         /// The data given to the inherent will result in an overweight block.
         /// </summary>
         InherentOverweight,
-        
         /// <summary>
         /// >> DisputeStatementsUnsortedOrDuplicates
         /// The ordering of dispute statements was invalid.
         /// </summary>
         DisputeStatementsUnsortedOrDuplicates,
-        
         /// <summary>
         /// >> DisputeInvalid
         /// A dispute statement was invalid.
         /// </summary>
-        DisputeInvalid,
+        DisputeInvalid
     }
 }

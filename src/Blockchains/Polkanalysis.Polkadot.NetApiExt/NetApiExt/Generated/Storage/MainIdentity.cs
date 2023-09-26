@@ -6,107 +6,639 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class IdentityStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public IdentityStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "IdentityOf"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "SuperOf"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "SubsOf"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Identity", "Registrars"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage _identityStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage _identityStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage _identityStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage _identityStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage _identityStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage _identityStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage _identityStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage _identityStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage _identityStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage _identityStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage _identityStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage _identityStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage _identityStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage _identityStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage _identityStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage _identityStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage _identityStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage _identityStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage _identityStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage _identityStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage _identityStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage _identityStorageV9430;
         /// <summary>
         /// >> IdentityOfParams
         ///  Information that is pertinent to identify the entity behind an account.
         /// 
         ///  TWOX-NOTE: OK ��� `AccountId` is a secure hash.
         /// </summary>
-        public static string IdentityOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string IdentityOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Identity", "IdentityOf", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.IdentityOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> IdentityOfDefault
         /// Default value as hex string
         /// </summary>
-        public static string IdentityOfDefault()
+        public static string IdentityOfDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.IdentityOfDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.IdentityOfDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.IdentityOfDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.IdentityOfDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.IdentityOfDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.IdentityOfDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.IdentityOfDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.IdentityOfDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.IdentityOfDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.IdentityOfDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.IdentityOfDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.IdentityOfDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.IdentityOfDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.IdentityOfDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.IdentityOfDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.IdentityOfDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.IdentityOfDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.IdentityOfDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.IdentityOfDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.IdentityOfDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.IdentityOfDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.IdentityOfDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> IdentityOf
         ///  Information that is pertinent to identify the entity behind an account.
         /// 
         ///  TWOX-NOTE: OK ��� `AccountId` is a secure hash.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration> IdentityOf(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase> IdentityOfAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = IdentityStorage.IdentityOfParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase param = null;
+            if (version == 9110U)
+            {
+                _identityStorageV9110.blockHash = blockHash;
+                param = await _identityStorageV9110.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _identityStorageV9122.blockHash = blockHash;
+                param = await _identityStorageV9122.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _identityStorageV9140.blockHash = blockHash;
+                param = await _identityStorageV9140.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _identityStorageV9151.blockHash = blockHash;
+                param = await _identityStorageV9151.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _identityStorageV9170.blockHash = blockHash;
+                param = await _identityStorageV9170.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _identityStorageV9180.blockHash = blockHash;
+                param = await _identityStorageV9180.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _identityStorageV9190.blockHash = blockHash;
+                param = await _identityStorageV9190.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _identityStorageV9200.blockHash = blockHash;
+                param = await _identityStorageV9200.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _identityStorageV9220.blockHash = blockHash;
+                param = await _identityStorageV9220.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _identityStorageV9230.blockHash = blockHash;
+                param = await _identityStorageV9230.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _identityStorageV9250.blockHash = blockHash;
+                param = await _identityStorageV9250.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _identityStorageV9260.blockHash = blockHash;
+                param = await _identityStorageV9260.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _identityStorageV9270.blockHash = blockHash;
+                param = await _identityStorageV9270.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _identityStorageV9280.blockHash = blockHash;
+                param = await _identityStorageV9280.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _identityStorageV9281.blockHash = blockHash;
+                param = await _identityStorageV9281.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _identityStorageV9291.blockHash = blockHash;
+                param = await _identityStorageV9291.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _identityStorageV9300.blockHash = blockHash;
+                param = await _identityStorageV9300.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _identityStorageV9340.blockHash = blockHash;
+                param = await _identityStorageV9340.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _identityStorageV9360.blockHash = blockHash;
+                param = await _identityStorageV9360.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _identityStorageV9370.blockHash = blockHash;
+                param = await _identityStorageV9370.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _identityStorageV9420.blockHash = blockHash;
+                param = await _identityStorageV9420.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _identityStorageV9430.blockHash = blockHash;
+                param = await _identityStorageV9430.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SuperOfParams
         ///  The super-identity of an alternative "sub" identity together with its name, within that
         ///  context. If the account is not some other account's sub-identity, then just `None`.
         /// </summary>
-        public static string SuperOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string SuperOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Identity", "SuperOf", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.SuperOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SuperOfDefault
         /// Default value as hex string
         /// </summary>
-        public static string SuperOfDefault()
+        public static string SuperOfDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.SuperOfDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.SuperOfDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.SuperOfDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.SuperOfDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.SuperOfDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.SuperOfDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.SuperOfDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.SuperOfDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.SuperOfDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.SuperOfDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.SuperOfDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.SuperOfDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.SuperOfDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.SuperOfDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.SuperOfDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.SuperOfDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.SuperOfDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.SuperOfDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.SuperOfDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.SuperOfDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.SuperOfDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.SuperOfDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SuperOf
         ///  The super-identity of an alternative "sub" identity together with its name, within that
         ///  context. If the account is not some other account's sub-identity, then just `None`.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>> SuperOf(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> SuperOfAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = IdentityStorage.SuperOfParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _identityStorageV9110.blockHash = blockHash;
+                param = await _identityStorageV9110.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _identityStorageV9122.blockHash = blockHash;
+                param = await _identityStorageV9122.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _identityStorageV9140.blockHash = blockHash;
+                param = await _identityStorageV9140.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _identityStorageV9151.blockHash = blockHash;
+                param = await _identityStorageV9151.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _identityStorageV9170.blockHash = blockHash;
+                param = await _identityStorageV9170.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _identityStorageV9180.blockHash = blockHash;
+                param = await _identityStorageV9180.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _identityStorageV9190.blockHash = blockHash;
+                param = await _identityStorageV9190.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _identityStorageV9200.blockHash = blockHash;
+                param = await _identityStorageV9200.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _identityStorageV9220.blockHash = blockHash;
+                param = await _identityStorageV9220.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _identityStorageV9230.blockHash = blockHash;
+                param = await _identityStorageV9230.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _identityStorageV9250.blockHash = blockHash;
+                param = await _identityStorageV9250.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _identityStorageV9260.blockHash = blockHash;
+                param = await _identityStorageV9260.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _identityStorageV9270.blockHash = blockHash;
+                param = await _identityStorageV9270.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _identityStorageV9280.blockHash = blockHash;
+                param = await _identityStorageV9280.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _identityStorageV9281.blockHash = blockHash;
+                param = await _identityStorageV9281.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _identityStorageV9291.blockHash = blockHash;
+                param = await _identityStorageV9291.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _identityStorageV9300.blockHash = blockHash;
+                param = await _identityStorageV9300.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _identityStorageV9340.blockHash = blockHash;
+                param = await _identityStorageV9340.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _identityStorageV9360.blockHash = blockHash;
+                param = await _identityStorageV9360.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _identityStorageV9370.blockHash = blockHash;
+                param = await _identityStorageV9370.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _identityStorageV9420.blockHash = blockHash;
+                param = await _identityStorageV9420.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _identityStorageV9430.blockHash = blockHash;
+                param = await _identityStorageV9430.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SubsOfParams
         ///  Alternative "sub" identities of this account.
@@ -115,22 +647,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: OK ��� `AccountId` is a secure hash.
         /// </summary>
-        public static string SubsOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string SubsOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Identity", "SubsOf", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.SubsOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SubsOfDefault
         /// Default value as hex string
         /// </summary>
-        public static string SubsOfDefault()
+        public static string SubsOfDefault(uint version)
         {
-            return "0x0000000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.SubsOfDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.SubsOfDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.SubsOfDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.SubsOfDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.SubsOfDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.SubsOfDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.SubsOfDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.SubsOfDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.SubsOfDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.SubsOfDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.SubsOfDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.SubsOfDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.SubsOfDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.SubsOfDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.SubsOfDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.SubsOfDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.SubsOfDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.SubsOfDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.SubsOfDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.SubsOfDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.SubsOfDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.SubsOfDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SubsOf
         ///  Alternative "sub" identities of this account.
@@ -139,13 +763,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  TWOX-NOTE: OK ��� `AccountId` is a secure hash.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20>> SubsOf(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> SubsOfAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = IdentityStorage.SubsOfParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT20>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _identityStorageV9110.blockHash = blockHash;
+                param = await _identityStorageV9110.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _identityStorageV9122.blockHash = blockHash;
+                param = await _identityStorageV9122.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _identityStorageV9140.blockHash = blockHash;
+                param = await _identityStorageV9140.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _identityStorageV9151.blockHash = blockHash;
+                param = await _identityStorageV9151.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _identityStorageV9170.blockHash = blockHash;
+                param = await _identityStorageV9170.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _identityStorageV9180.blockHash = blockHash;
+                param = await _identityStorageV9180.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _identityStorageV9190.blockHash = blockHash;
+                param = await _identityStorageV9190.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _identityStorageV9200.blockHash = blockHash;
+                param = await _identityStorageV9200.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _identityStorageV9220.blockHash = blockHash;
+                param = await _identityStorageV9220.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _identityStorageV9230.blockHash = blockHash;
+                param = await _identityStorageV9230.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _identityStorageV9250.blockHash = blockHash;
+                param = await _identityStorageV9250.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _identityStorageV9260.blockHash = blockHash;
+                param = await _identityStorageV9260.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _identityStorageV9270.blockHash = blockHash;
+                param = await _identityStorageV9270.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _identityStorageV9280.blockHash = blockHash;
+                param = await _identityStorageV9280.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _identityStorageV9281.blockHash = blockHash;
+                param = await _identityStorageV9281.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _identityStorageV9291.blockHash = blockHash;
+                param = await _identityStorageV9291.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _identityStorageV9300.blockHash = blockHash;
+                param = await _identityStorageV9300.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _identityStorageV9340.blockHash = blockHash;
+                param = await _identityStorageV9340.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _identityStorageV9360.blockHash = blockHash;
+                param = await _identityStorageV9360.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _identityStorageV9370.blockHash = blockHash;
+                param = await _identityStorageV9370.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _identityStorageV9420.blockHash = blockHash;
+                param = await _identityStorageV9420.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _identityStorageV9430.blockHash = blockHash;
+                param = await _identityStorageV9430.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RegistrarsParams
         ///  The set of registrars. Not expected to get very big as can only be added through a
@@ -153,20 +911,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  The index into this can be cast to `RegistrarIndex` to get a valid value.
         /// </summary>
-        public static string RegistrarsParams()
+        public static string RegistrarsParams(uint version)
         {
-            return RequestGenerator.GetStorage("Identity", "Registrars", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.RegistrarsParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.RegistrarsParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.RegistrarsParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.RegistrarsParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.RegistrarsParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.RegistrarsParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.RegistrarsParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.RegistrarsParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.RegistrarsParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.RegistrarsParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.RegistrarsParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.RegistrarsParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.RegistrarsParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.RegistrarsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.RegistrarsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.RegistrarsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.RegistrarsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.RegistrarsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.RegistrarsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.RegistrarsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.RegistrarsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.RegistrarsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RegistrarsDefault
         /// Default value as hex string
         /// </summary>
-        public static string RegistrarsDefault()
+        public static string RegistrarsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage.RegistrarsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage.RegistrarsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage.RegistrarsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage.RegistrarsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage.RegistrarsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage.RegistrarsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage.RegistrarsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage.RegistrarsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage.RegistrarsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage.RegistrarsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage.RegistrarsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage.RegistrarsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage.RegistrarsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage.RegistrarsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage.RegistrarsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage.RegistrarsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage.RegistrarsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage.RegistrarsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage.RegistrarsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage.RegistrarsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage.RegistrarsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage.RegistrarsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Registrars
         ///  The set of registrars. Not expected to get very big as can only be added through a
@@ -174,373 +1026,609 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  The index into this can be cast to `RegistrarIndex` to get a valid value.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21> Registrars(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> RegistrarsAsync(CancellationToken token)
         {
-            string parameters = IdentityStorage.RegistrarsParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT21>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _identityStorageV9110.blockHash = blockHash;
+                param = await _identityStorageV9110.Registrars(token);
+            }
+
+            if (version == 9122U)
+            {
+                _identityStorageV9122.blockHash = blockHash;
+                param = await _identityStorageV9122.Registrars(token);
+            }
+
+            if (version == 9140U)
+            {
+                _identityStorageV9140.blockHash = blockHash;
+                param = await _identityStorageV9140.Registrars(token);
+            }
+
+            if (version == 9151U)
+            {
+                _identityStorageV9151.blockHash = blockHash;
+                param = await _identityStorageV9151.Registrars(token);
+            }
+
+            if (version == 9170U)
+            {
+                _identityStorageV9170.blockHash = blockHash;
+                param = await _identityStorageV9170.Registrars(token);
+            }
+
+            if (version == 9180U)
+            {
+                _identityStorageV9180.blockHash = blockHash;
+                param = await _identityStorageV9180.Registrars(token);
+            }
+
+            if (version == 9190U)
+            {
+                _identityStorageV9190.blockHash = blockHash;
+                param = await _identityStorageV9190.Registrars(token);
+            }
+
+            if (version == 9200U)
+            {
+                _identityStorageV9200.blockHash = blockHash;
+                param = await _identityStorageV9200.Registrars(token);
+            }
+
+            if (version == 9220U)
+            {
+                _identityStorageV9220.blockHash = blockHash;
+                param = await _identityStorageV9220.Registrars(token);
+            }
+
+            if (version == 9230U)
+            {
+                _identityStorageV9230.blockHash = blockHash;
+                param = await _identityStorageV9230.Registrars(token);
+            }
+
+            if (version == 9250U)
+            {
+                _identityStorageV9250.blockHash = blockHash;
+                param = await _identityStorageV9250.Registrars(token);
+            }
+
+            if (version == 9260U)
+            {
+                _identityStorageV9260.blockHash = blockHash;
+                param = await _identityStorageV9260.Registrars(token);
+            }
+
+            if (version == 9270U)
+            {
+                _identityStorageV9270.blockHash = blockHash;
+                param = await _identityStorageV9270.Registrars(token);
+            }
+
+            if (version == 9280U)
+            {
+                _identityStorageV9280.blockHash = blockHash;
+                param = await _identityStorageV9280.Registrars(token);
+            }
+
+            if (version == 9281U)
+            {
+                _identityStorageV9281.blockHash = blockHash;
+                param = await _identityStorageV9281.Registrars(token);
+            }
+
+            if (version == 9291U)
+            {
+                _identityStorageV9291.blockHash = blockHash;
+                param = await _identityStorageV9291.Registrars(token);
+            }
+
+            if (version == 9300U)
+            {
+                _identityStorageV9300.blockHash = blockHash;
+                param = await _identityStorageV9300.Registrars(token);
+            }
+
+            if (version == 9340U)
+            {
+                _identityStorageV9340.blockHash = blockHash;
+                param = await _identityStorageV9340.Registrars(token);
+            }
+
+            if (version == 9360U)
+            {
+                _identityStorageV9360.blockHash = blockHash;
+                param = await _identityStorageV9360.Registrars(token);
+            }
+
+            if (version == 9370U)
+            {
+                _identityStorageV9370.blockHash = blockHash;
+                param = await _identityStorageV9370.Registrars(token);
+            }
+
+            if (version == 9420U)
+            {
+                _identityStorageV9420.blockHash = blockHash;
+                param = await _identityStorageV9420.Registrars(token);
+            }
+
+            if (version == 9430U)
+            {
+                _identityStorageV9430.blockHash = blockHash;
+                param = await _identityStorageV9430.Registrars(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public IdentityStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _identityStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityStorage(_client);
+            _identityStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityStorage(_client);
+            _identityStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityStorage(_client);
+            _identityStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityStorage(_client);
+            _identityStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityStorage(_client);
+            _identityStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityStorage(_client);
+            _identityStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityStorage(_client);
+            _identityStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityStorage(_client);
+            _identityStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityStorage(_client);
+            _identityStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityStorage(_client);
+            _identityStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityStorage(_client);
+            _identityStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityStorage(_client);
+            _identityStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityStorage(_client);
+            _identityStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityStorage(_client);
+            _identityStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityStorage(_client);
+            _identityStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityStorage(_client);
+            _identityStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityStorage(_client);
+            _identityStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityStorage(_client);
+            _identityStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityStorage(_client);
+            _identityStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityStorage(_client);
+            _identityStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityStorage(_client);
+            _identityStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityStorage(_client);
         }
     }
-    
-    public sealed class IdentityCalls
-    {
-        
-        /// <summary>
-        /// >> add_registrar
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method AddRegistrar(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress account)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(account.Encode());
-            return new Method(28, "Identity", 0, "add_registrar", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_identity
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method SetIdentity(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo info)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(info.Encode());
-            return new Method(28, "Identity", 1, "set_identity", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_subs
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method SetSubs(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>> subs)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(subs.Encode());
-            return new Method(28, "Identity", 2, "set_subs", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> clear_identity
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method ClearIdentity()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(28, "Identity", 3, "clear_identity", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> request_judgement
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method RequestJudgement(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> reg_index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> max_fee)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(reg_index.Encode());
-            byteArray.AddRange(max_fee.Encode());
-            return new Method(28, "Identity", 4, "request_judgement", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> cancel_request
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method CancelRequest(Substrate.NetApi.Model.Types.Primitive.U32 reg_index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(reg_index.Encode());
-            return new Method(28, "Identity", 5, "cancel_request", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_fee
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method SetFee(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> fee)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(fee.Encode());
-            return new Method(28, "Identity", 6, "set_fee", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_account_id
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method SetAccountId(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> index, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(@new.Encode());
-            return new Method(28, "Identity", 7, "set_account_id", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_fields
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method SetFields(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> index, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.BitFlags fields)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(fields.Encode());
-            return new Method(28, "Identity", 8, "set_fields", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> provide_judgement
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method ProvideJudgement(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> reg_index, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement judgement, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 identity)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(reg_index.Encode());
-            byteArray.AddRange(target.Encode());
-            byteArray.AddRange(judgement.Encode());
-            byteArray.AddRange(identity.Encode());
-            return new Method(28, "Identity", 9, "provide_judgement", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> kill_identity
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method KillIdentity(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress target)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(target.Encode());
-            return new Method(28, "Identity", 10, "kill_identity", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> add_sub
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method AddSub(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress sub, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData data)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(sub.Encode());
-            byteArray.AddRange(data.Encode());
-            return new Method(28, "Identity", 11, "add_sub", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> rename_sub
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method RenameSub(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress sub, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData data)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(sub.Encode());
-            byteArray.AddRange(data.Encode());
-            return new Method(28, "Identity", 12, "rename_sub", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> remove_sub
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method RemoveSub(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress sub)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(sub.Encode());
-            return new Method(28, "Identity", 13, "remove_sub", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> quit_sub
-        /// Identity pallet declaration.
-        /// </summary>
-        public static Method QuitSub()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(28, "Identity", 14, "quit_sub", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class IdentityConstants
     {
-        
         /// <summary>
         /// >> BasicDeposit
         ///  The amount held on deposit for a registered identity
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 BasicDeposit()
+        public Substrate.NetApi.Model.Types.Primitive.U128 BasicDeposit(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x007DB52A2F0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityConstants().BasicDeposit();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityConstants().BasicDeposit();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityConstants().BasicDeposit();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityConstants().BasicDeposit();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityConstants().BasicDeposit();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityConstants().BasicDeposit();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityConstants().BasicDeposit();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityConstants().BasicDeposit();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityConstants().BasicDeposit();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityConstants().BasicDeposit();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityConstants().BasicDeposit();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityConstants().BasicDeposit();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityConstants().BasicDeposit();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityConstants().BasicDeposit();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityConstants().BasicDeposit();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityConstants().BasicDeposit();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityConstants().BasicDeposit();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityConstants().BasicDeposit();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityConstants().BasicDeposit();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityConstants().BasicDeposit();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityConstants().BasicDeposit();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityConstants().BasicDeposit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> FieldDeposit
         ///  The amount held on deposit per additional field for a registered identity.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 FieldDeposit()
+        public Substrate.NetApi.Model.Types.Primitive.U128 FieldDeposit(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00CD5627000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityConstants().FieldDeposit();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityConstants().FieldDeposit();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityConstants().FieldDeposit();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityConstants().FieldDeposit();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityConstants().FieldDeposit();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityConstants().FieldDeposit();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityConstants().FieldDeposit();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityConstants().FieldDeposit();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityConstants().FieldDeposit();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityConstants().FieldDeposit();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityConstants().FieldDeposit();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityConstants().FieldDeposit();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityConstants().FieldDeposit();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityConstants().FieldDeposit();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityConstants().FieldDeposit();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityConstants().FieldDeposit();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityConstants().FieldDeposit();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityConstants().FieldDeposit();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityConstants().FieldDeposit();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityConstants().FieldDeposit();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityConstants().FieldDeposit();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityConstants().FieldDeposit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> SubAccountDeposit
         ///  The amount held on deposit for a registered subaccount. This should account for the fact
         ///  that one storage item's value will increase by the size of an account ID, and there will
         ///  be another trie item whose value is the size of an account ID plus 32 bytes.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 SubAccountDeposit()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SubAccountDeposit(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x80F884B02E0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityConstants().SubAccountDeposit();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityConstants().SubAccountDeposit();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityConstants().SubAccountDeposit();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityConstants().SubAccountDeposit();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityConstants().SubAccountDeposit();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityConstants().SubAccountDeposit();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityConstants().SubAccountDeposit();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityConstants().SubAccountDeposit();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityConstants().SubAccountDeposit();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityConstants().SubAccountDeposit();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityConstants().SubAccountDeposit();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityConstants().SubAccountDeposit();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityConstants().SubAccountDeposit();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityConstants().SubAccountDeposit();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityConstants().SubAccountDeposit();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityConstants().SubAccountDeposit();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityConstants().SubAccountDeposit();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityConstants().SubAccountDeposit();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityConstants().SubAccountDeposit();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityConstants().SubAccountDeposit();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityConstants().SubAccountDeposit();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityConstants().SubAccountDeposit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxSubAccounts
         ///  The maximum number of sub-accounts allowed per identified account.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxSubAccounts()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxSubAccounts(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x64000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityConstants().MaxSubAccounts();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityConstants().MaxSubAccounts();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityConstants().MaxSubAccounts();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityConstants().MaxSubAccounts();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityConstants().MaxSubAccounts();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityConstants().MaxSubAccounts();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityConstants().MaxSubAccounts();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityConstants().MaxSubAccounts();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityConstants().MaxSubAccounts();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityConstants().MaxSubAccounts();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityConstants().MaxSubAccounts();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityConstants().MaxSubAccounts();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityConstants().MaxSubAccounts();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityConstants().MaxSubAccounts();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityConstants().MaxSubAccounts();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityConstants().MaxSubAccounts();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityConstants().MaxSubAccounts();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityConstants().MaxSubAccounts();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityConstants().MaxSubAccounts();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityConstants().MaxSubAccounts();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityConstants().MaxSubAccounts();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityConstants().MaxSubAccounts();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxAdditionalFields
         ///  Maximum number of additional fields that may be stored in an ID. Needed to bound the I/O
         ///  required to access an identity, but can be pretty high.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxAdditionalFields()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxAdditionalFields(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x64000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityConstants().MaxAdditionalFields();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityConstants().MaxAdditionalFields();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityConstants().MaxAdditionalFields();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityConstants().MaxAdditionalFields();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityConstants().MaxAdditionalFields();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityConstants().MaxAdditionalFields();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityConstants().MaxAdditionalFields();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityConstants().MaxAdditionalFields();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityConstants().MaxAdditionalFields();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityConstants().MaxAdditionalFields();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityConstants().MaxAdditionalFields();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityConstants().MaxAdditionalFields();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityConstants().MaxAdditionalFields();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityConstants().MaxAdditionalFields();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityConstants().MaxAdditionalFields();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityConstants().MaxAdditionalFields();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityConstants().MaxAdditionalFields();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityConstants().MaxAdditionalFields();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityConstants().MaxAdditionalFields();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityConstants().MaxAdditionalFields();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityConstants().MaxAdditionalFields();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityConstants().MaxAdditionalFields();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxRegistrars
         ///  Maxmimum number of registrars allowed in the system. Needed to bound the complexity
         ///  of, e.g., updating judgements.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxRegistrars()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxRegistrars(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x14000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.IdentityConstants().MaxRegistrars();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.IdentityConstants().MaxRegistrars();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.IdentityConstants().MaxRegistrars();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.IdentityConstants().MaxRegistrars();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.IdentityConstants().MaxRegistrars();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.IdentityConstants().MaxRegistrars();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.IdentityConstants().MaxRegistrars();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.IdentityConstants().MaxRegistrars();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.IdentityConstants().MaxRegistrars();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.IdentityConstants().MaxRegistrars();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.IdentityConstants().MaxRegistrars();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.IdentityConstants().MaxRegistrars();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.IdentityConstants().MaxRegistrars();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.IdentityConstants().MaxRegistrars();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.IdentityConstants().MaxRegistrars();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.IdentityConstants().MaxRegistrars();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.IdentityConstants().MaxRegistrars();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.IdentityConstants().MaxRegistrars();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.IdentityConstants().MaxRegistrars();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.IdentityConstants().MaxRegistrars();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.IdentityConstants().MaxRegistrars();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.IdentityConstants().MaxRegistrars();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum IdentityErrors
     {
-        
         /// <summary>
         /// >> TooManySubAccounts
         /// Too many subs-accounts.
         /// </summary>
         TooManySubAccounts,
-        
         /// <summary>
         /// >> NotFound
         /// Account isn't found.
         /// </summary>
         NotFound,
-        
         /// <summary>
         /// >> NotNamed
         /// Account isn't named.
         /// </summary>
         NotNamed,
-        
         /// <summary>
         /// >> EmptyIndex
         /// Empty index.
         /// </summary>
         EmptyIndex,
-        
         /// <summary>
         /// >> FeeChanged
         /// Fee is changed.
         /// </summary>
         FeeChanged,
-        
         /// <summary>
         /// >> NoIdentity
         /// No identity found.
         /// </summary>
         NoIdentity,
-        
         /// <summary>
         /// >> StickyJudgement
         /// Sticky judgement.
         /// </summary>
         StickyJudgement,
-        
         /// <summary>
         /// >> JudgementGiven
         /// Judgement given.
         /// </summary>
         JudgementGiven,
-        
         /// <summary>
         /// >> InvalidJudgement
         /// Invalid judgement.
         /// </summary>
         InvalidJudgement,
-        
         /// <summary>
         /// >> InvalidIndex
         /// The index is invalid.
         /// </summary>
         InvalidIndex,
-        
         /// <summary>
         /// >> InvalidTarget
         /// The target is invalid.
         /// </summary>
         InvalidTarget,
-        
         /// <summary>
         /// >> TooManyFields
         /// Too many additional fields.
         /// </summary>
         TooManyFields,
-        
         /// <summary>
         /// >> TooManyRegistrars
         /// Maximum amount of registrars reached. Cannot add any more.
         /// </summary>
         TooManyRegistrars,
-        
         /// <summary>
         /// >> AlreadyClaimed
         /// Account ID is already named.
         /// </summary>
         AlreadyClaimed,
-        
         /// <summary>
         /// >> NotSub
         /// Sender is not a sub-account.
         /// </summary>
         NotSub,
-        
         /// <summary>
         /// >> NotOwned
         /// Sub-account isn't owned by sender.
         /// </summary>
         NotOwned,
-        
         /// <summary>
         /// >> JudgementForDifferentIdentity
         /// The provided judgement was for a different identity.
         /// </summary>
         JudgementForDifferentIdentity,
-        
         /// <summary>
         /// >> JudgementPaymentFailed
         /// Error that occurs when there is an issue paying for judgement.
         /// </summary>
-        JudgementPaymentFailed,
+        JudgementPaymentFailed
     }
 }

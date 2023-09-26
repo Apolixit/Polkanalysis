@@ -6,38 +6,119 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ParaSchedulerStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ParaSchedulerStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ValidatorGroups"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadQueue"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "AvailabilityCores"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "ParathreadClaimIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "SessionStartBlock"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ParaScheduler", "Scheduled"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage _paraSchedulerStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage _paraSchedulerStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage _paraSchedulerStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage _paraSchedulerStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage _paraSchedulerStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage _paraSchedulerStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage _paraSchedulerStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage _paraSchedulerStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage _paraSchedulerStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage _paraSchedulerStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage _paraSchedulerStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage _paraSchedulerStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage _paraSchedulerStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage _paraSchedulerStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage _paraSchedulerStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage _paraSchedulerStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage _paraSchedulerStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage _paraSchedulerStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage _paraSchedulerStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage _paraSchedulerStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage _paraSchedulerStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage _paraSchedulerStorageV9430;
         /// <summary>
         /// >> ValidatorGroupsParams
         ///  All the validator groups. One for each core. Indices are into `ActiveValidators` - not the
@@ -47,20 +128,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Bound: The number of cores is the sum of the numbers of parachains and parathread multiplexers.
         ///  Reasonably, 100-1000. The dominant factor is the number of validators: safe upper bound at 10k.
         /// </summary>
-        public static string ValidatorGroupsParams()
+        public static string ValidatorGroupsParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "ValidatorGroups", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ValidatorGroupsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ValidatorGroupsDefault
         /// Default value as hex string
         /// </summary>
-        public static string ValidatorGroupsDefault()
+        public static string ValidatorGroupsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ValidatorGroupsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ValidatorGroups
         ///  All the validator groups. One for each core. Indices are into `ActiveValidators` - not the
@@ -70,13 +245,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Bound: The number of cores is the sum of the numbers of parachains and parathread multiplexers.
         ///  Reasonably, 100-1000. The dominant factor is the number of validators: safe upper bound at 10k.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>> ValidatorGroups(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> ValidatorGroupsAsync(CancellationToken token)
         {
-            string parameters = ParaSchedulerStorage.ValidatorGroupsParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.ValidatorIndex>>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _paraSchedulerStorageV9110.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9110.ValidatorGroups(token);
+            }
+
+            if (version == 9122U)
+            {
+                _paraSchedulerStorageV9122.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9122.ValidatorGroups(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraSchedulerStorageV9140.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9140.ValidatorGroups(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraSchedulerStorageV9151.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9151.ValidatorGroups(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraSchedulerStorageV9170.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9170.ValidatorGroups(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraSchedulerStorageV9180.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9180.ValidatorGroups(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraSchedulerStorageV9190.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9190.ValidatorGroups(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraSchedulerStorageV9200.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9200.ValidatorGroups(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraSchedulerStorageV9220.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9220.ValidatorGroups(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraSchedulerStorageV9230.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9230.ValidatorGroups(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraSchedulerStorageV9250.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9250.ValidatorGroups(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraSchedulerStorageV9260.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9260.ValidatorGroups(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraSchedulerStorageV9270.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9270.ValidatorGroups(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraSchedulerStorageV9280.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9280.ValidatorGroups(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraSchedulerStorageV9281.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9281.ValidatorGroups(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraSchedulerStorageV9291.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9291.ValidatorGroups(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraSchedulerStorageV9300.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9300.ValidatorGroups(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraSchedulerStorageV9340.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9340.ValidatorGroups(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraSchedulerStorageV9360.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9360.ValidatorGroups(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraSchedulerStorageV9370.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9370.ValidatorGroups(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraSchedulerStorageV9420.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9420.ValidatorGroups(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraSchedulerStorageV9430.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9430.ValidatorGroups(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParathreadQueueParams
         ///  A queue of upcoming claims and which core they should be mapped onto.
@@ -84,20 +393,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The number of queued claims is bounded at the `scheduling_lookahead`
         ///  multiplied by the number of parathread multiplexer cores. Reasonably, 10 * 50 = 500.
         /// </summary>
-        public static string ParathreadQueueParams()
+        public static string ParathreadQueueParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "ParathreadQueue", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ParathreadQueueParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ParathreadQueueParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParathreadQueueDefault
         /// Default value as hex string
         /// </summary>
-        public static string ParathreadQueueDefault()
+        public static string ParathreadQueueDefault(uint version)
         {
-            return "0x0000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ParathreadQueueDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParathreadQueue
         ///  A queue of upcoming claims and which core they should be mapped onto.
@@ -105,13 +508,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The number of queued claims is bounded at the `scheduling_lookahead`
         ///  multiplied by the number of parathread multiplexer cores. Reasonably, 10 * 50 = 500.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue> ParathreadQueue(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.scheduler.ParathreadClaimQueueBase> ParathreadQueueAsync(CancellationToken token)
         {
-            string parameters = ParaSchedulerStorage.ParathreadQueueParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.ParathreadClaimQueue>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.scheduler.ParathreadClaimQueueBase param = null;
+            if (version == 9110U)
+            {
+                _paraSchedulerStorageV9110.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9110.ParathreadQueue(token);
+            }
+
+            if (version == 9122U)
+            {
+                _paraSchedulerStorageV9122.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9122.ParathreadQueue(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraSchedulerStorageV9140.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9140.ParathreadQueue(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraSchedulerStorageV9151.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9151.ParathreadQueue(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraSchedulerStorageV9170.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9170.ParathreadQueue(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraSchedulerStorageV9180.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9180.ParathreadQueue(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraSchedulerStorageV9190.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9190.ParathreadQueue(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraSchedulerStorageV9200.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9200.ParathreadQueue(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraSchedulerStorageV9220.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9220.ParathreadQueue(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraSchedulerStorageV9230.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9230.ParathreadQueue(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraSchedulerStorageV9250.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9250.ParathreadQueue(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraSchedulerStorageV9260.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9260.ParathreadQueue(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraSchedulerStorageV9270.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9270.ParathreadQueue(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraSchedulerStorageV9280.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9280.ParathreadQueue(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraSchedulerStorageV9281.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9281.ParathreadQueue(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraSchedulerStorageV9291.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9291.ParathreadQueue(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraSchedulerStorageV9300.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9300.ParathreadQueue(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraSchedulerStorageV9340.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9340.ParathreadQueue(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraSchedulerStorageV9360.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9360.ParathreadQueue(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraSchedulerStorageV9370.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9370.ParathreadQueue(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraSchedulerStorageV9420.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9420.ParathreadQueue(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraSchedulerStorageV9430.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9430.ParathreadQueue(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AvailabilityCoresParams
         ///  One entry for each availability core. Entries are `None` if the core is not currently occupied. Can be
@@ -123,20 +660,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///    * The number of parachains and parathread multiplexers
         ///    * The number of validators divided by `configuration.max_validators_per_core`.
         /// </summary>
-        public static string AvailabilityCoresParams()
+        public static string AvailabilityCoresParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "AvailabilityCores", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.AvailabilityCoresParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AvailabilityCoresDefault
         /// Default value as hex string
         /// </summary>
-        public static string AvailabilityCoresDefault()
+        public static string AvailabilityCoresDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.AvailabilityCoresDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AvailabilityCores
         ///  One entry for each availability core. Entries are `None` if the core is not currently occupied. Can be
@@ -148,13 +779,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///    * The number of parachains and parathread multiplexers
         ///    * The number of validators divided by `configuration.max_validators_per_core`.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>> AvailabilityCores(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> AvailabilityCoresAsync(CancellationToken token)
         {
-            string parameters = ParaSchedulerStorage.AvailabilityCoresParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.EnumCoreOccupied>>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _paraSchedulerStorageV9110.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9110.AvailabilityCores(token);
+            }
+
+            if (version == 9122U)
+            {
+                _paraSchedulerStorageV9122.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9122.AvailabilityCores(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraSchedulerStorageV9140.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9140.AvailabilityCores(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraSchedulerStorageV9151.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9151.AvailabilityCores(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraSchedulerStorageV9170.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9170.AvailabilityCores(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraSchedulerStorageV9180.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9180.AvailabilityCores(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraSchedulerStorageV9190.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9190.AvailabilityCores(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraSchedulerStorageV9200.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9200.AvailabilityCores(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraSchedulerStorageV9220.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9220.AvailabilityCores(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraSchedulerStorageV9230.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9230.AvailabilityCores(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraSchedulerStorageV9250.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9250.AvailabilityCores(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraSchedulerStorageV9260.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9260.AvailabilityCores(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraSchedulerStorageV9270.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9270.AvailabilityCores(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraSchedulerStorageV9280.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9280.AvailabilityCores(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraSchedulerStorageV9281.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9281.AvailabilityCores(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraSchedulerStorageV9291.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9291.AvailabilityCores(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraSchedulerStorageV9300.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9300.AvailabilityCores(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraSchedulerStorageV9340.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9340.AvailabilityCores(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraSchedulerStorageV9360.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9360.AvailabilityCores(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraSchedulerStorageV9370.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9370.AvailabilityCores(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraSchedulerStorageV9420.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9420.AvailabilityCores(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraSchedulerStorageV9430.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9430.AvailabilityCores(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParathreadClaimIndexParams
         ///  An index used to ensure that only one claim on a parathread exists in the queue or is
@@ -162,20 +927,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Bounded by the number of parathread cores and scheduling lookahead. Reasonably, 10 * 50 = 500.
         /// </summary>
-        public static string ParathreadClaimIndexParams()
+        public static string ParathreadClaimIndexParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "ParathreadClaimIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ParathreadClaimIndexParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParathreadClaimIndexDefault
         /// Default value as hex string
         /// </summary>
-        public static string ParathreadClaimIndexDefault()
+        public static string ParathreadClaimIndexDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ParathreadClaimIndexDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParathreadClaimIndex
         ///  An index used to ensure that only one claim on a parathread exists in the queue or is
@@ -183,13 +1042,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Bounded by the number of parathread cores and scheduling lookahead. Reasonably, 10 * 50 = 500.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>> ParathreadClaimIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> ParathreadClaimIndexAsync(CancellationToken token)
         {
-            string parameters = ParaSchedulerStorage.ParathreadClaimIndexParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _paraSchedulerStorageV9110.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9110.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9122U)
+            {
+                _paraSchedulerStorageV9122.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9122.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraSchedulerStorageV9140.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9140.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraSchedulerStorageV9151.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9151.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraSchedulerStorageV9170.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9170.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraSchedulerStorageV9180.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9180.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraSchedulerStorageV9190.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9190.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraSchedulerStorageV9200.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9200.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraSchedulerStorageV9220.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9220.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraSchedulerStorageV9230.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9230.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraSchedulerStorageV9250.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9250.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraSchedulerStorageV9260.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9260.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraSchedulerStorageV9270.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9270.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraSchedulerStorageV9280.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9280.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraSchedulerStorageV9281.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9281.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraSchedulerStorageV9291.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9291.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraSchedulerStorageV9300.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9300.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraSchedulerStorageV9340.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9340.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraSchedulerStorageV9360.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9360.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraSchedulerStorageV9370.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9370.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraSchedulerStorageV9420.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9420.ParathreadClaimIndex(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraSchedulerStorageV9430.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9430.ParathreadClaimIndex(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SessionStartBlockParams
         ///  The block number where the session start occurred. Used to track how many group rotations have occurred.
@@ -199,20 +1192,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Thus for all intents and purposes the effect of the session change is observed at the
         ///  block following the session change, block number of which we save in this storage value.
         /// </summary>
-        public static string SessionStartBlockParams()
+        public static string SessionStartBlockParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "SessionStartBlock", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.SessionStartBlockParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.SessionStartBlockParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SessionStartBlockDefault
         /// Default value as hex string
         /// </summary>
-        public static string SessionStartBlockDefault()
+        public static string SessionStartBlockDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.SessionStartBlockDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SessionStartBlock
         ///  The block number where the session start occurred. Used to track how many group rotations have occurred.
@@ -222,13 +1309,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Thus for all intents and purposes the effect of the session change is observed at the
         ///  block following the session change, block number of which we save in this storage value.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SessionStartBlock(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SessionStartBlockAsync(CancellationToken token)
         {
-            string parameters = ParaSchedulerStorage.SessionStartBlockParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _paraSchedulerStorageV9110.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9110.SessionStartBlock(token);
+            }
+
+            if (version == 9122U)
+            {
+                _paraSchedulerStorageV9122.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9122.SessionStartBlock(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraSchedulerStorageV9140.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9140.SessionStartBlock(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraSchedulerStorageV9151.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9151.SessionStartBlock(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraSchedulerStorageV9170.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9170.SessionStartBlock(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraSchedulerStorageV9180.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9180.SessionStartBlock(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraSchedulerStorageV9190.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9190.SessionStartBlock(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraSchedulerStorageV9200.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9200.SessionStartBlock(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraSchedulerStorageV9220.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9220.SessionStartBlock(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraSchedulerStorageV9230.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9230.SessionStartBlock(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraSchedulerStorageV9250.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9250.SessionStartBlock(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraSchedulerStorageV9260.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9260.SessionStartBlock(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraSchedulerStorageV9270.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9270.SessionStartBlock(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraSchedulerStorageV9280.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9280.SessionStartBlock(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraSchedulerStorageV9281.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9281.SessionStartBlock(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraSchedulerStorageV9291.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9291.SessionStartBlock(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraSchedulerStorageV9300.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9300.SessionStartBlock(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraSchedulerStorageV9340.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9340.SessionStartBlock(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraSchedulerStorageV9360.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9360.SessionStartBlock(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraSchedulerStorageV9370.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9370.SessionStartBlock(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraSchedulerStorageV9420.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9420.SessionStartBlock(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraSchedulerStorageV9430.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9430.SessionStartBlock(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ScheduledParams
         ///  Currently scheduled cores - free but up to be occupied.
@@ -238,20 +1459,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The value contained here will not be valid after the end of a block. Runtime APIs should be used to determine scheduled cores/
         ///  for the upcoming block.
         /// </summary>
-        public static string ScheduledParams()
+        public static string ScheduledParams(uint version)
         {
-            return RequestGenerator.GetStorage("ParaScheduler", "Scheduled", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ScheduledParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ScheduledParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ScheduledDefault
         /// Default value as hex string
         /// </summary>
-        public static string ScheduledDefault()
+        public static string ScheduledDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage.ScheduledDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage.ScheduledDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Scheduled
         ///  Currently scheduled cores - free but up to be occupied.
@@ -261,18 +1576,175 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The value contained here will not be valid after the end of a block. Runtime APIs should be used to determine scheduled cores/
         ///  for the upcoming block.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>> Scheduled(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> ScheduledAsync(CancellationToken token)
         {
-            string parameters = ParaSchedulerStorage.ScheduledParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.scheduler.CoreAssignment>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _paraSchedulerStorageV9110.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9110.Scheduled(token);
+            }
+
+            if (version == 9122U)
+            {
+                _paraSchedulerStorageV9122.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9122.Scheduled(token);
+            }
+
+            if (version == 9140U)
+            {
+                _paraSchedulerStorageV9140.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9140.Scheduled(token);
+            }
+
+            if (version == 9151U)
+            {
+                _paraSchedulerStorageV9151.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9151.Scheduled(token);
+            }
+
+            if (version == 9170U)
+            {
+                _paraSchedulerStorageV9170.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9170.Scheduled(token);
+            }
+
+            if (version == 9180U)
+            {
+                _paraSchedulerStorageV9180.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9180.Scheduled(token);
+            }
+
+            if (version == 9190U)
+            {
+                _paraSchedulerStorageV9190.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9190.Scheduled(token);
+            }
+
+            if (version == 9200U)
+            {
+                _paraSchedulerStorageV9200.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9200.Scheduled(token);
+            }
+
+            if (version == 9220U)
+            {
+                _paraSchedulerStorageV9220.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9220.Scheduled(token);
+            }
+
+            if (version == 9230U)
+            {
+                _paraSchedulerStorageV9230.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9230.Scheduled(token);
+            }
+
+            if (version == 9250U)
+            {
+                _paraSchedulerStorageV9250.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9250.Scheduled(token);
+            }
+
+            if (version == 9260U)
+            {
+                _paraSchedulerStorageV9260.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9260.Scheduled(token);
+            }
+
+            if (version == 9270U)
+            {
+                _paraSchedulerStorageV9270.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9270.Scheduled(token);
+            }
+
+            if (version == 9280U)
+            {
+                _paraSchedulerStorageV9280.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9280.Scheduled(token);
+            }
+
+            if (version == 9281U)
+            {
+                _paraSchedulerStorageV9281.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9281.Scheduled(token);
+            }
+
+            if (version == 9291U)
+            {
+                _paraSchedulerStorageV9291.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9291.Scheduled(token);
+            }
+
+            if (version == 9300U)
+            {
+                _paraSchedulerStorageV9300.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9300.Scheduled(token);
+            }
+
+            if (version == 9340U)
+            {
+                _paraSchedulerStorageV9340.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9340.Scheduled(token);
+            }
+
+            if (version == 9360U)
+            {
+                _paraSchedulerStorageV9360.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9360.Scheduled(token);
+            }
+
+            if (version == 9370U)
+            {
+                _paraSchedulerStorageV9370.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9370.Scheduled(token);
+            }
+
+            if (version == 9420U)
+            {
+                _paraSchedulerStorageV9420.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9420.Scheduled(token);
+            }
+
+            if (version == 9430U)
+            {
+                _paraSchedulerStorageV9430.blockHash = blockHash;
+                param = await _paraSchedulerStorageV9430.Scheduled(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ParaSchedulerStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _paraSchedulerStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParaSchedulerStorage(_client);
+            _paraSchedulerStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParaSchedulerStorage(_client);
         }
     }
-    
-    public sealed class ParaSchedulerCalls
-    {
-    }
-    
+
     public sealed class ParaSchedulerConstants
     {
     }

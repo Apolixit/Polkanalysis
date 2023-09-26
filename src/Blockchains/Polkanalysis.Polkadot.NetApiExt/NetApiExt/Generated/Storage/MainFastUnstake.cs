@@ -6,134 +6,350 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class FastUnstakeStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public FastUnstakeStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "Head"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "Queue"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "CounterForQueue"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("FastUnstake", "ErasToCheckPerBlock"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage _fastUnstakeStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage _fastUnstakeStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage _fastUnstakeStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage _fastUnstakeStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage _fastUnstakeStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage _fastUnstakeStorageV9430;
         /// <summary>
         /// >> HeadParams
         ///  The current "head of the queue" being unstaked.
         /// </summary>
-        public static string HeadParams()
+        public static string HeadParams(uint version)
         {
-            return RequestGenerator.GetStorage("FastUnstake", "Head", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.HeadParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.HeadParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.HeadParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.HeadParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.HeadParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.HeadParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> HeadDefault
         /// Default value as hex string
         /// </summary>
-        public static string HeadDefault()
+        public static string HeadDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.HeadDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.HeadDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.HeadDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.HeadDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.HeadDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.HeadDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Head
         ///  The current "head of the queue" being unstaked.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest> Head(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_fast_unstake.types.UnstakeRequestBase> HeadAsync(CancellationToken token)
         {
-            string parameters = FastUnstakeStorage.HeadParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_fast_unstake.types.UnstakeRequest>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_fast_unstake.types.UnstakeRequestBase param = null;
+            if (version == 9300U)
+            {
+                _fastUnstakeStorageV9300.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9300.Head(token);
+            }
+
+            if (version == 9340U)
+            {
+                _fastUnstakeStorageV9340.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9340.Head(token);
+            }
+
+            if (version == 9360U)
+            {
+                _fastUnstakeStorageV9360.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9360.Head(token);
+            }
+
+            if (version == 9370U)
+            {
+                _fastUnstakeStorageV9370.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9370.Head(token);
+            }
+
+            if (version == 9420U)
+            {
+                _fastUnstakeStorageV9420.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9420.Head(token);
+            }
+
+            if (version == 9430U)
+            {
+                _fastUnstakeStorageV9430.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9430.Head(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> QueueParams
         ///  The map of all accounts wishing to be unstaked.
         /// 
         ///  Keeps track of `AccountId` wishing to unstake and it's corresponding deposit.
-        /// 
-        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
-        public static string QueueParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string QueueParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("FastUnstake", "Queue", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.QueueParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.QueueParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.QueueParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.QueueParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.QueueParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.QueueParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> QueueDefault
         /// Default value as hex string
         /// </summary>
-        public static string QueueDefault()
+        public static string QueueDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.QueueDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.QueueDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.QueueDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.QueueDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.QueueDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.QueueDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Queue
         ///  The map of all accounts wishing to be unstaked.
         /// 
         ///  Keeps track of `AccountId` wishing to unstake and it's corresponding deposit.
-        /// 
-        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> Queue(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> QueueAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = FastUnstakeStorage.QueueParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U128 param = null;
+            if (version == 9300U)
+            {
+                _fastUnstakeStorageV9300.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9300.Queue((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _fastUnstakeStorageV9340.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9340.Queue((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _fastUnstakeStorageV9360.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9360.Queue((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _fastUnstakeStorageV9370.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9370.Queue((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _fastUnstakeStorageV9420.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9420.Queue((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _fastUnstakeStorageV9430.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9430.Queue((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForQueueParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForQueueParams()
+        public static string CounterForQueueParams(uint version)
         {
-            return RequestGenerator.GetStorage("FastUnstake", "CounterForQueue", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.CounterForQueueParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.CounterForQueueParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.CounterForQueueParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.CounterForQueueParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.CounterForQueueParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.CounterForQueueParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForQueueDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForQueueDefault()
+        public static string CounterForQueueDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.CounterForQueueDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.CounterForQueueDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.CounterForQueueDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.CounterForQueueDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.CounterForQueueDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.CounterForQueueDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForQueue
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForQueue(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForQueueAsync(CancellationToken token)
         {
-            string parameters = FastUnstakeStorage.CounterForQueueParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9300U)
+            {
+                _fastUnstakeStorageV9300.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9300.CounterForQueue(token);
+            }
+
+            if (version == 9340U)
+            {
+                _fastUnstakeStorageV9340.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9340.CounterForQueue(token);
+            }
+
+            if (version == 9360U)
+            {
+                _fastUnstakeStorageV9360.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9360.CounterForQueue(token);
+            }
+
+            if (version == 9370U)
+            {
+                _fastUnstakeStorageV9370.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9370.CounterForQueue(token);
+            }
+
+            if (version == 9420U)
+            {
+                _fastUnstakeStorageV9420.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9420.CounterForQueue(token);
+            }
+
+            if (version == 9430U)
+            {
+                _fastUnstakeStorageV9430.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9430.CounterForQueue(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ErasToCheckPerBlockParams
         ///  Number of eras to check per block.
@@ -143,20 +359,50 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Based on the amount of weight available at `on_idle`, up to this many eras of a single
         ///  nominator might be checked.
         /// </summary>
-        public static string ErasToCheckPerBlockParams()
+        public static string ErasToCheckPerBlockParams(uint version)
         {
-            return RequestGenerator.GetStorage("FastUnstake", "ErasToCheckPerBlock", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.ErasToCheckPerBlockParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.ErasToCheckPerBlockParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.ErasToCheckPerBlockParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.ErasToCheckPerBlockParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.ErasToCheckPerBlockParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.ErasToCheckPerBlockParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ErasToCheckPerBlockDefault
         /// Default value as hex string
         /// </summary>
-        public static string ErasToCheckPerBlockDefault()
+        public static string ErasToCheckPerBlockDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage.ErasToCheckPerBlockDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage.ErasToCheckPerBlockDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage.ErasToCheckPerBlockDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage.ErasToCheckPerBlockDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage.ErasToCheckPerBlockDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage.ErasToCheckPerBlockDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ErasToCheckPerBlock
         ///  Number of eras to check per block.
@@ -166,68 +412,91 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Based on the amount of weight available at `on_idle`, up to this many eras of a single
         ///  nominator might be checked.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ErasToCheckPerBlock(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ErasToCheckPerBlockAsync(CancellationToken token)
         {
-            string parameters = FastUnstakeStorage.ErasToCheckPerBlockParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9300U)
+            {
+                _fastUnstakeStorageV9300.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9300.ErasToCheckPerBlock(token);
+            }
+
+            if (version == 9340U)
+            {
+                _fastUnstakeStorageV9340.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9340.ErasToCheckPerBlock(token);
+            }
+
+            if (version == 9360U)
+            {
+                _fastUnstakeStorageV9360.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9360.ErasToCheckPerBlock(token);
+            }
+
+            if (version == 9370U)
+            {
+                _fastUnstakeStorageV9370.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9370.ErasToCheckPerBlock(token);
+            }
+
+            if (version == 9420U)
+            {
+                _fastUnstakeStorageV9420.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9420.ErasToCheckPerBlock(token);
+            }
+
+            if (version == 9430U)
+            {
+                _fastUnstakeStorageV9430.blockHash = blockHash;
+                param = await _fastUnstakeStorageV9430.ErasToCheckPerBlock(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public FastUnstakeStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _fastUnstakeStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.FastUnstakeStorage(_client);
+            _fastUnstakeStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeStorage(_client);
+            _fastUnstakeStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeStorage(_client);
+            _fastUnstakeStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeStorage(_client);
+            _fastUnstakeStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeStorage(_client);
+            _fastUnstakeStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeStorage(_client);
         }
     }
-    
-    public sealed class FastUnstakeCalls
-    {
-        
-        /// <summary>
-        /// >> register_fast_unstake
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RegisterFastUnstake()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(40, "FastUnstake", 0, "register_fast_unstake", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> deregister
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Deregister()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(40, "FastUnstake", 1, "deregister", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> control
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Control(Substrate.NetApi.Model.Types.Primitive.U32 unchecked_eras_to_check)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(unchecked_eras_to_check.Encode());
-            return new Method(40, "FastUnstake", 2, "control", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class FastUnstakeConstants
     {
-        
         /// <summary>
         /// >> Deposit
         ///  Deposit to take for unstaking, to make sure we're able to slash the it in order to cover
         ///  the costs of resources on unsuccessful unstake.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit()
+        public Substrate.NetApi.Model.Types.Primitive.U128 Deposit(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E40B54020000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.FastUnstakeConstants().Deposit();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.FastUnstakeConstants().Deposit();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.FastUnstakeConstants().Deposit();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.FastUnstakeConstants().Deposit();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.FastUnstakeConstants().Deposit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum FastUnstakeErrors
     {
-        
         /// <summary>
         /// >> NotController
         /// The provided Controller account was not found.
@@ -235,35 +504,30 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// This means that the given account is not bonded.
         /// </summary>
         NotController,
-        
         /// <summary>
         /// >> AlreadyQueued
         /// The bonded account has already been queued.
         /// </summary>
         AlreadyQueued,
-        
         /// <summary>
         /// >> NotFullyBonded
         /// The bonded account has active unlocking chunks.
         /// </summary>
         NotFullyBonded,
-        
         /// <summary>
         /// >> NotQueued
         /// The provided un-staker is not in the `Queue`.
         /// </summary>
         NotQueued,
-        
         /// <summary>
         /// >> AlreadyHead
         /// The provided un-staker is already in Head, and cannot deregister.
         /// </summary>
         AlreadyHead,
-        
         /// <summary>
         /// >> CallNotAllowed
         /// The call is not allowed at this point because the pallet is not active.
         /// </summary>
-        CallNotAllowed,
+        CallNotAllowed
     }
 }

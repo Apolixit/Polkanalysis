@@ -6,43 +6,119 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ElectionProviderMultiPhaseStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ElectionProviderMultiPhaseStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "Round"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "CurrentPhase"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "QueuedSolution"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "Snapshot"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "DesiredTargets"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SnapshotMetadata"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionNextIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionIndices"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "SignedSubmissionsMap"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ElectionProviderMultiPhase", "MinimumUntrustedScore"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage _electionProviderMultiPhaseStorageV9430;
         /// <summary>
         /// >> RoundParams
         ///  Internal counter for the number of rounds.
@@ -52,20 +128,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  This is merely incremented once per every time that an upstream `elect` is called.
         /// </summary>
-        public static string RoundParams()
+        public static string RoundParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "Round", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.RoundParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RoundDefault
         /// Default value as hex string
         /// </summary>
-        public static string RoundDefault()
+        public static string RoundDefault(uint version)
         {
-            return "0x01000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.RoundDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Round
         ///  Internal counter for the number of rounds.
@@ -75,170 +245,1444 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  This is merely incremented once per every time that an upstream `elect` is called.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> Round(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> RoundAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.RoundParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.Round(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.Round(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.Round(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.Round(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.Round(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.Round(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.Round(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.Round(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.Round(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.Round(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.Round(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.Round(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.Round(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.Round(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.Round(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.Round(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.Round(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.Round(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.Round(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.Round(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.Round(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.Round(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CurrentPhaseParams
         ///  Current phase.
         /// </summary>
-        public static string CurrentPhaseParams()
+        public static string CurrentPhaseParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "CurrentPhase", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CurrentPhaseDefault
         /// Default value as hex string
         /// </summary>
-        public static string CurrentPhaseDefault()
+        public static string CurrentPhaseDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.CurrentPhaseDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CurrentPhase
         ///  Current phase.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase> CurrentPhase(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum> CurrentPhaseAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.CurrentPhaseParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.EnumPhase>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.CurrentPhase(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.CurrentPhase(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.CurrentPhase(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.CurrentPhase(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.CurrentPhase(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.CurrentPhase(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.CurrentPhase(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.CurrentPhase(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.CurrentPhase(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.CurrentPhase(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.CurrentPhase(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.CurrentPhase(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.CurrentPhase(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.CurrentPhase(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.CurrentPhase(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.CurrentPhase(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.CurrentPhase(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.CurrentPhase(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.CurrentPhase(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.CurrentPhase(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.CurrentPhase(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.CurrentPhase(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> QueuedSolutionParams
         ///  Current best solution, signed or unsigned, queued to be returned upon `elect`.
         /// </summary>
-        public static string QueuedSolutionParams()
+        public static string QueuedSolutionParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "QueuedSolution", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> QueuedSolutionDefault
         /// Default value as hex string
         /// </summary>
-        public static string QueuedSolutionDefault()
+        public static string QueuedSolutionDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.QueuedSolutionDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> QueuedSolution
         ///  Current best solution, signed or unsigned, queued to be returned upon `elect`.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution> QueuedSolution(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.ReadySolutionBase> QueuedSolutionAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.QueuedSolutionParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.ReadySolution>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.ReadySolutionBase param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.QueuedSolution(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.QueuedSolution(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.QueuedSolution(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.QueuedSolution(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.QueuedSolution(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.QueuedSolution(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.QueuedSolution(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.QueuedSolution(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.QueuedSolution(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.QueuedSolution(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.QueuedSolution(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.QueuedSolution(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.QueuedSolution(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.QueuedSolution(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.QueuedSolution(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.QueuedSolution(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.QueuedSolution(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.QueuedSolution(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.QueuedSolution(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.QueuedSolution(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.QueuedSolution(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.QueuedSolution(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SnapshotParams
         ///  Snapshot data of the round.
         /// 
         ///  This is created at the beginning of the signed phase and cleared upon calling `elect`.
         /// </summary>
-        public static string SnapshotParams()
+        public static string SnapshotParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "Snapshot", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SnapshotParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SnapshotDefault
         /// Default value as hex string
         /// </summary>
-        public static string SnapshotDefault()
+        public static string SnapshotDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SnapshotDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Snapshot
         ///  Snapshot data of the round.
         /// 
         ///  This is created at the beginning of the signed phase and cleared upon calling `elect`.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot> Snapshot(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.RoundSnapshotBase> SnapshotAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.SnapshotParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RoundSnapshot>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.RoundSnapshotBase param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.Snapshot(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.Snapshot(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.Snapshot(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.Snapshot(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.Snapshot(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.Snapshot(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.Snapshot(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.Snapshot(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.Snapshot(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.Snapshot(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.Snapshot(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.Snapshot(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.Snapshot(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.Snapshot(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.Snapshot(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.Snapshot(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.Snapshot(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.Snapshot(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.Snapshot(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.Snapshot(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.Snapshot(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.Snapshot(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DesiredTargetsParams
         ///  Desired number of targets to elect for this round.
         /// 
         ///  Only exists when [`Snapshot`] is present.
         /// </summary>
-        public static string DesiredTargetsParams()
+        public static string DesiredTargetsParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "DesiredTargets", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DesiredTargetsDefault
         /// Default value as hex string
         /// </summary>
-        public static string DesiredTargetsDefault()
+        public static string DesiredTargetsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.DesiredTargetsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DesiredTargets
         ///  Desired number of targets to elect for this round.
         /// 
         ///  Only exists when [`Snapshot`] is present.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> DesiredTargets(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> DesiredTargetsAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.DesiredTargetsParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.DesiredTargets(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.DesiredTargets(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.DesiredTargets(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.DesiredTargets(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.DesiredTargets(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.DesiredTargets(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.DesiredTargets(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.DesiredTargets(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.DesiredTargets(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.DesiredTargets(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.DesiredTargets(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.DesiredTargets(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.DesiredTargets(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.DesiredTargets(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.DesiredTargets(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.DesiredTargets(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.DesiredTargets(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.DesiredTargets(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.DesiredTargets(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.DesiredTargets(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.DesiredTargets(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.DesiredTargets(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SnapshotMetadataParams
         ///  The metadata of the [`RoundSnapshot`]
         /// 
         ///  Only exists when [`Snapshot`] is present.
         /// </summary>
-        public static string SnapshotMetadataParams()
+        public static string SnapshotMetadataParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SnapshotMetadata", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SnapshotMetadataDefault
         /// Default value as hex string
         /// </summary>
-        public static string SnapshotMetadataDefault()
+        public static string SnapshotMetadataDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SnapshotMetadataDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SnapshotMetadata
         ///  The metadata of the [`RoundSnapshot`]
         /// 
         ///  Only exists when [`Snapshot`] is present.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize> SnapshotMetadata(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.SolutionOrSnapshotSizeBase> SnapshotMetadataAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.SnapshotMetadataParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.SolutionOrSnapshotSizeBase param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.SnapshotMetadata(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.SnapshotMetadata(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.SnapshotMetadata(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.SnapshotMetadata(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.SnapshotMetadata(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.SnapshotMetadata(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.SnapshotMetadata(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.SnapshotMetadata(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.SnapshotMetadata(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.SnapshotMetadata(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.SnapshotMetadata(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.SnapshotMetadata(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.SnapshotMetadata(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.SnapshotMetadata(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.SnapshotMetadata(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.SnapshotMetadata(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.SnapshotMetadata(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.SnapshotMetadata(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.SnapshotMetadata(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.SnapshotMetadata(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.SnapshotMetadata(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.SnapshotMetadata(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionNextIndexParams
         ///  The next index to be assigned to an incoming signed submission.
@@ -251,20 +1695,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  capacity, it will simply saturate. We can't just iterate over `SignedSubmissionsMap`,
         ///  because iteration is slow. Instead, we store the value here.
         /// </summary>
-        public static string SignedSubmissionNextIndexParams()
+        public static string SignedSubmissionNextIndexParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionNextIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionNextIndexDefault
         /// Default value as hex string
         /// </summary>
-        public static string SignedSubmissionNextIndexDefault()
+        public static string SignedSubmissionNextIndexDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionNextIndex
         ///  The next index to be assigned to an incoming signed submission.
@@ -277,52 +1815,414 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  capacity, it will simply saturate. We can't just iterate over `SignedSubmissionsMap`,
         ///  because iteration is slow. Instead, we store the value here.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SignedSubmissionNextIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SignedSubmissionNextIndexAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionNextIndexParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.SignedSubmissionNextIndex(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.SignedSubmissionNextIndex(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionIndicesParams
-        ///  A sorted, bounded vector of `(score, block_number, index)`, where each `index` points to a
-        ///  value in `SignedSubmissions`.
+        ///  A sorted, bounded set of `(score, index)`, where each `index` points to a value in
+        ///  `SignedSubmissions`.
         /// 
         ///  We never need to process more than a single signed submission at a time. Signed submissions
         ///  can be quite large, so we're willing to pay the cost of multiple database accesses to access
         ///  them one at a time instead of reading and decoding all of them at once.
         /// </summary>
-        public static string SignedSubmissionIndicesParams()
+        public static string SignedSubmissionIndicesParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionIndices", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionIndicesDefault
         /// Default value as hex string
         /// </summary>
-        public static string SignedSubmissionIndicesDefault()
+        public static string SignedSubmissionIndicesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionIndices
-        ///  A sorted, bounded vector of `(score, block_number, index)`, where each `index` points to a
-        ///  value in `SignedSubmissions`.
+        ///  A sorted, bounded set of `(score, index)`, where each `index` points to a value in
+        ///  `SignedSubmissions`.
         /// 
         ///  We never need to process more than a single signed submission at a time. Signed submissions
         ///  can be quite large, so we're willing to pay the cost of multiple database accesses to access
         ///  them one at a time instead of reading and decoding all of them at once.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27> SignedSubmissionIndices(CancellationToken token)
+        public async Task<IType> SignedSubmissionIndicesAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionIndicesParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT27>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            IType param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.SignedSubmissionIndices(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.SignedSubmissionIndices(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionsMapParams
         ///  Unchecked, signed solutions.
@@ -333,22 +2233,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Twox note: the key of the map is an auto-incrementing index which users cannot inspect or
         ///  affect; we shouldn't need a cryptographically secure hasher.
         /// </summary>
-        public static string SignedSubmissionsMapParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string SignedSubmissionsMapParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "SignedSubmissionsMap", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionsMapDefault
         /// Default value as hex string
         /// </summary>
-        public static string SignedSubmissionsMapDefault()
+        public static string SignedSubmissionsMapDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.SignedSubmissionsMapDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SignedSubmissionsMap
         ///  Unchecked, signed solutions.
@@ -359,13 +2351,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Twox note: the key of the map is an auto-incrementing index which users cannot inspect or
         ///  affect; we shouldn't need a cryptographically secure hasher.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission> SignedSubmissionsMap(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.signed.SignedSubmissionBase> SignedSubmissionsMapAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.SignedSubmissionsMapParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.signed.SignedSubmission>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_election_provider_multi_phase.signed.SignedSubmissionBase param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.SignedSubmissionsMap((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinimumUntrustedScoreParams
         ///  The minimum score that each 'untrusted' solution must attain in order to be considered
@@ -373,20 +2499,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Can be set via `set_minimum_untrusted_score`.
         /// </summary>
-        public static string MinimumUntrustedScoreParams()
+        public static string MinimumUntrustedScoreParams(uint version)
         {
-            return RequestGenerator.GetStorage("ElectionProviderMultiPhase", "MinimumUntrustedScore", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinimumUntrustedScoreDefault
         /// Default value as hex string
         /// </summary>
-        public static string MinimumUntrustedScoreDefault()
+        public static string MinimumUntrustedScoreDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinimumUntrustedScore
         ///  The minimum score that each 'untrusted' solution must attain in order to be considered
@@ -394,124 +2614,318 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Can be set via `set_minimum_untrusted_score`.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore> MinimumUntrustedScore(CancellationToken token)
+        public async Task<IType> MinimumUntrustedScoreAsync(CancellationToken token)
         {
-            string parameters = ElectionProviderMultiPhaseStorage.MinimumUntrustedScoreParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            IType param = null;
+            if (version == 9110U)
+            {
+                _electionProviderMultiPhaseStorageV9110.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9110.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9122U)
+            {
+                _electionProviderMultiPhaseStorageV9122.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9122.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9140U)
+            {
+                _electionProviderMultiPhaseStorageV9140.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9140.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9151U)
+            {
+                _electionProviderMultiPhaseStorageV9151.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9151.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9170U)
+            {
+                _electionProviderMultiPhaseStorageV9170.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9170.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9180U)
+            {
+                _electionProviderMultiPhaseStorageV9180.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9180.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9190U)
+            {
+                _electionProviderMultiPhaseStorageV9190.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9190.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9200U)
+            {
+                _electionProviderMultiPhaseStorageV9200.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9200.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9220U)
+            {
+                _electionProviderMultiPhaseStorageV9220.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9220.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9230U)
+            {
+                _electionProviderMultiPhaseStorageV9230.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9230.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9250U)
+            {
+                _electionProviderMultiPhaseStorageV9250.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9250.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9260U)
+            {
+                _electionProviderMultiPhaseStorageV9260.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9260.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9270U)
+            {
+                _electionProviderMultiPhaseStorageV9270.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9270.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9280U)
+            {
+                _electionProviderMultiPhaseStorageV9280.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9280.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9281U)
+            {
+                _electionProviderMultiPhaseStorageV9281.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9281.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9291U)
+            {
+                _electionProviderMultiPhaseStorageV9291.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9291.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9300U)
+            {
+                _electionProviderMultiPhaseStorageV9300.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9300.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9340U)
+            {
+                _electionProviderMultiPhaseStorageV9340.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9340.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9360U)
+            {
+                _electionProviderMultiPhaseStorageV9360.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9360.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9370U)
+            {
+                _electionProviderMultiPhaseStorageV9370.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9370.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9420U)
+            {
+                _electionProviderMultiPhaseStorageV9420.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9420.MinimumUntrustedScore(token);
+            }
+
+            if (version == 9430U)
+            {
+                _electionProviderMultiPhaseStorageV9430.blockHash = blockHash;
+                param = await _electionProviderMultiPhaseStorageV9430.MinimumUntrustedScore(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ElectionProviderMultiPhaseStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _electionProviderMultiPhaseStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseStorage(_client);
+            _electionProviderMultiPhaseStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseStorage(_client);
         }
     }
-    
-    public sealed class ElectionProviderMultiPhaseCalls
-    {
-        
-        /// <summary>
-        /// >> submit_unsigned
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SubmitUnsigned(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RawSolution raw_solution, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.SolutionOrSnapshotSize witness)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(raw_solution.Encode());
-            byteArray.AddRange(witness.Encode());
-            return new Method(36, "ElectionProviderMultiPhase", 0, "submit_unsigned", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_minimum_untrusted_score
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMinimumUntrustedScore(Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.ElectionScore> maybe_next_score)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(maybe_next_score.Encode());
-            return new Method(36, "ElectionProviderMultiPhase", 1, "set_minimum_untrusted_score", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_emergency_election_result
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetEmergencyElectionResult(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_npos_elections.Support>> supports)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(supports.Encode());
-            return new Method(36, "ElectionProviderMultiPhase", 2, "set_emergency_election_result", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> submit
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Submit(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_election_provider_multi_phase.RawSolution raw_solution)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(raw_solution.Encode());
-            return new Method(36, "ElectionProviderMultiPhase", 3, "submit", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> governance_fallback
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method GovernanceFallback(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> maybe_max_voters, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> maybe_max_targets)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(maybe_max_voters.Encode());
-            byteArray.AddRange(maybe_max_targets.Encode());
-            return new Method(36, "ElectionProviderMultiPhase", 4, "governance_fallback", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class ElectionProviderMultiPhaseConstants
     {
-        
         /// <summary>
         /// >> UnsignedPhase
         ///  Duration of the unsigned phase.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 UnsignedPhase()
+        public Substrate.NetApi.Model.Types.Primitive.U32 UnsignedPhase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x58020000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().UnsignedPhase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> SignedPhase
         ///  Duration of the signed phase.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 SignedPhase()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SignedPhase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x58020000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedPhase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
-        /// >> BetterSignedThreshold
+        /// >> SolutionImprovementThreshold
         ///  The minimum amount of improvement to the solution score that defines a solution as
-        ///  "better" in the Signed phase.
+        ///  "better" (in any phase).
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill BetterSignedThreshold()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase SolutionImprovementThreshold(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill();
-            result.Create("0x00000000");
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SolutionImprovementThreshold();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
-        /// <summary>
-        /// >> BetterUnsignedThreshold
-        ///  The minimum amount of improvement to the solution score that defines a solution as
-        ///  "better" in the Unsigned phase.
-        /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill BetterUnsignedThreshold()
-        {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill();
-            result.Create("0x20A10700");
-            return result;
-        }
-        
+
         /// <summary>
         /// >> OffchainRepeat
         ///  The repeat threshold of the offchain worker.
@@ -519,24 +2933,159 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  For example, if it is 5, that means that at least 5 blocks will elapse between attempts
         ///  to submit the worker's solution.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 OffchainRepeat()
+        public Substrate.NetApi.Model.Types.Primitive.U32 OffchainRepeat(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x12000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().OffchainRepeat();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MinerTxPriority
         ///  The priority of the unsigned transaction submitted in the unsigned-phase
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U64 MinerTxPriority()
+        public Substrate.NetApi.Model.Types.Primitive.U64 MinerTxPriority(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U64();
-            result.Create("0x65666666666666E6");
+            Substrate.NetApi.Model.Types.Primitive.U64 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MinerTxPriority();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
+        /// <summary>
+        /// >> MinerMaxWeight
+        ///  Maximum weight that the miner should consume.
+        /// 
+        ///  The miner will ensure that the total weight of the unsigned solution will not exceed
+        ///  this value, based on [`WeightInfo::submit_unsigned`].
+        /// </summary>
+        public IType MinerMaxWeight(uint version)
+        {
+            IType result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MinerMaxWeight();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
         /// <summary>
         /// >> SignedMaxSubmissions
         ///  Maximum number of signed submissions that can be queued.
@@ -547,107 +3096,649 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  `SignedSubmissionIndices.len()` is less than or equal to the new value. Otherwise,
         ///  attempts to submit new solutions may cause a runtime panic.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 SignedMaxSubmissions()
+        public Substrate.NetApi.Model.Types.Primitive.U32 SignedMaxSubmissions(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x10000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedMaxSubmissions();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> SignedMaxWeight
         ///  Maximum weight of a signed solution.
         /// 
-        ///  If [`Config::MinerConfig`] is being implemented to submit signed solutions (outside of
-        ///  this pallet), then [`MinerConfig::solution_weight`] is used to compare against
-        ///  this value.
+        ///  This should probably be similar to [`Config::MinerMaxWeight`].
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight SignedMaxWeight()
+        public IType SignedMaxWeight(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
-            result.Create("0x0BC05B07B7560113A3703D0AD7A370BD");
+            IType result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedMaxWeight();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
-        /// <summary>
-        /// >> SignedMaxRefunds
-        ///  The maximum amount of unchecked solutions to refund the call fee for.
-        /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 SignedMaxRefunds()
-        {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x04000000");
-            return result;
-        }
-        
+
         /// <summary>
         /// >> SignedRewardBase
         ///  Base reward for a signed solution
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 SignedRewardBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedRewardBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E40B54020000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedRewardBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> SignedDepositBase
         ///  Base deposit for a signed solution.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00A0DB215D0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedDepositBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> SignedDepositByte
         ///  Per-byte deposit for a signed solution.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositByte()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositByte(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x787D0100000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedDepositByte();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> SignedDepositWeight
         ///  Per-weight deposit for a signed solution.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositWeight()
+        public Substrate.NetApi.Model.Types.Primitive.U128 SignedDepositWeight(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00000000000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedDepositWeight();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
+        /// <summary>
+        /// >> VoterSnapshotPerBlock
+        ///  The maximum number of voters to put in the snapshot. At the moment, snapshots are only
+        ///  over a single block, but once multi-block elections are introduced they will take place
+        ///  over multiple blocks.
+        /// 
+        ///  Also, note the data type: If the voters are represented by a `u32` in `type
+        ///  CompactSolution`, the same `u32` is used here to ensure bounds are respected.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U32 VoterSnapshotPerBlock(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().VoterSnapshotPerBlock();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().VoterSnapshotPerBlock();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().VoterSnapshotPerBlock();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().VoterSnapshotPerBlock();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().VoterSnapshotPerBlock();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().VoterSnapshotPerBlock();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> MinerMaxLength
+        ///  Maximum length (bytes) that the mined solution should consume.
+        /// 
+        ///  The miner will ensure that the total length of the unsigned solution will not exceed
+        ///  this value.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U32 MinerMaxLength(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MinerMaxLength();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
         /// <summary>
         /// >> MaxElectingVoters
         ///  The maximum number of electing voters to put in the snapshot. At the moment, snapshots
         ///  are only over a single block, but once multi-block elections are introduced they will
         ///  take place over multiple blocks.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxElectingVoters()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxElectingVoters(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0xE4570000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MaxElectingVoters();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxElectableTargets
         ///  The maximum number of electable targets to put in the snapshot.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U16 MaxElectableTargets()
+        public Substrate.NetApi.Model.Types.Primitive.U16 MaxElectableTargets(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U16();
-            result.Create("0xFFFF");
+            Substrate.NetApi.Model.Types.Primitive.U16 result = null;
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MaxElectableTargets();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
+        /// <summary>
+        /// >> BetterSignedThreshold
+        ///  The minimum amount of improvement to the solution score that defines a solution as
+        ///  "better" in the Signed phase.
+        /// </summary>
+        public IType BetterSignedThreshold(uint version)
+        {
+            IType result = null;
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().BetterSignedThreshold();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> BetterUnsignedThreshold
+        ///  The minimum amount of improvement to the solution score that defines a solution as
+        ///  "better" in the Unsigned phase.
+        /// </summary>
+        public IType BetterUnsignedThreshold(uint version)
+        {
+            IType result = null;
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().BetterUnsignedThreshold();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> SignedMaxRefunds
+        ///  The maximum amount of unchecked solutions to refund the call fee for.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U32 SignedMaxRefunds(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().SignedMaxRefunds();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> MinerMaxVotesPerVoter
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U32 MinerMaxVotesPerVoter(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ElectionProviderMultiPhaseConstants().MinerMaxVotesPerVoter();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().MinerMaxVotesPerVoter();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().MinerMaxVotesPerVoter();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().MinerMaxVotesPerVoter();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MinerMaxVotesPerVoter();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MinerMaxVotesPerVoter();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
         /// <summary>
         /// >> MaxWinners
         ///  The maximum number of winners that can be elected by this `ElectionProvider`
@@ -655,129 +3746,111 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Note: This must always be greater or equal to `T::DataProvider::desired_targets()`.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxWinners()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxWinners(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0xB0040000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ElectionProviderMultiPhaseConstants().MaxWinners();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ElectionProviderMultiPhaseConstants().MaxWinners();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ElectionProviderMultiPhaseConstants().MaxWinners();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MaxWinners();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MaxWinners();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
-        /// >> MinerMaxLength
+        /// >> MinerMaxWinners
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MinerMaxLength()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MinerMaxWinners(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x00003600");
-            return result;
-        }
-        
-        /// <summary>
-        /// >> MinerMaxWeight
-        /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight MinerMaxWeight()
-        {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
-            result.Create("0x0BC05B07B7560113A3703D0AD7A370BD");
-            return result;
-        }
-        
-        /// <summary>
-        /// >> MinerMaxVotesPerVoter
-        /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MinerMaxVotesPerVoter()
-        {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x10000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ElectionProviderMultiPhaseConstants().MinerMaxWinners();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ElectionProviderMultiPhaseConstants().MinerMaxWinners();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum ElectionProviderMultiPhaseErrors
     {
-        
         /// <summary>
         /// >> PreDispatchEarlySubmission
         /// Submission was too early.
         /// </summary>
         PreDispatchEarlySubmission,
-        
         /// <summary>
         /// >> PreDispatchWrongWinnerCount
         /// Wrong number of winners presented.
         /// </summary>
         PreDispatchWrongWinnerCount,
-        
         /// <summary>
         /// >> PreDispatchWeakSubmission
         /// Submission was too weak, score-wise.
         /// </summary>
         PreDispatchWeakSubmission,
-        
         /// <summary>
         /// >> SignedQueueFull
         /// The queue was full, and the solution was not better than any of the existing ones.
         /// </summary>
         SignedQueueFull,
-        
         /// <summary>
         /// >> SignedCannotPayDeposit
         /// The origin failed to pay the deposit.
         /// </summary>
         SignedCannotPayDeposit,
-        
         /// <summary>
         /// >> SignedInvalidWitness
         /// Witness data to dispatchable is invalid.
         /// </summary>
         SignedInvalidWitness,
-        
         /// <summary>
         /// >> SignedTooMuchWeight
         /// The signed submission consumes too much weight
         /// </summary>
         SignedTooMuchWeight,
-        
         /// <summary>
         /// >> OcwCallWrongEra
         /// OCW submitted solution for wrong round
         /// </summary>
         OcwCallWrongEra,
-        
         /// <summary>
         /// >> MissingSnapshotMetadata
         /// Snapshot metadata should exist but didn't.
         /// </summary>
         MissingSnapshotMetadata,
-        
         /// <summary>
         /// >> InvalidSubmissionIndex
         /// `Self::insert_submission` returned an invalid index.
         /// </summary>
         InvalidSubmissionIndex,
-        
         /// <summary>
         /// >> CallNotAllowed
         /// The call is not allowed at this point.
         /// </summary>
         CallNotAllowed,
-        
         /// <summary>
         /// >> FallbackFailed
         /// The fallback failed
         /// </summary>
         FallbackFailed,
-        
         /// <summary>
         /// >> BoundNotMet
         /// Some bound not met
         /// </summary>
         BoundNotMet,
-        
         /// <summary>
         /// >> TooManyWinners
         /// Submitted solution has too many winners
         /// </summary>
-        TooManyWinners,
+        TooManyWinners
     }
 }

@@ -6,167 +6,1149 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class BabeStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public BabeStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U64)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Authorities"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "GenesisSlot"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "CurrentSlot"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Randomness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "PendingEpochConfigChange"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextRandomness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextAuthorities"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "SegmentIndex"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "UnderConstruction"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Initialized"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "AuthorVrfRandomness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochStart"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "Lateness"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "EpochConfig"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Babe", "NextEpochConfig"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage _babeStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage _babeStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage _babeStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage _babeStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage _babeStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage _babeStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage _babeStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage _babeStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage _babeStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage _babeStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage _babeStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage _babeStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage _babeStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage _babeStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage _babeStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage _babeStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage _babeStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage _babeStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage _babeStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage _babeStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage _babeStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage _babeStorageV9430;
         /// <summary>
         /// >> EpochIndexParams
         ///  Current epoch index.
         /// </summary>
-        public static string EpochIndexParams()
+        public static string EpochIndexParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "EpochIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.EpochIndexParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.EpochIndexParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.EpochIndexParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.EpochIndexParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.EpochIndexParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.EpochIndexParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.EpochIndexParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.EpochIndexParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.EpochIndexParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.EpochIndexParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.EpochIndexParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.EpochIndexParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.EpochIndexParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.EpochIndexParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.EpochIndexParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.EpochIndexParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.EpochIndexParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.EpochIndexParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.EpochIndexParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.EpochIndexParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.EpochIndexParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.EpochIndexParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochIndexDefault
         /// Default value as hex string
         /// </summary>
-        public static string EpochIndexDefault()
+        public static string EpochIndexDefault(uint version)
         {
-            return "0x0000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.EpochIndexDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.EpochIndexDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.EpochIndexDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.EpochIndexDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.EpochIndexDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.EpochIndexDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.EpochIndexDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.EpochIndexDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.EpochIndexDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.EpochIndexDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.EpochIndexDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.EpochIndexDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.EpochIndexDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.EpochIndexDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.EpochIndexDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.EpochIndexDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.EpochIndexDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.EpochIndexDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.EpochIndexDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.EpochIndexDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.EpochIndexDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.EpochIndexDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochIndex
         ///  Current epoch index.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U64> EpochIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U64> EpochIndexAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.EpochIndexParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U64>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U64 param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.EpochIndex(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.EpochIndex(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.EpochIndex(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.EpochIndex(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.EpochIndex(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.EpochIndex(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.EpochIndex(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.EpochIndex(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.EpochIndex(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.EpochIndex(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.EpochIndex(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.EpochIndex(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.EpochIndex(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.EpochIndex(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.EpochIndex(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.EpochIndex(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.EpochIndex(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.EpochIndex(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.EpochIndex(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.EpochIndex(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.EpochIndex(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.EpochIndex(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthoritiesParams
         ///  Current epoch authorities.
         /// </summary>
-        public static string AuthoritiesParams()
+        public static string AuthoritiesParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "Authorities", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.AuthoritiesParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.AuthoritiesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.AuthoritiesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.AuthoritiesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.AuthoritiesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.AuthoritiesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.AuthoritiesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.AuthoritiesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.AuthoritiesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.AuthoritiesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.AuthoritiesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.AuthoritiesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.AuthoritiesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.AuthoritiesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.AuthoritiesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.AuthoritiesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.AuthoritiesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.AuthoritiesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.AuthoritiesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.AuthoritiesParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.AuthoritiesParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.AuthoritiesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthoritiesDefault
         /// Default value as hex string
         /// </summary>
-        public static string AuthoritiesDefault()
+        public static string AuthoritiesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.AuthoritiesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.AuthoritiesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.AuthoritiesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.AuthoritiesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.AuthoritiesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.AuthoritiesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.AuthoritiesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.AuthoritiesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.AuthoritiesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.AuthoritiesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.AuthoritiesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.AuthoritiesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.AuthoritiesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.AuthoritiesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.AuthoritiesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.AuthoritiesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.AuthoritiesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.AuthoritiesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.AuthoritiesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.AuthoritiesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.AuthoritiesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.AuthoritiesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Authorities
         ///  Current epoch authorities.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> Authorities(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> AuthoritiesAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.AuthoritiesParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.Authorities(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.Authorities(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.Authorities(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.Authorities(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.Authorities(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.Authorities(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.Authorities(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.Authorities(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.Authorities(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.Authorities(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.Authorities(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.Authorities(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.Authorities(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.Authorities(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.Authorities(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.Authorities(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.Authorities(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.Authorities(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.Authorities(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.Authorities(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.Authorities(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.Authorities(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> GenesisSlotParams
         ///  The slot at which the first epoch actually started. This is 0
         ///  until the first block of the chain.
         /// </summary>
-        public static string GenesisSlotParams()
+        public static string GenesisSlotParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "GenesisSlot", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.GenesisSlotParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.GenesisSlotParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.GenesisSlotParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.GenesisSlotParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.GenesisSlotParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.GenesisSlotParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.GenesisSlotParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.GenesisSlotParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.GenesisSlotParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.GenesisSlotParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.GenesisSlotParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.GenesisSlotParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.GenesisSlotParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.GenesisSlotParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.GenesisSlotParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.GenesisSlotParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.GenesisSlotParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.GenesisSlotParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.GenesisSlotParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.GenesisSlotParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.GenesisSlotParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.GenesisSlotParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> GenesisSlotDefault
         /// Default value as hex string
         /// </summary>
-        public static string GenesisSlotDefault()
+        public static string GenesisSlotDefault(uint version)
         {
-            return "0x0000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.GenesisSlotDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.GenesisSlotDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.GenesisSlotDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.GenesisSlotDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.GenesisSlotDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.GenesisSlotDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.GenesisSlotDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.GenesisSlotDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.GenesisSlotDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.GenesisSlotDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.GenesisSlotDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.GenesisSlotDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.GenesisSlotDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.GenesisSlotDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.GenesisSlotDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.GenesisSlotDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.GenesisSlotDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.GenesisSlotDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.GenesisSlotDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.GenesisSlotDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.GenesisSlotDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.GenesisSlotDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> GenesisSlot
         ///  The slot at which the first epoch actually started. This is 0
         ///  until the first block of the chain.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> GenesisSlot(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase> GenesisSlotAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.GenesisSlotParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.GenesisSlot(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.GenesisSlot(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.GenesisSlot(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.GenesisSlot(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.GenesisSlot(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.GenesisSlot(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.GenesisSlot(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.GenesisSlot(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.GenesisSlot(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.GenesisSlot(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.GenesisSlot(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.GenesisSlot(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.GenesisSlot(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.GenesisSlot(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.GenesisSlot(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.GenesisSlot(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.GenesisSlot(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.GenesisSlot(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.GenesisSlot(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.GenesisSlot(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.GenesisSlot(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.GenesisSlot(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CurrentSlotParams
         ///  Current slot number.
         /// </summary>
-        public static string CurrentSlotParams()
+        public static string CurrentSlotParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "CurrentSlot", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.CurrentSlotParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.CurrentSlotParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.CurrentSlotParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.CurrentSlotParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.CurrentSlotParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.CurrentSlotParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.CurrentSlotParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.CurrentSlotParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.CurrentSlotParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.CurrentSlotParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.CurrentSlotParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.CurrentSlotParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.CurrentSlotParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.CurrentSlotParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.CurrentSlotParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.CurrentSlotParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.CurrentSlotParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.CurrentSlotParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.CurrentSlotParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.CurrentSlotParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.CurrentSlotParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.CurrentSlotParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CurrentSlotDefault
         /// Default value as hex string
         /// </summary>
-        public static string CurrentSlotDefault()
+        public static string CurrentSlotDefault(uint version)
         {
-            return "0x0000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.CurrentSlotDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.CurrentSlotDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.CurrentSlotDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.CurrentSlotDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.CurrentSlotDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.CurrentSlotDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.CurrentSlotDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.CurrentSlotDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.CurrentSlotDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.CurrentSlotDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.CurrentSlotDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.CurrentSlotDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.CurrentSlotDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.CurrentSlotDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.CurrentSlotDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.CurrentSlotDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.CurrentSlotDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.CurrentSlotDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.CurrentSlotDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.CurrentSlotDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.CurrentSlotDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.CurrentSlotDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CurrentSlot
         ///  Current slot number.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot> CurrentSlot(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase> CurrentSlotAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.CurrentSlotParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.Slot>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.CurrentSlot(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.CurrentSlot(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.CurrentSlot(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.CurrentSlot(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.CurrentSlot(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.CurrentSlot(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.CurrentSlot(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.CurrentSlot(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.CurrentSlot(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.CurrentSlot(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.CurrentSlot(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.CurrentSlot(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.CurrentSlot(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.CurrentSlot(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.CurrentSlot(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.CurrentSlot(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.CurrentSlot(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.CurrentSlot(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.CurrentSlot(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.CurrentSlot(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.CurrentSlot(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.CurrentSlot(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RandomnessParams
         ///  The epoch randomness for the *current* epoch.
@@ -180,20 +1162,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  used where a number is needed that cannot have been chosen by an
         ///  adversary, for purposes such as public-coin zero-knowledge proofs.
         /// </summary>
-        public static string RandomnessParams()
+        public static string RandomnessParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "Randomness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.RandomnessParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.RandomnessParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.RandomnessParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.RandomnessParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.RandomnessParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.RandomnessParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.RandomnessParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.RandomnessParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.RandomnessParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.RandomnessParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.RandomnessParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.RandomnessParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.RandomnessParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.RandomnessParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.RandomnessParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.RandomnessParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.RandomnessParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.RandomnessParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.RandomnessParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.RandomnessParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.RandomnessParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.RandomnessParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RandomnessDefault
         /// Default value as hex string
         /// </summary>
-        public static string RandomnessDefault()
+        public static string RandomnessDefault(uint version)
         {
-            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.RandomnessDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.RandomnessDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.RandomnessDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.RandomnessDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.RandomnessDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.RandomnessDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.RandomnessDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.RandomnessDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.RandomnessDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.RandomnessDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.RandomnessDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.RandomnessDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.RandomnessDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.RandomnessDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.RandomnessDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.RandomnessDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.RandomnessDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.RandomnessDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.RandomnessDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.RandomnessDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.RandomnessDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.RandomnessDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Randomness
         ///  The epoch randomness for the *current* epoch.
@@ -207,105 +1283,923 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  used where a number is needed that cannot have been chosen by an
         ///  adversary, for purposes such as public-coin zero-knowledge proofs.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> Randomness(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> RandomnessAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.RandomnessParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.Randomness(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.Randomness(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.Randomness(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.Randomness(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.Randomness(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.Randomness(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.Randomness(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.Randomness(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.Randomness(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.Randomness(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.Randomness(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.Randomness(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.Randomness(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.Randomness(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.Randomness(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.Randomness(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.Randomness(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.Randomness(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.Randomness(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.Randomness(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.Randomness(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.Randomness(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PendingEpochConfigChangeParams
         ///  Pending epoch configuration change that will be applied when the next epoch is enacted.
         /// </summary>
-        public static string PendingEpochConfigChangeParams()
+        public static string PendingEpochConfigChangeParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "PendingEpochConfigChange", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.PendingEpochConfigChangeParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.PendingEpochConfigChangeParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PendingEpochConfigChangeDefault
         /// Default value as hex string
         /// </summary>
-        public static string PendingEpochConfigChangeDefault()
+        public static string PendingEpochConfigChangeDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.PendingEpochConfigChangeDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.PendingEpochConfigChangeDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PendingEpochConfigChange
         ///  Pending epoch configuration change that will be applied when the next epoch is enacted.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor> PendingEpochConfigChange(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum> PendingEpochConfigChangeAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.PendingEpochConfigChangeParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.PendingEpochConfigChange(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.PendingEpochConfigChange(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextRandomnessParams
         ///  Next epoch randomness.
         /// </summary>
-        public static string NextRandomnessParams()
+        public static string NextRandomnessParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "NextRandomness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.NextRandomnessParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.NextRandomnessParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.NextRandomnessParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.NextRandomnessParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.NextRandomnessParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.NextRandomnessParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.NextRandomnessParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.NextRandomnessParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.NextRandomnessParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.NextRandomnessParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.NextRandomnessParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.NextRandomnessParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.NextRandomnessParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.NextRandomnessParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.NextRandomnessParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.NextRandomnessParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.NextRandomnessParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.NextRandomnessParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.NextRandomnessParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.NextRandomnessParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.NextRandomnessParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.NextRandomnessParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextRandomnessDefault
         /// Default value as hex string
         /// </summary>
-        public static string NextRandomnessDefault()
+        public static string NextRandomnessDefault(uint version)
         {
-            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.NextRandomnessDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.NextRandomnessDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.NextRandomnessDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.NextRandomnessDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.NextRandomnessDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.NextRandomnessDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.NextRandomnessDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.NextRandomnessDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.NextRandomnessDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.NextRandomnessDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.NextRandomnessDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.NextRandomnessDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.NextRandomnessDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.NextRandomnessDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.NextRandomnessDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.NextRandomnessDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.NextRandomnessDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.NextRandomnessDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.NextRandomnessDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.NextRandomnessDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.NextRandomnessDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.NextRandomnessDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextRandomness
         ///  Next epoch randomness.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> NextRandomness(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> NextRandomnessAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.NextRandomnessParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.NextRandomness(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.NextRandomness(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.NextRandomness(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.NextRandomness(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.NextRandomness(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.NextRandomness(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.NextRandomness(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.NextRandomness(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.NextRandomness(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.NextRandomness(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.NextRandomness(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.NextRandomness(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.NextRandomness(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.NextRandomness(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.NextRandomness(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.NextRandomness(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.NextRandomness(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.NextRandomness(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.NextRandomness(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.NextRandomness(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.NextRandomness(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.NextRandomness(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextAuthoritiesParams
         ///  Next epoch authorities.
         /// </summary>
-        public static string NextAuthoritiesParams()
+        public static string NextAuthoritiesParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "NextAuthorities", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.NextAuthoritiesParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.NextAuthoritiesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.NextAuthoritiesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.NextAuthoritiesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.NextAuthoritiesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.NextAuthoritiesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.NextAuthoritiesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.NextAuthoritiesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.NextAuthoritiesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.NextAuthoritiesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.NextAuthoritiesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.NextAuthoritiesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.NextAuthoritiesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.NextAuthoritiesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.NextAuthoritiesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.NextAuthoritiesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.NextAuthoritiesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.NextAuthoritiesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.NextAuthoritiesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.NextAuthoritiesParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.NextAuthoritiesParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.NextAuthoritiesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextAuthoritiesDefault
         /// Default value as hex string
         /// </summary>
-        public static string NextAuthoritiesDefault()
+        public static string NextAuthoritiesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.NextAuthoritiesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.NextAuthoritiesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextAuthorities
         ///  Next epoch authorities.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2> NextAuthorities(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> NextAuthoritiesAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.NextAuthoritiesParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT2>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.NextAuthorities(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.NextAuthorities(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.NextAuthorities(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.NextAuthorities(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.NextAuthorities(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.NextAuthorities(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.NextAuthorities(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.NextAuthorities(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.NextAuthorities(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.NextAuthorities(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.NextAuthorities(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.NextAuthorities(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.NextAuthorities(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.NextAuthorities(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.NextAuthorities(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.NextAuthorities(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.NextAuthorities(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.NextAuthorities(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.NextAuthorities(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.NextAuthorities(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.NextAuthorities(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.NextAuthorities(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SegmentIndexParams
         ///  Randomness under construction.
         /// 
-        ///  We make a trade-off between storage accesses and list length.
+        ///  We make a tradeoff between storage accesses and list length.
         ///  We store the under-construction randomness in segments of up to
         ///  `UNDER_CONSTRUCTION_SEGMENT_LENGTH`.
         /// 
@@ -313,25 +2207,119 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  We reset all segments and return to `0` at the beginning of every
         ///  epoch.
         /// </summary>
-        public static string SegmentIndexParams()
+        public static string SegmentIndexParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "SegmentIndex", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.SegmentIndexParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.SegmentIndexParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.SegmentIndexParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.SegmentIndexParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.SegmentIndexParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.SegmentIndexParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.SegmentIndexParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.SegmentIndexParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.SegmentIndexParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.SegmentIndexParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.SegmentIndexParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.SegmentIndexParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.SegmentIndexParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.SegmentIndexParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.SegmentIndexParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.SegmentIndexParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.SegmentIndexParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.SegmentIndexParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.SegmentIndexParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.SegmentIndexParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.SegmentIndexParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.SegmentIndexParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SegmentIndexDefault
         /// Default value as hex string
         /// </summary>
-        public static string SegmentIndexDefault()
+        public static string SegmentIndexDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.SegmentIndexDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.SegmentIndexDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.SegmentIndexDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.SegmentIndexDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.SegmentIndexDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.SegmentIndexDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.SegmentIndexDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.SegmentIndexDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.SegmentIndexDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.SegmentIndexDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.SegmentIndexDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.SegmentIndexDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.SegmentIndexDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.SegmentIndexDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.SegmentIndexDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.SegmentIndexDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.SegmentIndexDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.SegmentIndexDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.SegmentIndexDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.SegmentIndexDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.SegmentIndexDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.SegmentIndexDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SegmentIndex
         ///  Randomness under construction.
         /// 
-        ///  We make a trade-off between storage accesses and list length.
+        ///  We make a tradeoff between storage accesses and list length.
         ///  We store the under-construction randomness in segments of up to
         ///  `UNDER_CONSTRUCTION_SEGMENT_LENGTH`.
         /// 
@@ -339,110 +2327,926 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  We reset all segments and return to `0` at the beginning of every
         ///  epoch.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SegmentIndex(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> SegmentIndexAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.SegmentIndexParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.SegmentIndex(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.SegmentIndex(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.SegmentIndex(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.SegmentIndex(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.SegmentIndex(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.SegmentIndex(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.SegmentIndex(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.SegmentIndex(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.SegmentIndex(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.SegmentIndex(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.SegmentIndex(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.SegmentIndex(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.SegmentIndex(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.SegmentIndex(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.SegmentIndex(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.SegmentIndex(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.SegmentIndex(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.SegmentIndex(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.SegmentIndex(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.SegmentIndex(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.SegmentIndex(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.SegmentIndex(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> UnderConstructionParams
         ///  TWOX-NOTE: `SegmentIndex` is an increasing integer, so this is okay.
         /// </summary>
-        public static string UnderConstructionParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string UnderConstructionParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "UnderConstruction", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.UnderConstructionParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> UnderConstructionDefault
         /// Default value as hex string
         /// </summary>
-        public static string UnderConstructionDefault()
+        public static string UnderConstructionDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.UnderConstructionDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.UnderConstructionDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.UnderConstructionDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.UnderConstructionDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.UnderConstructionDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.UnderConstructionDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.UnderConstructionDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.UnderConstructionDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.UnderConstructionDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.UnderConstructionDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.UnderConstructionDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.UnderConstructionDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.UnderConstructionDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.UnderConstructionDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.UnderConstructionDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.UnderConstructionDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.UnderConstructionDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.UnderConstructionDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.UnderConstructionDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.UnderConstructionDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.UnderConstructionDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.UnderConstructionDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> UnderConstruction
         ///  TWOX-NOTE: `SegmentIndex` is an increasing integer, so this is okay.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5> UnderConstruction(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> UnderConstructionAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = BabeStorage.UnderConstructionParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT5>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> InitializedParams
         ///  Temporary value (cleared at block finalization) which is `Some`
         ///  if per-block initialization has already been called for current block.
         /// </summary>
-        public static string InitializedParams()
+        public static string InitializedParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "Initialized", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.InitializedParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.InitializedParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.InitializedParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.InitializedParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.InitializedParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.InitializedParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.InitializedParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.InitializedParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.InitializedParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.InitializedParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.InitializedParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.InitializedParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.InitializedParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.InitializedParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.InitializedParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.InitializedParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.InitializedParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.InitializedParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.InitializedParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.InitializedParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.InitializedParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.InitializedParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> InitializedDefault
         /// Default value as hex string
         /// </summary>
-        public static string InitializedDefault()
+        public static string InitializedDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.InitializedDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.InitializedDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.InitializedDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.InitializedDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.InitializedDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.InitializedDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.InitializedDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.InitializedDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.InitializedDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.InitializedDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.InitializedDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.InitializedDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.InitializedDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.InitializedDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.InitializedDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.InitializedDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.InitializedDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.InitializedDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.InitializedDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.InitializedDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.InitializedDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.InitializedDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Initialized
         ///  Temporary value (cleared at block finalization) which is `Some`
         ///  if per-block initialization has already been called for current block.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>> Initialized(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue> InitializedAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.InitializedParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.Initialized(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.Initialized(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.Initialized(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.Initialized(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.Initialized(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.Initialized(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.Initialized(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.Initialized(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.Initialized(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.Initialized(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.Initialized(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.Initialized(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.Initialized(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.Initialized(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.Initialized(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.Initialized(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.Initialized(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.Initialized(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.Initialized(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.Initialized(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.Initialized(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.Initialized(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthorVrfRandomnessParams
         ///  This field should always be populated during block processing unless
         ///  secondary plain slots are enabled (which don't contain a VRF output).
         /// 
-        ///  It is set in `on_finalize`, before it will contain the value from the last block.
+        ///  It is set in `on_initialize`, before it will contain the value from the last block.
         /// </summary>
-        public static string AuthorVrfRandomnessParams()
+        public static string AuthorVrfRandomnessParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "AuthorVrfRandomness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.AuthorVrfRandomnessParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.AuthorVrfRandomnessParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthorVrfRandomnessDefault
         /// Default value as hex string
         /// </summary>
-        public static string AuthorVrfRandomnessDefault()
+        public static string AuthorVrfRandomnessDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.AuthorVrfRandomnessDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.AuthorVrfRandomnessDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthorVrfRandomness
         ///  This field should always be populated during block processing unless
         ///  secondary plain slots are enabled (which don't contain a VRF output).
         /// 
-        ///  It is set in `on_finalize`, before it will contain the value from the last block.
+        ///  It is set in `on_initialize`, before it will contain the value from the last block.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>> AuthorVrfRandomness(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue> AuthorVrfRandomnessAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.AuthorVrfRandomnessParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseValue param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.AuthorVrfRandomness(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.AuthorVrfRandomness(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochStartParams
         ///  The block numbers when the last and current epoch have started, respectively `N-1` and
@@ -451,20 +3255,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  entropy was fixed (i.e. it was known to chain observers). Since epochs are defined in
         ///  slots, which may be skipped, the block numbers may not line up with the slot numbers.
         /// </summary>
-        public static string EpochStartParams()
+        public static string EpochStartParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "EpochStart", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.EpochStartParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.EpochStartParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.EpochStartParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.EpochStartParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.EpochStartParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.EpochStartParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.EpochStartParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.EpochStartParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.EpochStartParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.EpochStartParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.EpochStartParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.EpochStartParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.EpochStartParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.EpochStartParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.EpochStartParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.EpochStartParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.EpochStartParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.EpochStartParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.EpochStartParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.EpochStartParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.EpochStartParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.EpochStartParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochStartDefault
         /// Default value as hex string
         /// </summary>
-        public static string EpochStartDefault()
+        public static string EpochStartDefault(uint version)
         {
-            return "0x0000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.EpochStartDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.EpochStartDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.EpochStartDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.EpochStartDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.EpochStartDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.EpochStartDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.EpochStartDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.EpochStartDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.EpochStartDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.EpochStartDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.EpochStartDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.EpochStartDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.EpochStartDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.EpochStartDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.EpochStartDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.EpochStartDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.EpochStartDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.EpochStartDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.EpochStartDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.EpochStartDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.EpochStartDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.EpochStartDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochStart
         ///  The block numbers when the last and current epoch have started, respectively `N-1` and
@@ -473,13 +3371,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  entropy was fixed (i.e. it was known to chain observers). Since epochs are defined in
         ///  slots, which may be skipped, the block numbers may not line up with the slot numbers.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> EpochStart(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> EpochStartAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.EpochStartParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.EpochStart(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.EpochStart(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.EpochStart(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.EpochStart(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.EpochStart(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.EpochStart(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.EpochStart(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.EpochStart(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.EpochStart(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.EpochStart(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.EpochStart(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.EpochStart(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.EpochStart(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.EpochStart(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.EpochStart(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.EpochStart(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.EpochStart(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.EpochStart(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.EpochStart(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.EpochStart(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.EpochStart(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.EpochStart(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LatenessParams
         ///  How late the current block is compared to its parent.
@@ -488,20 +3520,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  on block finalization. Querying this storage entry outside of block
         ///  execution context should always yield zero.
         /// </summary>
-        public static string LatenessParams()
+        public static string LatenessParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "Lateness", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.LatenessParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.LatenessParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.LatenessParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.LatenessParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.LatenessParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.LatenessParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.LatenessParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.LatenessParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.LatenessParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.LatenessParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.LatenessParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.LatenessParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.LatenessParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.LatenessParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.LatenessParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.LatenessParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.LatenessParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.LatenessParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.LatenessParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.LatenessParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.LatenessParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.LatenessParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LatenessDefault
         /// Default value as hex string
         /// </summary>
-        public static string LatenessDefault()
+        public static string LatenessDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.LatenessDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.LatenessDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.LatenessDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.LatenessDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.LatenessDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.LatenessDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.LatenessDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.LatenessDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.LatenessDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.LatenessDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.LatenessDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.LatenessDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.LatenessDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.LatenessDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.LatenessDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.LatenessDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.LatenessDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.LatenessDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.LatenessDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.LatenessDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.LatenessDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.LatenessDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Lateness
         ///  How late the current block is compared to its parent.
@@ -510,131 +3636,824 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  on block finalization. Querying this storage entry outside of block
         ///  execution context should always yield zero.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> Lateness(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LatenessAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.LatenessParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.Lateness(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.Lateness(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.Lateness(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.Lateness(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.Lateness(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.Lateness(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.Lateness(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.Lateness(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.Lateness(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.Lateness(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.Lateness(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.Lateness(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.Lateness(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.Lateness(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.Lateness(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.Lateness(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.Lateness(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.Lateness(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.Lateness(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.Lateness(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.Lateness(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.Lateness(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochConfigParams
         ///  The configuration for the current epoch. Should never be `None` as it is initialized in
         ///  genesis.
         /// </summary>
-        public static string EpochConfigParams()
+        public static string EpochConfigParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "EpochConfig", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.EpochConfigParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.EpochConfigParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.EpochConfigParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.EpochConfigParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.EpochConfigParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.EpochConfigParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.EpochConfigParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.EpochConfigParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.EpochConfigParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.EpochConfigParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.EpochConfigParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.EpochConfigParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.EpochConfigParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.EpochConfigParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.EpochConfigParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.EpochConfigParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.EpochConfigParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.EpochConfigParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.EpochConfigParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.EpochConfigParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.EpochConfigParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.EpochConfigParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochConfigDefault
         /// Default value as hex string
         /// </summary>
-        public static string EpochConfigDefault()
+        public static string EpochConfigDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.EpochConfigDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.EpochConfigDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.EpochConfigDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.EpochConfigDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.EpochConfigDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.EpochConfigDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.EpochConfigDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.EpochConfigDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.EpochConfigDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.EpochConfigDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.EpochConfigDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.EpochConfigDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.EpochConfigDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.EpochConfigDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.EpochConfigDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.EpochConfigDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.EpochConfigDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.EpochConfigDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.EpochConfigDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.EpochConfigDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.EpochConfigDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.EpochConfigDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> EpochConfig
         ///  The configuration for the current epoch. Should never be `None` as it is initialized in
         ///  genesis.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> EpochConfig(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase> EpochConfigAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.EpochConfigParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.EpochConfig(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.EpochConfig(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.EpochConfig(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.EpochConfig(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.EpochConfig(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.EpochConfig(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.EpochConfig(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.EpochConfig(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.EpochConfig(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.EpochConfig(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.EpochConfig(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.EpochConfig(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.EpochConfig(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.EpochConfig(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.EpochConfig(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.EpochConfig(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.EpochConfig(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.EpochConfig(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.EpochConfig(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.EpochConfig(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.EpochConfig(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.EpochConfig(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextEpochConfigParams
         ///  The configuration for the next epoch, `None` if the config will not change
         ///  (you can fallback to `EpochConfig` instead in that case).
         /// </summary>
-        public static string NextEpochConfigParams()
+        public static string NextEpochConfigParams(uint version)
         {
-            return RequestGenerator.GetStorage("Babe", "NextEpochConfig", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.NextEpochConfigParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.NextEpochConfigParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.NextEpochConfigParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.NextEpochConfigParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.NextEpochConfigParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.NextEpochConfigParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.NextEpochConfigParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.NextEpochConfigParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.NextEpochConfigParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.NextEpochConfigParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.NextEpochConfigParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.NextEpochConfigParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.NextEpochConfigParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.NextEpochConfigParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.NextEpochConfigParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.NextEpochConfigParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.NextEpochConfigParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.NextEpochConfigParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.NextEpochConfigParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.NextEpochConfigParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.NextEpochConfigParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.NextEpochConfigParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextEpochConfigDefault
         /// Default value as hex string
         /// </summary>
-        public static string NextEpochConfigDefault()
+        public static string NextEpochConfigDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage.NextEpochConfigDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage.NextEpochConfigDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage.NextEpochConfigDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage.NextEpochConfigDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage.NextEpochConfigDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage.NextEpochConfigDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage.NextEpochConfigDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage.NextEpochConfigDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage.NextEpochConfigDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage.NextEpochConfigDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage.NextEpochConfigDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage.NextEpochConfigDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage.NextEpochConfigDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage.NextEpochConfigDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage.NextEpochConfigDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage.NextEpochConfigDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage.NextEpochConfigDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage.NextEpochConfigDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage.NextEpochConfigDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage.NextEpochConfigDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.NextEpochConfigDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.NextEpochConfigDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextEpochConfig
         ///  The configuration for the next epoch, `None` if the config will not change
         ///  (you can fallback to `EpochConfig` instead in that case).
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration> NextEpochConfig(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase> NextEpochConfigAsync(CancellationToken token)
         {
-            string parameters = BabeStorage.NextEpochConfigParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase param = null;
+            if (version == 9110U)
+            {
+                _babeStorageV9110.blockHash = blockHash;
+                param = await _babeStorageV9110.NextEpochConfig(token);
+            }
+
+            if (version == 9122U)
+            {
+                _babeStorageV9122.blockHash = blockHash;
+                param = await _babeStorageV9122.NextEpochConfig(token);
+            }
+
+            if (version == 9140U)
+            {
+                _babeStorageV9140.blockHash = blockHash;
+                param = await _babeStorageV9140.NextEpochConfig(token);
+            }
+
+            if (version == 9151U)
+            {
+                _babeStorageV9151.blockHash = blockHash;
+                param = await _babeStorageV9151.NextEpochConfig(token);
+            }
+
+            if (version == 9170U)
+            {
+                _babeStorageV9170.blockHash = blockHash;
+                param = await _babeStorageV9170.NextEpochConfig(token);
+            }
+
+            if (version == 9180U)
+            {
+                _babeStorageV9180.blockHash = blockHash;
+                param = await _babeStorageV9180.NextEpochConfig(token);
+            }
+
+            if (version == 9190U)
+            {
+                _babeStorageV9190.blockHash = blockHash;
+                param = await _babeStorageV9190.NextEpochConfig(token);
+            }
+
+            if (version == 9200U)
+            {
+                _babeStorageV9200.blockHash = blockHash;
+                param = await _babeStorageV9200.NextEpochConfig(token);
+            }
+
+            if (version == 9220U)
+            {
+                _babeStorageV9220.blockHash = blockHash;
+                param = await _babeStorageV9220.NextEpochConfig(token);
+            }
+
+            if (version == 9230U)
+            {
+                _babeStorageV9230.blockHash = blockHash;
+                param = await _babeStorageV9230.NextEpochConfig(token);
+            }
+
+            if (version == 9250U)
+            {
+                _babeStorageV9250.blockHash = blockHash;
+                param = await _babeStorageV9250.NextEpochConfig(token);
+            }
+
+            if (version == 9260U)
+            {
+                _babeStorageV9260.blockHash = blockHash;
+                param = await _babeStorageV9260.NextEpochConfig(token);
+            }
+
+            if (version == 9270U)
+            {
+                _babeStorageV9270.blockHash = blockHash;
+                param = await _babeStorageV9270.NextEpochConfig(token);
+            }
+
+            if (version == 9280U)
+            {
+                _babeStorageV9280.blockHash = blockHash;
+                param = await _babeStorageV9280.NextEpochConfig(token);
+            }
+
+            if (version == 9281U)
+            {
+                _babeStorageV9281.blockHash = blockHash;
+                param = await _babeStorageV9281.NextEpochConfig(token);
+            }
+
+            if (version == 9291U)
+            {
+                _babeStorageV9291.blockHash = blockHash;
+                param = await _babeStorageV9291.NextEpochConfig(token);
+            }
+
+            if (version == 9300U)
+            {
+                _babeStorageV9300.blockHash = blockHash;
+                param = await _babeStorageV9300.NextEpochConfig(token);
+            }
+
+            if (version == 9340U)
+            {
+                _babeStorageV9340.blockHash = blockHash;
+                param = await _babeStorageV9340.NextEpochConfig(token);
+            }
+
+            if (version == 9360U)
+            {
+                _babeStorageV9360.blockHash = blockHash;
+                param = await _babeStorageV9360.NextEpochConfig(token);
+            }
+
+            if (version == 9370U)
+            {
+                _babeStorageV9370.blockHash = blockHash;
+                param = await _babeStorageV9370.NextEpochConfig(token);
+            }
+
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.NextEpochConfig(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.NextEpochConfig(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> SkippedEpochsParams
+        ///  A list of the last 100 skipped epochs and the corresponding session index
+        ///  when the epoch was skipped.
+        /// 
+        ///  This is only used for validating equivocation proofs. An equivocation proof
+        ///  must contains a key-ownership proof for a given session, therefore we need a
+        ///  way to tie together sessions and epoch indices, i.e. we need to validate that
+        ///  a validator was the owner of a given key on a given session, and what the
+        ///  active epoch index was during that session.
+        /// </summary>
+        public static string SkippedEpochsParams(uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.SkippedEpochsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.SkippedEpochsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> SkippedEpochsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string SkippedEpochsDefault(uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage.SkippedEpochsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage.SkippedEpochsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> SkippedEpochs
+        ///  A list of the last 100 skipped epochs and the corresponding session index
+        ///  when the epoch was skipped.
+        /// 
+        ///  This is only used for validating equivocation proofs. An equivocation proof
+        ///  must contains a key-ownership proof for a given session, therefore we need a
+        ///  way to tie together sessions and epoch indices, i.e. we need to validate that
+        ///  a validator was the owner of a given key on a given session, and what the
+        ///  active epoch index was during that session.
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> SkippedEpochsAsync(CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9420U)
+            {
+                _babeStorageV9420.blockHash = blockHash;
+                param = await _babeStorageV9420.SkippedEpochs(token);
+            }
+
+            if (version == 9430U)
+            {
+                _babeStorageV9430.blockHash = blockHash;
+                param = await _babeStorageV9430.SkippedEpochs(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public BabeStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _babeStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeStorage(_client);
+            _babeStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeStorage(_client);
+            _babeStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeStorage(_client);
+            _babeStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeStorage(_client);
+            _babeStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeStorage(_client);
+            _babeStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeStorage(_client);
+            _babeStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeStorage(_client);
+            _babeStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeStorage(_client);
+            _babeStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeStorage(_client);
+            _babeStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeStorage(_client);
+            _babeStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeStorage(_client);
+            _babeStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeStorage(_client);
+            _babeStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeStorage(_client);
+            _babeStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeStorage(_client);
+            _babeStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeStorage(_client);
+            _babeStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeStorage(_client);
+            _babeStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeStorage(_client);
+            _babeStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeStorage(_client);
+            _babeStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeStorage(_client);
+            _babeStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeStorage(_client);
+            _babeStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeStorage(_client);
+            _babeStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeStorage(_client);
         }
     }
-    
-    public sealed class BabeCalls
-    {
-        
-        /// <summary>
-        /// >> report_equivocation
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ReportEquivocation(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof equivocation_proof, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(equivocation_proof.Encode());
-            byteArray.AddRange(key_owner_proof.Encode());
-            return new Method(2, "Babe", 0, "report_equivocation", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> report_equivocation_unsigned
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ReportEquivocationUnsigned(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_slots.EquivocationProof equivocation_proof, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_session.MembershipProof key_owner_proof)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(equivocation_proof.Encode());
-            byteArray.AddRange(key_owner_proof.Encode());
-            return new Method(2, "Babe", 1, "report_equivocation_unsigned", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> plan_config_change
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method PlanConfigChange(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor config)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(config.Encode());
-            return new Method(2, "Babe", 2, "plan_config_change", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class BabeConstants
     {
-        
         /// <summary>
         /// >> EpochDuration
         ///  The amount of time, in slots, that each epoch should last.
         ///  NOTE: Currently it is not possible to change the epoch duration after
         ///  the chain has started. Attempting to do so will brick block production.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U64 EpochDuration()
+        public Substrate.NetApi.Model.Types.Primitive.U64 EpochDuration(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U64();
-            result.Create("0x6009000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U64 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeConstants().EpochDuration();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeConstants().EpochDuration();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeConstants().EpochDuration();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeConstants().EpochDuration();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeConstants().EpochDuration();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeConstants().EpochDuration();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeConstants().EpochDuration();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeConstants().EpochDuration();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeConstants().EpochDuration();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeConstants().EpochDuration();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeConstants().EpochDuration();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeConstants().EpochDuration();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeConstants().EpochDuration();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeConstants().EpochDuration();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeConstants().EpochDuration();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeConstants().EpochDuration();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeConstants().EpochDuration();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeConstants().EpochDuration();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeConstants().EpochDuration();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeConstants().EpochDuration();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeConstants().EpochDuration();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeConstants().EpochDuration();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> ExpectedBlockTime
         ///  The expected average block time at which BABE should be creating
@@ -643,50 +4462,136 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  duration and the security parameter `c` (where `1 - c` represents
         ///  the probability of a slot being empty).
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U64 ExpectedBlockTime()
+        public Substrate.NetApi.Model.Types.Primitive.U64 ExpectedBlockTime(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U64();
-            result.Create("0x7017000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U64 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeConstants().ExpectedBlockTime();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeConstants().ExpectedBlockTime();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeConstants().ExpectedBlockTime();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeConstants().ExpectedBlockTime();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeConstants().ExpectedBlockTime();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeConstants().ExpectedBlockTime();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeConstants().ExpectedBlockTime();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeConstants().ExpectedBlockTime();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeConstants().ExpectedBlockTime();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeConstants().ExpectedBlockTime();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeConstants().ExpectedBlockTime();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeConstants().ExpectedBlockTime();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeConstants().ExpectedBlockTime();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeConstants().ExpectedBlockTime();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeConstants().ExpectedBlockTime();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeConstants().ExpectedBlockTime();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeConstants().ExpectedBlockTime();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeConstants().ExpectedBlockTime();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeConstants().ExpectedBlockTime();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeConstants().ExpectedBlockTime();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeConstants().ExpectedBlockTime();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeConstants().ExpectedBlockTime();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxAuthorities
         ///  Max number of authorities allowed
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxAuthorities()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxAuthorities(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0xA0860100");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.BabeConstants().MaxAuthorities();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.BabeConstants().MaxAuthorities();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.BabeConstants().MaxAuthorities();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.BabeConstants().MaxAuthorities();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.BabeConstants().MaxAuthorities();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.BabeConstants().MaxAuthorities();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.BabeConstants().MaxAuthorities();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.BabeConstants().MaxAuthorities();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.BabeConstants().MaxAuthorities();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.BabeConstants().MaxAuthorities();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.BabeConstants().MaxAuthorities();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.BabeConstants().MaxAuthorities();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.BabeConstants().MaxAuthorities();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.BabeConstants().MaxAuthorities();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.BabeConstants().MaxAuthorities();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.BabeConstants().MaxAuthorities();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.BabeConstants().MaxAuthorities();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.BabeConstants().MaxAuthorities();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.BabeConstants().MaxAuthorities();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.BabeConstants().MaxAuthorities();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.BabeConstants().MaxAuthorities();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.BabeConstants().MaxAuthorities();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum BabeErrors
     {
-        
         /// <summary>
         /// >> InvalidEquivocationProof
         /// An equivocation proof provided as part of an equivocation report is invalid.
         /// </summary>
         InvalidEquivocationProof,
-        
         /// <summary>
         /// >> InvalidKeyOwnershipProof
         /// A key ownership proof provided as part of an equivocation report is invalid.
         /// </summary>
         InvalidKeyOwnershipProof,
-        
         /// <summary>
         /// >> DuplicateOffenceReport
         /// A given equivocation report is valid but already previously reported.
         /// </summary>
         DuplicateOffenceReport,
-        
         /// <summary>
         /// >> InvalidConfiguration
         /// Submitted configuration is invalid.
         /// </summary>
-        InvalidConfiguration,
+        InvalidConfiguration
     }
 }

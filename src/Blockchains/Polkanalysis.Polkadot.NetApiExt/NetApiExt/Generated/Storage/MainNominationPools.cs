@@ -6,85 +6,194 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class NominationPoolsStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public NominationPoolsStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MinJoinBond"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MinCreateBond"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "MaxPoolMembersPerPool"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "PoolMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForPoolMembers"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "BondedPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForBondedPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "RewardPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForRewardPools"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "SubPoolsStorage"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForSubPoolsStorage"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "Metadata"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForMetadata"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "LastPoolId"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "ReversePoolIdLookup"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("NominationPools", "CounterForReversePoolIdLookup"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage _nominationPoolsStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage _nominationPoolsStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage _nominationPoolsStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage _nominationPoolsStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage _nominationPoolsStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage _nominationPoolsStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage _nominationPoolsStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage _nominationPoolsStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage _nominationPoolsStorageV9430;
         /// <summary>
         /// >> MinJoinBondParams
         ///  Minimum amount to bond to join a pool.
         /// </summary>
-        public static string MinJoinBondParams()
+        public static string MinJoinBondParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "MinJoinBond", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MinJoinBondParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MinJoinBondParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinJoinBondDefault
         /// Default value as hex string
         /// </summary>
-        public static string MinJoinBondDefault()
+        public static string MinJoinBondDefault(uint version)
         {
-            return "0x00000000000000000000000000000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MinJoinBondDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MinJoinBondDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinJoinBond
         ///  Minimum amount to bond to join a pool.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> MinJoinBond(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> MinJoinBondAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.MinJoinBondParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U128 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.MinJoinBond(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.MinJoinBond(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.MinJoinBond(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.MinJoinBond(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.MinJoinBond(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.MinJoinBond(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.MinJoinBond(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.MinJoinBond(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.MinJoinBond(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinCreateBondParams
         ///  Minimum bond required to create a pool.
@@ -95,20 +204,62 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is the value that will always exist in the staking ledger of the pool bonded account
         ///  while all other accounts leave.
         /// </summary>
-        public static string MinCreateBondParams()
+        public static string MinCreateBondParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "MinCreateBond", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MinCreateBondParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MinCreateBondParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinCreateBondDefault
         /// Default value as hex string
         /// </summary>
-        public static string MinCreateBondDefault()
+        public static string MinCreateBondDefault(uint version)
         {
-            return "0x00000000000000000000000000000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MinCreateBondDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MinCreateBondDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MinCreateBond
         ///  Minimum bond required to create a pool.
@@ -119,443 +270,1857 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is the value that will always exist in the staking ledger of the pool bonded account
         ///  while all other accounts leave.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> MinCreateBond(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> MinCreateBondAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.MinCreateBondParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U128 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.MinCreateBond(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.MinCreateBond(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.MinCreateBond(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.MinCreateBond(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.MinCreateBond(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.MinCreateBond(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.MinCreateBond(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.MinCreateBond(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.MinCreateBond(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolsParams
         ///  Maximum number of nomination pools that can exist. If `None`, then an unbounded number of
         ///  pools can exist.
         /// </summary>
-        public static string MaxPoolsParams()
+        public static string MaxPoolsParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "MaxPools", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MaxPoolsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MaxPoolsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolsDefault
         /// Default value as hex string
         /// </summary>
-        public static string MaxPoolsDefault()
+        public static string MaxPoolsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MaxPoolsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MaxPoolsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPools
         ///  Maximum number of nomination pools that can exist. If `None`, then an unbounded number of
         ///  pools can exist.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPools(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPoolsAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.MaxPoolsParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.MaxPools(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.MaxPools(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.MaxPools(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.MaxPools(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.MaxPools(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.MaxPools(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.MaxPools(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.MaxPools(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.MaxPools(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolMembersParams
         ///  Maximum number of members that can exist in the system. If `None`, then the count
         ///  members are not bound on a system wide basis.
         /// </summary>
-        public static string MaxPoolMembersParams()
+        public static string MaxPoolMembersParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "MaxPoolMembers", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MaxPoolMembersParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MaxPoolMembersParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolMembersDefault
         /// Default value as hex string
         /// </summary>
-        public static string MaxPoolMembersDefault()
+        public static string MaxPoolMembersDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MaxPoolMembersDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolMembers
         ///  Maximum number of members that can exist in the system. If `None`, then the count
         ///  members are not bound on a system wide basis.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPoolMembers(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPoolMembersAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.MaxPoolMembersParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.MaxPoolMembers(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.MaxPoolMembers(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.MaxPoolMembers(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.MaxPoolMembers(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.MaxPoolMembers(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.MaxPoolMembers(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.MaxPoolMembers(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.MaxPoolMembers(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.MaxPoolMembers(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolMembersPerPoolParams
         ///  Maximum number of members that may belong to pool. If `None`, then the count of
         ///  members is not bound on a per pool basis.
         /// </summary>
-        public static string MaxPoolMembersPerPoolParams()
+        public static string MaxPoolMembersPerPoolParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "MaxPoolMembersPerPool", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MaxPoolMembersPerPoolParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolMembersPerPoolDefault
         /// Default value as hex string
         /// </summary>
-        public static string MaxPoolMembersPerPoolDefault()
+        public static string MaxPoolMembersPerPoolDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MaxPoolMembersPerPoolDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MaxPoolMembersPerPool
         ///  Maximum number of members that may belong to pool. If `None`, then the count of
         ///  members is not bound on a per pool basis.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPoolMembersPerPool(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> MaxPoolMembersPerPoolAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.MaxPoolMembersPerPoolParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.MaxPoolMembersPerPool(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.MaxPoolMembersPerPool(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PoolMembersParams
         ///  Active members.
-        /// 
-        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
-        public static string PoolMembersParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string PoolMembersParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "PoolMembers", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.PoolMembersParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PoolMembersDefault
         /// Default value as hex string
         /// </summary>
-        public static string PoolMembersDefault()
+        public static string PoolMembersDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.PoolMembersDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.PoolMembersDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PoolMembers
         ///  Active members.
-        /// 
-        ///  TWOX-NOTE: SAFE since `AccountId` is a secure hash.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember> PoolMembers(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.PoolMemberBase> PoolMembersAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.PoolMembersParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.PoolMemberBase param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForPoolMembersParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForPoolMembersParams()
+        public static string CounterForPoolMembersParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForPoolMembers", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForPoolMembersParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForPoolMembersDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForPoolMembersDefault()
+        public static string CounterForPoolMembersDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForPoolMembersDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForPoolMembers
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForPoolMembers(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForPoolMembersAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.CounterForPoolMembersParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.CounterForPoolMembers(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.CounterForPoolMembers(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.CounterForPoolMembers(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.CounterForPoolMembers(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.CounterForPoolMembers(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.CounterForPoolMembers(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.CounterForPoolMembers(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.CounterForPoolMembers(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.CounterForPoolMembers(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BondedPoolsParams
         ///  Storage for bonded pools.
         /// </summary>
-        public static string BondedPoolsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string BondedPoolsParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "BondedPools", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.BondedPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BondedPoolsDefault
         /// Default value as hex string
         /// </summary>
-        public static string BondedPoolsDefault()
+        public static string BondedPoolsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.BondedPoolsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.BondedPoolsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BondedPools
         ///  Storage for bonded pools.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner> BondedPools(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.BondedPoolInnerBase> BondedPoolsAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.BondedPoolsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.BondedPoolInnerBase param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForBondedPoolsParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForBondedPoolsParams()
+        public static string CounterForBondedPoolsParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForBondedPools", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForBondedPoolsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForBondedPoolsDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForBondedPoolsDefault()
+        public static string CounterForBondedPoolsDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForBondedPoolsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForBondedPools
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForBondedPools(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForBondedPoolsAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.CounterForBondedPoolsParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.CounterForBondedPools(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.CounterForBondedPools(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.CounterForBondedPools(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.CounterForBondedPools(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.CounterForBondedPools(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.CounterForBondedPools(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.CounterForBondedPools(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.CounterForBondedPools(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.CounterForBondedPools(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RewardPoolsParams
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout
         ///  is claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.
         /// </summary>
-        public static string RewardPoolsParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string RewardPoolsParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "RewardPools", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.RewardPoolsParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RewardPoolsDefault
         /// Default value as hex string
         /// </summary>
-        public static string RewardPoolsDefault()
+        public static string RewardPoolsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.RewardPoolsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.RewardPoolsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RewardPools
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout
         ///  is claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool> RewardPools(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.RewardPoolBase> RewardPoolsAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.RewardPoolsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.RewardPoolBase param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForRewardPoolsParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForRewardPoolsParams()
+        public static string CounterForRewardPoolsParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForRewardPools", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForRewardPoolsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForRewardPoolsDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForRewardPoolsDefault()
+        public static string CounterForRewardPoolsDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForRewardPoolsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForRewardPools
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForRewardPools(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForRewardPoolsAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.CounterForRewardPoolsParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.CounterForRewardPools(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.CounterForRewardPools(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.CounterForRewardPools(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.CounterForRewardPools(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.CounterForRewardPools(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.CounterForRewardPools(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.CounterForRewardPools(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.CounterForRewardPools(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.CounterForRewardPools(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SubPoolsStorageParams
         ///  Groups of unbonding pools. Each group of unbonding pools belongs to a bonded pool,
         ///  hence the name sub-pools. Keyed by the bonded pools account.
         /// </summary>
-        public static string SubPoolsStorageParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string SubPoolsStorageParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "SubPoolsStorage", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.SubPoolsStorageParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SubPoolsStorageDefault
         /// Default value as hex string
         /// </summary>
-        public static string SubPoolsStorageDefault()
+        public static string SubPoolsStorageDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.SubPoolsStorageDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SubPoolsStorage
         ///  Groups of unbonding pools. Each group of unbonding pools belongs to a bonded pool,
         ///  hence the name sub-pools. Keyed by the bonded pools account.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools> SubPoolsStorage(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.SubPoolsBase> SubPoolsStorageAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.SubPoolsStorageParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.SubPoolsBase param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForSubPoolsStorageParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForSubPoolsStorageParams()
+        public static string CounterForSubPoolsStorageParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForSubPoolsStorage", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForSubPoolsStorageParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForSubPoolsStorageDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForSubPoolsStorageDefault()
+        public static string CounterForSubPoolsStorageDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForSubPoolsStorageDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForSubPoolsStorage
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForSubPoolsStorage(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForSubPoolsStorageAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.CounterForSubPoolsStorageParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.CounterForSubPoolsStorage(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.CounterForSubPoolsStorage(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MetadataParams
         ///  Metadata for the pool.
         /// </summary>
-        public static string MetadataParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string MetadataParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "Metadata", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MetadataParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MetadataDefault
         /// Default value as hex string
         /// </summary>
-        public static string MetadataDefault()
+        public static string MetadataDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.MetadataDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.MetadataDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.MetadataDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.MetadataDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.MetadataDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.MetadataDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.MetadataDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.MetadataDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.MetadataDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Metadata
         ///  Metadata for the pool.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28> Metadata(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> MetadataAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.MetadataParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT28>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForMetadataParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForMetadataParams()
+        public static string CounterForMetadataParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForMetadata", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForMetadataParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForMetadataParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForMetadataDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForMetadataDefault()
+        public static string CounterForMetadataDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForMetadataDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForMetadataDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForMetadata
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForMetadata(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForMetadataAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.CounterForMetadataParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.CounterForMetadata(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.CounterForMetadata(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.CounterForMetadata(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.CounterForMetadata(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.CounterForMetadata(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.CounterForMetadata(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.CounterForMetadata(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.CounterForMetadata(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.CounterForMetadata(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LastPoolIdParams
         ///  Ever increasing number of all pools created so far.
         /// </summary>
-        public static string LastPoolIdParams()
+        public static string LastPoolIdParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "LastPoolId", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.LastPoolIdParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.LastPoolIdParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LastPoolIdDefault
         /// Default value as hex string
         /// </summary>
-        public static string LastPoolIdDefault()
+        public static string LastPoolIdDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.LastPoolIdDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.LastPoolIdDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LastPoolId
         ///  Ever increasing number of all pools created so far.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LastPoolId(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> LastPoolIdAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.LastPoolIdParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.LastPoolId(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.LastPoolId(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.LastPoolId(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.LastPoolId(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.LastPoolId(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.LastPoolId(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.LastPoolId(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.LastPoolId(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.LastPoolId(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReversePoolIdLookupParams
         ///  A reverse lookup from the pool's account id to its id.
@@ -563,22 +2128,62 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is only used for slashing. In all other instances, the pool id is used, and the
         ///  accounts are deterministically derived from it.
         /// </summary>
-        public static string ReversePoolIdLookupParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string ReversePoolIdLookupParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "ReversePoolIdLookup", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.ReversePoolIdLookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReversePoolIdLookupDefault
         /// Default value as hex string
         /// </summary>
-        public static string ReversePoolIdLookupDefault()
+        public static string ReversePoolIdLookupDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.ReversePoolIdLookupDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReversePoolIdLookup
         ///  A reverse lookup from the pool's account id to its id.
@@ -586,235 +2191,361 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is only used for slashing. In all other instances, the pool id is used, and the
         ///  accounts are deterministically derived from it.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ReversePoolIdLookup(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ReversePoolIdLookupAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.ReversePoolIdLookupParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForReversePoolIdLookupParams
         /// Counter for the related counted storage map
         /// </summary>
-        public static string CounterForReversePoolIdLookupParams()
+        public static string CounterForReversePoolIdLookupParams(uint version)
         {
-            return RequestGenerator.GetStorage("NominationPools", "CounterForReversePoolIdLookup", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForReversePoolIdLookupParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForReversePoolIdLookupDefault
         /// Default value as hex string
         /// </summary>
-        public static string CounterForReversePoolIdLookupDefault()
+        public static string CounterForReversePoolIdLookupDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.CounterForReversePoolIdLookupDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CounterForReversePoolIdLookup
         /// Counter for the related counted storage map
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForReversePoolIdLookup(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> CounterForReversePoolIdLookupAsync(CancellationToken token)
         {
-            string parameters = NominationPoolsStorage.CounterForReversePoolIdLookupParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9280U)
+            {
+                _nominationPoolsStorageV9280.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9280.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9281U)
+            {
+                _nominationPoolsStorageV9281.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9281.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9291U)
+            {
+                _nominationPoolsStorageV9291.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9291.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9300U)
+            {
+                _nominationPoolsStorageV9300.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9300.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9340U)
+            {
+                _nominationPoolsStorageV9340.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9340.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9360U)
+            {
+                _nominationPoolsStorageV9360.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9360.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9370U)
+            {
+                _nominationPoolsStorageV9370.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9370.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.CounterForReversePoolIdLookup(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.CounterForReversePoolIdLookup(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> GlobalMaxCommissionParams
+        ///  The maximum commission that can be charged by a pool. Used on commission payouts to bound
+        ///  pool commissions that are > `GlobalMaxCommission`, necessary if a future
+        ///  `GlobalMaxCommission` is lower than some current pool commissions.
+        /// </summary>
+        public static string GlobalMaxCommissionParams(uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.GlobalMaxCommissionParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.GlobalMaxCommissionParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> GlobalMaxCommissionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string GlobalMaxCommissionDefault(uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.GlobalMaxCommissionDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.GlobalMaxCommissionDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> GlobalMaxCommission
+        ///  The maximum commission that can be charged by a pool. Used on commission payouts to bound
+        ///  pool commissions that are > `GlobalMaxCommission`, necessary if a future
+        ///  `GlobalMaxCommission` is lower than some current pool commissions.
+        /// </summary>
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase> GlobalMaxCommissionAsync(CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase param = null;
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.GlobalMaxCommission(token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.GlobalMaxCommission(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> ClaimPermissionsParams
+        ///  Map from a pool member account to their opted claim permission.
+        /// </summary>
+        public static string ClaimPermissionsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.ClaimPermissionsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.ClaimPermissionsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> ClaimPermissionsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string ClaimPermissionsDefault(uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage.ClaimPermissionsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage.ClaimPermissionsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> ClaimPermissions
+        ///  Map from a pool member account to their opted claim permission.
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum> ClaimPermissionsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum param = null;
+            if (version == 9420U)
+            {
+                _nominationPoolsStorageV9420.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9420.ClaimPermissions((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _nominationPoolsStorageV9430.blockHash = blockHash;
+                param = await _nominationPoolsStorageV9430.ClaimPermissions((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public NominationPoolsStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _nominationPoolsStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsStorage(_client);
+            _nominationPoolsStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsStorage(_client);
         }
     }
-    
-    public sealed class NominationPoolsCalls
-    {
-        
-        /// <summary>
-        /// >> join
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Join(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Substrate.NetApi.Model.Types.Primitive.U32 pool_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(amount.Encode());
-            byteArray.AddRange(pool_id.Encode());
-            return new Method(39, "NominationPools", 0, "join", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> bond_extra
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method BondExtra(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumBondExtra extra)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(extra.Encode());
-            return new Method(39, "NominationPools", 1, "bond_extra", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> claim_payout
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ClaimPayout()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(39, "NominationPools", 2, "claim_payout", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> unbond
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Unbond(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> unbonding_points)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(member_account.Encode());
-            byteArray.AddRange(unbonding_points.Encode());
-            return new Method(39, "NominationPools", 3, "unbond", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> pool_withdraw_unbonded
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method PoolWithdrawUnbonded(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Substrate.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(pool_id.Encode());
-            byteArray.AddRange(num_slashing_spans.Encode());
-            return new Method(39, "NominationPools", 4, "pool_withdraw_unbonded", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> withdraw_unbonded
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method WithdrawUnbonded(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress member_account, Substrate.NetApi.Model.Types.Primitive.U32 num_slashing_spans)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(member_account.Encode());
-            byteArray.AddRange(num_slashing_spans.Encode());
-            return new Method(39, "NominationPools", 5, "withdraw_unbonded", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> create
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Create(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(amount.Encode());
-            byteArray.AddRange(root.Encode());
-            byteArray.AddRange(nominator.Encode());
-            byteArray.AddRange(state_toggler.Encode());
-            return new Method(39, "NominationPools", 6, "create", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> create_with_pool_id
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CreateWithPoolId(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> amount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress state_toggler, Substrate.NetApi.Model.Types.Primitive.U32 pool_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(amount.Encode());
-            byteArray.AddRange(root.Encode());
-            byteArray.AddRange(nominator.Encode());
-            byteArray.AddRange(state_toggler.Encode());
-            byteArray.AddRange(pool_id.Encode());
-            return new Method(39, "NominationPools", 7, "create_with_pool_id", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> nominate
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Nominate(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> validators)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(pool_id.Encode());
-            byteArray.AddRange(validators.Encode());
-            return new Method(39, "NominationPools", 8, "nominate", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_state
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetState(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState state)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(pool_id.Encode());
-            byteArray.AddRange(state.Encode());
-            return new Method(39, "NominationPools", 9, "set_state", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_metadata
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMetadata(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> metadata)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(pool_id.Encode());
-            byteArray.AddRange(metadata.Encode());
-            return new Method(39, "NominationPools", 10, "set_metadata", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_configs
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetConfigs(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp min_join_bond, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp min_create_bond, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_pools, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_members, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp max_members_per_pool)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(min_join_bond.Encode());
-            byteArray.AddRange(min_create_bond.Encode());
-            byteArray.AddRange(max_pools.Encode());
-            byteArray.AddRange(max_members.Encode());
-            byteArray.AddRange(max_members_per_pool.Encode());
-            return new Method(39, "NominationPools", 11, "set_configs", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> update_roles
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method UpdateRoles(Substrate.NetApi.Model.Types.Primitive.U32 pool_id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_root, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_nominator, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumConfigOp new_state_toggler)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(pool_id.Encode());
-            byteArray.AddRange(new_root.Encode());
-            byteArray.AddRange(new_nominator.Encode());
-            byteArray.AddRange(new_state_toggler.Encode());
-            return new Method(39, "NominationPools", 12, "update_roles", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> chill
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Chill(Substrate.NetApi.Model.Types.Primitive.U32 pool_id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(pool_id.Encode());
-            return new Method(39, "NominationPools", 13, "chill", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class NominationPoolsConstants
     {
-        
         /// <summary>
         /// >> PalletId
         ///  The nomination pool's pallet id.
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId PalletId()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.PalletIdBase PalletId(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.PalletId();
-            result.Create("0x70792F6E6F706C73");
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.PalletIdBase result = null;
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsConstants().PalletId();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsConstants().PalletId();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsConstants().PalletId();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsConstants().PalletId();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsConstants().PalletId();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsConstants().PalletId();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsConstants().PalletId();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsConstants().PalletId();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsConstants().PalletId();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxPointsToBalance
         ///  The maximum pool points-to-balance ratio that an `open` pool can have.
@@ -830,67 +2561,77 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  For a value of 10, the threshold would be a pool points-to-balance ratio of 10:1.
         ///  Such a scenario would also be the equivalent of the pool being 90% slashed.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U8 MaxPointsToBalance()
+        public Substrate.NetApi.Model.Types.Primitive.U8 MaxPointsToBalance(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U8();
-            result.Create("0x0A");
+            Substrate.NetApi.Model.Types.Primitive.U8 result = null;
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.NominationPoolsConstants().MaxPointsToBalance();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.NominationPoolsConstants().MaxPointsToBalance();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum NominationPoolsErrors
     {
-        
         /// <summary>
         /// >> PoolNotFound
         /// A (bonded) pool id does not exist.
         /// </summary>
         PoolNotFound,
-        
         /// <summary>
         /// >> PoolMemberNotFound
         /// An account is not a member.
         /// </summary>
         PoolMemberNotFound,
-        
         /// <summary>
         /// >> RewardPoolNotFound
         /// A reward pool does not exist. In all cases this is a system logic error.
         /// </summary>
         RewardPoolNotFound,
-        
         /// <summary>
         /// >> SubPoolsNotFound
         /// A sub pool does not exist.
         /// </summary>
         SubPoolsNotFound,
-        
         /// <summary>
         /// >> AccountBelongsToOtherPool
         /// An account is already delegating in another pool. An account may only belong to one
         /// pool at a time.
         /// </summary>
         AccountBelongsToOtherPool,
-        
         /// <summary>
         /// >> FullyUnbonding
         /// The member is fully unbonded (and thus cannot access the bonded and reward pool
         /// anymore to, for example, collect rewards).
         /// </summary>
         FullyUnbonding,
-        
         /// <summary>
         /// >> MaxUnbondingLimit
         /// The member cannot unbond further chunks due to reaching the limit.
         /// </summary>
         MaxUnbondingLimit,
-        
         /// <summary>
         /// >> CannotWithdrawAny
         /// None of the funds can be withdrawn yet because the bonding duration has not passed.
         /// </summary>
         CannotWithdrawAny,
-        
         /// <summary>
         /// >> MinimumBondNotMet
         /// The amount does not meet the minimum bond to either join or create a pool.
@@ -900,91 +2641,87 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// permissions for the pool. Members can never unbond to a value below `MinJoinBond`.
         /// </summary>
         MinimumBondNotMet,
-        
         /// <summary>
         /// >> OverflowRisk
         /// The transaction could not be executed due to overflow risk for the pool.
         /// </summary>
         OverflowRisk,
-        
         /// <summary>
         /// >> NotDestroying
         /// A pool must be in [`PoolState::Destroying`] in order for the depositor to unbond or for
         /// other members to be permissionlessly unbonded.
         /// </summary>
         NotDestroying,
-        
         /// <summary>
         /// >> NotNominator
         /// The caller does not have nominating permissions for the pool.
         /// </summary>
         NotNominator,
-        
         /// <summary>
         /// >> NotKickerOrDestroying
         /// Either a) the caller cannot make a valid kick or b) the pool is not destroying.
         /// </summary>
         NotKickerOrDestroying,
-        
         /// <summary>
         /// >> NotOpen
         /// The pool is not open to join
         /// </summary>
         NotOpen,
-        
         /// <summary>
         /// >> MaxPools
         /// The system is maxed out on pools.
         /// </summary>
         MaxPools,
-        
         /// <summary>
         /// >> MaxPoolMembers
         /// Too many members in the pool or system.
         /// </summary>
         MaxPoolMembers,
-        
         /// <summary>
         /// >> CanNotChangeState
         /// The pools state cannot be changed.
         /// </summary>
         CanNotChangeState,
-        
         /// <summary>
         /// >> DoesNotHavePermission
         /// The caller does not have adequate permissions.
         /// </summary>
         DoesNotHavePermission,
-        
         /// <summary>
         /// >> MetadataExceedsMaxLen
         /// Metadata exceeds [`Config::MaxMetadataLen`]
         /// </summary>
         MetadataExceedsMaxLen,
-        
         /// <summary>
         /// >> Defensive
         /// Some error occurred that should never happen. This should be reported to the
         /// maintainers.
         /// </summary>
         Defensive,
-        
         /// <summary>
         /// >> PartialUnbondNotAllowedPermissionlessly
         /// Partial unbonding now allowed permissionlessly.
         /// </summary>
         PartialUnbondNotAllowedPermissionlessly,
-        
         /// <summary>
         /// >> PoolIdInUse
         /// Pool id currently in use.
         /// </summary>
         PoolIdInUse,
-        
         /// <summary>
         /// >> InvalidPoolId
         /// Pool id provided is not correct/usable.
         /// </summary>
         InvalidPoolId,
+        /// <summary>
+        /// >> MaxCommissionRestricted
+        /// The pool's max commission cannot be set higher than the existing value.
+        /// </summary>
+        MaxCommissionRestricted,
+        /// <summary>
+        /// >> CommissionExceedsMaximum
+        /// The supplied commission exceeds the max allowed commission.
+        /// </summary>
+        CommissionExceedsMaximum
     }
 }

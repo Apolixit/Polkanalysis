@@ -6,378 +6,1759 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class CouncilStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public CouncilStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "Proposals"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "ProposalOf"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "Voting"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_collective.Votes)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "ProposalCount"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "Members"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Council", "Prime"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage _councilStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage _councilStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage _councilStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage _councilStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage _councilStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage _councilStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage _councilStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage _councilStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage _councilStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage _councilStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage _councilStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage _councilStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage _councilStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage _councilStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage _councilStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage _councilStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage _councilStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage _councilStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage _councilStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage _councilStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage _councilStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage _councilStorageV9430;
         /// <summary>
         /// >> ProposalsParams
         ///  The hashes of the active proposals.
         /// </summary>
-        public static string ProposalsParams()
+        public static string ProposalsParams(uint version)
         {
-            return RequestGenerator.GetStorage("Council", "Proposals", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.ProposalsParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.ProposalsParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.ProposalsParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.ProposalsParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.ProposalsParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.ProposalsParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.ProposalsParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.ProposalsParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.ProposalsParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.ProposalsParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.ProposalsParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.ProposalsParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.ProposalsParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.ProposalsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.ProposalsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.ProposalsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.ProposalsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.ProposalsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.ProposalsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.ProposalsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.ProposalsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.ProposalsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProposalsDefault
         /// Default value as hex string
         /// </summary>
-        public static string ProposalsDefault()
+        public static string ProposalsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.ProposalsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.ProposalsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.ProposalsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.ProposalsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.ProposalsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.ProposalsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.ProposalsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.ProposalsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.ProposalsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.ProposalsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.ProposalsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.ProposalsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.ProposalsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.ProposalsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.ProposalsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.ProposalsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.ProposalsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.ProposalsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.ProposalsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.ProposalsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.ProposalsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.ProposalsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Proposals
         ///  The hashes of the active proposals.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14> Proposals(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> ProposalsAsync(CancellationToken token)
         {
-            string parameters = CouncilStorage.ProposalsParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT14>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _councilStorageV9110.blockHash = blockHash;
+                param = await _councilStorageV9110.Proposals(token);
+            }
+
+            if (version == 9122U)
+            {
+                _councilStorageV9122.blockHash = blockHash;
+                param = await _councilStorageV9122.Proposals(token);
+            }
+
+            if (version == 9140U)
+            {
+                _councilStorageV9140.blockHash = blockHash;
+                param = await _councilStorageV9140.Proposals(token);
+            }
+
+            if (version == 9151U)
+            {
+                _councilStorageV9151.blockHash = blockHash;
+                param = await _councilStorageV9151.Proposals(token);
+            }
+
+            if (version == 9170U)
+            {
+                _councilStorageV9170.blockHash = blockHash;
+                param = await _councilStorageV9170.Proposals(token);
+            }
+
+            if (version == 9180U)
+            {
+                _councilStorageV9180.blockHash = blockHash;
+                param = await _councilStorageV9180.Proposals(token);
+            }
+
+            if (version == 9190U)
+            {
+                _councilStorageV9190.blockHash = blockHash;
+                param = await _councilStorageV9190.Proposals(token);
+            }
+
+            if (version == 9200U)
+            {
+                _councilStorageV9200.blockHash = blockHash;
+                param = await _councilStorageV9200.Proposals(token);
+            }
+
+            if (version == 9220U)
+            {
+                _councilStorageV9220.blockHash = blockHash;
+                param = await _councilStorageV9220.Proposals(token);
+            }
+
+            if (version == 9230U)
+            {
+                _councilStorageV9230.blockHash = blockHash;
+                param = await _councilStorageV9230.Proposals(token);
+            }
+
+            if (version == 9250U)
+            {
+                _councilStorageV9250.blockHash = blockHash;
+                param = await _councilStorageV9250.Proposals(token);
+            }
+
+            if (version == 9260U)
+            {
+                _councilStorageV9260.blockHash = blockHash;
+                param = await _councilStorageV9260.Proposals(token);
+            }
+
+            if (version == 9270U)
+            {
+                _councilStorageV9270.blockHash = blockHash;
+                param = await _councilStorageV9270.Proposals(token);
+            }
+
+            if (version == 9280U)
+            {
+                _councilStorageV9280.blockHash = blockHash;
+                param = await _councilStorageV9280.Proposals(token);
+            }
+
+            if (version == 9281U)
+            {
+                _councilStorageV9281.blockHash = blockHash;
+                param = await _councilStorageV9281.Proposals(token);
+            }
+
+            if (version == 9291U)
+            {
+                _councilStorageV9291.blockHash = blockHash;
+                param = await _councilStorageV9291.Proposals(token);
+            }
+
+            if (version == 9300U)
+            {
+                _councilStorageV9300.blockHash = blockHash;
+                param = await _councilStorageV9300.Proposals(token);
+            }
+
+            if (version == 9340U)
+            {
+                _councilStorageV9340.blockHash = blockHash;
+                param = await _councilStorageV9340.Proposals(token);
+            }
+
+            if (version == 9360U)
+            {
+                _councilStorageV9360.blockHash = blockHash;
+                param = await _councilStorageV9360.Proposals(token);
+            }
+
+            if (version == 9370U)
+            {
+                _councilStorageV9370.blockHash = blockHash;
+                param = await _councilStorageV9370.Proposals(token);
+            }
+
+            if (version == 9420U)
+            {
+                _councilStorageV9420.blockHash = blockHash;
+                param = await _councilStorageV9420.Proposals(token);
+            }
+
+            if (version == 9430U)
+            {
+                _councilStorageV9430.blockHash = blockHash;
+                param = await _councilStorageV9430.Proposals(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProposalOfParams
         ///  Actual proposal for a given hash, if it's current.
         /// </summary>
-        public static string ProposalOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string ProposalOfParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Council", "ProposalOf", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.ProposalOfParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProposalOfDefault
         /// Default value as hex string
         /// </summary>
-        public static string ProposalOfDefault()
+        public static string ProposalOfDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.ProposalOfDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.ProposalOfDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.ProposalOfDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.ProposalOfDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.ProposalOfDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.ProposalOfDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.ProposalOfDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.ProposalOfDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.ProposalOfDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.ProposalOfDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.ProposalOfDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.ProposalOfDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.ProposalOfDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.ProposalOfDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.ProposalOfDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.ProposalOfDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.ProposalOfDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.ProposalOfDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.ProposalOfDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.ProposalOfDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.ProposalOfDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.ProposalOfDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProposalOf
         ///  Actual proposal for a given hash, if it's current.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall> ProposalOf(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum> ProposalOfAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, CancellationToken token)
         {
-            string parameters = CouncilStorage.ProposalOfParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum param = null;
+            if (version == 9110U)
+            {
+                _councilStorageV9110.blockHash = blockHash;
+                param = await _councilStorageV9110.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _councilStorageV9122.blockHash = blockHash;
+                param = await _councilStorageV9122.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _councilStorageV9140.blockHash = blockHash;
+                param = await _councilStorageV9140.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _councilStorageV9151.blockHash = blockHash;
+                param = await _councilStorageV9151.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _councilStorageV9170.blockHash = blockHash;
+                param = await _councilStorageV9170.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _councilStorageV9180.blockHash = blockHash;
+                param = await _councilStorageV9180.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _councilStorageV9190.blockHash = blockHash;
+                param = await _councilStorageV9190.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _councilStorageV9200.blockHash = blockHash;
+                param = await _councilStorageV9200.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _councilStorageV9220.blockHash = blockHash;
+                param = await _councilStorageV9220.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _councilStorageV9230.blockHash = blockHash;
+                param = await _councilStorageV9230.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _councilStorageV9250.blockHash = blockHash;
+                param = await _councilStorageV9250.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _councilStorageV9260.blockHash = blockHash;
+                param = await _councilStorageV9260.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _councilStorageV9270.blockHash = blockHash;
+                param = await _councilStorageV9270.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _councilStorageV9280.blockHash = blockHash;
+                param = await _councilStorageV9280.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _councilStorageV9281.blockHash = blockHash;
+                param = await _councilStorageV9281.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _councilStorageV9291.blockHash = blockHash;
+                param = await _councilStorageV9291.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _councilStorageV9300.blockHash = blockHash;
+                param = await _councilStorageV9300.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _councilStorageV9340.blockHash = blockHash;
+                param = await _councilStorageV9340.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _councilStorageV9360.blockHash = blockHash;
+                param = await _councilStorageV9360.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _councilStorageV9370.blockHash = blockHash;
+                param = await _councilStorageV9370.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _councilStorageV9420.blockHash = blockHash;
+                param = await _councilStorageV9420.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _councilStorageV9430.blockHash = blockHash;
+                param = await _councilStorageV9430.ProposalOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> VotingParams
         ///  Votes on a given proposal, if it is ongoing.
         /// </summary>
-        public static string VotingParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string VotingParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Council", "Voting", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> VotingDefault
         /// Default value as hex string
         /// </summary>
-        public static string VotingDefault()
+        public static string VotingDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.VotingDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.VotingDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.VotingDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.VotingDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.VotingDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.VotingDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.VotingDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.VotingDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.VotingDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.VotingDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.VotingDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.VotingDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.VotingDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.VotingDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.VotingDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.VotingDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.VotingDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.VotingDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.VotingDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.VotingDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.VotingDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.VotingDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Voting
         ///  Votes on a given proposal, if it is ongoing.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_collective.Votes> Voting(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_collective.VotesBase> VotingAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, CancellationToken token)
         {
-            string parameters = CouncilStorage.VotingParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_collective.Votes>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_collective.VotesBase param = null;
+            if (version == 9110U)
+            {
+                _councilStorageV9110.blockHash = blockHash;
+                param = await _councilStorageV9110.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _councilStorageV9122.blockHash = blockHash;
+                param = await _councilStorageV9122.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _councilStorageV9140.blockHash = blockHash;
+                param = await _councilStorageV9140.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _councilStorageV9151.blockHash = blockHash;
+                param = await _councilStorageV9151.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _councilStorageV9170.blockHash = blockHash;
+                param = await _councilStorageV9170.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _councilStorageV9180.blockHash = blockHash;
+                param = await _councilStorageV9180.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _councilStorageV9190.blockHash = blockHash;
+                param = await _councilStorageV9190.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _councilStorageV9200.blockHash = blockHash;
+                param = await _councilStorageV9200.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _councilStorageV9220.blockHash = blockHash;
+                param = await _councilStorageV9220.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _councilStorageV9230.blockHash = blockHash;
+                param = await _councilStorageV9230.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _councilStorageV9250.blockHash = blockHash;
+                param = await _councilStorageV9250.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _councilStorageV9260.blockHash = blockHash;
+                param = await _councilStorageV9260.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _councilStorageV9270.blockHash = blockHash;
+                param = await _councilStorageV9270.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _councilStorageV9280.blockHash = blockHash;
+                param = await _councilStorageV9280.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _councilStorageV9281.blockHash = blockHash;
+                param = await _councilStorageV9281.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _councilStorageV9291.blockHash = blockHash;
+                param = await _councilStorageV9291.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _councilStorageV9300.blockHash = blockHash;
+                param = await _councilStorageV9300.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _councilStorageV9340.blockHash = blockHash;
+                param = await _councilStorageV9340.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _councilStorageV9360.blockHash = blockHash;
+                param = await _councilStorageV9360.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _councilStorageV9370.blockHash = blockHash;
+                param = await _councilStorageV9370.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _councilStorageV9420.blockHash = blockHash;
+                param = await _councilStorageV9420.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _councilStorageV9430.blockHash = blockHash;
+                param = await _councilStorageV9430.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProposalCountParams
         ///  Proposals so far.
         /// </summary>
-        public static string ProposalCountParams()
+        public static string ProposalCountParams(uint version)
         {
-            return RequestGenerator.GetStorage("Council", "ProposalCount", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.ProposalCountParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.ProposalCountParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.ProposalCountParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.ProposalCountParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.ProposalCountParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.ProposalCountParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.ProposalCountParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.ProposalCountParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.ProposalCountParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.ProposalCountParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.ProposalCountParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.ProposalCountParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.ProposalCountParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.ProposalCountParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.ProposalCountParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.ProposalCountParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.ProposalCountParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.ProposalCountParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.ProposalCountParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.ProposalCountParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.ProposalCountParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.ProposalCountParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProposalCountDefault
         /// Default value as hex string
         /// </summary>
-        public static string ProposalCountDefault()
+        public static string ProposalCountDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.ProposalCountDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.ProposalCountDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.ProposalCountDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.ProposalCountDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.ProposalCountDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.ProposalCountDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.ProposalCountDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.ProposalCountDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.ProposalCountDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.ProposalCountDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.ProposalCountDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.ProposalCountDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.ProposalCountDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.ProposalCountDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.ProposalCountDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.ProposalCountDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.ProposalCountDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.ProposalCountDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.ProposalCountDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.ProposalCountDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.ProposalCountDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.ProposalCountDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProposalCount
         ///  Proposals so far.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ProposalCount(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ProposalCountAsync(CancellationToken token)
         {
-            string parameters = CouncilStorage.ProposalCountParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _councilStorageV9110.blockHash = blockHash;
+                param = await _councilStorageV9110.ProposalCount(token);
+            }
+
+            if (version == 9122U)
+            {
+                _councilStorageV9122.blockHash = blockHash;
+                param = await _councilStorageV9122.ProposalCount(token);
+            }
+
+            if (version == 9140U)
+            {
+                _councilStorageV9140.blockHash = blockHash;
+                param = await _councilStorageV9140.ProposalCount(token);
+            }
+
+            if (version == 9151U)
+            {
+                _councilStorageV9151.blockHash = blockHash;
+                param = await _councilStorageV9151.ProposalCount(token);
+            }
+
+            if (version == 9170U)
+            {
+                _councilStorageV9170.blockHash = blockHash;
+                param = await _councilStorageV9170.ProposalCount(token);
+            }
+
+            if (version == 9180U)
+            {
+                _councilStorageV9180.blockHash = blockHash;
+                param = await _councilStorageV9180.ProposalCount(token);
+            }
+
+            if (version == 9190U)
+            {
+                _councilStorageV9190.blockHash = blockHash;
+                param = await _councilStorageV9190.ProposalCount(token);
+            }
+
+            if (version == 9200U)
+            {
+                _councilStorageV9200.blockHash = blockHash;
+                param = await _councilStorageV9200.ProposalCount(token);
+            }
+
+            if (version == 9220U)
+            {
+                _councilStorageV9220.blockHash = blockHash;
+                param = await _councilStorageV9220.ProposalCount(token);
+            }
+
+            if (version == 9230U)
+            {
+                _councilStorageV9230.blockHash = blockHash;
+                param = await _councilStorageV9230.ProposalCount(token);
+            }
+
+            if (version == 9250U)
+            {
+                _councilStorageV9250.blockHash = blockHash;
+                param = await _councilStorageV9250.ProposalCount(token);
+            }
+
+            if (version == 9260U)
+            {
+                _councilStorageV9260.blockHash = blockHash;
+                param = await _councilStorageV9260.ProposalCount(token);
+            }
+
+            if (version == 9270U)
+            {
+                _councilStorageV9270.blockHash = blockHash;
+                param = await _councilStorageV9270.ProposalCount(token);
+            }
+
+            if (version == 9280U)
+            {
+                _councilStorageV9280.blockHash = blockHash;
+                param = await _councilStorageV9280.ProposalCount(token);
+            }
+
+            if (version == 9281U)
+            {
+                _councilStorageV9281.blockHash = blockHash;
+                param = await _councilStorageV9281.ProposalCount(token);
+            }
+
+            if (version == 9291U)
+            {
+                _councilStorageV9291.blockHash = blockHash;
+                param = await _councilStorageV9291.ProposalCount(token);
+            }
+
+            if (version == 9300U)
+            {
+                _councilStorageV9300.blockHash = blockHash;
+                param = await _councilStorageV9300.ProposalCount(token);
+            }
+
+            if (version == 9340U)
+            {
+                _councilStorageV9340.blockHash = blockHash;
+                param = await _councilStorageV9340.ProposalCount(token);
+            }
+
+            if (version == 9360U)
+            {
+                _councilStorageV9360.blockHash = blockHash;
+                param = await _councilStorageV9360.ProposalCount(token);
+            }
+
+            if (version == 9370U)
+            {
+                _councilStorageV9370.blockHash = blockHash;
+                param = await _councilStorageV9370.ProposalCount(token);
+            }
+
+            if (version == 9420U)
+            {
+                _councilStorageV9420.blockHash = blockHash;
+                param = await _councilStorageV9420.ProposalCount(token);
+            }
+
+            if (version == 9430U)
+            {
+                _councilStorageV9430.blockHash = blockHash;
+                param = await _councilStorageV9430.ProposalCount(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MembersParams
         ///  The current members of the collective. This is stored sorted (just by value).
         /// </summary>
-        public static string MembersParams()
+        public static string MembersParams(uint version)
         {
-            return RequestGenerator.GetStorage("Council", "Members", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.MembersParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.MembersParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.MembersParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.MembersParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.MembersParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.MembersParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.MembersParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.MembersParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.MembersParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.MembersParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.MembersParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.MembersParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.MembersParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.MembersParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.MembersParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.MembersParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.MembersParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.MembersParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.MembersParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.MembersParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.MembersParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.MembersParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MembersDefault
         /// Default value as hex string
         /// </summary>
-        public static string MembersDefault()
+        public static string MembersDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.MembersDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.MembersDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.MembersDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.MembersDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.MembersDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.MembersDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.MembersDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.MembersDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.MembersDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.MembersDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.MembersDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.MembersDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.MembersDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.MembersDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.MembersDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.MembersDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.MembersDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.MembersDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.MembersDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.MembersDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.MembersDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.MembersDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Members
         ///  The current members of the collective. This is stored sorted (just by value).
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>> Members(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> MembersAsync(CancellationToken token)
         {
-            string parameters = CouncilStorage.MembersParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _councilStorageV9110.blockHash = blockHash;
+                param = await _councilStorageV9110.Members(token);
+            }
+
+            if (version == 9122U)
+            {
+                _councilStorageV9122.blockHash = blockHash;
+                param = await _councilStorageV9122.Members(token);
+            }
+
+            if (version == 9140U)
+            {
+                _councilStorageV9140.blockHash = blockHash;
+                param = await _councilStorageV9140.Members(token);
+            }
+
+            if (version == 9151U)
+            {
+                _councilStorageV9151.blockHash = blockHash;
+                param = await _councilStorageV9151.Members(token);
+            }
+
+            if (version == 9170U)
+            {
+                _councilStorageV9170.blockHash = blockHash;
+                param = await _councilStorageV9170.Members(token);
+            }
+
+            if (version == 9180U)
+            {
+                _councilStorageV9180.blockHash = blockHash;
+                param = await _councilStorageV9180.Members(token);
+            }
+
+            if (version == 9190U)
+            {
+                _councilStorageV9190.blockHash = blockHash;
+                param = await _councilStorageV9190.Members(token);
+            }
+
+            if (version == 9200U)
+            {
+                _councilStorageV9200.blockHash = blockHash;
+                param = await _councilStorageV9200.Members(token);
+            }
+
+            if (version == 9220U)
+            {
+                _councilStorageV9220.blockHash = blockHash;
+                param = await _councilStorageV9220.Members(token);
+            }
+
+            if (version == 9230U)
+            {
+                _councilStorageV9230.blockHash = blockHash;
+                param = await _councilStorageV9230.Members(token);
+            }
+
+            if (version == 9250U)
+            {
+                _councilStorageV9250.blockHash = blockHash;
+                param = await _councilStorageV9250.Members(token);
+            }
+
+            if (version == 9260U)
+            {
+                _councilStorageV9260.blockHash = blockHash;
+                param = await _councilStorageV9260.Members(token);
+            }
+
+            if (version == 9270U)
+            {
+                _councilStorageV9270.blockHash = blockHash;
+                param = await _councilStorageV9270.Members(token);
+            }
+
+            if (version == 9280U)
+            {
+                _councilStorageV9280.blockHash = blockHash;
+                param = await _councilStorageV9280.Members(token);
+            }
+
+            if (version == 9281U)
+            {
+                _councilStorageV9281.blockHash = blockHash;
+                param = await _councilStorageV9281.Members(token);
+            }
+
+            if (version == 9291U)
+            {
+                _councilStorageV9291.blockHash = blockHash;
+                param = await _councilStorageV9291.Members(token);
+            }
+
+            if (version == 9300U)
+            {
+                _councilStorageV9300.blockHash = blockHash;
+                param = await _councilStorageV9300.Members(token);
+            }
+
+            if (version == 9340U)
+            {
+                _councilStorageV9340.blockHash = blockHash;
+                param = await _councilStorageV9340.Members(token);
+            }
+
+            if (version == 9360U)
+            {
+                _councilStorageV9360.blockHash = blockHash;
+                param = await _councilStorageV9360.Members(token);
+            }
+
+            if (version == 9370U)
+            {
+                _councilStorageV9370.blockHash = blockHash;
+                param = await _councilStorageV9370.Members(token);
+            }
+
+            if (version == 9420U)
+            {
+                _councilStorageV9420.blockHash = blockHash;
+                param = await _councilStorageV9420.Members(token);
+            }
+
+            if (version == 9430U)
+            {
+                _councilStorageV9430.blockHash = blockHash;
+                param = await _councilStorageV9430.Members(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PrimeParams
         ///  The prime member that helps determine the default vote behavior in case of absentations.
         /// </summary>
-        public static string PrimeParams()
+        public static string PrimeParams(uint version)
         {
-            return RequestGenerator.GetStorage("Council", "Prime", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.PrimeParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.PrimeParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.PrimeParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.PrimeParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.PrimeParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.PrimeParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.PrimeParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.PrimeParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.PrimeParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.PrimeParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.PrimeParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.PrimeParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.PrimeParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.PrimeParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.PrimeParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.PrimeParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.PrimeParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.PrimeParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.PrimeParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.PrimeParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.PrimeParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.PrimeParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PrimeDefault
         /// Default value as hex string
         /// </summary>
-        public static string PrimeDefault()
+        public static string PrimeDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage.PrimeDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage.PrimeDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage.PrimeDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage.PrimeDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage.PrimeDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage.PrimeDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage.PrimeDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage.PrimeDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage.PrimeDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage.PrimeDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage.PrimeDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage.PrimeDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage.PrimeDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage.PrimeDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage.PrimeDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage.PrimeDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage.PrimeDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage.PrimeDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage.PrimeDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage.PrimeDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage.PrimeDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage.PrimeDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Prime
         ///  The prime member that helps determine the default vote behavior in case of absentations.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Prime(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base> PrimeAsync(CancellationToken token)
         {
-            string parameters = CouncilStorage.PrimeParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base param = null;
+            if (version == 9110U)
+            {
+                _councilStorageV9110.blockHash = blockHash;
+                param = await _councilStorageV9110.Prime(token);
+            }
+
+            if (version == 9122U)
+            {
+                _councilStorageV9122.blockHash = blockHash;
+                param = await _councilStorageV9122.Prime(token);
+            }
+
+            if (version == 9140U)
+            {
+                _councilStorageV9140.blockHash = blockHash;
+                param = await _councilStorageV9140.Prime(token);
+            }
+
+            if (version == 9151U)
+            {
+                _councilStorageV9151.blockHash = blockHash;
+                param = await _councilStorageV9151.Prime(token);
+            }
+
+            if (version == 9170U)
+            {
+                _councilStorageV9170.blockHash = blockHash;
+                param = await _councilStorageV9170.Prime(token);
+            }
+
+            if (version == 9180U)
+            {
+                _councilStorageV9180.blockHash = blockHash;
+                param = await _councilStorageV9180.Prime(token);
+            }
+
+            if (version == 9190U)
+            {
+                _councilStorageV9190.blockHash = blockHash;
+                param = await _councilStorageV9190.Prime(token);
+            }
+
+            if (version == 9200U)
+            {
+                _councilStorageV9200.blockHash = blockHash;
+                param = await _councilStorageV9200.Prime(token);
+            }
+
+            if (version == 9220U)
+            {
+                _councilStorageV9220.blockHash = blockHash;
+                param = await _councilStorageV9220.Prime(token);
+            }
+
+            if (version == 9230U)
+            {
+                _councilStorageV9230.blockHash = blockHash;
+                param = await _councilStorageV9230.Prime(token);
+            }
+
+            if (version == 9250U)
+            {
+                _councilStorageV9250.blockHash = blockHash;
+                param = await _councilStorageV9250.Prime(token);
+            }
+
+            if (version == 9260U)
+            {
+                _councilStorageV9260.blockHash = blockHash;
+                param = await _councilStorageV9260.Prime(token);
+            }
+
+            if (version == 9270U)
+            {
+                _councilStorageV9270.blockHash = blockHash;
+                param = await _councilStorageV9270.Prime(token);
+            }
+
+            if (version == 9280U)
+            {
+                _councilStorageV9280.blockHash = blockHash;
+                param = await _councilStorageV9280.Prime(token);
+            }
+
+            if (version == 9281U)
+            {
+                _councilStorageV9281.blockHash = blockHash;
+                param = await _councilStorageV9281.Prime(token);
+            }
+
+            if (version == 9291U)
+            {
+                _councilStorageV9291.blockHash = blockHash;
+                param = await _councilStorageV9291.Prime(token);
+            }
+
+            if (version == 9300U)
+            {
+                _councilStorageV9300.blockHash = blockHash;
+                param = await _councilStorageV9300.Prime(token);
+            }
+
+            if (version == 9340U)
+            {
+                _councilStorageV9340.blockHash = blockHash;
+                param = await _councilStorageV9340.Prime(token);
+            }
+
+            if (version == 9360U)
+            {
+                _councilStorageV9360.blockHash = blockHash;
+                param = await _councilStorageV9360.Prime(token);
+            }
+
+            if (version == 9370U)
+            {
+                _councilStorageV9370.blockHash = blockHash;
+                param = await _councilStorageV9370.Prime(token);
+            }
+
+            if (version == 9420U)
+            {
+                _councilStorageV9420.blockHash = blockHash;
+                param = await _councilStorageV9420.Prime(token);
+            }
+
+            if (version == 9430U)
+            {
+                _councilStorageV9430.blockHash = blockHash;
+                param = await _councilStorageV9430.Prime(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public CouncilStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _councilStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.CouncilStorage(_client);
+            _councilStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.CouncilStorage(_client);
+            _councilStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.CouncilStorage(_client);
+            _councilStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.CouncilStorage(_client);
+            _councilStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.CouncilStorage(_client);
+            _councilStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.CouncilStorage(_client);
+            _councilStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.CouncilStorage(_client);
+            _councilStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.CouncilStorage(_client);
+            _councilStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.CouncilStorage(_client);
+            _councilStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.CouncilStorage(_client);
+            _councilStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.CouncilStorage(_client);
+            _councilStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.CouncilStorage(_client);
+            _councilStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.CouncilStorage(_client);
+            _councilStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.CouncilStorage(_client);
+            _councilStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.CouncilStorage(_client);
+            _councilStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.CouncilStorage(_client);
+            _councilStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.CouncilStorage(_client);
+            _councilStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.CouncilStorage(_client);
+            _councilStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.CouncilStorage(_client);
+            _councilStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.CouncilStorage(_client);
+            _councilStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilStorage(_client);
+            _councilStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilStorage(_client);
+        }
+    }
+
+    public sealed class CouncilConstants
+    {
+        /// <summary>
+        /// >> MaxProposalWeight
+        ///  The maximum weight of a dispatch call that can be proposed and executed.
+        /// </summary>
+        public IType MaxProposalWeight(uint version)
+        {
+            IType result = null;
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.CouncilConstants().MaxProposalWeight();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.CouncilConstants().MaxProposalWeight();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
-    public sealed class CouncilCalls
-    {
-        
-        /// <summary>
-        /// >> set_members
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMembers(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> new_members, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> prime, Substrate.NetApi.Model.Types.Primitive.U32 old_count)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(new_members.Encode());
-            byteArray.AddRange(prime.Encode());
-            byteArray.AddRange(old_count.Encode());
-            return new Method(15, "Council", 0, "set_members", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> execute
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Execute(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall proposal, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> length_bound)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(proposal.Encode());
-            byteArray.AddRange(length_bound.Encode());
-            return new Method(15, "Council", 1, "execute", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> propose
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Propose(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> threshold, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall proposal, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> length_bound)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(threshold.Encode());
-            byteArray.AddRange(proposal.Encode());
-            byteArray.AddRange(length_bound.Encode());
-            return new Method(15, "Council", 2, "propose", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> vote
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Vote(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> index, Substrate.NetApi.Model.Types.Primitive.Bool approve)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(proposal.Encode());
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(approve.Encode());
-            return new Method(15, "Council", 3, "vote", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> close_old_weight
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CloseOldWeight(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> index, Substrate.NetApi.Model.Types.Base.BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.OldWeight> proposal_weight_bound, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> length_bound)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(proposal_hash.Encode());
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(proposal_weight_bound.Encode());
-            byteArray.AddRange(length_bound.Encode());
-            return new Method(15, "Council", 4, "close_old_weight", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> disapprove_proposal
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method DisapproveProposal(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(proposal_hash.Encode());
-            return new Method(15, "Council", 5, "disapprove_proposal", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> close
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Close(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 proposal_hash, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> index, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight proposal_weight_bound, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> length_bound)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(proposal_hash.Encode());
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(proposal_weight_bound.Encode());
-            byteArray.AddRange(length_bound.Encode());
-            return new Method(15, "Council", 6, "close", byteArray.ToArray());
-        }
-    }
-    
-    public sealed class CouncilConstants
-    {
-    }
-    
+
     public enum CouncilErrors
     {
-        
         /// <summary>
         /// >> NotMember
         /// Account is not a member
         /// </summary>
         NotMember,
-        
         /// <summary>
         /// >> DuplicateProposal
         /// Duplicate proposals not allowed
         /// </summary>
         DuplicateProposal,
-        
         /// <summary>
         /// >> ProposalMissing
         /// Proposal must exist
         /// </summary>
         ProposalMissing,
-        
         /// <summary>
         /// >> WrongIndex
         /// Mismatched index
         /// </summary>
         WrongIndex,
-        
         /// <summary>
         /// >> DuplicateVote
         /// Duplicate vote ignored
         /// </summary>
         DuplicateVote,
-        
         /// <summary>
         /// >> AlreadyInitialized
         /// Members are already initialized!
         /// </summary>
         AlreadyInitialized,
-        
         /// <summary>
         /// >> TooEarly
         /// The close call was made too early, before the end of the voting.
         /// </summary>
         TooEarly,
-        
         /// <summary>
         /// >> TooManyProposals
         /// There can only be a maximum of `MaxProposals` active proposals.
         /// </summary>
         TooManyProposals,
-        
         /// <summary>
         /// >> WrongProposalWeight
         /// The given weight bound for the proposal was too low.
         /// </summary>
         WrongProposalWeight,
-        
         /// <summary>
         /// >> WrongProposalLength
         /// The given length bound for the proposal was too low.
         /// </summary>
-        WrongProposalLength,
+        WrongProposalLength
     }
 }

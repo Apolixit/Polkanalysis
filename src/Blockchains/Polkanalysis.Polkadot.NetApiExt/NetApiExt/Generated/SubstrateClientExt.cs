@@ -6,348 +6,320 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 using System.Collections.Generic;
-
+using Polkanalysis.Polkadot.NetApiExt.Generated.Storage;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated
 {
-    
-    
-    public class SubstrateClientExt : Substrate.NetApi.SubstrateClient
+    using Substrate.NetApi.Model.Meta;
+    using Substrate.NetApi.Model.Extrinsics;
+
+    public sealed class SubstrateClientExt : Substrate.NetApi.SubstrateClient
     {
-        
         /// <summary>
         /// StorageKeyDict for key definition informations.
         /// </summary>
-        public System.Collections.Generic.Dictionary<System.Tuple<string, string>, System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>> StorageKeyDict;
-        
+        public Dictionary<System.Tuple<string, string>, System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>> StorageKeyDict;
         /// <summary>
         /// SystemStorage storage calls.
         /// </summary>
-        public SystemStorage SystemStorage;
-        
+        public SystemStorage SystemStorage { get; }
         /// <summary>
         /// SchedulerStorage storage calls.
         /// </summary>
-        public SchedulerStorage SchedulerStorage;
-        
-        /// <summary>
-        /// PreimageStorage storage calls.
-        /// </summary>
-        public PreimageStorage PreimageStorage;
-        
+        public SchedulerStorage SchedulerStorage { get; }
         /// <summary>
         /// BabeStorage storage calls.
         /// </summary>
-        public BabeStorage BabeStorage;
-        
+        public BabeStorage BabeStorage { get; }
         /// <summary>
         /// TimestampStorage storage calls.
         /// </summary>
-        public TimestampStorage TimestampStorage;
-        
+        public TimestampStorage TimestampStorage { get; }
         /// <summary>
         /// IndicesStorage storage calls.
         /// </summary>
-        public IndicesStorage IndicesStorage;
-        
+        public IndicesStorage IndicesStorage { get; }
         /// <summary>
         /// BalancesStorage storage calls.
         /// </summary>
-        public BalancesStorage BalancesStorage;
-        
+        public BalancesStorage BalancesStorage { get; }
         /// <summary>
         /// TransactionPaymentStorage storage calls.
         /// </summary>
-        public TransactionPaymentStorage TransactionPaymentStorage;
-        
+        public TransactionPaymentStorage TransactionPaymentStorage { get; }
         /// <summary>
         /// AuthorshipStorage storage calls.
         /// </summary>
-        public AuthorshipStorage AuthorshipStorage;
-        
+        public AuthorshipStorage AuthorshipStorage { get; }
         /// <summary>
         /// StakingStorage storage calls.
         /// </summary>
-        public StakingStorage StakingStorage;
-        
+        public StakingStorage StakingStorage { get; }
         /// <summary>
         /// OffencesStorage storage calls.
         /// </summary>
-        public OffencesStorage OffencesStorage;
-        
+        public OffencesStorage OffencesStorage { get; }
         /// <summary>
         /// HistoricalStorage storage calls.
         /// </summary>
-        public HistoricalStorage HistoricalStorage;
-        
+        public HistoricalStorage HistoricalStorage { get; }
         /// <summary>
         /// SessionStorage storage calls.
         /// </summary>
-        public SessionStorage SessionStorage;
-        
+        public SessionStorage SessionStorage { get; }
         /// <summary>
         /// GrandpaStorage storage calls.
         /// </summary>
-        public GrandpaStorage GrandpaStorage;
-        
+        public GrandpaStorage GrandpaStorage { get; }
         /// <summary>
         /// ImOnlineStorage storage calls.
         /// </summary>
-        public ImOnlineStorage ImOnlineStorage;
-        
+        public ImOnlineStorage ImOnlineStorage { get; }
         /// <summary>
         /// AuthorityDiscoveryStorage storage calls.
         /// </summary>
-        public AuthorityDiscoveryStorage AuthorityDiscoveryStorage;
-        
+        public AuthorityDiscoveryStorage AuthorityDiscoveryStorage { get; }
         /// <summary>
         /// DemocracyStorage storage calls.
         /// </summary>
-        public DemocracyStorage DemocracyStorage;
-        
+        public DemocracyStorage DemocracyStorage { get; }
         /// <summary>
         /// CouncilStorage storage calls.
         /// </summary>
-        public CouncilStorage CouncilStorage;
-        
+        public CouncilStorage CouncilStorage { get; }
         /// <summary>
         /// TechnicalCommitteeStorage storage calls.
         /// </summary>
-        public TechnicalCommitteeStorage TechnicalCommitteeStorage;
-        
+        public TechnicalCommitteeStorage TechnicalCommitteeStorage { get; }
         /// <summary>
         /// PhragmenElectionStorage storage calls.
         /// </summary>
-        public PhragmenElectionStorage PhragmenElectionStorage;
-        
+        public PhragmenElectionStorage PhragmenElectionStorage { get; }
         /// <summary>
         /// TechnicalMembershipStorage storage calls.
         /// </summary>
-        public TechnicalMembershipStorage TechnicalMembershipStorage;
-        
+        public TechnicalMembershipStorage TechnicalMembershipStorage { get; }
         /// <summary>
         /// TreasuryStorage storage calls.
         /// </summary>
-        public TreasuryStorage TreasuryStorage;
-        
+        public TreasuryStorage TreasuryStorage { get; }
         /// <summary>
         /// ClaimsStorage storage calls.
         /// </summary>
-        public ClaimsStorage ClaimsStorage;
-        
+        public ClaimsStorage ClaimsStorage { get; }
         /// <summary>
         /// VestingStorage storage calls.
         /// </summary>
-        public VestingStorage VestingStorage;
-        
+        public VestingStorage VestingStorage { get; }
         /// <summary>
         /// UtilityStorage storage calls.
         /// </summary>
-        public UtilityStorage UtilityStorage;
-        
+        public UtilityStorage UtilityStorage { get; }
         /// <summary>
         /// IdentityStorage storage calls.
         /// </summary>
-        public IdentityStorage IdentityStorage;
-        
+        public IdentityStorage IdentityStorage { get; }
         /// <summary>
         /// ProxyStorage storage calls.
         /// </summary>
-        public ProxyStorage ProxyStorage;
-        
+        public ProxyStorage ProxyStorage { get; }
         /// <summary>
         /// MultisigStorage storage calls.
         /// </summary>
-        public MultisigStorage MultisigStorage;
-        
+        public MultisigStorage MultisigStorage { get; }
         /// <summary>
         /// BountiesStorage storage calls.
         /// </summary>
-        public BountiesStorage BountiesStorage;
-        
-        /// <summary>
-        /// ChildBountiesStorage storage calls.
-        /// </summary>
-        public ChildBountiesStorage ChildBountiesStorage;
-        
+        public BountiesStorage BountiesStorage { get; }
         /// <summary>
         /// TipsStorage storage calls.
         /// </summary>
-        public TipsStorage TipsStorage;
-        
+        public TipsStorage TipsStorage { get; }
         /// <summary>
         /// ElectionProviderMultiPhaseStorage storage calls.
         /// </summary>
-        public ElectionProviderMultiPhaseStorage ElectionProviderMultiPhaseStorage;
-        
-        /// <summary>
-        /// VoterListStorage storage calls.
-        /// </summary>
-        public VoterListStorage VoterListStorage;
-        
-        /// <summary>
-        /// NominationPoolsStorage storage calls.
-        /// </summary>
-        public NominationPoolsStorage NominationPoolsStorage;
-        
-        /// <summary>
-        /// FastUnstakeStorage storage calls.
-        /// </summary>
-        public FastUnstakeStorage FastUnstakeStorage;
-        
+        public ElectionProviderMultiPhaseStorage ElectionProviderMultiPhaseStorage { get; }
         /// <summary>
         /// ParachainsOriginStorage storage calls.
         /// </summary>
-        public ParachainsOriginStorage ParachainsOriginStorage;
-        
+        public ParachainsOriginStorage ParachainsOriginStorage { get; }
         /// <summary>
         /// ConfigurationStorage storage calls.
         /// </summary>
-        public ConfigurationStorage ConfigurationStorage;
-        
+        public ConfigurationStorage ConfigurationStorage { get; }
         /// <summary>
         /// ParasSharedStorage storage calls.
         /// </summary>
-        public ParasSharedStorage ParasSharedStorage;
-        
+        public ParasSharedStorage ParasSharedStorage { get; }
         /// <summary>
         /// ParaInclusionStorage storage calls.
         /// </summary>
-        public ParaInclusionStorage ParaInclusionStorage;
-        
+        public ParaInclusionStorage ParaInclusionStorage { get; }
         /// <summary>
         /// ParaInherentStorage storage calls.
         /// </summary>
-        public ParaInherentStorage ParaInherentStorage;
-        
+        public ParaInherentStorage ParaInherentStorage { get; }
         /// <summary>
         /// ParaSchedulerStorage storage calls.
         /// </summary>
-        public ParaSchedulerStorage ParaSchedulerStorage;
-        
+        public ParaSchedulerStorage ParaSchedulerStorage { get; }
         /// <summary>
         /// ParasStorage storage calls.
         /// </summary>
-        public ParasStorage ParasStorage;
-        
+        public ParasStorage ParasStorage { get; }
         /// <summary>
         /// InitializerStorage storage calls.
         /// </summary>
-        public InitializerStorage InitializerStorage;
-        
+        public InitializerStorage InitializerStorage { get; }
         /// <summary>
         /// DmpStorage storage calls.
         /// </summary>
-        public DmpStorage DmpStorage;
-        
+        public DmpStorage DmpStorage { get; }
         /// <summary>
         /// UmpStorage storage calls.
         /// </summary>
-        public UmpStorage UmpStorage;
-        
+        public UmpStorage UmpStorage { get; }
         /// <summary>
         /// HrmpStorage storage calls.
         /// </summary>
-        public HrmpStorage HrmpStorage;
-        
+        public HrmpStorage HrmpStorage { get; }
         /// <summary>
         /// ParaSessionInfoStorage storage calls.
         /// </summary>
-        public ParaSessionInfoStorage ParaSessionInfoStorage;
-        
-        /// <summary>
-        /// ParasDisputesStorage storage calls.
-        /// </summary>
-        public ParasDisputesStorage ParasDisputesStorage;
-        
+        public ParaSessionInfoStorage ParaSessionInfoStorage { get; }
         /// <summary>
         /// RegistrarStorage storage calls.
         /// </summary>
-        public RegistrarStorage RegistrarStorage;
-        
+        public RegistrarStorage RegistrarStorage { get; }
         /// <summary>
         /// SlotsStorage storage calls.
         /// </summary>
-        public SlotsStorage SlotsStorage;
-        
+        public SlotsStorage SlotsStorage { get; }
         /// <summary>
         /// AuctionsStorage storage calls.
         /// </summary>
-        public AuctionsStorage AuctionsStorage;
-        
+        public AuctionsStorage AuctionsStorage { get; }
         /// <summary>
         /// CrowdloanStorage storage calls.
         /// </summary>
-        public CrowdloanStorage CrowdloanStorage;
-        
+        public CrowdloanStorage CrowdloanStorage { get; }
+        /// <summary>
+        /// BagsListStorage storage calls.
+        /// </summary>
+        public BagsListStorage BagsListStorage { get; }
         /// <summary>
         /// XcmPalletStorage storage calls.
         /// </summary>
-        public XcmPalletStorage XcmPalletStorage;
-        
-        public SubstrateClientExt(System.Uri uri, Substrate.NetApi.Model.Extrinsics.ChargeType chargeType) : 
-                base(uri, chargeType)
+        public XcmPalletStorage XcmPalletStorage { get; }
+        /// <summary>
+        /// PreimageStorage storage calls.
+        /// </summary>
+        public PreimageStorage PreimageStorage { get; }
+        /// <summary>
+        /// ParasDisputesStorage storage calls.
+        /// </summary>
+        public ParasDisputesStorage ParasDisputesStorage { get; }
+        /// <summary>
+        /// ChildBountiesStorage storage calls.
+        /// </summary>
+        public ChildBountiesStorage ChildBountiesStorage { get; }
+        /// <summary>
+        /// VoterListStorage storage calls.
+        /// </summary>
+        public VoterListStorage VoterListStorage { get; }
+        /// <summary>
+        /// NominationPoolsStorage storage calls.
+        /// </summary>
+        public NominationPoolsStorage NominationPoolsStorage { get; }
+        /// <summary>
+        /// FastUnstakeStorage storage calls.
+        /// </summary>
+        public FastUnstakeStorage FastUnstakeStorage { get; }
+        /// <summary>
+        /// ConvictionVotingStorage storage calls.
+        /// </summary>
+        public ConvictionVotingStorage ConvictionVotingStorage { get; }
+        /// <summary>
+        /// ReferendaStorage storage calls.
+        /// </summary>
+        public ReferendaStorage ReferendaStorage { get; }
+        /// <summary>
+        /// WhitelistStorage storage calls.
+        /// </summary>
+        public WhitelistStorage WhitelistStorage { get; }
+        /// <summary>
+        /// ParasSlashingStorage storage calls.
+        /// </summary>
+        public ParasSlashingStorage ParasSlashingStorage { get; }
+        /// <summary>
+        /// MessageQueueStorage storage calls.
+        /// </summary>
+        public MessageQueueStorage MessageQueueStorage { get; }
+
+        public SubstrateClientExt(System.Uri uri, ChargeType chargeType) : base(uri, chargeType)
         {
-            StorageKeyDict = new System.Collections.Generic.Dictionary<System.Tuple<string, string>, System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>>();
-            this.SystemStorage = new SystemStorage(this);
-            this.SchedulerStorage = new SchedulerStorage(this);
-            this.PreimageStorage = new PreimageStorage(this);
-            this.BabeStorage = new BabeStorage(this);
-            this.TimestampStorage = new TimestampStorage(this);
-            this.IndicesStorage = new IndicesStorage(this);
-            this.BalancesStorage = new BalancesStorage(this);
-            this.TransactionPaymentStorage = new TransactionPaymentStorage(this);
-            this.AuthorshipStorage = new AuthorshipStorage(this);
-            this.StakingStorage = new StakingStorage(this);
-            this.OffencesStorage = new OffencesStorage(this);
-            this.HistoricalStorage = new HistoricalStorage(this);
-            this.SessionStorage = new SessionStorage(this);
-            this.GrandpaStorage = new GrandpaStorage(this);
-            this.ImOnlineStorage = new ImOnlineStorage(this);
-            this.AuthorityDiscoveryStorage = new AuthorityDiscoveryStorage(this);
-            this.DemocracyStorage = new DemocracyStorage(this);
-            this.CouncilStorage = new CouncilStorage(this);
-            this.TechnicalCommitteeStorage = new TechnicalCommitteeStorage(this);
-            this.PhragmenElectionStorage = new PhragmenElectionStorage(this);
-            this.TechnicalMembershipStorage = new TechnicalMembershipStorage(this);
-            this.TreasuryStorage = new TreasuryStorage(this);
-            this.ClaimsStorage = new ClaimsStorage(this);
-            this.VestingStorage = new VestingStorage(this);
-            this.UtilityStorage = new UtilityStorage(this);
-            this.IdentityStorage = new IdentityStorage(this);
-            this.ProxyStorage = new ProxyStorage(this);
-            this.MultisigStorage = new MultisigStorage(this);
-            this.BountiesStorage = new BountiesStorage(this);
-            this.ChildBountiesStorage = new ChildBountiesStorage(this);
-            this.TipsStorage = new TipsStorage(this);
-            this.ElectionProviderMultiPhaseStorage = new ElectionProviderMultiPhaseStorage(this);
-            this.VoterListStorage = new VoterListStorage(this);
-            this.NominationPoolsStorage = new NominationPoolsStorage(this);
-            this.FastUnstakeStorage = new FastUnstakeStorage(this);
-            this.ParachainsOriginStorage = new ParachainsOriginStorage(this);
-            this.ConfigurationStorage = new ConfigurationStorage(this);
-            this.ParasSharedStorage = new ParasSharedStorage(this);
-            this.ParaInclusionStorage = new ParaInclusionStorage(this);
-            this.ParaInherentStorage = new ParaInherentStorage(this);
-            this.ParaSchedulerStorage = new ParaSchedulerStorage(this);
-            this.ParasStorage = new ParasStorage(this);
-            this.InitializerStorage = new InitializerStorage(this);
-            this.DmpStorage = new DmpStorage(this);
-            this.UmpStorage = new UmpStorage(this);
-            this.HrmpStorage = new HrmpStorage(this);
-            this.ParaSessionInfoStorage = new ParaSessionInfoStorage(this);
-            this.ParasDisputesStorage = new ParasDisputesStorage(this);
-            this.RegistrarStorage = new RegistrarStorage(this);
-            this.SlotsStorage = new SlotsStorage(this);
-            this.AuctionsStorage = new AuctionsStorage(this);
-            this.CrowdloanStorage = new CrowdloanStorage(this);
-            this.XcmPalletStorage = new XcmPalletStorage(this);
+            StorageKeyDict = new Dictionary<System.Tuple<string, string>, System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>>();
+            SystemStorage = new SystemStorage(this);
+            SchedulerStorage = new SchedulerStorage(this);
+            BabeStorage = new BabeStorage(this);
+            TimestampStorage = new TimestampStorage(this);
+            IndicesStorage = new IndicesStorage(this);
+            BalancesStorage = new BalancesStorage(this);
+            TransactionPaymentStorage = new TransactionPaymentStorage(this);
+            AuthorshipStorage = new AuthorshipStorage(this);
+            StakingStorage = new StakingStorage(this);
+            OffencesStorage = new OffencesStorage(this);
+            HistoricalStorage = new HistoricalStorage(this);
+            SessionStorage = new SessionStorage(this);
+            GrandpaStorage = new GrandpaStorage(this);
+            ImOnlineStorage = new ImOnlineStorage(this);
+            AuthorityDiscoveryStorage = new AuthorityDiscoveryStorage(this);
+            DemocracyStorage = new DemocracyStorage(this);
+            CouncilStorage = new CouncilStorage(this);
+            TechnicalCommitteeStorage = new TechnicalCommitteeStorage(this);
+            PhragmenElectionStorage = new PhragmenElectionStorage(this);
+            TechnicalMembershipStorage = new TechnicalMembershipStorage(this);
+            TreasuryStorage = new TreasuryStorage(this);
+            ClaimsStorage = new ClaimsStorage(this);
+            VestingStorage = new VestingStorage(this);
+            UtilityStorage = new UtilityStorage(this);
+            IdentityStorage = new IdentityStorage(this);
+            ProxyStorage = new ProxyStorage(this);
+            MultisigStorage = new MultisigStorage(this);
+            BountiesStorage = new BountiesStorage(this);
+            TipsStorage = new TipsStorage(this);
+            ElectionProviderMultiPhaseStorage = new ElectionProviderMultiPhaseStorage(this);
+            ParachainsOriginStorage = new ParachainsOriginStorage(this);
+            ConfigurationStorage = new ConfigurationStorage(this);
+            ParasSharedStorage = new ParasSharedStorage(this);
+            ParaInclusionStorage = new ParaInclusionStorage(this);
+            ParaInherentStorage = new ParaInherentStorage(this);
+            ParaSchedulerStorage = new ParaSchedulerStorage(this);
+            ParasStorage = new ParasStorage(this);
+            InitializerStorage = new InitializerStorage(this);
+            DmpStorage = new DmpStorage(this);
+            UmpStorage = new UmpStorage(this);
+            HrmpStorage = new HrmpStorage(this);
+            ParaSessionInfoStorage = new ParaSessionInfoStorage(this);
+            RegistrarStorage = new RegistrarStorage(this);
+            SlotsStorage = new SlotsStorage(this);
+            AuctionsStorage = new AuctionsStorage(this);
+            CrowdloanStorage = new CrowdloanStorage(this);
+            BagsListStorage = new BagsListStorage(this);
+            XcmPalletStorage = new XcmPalletStorage(this);
+            PreimageStorage = new PreimageStorage(this);
+            ParasDisputesStorage = new ParasDisputesStorage(this);
+            ChildBountiesStorage = new ChildBountiesStorage(this);
+            VoterListStorage = new VoterListStorage(this);
+            NominationPoolsStorage = new NominationPoolsStorage(this);
+            FastUnstakeStorage = new FastUnstakeStorage(this);
+            ConvictionVotingStorage = new ConvictionVotingStorage(this);
+            ReferendaStorage = new ReferendaStorage(this);
+            WhitelistStorage = new WhitelistStorage(this);
+            ParasSlashingStorage = new ParasSlashingStorage(this);
+            MessageQueueStorage = new MessageQueueStorage(this);
         }
     }
 }

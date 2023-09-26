@@ -6,277 +6,981 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class TipsStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public TipsStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Tips", "Tips"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Tips", "Reasons"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256), typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsStorage _tipsStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsStorage _tipsStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsStorage _tipsStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsStorage _tipsStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsStorage _tipsStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsStorage _tipsStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsStorage _tipsStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsStorage _tipsStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsStorage _tipsStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsStorage _tipsStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsStorage _tipsStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsStorage _tipsStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsStorage _tipsStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsStorage _tipsStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsStorage _tipsStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsStorage _tipsStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsStorage _tipsStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsStorage _tipsStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsStorage _tipsStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsStorage _tipsStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsStorage _tipsStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsStorage _tipsStorageV9430;
         /// <summary>
         /// >> TipsParams
         ///  TipsMap that are not yet completed. Keyed by the hash of `(reason, who)` from the value.
         ///  This has the insecure enumerable hash function since the key itself is already
         ///  guaranteed to be a secure hash.
         /// </summary>
-        public static string TipsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string TipsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Tips", "Tips", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsStorage.TipsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> TipsDefault
         /// Default value as hex string
         /// </summary>
-        public static string TipsDefault()
+        public static string TipsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsStorage.TipsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsStorage.TipsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsStorage.TipsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsStorage.TipsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsStorage.TipsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsStorage.TipsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsStorage.TipsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsStorage.TipsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsStorage.TipsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsStorage.TipsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsStorage.TipsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsStorage.TipsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsStorage.TipsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsStorage.TipsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsStorage.TipsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsStorage.TipsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsStorage.TipsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsStorage.TipsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsStorage.TipsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsStorage.TipsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsStorage.TipsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsStorage.TipsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Tips
         ///  TipsMap that are not yet completed. Keyed by the hash of `(reason, who)` from the value.
         ///  This has the insecure enumerable hash function since the key itself is already
         ///  guaranteed to be a secure hash.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip> Tips(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_tips.OpenTipBase> TipsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, CancellationToken token)
         {
-            string parameters = TipsStorage.TipsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_tips.OpenTip>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_tips.OpenTipBase param = null;
+            if (version == 9110U)
+            {
+                _tipsStorageV9110.blockHash = blockHash;
+                param = await _tipsStorageV9110.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _tipsStorageV9122.blockHash = blockHash;
+                param = await _tipsStorageV9122.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _tipsStorageV9140.blockHash = blockHash;
+                param = await _tipsStorageV9140.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _tipsStorageV9151.blockHash = blockHash;
+                param = await _tipsStorageV9151.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _tipsStorageV9170.blockHash = blockHash;
+                param = await _tipsStorageV9170.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _tipsStorageV9180.blockHash = blockHash;
+                param = await _tipsStorageV9180.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _tipsStorageV9190.blockHash = blockHash;
+                param = await _tipsStorageV9190.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _tipsStorageV9200.blockHash = blockHash;
+                param = await _tipsStorageV9200.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _tipsStorageV9220.blockHash = blockHash;
+                param = await _tipsStorageV9220.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _tipsStorageV9230.blockHash = blockHash;
+                param = await _tipsStorageV9230.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _tipsStorageV9250.blockHash = blockHash;
+                param = await _tipsStorageV9250.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _tipsStorageV9260.blockHash = blockHash;
+                param = await _tipsStorageV9260.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _tipsStorageV9270.blockHash = blockHash;
+                param = await _tipsStorageV9270.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _tipsStorageV9280.blockHash = blockHash;
+                param = await _tipsStorageV9280.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _tipsStorageV9281.blockHash = blockHash;
+                param = await _tipsStorageV9281.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _tipsStorageV9291.blockHash = blockHash;
+                param = await _tipsStorageV9291.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _tipsStorageV9300.blockHash = blockHash;
+                param = await _tipsStorageV9300.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _tipsStorageV9340.blockHash = blockHash;
+                param = await _tipsStorageV9340.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _tipsStorageV9360.blockHash = blockHash;
+                param = await _tipsStorageV9360.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _tipsStorageV9370.blockHash = blockHash;
+                param = await _tipsStorageV9370.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _tipsStorageV9420.blockHash = blockHash;
+                param = await _tipsStorageV9420.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _tipsStorageV9430.blockHash = blockHash;
+                param = await _tipsStorageV9430.Tips((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReasonsParams
         ///  Simple preimage lookup from the reason's hash to the original data. Again, has an
         ///  insecure enumerable hash since the key is guaranteed to be the result of a secure hash.
         /// </summary>
-        public static string ReasonsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key)
+        public static string ReasonsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Tips", "Reasons", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsStorage.ReasonsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReasonsDefault
         /// Default value as hex string
         /// </summary>
-        public static string ReasonsDefault()
+        public static string ReasonsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsStorage.ReasonsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsStorage.ReasonsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsStorage.ReasonsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsStorage.ReasonsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsStorage.ReasonsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsStorage.ReasonsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsStorage.ReasonsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsStorage.ReasonsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsStorage.ReasonsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsStorage.ReasonsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsStorage.ReasonsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsStorage.ReasonsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsStorage.ReasonsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsStorage.ReasonsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsStorage.ReasonsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsStorage.ReasonsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsStorage.ReasonsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsStorage.ReasonsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsStorage.ReasonsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsStorage.ReasonsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsStorage.ReasonsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsStorage.ReasonsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Reasons
         ///  Simple preimage lookup from the reason's hash to the original data. Again, has an
         ///  insecure enumerable hash since the key is guaranteed to be the result of a secure hash.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>> Reasons(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> ReasonsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base key, CancellationToken token)
         {
-            string parameters = TipsStorage.ReasonsParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _tipsStorageV9110.blockHash = blockHash;
+                param = await _tipsStorageV9110.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.primitive_types.H256)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _tipsStorageV9122.blockHash = blockHash;
+                param = await _tipsStorageV9122.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.primitive_types.H256)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _tipsStorageV9140.blockHash = blockHash;
+                param = await _tipsStorageV9140.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.primitive_types.H256)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _tipsStorageV9151.blockHash = blockHash;
+                param = await _tipsStorageV9151.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.primitive_types.H256)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _tipsStorageV9170.blockHash = blockHash;
+                param = await _tipsStorageV9170.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.primitive_types.H256)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _tipsStorageV9180.blockHash = blockHash;
+                param = await _tipsStorageV9180.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.primitive_types.H256)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _tipsStorageV9190.blockHash = blockHash;
+                param = await _tipsStorageV9190.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.primitive_types.H256)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _tipsStorageV9200.blockHash = blockHash;
+                param = await _tipsStorageV9200.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.primitive_types.H256)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _tipsStorageV9220.blockHash = blockHash;
+                param = await _tipsStorageV9220.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.primitive_types.H256)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _tipsStorageV9230.blockHash = blockHash;
+                param = await _tipsStorageV9230.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.primitive_types.H256)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _tipsStorageV9250.blockHash = blockHash;
+                param = await _tipsStorageV9250.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.primitive_types.H256)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _tipsStorageV9260.blockHash = blockHash;
+                param = await _tipsStorageV9260.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.primitive_types.H256)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _tipsStorageV9270.blockHash = blockHash;
+                param = await _tipsStorageV9270.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.primitive_types.H256)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _tipsStorageV9280.blockHash = blockHash;
+                param = await _tipsStorageV9280.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.primitive_types.H256)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _tipsStorageV9281.blockHash = blockHash;
+                param = await _tipsStorageV9281.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.primitive_types.H256)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _tipsStorageV9291.blockHash = blockHash;
+                param = await _tipsStorageV9291.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.primitive_types.H256)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _tipsStorageV9300.blockHash = blockHash;
+                param = await _tipsStorageV9300.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.primitive_types.H256)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _tipsStorageV9340.blockHash = blockHash;
+                param = await _tipsStorageV9340.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.primitive_types.H256)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _tipsStorageV9360.blockHash = blockHash;
+                param = await _tipsStorageV9360.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.primitive_types.H256)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _tipsStorageV9370.blockHash = blockHash;
+                param = await _tipsStorageV9370.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types.H256)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _tipsStorageV9420.blockHash = blockHash;
+                param = await _tipsStorageV9420.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.primitive_types.H256)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _tipsStorageV9430.blockHash = blockHash;
+                param = await _tipsStorageV9430.Reasons((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.primitive_types.H256)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public TipsStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _tipsStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsStorage(_client);
+            _tipsStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsStorage(_client);
+            _tipsStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsStorage(_client);
+            _tipsStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsStorage(_client);
+            _tipsStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsStorage(_client);
+            _tipsStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsStorage(_client);
+            _tipsStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsStorage(_client);
+            _tipsStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsStorage(_client);
+            _tipsStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsStorage(_client);
+            _tipsStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsStorage(_client);
+            _tipsStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsStorage(_client);
+            _tipsStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsStorage(_client);
+            _tipsStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsStorage(_client);
+            _tipsStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsStorage(_client);
+            _tipsStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsStorage(_client);
+            _tipsStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsStorage(_client);
+            _tipsStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsStorage(_client);
+            _tipsStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsStorage(_client);
+            _tipsStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsStorage(_client);
+            _tipsStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsStorage(_client);
+            _tipsStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsStorage(_client);
+            _tipsStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsStorage(_client);
         }
     }
-    
-    public sealed class TipsCalls
-    {
-        
-        /// <summary>
-        /// >> report_awesome
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ReportAwesome(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> reason, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(reason.Encode());
-            byteArray.AddRange(who.Encode());
-            return new Method(35, "Tips", 0, "report_awesome", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> retract_tip
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RetractTip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(hash.Encode());
-            return new Method(35, "Tips", 1, "retract_tip", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> tip_new
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method TipNew(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> reason, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> tip_value)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(reason.Encode());
-            byteArray.AddRange(who.Encode());
-            byteArray.AddRange(tip_value.Encode());
-            return new Method(35, "Tips", 2, "tip_new", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> tip
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Tip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> tip_value)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(hash.Encode());
-            byteArray.AddRange(tip_value.Encode());
-            return new Method(35, "Tips", 3, "tip", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> close_tip
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CloseTip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(hash.Encode());
-            return new Method(35, "Tips", 4, "close_tip", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> slash_tip
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SlashTip(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(hash.Encode());
-            return new Method(35, "Tips", 5, "slash_tip", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class TipsConstants
     {
-        
         /// <summary>
         /// >> MaximumReasonLength
         ///  Maximum acceptable reason length.
-        /// 
-        ///  Benchmarks depend on this value, be sure to update weights file when changing this value
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaximumReasonLength()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaximumReasonLength(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x00400000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsConstants().MaximumReasonLength();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsConstants().MaximumReasonLength();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsConstants().MaximumReasonLength();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsConstants().MaximumReasonLength();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsConstants().MaximumReasonLength();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsConstants().MaximumReasonLength();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsConstants().MaximumReasonLength();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsConstants().MaximumReasonLength();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsConstants().MaximumReasonLength();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsConstants().MaximumReasonLength();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsConstants().MaximumReasonLength();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsConstants().MaximumReasonLength();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsConstants().MaximumReasonLength();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsConstants().MaximumReasonLength();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsConstants().MaximumReasonLength();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsConstants().MaximumReasonLength();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsConstants().MaximumReasonLength();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsConstants().MaximumReasonLength();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsConstants().MaximumReasonLength();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsConstants().MaximumReasonLength();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsConstants().MaximumReasonLength();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsConstants().MaximumReasonLength();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> DataDepositPerByte
         ///  The amount held on deposit per byte within the tip report reason or bounty description.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
+        public Substrate.NetApi.Model.Types.Primitive.U128 DataDepositPerByte(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E1F505000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsConstants().DataDepositPerByte();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsConstants().DataDepositPerByte();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsConstants().DataDepositPerByte();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsConstants().DataDepositPerByte();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsConstants().DataDepositPerByte();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsConstants().DataDepositPerByte();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsConstants().DataDepositPerByte();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsConstants().DataDepositPerByte();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsConstants().DataDepositPerByte();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsConstants().DataDepositPerByte();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsConstants().DataDepositPerByte();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsConstants().DataDepositPerByte();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsConstants().DataDepositPerByte();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsConstants().DataDepositPerByte();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsConstants().DataDepositPerByte();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsConstants().DataDepositPerByte();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsConstants().DataDepositPerByte();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsConstants().DataDepositPerByte();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsConstants().DataDepositPerByte();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsConstants().DataDepositPerByte();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsConstants().DataDepositPerByte();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsConstants().DataDepositPerByte();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> TipCountdown
         ///  The period for which a tip remains open after is has achieved threshold tippers.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 TipCountdown()
+        public Substrate.NetApi.Model.Types.Primitive.U32 TipCountdown(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x40380000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsConstants().TipCountdown();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsConstants().TipCountdown();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsConstants().TipCountdown();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsConstants().TipCountdown();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsConstants().TipCountdown();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsConstants().TipCountdown();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsConstants().TipCountdown();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsConstants().TipCountdown();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsConstants().TipCountdown();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsConstants().TipCountdown();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsConstants().TipCountdown();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsConstants().TipCountdown();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsConstants().TipCountdown();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsConstants().TipCountdown();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsConstants().TipCountdown();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsConstants().TipCountdown();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsConstants().TipCountdown();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsConstants().TipCountdown();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsConstants().TipCountdown();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsConstants().TipCountdown();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsConstants().TipCountdown();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsConstants().TipCountdown();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> TipFindersFee
         ///  The percent of the final tip which goes to the original reporter of the tip.
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent TipFindersFee()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PercentBase TipFindersFee(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent();
-            result.Create("0x14");
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PercentBase result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsConstants().TipFindersFee();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsConstants().TipFindersFee();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsConstants().TipFindersFee();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsConstants().TipFindersFee();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsConstants().TipFindersFee();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsConstants().TipFindersFee();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsConstants().TipFindersFee();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsConstants().TipFindersFee();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsConstants().TipFindersFee();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsConstants().TipFindersFee();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsConstants().TipFindersFee();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsConstants().TipFindersFee();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsConstants().TipFindersFee();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsConstants().TipFindersFee();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsConstants().TipFindersFee();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsConstants().TipFindersFee();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsConstants().TipFindersFee();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsConstants().TipFindersFee();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsConstants().TipFindersFee();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsConstants().TipFindersFee();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsConstants().TipFindersFee();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsConstants().TipFindersFee();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> TipReportDepositBase
         ///  The amount held on deposit for placing a tip report.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 TipReportDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 TipReportDepositBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00E40B54020000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TipsConstants().TipReportDepositBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TipsConstants().TipReportDepositBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TipsConstants().TipReportDepositBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TipsConstants().TipReportDepositBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TipsConstants().TipReportDepositBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TipsConstants().TipReportDepositBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TipsConstants().TipReportDepositBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TipsConstants().TipReportDepositBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TipsConstants().TipReportDepositBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TipsConstants().TipReportDepositBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TipsConstants().TipReportDepositBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TipsConstants().TipReportDepositBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TipsConstants().TipReportDepositBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TipsConstants().TipReportDepositBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TipsConstants().TipReportDepositBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TipsConstants().TipReportDepositBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TipsConstants().TipReportDepositBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TipsConstants().TipReportDepositBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TipsConstants().TipReportDepositBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TipsConstants().TipReportDepositBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TipsConstants().TipReportDepositBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TipsConstants().TipReportDepositBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum TipsErrors
     {
-        
         /// <summary>
         /// >> ReasonTooBig
         /// The reason given is just too big.
         /// </summary>
         ReasonTooBig,
-        
         /// <summary>
         /// >> AlreadyKnown
         /// The tip was already found/started.
         /// </summary>
         AlreadyKnown,
-        
         /// <summary>
         /// >> UnknownTip
         /// The tip hash is unknown.
         /// </summary>
         UnknownTip,
-        
         /// <summary>
         /// >> NotFinder
         /// The account attempting to retract the tip is not the finder of the tip.
         /// </summary>
         NotFinder,
-        
         /// <summary>
         /// >> StillOpen
         /// The tip cannot be claimed/closed because there are not enough tippers yet.
         /// </summary>
         StillOpen,
-        
         /// <summary>
         /// >> Premature
         /// The tip cannot be claimed/closed because it's still in the countdown period.
         /// </summary>
-        Premature,
+        Premature
     }
 }

@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Blockchains\Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj" />
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
   </ItemGroup>

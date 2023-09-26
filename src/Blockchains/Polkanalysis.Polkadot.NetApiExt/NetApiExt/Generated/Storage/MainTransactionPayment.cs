@@ -6,96 +6,683 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class TransactionPaymentStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public TransactionPaymentStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "NextFeeMultiplier"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("TransactionPayment", "StorageVersion"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentStorage _transactionPaymentStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentStorage _transactionPaymentStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentStorage _transactionPaymentStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentStorage _transactionPaymentStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentStorage _transactionPaymentStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentStorage _transactionPaymentStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentStorage _transactionPaymentStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentStorage _transactionPaymentStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentStorage _transactionPaymentStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TransactionPaymentStorage _transactionPaymentStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TransactionPaymentStorage _transactionPaymentStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TransactionPaymentStorage _transactionPaymentStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TransactionPaymentStorage _transactionPaymentStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TransactionPaymentStorage _transactionPaymentStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TransactionPaymentStorage _transactionPaymentStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TransactionPaymentStorage _transactionPaymentStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TransactionPaymentStorage _transactionPaymentStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TransactionPaymentStorage _transactionPaymentStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TransactionPaymentStorage _transactionPaymentStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TransactionPaymentStorage _transactionPaymentStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TransactionPaymentStorage _transactionPaymentStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TransactionPaymentStorage _transactionPaymentStorageV9430;
         /// <summary>
         /// >> NextFeeMultiplierParams
         /// </summary>
-        public static string NextFeeMultiplierParams()
+        public static string NextFeeMultiplierParams(uint version)
         {
-            return RequestGenerator.GetStorage("TransactionPayment", "NextFeeMultiplier", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TransactionPaymentStorage.NextFeeMultiplierParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextFeeMultiplierDefault
         /// Default value as hex string
         /// </summary>
-        public static string NextFeeMultiplierDefault()
+        public static string NextFeeMultiplierDefault(uint version)
         {
-            return "0x000064A7B3B6E00D0000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TransactionPaymentStorage.NextFeeMultiplierDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextFeeMultiplier
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128> NextFeeMultiplier(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.fixed_point.FixedU128Base> NextFeeMultiplierAsync(CancellationToken token)
         {
-            string parameters = TransactionPaymentStorage.NextFeeMultiplierParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.fixed_point.FixedU128Base param = null;
+            if (version == 9110U)
+            {
+                _transactionPaymentStorageV9110.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9110.NextFeeMultiplier(token);
+            }
+
+            if (version == 9122U)
+            {
+                _transactionPaymentStorageV9122.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9122.NextFeeMultiplier(token);
+            }
+
+            if (version == 9140U)
+            {
+                _transactionPaymentStorageV9140.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9140.NextFeeMultiplier(token);
+            }
+
+            if (version == 9151U)
+            {
+                _transactionPaymentStorageV9151.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9151.NextFeeMultiplier(token);
+            }
+
+            if (version == 9170U)
+            {
+                _transactionPaymentStorageV9170.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9170.NextFeeMultiplier(token);
+            }
+
+            if (version == 9180U)
+            {
+                _transactionPaymentStorageV9180.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9180.NextFeeMultiplier(token);
+            }
+
+            if (version == 9190U)
+            {
+                _transactionPaymentStorageV9190.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9190.NextFeeMultiplier(token);
+            }
+
+            if (version == 9200U)
+            {
+                _transactionPaymentStorageV9200.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9200.NextFeeMultiplier(token);
+            }
+
+            if (version == 9220U)
+            {
+                _transactionPaymentStorageV9220.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9220.NextFeeMultiplier(token);
+            }
+
+            if (version == 9230U)
+            {
+                _transactionPaymentStorageV9230.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9230.NextFeeMultiplier(token);
+            }
+
+            if (version == 9250U)
+            {
+                _transactionPaymentStorageV9250.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9250.NextFeeMultiplier(token);
+            }
+
+            if (version == 9260U)
+            {
+                _transactionPaymentStorageV9260.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9260.NextFeeMultiplier(token);
+            }
+
+            if (version == 9270U)
+            {
+                _transactionPaymentStorageV9270.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9270.NextFeeMultiplier(token);
+            }
+
+            if (version == 9280U)
+            {
+                _transactionPaymentStorageV9280.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9280.NextFeeMultiplier(token);
+            }
+
+            if (version == 9281U)
+            {
+                _transactionPaymentStorageV9281.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9281.NextFeeMultiplier(token);
+            }
+
+            if (version == 9291U)
+            {
+                _transactionPaymentStorageV9291.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9291.NextFeeMultiplier(token);
+            }
+
+            if (version == 9300U)
+            {
+                _transactionPaymentStorageV9300.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9300.NextFeeMultiplier(token);
+            }
+
+            if (version == 9340U)
+            {
+                _transactionPaymentStorageV9340.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9340.NextFeeMultiplier(token);
+            }
+
+            if (version == 9360U)
+            {
+                _transactionPaymentStorageV9360.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9360.NextFeeMultiplier(token);
+            }
+
+            if (version == 9370U)
+            {
+                _transactionPaymentStorageV9370.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9370.NextFeeMultiplier(token);
+            }
+
+            if (version == 9420U)
+            {
+                _transactionPaymentStorageV9420.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9420.NextFeeMultiplier(token);
+            }
+
+            if (version == 9430U)
+            {
+                _transactionPaymentStorageV9430.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9430.NextFeeMultiplier(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> StorageVersionParams
         /// </summary>
-        public static string StorageVersionParams()
+        public static string StorageVersionParams(uint version)
         {
-            return RequestGenerator.GetStorage("TransactionPayment", "StorageVersion", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TransactionPaymentStorage.StorageVersionParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TransactionPaymentStorage.StorageVersionParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> StorageVersionDefault
         /// Default value as hex string
         /// </summary>
-        public static string StorageVersionDefault()
+        public static string StorageVersionDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TransactionPaymentStorage.StorageVersionDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TransactionPaymentStorage.StorageVersionDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> StorageVersion
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases> StorageVersion(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum> StorageVersionAsync(CancellationToken token)
         {
-            string parameters = TransactionPaymentStorage.StorageVersionParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_transaction_payment.EnumReleases>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum param = null;
+            if (version == 9110U)
+            {
+                _transactionPaymentStorageV9110.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9110.StorageVersion(token);
+            }
+
+            if (version == 9122U)
+            {
+                _transactionPaymentStorageV9122.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9122.StorageVersion(token);
+            }
+
+            if (version == 9140U)
+            {
+                _transactionPaymentStorageV9140.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9140.StorageVersion(token);
+            }
+
+            if (version == 9151U)
+            {
+                _transactionPaymentStorageV9151.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9151.StorageVersion(token);
+            }
+
+            if (version == 9170U)
+            {
+                _transactionPaymentStorageV9170.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9170.StorageVersion(token);
+            }
+
+            if (version == 9180U)
+            {
+                _transactionPaymentStorageV9180.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9180.StorageVersion(token);
+            }
+
+            if (version == 9190U)
+            {
+                _transactionPaymentStorageV9190.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9190.StorageVersion(token);
+            }
+
+            if (version == 9200U)
+            {
+                _transactionPaymentStorageV9200.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9200.StorageVersion(token);
+            }
+
+            if (version == 9220U)
+            {
+                _transactionPaymentStorageV9220.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9220.StorageVersion(token);
+            }
+
+            if (version == 9230U)
+            {
+                _transactionPaymentStorageV9230.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9230.StorageVersion(token);
+            }
+
+            if (version == 9250U)
+            {
+                _transactionPaymentStorageV9250.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9250.StorageVersion(token);
+            }
+
+            if (version == 9260U)
+            {
+                _transactionPaymentStorageV9260.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9260.StorageVersion(token);
+            }
+
+            if (version == 9270U)
+            {
+                _transactionPaymentStorageV9270.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9270.StorageVersion(token);
+            }
+
+            if (version == 9280U)
+            {
+                _transactionPaymentStorageV9280.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9280.StorageVersion(token);
+            }
+
+            if (version == 9281U)
+            {
+                _transactionPaymentStorageV9281.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9281.StorageVersion(token);
+            }
+
+            if (version == 9291U)
+            {
+                _transactionPaymentStorageV9291.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9291.StorageVersion(token);
+            }
+
+            if (version == 9300U)
+            {
+                _transactionPaymentStorageV9300.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9300.StorageVersion(token);
+            }
+
+            if (version == 9340U)
+            {
+                _transactionPaymentStorageV9340.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9340.StorageVersion(token);
+            }
+
+            if (version == 9360U)
+            {
+                _transactionPaymentStorageV9360.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9360.StorageVersion(token);
+            }
+
+            if (version == 9370U)
+            {
+                _transactionPaymentStorageV9370.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9370.StorageVersion(token);
+            }
+
+            if (version == 9420U)
+            {
+                _transactionPaymentStorageV9420.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9420.StorageVersion(token);
+            }
+
+            if (version == 9430U)
+            {
+                _transactionPaymentStorageV9430.blockHash = blockHash;
+                param = await _transactionPaymentStorageV9430.StorageVersion(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public TransactionPaymentStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _transactionPaymentStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TransactionPaymentStorage(_client);
+            _transactionPaymentStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TransactionPaymentStorage(_client);
         }
     }
-    
-    public sealed class TransactionPaymentCalls
-    {
-    }
-    
+
     public sealed class TransactionPaymentConstants
     {
-        
+        /// <summary>
+        /// >> TransactionByteFee
+        ///  The fee to be paid for making a transaction; the per-byte portion.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U128 TransactionByteFee(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentConstants().TransactionByteFee();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentConstants().TransactionByteFee();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentConstants().TransactionByteFee();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentConstants().TransactionByteFee();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentConstants().TransactionByteFee();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentConstants().TransactionByteFee();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
         /// <summary>
         /// >> OperationalFeeMultiplier
         ///  A fee mulitplier for `Operational` extrinsics to compute "virtual tip" to boost their
@@ -120,10 +707,103 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  on the `inclusion_fee`, but we also amplify the impact of tips applied to `Operational`
         ///  transactions.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U8 OperationalFeeMultiplier()
+        public Substrate.NetApi.Model.Types.Primitive.U8 OperationalFeeMultiplier(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U8();
-            result.Create("0x05");
+            Substrate.NetApi.Model.Types.Primitive.U8 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.TransactionPaymentConstants().OperationalFeeMultiplier();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> WeightToFee
+        ///  The polynomial that is applied in order to derive fee from weight.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable WeightToFee(uint version)
+        {
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.TransactionPaymentConstants().WeightToFee();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.TransactionPaymentConstants().WeightToFee();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.TransactionPaymentConstants().WeightToFee();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.TransactionPaymentConstants().WeightToFee();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.TransactionPaymentConstants().WeightToFee();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.TransactionPaymentConstants().WeightToFee();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentConstants().WeightToFee();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentConstants().WeightToFee();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentConstants().WeightToFee();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> LengthToFee
+        ///  The polynomial that is applied in order to derive fee from length.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable LengthToFee(uint version)
+        {
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable result = null;
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.TransactionPaymentConstants().LengthToFee();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.TransactionPaymentConstants().LengthToFee();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.TransactionPaymentConstants().LengthToFee();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }

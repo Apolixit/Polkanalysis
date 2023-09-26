@@ -6,68 +6,376 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class RegistrarStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public RegistrarStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "PendingSwap"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "Paras"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Registrar", "NextFreeParaId"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage _registrarStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage _registrarStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage _registrarStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage _registrarStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage _registrarStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage _registrarStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage _registrarStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage _registrarStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage _registrarStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage _registrarStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage _registrarStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage _registrarStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage _registrarStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage _registrarStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage _registrarStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage _registrarStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage _registrarStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage _registrarStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage _registrarStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage _registrarStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage _registrarStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage _registrarStorageV9430;
         /// <summary>
         /// >> PendingSwapParams
         ///  Pending swap operations.
         /// </summary>
-        public static string PendingSwapParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string PendingSwapParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Registrar", "PendingSwap", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage.PendingSwapParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PendingSwapDefault
         /// Default value as hex string
         /// </summary>
-        public static string PendingSwapDefault()
+        public static string PendingSwapDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage.PendingSwapDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage.PendingSwapDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage.PendingSwapDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage.PendingSwapDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage.PendingSwapDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage.PendingSwapDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage.PendingSwapDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage.PendingSwapDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage.PendingSwapDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage.PendingSwapDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage.PendingSwapDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage.PendingSwapDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage.PendingSwapDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage.PendingSwapDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage.PendingSwapDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage.PendingSwapDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage.PendingSwapDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage.PendingSwapDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage.PendingSwapDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage.PendingSwapDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage.PendingSwapDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage.PendingSwapDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PendingSwap
         ///  Pending swap operations.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> PendingSwap(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase> PendingSwapAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, CancellationToken token)
         {
-            string parameters = RegistrarStorage.PendingSwapParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase param = null;
+            if (version == 9110U)
+            {
+                _registrarStorageV9110.blockHash = blockHash;
+                param = await _registrarStorageV9110.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _registrarStorageV9122.blockHash = blockHash;
+                param = await _registrarStorageV9122.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _registrarStorageV9140.blockHash = blockHash;
+                param = await _registrarStorageV9140.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _registrarStorageV9151.blockHash = blockHash;
+                param = await _registrarStorageV9151.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _registrarStorageV9170.blockHash = blockHash;
+                param = await _registrarStorageV9170.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _registrarStorageV9180.blockHash = blockHash;
+                param = await _registrarStorageV9180.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _registrarStorageV9190.blockHash = blockHash;
+                param = await _registrarStorageV9190.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _registrarStorageV9200.blockHash = blockHash;
+                param = await _registrarStorageV9200.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _registrarStorageV9220.blockHash = blockHash;
+                param = await _registrarStorageV9220.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _registrarStorageV9230.blockHash = blockHash;
+                param = await _registrarStorageV9230.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _registrarStorageV9250.blockHash = blockHash;
+                param = await _registrarStorageV9250.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _registrarStorageV9260.blockHash = blockHash;
+                param = await _registrarStorageV9260.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _registrarStorageV9270.blockHash = blockHash;
+                param = await _registrarStorageV9270.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _registrarStorageV9280.blockHash = blockHash;
+                param = await _registrarStorageV9280.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _registrarStorageV9281.blockHash = blockHash;
+                param = await _registrarStorageV9281.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _registrarStorageV9291.blockHash = blockHash;
+                param = await _registrarStorageV9291.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _registrarStorageV9300.blockHash = blockHash;
+                param = await _registrarStorageV9300.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _registrarStorageV9340.blockHash = blockHash;
+                param = await _registrarStorageV9340.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _registrarStorageV9360.blockHash = blockHash;
+                param = await _registrarStorageV9360.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _registrarStorageV9370.blockHash = blockHash;
+                param = await _registrarStorageV9370.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _registrarStorageV9420.blockHash = blockHash;
+                param = await _registrarStorageV9420.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _registrarStorageV9430.blockHash = blockHash;
+                param = await _registrarStorageV9430.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParasParams
         ///  Amount held on deposit for each para and the original depositor.
@@ -75,22 +383,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The given account ID is responsible for registering the code and initial head data, but may only do
         ///  so if it isn't yet registered. (After that, it's up to governance to do so.)
         /// </summary>
-        public static string ParasParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string ParasParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Registrar", "Paras", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage.ParasParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ParasDefault
         /// Default value as hex string
         /// </summary>
-        public static string ParasDefault()
+        public static string ParasDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage.ParasDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage.ParasDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage.ParasDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage.ParasDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage.ParasDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage.ParasDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage.ParasDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage.ParasDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage.ParasDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage.ParasDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage.ParasDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage.ParasDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage.ParasDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage.ParasDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage.ParasDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage.ParasDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage.ParasDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage.ParasDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage.ParasDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage.ParasDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage.ParasDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage.ParasDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Paras
         ///  Amount held on deposit for each para and the original depositor.
@@ -98,267 +498,620 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The given account ID is responsible for registering the code and initial head data, but may only do
         ///  so if it isn't yet registered. (After that, it's up to governance to do so.)
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo> Paras(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.paras_registrar.ParaInfoBase> ParasAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, CancellationToken token)
         {
-            string parameters = RegistrarStorage.ParasParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.paras_registrar.ParaInfoBase param = null;
+            if (version == 9110U)
+            {
+                _registrarStorageV9110.blockHash = blockHash;
+                param = await _registrarStorageV9110.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _registrarStorageV9122.blockHash = blockHash;
+                param = await _registrarStorageV9122.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _registrarStorageV9140.blockHash = blockHash;
+                param = await _registrarStorageV9140.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _registrarStorageV9151.blockHash = blockHash;
+                param = await _registrarStorageV9151.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _registrarStorageV9170.blockHash = blockHash;
+                param = await _registrarStorageV9170.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _registrarStorageV9180.blockHash = blockHash;
+                param = await _registrarStorageV9180.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _registrarStorageV9190.blockHash = blockHash;
+                param = await _registrarStorageV9190.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _registrarStorageV9200.blockHash = blockHash;
+                param = await _registrarStorageV9200.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _registrarStorageV9220.blockHash = blockHash;
+                param = await _registrarStorageV9220.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _registrarStorageV9230.blockHash = blockHash;
+                param = await _registrarStorageV9230.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _registrarStorageV9250.blockHash = blockHash;
+                param = await _registrarStorageV9250.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _registrarStorageV9260.blockHash = blockHash;
+                param = await _registrarStorageV9260.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _registrarStorageV9270.blockHash = blockHash;
+                param = await _registrarStorageV9270.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _registrarStorageV9280.blockHash = blockHash;
+                param = await _registrarStorageV9280.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _registrarStorageV9281.blockHash = blockHash;
+                param = await _registrarStorageV9281.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _registrarStorageV9291.blockHash = blockHash;
+                param = await _registrarStorageV9291.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _registrarStorageV9300.blockHash = blockHash;
+                param = await _registrarStorageV9300.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _registrarStorageV9340.blockHash = blockHash;
+                param = await _registrarStorageV9340.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _registrarStorageV9360.blockHash = blockHash;
+                param = await _registrarStorageV9360.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _registrarStorageV9370.blockHash = blockHash;
+                param = await _registrarStorageV9370.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _registrarStorageV9420.blockHash = blockHash;
+                param = await _registrarStorageV9420.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _registrarStorageV9430.blockHash = blockHash;
+                param = await _registrarStorageV9430.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextFreeParaIdParams
         ///  The next free `ParaId`.
         /// </summary>
-        public static string NextFreeParaIdParams()
+        public static string NextFreeParaIdParams(uint version)
         {
-            return RequestGenerator.GetStorage("Registrar", "NextFreeParaId", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage.NextFreeParaIdParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage.NextFreeParaIdParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextFreeParaIdDefault
         /// Default value as hex string
         /// </summary>
-        public static string NextFreeParaIdDefault()
+        public static string NextFreeParaIdDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage.NextFreeParaIdDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage.NextFreeParaIdDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> NextFreeParaId
         ///  The next free `ParaId`.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id> NextFreeParaId(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase> NextFreeParaIdAsync(CancellationToken token)
         {
-            string parameters = RegistrarStorage.NextFreeParaIdParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase param = null;
+            if (version == 9110U)
+            {
+                _registrarStorageV9110.blockHash = blockHash;
+                param = await _registrarStorageV9110.NextFreeParaId(token);
+            }
+
+            if (version == 9122U)
+            {
+                _registrarStorageV9122.blockHash = blockHash;
+                param = await _registrarStorageV9122.NextFreeParaId(token);
+            }
+
+            if (version == 9140U)
+            {
+                _registrarStorageV9140.blockHash = blockHash;
+                param = await _registrarStorageV9140.NextFreeParaId(token);
+            }
+
+            if (version == 9151U)
+            {
+                _registrarStorageV9151.blockHash = blockHash;
+                param = await _registrarStorageV9151.NextFreeParaId(token);
+            }
+
+            if (version == 9170U)
+            {
+                _registrarStorageV9170.blockHash = blockHash;
+                param = await _registrarStorageV9170.NextFreeParaId(token);
+            }
+
+            if (version == 9180U)
+            {
+                _registrarStorageV9180.blockHash = blockHash;
+                param = await _registrarStorageV9180.NextFreeParaId(token);
+            }
+
+            if (version == 9190U)
+            {
+                _registrarStorageV9190.blockHash = blockHash;
+                param = await _registrarStorageV9190.NextFreeParaId(token);
+            }
+
+            if (version == 9200U)
+            {
+                _registrarStorageV9200.blockHash = blockHash;
+                param = await _registrarStorageV9200.NextFreeParaId(token);
+            }
+
+            if (version == 9220U)
+            {
+                _registrarStorageV9220.blockHash = blockHash;
+                param = await _registrarStorageV9220.NextFreeParaId(token);
+            }
+
+            if (version == 9230U)
+            {
+                _registrarStorageV9230.blockHash = blockHash;
+                param = await _registrarStorageV9230.NextFreeParaId(token);
+            }
+
+            if (version == 9250U)
+            {
+                _registrarStorageV9250.blockHash = blockHash;
+                param = await _registrarStorageV9250.NextFreeParaId(token);
+            }
+
+            if (version == 9260U)
+            {
+                _registrarStorageV9260.blockHash = blockHash;
+                param = await _registrarStorageV9260.NextFreeParaId(token);
+            }
+
+            if (version == 9270U)
+            {
+                _registrarStorageV9270.blockHash = blockHash;
+                param = await _registrarStorageV9270.NextFreeParaId(token);
+            }
+
+            if (version == 9280U)
+            {
+                _registrarStorageV9280.blockHash = blockHash;
+                param = await _registrarStorageV9280.NextFreeParaId(token);
+            }
+
+            if (version == 9281U)
+            {
+                _registrarStorageV9281.blockHash = blockHash;
+                param = await _registrarStorageV9281.NextFreeParaId(token);
+            }
+
+            if (version == 9291U)
+            {
+                _registrarStorageV9291.blockHash = blockHash;
+                param = await _registrarStorageV9291.NextFreeParaId(token);
+            }
+
+            if (version == 9300U)
+            {
+                _registrarStorageV9300.blockHash = blockHash;
+                param = await _registrarStorageV9300.NextFreeParaId(token);
+            }
+
+            if (version == 9340U)
+            {
+                _registrarStorageV9340.blockHash = blockHash;
+                param = await _registrarStorageV9340.NextFreeParaId(token);
+            }
+
+            if (version == 9360U)
+            {
+                _registrarStorageV9360.blockHash = blockHash;
+                param = await _registrarStorageV9360.NextFreeParaId(token);
+            }
+
+            if (version == 9370U)
+            {
+                _registrarStorageV9370.blockHash = blockHash;
+                param = await _registrarStorageV9370.NextFreeParaId(token);
+            }
+
+            if (version == 9420U)
+            {
+                _registrarStorageV9420.blockHash = blockHash;
+                param = await _registrarStorageV9420.NextFreeParaId(token);
+            }
+
+            if (version == 9430U)
+            {
+                _registrarStorageV9430.blockHash = blockHash;
+                param = await _registrarStorageV9430.NextFreeParaId(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public RegistrarStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _registrarStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarStorage(_client);
+            _registrarStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarStorage(_client);
+            _registrarStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarStorage(_client);
+            _registrarStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarStorage(_client);
+            _registrarStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarStorage(_client);
+            _registrarStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarStorage(_client);
+            _registrarStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarStorage(_client);
+            _registrarStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarStorage(_client);
+            _registrarStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarStorage(_client);
+            _registrarStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarStorage(_client);
+            _registrarStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarStorage(_client);
+            _registrarStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarStorage(_client);
+            _registrarStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarStorage(_client);
+            _registrarStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarStorage(_client);
+            _registrarStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarStorage(_client);
+            _registrarStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarStorage(_client);
+            _registrarStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarStorage(_client);
+            _registrarStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarStorage(_client);
+            _registrarStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarStorage(_client);
+            _registrarStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarStorage(_client);
+            _registrarStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarStorage(_client);
+            _registrarStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarStorage(_client);
         }
     }
-    
-    public sealed class RegistrarCalls
-    {
-        
-        /// <summary>
-        /// >> register
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Register(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(id.Encode());
-            byteArray.AddRange(genesis_head.Encode());
-            byteArray.AddRange(validation_code.Encode());
-            return new Method(70, "Registrar", 0, "register", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> force_register
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ForceRegister(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 who, Substrate.NetApi.Model.Types.Primitive.U128 deposit, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData genesis_head, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode validation_code)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(who.Encode());
-            byteArray.AddRange(deposit.Encode());
-            byteArray.AddRange(id.Encode());
-            byteArray.AddRange(genesis_head.Encode());
-            byteArray.AddRange(validation_code.Encode());
-            return new Method(70, "Registrar", 1, "force_register", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> deregister
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Deregister(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(id.Encode());
-            return new Method(70, "Registrar", 2, "deregister", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> swap
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Swap(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id other)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(id.Encode());
-            byteArray.AddRange(other.Encode());
-            return new Method(70, "Registrar", 3, "swap", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> remove_lock
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RemoveLock(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(para.Encode());
-            return new Method(70, "Registrar", 4, "remove_lock", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> reserve
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Reserve()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(70, "Registrar", 5, "reserve", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> add_lock
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method AddLock(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(para.Encode());
-            return new Method(70, "Registrar", 6, "add_lock", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> schedule_code_upgrade
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ScheduleCodeUpgrade(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.ValidationCode new_code)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(para.Encode());
-            byteArray.AddRange(new_code.Encode());
-            return new Method(70, "Registrar", 7, "schedule_code_upgrade", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_current_head
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetCurrentHead(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id para, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.HeadData new_head)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(para.Encode());
-            byteArray.AddRange(new_head.Encode());
-            return new Method(70, "Registrar", 8, "set_current_head", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class RegistrarConstants
     {
-        
         /// <summary>
         /// >> ParaDeposit
         ///  The deposit to be paid to run a parathread.
         ///  This should include the cost for storing the genesis head and validation code.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 ParaDeposit()
+        public Substrate.NetApi.Model.Types.Primitive.U128 ParaDeposit(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x0010A5D4E80000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarConstants().ParaDeposit();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarConstants().ParaDeposit();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarConstants().ParaDeposit();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarConstants().ParaDeposit();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarConstants().ParaDeposit();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarConstants().ParaDeposit();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarConstants().ParaDeposit();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarConstants().ParaDeposit();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarConstants().ParaDeposit();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarConstants().ParaDeposit();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarConstants().ParaDeposit();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarConstants().ParaDeposit();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarConstants().ParaDeposit();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarConstants().ParaDeposit();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarConstants().ParaDeposit();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarConstants().ParaDeposit();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarConstants().ParaDeposit();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarConstants().ParaDeposit();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarConstants().ParaDeposit();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarConstants().ParaDeposit();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarConstants().ParaDeposit();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarConstants().ParaDeposit();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> DataDepositPerByte
         ///  The deposit to be paid per byte stored on chain.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 DataDepositPerByte()
+        public Substrate.NetApi.Model.Types.Primitive.U128 DataDepositPerByte(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x80969800000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.RegistrarConstants().DataDepositPerByte();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.RegistrarConstants().DataDepositPerByte();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.RegistrarConstants().DataDepositPerByte();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.RegistrarConstants().DataDepositPerByte();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.RegistrarConstants().DataDepositPerByte();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.RegistrarConstants().DataDepositPerByte();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.RegistrarConstants().DataDepositPerByte();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.RegistrarConstants().DataDepositPerByte();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.RegistrarConstants().DataDepositPerByte();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.RegistrarConstants().DataDepositPerByte();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.RegistrarConstants().DataDepositPerByte();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.RegistrarConstants().DataDepositPerByte();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.RegistrarConstants().DataDepositPerByte();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.RegistrarConstants().DataDepositPerByte();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.RegistrarConstants().DataDepositPerByte();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.RegistrarConstants().DataDepositPerByte();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.RegistrarConstants().DataDepositPerByte();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.RegistrarConstants().DataDepositPerByte();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.RegistrarConstants().DataDepositPerByte();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.RegistrarConstants().DataDepositPerByte();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.RegistrarConstants().DataDepositPerByte();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.RegistrarConstants().DataDepositPerByte();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum RegistrarErrors
     {
-        
         /// <summary>
         /// >> NotRegistered
         /// The ID is not registered.
         /// </summary>
         NotRegistered,
-        
         /// <summary>
         /// >> AlreadyRegistered
         /// The ID is already registered.
         /// </summary>
         AlreadyRegistered,
-        
         /// <summary>
         /// >> NotOwner
         /// The caller is not the owner of this Id.
         /// </summary>
         NotOwner,
-        
         /// <summary>
         /// >> CodeTooLarge
         /// Invalid para code size.
         /// </summary>
         CodeTooLarge,
-        
         /// <summary>
         /// >> HeadDataTooLarge
         /// Invalid para head data size.
         /// </summary>
         HeadDataTooLarge,
-        
         /// <summary>
         /// >> NotParachain
         /// Para is not a Parachain.
         /// </summary>
         NotParachain,
-        
         /// <summary>
         /// >> NotParathread
         /// Para is not a Parathread.
         /// </summary>
         NotParathread,
-        
         /// <summary>
         /// >> CannotDeregister
         /// Cannot deregister para
         /// </summary>
         CannotDeregister,
-        
         /// <summary>
         /// >> CannotDowngrade
         /// Cannot schedule downgrade of parachain to parathread
         /// </summary>
         CannotDowngrade,
-        
         /// <summary>
         /// >> CannotUpgrade
         /// Cannot schedule upgrade of parathread to parachain
         /// </summary>
         CannotUpgrade,
-        
         /// <summary>
         /// >> ParaLocked
         /// Para is locked from manipulation by the manager. Must use parachain or relay chain governance.
         /// </summary>
         ParaLocked,
-        
         /// <summary>
         /// >> NotReserved
         /// The ID given for registration has not been reserved.
         /// </summary>
         NotReserved,
-        
         /// <summary>
         /// >> EmptyCode
         /// Registering parachain with empty code is not allowed.
         /// </summary>
         EmptyCode,
-        
         /// <summary>
         /// >> CannotSwap
         /// Cannot perform a parachain slot / lifecycle swap. Check that the state of both paras are
         /// correct for the swap to work.
         /// </summary>
-        CannotSwap,
+        CannotSwap
     }
 }

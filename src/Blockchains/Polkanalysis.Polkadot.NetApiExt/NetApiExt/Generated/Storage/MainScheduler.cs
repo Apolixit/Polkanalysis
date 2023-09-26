@@ -6,275 +6,970 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class SchedulerStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public SchedulerStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Scheduler", "IncompleteSince"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Scheduler", "Agenda"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Primitive.U32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Scheduler", "Lookup"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
         /// <summary>
-        /// >> IncompleteSinceParams
+        /// Storage for SpecVersion 9110
         /// </summary>
-        public static string IncompleteSinceParams()
-        {
-            return RequestGenerator.GetStorage("Scheduler", "IncompleteSince", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
-        }
-        
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage _schedulerStorageV9110;
         /// <summary>
-        /// >> IncompleteSinceDefault
-        /// Default value as hex string
+        /// Storage for SpecVersion 9122
         /// </summary>
-        public static string IncompleteSinceDefault()
-        {
-            return "0x00";
-        }
-        
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage _schedulerStorageV9122;
         /// <summary>
-        /// >> IncompleteSince
+        /// Storage for SpecVersion 9140
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> IncompleteSince(CancellationToken token)
-        {
-            string parameters = SchedulerStorage.IncompleteSinceParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
-        }
-        
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage _schedulerStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage _schedulerStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerStorage _schedulerStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerStorage _schedulerStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerStorage _schedulerStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerStorage _schedulerStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerStorage _schedulerStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerStorage _schedulerStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerStorage _schedulerStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerStorage _schedulerStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerStorage _schedulerStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerStorage _schedulerStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerStorage _schedulerStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerStorage _schedulerStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerStorage _schedulerStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage _schedulerStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage _schedulerStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage _schedulerStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage _schedulerStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage _schedulerStorageV9430;
         /// <summary>
         /// >> AgendaParams
         ///  Items to be executed, indexed by the block number that they should be executed on.
         /// </summary>
-        public static string AgendaParams(Substrate.NetApi.Model.Types.Primitive.U32 key)
+        public static string AgendaParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
         {
-            return RequestGenerator.GetStorage("Scheduler", "Agenda", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage.AgendaParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AgendaDefault
         /// Default value as hex string
         /// </summary>
-        public static string AgendaDefault()
+        public static string AgendaDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage.AgendaDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage.AgendaDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage.AgendaDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage.AgendaDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerStorage.AgendaDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerStorage.AgendaDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerStorage.AgendaDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerStorage.AgendaDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerStorage.AgendaDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerStorage.AgendaDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerStorage.AgendaDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerStorage.AgendaDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerStorage.AgendaDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerStorage.AgendaDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerStorage.AgendaDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerStorage.AgendaDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerStorage.AgendaDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage.AgendaDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage.AgendaDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage.AgendaDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage.AgendaDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage.AgendaDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Agenda
         ///  Items to be executed, indexed by the block number that they should be executed on.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1> Agenda(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> AgendaAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
         {
-            string parameters = SchedulerStorage.AgendaParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT1>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _schedulerStorageV9110.blockHash = blockHash;
+                param = await _schedulerStorageV9110.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _schedulerStorageV9122.blockHash = blockHash;
+                param = await _schedulerStorageV9122.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _schedulerStorageV9140.blockHash = blockHash;
+                param = await _schedulerStorageV9140.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _schedulerStorageV9151.blockHash = blockHash;
+                param = await _schedulerStorageV9151.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _schedulerStorageV9170.blockHash = blockHash;
+                param = await _schedulerStorageV9170.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _schedulerStorageV9180.blockHash = blockHash;
+                param = await _schedulerStorageV9180.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _schedulerStorageV9190.blockHash = blockHash;
+                param = await _schedulerStorageV9190.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _schedulerStorageV9200.blockHash = blockHash;
+                param = await _schedulerStorageV9200.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _schedulerStorageV9220.blockHash = blockHash;
+                param = await _schedulerStorageV9220.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _schedulerStorageV9230.blockHash = blockHash;
+                param = await _schedulerStorageV9230.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _schedulerStorageV9250.blockHash = blockHash;
+                param = await _schedulerStorageV9250.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _schedulerStorageV9260.blockHash = blockHash;
+                param = await _schedulerStorageV9260.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _schedulerStorageV9270.blockHash = blockHash;
+                param = await _schedulerStorageV9270.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _schedulerStorageV9280.blockHash = blockHash;
+                param = await _schedulerStorageV9280.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _schedulerStorageV9281.blockHash = blockHash;
+                param = await _schedulerStorageV9281.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _schedulerStorageV9291.blockHash = blockHash;
+                param = await _schedulerStorageV9291.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _schedulerStorageV9300.blockHash = blockHash;
+                param = await _schedulerStorageV9300.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _schedulerStorageV9340.blockHash = blockHash;
+                param = await _schedulerStorageV9340.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _schedulerStorageV9360.blockHash = blockHash;
+                param = await _schedulerStorageV9360.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _schedulerStorageV9370.blockHash = blockHash;
+                param = await _schedulerStorageV9370.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _schedulerStorageV9420.blockHash = blockHash;
+                param = await _schedulerStorageV9420.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _schedulerStorageV9430.blockHash = blockHash;
+                param = await _schedulerStorageV9430.Agenda((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LookupParams
-        ///  Lookup from a name to the block number and index of the task.
-        /// 
-        ///  For v3 -> v4 the previously unbounded identities are Blake2-256 hashed to form the v4
-        ///  identities.
+        ///  Lookup from identity to the block number and index of the task.
         /// </summary>
-        public static string LookupParams(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 key)
+        public static string LookupParams(IType key, uint version)
         {
-            return RequestGenerator.GetStorage("Scheduler", "Lookup", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerStorage.LookupParams((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage.LookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage.LookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage.LookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage.LookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage.LookupParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> LookupDefault
         /// Default value as hex string
         /// </summary>
-        public static string LookupDefault()
+        public static string LookupDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage.LookupDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage.LookupDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage.LookupDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage.LookupDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerStorage.LookupDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerStorage.LookupDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerStorage.LookupDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerStorage.LookupDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerStorage.LookupDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerStorage.LookupDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerStorage.LookupDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerStorage.LookupDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerStorage.LookupDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerStorage.LookupDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerStorage.LookupDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerStorage.LookupDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerStorage.LookupDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage.LookupDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage.LookupDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage.LookupDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage.LookupDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage.LookupDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Lookup
-        ///  Lookup from a name to the block number and index of the task.
+        ///  Lookup from identity to the block number and index of the task.
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> LookupAsync(IType key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _schedulerStorageV9110.blockHash = blockHash;
+                param = await _schedulerStorageV9110.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _schedulerStorageV9122.blockHash = blockHash;
+                param = await _schedulerStorageV9122.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _schedulerStorageV9140.blockHash = blockHash;
+                param = await _schedulerStorageV9140.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _schedulerStorageV9151.blockHash = blockHash;
+                param = await _schedulerStorageV9151.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _schedulerStorageV9170.blockHash = blockHash;
+                param = await _schedulerStorageV9170.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _schedulerStorageV9180.blockHash = blockHash;
+                param = await _schedulerStorageV9180.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _schedulerStorageV9190.blockHash = blockHash;
+                param = await _schedulerStorageV9190.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _schedulerStorageV9200.blockHash = blockHash;
+                param = await _schedulerStorageV9200.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _schedulerStorageV9220.blockHash = blockHash;
+                param = await _schedulerStorageV9220.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _schedulerStorageV9230.blockHash = blockHash;
+                param = await _schedulerStorageV9230.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _schedulerStorageV9250.blockHash = blockHash;
+                param = await _schedulerStorageV9250.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _schedulerStorageV9260.blockHash = blockHash;
+                param = await _schedulerStorageV9260.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _schedulerStorageV9270.blockHash = blockHash;
+                param = await _schedulerStorageV9270.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _schedulerStorageV9280.blockHash = blockHash;
+                param = await _schedulerStorageV9280.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _schedulerStorageV9281.blockHash = blockHash;
+                param = await _schedulerStorageV9281.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _schedulerStorageV9291.blockHash = blockHash;
+                param = await _schedulerStorageV9291.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _schedulerStorageV9300.blockHash = blockHash;
+                param = await _schedulerStorageV9300.Lookup((Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _schedulerStorageV9340.blockHash = blockHash;
+                param = await _schedulerStorageV9340.Lookup((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _schedulerStorageV9360.blockHash = blockHash;
+                param = await _schedulerStorageV9360.Lookup((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _schedulerStorageV9370.blockHash = blockHash;
+                param = await _schedulerStorageV9370.Lookup((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _schedulerStorageV9420.blockHash = blockHash;
+                param = await _schedulerStorageV9420.Lookup((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _schedulerStorageV9430.blockHash = blockHash;
+                param = await _schedulerStorageV9430.Lookup((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> StorageVersionParams
+        ///  Storage version of the pallet.
         /// 
-        ///  For v3 -> v4 the previously unbounded identities are Blake2-256 hashed to form the v4
-        ///  identities.
+        ///  New networks start with last version.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> Lookup(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 key, CancellationToken token)
+        public static string StorageVersionParams(uint version)
         {
-            string parameters = SchedulerStorage.LookupParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
-            return result;
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage.StorageVersionParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage.StorageVersionParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage.StorageVersionParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage.StorageVersionParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> StorageVersionDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string StorageVersionDefault(uint version)
+        {
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage.StorageVersionDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage.StorageVersionDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage.StorageVersionDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage.StorageVersionDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> StorageVersion
+        ///  Storage version of the pallet.
+        /// 
+        ///  New networks start with last version.
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum> StorageVersionAsync(CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum param = null;
+            if (version == 9110U)
+            {
+                _schedulerStorageV9110.blockHash = blockHash;
+                param = await _schedulerStorageV9110.StorageVersion(token);
+            }
+
+            if (version == 9122U)
+            {
+                _schedulerStorageV9122.blockHash = blockHash;
+                param = await _schedulerStorageV9122.StorageVersion(token);
+            }
+
+            if (version == 9140U)
+            {
+                _schedulerStorageV9140.blockHash = blockHash;
+                param = await _schedulerStorageV9140.StorageVersion(token);
+            }
+
+            if (version == 9151U)
+            {
+                _schedulerStorageV9151.blockHash = blockHash;
+                param = await _schedulerStorageV9151.StorageVersion(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> IncompleteSinceParams
+        /// </summary>
+        public static string IncompleteSinceParams(uint version)
+        {
+            string param = null;
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage.IncompleteSinceParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage.IncompleteSinceParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage.IncompleteSinceParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage.IncompleteSinceParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage.IncompleteSinceParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> IncompleteSinceDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string IncompleteSinceDefault(uint version)
+        {
+            string param = null;
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage.IncompleteSinceDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage.IncompleteSinceDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage.IncompleteSinceDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage.IncompleteSinceDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage.IncompleteSinceDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> IncompleteSince
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> IncompleteSinceAsync(CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9340U)
+            {
+                _schedulerStorageV9340.blockHash = blockHash;
+                param = await _schedulerStorageV9340.IncompleteSince(token);
+            }
+
+            if (version == 9360U)
+            {
+                _schedulerStorageV9360.blockHash = blockHash;
+                param = await _schedulerStorageV9360.IncompleteSince(token);
+            }
+
+            if (version == 9370U)
+            {
+                _schedulerStorageV9370.blockHash = blockHash;
+                param = await _schedulerStorageV9370.IncompleteSince(token);
+            }
+
+            if (version == 9420U)
+            {
+                _schedulerStorageV9420.blockHash = blockHash;
+                param = await _schedulerStorageV9420.IncompleteSince(token);
+            }
+
+            if (version == 9430U)
+            {
+                _schedulerStorageV9430.blockHash = blockHash;
+                param = await _schedulerStorageV9430.IncompleteSince(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public SchedulerStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _schedulerStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerStorage(_client);
+            _schedulerStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerStorage(_client);
+            _schedulerStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerStorage(_client);
+            _schedulerStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerStorage(_client);
+            _schedulerStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerStorage(_client);
+            _schedulerStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerStorage(_client);
+            _schedulerStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerStorage(_client);
+            _schedulerStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerStorage(_client);
+            _schedulerStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerStorage(_client);
+            _schedulerStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerStorage(_client);
+            _schedulerStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerStorage(_client);
+            _schedulerStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerStorage(_client);
+            _schedulerStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerStorage(_client);
+            _schedulerStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerStorage(_client);
+            _schedulerStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerStorage(_client);
+            _schedulerStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerStorage(_client);
+            _schedulerStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerStorage(_client);
+            _schedulerStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerStorage(_client);
+            _schedulerStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerStorage(_client);
+            _schedulerStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerStorage(_client);
+            _schedulerStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerStorage(_client);
+            _schedulerStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerStorage(_client);
         }
     }
-    
-    public sealed class SchedulerCalls
-    {
-        
-        /// <summary>
-        /// >> schedule
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Schedule(Substrate.NetApi.Model.Types.Primitive.U32 when, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Substrate.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(when.Encode());
-            byteArray.AddRange(maybe_periodic.Encode());
-            byteArray.AddRange(priority.Encode());
-            byteArray.AddRange(call.Encode());
-            return new Method(1, "Scheduler", 0, "schedule", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> cancel
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Cancel(Substrate.NetApi.Model.Types.Primitive.U32 when, Substrate.NetApi.Model.Types.Primitive.U32 index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(when.Encode());
-            byteArray.AddRange(index.Encode());
-            return new Method(1, "Scheduler", 1, "cancel", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> schedule_named
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ScheduleNamed(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 id, Substrate.NetApi.Model.Types.Primitive.U32 when, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Substrate.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(id.Encode());
-            byteArray.AddRange(when.Encode());
-            byteArray.AddRange(maybe_periodic.Encode());
-            byteArray.AddRange(priority.Encode());
-            byteArray.AddRange(call.Encode());
-            return new Method(1, "Scheduler", 2, "schedule_named", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> cancel_named
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CancelNamed(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 id)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(id.Encode());
-            return new Method(1, "Scheduler", 3, "cancel_named", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> schedule_after
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ScheduleAfter(Substrate.NetApi.Model.Types.Primitive.U32 after, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Substrate.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(after.Encode());
-            byteArray.AddRange(maybe_periodic.Encode());
-            byteArray.AddRange(priority.Encode());
-            byteArray.AddRange(call.Encode());
-            return new Method(1, "Scheduler", 4, "schedule_after", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> schedule_named_after
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ScheduleNamedAfter(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 id, Substrate.NetApi.Model.Types.Primitive.U32 after, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>> maybe_periodic, Substrate.NetApi.Model.Types.Primitive.U8 priority, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(id.Encode());
-            byteArray.AddRange(after.Encode());
-            byteArray.AddRange(maybe_periodic.Encode());
-            byteArray.AddRange(priority.Encode());
-            byteArray.AddRange(call.Encode());
-            return new Method(1, "Scheduler", 5, "schedule_named_after", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class SchedulerConstants
     {
-        
         /// <summary>
         /// >> MaximumWeight
-        ///  The maximum weight that may be scheduled per block for any dispatchables.
+        ///  The maximum weight that may be scheduled per block for any dispatchables of less
+        ///  priority than `schedule::HARD_DEADLINE`.
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight MaximumWeight()
+        public IType MaximumWeight(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight();
-            result.Create("0x0B00806E87740113CCCCCCCCCCCCCCCC");
+            IType result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerConstants().MaximumWeight();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerConstants().MaximumWeight();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerConstants().MaximumWeight();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerConstants().MaximumWeight();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerConstants().MaximumWeight();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerConstants().MaximumWeight();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerConstants().MaximumWeight();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerConstants().MaximumWeight();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerConstants().MaximumWeight();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerConstants().MaximumWeight();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerConstants().MaximumWeight();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerConstants().MaximumWeight();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerConstants().MaximumWeight();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerConstants().MaximumWeight();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerConstants().MaximumWeight();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerConstants().MaximumWeight();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerConstants().MaximumWeight();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerConstants().MaximumWeight();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerConstants().MaximumWeight();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerConstants().MaximumWeight();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerConstants().MaximumWeight();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerConstants().MaximumWeight();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxScheduledPerBlock
         ///  The maximum number of scheduled calls in the queue for a single block.
+        ///  Not strictly enforced, but used for weight estimation.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxScheduledPerBlock()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxScheduledPerBlock(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x32000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.SchedulerConstants().MaxScheduledPerBlock();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.SchedulerConstants().MaxScheduledPerBlock();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum SchedulerErrors
     {
-        
         /// <summary>
         /// >> FailedToSchedule
         /// Failed to schedule a call
         /// </summary>
         FailedToSchedule,
-        
         /// <summary>
         /// >> NotFound
         /// Cannot find the scheduled call.
         /// </summary>
         NotFound,
-        
         /// <summary>
         /// >> TargetBlockNumberInPast
         /// Given target block number is in the past.
         /// </summary>
         TargetBlockNumberInPast,
-        
         /// <summary>
         /// >> RescheduleNoChange
         /// Reschedule failed because it does not change scheduled time.
         /// </summary>
         RescheduleNoChange,
-        
         /// <summary>
         /// >> Named
         /// Attempt to use a non-named function on a named task.
         /// </summary>
-        Named,
+        Named
     }
 }

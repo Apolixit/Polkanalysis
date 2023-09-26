@@ -6,34 +6,119 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class InitializerStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public InitializerStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Initializer", "HasInitialized"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Initializer", "BufferedSessionChanges"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.InitializerStorage _initializerStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.InitializerStorage _initializerStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.InitializerStorage _initializerStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.InitializerStorage _initializerStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.InitializerStorage _initializerStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.InitializerStorage _initializerStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.InitializerStorage _initializerStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.InitializerStorage _initializerStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.InitializerStorage _initializerStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.InitializerStorage _initializerStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.InitializerStorage _initializerStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.InitializerStorage _initializerStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.InitializerStorage _initializerStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.InitializerStorage _initializerStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.InitializerStorage _initializerStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.InitializerStorage _initializerStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.InitializerStorage _initializerStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.InitializerStorage _initializerStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.InitializerStorage _initializerStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.InitializerStorage _initializerStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.InitializerStorage _initializerStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.InitializerStorage _initializerStorageV9430;
         /// <summary>
         /// >> HasInitializedParams
         ///  Whether the parachains modules have been initialized within this block.
@@ -45,20 +130,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  them writes to the trie and one does not. This confusion makes `Option<()>` more suitable for
         ///  the semantics of this variable.
         /// </summary>
-        public static string HasInitializedParams()
+        public static string HasInitializedParams(uint version)
         {
-            return RequestGenerator.GetStorage("Initializer", "HasInitialized", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.InitializerStorage.HasInitializedParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.InitializerStorage.HasInitializedParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.InitializerStorage.HasInitializedParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.InitializerStorage.HasInitializedParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.InitializerStorage.HasInitializedParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.InitializerStorage.HasInitializedParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.InitializerStorage.HasInitializedParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.InitializerStorage.HasInitializedParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.InitializerStorage.HasInitializedParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.InitializerStorage.HasInitializedParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.InitializerStorage.HasInitializedParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.InitializerStorage.HasInitializedParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.InitializerStorage.HasInitializedParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.InitializerStorage.HasInitializedParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.InitializerStorage.HasInitializedParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.InitializerStorage.HasInitializedParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.InitializerStorage.HasInitializedParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.InitializerStorage.HasInitializedParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.InitializerStorage.HasInitializedParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.InitializerStorage.HasInitializedParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.InitializerStorage.HasInitializedParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.InitializerStorage.HasInitializedParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> HasInitializedDefault
         /// Default value as hex string
         /// </summary>
-        public static string HasInitializedDefault()
+        public static string HasInitializedDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.InitializerStorage.HasInitializedDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.InitializerStorage.HasInitializedDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.InitializerStorage.HasInitializedDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.InitializerStorage.HasInitializedDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.InitializerStorage.HasInitializedDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.InitializerStorage.HasInitializedDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.InitializerStorage.HasInitializedDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.InitializerStorage.HasInitializedDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.InitializerStorage.HasInitializedDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.InitializerStorage.HasInitializedDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.InitializerStorage.HasInitializedDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.InitializerStorage.HasInitializedDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.InitializerStorage.HasInitializedDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.InitializerStorage.HasInitializedDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.InitializerStorage.HasInitializedDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.InitializerStorage.HasInitializedDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.InitializerStorage.HasInitializedDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.InitializerStorage.HasInitializedDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.InitializerStorage.HasInitializedDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.InitializerStorage.HasInitializedDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.InitializerStorage.HasInitializedDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.InitializerStorage.HasInitializedDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> HasInitialized
         ///  Whether the parachains modules have been initialized within this block.
@@ -70,13 +249,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  them writes to the trie and one does not. This confusion makes `Option<()>` more suitable for
         ///  the semantics of this variable.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple> HasInitialized(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> HasInitializedAsync(CancellationToken token)
         {
-            string parameters = InitializerStorage.HasInitializedParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _initializerStorageV9110.blockHash = blockHash;
+                param = await _initializerStorageV9110.HasInitialized(token);
+            }
+
+            if (version == 9122U)
+            {
+                _initializerStorageV9122.blockHash = blockHash;
+                param = await _initializerStorageV9122.HasInitialized(token);
+            }
+
+            if (version == 9140U)
+            {
+                _initializerStorageV9140.blockHash = blockHash;
+                param = await _initializerStorageV9140.HasInitialized(token);
+            }
+
+            if (version == 9151U)
+            {
+                _initializerStorageV9151.blockHash = blockHash;
+                param = await _initializerStorageV9151.HasInitialized(token);
+            }
+
+            if (version == 9170U)
+            {
+                _initializerStorageV9170.blockHash = blockHash;
+                param = await _initializerStorageV9170.HasInitialized(token);
+            }
+
+            if (version == 9180U)
+            {
+                _initializerStorageV9180.blockHash = blockHash;
+                param = await _initializerStorageV9180.HasInitialized(token);
+            }
+
+            if (version == 9190U)
+            {
+                _initializerStorageV9190.blockHash = blockHash;
+                param = await _initializerStorageV9190.HasInitialized(token);
+            }
+
+            if (version == 9200U)
+            {
+                _initializerStorageV9200.blockHash = blockHash;
+                param = await _initializerStorageV9200.HasInitialized(token);
+            }
+
+            if (version == 9220U)
+            {
+                _initializerStorageV9220.blockHash = blockHash;
+                param = await _initializerStorageV9220.HasInitialized(token);
+            }
+
+            if (version == 9230U)
+            {
+                _initializerStorageV9230.blockHash = blockHash;
+                param = await _initializerStorageV9230.HasInitialized(token);
+            }
+
+            if (version == 9250U)
+            {
+                _initializerStorageV9250.blockHash = blockHash;
+                param = await _initializerStorageV9250.HasInitialized(token);
+            }
+
+            if (version == 9260U)
+            {
+                _initializerStorageV9260.blockHash = blockHash;
+                param = await _initializerStorageV9260.HasInitialized(token);
+            }
+
+            if (version == 9270U)
+            {
+                _initializerStorageV9270.blockHash = blockHash;
+                param = await _initializerStorageV9270.HasInitialized(token);
+            }
+
+            if (version == 9280U)
+            {
+                _initializerStorageV9280.blockHash = blockHash;
+                param = await _initializerStorageV9280.HasInitialized(token);
+            }
+
+            if (version == 9281U)
+            {
+                _initializerStorageV9281.blockHash = blockHash;
+                param = await _initializerStorageV9281.HasInitialized(token);
+            }
+
+            if (version == 9291U)
+            {
+                _initializerStorageV9291.blockHash = blockHash;
+                param = await _initializerStorageV9291.HasInitialized(token);
+            }
+
+            if (version == 9300U)
+            {
+                _initializerStorageV9300.blockHash = blockHash;
+                param = await _initializerStorageV9300.HasInitialized(token);
+            }
+
+            if (version == 9340U)
+            {
+                _initializerStorageV9340.blockHash = blockHash;
+                param = await _initializerStorageV9340.HasInitialized(token);
+            }
+
+            if (version == 9360U)
+            {
+                _initializerStorageV9360.blockHash = blockHash;
+                param = await _initializerStorageV9360.HasInitialized(token);
+            }
+
+            if (version == 9370U)
+            {
+                _initializerStorageV9370.blockHash = blockHash;
+                param = await _initializerStorageV9370.HasInitialized(token);
+            }
+
+            if (version == 9420U)
+            {
+                _initializerStorageV9420.blockHash = blockHash;
+                param = await _initializerStorageV9420.HasInitialized(token);
+            }
+
+            if (version == 9430U)
+            {
+                _initializerStorageV9430.blockHash = blockHash;
+                param = await _initializerStorageV9430.HasInitialized(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BufferedSessionChangesParams
         ///  Buffered session changes along with the block number at which they should be applied.
@@ -87,20 +400,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  However this is a `Vec` regardless to handle various edge cases that may occur at runtime
         ///  upgrade boundaries or if governance intervenes.
         /// </summary>
-        public static string BufferedSessionChangesParams()
+        public static string BufferedSessionChangesParams(uint version)
         {
-            return RequestGenerator.GetStorage("Initializer", "BufferedSessionChanges", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.InitializerStorage.BufferedSessionChangesParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.InitializerStorage.BufferedSessionChangesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BufferedSessionChangesDefault
         /// Default value as hex string
         /// </summary>
-        public static string BufferedSessionChangesDefault()
+        public static string BufferedSessionChangesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.InitializerStorage.BufferedSessionChangesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.InitializerStorage.BufferedSessionChangesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BufferedSessionChanges
         ///  Buffered session changes along with the block number at which they should be applied.
@@ -111,29 +518,175 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  However this is a `Vec` regardless to handle various edge cases that may occur at runtime
         ///  upgrade boundaries or if governance intervenes.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>> BufferedSessionChanges(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> BufferedSessionChangesAsync(CancellationToken token)
         {
-            string parameters = InitializerStorage.BufferedSessionChangesParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.initializer.BufferedSessionChange>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _initializerStorageV9110.blockHash = blockHash;
+                param = await _initializerStorageV9110.BufferedSessionChanges(token);
+            }
+
+            if (version == 9122U)
+            {
+                _initializerStorageV9122.blockHash = blockHash;
+                param = await _initializerStorageV9122.BufferedSessionChanges(token);
+            }
+
+            if (version == 9140U)
+            {
+                _initializerStorageV9140.blockHash = blockHash;
+                param = await _initializerStorageV9140.BufferedSessionChanges(token);
+            }
+
+            if (version == 9151U)
+            {
+                _initializerStorageV9151.blockHash = blockHash;
+                param = await _initializerStorageV9151.BufferedSessionChanges(token);
+            }
+
+            if (version == 9170U)
+            {
+                _initializerStorageV9170.blockHash = blockHash;
+                param = await _initializerStorageV9170.BufferedSessionChanges(token);
+            }
+
+            if (version == 9180U)
+            {
+                _initializerStorageV9180.blockHash = blockHash;
+                param = await _initializerStorageV9180.BufferedSessionChanges(token);
+            }
+
+            if (version == 9190U)
+            {
+                _initializerStorageV9190.blockHash = blockHash;
+                param = await _initializerStorageV9190.BufferedSessionChanges(token);
+            }
+
+            if (version == 9200U)
+            {
+                _initializerStorageV9200.blockHash = blockHash;
+                param = await _initializerStorageV9200.BufferedSessionChanges(token);
+            }
+
+            if (version == 9220U)
+            {
+                _initializerStorageV9220.blockHash = blockHash;
+                param = await _initializerStorageV9220.BufferedSessionChanges(token);
+            }
+
+            if (version == 9230U)
+            {
+                _initializerStorageV9230.blockHash = blockHash;
+                param = await _initializerStorageV9230.BufferedSessionChanges(token);
+            }
+
+            if (version == 9250U)
+            {
+                _initializerStorageV9250.blockHash = blockHash;
+                param = await _initializerStorageV9250.BufferedSessionChanges(token);
+            }
+
+            if (version == 9260U)
+            {
+                _initializerStorageV9260.blockHash = blockHash;
+                param = await _initializerStorageV9260.BufferedSessionChanges(token);
+            }
+
+            if (version == 9270U)
+            {
+                _initializerStorageV9270.blockHash = blockHash;
+                param = await _initializerStorageV9270.BufferedSessionChanges(token);
+            }
+
+            if (version == 9280U)
+            {
+                _initializerStorageV9280.blockHash = blockHash;
+                param = await _initializerStorageV9280.BufferedSessionChanges(token);
+            }
+
+            if (version == 9281U)
+            {
+                _initializerStorageV9281.blockHash = blockHash;
+                param = await _initializerStorageV9281.BufferedSessionChanges(token);
+            }
+
+            if (version == 9291U)
+            {
+                _initializerStorageV9291.blockHash = blockHash;
+                param = await _initializerStorageV9291.BufferedSessionChanges(token);
+            }
+
+            if (version == 9300U)
+            {
+                _initializerStorageV9300.blockHash = blockHash;
+                param = await _initializerStorageV9300.BufferedSessionChanges(token);
+            }
+
+            if (version == 9340U)
+            {
+                _initializerStorageV9340.blockHash = blockHash;
+                param = await _initializerStorageV9340.BufferedSessionChanges(token);
+            }
+
+            if (version == 9360U)
+            {
+                _initializerStorageV9360.blockHash = blockHash;
+                param = await _initializerStorageV9360.BufferedSessionChanges(token);
+            }
+
+            if (version == 9370U)
+            {
+                _initializerStorageV9370.blockHash = blockHash;
+                param = await _initializerStorageV9370.BufferedSessionChanges(token);
+            }
+
+            if (version == 9420U)
+            {
+                _initializerStorageV9420.blockHash = blockHash;
+                param = await _initializerStorageV9420.BufferedSessionChanges(token);
+            }
+
+            if (version == 9430U)
+            {
+                _initializerStorageV9430.blockHash = blockHash;
+                param = await _initializerStorageV9430.BufferedSessionChanges(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public InitializerStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _initializerStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.InitializerStorage(_client);
+            _initializerStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.InitializerStorage(_client);
+            _initializerStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.InitializerStorage(_client);
+            _initializerStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.InitializerStorage(_client);
+            _initializerStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.InitializerStorage(_client);
+            _initializerStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.InitializerStorage(_client);
+            _initializerStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.InitializerStorage(_client);
+            _initializerStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.InitializerStorage(_client);
+            _initializerStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.InitializerStorage(_client);
+            _initializerStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.InitializerStorage(_client);
+            _initializerStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.InitializerStorage(_client);
+            _initializerStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.InitializerStorage(_client);
+            _initializerStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.InitializerStorage(_client);
+            _initializerStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.InitializerStorage(_client);
+            _initializerStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.InitializerStorage(_client);
+            _initializerStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.InitializerStorage(_client);
+            _initializerStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.InitializerStorage(_client);
+            _initializerStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.InitializerStorage(_client);
+            _initializerStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.InitializerStorage(_client);
+            _initializerStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.InitializerStorage(_client);
+            _initializerStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.InitializerStorage(_client);
+            _initializerStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.InitializerStorage(_client);
         }
     }
-    
-    public sealed class InitializerCalls
-    {
-        
-        /// <summary>
-        /// >> force_approve
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ForceApprove(Substrate.NetApi.Model.Types.Primitive.U32 up_to)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(up_to.Encode());
-            return new Method(57, "Initializer", 0, "force_approve", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class InitializerConstants
     {
     }

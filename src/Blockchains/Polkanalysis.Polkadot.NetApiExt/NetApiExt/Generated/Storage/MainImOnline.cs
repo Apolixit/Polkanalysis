@@ -6,40 +6,119 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ImOnlineStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ImOnlineStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "HeartbeatAfter"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "Keys"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "ReceivedHeartbeats"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("ImOnline", "AuthoredBlocks"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>), typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage _imOnlineStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage _imOnlineStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage _imOnlineStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage _imOnlineStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage _imOnlineStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage _imOnlineStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage _imOnlineStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage _imOnlineStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage _imOnlineStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage _imOnlineStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage _imOnlineStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage _imOnlineStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage _imOnlineStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage _imOnlineStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage _imOnlineStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage _imOnlineStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage _imOnlineStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage _imOnlineStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage _imOnlineStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage _imOnlineStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage _imOnlineStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage _imOnlineStorageV9430;
         /// <summary>
         /// >> HeartbeatAfterParams
         ///  The block number after which it's ok to send heartbeats in the current
@@ -54,20 +133,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  progress estimate from `NextSessionRotation`, as those estimates should be
         ///  more accurate then the value we calculate for `HeartbeatAfter`.
         /// </summary>
-        public static string HeartbeatAfterParams()
+        public static string HeartbeatAfterParams(uint version)
         {
-            return RequestGenerator.GetStorage("ImOnline", "HeartbeatAfter", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.HeartbeatAfterParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.HeartbeatAfterParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> HeartbeatAfterDefault
         /// Default value as hex string
         /// </summary>
-        public static string HeartbeatAfterDefault()
+        public static string HeartbeatAfterDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.HeartbeatAfterDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.HeartbeatAfterDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> HeartbeatAfter
         ///  The block number after which it's ok to send heartbeats in the current
@@ -82,128 +255,952 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  progress estimate from `NextSessionRotation`, as those estimates should be
         ///  more accurate then the value we calculate for `HeartbeatAfter`.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> HeartbeatAfter(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> HeartbeatAfterAsync(CancellationToken token)
         {
-            string parameters = ImOnlineStorage.HeartbeatAfterParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _imOnlineStorageV9110.blockHash = blockHash;
+                param = await _imOnlineStorageV9110.HeartbeatAfter(token);
+            }
+
+            if (version == 9122U)
+            {
+                _imOnlineStorageV9122.blockHash = blockHash;
+                param = await _imOnlineStorageV9122.HeartbeatAfter(token);
+            }
+
+            if (version == 9140U)
+            {
+                _imOnlineStorageV9140.blockHash = blockHash;
+                param = await _imOnlineStorageV9140.HeartbeatAfter(token);
+            }
+
+            if (version == 9151U)
+            {
+                _imOnlineStorageV9151.blockHash = blockHash;
+                param = await _imOnlineStorageV9151.HeartbeatAfter(token);
+            }
+
+            if (version == 9170U)
+            {
+                _imOnlineStorageV9170.blockHash = blockHash;
+                param = await _imOnlineStorageV9170.HeartbeatAfter(token);
+            }
+
+            if (version == 9180U)
+            {
+                _imOnlineStorageV9180.blockHash = blockHash;
+                param = await _imOnlineStorageV9180.HeartbeatAfter(token);
+            }
+
+            if (version == 9190U)
+            {
+                _imOnlineStorageV9190.blockHash = blockHash;
+                param = await _imOnlineStorageV9190.HeartbeatAfter(token);
+            }
+
+            if (version == 9200U)
+            {
+                _imOnlineStorageV9200.blockHash = blockHash;
+                param = await _imOnlineStorageV9200.HeartbeatAfter(token);
+            }
+
+            if (version == 9220U)
+            {
+                _imOnlineStorageV9220.blockHash = blockHash;
+                param = await _imOnlineStorageV9220.HeartbeatAfter(token);
+            }
+
+            if (version == 9230U)
+            {
+                _imOnlineStorageV9230.blockHash = blockHash;
+                param = await _imOnlineStorageV9230.HeartbeatAfter(token);
+            }
+
+            if (version == 9250U)
+            {
+                _imOnlineStorageV9250.blockHash = blockHash;
+                param = await _imOnlineStorageV9250.HeartbeatAfter(token);
+            }
+
+            if (version == 9260U)
+            {
+                _imOnlineStorageV9260.blockHash = blockHash;
+                param = await _imOnlineStorageV9260.HeartbeatAfter(token);
+            }
+
+            if (version == 9270U)
+            {
+                _imOnlineStorageV9270.blockHash = blockHash;
+                param = await _imOnlineStorageV9270.HeartbeatAfter(token);
+            }
+
+            if (version == 9280U)
+            {
+                _imOnlineStorageV9280.blockHash = blockHash;
+                param = await _imOnlineStorageV9280.HeartbeatAfter(token);
+            }
+
+            if (version == 9281U)
+            {
+                _imOnlineStorageV9281.blockHash = blockHash;
+                param = await _imOnlineStorageV9281.HeartbeatAfter(token);
+            }
+
+            if (version == 9291U)
+            {
+                _imOnlineStorageV9291.blockHash = blockHash;
+                param = await _imOnlineStorageV9291.HeartbeatAfter(token);
+            }
+
+            if (version == 9300U)
+            {
+                _imOnlineStorageV9300.blockHash = blockHash;
+                param = await _imOnlineStorageV9300.HeartbeatAfter(token);
+            }
+
+            if (version == 9340U)
+            {
+                _imOnlineStorageV9340.blockHash = blockHash;
+                param = await _imOnlineStorageV9340.HeartbeatAfter(token);
+            }
+
+            if (version == 9360U)
+            {
+                _imOnlineStorageV9360.blockHash = blockHash;
+                param = await _imOnlineStorageV9360.HeartbeatAfter(token);
+            }
+
+            if (version == 9370U)
+            {
+                _imOnlineStorageV9370.blockHash = blockHash;
+                param = await _imOnlineStorageV9370.HeartbeatAfter(token);
+            }
+
+            if (version == 9420U)
+            {
+                _imOnlineStorageV9420.blockHash = blockHash;
+                param = await _imOnlineStorageV9420.HeartbeatAfter(token);
+            }
+
+            if (version == 9430U)
+            {
+                _imOnlineStorageV9430.blockHash = blockHash;
+                param = await _imOnlineStorageV9430.HeartbeatAfter(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> KeysParams
         ///  The current set of keys that may issue a heartbeat.
         /// </summary>
-        public static string KeysParams()
+        public static string KeysParams(uint version)
         {
-            return RequestGenerator.GetStorage("ImOnline", "Keys", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.KeysParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.KeysParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.KeysParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.KeysParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.KeysParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.KeysParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.KeysParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.KeysParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.KeysParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.KeysParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.KeysParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.KeysParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.KeysParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.KeysParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.KeysParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.KeysParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.KeysParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.KeysParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.KeysParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.KeysParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.KeysParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.KeysParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> KeysDefault
         /// Default value as hex string
         /// </summary>
-        public static string KeysDefault()
+        public static string KeysDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.KeysDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.KeysDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.KeysDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.KeysDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.KeysDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.KeysDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.KeysDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.KeysDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.KeysDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.KeysDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.KeysDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.KeysDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.KeysDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.KeysDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.KeysDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.KeysDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.KeysDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.KeysDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.KeysDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.KeysDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.KeysDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.KeysDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Keys
         ///  The current set of keys that may issue a heartbeat.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5> Keys(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> KeysAsync(CancellationToken token)
         {
-            string parameters = ImOnlineStorage.KeysParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec.WeakBoundedVecT5>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _imOnlineStorageV9110.blockHash = blockHash;
+                param = await _imOnlineStorageV9110.Keys(token);
+            }
+
+            if (version == 9122U)
+            {
+                _imOnlineStorageV9122.blockHash = blockHash;
+                param = await _imOnlineStorageV9122.Keys(token);
+            }
+
+            if (version == 9140U)
+            {
+                _imOnlineStorageV9140.blockHash = blockHash;
+                param = await _imOnlineStorageV9140.Keys(token);
+            }
+
+            if (version == 9151U)
+            {
+                _imOnlineStorageV9151.blockHash = blockHash;
+                param = await _imOnlineStorageV9151.Keys(token);
+            }
+
+            if (version == 9170U)
+            {
+                _imOnlineStorageV9170.blockHash = blockHash;
+                param = await _imOnlineStorageV9170.Keys(token);
+            }
+
+            if (version == 9180U)
+            {
+                _imOnlineStorageV9180.blockHash = blockHash;
+                param = await _imOnlineStorageV9180.Keys(token);
+            }
+
+            if (version == 9190U)
+            {
+                _imOnlineStorageV9190.blockHash = blockHash;
+                param = await _imOnlineStorageV9190.Keys(token);
+            }
+
+            if (version == 9200U)
+            {
+                _imOnlineStorageV9200.blockHash = blockHash;
+                param = await _imOnlineStorageV9200.Keys(token);
+            }
+
+            if (version == 9220U)
+            {
+                _imOnlineStorageV9220.blockHash = blockHash;
+                param = await _imOnlineStorageV9220.Keys(token);
+            }
+
+            if (version == 9230U)
+            {
+                _imOnlineStorageV9230.blockHash = blockHash;
+                param = await _imOnlineStorageV9230.Keys(token);
+            }
+
+            if (version == 9250U)
+            {
+                _imOnlineStorageV9250.blockHash = blockHash;
+                param = await _imOnlineStorageV9250.Keys(token);
+            }
+
+            if (version == 9260U)
+            {
+                _imOnlineStorageV9260.blockHash = blockHash;
+                param = await _imOnlineStorageV9260.Keys(token);
+            }
+
+            if (version == 9270U)
+            {
+                _imOnlineStorageV9270.blockHash = blockHash;
+                param = await _imOnlineStorageV9270.Keys(token);
+            }
+
+            if (version == 9280U)
+            {
+                _imOnlineStorageV9280.blockHash = blockHash;
+                param = await _imOnlineStorageV9280.Keys(token);
+            }
+
+            if (version == 9281U)
+            {
+                _imOnlineStorageV9281.blockHash = blockHash;
+                param = await _imOnlineStorageV9281.Keys(token);
+            }
+
+            if (version == 9291U)
+            {
+                _imOnlineStorageV9291.blockHash = blockHash;
+                param = await _imOnlineStorageV9291.Keys(token);
+            }
+
+            if (version == 9300U)
+            {
+                _imOnlineStorageV9300.blockHash = blockHash;
+                param = await _imOnlineStorageV9300.Keys(token);
+            }
+
+            if (version == 9340U)
+            {
+                _imOnlineStorageV9340.blockHash = blockHash;
+                param = await _imOnlineStorageV9340.Keys(token);
+            }
+
+            if (version == 9360U)
+            {
+                _imOnlineStorageV9360.blockHash = blockHash;
+                param = await _imOnlineStorageV9360.Keys(token);
+            }
+
+            if (version == 9370U)
+            {
+                _imOnlineStorageV9370.blockHash = blockHash;
+                param = await _imOnlineStorageV9370.Keys(token);
+            }
+
+            if (version == 9420U)
+            {
+                _imOnlineStorageV9420.blockHash = blockHash;
+                param = await _imOnlineStorageV9420.Keys(token);
+            }
+
+            if (version == 9430U)
+            {
+                _imOnlineStorageV9430.blockHash = blockHash;
+                param = await _imOnlineStorageV9430.Keys(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReceivedHeartbeatsParams
-        ///  For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
+        ///  For each session index, we keep a mapping of 'SessionIndex` and `AuthIndex` to
         ///  `WrapperOpaque<BoundedOpaqueNetworkState>`.
         /// </summary>
-        public static string ReceivedHeartbeatsParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32> key)
+        public static string ReceivedHeartbeatsParams(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, uint version)
         {
-            return RequestGenerator.GetStorage("ImOnline", "ReceivedHeartbeats", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.ReceivedHeartbeatsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReceivedHeartbeatsDefault
         /// Default value as hex string
         /// </summary>
-        public static string ReceivedHeartbeatsDefault()
+        public static string ReceivedHeartbeatsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.ReceivedHeartbeatsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ReceivedHeartbeats
-        ///  For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
+        ///  For each session index, we keep a mapping of 'SessionIndex` and `AuthIndex` to
         ///  `WrapperOpaque<BoundedOpaqueNetworkState>`.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque> ReceivedHeartbeats(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32> key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.traits.misc.WrapperOpaqueBase> ReceivedHeartbeatsAsync(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, CancellationToken token)
         {
-            string parameters = ImOnlineStorage.ReceivedHeartbeatsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.misc.WrapperOpaque>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.traits.misc.WrapperOpaqueBase param = null;
+            if (version == 9110U)
+            {
+                _imOnlineStorageV9110.blockHash = blockHash;
+                param = await _imOnlineStorageV9110.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _imOnlineStorageV9122.blockHash = blockHash;
+                param = await _imOnlineStorageV9122.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _imOnlineStorageV9140.blockHash = blockHash;
+                param = await _imOnlineStorageV9140.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _imOnlineStorageV9151.blockHash = blockHash;
+                param = await _imOnlineStorageV9151.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _imOnlineStorageV9170.blockHash = blockHash;
+                param = await _imOnlineStorageV9170.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _imOnlineStorageV9180.blockHash = blockHash;
+                param = await _imOnlineStorageV9180.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _imOnlineStorageV9190.blockHash = blockHash;
+                param = await _imOnlineStorageV9190.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _imOnlineStorageV9200.blockHash = blockHash;
+                param = await _imOnlineStorageV9200.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _imOnlineStorageV9220.blockHash = blockHash;
+                param = await _imOnlineStorageV9220.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _imOnlineStorageV9230.blockHash = blockHash;
+                param = await _imOnlineStorageV9230.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _imOnlineStorageV9250.blockHash = blockHash;
+                param = await _imOnlineStorageV9250.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _imOnlineStorageV9260.blockHash = blockHash;
+                param = await _imOnlineStorageV9260.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _imOnlineStorageV9270.blockHash = blockHash;
+                param = await _imOnlineStorageV9270.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _imOnlineStorageV9280.blockHash = blockHash;
+                param = await _imOnlineStorageV9280.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _imOnlineStorageV9281.blockHash = blockHash;
+                param = await _imOnlineStorageV9281.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _imOnlineStorageV9291.blockHash = blockHash;
+                param = await _imOnlineStorageV9291.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _imOnlineStorageV9300.blockHash = blockHash;
+                param = await _imOnlineStorageV9300.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _imOnlineStorageV9340.blockHash = blockHash;
+                param = await _imOnlineStorageV9340.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _imOnlineStorageV9360.blockHash = blockHash;
+                param = await _imOnlineStorageV9360.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _imOnlineStorageV9370.blockHash = blockHash;
+                param = await _imOnlineStorageV9370.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _imOnlineStorageV9420.blockHash = blockHash;
+                param = await _imOnlineStorageV9420.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _imOnlineStorageV9430.blockHash = blockHash;
+                param = await _imOnlineStorageV9430.ReceivedHeartbeats((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthoredBlocksParams
         ///  For each session index, we keep a mapping of `ValidatorId<T>` to the
         ///  number of blocks authored by the given authority.
         /// </summary>
-        public static string AuthoredBlocksParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key)
+        public static string AuthoredBlocksParams(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, uint version)
         {
-            return RequestGenerator.GetStorage("ImOnline", "AuthoredBlocks", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, key.Value);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.AuthoredBlocksParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthoredBlocksDefault
         /// Default value as hex string
         /// </summary>
-        public static string AuthoredBlocksDefault()
+        public static string AuthoredBlocksDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage.AuthoredBlocksDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage.AuthoredBlocksDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthoredBlocks
         ///  For each session index, we keep a mapping of `ValidatorId<T>` to the
         ///  number of blocks authored by the given authority.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> AuthoredBlocks(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> AuthoredBlocksAsync(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, CancellationToken token)
         {
-            string parameters = ImOnlineStorage.AuthoredBlocksParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _imOnlineStorageV9110.blockHash = blockHash;
+                param = await _imOnlineStorageV9110.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _imOnlineStorageV9122.blockHash = blockHash;
+                param = await _imOnlineStorageV9122.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _imOnlineStorageV9140.blockHash = blockHash;
+                param = await _imOnlineStorageV9140.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _imOnlineStorageV9151.blockHash = blockHash;
+                param = await _imOnlineStorageV9151.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _imOnlineStorageV9170.blockHash = blockHash;
+                param = await _imOnlineStorageV9170.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _imOnlineStorageV9180.blockHash = blockHash;
+                param = await _imOnlineStorageV9180.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _imOnlineStorageV9190.blockHash = blockHash;
+                param = await _imOnlineStorageV9190.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _imOnlineStorageV9200.blockHash = blockHash;
+                param = await _imOnlineStorageV9200.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _imOnlineStorageV9220.blockHash = blockHash;
+                param = await _imOnlineStorageV9220.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _imOnlineStorageV9230.blockHash = blockHash;
+                param = await _imOnlineStorageV9230.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _imOnlineStorageV9250.blockHash = blockHash;
+                param = await _imOnlineStorageV9250.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _imOnlineStorageV9260.blockHash = blockHash;
+                param = await _imOnlineStorageV9260.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _imOnlineStorageV9270.blockHash = blockHash;
+                param = await _imOnlineStorageV9270.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _imOnlineStorageV9280.blockHash = blockHash;
+                param = await _imOnlineStorageV9280.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _imOnlineStorageV9281.blockHash = blockHash;
+                param = await _imOnlineStorageV9281.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _imOnlineStorageV9291.blockHash = blockHash;
+                param = await _imOnlineStorageV9291.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _imOnlineStorageV9300.blockHash = blockHash;
+                param = await _imOnlineStorageV9300.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _imOnlineStorageV9340.blockHash = blockHash;
+                param = await _imOnlineStorageV9340.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _imOnlineStorageV9360.blockHash = blockHash;
+                param = await _imOnlineStorageV9360.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _imOnlineStorageV9370.blockHash = blockHash;
+                param = await _imOnlineStorageV9370.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _imOnlineStorageV9420.blockHash = blockHash;
+                param = await _imOnlineStorageV9420.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _imOnlineStorageV9430.blockHash = blockHash;
+                param = await _imOnlineStorageV9430.AuthoredBlocks((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ImOnlineStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _imOnlineStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineStorage(_client);
+            _imOnlineStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineStorage(_client);
+            _imOnlineStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineStorage(_client);
+            _imOnlineStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineStorage(_client);
+            _imOnlineStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineStorage(_client);
+            _imOnlineStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineStorage(_client);
+            _imOnlineStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineStorage(_client);
+            _imOnlineStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineStorage(_client);
+            _imOnlineStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineStorage(_client);
+            _imOnlineStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineStorage(_client);
+            _imOnlineStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineStorage(_client);
+            _imOnlineStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineStorage(_client);
+            _imOnlineStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineStorage(_client);
+            _imOnlineStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineStorage(_client);
+            _imOnlineStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineStorage(_client);
+            _imOnlineStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineStorage(_client);
+            _imOnlineStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineStorage(_client);
+            _imOnlineStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineStorage(_client);
+            _imOnlineStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineStorage(_client);
+            _imOnlineStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineStorage(_client);
+            _imOnlineStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineStorage(_client);
+            _imOnlineStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineStorage(_client);
         }
     }
-    
-    public sealed class ImOnlineCalls
-    {
-        
-        /// <summary>
-        /// >> heartbeat
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Heartbeat(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.Heartbeat heartbeat, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Signature signature)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(heartbeat.Encode());
-            byteArray.AddRange(signature.Encode());
-            return new Method(12, "ImOnline", 0, "heartbeat", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class ImOnlineConstants
     {
-        
         /// <summary>
         /// >> UnsignedPriority
         ///  A configuration for base priority of unsigned transactions.
@@ -211,27 +1208,70 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is exposed so that it can be tuned for particular runtime, when
         ///  multiple pallets send unsigned transactions.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U64 UnsignedPriority()
+        public Substrate.NetApi.Model.Types.Primitive.U64 UnsignedPriority(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U64();
-            result.Create("0xFFFFFFFFFFFFFFFF");
+            Substrate.NetApi.Model.Types.Primitive.U64 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ImOnlineConstants().UnsignedPriority();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ImOnlineConstants().UnsignedPriority();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ImOnlineConstants().UnsignedPriority();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ImOnlineConstants().UnsignedPriority();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ImOnlineConstants().UnsignedPriority();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ImOnlineConstants().UnsignedPriority();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ImOnlineConstants().UnsignedPriority();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ImOnlineConstants().UnsignedPriority();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ImOnlineConstants().UnsignedPriority();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ImOnlineConstants().UnsignedPriority();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ImOnlineConstants().UnsignedPriority();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ImOnlineConstants().UnsignedPriority();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ImOnlineConstants().UnsignedPriority();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ImOnlineConstants().UnsignedPriority();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ImOnlineConstants().UnsignedPriority();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ImOnlineConstants().UnsignedPriority();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ImOnlineConstants().UnsignedPriority();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ImOnlineConstants().UnsignedPriority();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ImOnlineConstants().UnsignedPriority();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ImOnlineConstants().UnsignedPriority();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ImOnlineConstants().UnsignedPriority();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ImOnlineConstants().UnsignedPriority();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum ImOnlineErrors
     {
-        
         /// <summary>
         /// >> InvalidKey
         /// Non existent public key.
         /// </summary>
         InvalidKey,
-        
         /// <summary>
         /// >> DuplicatedHeartbeat
         /// Duplicated heartbeat.
         /// </summary>
-        DuplicatedHeartbeat,
+        DuplicatedHeartbeat
     }
 }

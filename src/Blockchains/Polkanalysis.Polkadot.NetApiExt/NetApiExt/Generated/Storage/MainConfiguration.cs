@@ -6,64 +6,483 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ConfigurationStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ConfigurationStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "ActiveConfig"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "PendingConfigs"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Configuration", "BypassConsistencyCheck"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.Bool)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ConfigurationStorage _configurationStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ConfigurationStorage _configurationStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ConfigurationStorage _configurationStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ConfigurationStorage _configurationStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage _configurationStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage _configurationStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage _configurationStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage _configurationStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage _configurationStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage _configurationStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage _configurationStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage _configurationStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage _configurationStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage _configurationStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage _configurationStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage _configurationStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage _configurationStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage _configurationStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage _configurationStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage _configurationStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage _configurationStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage _configurationStorageV9430;
         /// <summary>
         /// >> ActiveConfigParams
         ///  The active configuration for the current session.
         /// </summary>
-        public static string ActiveConfigParams()
+        public static string ActiveConfigParams(uint version)
         {
-            return RequestGenerator.GetStorage("Configuration", "ActiveConfig", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage.ActiveConfigParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage.ActiveConfigParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ActiveConfigDefault
         /// Default value as hex string
         /// </summary>
-        public static string ActiveConfigDefault()
+        public static string ActiveConfigDefault(uint version)
         {
-            return @"0x000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000010000000000000000000600000064000000C800000001000000000000000000000000000000000000000700C817A80402004001000200000002000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage.ActiveConfigDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage.ActiveConfigDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ActiveConfig
         ///  The active configuration for the current session.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration> ActiveConfig(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.configuration.HostConfigurationBase> ActiveConfigAsync(CancellationToken token)
         {
-            string parameters = ConfigurationStorage.ActiveConfigParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.configuration.HostConfigurationBase param = null;
+            if (version == 9110U)
+            {
+                _configurationStorageV9110.blockHash = blockHash;
+                param = await _configurationStorageV9110.ActiveConfig(token);
+            }
+
+            if (version == 9122U)
+            {
+                _configurationStorageV9122.blockHash = blockHash;
+                param = await _configurationStorageV9122.ActiveConfig(token);
+            }
+
+            if (version == 9140U)
+            {
+                _configurationStorageV9140.blockHash = blockHash;
+                param = await _configurationStorageV9140.ActiveConfig(token);
+            }
+
+            if (version == 9151U)
+            {
+                _configurationStorageV9151.blockHash = blockHash;
+                param = await _configurationStorageV9151.ActiveConfig(token);
+            }
+
+            if (version == 9170U)
+            {
+                _configurationStorageV9170.blockHash = blockHash;
+                param = await _configurationStorageV9170.ActiveConfig(token);
+            }
+
+            if (version == 9180U)
+            {
+                _configurationStorageV9180.blockHash = blockHash;
+                param = await _configurationStorageV9180.ActiveConfig(token);
+            }
+
+            if (version == 9190U)
+            {
+                _configurationStorageV9190.blockHash = blockHash;
+                param = await _configurationStorageV9190.ActiveConfig(token);
+            }
+
+            if (version == 9200U)
+            {
+                _configurationStorageV9200.blockHash = blockHash;
+                param = await _configurationStorageV9200.ActiveConfig(token);
+            }
+
+            if (version == 9220U)
+            {
+                _configurationStorageV9220.blockHash = blockHash;
+                param = await _configurationStorageV9220.ActiveConfig(token);
+            }
+
+            if (version == 9230U)
+            {
+                _configurationStorageV9230.blockHash = blockHash;
+                param = await _configurationStorageV9230.ActiveConfig(token);
+            }
+
+            if (version == 9250U)
+            {
+                _configurationStorageV9250.blockHash = blockHash;
+                param = await _configurationStorageV9250.ActiveConfig(token);
+            }
+
+            if (version == 9260U)
+            {
+                _configurationStorageV9260.blockHash = blockHash;
+                param = await _configurationStorageV9260.ActiveConfig(token);
+            }
+
+            if (version == 9270U)
+            {
+                _configurationStorageV9270.blockHash = blockHash;
+                param = await _configurationStorageV9270.ActiveConfig(token);
+            }
+
+            if (version == 9280U)
+            {
+                _configurationStorageV9280.blockHash = blockHash;
+                param = await _configurationStorageV9280.ActiveConfig(token);
+            }
+
+            if (version == 9281U)
+            {
+                _configurationStorageV9281.blockHash = blockHash;
+                param = await _configurationStorageV9281.ActiveConfig(token);
+            }
+
+            if (version == 9291U)
+            {
+                _configurationStorageV9291.blockHash = blockHash;
+                param = await _configurationStorageV9291.ActiveConfig(token);
+            }
+
+            if (version == 9300U)
+            {
+                _configurationStorageV9300.blockHash = blockHash;
+                param = await _configurationStorageV9300.ActiveConfig(token);
+            }
+
+            if (version == 9340U)
+            {
+                _configurationStorageV9340.blockHash = blockHash;
+                param = await _configurationStorageV9340.ActiveConfig(token);
+            }
+
+            if (version == 9360U)
+            {
+                _configurationStorageV9360.blockHash = blockHash;
+                param = await _configurationStorageV9360.ActiveConfig(token);
+            }
+
+            if (version == 9370U)
+            {
+                _configurationStorageV9370.blockHash = blockHash;
+                param = await _configurationStorageV9370.ActiveConfig(token);
+            }
+
+            if (version == 9420U)
+            {
+                _configurationStorageV9420.blockHash = blockHash;
+                param = await _configurationStorageV9420.ActiveConfig(token);
+            }
+
+            if (version == 9430U)
+            {
+                _configurationStorageV9430.blockHash = blockHash;
+                param = await _configurationStorageV9430.ActiveConfig(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
+        /// <summary>
+        /// >> PendingConfigParams
+        ///  Pending configuration (if any) for the next session.
+        /// </summary>
+        public static string PendingConfigParams(Substrate.NetApi.Model.Types.Primitive.U32 key, uint version)
+        {
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ConfigurationStorage.PendingConfigParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ConfigurationStorage.PendingConfigParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ConfigurationStorage.PendingConfigParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ConfigurationStorage.PendingConfigParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.PendingConfigParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.PendingConfigParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.PendingConfigParams((Substrate.NetApi.Model.Types.Primitive.U32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> PendingConfigDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string PendingConfigDefault(uint version)
+        {
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ConfigurationStorage.PendingConfigDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ConfigurationStorage.PendingConfigDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ConfigurationStorage.PendingConfigDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ConfigurationStorage.PendingConfigDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.PendingConfigDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.PendingConfigDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.PendingConfigDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> PendingConfig
+        ///  Pending configuration (if any) for the next session.
+        /// </summary>
+        public async Task<IType> PendingConfigAsync(Substrate.NetApi.Model.Types.Primitive.U32 key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            IType param = null;
+            if (version == 9110U)
+            {
+                _configurationStorageV9110.blockHash = blockHash;
+                param = await _configurationStorageV9110.PendingConfig((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _configurationStorageV9122.blockHash = blockHash;
+                param = await _configurationStorageV9122.PendingConfig((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _configurationStorageV9140.blockHash = blockHash;
+                param = await _configurationStorageV9140.PendingConfig((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _configurationStorageV9151.blockHash = blockHash;
+                param = await _configurationStorageV9151.PendingConfig((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _configurationStorageV9170.blockHash = blockHash;
+                param = await _configurationStorageV9170.PendingConfig((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _configurationStorageV9180.blockHash = blockHash;
+                param = await _configurationStorageV9180.PendingConfig((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _configurationStorageV9190.blockHash = blockHash;
+                param = await _configurationStorageV9190.PendingConfig((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
         /// <summary>
         /// >> PendingConfigsParams
         ///  Pending configuration changes.
@@ -74,20 +493,98 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The list is sorted ascending by session index. Also, this list can only contain at most
         ///  2 items: for the next session and for the `scheduled_session`.
         /// </summary>
-        public static string PendingConfigsParams()
+        public static string PendingConfigsParams(uint version)
         {
-            return RequestGenerator.GetStorage("Configuration", "PendingConfigs", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage.PendingConfigsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage.PendingConfigsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PendingConfigsDefault
         /// Default value as hex string
         /// </summary>
-        public static string PendingConfigsDefault()
+        public static string PendingConfigsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage.PendingConfigsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage.PendingConfigsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PendingConfigs
         ///  Pending configuration changes.
@@ -98,544 +595,380 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  The list is sorted ascending by session index. Also, this list can only contain at most
         ///  2 items: for the next session and for the `scheduled_session`.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>> PendingConfigs(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> PendingConfigsAsync(CancellationToken token)
         {
-            string parameters = ConfigurationStorage.PendingConfigsParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.configuration.HostConfiguration>>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9170U)
+            {
+                _configurationStorageV9170.blockHash = blockHash;
+                param = await _configurationStorageV9170.PendingConfigs(token);
+            }
+
+            if (version == 9180U)
+            {
+                _configurationStorageV9180.blockHash = blockHash;
+                param = await _configurationStorageV9180.PendingConfigs(token);
+            }
+
+            if (version == 9190U)
+            {
+                _configurationStorageV9190.blockHash = blockHash;
+                param = await _configurationStorageV9190.PendingConfigs(token);
+            }
+
+            if (version == 9200U)
+            {
+                _configurationStorageV9200.blockHash = blockHash;
+                param = await _configurationStorageV9200.PendingConfigs(token);
+            }
+
+            if (version == 9220U)
+            {
+                _configurationStorageV9220.blockHash = blockHash;
+                param = await _configurationStorageV9220.PendingConfigs(token);
+            }
+
+            if (version == 9230U)
+            {
+                _configurationStorageV9230.blockHash = blockHash;
+                param = await _configurationStorageV9230.PendingConfigs(token);
+            }
+
+            if (version == 9250U)
+            {
+                _configurationStorageV9250.blockHash = blockHash;
+                param = await _configurationStorageV9250.PendingConfigs(token);
+            }
+
+            if (version == 9260U)
+            {
+                _configurationStorageV9260.blockHash = blockHash;
+                param = await _configurationStorageV9260.PendingConfigs(token);
+            }
+
+            if (version == 9270U)
+            {
+                _configurationStorageV9270.blockHash = blockHash;
+                param = await _configurationStorageV9270.PendingConfigs(token);
+            }
+
+            if (version == 9280U)
+            {
+                _configurationStorageV9280.blockHash = blockHash;
+                param = await _configurationStorageV9280.PendingConfigs(token);
+            }
+
+            if (version == 9281U)
+            {
+                _configurationStorageV9281.blockHash = blockHash;
+                param = await _configurationStorageV9281.PendingConfigs(token);
+            }
+
+            if (version == 9291U)
+            {
+                _configurationStorageV9291.blockHash = blockHash;
+                param = await _configurationStorageV9291.PendingConfigs(token);
+            }
+
+            if (version == 9300U)
+            {
+                _configurationStorageV9300.blockHash = blockHash;
+                param = await _configurationStorageV9300.PendingConfigs(token);
+            }
+
+            if (version == 9340U)
+            {
+                _configurationStorageV9340.blockHash = blockHash;
+                param = await _configurationStorageV9340.PendingConfigs(token);
+            }
+
+            if (version == 9360U)
+            {
+                _configurationStorageV9360.blockHash = blockHash;
+                param = await _configurationStorageV9360.PendingConfigs(token);
+            }
+
+            if (version == 9370U)
+            {
+                _configurationStorageV9370.blockHash = blockHash;
+                param = await _configurationStorageV9370.PendingConfigs(token);
+            }
+
+            if (version == 9420U)
+            {
+                _configurationStorageV9420.blockHash = blockHash;
+                param = await _configurationStorageV9420.PendingConfigs(token);
+            }
+
+            if (version == 9430U)
+            {
+                _configurationStorageV9430.blockHash = blockHash;
+                param = await _configurationStorageV9430.PendingConfigs(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BypassConsistencyCheckParams
         ///  If this is set, then the configuration setters will bypass the consistency checks. This
         ///  is meant to be used only as the last resort.
         /// </summary>
-        public static string BypassConsistencyCheckParams()
+        public static string BypassConsistencyCheckParams(uint version)
         {
-            return RequestGenerator.GetStorage("Configuration", "BypassConsistencyCheck", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage.BypassConsistencyCheckParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BypassConsistencyCheckDefault
         /// Default value as hex string
         /// </summary>
-        public static string BypassConsistencyCheckDefault()
+        public static string BypassConsistencyCheckDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage.BypassConsistencyCheckDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> BypassConsistencyCheck
         ///  If this is set, then the configuration setters will bypass the consistency checks. This
         ///  is meant to be used only as the last resort.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> BypassConsistencyCheck(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> BypassConsistencyCheckAsync(CancellationToken token)
         {
-            string parameters = ConfigurationStorage.BypassConsistencyCheckParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.Bool>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.Bool param = null;
+            if (version == 9170U)
+            {
+                _configurationStorageV9170.blockHash = blockHash;
+                param = await _configurationStorageV9170.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9180U)
+            {
+                _configurationStorageV9180.blockHash = blockHash;
+                param = await _configurationStorageV9180.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9190U)
+            {
+                _configurationStorageV9190.blockHash = blockHash;
+                param = await _configurationStorageV9190.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9200U)
+            {
+                _configurationStorageV9200.blockHash = blockHash;
+                param = await _configurationStorageV9200.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9220U)
+            {
+                _configurationStorageV9220.blockHash = blockHash;
+                param = await _configurationStorageV9220.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9230U)
+            {
+                _configurationStorageV9230.blockHash = blockHash;
+                param = await _configurationStorageV9230.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9250U)
+            {
+                _configurationStorageV9250.blockHash = blockHash;
+                param = await _configurationStorageV9250.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9260U)
+            {
+                _configurationStorageV9260.blockHash = blockHash;
+                param = await _configurationStorageV9260.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9270U)
+            {
+                _configurationStorageV9270.blockHash = blockHash;
+                param = await _configurationStorageV9270.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9280U)
+            {
+                _configurationStorageV9280.blockHash = blockHash;
+                param = await _configurationStorageV9280.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9281U)
+            {
+                _configurationStorageV9281.blockHash = blockHash;
+                param = await _configurationStorageV9281.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9291U)
+            {
+                _configurationStorageV9291.blockHash = blockHash;
+                param = await _configurationStorageV9291.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9300U)
+            {
+                _configurationStorageV9300.blockHash = blockHash;
+                param = await _configurationStorageV9300.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9340U)
+            {
+                _configurationStorageV9340.blockHash = blockHash;
+                param = await _configurationStorageV9340.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9360U)
+            {
+                _configurationStorageV9360.blockHash = blockHash;
+                param = await _configurationStorageV9360.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9370U)
+            {
+                _configurationStorageV9370.blockHash = blockHash;
+                param = await _configurationStorageV9370.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9420U)
+            {
+                _configurationStorageV9420.blockHash = blockHash;
+                param = await _configurationStorageV9420.BypassConsistencyCheck(token);
+            }
+
+            if (version == 9430U)
+            {
+                _configurationStorageV9430.blockHash = blockHash;
+                param = await _configurationStorageV9430.BypassConsistencyCheck(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ConfigurationStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _configurationStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ConfigurationStorage(_client);
+            _configurationStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ConfigurationStorage(_client);
+            _configurationStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ConfigurationStorage(_client);
+            _configurationStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ConfigurationStorage(_client);
+            _configurationStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ConfigurationStorage(_client);
+            _configurationStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ConfigurationStorage(_client);
+            _configurationStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ConfigurationStorage(_client);
+            _configurationStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ConfigurationStorage(_client);
+            _configurationStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ConfigurationStorage(_client);
+            _configurationStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ConfigurationStorage(_client);
+            _configurationStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ConfigurationStorage(_client);
+            _configurationStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ConfigurationStorage(_client);
+            _configurationStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ConfigurationStorage(_client);
+            _configurationStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ConfigurationStorage(_client);
+            _configurationStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ConfigurationStorage(_client);
+            _configurationStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ConfigurationStorage(_client);
+            _configurationStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ConfigurationStorage(_client);
+            _configurationStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ConfigurationStorage(_client);
+            _configurationStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ConfigurationStorage(_client);
+            _configurationStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ConfigurationStorage(_client);
+            _configurationStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ConfigurationStorage(_client);
+            _configurationStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ConfigurationStorage(_client);
         }
     }
-    
-    public sealed class ConfigurationCalls
-    {
-        
-        /// <summary>
-        /// >> set_validation_upgrade_cooldown
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetValidationUpgradeCooldown(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 0, "set_validation_upgrade_cooldown", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_validation_upgrade_delay
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetValidationUpgradeDelay(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 1, "set_validation_upgrade_delay", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_code_retention_period
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetCodeRetentionPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 2, "set_code_retention_period", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_code_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxCodeSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 3, "set_max_code_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_pov_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxPovSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 4, "set_max_pov_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_head_data_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxHeadDataSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 5, "set_max_head_data_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_parathread_cores
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetParathreadCores(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 6, "set_parathread_cores", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_parathread_retries
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetParathreadRetries(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 7, "set_parathread_retries", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_group_rotation_frequency
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetGroupRotationFrequency(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 8, "set_group_rotation_frequency", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_chain_availability_period
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetChainAvailabilityPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 9, "set_chain_availability_period", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_thread_availability_period
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetThreadAvailabilityPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 10, "set_thread_availability_period", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_scheduling_lookahead
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetSchedulingLookahead(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 11, "set_scheduling_lookahead", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_validators_per_core
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxValidatorsPerCore(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 12, "set_max_validators_per_core", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_validators
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxValidators(Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Primitive.U32> @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 13, "set_max_validators", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_dispute_period
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetDisputePeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 14, "set_dispute_period", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_dispute_post_conclusion_acceptance_period
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetDisputePostConclusionAcceptancePeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 15, "set_dispute_post_conclusion_acceptance_period", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_dispute_conclusion_by_time_out_period
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetDisputeConclusionByTimeOutPeriod(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 17, "set_dispute_conclusion_by_time_out_period", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_no_show_slots
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetNoShowSlots(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 18, "set_no_show_slots", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_n_delay_tranches
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetNDelayTranches(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 19, "set_n_delay_tranches", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_zeroth_delay_tranche_width
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetZerothDelayTrancheWidth(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 20, "set_zeroth_delay_tranche_width", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_needed_approvals
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetNeededApprovals(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 21, "set_needed_approvals", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_relay_vrf_modulo_samples
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetRelayVrfModuloSamples(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 22, "set_relay_vrf_modulo_samples", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_upward_queue_count
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxUpwardQueueCount(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 23, "set_max_upward_queue_count", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_upward_queue_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxUpwardQueueSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 24, "set_max_upward_queue_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_downward_message_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxDownwardMessageSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 25, "set_max_downward_message_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_ump_service_total_weight
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetUmpServiceTotalWeight(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 26, "set_ump_service_total_weight", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_upward_message_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxUpwardMessageSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 27, "set_max_upward_message_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_max_upward_message_num_per_candidate
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMaxUpwardMessageNumPerCandidate(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 28, "set_max_upward_message_num_per_candidate", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_open_request_ttl
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpOpenRequestTtl(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 29, "set_hrmp_open_request_ttl", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_sender_deposit
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpSenderDeposit(Substrate.NetApi.Model.Types.Primitive.U128 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 30, "set_hrmp_sender_deposit", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_recipient_deposit
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpRecipientDeposit(Substrate.NetApi.Model.Types.Primitive.U128 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 31, "set_hrmp_recipient_deposit", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_channel_max_capacity
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpChannelMaxCapacity(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 32, "set_hrmp_channel_max_capacity", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_channel_max_total_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpChannelMaxTotalSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 33, "set_hrmp_channel_max_total_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_max_parachain_inbound_channels
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpMaxParachainInboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 34, "set_hrmp_max_parachain_inbound_channels", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_max_parathread_inbound_channels
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpMaxParathreadInboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 35, "set_hrmp_max_parathread_inbound_channels", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_channel_max_message_size
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpChannelMaxMessageSize(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 36, "set_hrmp_channel_max_message_size", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_max_parachain_outbound_channels
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpMaxParachainOutboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 37, "set_hrmp_max_parachain_outbound_channels", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_max_parathread_outbound_channels
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpMaxParathreadOutboundChannels(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 38, "set_hrmp_max_parathread_outbound_channels", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_hrmp_max_message_num_per_candidate
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetHrmpMaxMessageNumPerCandidate(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 39, "set_hrmp_max_message_num_per_candidate", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_ump_max_individual_weight
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetUmpMaxIndividualWeight(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 40, "set_ump_max_individual_weight", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_pvf_checking_enabled
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetPvfCheckingEnabled(Substrate.NetApi.Model.Types.Primitive.Bool @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 41, "set_pvf_checking_enabled", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_pvf_voting_ttl
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetPvfVotingTtl(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 42, "set_pvf_voting_ttl", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_minimum_validation_upgrade_delay
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetMinimumValidationUpgradeDelay(Substrate.NetApi.Model.Types.Primitive.U32 @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 43, "set_minimum_validation_upgrade_delay", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> set_bypass_consistency_check
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetBypassConsistencyCheck(Substrate.NetApi.Model.Types.Primitive.Bool @new)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@new.Encode());
-            return new Method(51, "Configuration", 44, "set_bypass_consistency_check", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class ConfigurationConstants
     {
     }
-    
+
     public enum ConfigurationErrors
     {
-        
         /// <summary>
         /// >> InvalidNewValue
         /// The new value for a configuration parameter is invalid.
         /// </summary>
-        InvalidNewValue,
+        InvalidNewValue
     }
 }

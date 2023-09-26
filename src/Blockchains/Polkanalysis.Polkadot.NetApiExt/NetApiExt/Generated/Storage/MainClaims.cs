@@ -6,97 +6,629 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ClaimsStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ClaimsStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Claims"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Total"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U128)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Vesting"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U32>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Signing"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Claims", "Preclaims"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage _claimsStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage _claimsStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage _claimsStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage _claimsStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage _claimsStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage _claimsStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage _claimsStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage _claimsStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage _claimsStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage _claimsStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage _claimsStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage _claimsStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage _claimsStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage _claimsStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage _claimsStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage _claimsStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage _claimsStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage _claimsStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage _claimsStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage _claimsStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage _claimsStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage _claimsStorageV9430;
         /// <summary>
         /// >> ClaimsParams
         /// </summary>
-        public static string ClaimsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
+        public static string ClaimsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Claims", "Claims", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.ClaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ClaimsDefault
         /// Default value as hex string
         /// </summary>
-        public static string ClaimsDefault()
+        public static string ClaimsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.ClaimsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.ClaimsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.ClaimsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.ClaimsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.ClaimsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.ClaimsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.ClaimsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.ClaimsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.ClaimsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.ClaimsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.ClaimsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.ClaimsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.ClaimsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.ClaimsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.ClaimsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.ClaimsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.ClaimsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.ClaimsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.ClaimsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.ClaimsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.ClaimsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.ClaimsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Claims
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> Claims(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> ClaimsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase key, CancellationToken token)
         {
-            string parameters = ClaimsStorage.ClaimsParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U128 param = null;
+            if (version == 9110U)
+            {
+                _claimsStorageV9110.blockHash = blockHash;
+                param = await _claimsStorageV9110.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _claimsStorageV9122.blockHash = blockHash;
+                param = await _claimsStorageV9122.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _claimsStorageV9140.blockHash = blockHash;
+                param = await _claimsStorageV9140.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _claimsStorageV9151.blockHash = blockHash;
+                param = await _claimsStorageV9151.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _claimsStorageV9170.blockHash = blockHash;
+                param = await _claimsStorageV9170.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _claimsStorageV9180.blockHash = blockHash;
+                param = await _claimsStorageV9180.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _claimsStorageV9190.blockHash = blockHash;
+                param = await _claimsStorageV9190.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _claimsStorageV9200.blockHash = blockHash;
+                param = await _claimsStorageV9200.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _claimsStorageV9220.blockHash = blockHash;
+                param = await _claimsStorageV9220.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _claimsStorageV9230.blockHash = blockHash;
+                param = await _claimsStorageV9230.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _claimsStorageV9250.blockHash = blockHash;
+                param = await _claimsStorageV9250.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _claimsStorageV9260.blockHash = blockHash;
+                param = await _claimsStorageV9260.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _claimsStorageV9270.blockHash = blockHash;
+                param = await _claimsStorageV9270.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _claimsStorageV9280.blockHash = blockHash;
+                param = await _claimsStorageV9280.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _claimsStorageV9281.blockHash = blockHash;
+                param = await _claimsStorageV9281.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _claimsStorageV9291.blockHash = blockHash;
+                param = await _claimsStorageV9291.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _claimsStorageV9300.blockHash = blockHash;
+                param = await _claimsStorageV9300.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _claimsStorageV9340.blockHash = blockHash;
+                param = await _claimsStorageV9340.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _claimsStorageV9360.blockHash = blockHash;
+                param = await _claimsStorageV9360.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _claimsStorageV9370.blockHash = blockHash;
+                param = await _claimsStorageV9370.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _claimsStorageV9420.blockHash = blockHash;
+                param = await _claimsStorageV9420.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _claimsStorageV9430.blockHash = blockHash;
+                param = await _claimsStorageV9430.Claims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> TotalParams
         /// </summary>
-        public static string TotalParams()
+        public static string TotalParams(uint version)
         {
-            return RequestGenerator.GetStorage("Claims", "Total", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.TotalParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.TotalParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.TotalParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.TotalParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.TotalParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.TotalParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.TotalParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.TotalParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.TotalParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.TotalParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.TotalParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.TotalParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.TotalParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.TotalParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.TotalParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.TotalParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.TotalParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.TotalParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.TotalParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.TotalParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.TotalParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.TotalParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> TotalDefault
         /// Default value as hex string
         /// </summary>
-        public static string TotalDefault()
+        public static string TotalDefault(uint version)
         {
-            return "0x00000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.TotalDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.TotalDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.TotalDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.TotalDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.TotalDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.TotalDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.TotalDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.TotalDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.TotalDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.TotalDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.TotalDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.TotalDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.TotalDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.TotalDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.TotalDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.TotalDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.TotalDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.TotalDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.TotalDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.TotalDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.TotalDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.TotalDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Total
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> Total(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U128> TotalAsync(CancellationToken token)
         {
-            string parameters = ClaimsStorage.TotalParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U128>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U128 param = null;
+            if (version == 9110U)
+            {
+                _claimsStorageV9110.blockHash = blockHash;
+                param = await _claimsStorageV9110.Total(token);
+            }
+
+            if (version == 9122U)
+            {
+                _claimsStorageV9122.blockHash = blockHash;
+                param = await _claimsStorageV9122.Total(token);
+            }
+
+            if (version == 9140U)
+            {
+                _claimsStorageV9140.blockHash = blockHash;
+                param = await _claimsStorageV9140.Total(token);
+            }
+
+            if (version == 9151U)
+            {
+                _claimsStorageV9151.blockHash = blockHash;
+                param = await _claimsStorageV9151.Total(token);
+            }
+
+            if (version == 9170U)
+            {
+                _claimsStorageV9170.blockHash = blockHash;
+                param = await _claimsStorageV9170.Total(token);
+            }
+
+            if (version == 9180U)
+            {
+                _claimsStorageV9180.blockHash = blockHash;
+                param = await _claimsStorageV9180.Total(token);
+            }
+
+            if (version == 9190U)
+            {
+                _claimsStorageV9190.blockHash = blockHash;
+                param = await _claimsStorageV9190.Total(token);
+            }
+
+            if (version == 9200U)
+            {
+                _claimsStorageV9200.blockHash = blockHash;
+                param = await _claimsStorageV9200.Total(token);
+            }
+
+            if (version == 9220U)
+            {
+                _claimsStorageV9220.blockHash = blockHash;
+                param = await _claimsStorageV9220.Total(token);
+            }
+
+            if (version == 9230U)
+            {
+                _claimsStorageV9230.blockHash = blockHash;
+                param = await _claimsStorageV9230.Total(token);
+            }
+
+            if (version == 9250U)
+            {
+                _claimsStorageV9250.blockHash = blockHash;
+                param = await _claimsStorageV9250.Total(token);
+            }
+
+            if (version == 9260U)
+            {
+                _claimsStorageV9260.blockHash = blockHash;
+                param = await _claimsStorageV9260.Total(token);
+            }
+
+            if (version == 9270U)
+            {
+                _claimsStorageV9270.blockHash = blockHash;
+                param = await _claimsStorageV9270.Total(token);
+            }
+
+            if (version == 9280U)
+            {
+                _claimsStorageV9280.blockHash = blockHash;
+                param = await _claimsStorageV9280.Total(token);
+            }
+
+            if (version == 9281U)
+            {
+                _claimsStorageV9281.blockHash = blockHash;
+                param = await _claimsStorageV9281.Total(token);
+            }
+
+            if (version == 9291U)
+            {
+                _claimsStorageV9291.blockHash = blockHash;
+                param = await _claimsStorageV9291.Total(token);
+            }
+
+            if (version == 9300U)
+            {
+                _claimsStorageV9300.blockHash = blockHash;
+                param = await _claimsStorageV9300.Total(token);
+            }
+
+            if (version == 9340U)
+            {
+                _claimsStorageV9340.blockHash = blockHash;
+                param = await _claimsStorageV9340.Total(token);
+            }
+
+            if (version == 9360U)
+            {
+                _claimsStorageV9360.blockHash = blockHash;
+                param = await _claimsStorageV9360.Total(token);
+            }
+
+            if (version == 9370U)
+            {
+                _claimsStorageV9370.blockHash = blockHash;
+                param = await _claimsStorageV9370.Total(token);
+            }
+
+            if (version == 9420U)
+            {
+                _claimsStorageV9420.blockHash = blockHash;
+                param = await _claimsStorageV9420.Total(token);
+            }
+
+            if (version == 9430U)
+            {
+                _claimsStorageV9430.blockHash = blockHash;
+                param = await _claimsStorageV9430.Total(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> VestingParams
         ///  Vesting schedule for a claim.
@@ -104,22 +636,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Second balance is how much should be unlocked per block.
         ///  The block number is when the vesting should start.
         /// </summary>
-        public static string VestingParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
+        public static string VestingParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Claims", "Vesting", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.VestingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> VestingDefault
         /// Default value as hex string
         /// </summary>
-        public static string VestingDefault()
+        public static string VestingDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.VestingDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.VestingDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.VestingDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.VestingDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.VestingDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.VestingDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.VestingDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.VestingDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.VestingDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.VestingDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.VestingDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.VestingDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.VestingDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.VestingDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.VestingDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.VestingDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.VestingDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.VestingDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.VestingDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.VestingDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.VestingDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.VestingDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Vesting
         ///  Vesting schedule for a claim.
@@ -127,195 +751,779 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Second balance is how much should be unlocked per block.
         ///  The block number is when the vesting should start.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U32>> Vesting(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> VestingAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase key, CancellationToken token)
         {
-            string parameters = ClaimsStorage.VestingParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U32>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _claimsStorageV9110.blockHash = blockHash;
+                param = await _claimsStorageV9110.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _claimsStorageV9122.blockHash = blockHash;
+                param = await _claimsStorageV9122.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _claimsStorageV9140.blockHash = blockHash;
+                param = await _claimsStorageV9140.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _claimsStorageV9151.blockHash = blockHash;
+                param = await _claimsStorageV9151.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _claimsStorageV9170.blockHash = blockHash;
+                param = await _claimsStorageV9170.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _claimsStorageV9180.blockHash = blockHash;
+                param = await _claimsStorageV9180.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _claimsStorageV9190.blockHash = blockHash;
+                param = await _claimsStorageV9190.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _claimsStorageV9200.blockHash = blockHash;
+                param = await _claimsStorageV9200.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _claimsStorageV9220.blockHash = blockHash;
+                param = await _claimsStorageV9220.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _claimsStorageV9230.blockHash = blockHash;
+                param = await _claimsStorageV9230.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _claimsStorageV9250.blockHash = blockHash;
+                param = await _claimsStorageV9250.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _claimsStorageV9260.blockHash = blockHash;
+                param = await _claimsStorageV9260.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _claimsStorageV9270.blockHash = blockHash;
+                param = await _claimsStorageV9270.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _claimsStorageV9280.blockHash = blockHash;
+                param = await _claimsStorageV9280.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _claimsStorageV9281.blockHash = blockHash;
+                param = await _claimsStorageV9281.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _claimsStorageV9291.blockHash = blockHash;
+                param = await _claimsStorageV9291.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _claimsStorageV9300.blockHash = blockHash;
+                param = await _claimsStorageV9300.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _claimsStorageV9340.blockHash = blockHash;
+                param = await _claimsStorageV9340.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _claimsStorageV9360.blockHash = blockHash;
+                param = await _claimsStorageV9360.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _claimsStorageV9370.blockHash = blockHash;
+                param = await _claimsStorageV9370.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _claimsStorageV9420.blockHash = blockHash;
+                param = await _claimsStorageV9420.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _claimsStorageV9430.blockHash = blockHash;
+                param = await _claimsStorageV9430.Vesting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SigningParams
         ///  The statement kind that must be signed, if any.
         /// </summary>
-        public static string SigningParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key)
+        public static string SigningParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Claims", "Signing", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.SigningParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_runtime_common.claims.EthereumAddress)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> SigningDefault
         /// Default value as hex string
         /// </summary>
-        public static string SigningDefault()
+        public static string SigningDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.SigningDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.SigningDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.SigningDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.SigningDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.SigningDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.SigningDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.SigningDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.SigningDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.SigningDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.SigningDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.SigningDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.SigningDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.SigningDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.SigningDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.SigningDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.SigningDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.SigningDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.SigningDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.SigningDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.SigningDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.SigningDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.SigningDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Signing
         ///  The statement kind that must be signed, if any.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind> Signing(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum> SigningAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase key, CancellationToken token)
         {
-            string parameters = ClaimsStorage.SigningParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum param = null;
+            if (version == 9110U)
+            {
+                _claimsStorageV9110.blockHash = blockHash;
+                param = await _claimsStorageV9110.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _claimsStorageV9122.blockHash = blockHash;
+                param = await _claimsStorageV9122.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _claimsStorageV9140.blockHash = blockHash;
+                param = await _claimsStorageV9140.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _claimsStorageV9151.blockHash = blockHash;
+                param = await _claimsStorageV9151.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _claimsStorageV9170.blockHash = blockHash;
+                param = await _claimsStorageV9170.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _claimsStorageV9180.blockHash = blockHash;
+                param = await _claimsStorageV9180.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _claimsStorageV9190.blockHash = blockHash;
+                param = await _claimsStorageV9190.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _claimsStorageV9200.blockHash = blockHash;
+                param = await _claimsStorageV9200.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _claimsStorageV9220.blockHash = blockHash;
+                param = await _claimsStorageV9220.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _claimsStorageV9230.blockHash = blockHash;
+                param = await _claimsStorageV9230.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _claimsStorageV9250.blockHash = blockHash;
+                param = await _claimsStorageV9250.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _claimsStorageV9260.blockHash = blockHash;
+                param = await _claimsStorageV9260.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _claimsStorageV9270.blockHash = blockHash;
+                param = await _claimsStorageV9270.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _claimsStorageV9280.blockHash = blockHash;
+                param = await _claimsStorageV9280.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _claimsStorageV9281.blockHash = blockHash;
+                param = await _claimsStorageV9281.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _claimsStorageV9291.blockHash = blockHash;
+                param = await _claimsStorageV9291.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _claimsStorageV9300.blockHash = blockHash;
+                param = await _claimsStorageV9300.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _claimsStorageV9340.blockHash = blockHash;
+                param = await _claimsStorageV9340.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _claimsStorageV9360.blockHash = blockHash;
+                param = await _claimsStorageV9360.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _claimsStorageV9370.blockHash = blockHash;
+                param = await _claimsStorageV9370.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _claimsStorageV9420.blockHash = blockHash;
+                param = await _claimsStorageV9420.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _claimsStorageV9430.blockHash = blockHash;
+                param = await _claimsStorageV9430.Signing((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_runtime_common.claims.EthereumAddress)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PreclaimsParams
         ///  Pre-claimed Ethereum accounts, by the Account ID that they are claimed to.
         /// </summary>
-        public static string PreclaimsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string PreclaimsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Claims", "Preclaims", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Identity}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.PreclaimsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> PreclaimsDefault
         /// Default value as hex string
         /// </summary>
-        public static string PreclaimsDefault()
+        public static string PreclaimsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage.PreclaimsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage.PreclaimsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage.PreclaimsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage.PreclaimsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage.PreclaimsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage.PreclaimsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage.PreclaimsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage.PreclaimsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage.PreclaimsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage.PreclaimsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage.PreclaimsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage.PreclaimsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage.PreclaimsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage.PreclaimsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage.PreclaimsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage.PreclaimsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage.PreclaimsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage.PreclaimsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage.PreclaimsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage.PreclaimsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage.PreclaimsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage.PreclaimsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Preclaims
         ///  Pre-claimed Ethereum accounts, by the Account ID that they are claimed to.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress> Preclaims(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase> PreclaimsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = ClaimsStorage.PreclaimsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.claims.EthereumAddressBase param = null;
+            if (version == 9110U)
+            {
+                _claimsStorageV9110.blockHash = blockHash;
+                param = await _claimsStorageV9110.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _claimsStorageV9122.blockHash = blockHash;
+                param = await _claimsStorageV9122.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _claimsStorageV9140.blockHash = blockHash;
+                param = await _claimsStorageV9140.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _claimsStorageV9151.blockHash = blockHash;
+                param = await _claimsStorageV9151.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _claimsStorageV9170.blockHash = blockHash;
+                param = await _claimsStorageV9170.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _claimsStorageV9180.blockHash = blockHash;
+                param = await _claimsStorageV9180.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _claimsStorageV9190.blockHash = blockHash;
+                param = await _claimsStorageV9190.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _claimsStorageV9200.blockHash = blockHash;
+                param = await _claimsStorageV9200.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _claimsStorageV9220.blockHash = blockHash;
+                param = await _claimsStorageV9220.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _claimsStorageV9230.blockHash = blockHash;
+                param = await _claimsStorageV9230.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _claimsStorageV9250.blockHash = blockHash;
+                param = await _claimsStorageV9250.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _claimsStorageV9260.blockHash = blockHash;
+                param = await _claimsStorageV9260.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _claimsStorageV9270.blockHash = blockHash;
+                param = await _claimsStorageV9270.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _claimsStorageV9280.blockHash = blockHash;
+                param = await _claimsStorageV9280.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _claimsStorageV9281.blockHash = blockHash;
+                param = await _claimsStorageV9281.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _claimsStorageV9291.blockHash = blockHash;
+                param = await _claimsStorageV9291.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _claimsStorageV9300.blockHash = blockHash;
+                param = await _claimsStorageV9300.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _claimsStorageV9340.blockHash = blockHash;
+                param = await _claimsStorageV9340.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _claimsStorageV9360.blockHash = blockHash;
+                param = await _claimsStorageV9360.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _claimsStorageV9370.blockHash = blockHash;
+                param = await _claimsStorageV9370.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _claimsStorageV9420.blockHash = blockHash;
+                param = await _claimsStorageV9420.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _claimsStorageV9430.blockHash = blockHash;
+                param = await _claimsStorageV9430.Preclaims((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ClaimsStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _claimsStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsStorage(_client);
+            _claimsStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsStorage(_client);
+            _claimsStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsStorage(_client);
+            _claimsStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsStorage(_client);
+            _claimsStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsStorage(_client);
+            _claimsStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsStorage(_client);
+            _claimsStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsStorage(_client);
+            _claimsStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsStorage(_client);
+            _claimsStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsStorage(_client);
+            _claimsStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsStorage(_client);
+            _claimsStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsStorage(_client);
+            _claimsStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsStorage(_client);
+            _claimsStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsStorage(_client);
+            _claimsStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsStorage(_client);
+            _claimsStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsStorage(_client);
+            _claimsStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsStorage(_client);
+            _claimsStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsStorage(_client);
+            _claimsStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsStorage(_client);
+            _claimsStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsStorage(_client);
+            _claimsStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsStorage(_client);
+            _claimsStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsStorage(_client);
+            _claimsStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsStorage(_client);
         }
     }
-    
-    public sealed class ClaimsCalls
-    {
-        
-        /// <summary>
-        /// >> claim
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Claim(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EcdsaSignature ethereum_signature)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(dest.Encode());
-            byteArray.AddRange(ethereum_signature.Encode());
-            return new Method(24, "Claims", 0, "claim", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> mint_claim
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method MintClaim(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress who, Substrate.NetApi.Model.Types.Primitive.U128 value, Substrate.NetApi.Model.Types.Base.BaseOpt<Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U128, Substrate.NetApi.Model.Types.Primitive.U32>> vesting_schedule, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EnumStatementKind> statement)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(who.Encode());
-            byteArray.AddRange(value.Encode());
-            byteArray.AddRange(vesting_schedule.Encode());
-            byteArray.AddRange(statement.Encode());
-            return new Method(24, "Claims", 1, "mint_claim", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> claim_attest
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ClaimAttest(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 dest, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EcdsaSignature ethereum_signature, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> statement)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(dest.Encode());
-            byteArray.AddRange(ethereum_signature.Encode());
-            byteArray.AddRange(statement.Encode());
-            return new Method(24, "Claims", 2, "claim_attest", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> attest
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Attest(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> statement)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(statement.Encode());
-            return new Method(24, "Claims", 3, "attest", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> move_claim
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method MoveClaim(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress old, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.claims.EthereumAddress @new, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> maybe_preclaim)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(old.Encode());
-            byteArray.AddRange(@new.Encode());
-            byteArray.AddRange(maybe_preclaim.Encode());
-            return new Method(24, "Claims", 4, "move_claim", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class ClaimsConstants
     {
-        
         /// <summary>
         /// >> Prefix
         /// </summary>
-        public Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8> Prefix()
+        public Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable Prefix(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>();
-            result.Create("0x8450617920444F547320746F2074686520506F6C6B61646F74206163636F756E743A");
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ClaimsConstants().Prefix();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ClaimsConstants().Prefix();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ClaimsConstants().Prefix();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ClaimsConstants().Prefix();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ClaimsConstants().Prefix();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ClaimsConstants().Prefix();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ClaimsConstants().Prefix();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ClaimsConstants().Prefix();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ClaimsConstants().Prefix();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ClaimsConstants().Prefix();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ClaimsConstants().Prefix();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ClaimsConstants().Prefix();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ClaimsConstants().Prefix();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ClaimsConstants().Prefix();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ClaimsConstants().Prefix();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ClaimsConstants().Prefix();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ClaimsConstants().Prefix();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ClaimsConstants().Prefix();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ClaimsConstants().Prefix();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ClaimsConstants().Prefix();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ClaimsConstants().Prefix();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ClaimsConstants().Prefix();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum ClaimsErrors
     {
-        
         /// <summary>
         /// >> InvalidEthereumSignature
         /// Invalid Ethereum signature.
         /// </summary>
         InvalidEthereumSignature,
-        
         /// <summary>
         /// >> SignerHasNoClaim
         /// Ethereum address has no claim.
         /// </summary>
         SignerHasNoClaim,
-        
         /// <summary>
         /// >> SenderHasNoClaim
         /// Account ID sending transaction has no claim.
         /// </summary>
         SenderHasNoClaim,
-        
         /// <summary>
         /// >> PotUnderflow
         /// There's not enough in the pot to pay out some unvested amount. Generally implies a logic
         /// error.
         /// </summary>
         PotUnderflow,
-        
         /// <summary>
         /// >> InvalidStatement
         /// A needed statement was not included.
         /// </summary>
         InvalidStatement,
-        
         /// <summary>
         /// >> VestedBalanceExists
         /// The account already has a vested balance.
         /// </summary>
-        VestedBalanceExists,
+        VestedBalanceExists
     }
 }

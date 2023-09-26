@@ -6,198 +6,971 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class AuthorshipStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public AuthorshipStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Authorship", "Uncles"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Authorship", "Author"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Authorship", "DidSetUncles"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.Bool)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage _authorshipStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage _authorshipStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage _authorshipStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage _authorshipStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage _authorshipStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage _authorshipStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage _authorshipStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage _authorshipStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage _authorshipStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage _authorshipStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage _authorshipStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage _authorshipStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage _authorshipStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage _authorshipStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage _authorshipStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage _authorshipStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage _authorshipStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage _authorshipStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage _authorshipStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage _authorshipStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.AuthorshipStorage _authorshipStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.AuthorshipStorage _authorshipStorageV9430;
         /// <summary>
         /// >> UnclesParams
         ///  Uncles
         /// </summary>
-        public static string UnclesParams()
+        public static string UnclesParams(uint version)
         {
-            return RequestGenerator.GetStorage("Authorship", "Uncles", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage.UnclesParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage.UnclesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage.UnclesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage.UnclesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage.UnclesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage.UnclesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage.UnclesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage.UnclesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage.UnclesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage.UnclesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage.UnclesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage.UnclesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage.UnclesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage.UnclesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage.UnclesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage.UnclesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage.UnclesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage.UnclesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage.UnclesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage.UnclesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> UnclesDefault
         /// Default value as hex string
         /// </summary>
-        public static string UnclesDefault()
+        public static string UnclesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage.UnclesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage.UnclesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage.UnclesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage.UnclesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage.UnclesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage.UnclesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage.UnclesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage.UnclesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage.UnclesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage.UnclesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage.UnclesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage.UnclesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage.UnclesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage.UnclesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage.UnclesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage.UnclesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage.UnclesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage.UnclesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage.UnclesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage.UnclesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Uncles
         ///  Uncles
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7> Uncles(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> UnclesAsync(CancellationToken token)
         {
-            string parameters = AuthorshipStorage.UnclesParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _authorshipStorageV9110.blockHash = blockHash;
+                param = await _authorshipStorageV9110.Uncles(token);
+            }
+
+            if (version == 9122U)
+            {
+                _authorshipStorageV9122.blockHash = blockHash;
+                param = await _authorshipStorageV9122.Uncles(token);
+            }
+
+            if (version == 9140U)
+            {
+                _authorshipStorageV9140.blockHash = blockHash;
+                param = await _authorshipStorageV9140.Uncles(token);
+            }
+
+            if (version == 9151U)
+            {
+                _authorshipStorageV9151.blockHash = blockHash;
+                param = await _authorshipStorageV9151.Uncles(token);
+            }
+
+            if (version == 9170U)
+            {
+                _authorshipStorageV9170.blockHash = blockHash;
+                param = await _authorshipStorageV9170.Uncles(token);
+            }
+
+            if (version == 9180U)
+            {
+                _authorshipStorageV9180.blockHash = blockHash;
+                param = await _authorshipStorageV9180.Uncles(token);
+            }
+
+            if (version == 9190U)
+            {
+                _authorshipStorageV9190.blockHash = blockHash;
+                param = await _authorshipStorageV9190.Uncles(token);
+            }
+
+            if (version == 9200U)
+            {
+                _authorshipStorageV9200.blockHash = blockHash;
+                param = await _authorshipStorageV9200.Uncles(token);
+            }
+
+            if (version == 9220U)
+            {
+                _authorshipStorageV9220.blockHash = blockHash;
+                param = await _authorshipStorageV9220.Uncles(token);
+            }
+
+            if (version == 9230U)
+            {
+                _authorshipStorageV9230.blockHash = blockHash;
+                param = await _authorshipStorageV9230.Uncles(token);
+            }
+
+            if (version == 9250U)
+            {
+                _authorshipStorageV9250.blockHash = blockHash;
+                param = await _authorshipStorageV9250.Uncles(token);
+            }
+
+            if (version == 9260U)
+            {
+                _authorshipStorageV9260.blockHash = blockHash;
+                param = await _authorshipStorageV9260.Uncles(token);
+            }
+
+            if (version == 9270U)
+            {
+                _authorshipStorageV9270.blockHash = blockHash;
+                param = await _authorshipStorageV9270.Uncles(token);
+            }
+
+            if (version == 9280U)
+            {
+                _authorshipStorageV9280.blockHash = blockHash;
+                param = await _authorshipStorageV9280.Uncles(token);
+            }
+
+            if (version == 9281U)
+            {
+                _authorshipStorageV9281.blockHash = blockHash;
+                param = await _authorshipStorageV9281.Uncles(token);
+            }
+
+            if (version == 9291U)
+            {
+                _authorshipStorageV9291.blockHash = blockHash;
+                param = await _authorshipStorageV9291.Uncles(token);
+            }
+
+            if (version == 9300U)
+            {
+                _authorshipStorageV9300.blockHash = blockHash;
+                param = await _authorshipStorageV9300.Uncles(token);
+            }
+
+            if (version == 9340U)
+            {
+                _authorshipStorageV9340.blockHash = blockHash;
+                param = await _authorshipStorageV9340.Uncles(token);
+            }
+
+            if (version == 9360U)
+            {
+                _authorshipStorageV9360.blockHash = blockHash;
+                param = await _authorshipStorageV9360.Uncles(token);
+            }
+
+            if (version == 9370U)
+            {
+                _authorshipStorageV9370.blockHash = blockHash;
+                param = await _authorshipStorageV9370.Uncles(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthorParams
         ///  Author of current block.
         /// </summary>
-        public static string AuthorParams()
+        public static string AuthorParams(uint version)
         {
-            return RequestGenerator.GetStorage("Authorship", "Author", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage.AuthorParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage.AuthorParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage.AuthorParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage.AuthorParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage.AuthorParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage.AuthorParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage.AuthorParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage.AuthorParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage.AuthorParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage.AuthorParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage.AuthorParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage.AuthorParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage.AuthorParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage.AuthorParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage.AuthorParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage.AuthorParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage.AuthorParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage.AuthorParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage.AuthorParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage.AuthorParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.AuthorshipStorage.AuthorParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.AuthorshipStorage.AuthorParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AuthorDefault
         /// Default value as hex string
         /// </summary>
-        public static string AuthorDefault()
+        public static string AuthorDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage.AuthorDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage.AuthorDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage.AuthorDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage.AuthorDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage.AuthorDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage.AuthorDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage.AuthorDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage.AuthorDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage.AuthorDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage.AuthorDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage.AuthorDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage.AuthorDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage.AuthorDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage.AuthorDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage.AuthorDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage.AuthorDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage.AuthorDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage.AuthorDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage.AuthorDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage.AuthorDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.AuthorshipStorage.AuthorDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.AuthorshipStorage.AuthorDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Author
         ///  Author of current block.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> Author(CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base> AuthorAsync(CancellationToken token)
         {
-            string parameters = AuthorshipStorage.AuthorParams();
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base param = null;
+            if (version == 9110U)
+            {
+                _authorshipStorageV9110.blockHash = blockHash;
+                param = await _authorshipStorageV9110.Author(token);
+            }
+
+            if (version == 9122U)
+            {
+                _authorshipStorageV9122.blockHash = blockHash;
+                param = await _authorshipStorageV9122.Author(token);
+            }
+
+            if (version == 9140U)
+            {
+                _authorshipStorageV9140.blockHash = blockHash;
+                param = await _authorshipStorageV9140.Author(token);
+            }
+
+            if (version == 9151U)
+            {
+                _authorshipStorageV9151.blockHash = blockHash;
+                param = await _authorshipStorageV9151.Author(token);
+            }
+
+            if (version == 9170U)
+            {
+                _authorshipStorageV9170.blockHash = blockHash;
+                param = await _authorshipStorageV9170.Author(token);
+            }
+
+            if (version == 9180U)
+            {
+                _authorshipStorageV9180.blockHash = blockHash;
+                param = await _authorshipStorageV9180.Author(token);
+            }
+
+            if (version == 9190U)
+            {
+                _authorshipStorageV9190.blockHash = blockHash;
+                param = await _authorshipStorageV9190.Author(token);
+            }
+
+            if (version == 9200U)
+            {
+                _authorshipStorageV9200.blockHash = blockHash;
+                param = await _authorshipStorageV9200.Author(token);
+            }
+
+            if (version == 9220U)
+            {
+                _authorshipStorageV9220.blockHash = blockHash;
+                param = await _authorshipStorageV9220.Author(token);
+            }
+
+            if (version == 9230U)
+            {
+                _authorshipStorageV9230.blockHash = blockHash;
+                param = await _authorshipStorageV9230.Author(token);
+            }
+
+            if (version == 9250U)
+            {
+                _authorshipStorageV9250.blockHash = blockHash;
+                param = await _authorshipStorageV9250.Author(token);
+            }
+
+            if (version == 9260U)
+            {
+                _authorshipStorageV9260.blockHash = blockHash;
+                param = await _authorshipStorageV9260.Author(token);
+            }
+
+            if (version == 9270U)
+            {
+                _authorshipStorageV9270.blockHash = blockHash;
+                param = await _authorshipStorageV9270.Author(token);
+            }
+
+            if (version == 9280U)
+            {
+                _authorshipStorageV9280.blockHash = blockHash;
+                param = await _authorshipStorageV9280.Author(token);
+            }
+
+            if (version == 9281U)
+            {
+                _authorshipStorageV9281.blockHash = blockHash;
+                param = await _authorshipStorageV9281.Author(token);
+            }
+
+            if (version == 9291U)
+            {
+                _authorshipStorageV9291.blockHash = blockHash;
+                param = await _authorshipStorageV9291.Author(token);
+            }
+
+            if (version == 9300U)
+            {
+                _authorshipStorageV9300.blockHash = blockHash;
+                param = await _authorshipStorageV9300.Author(token);
+            }
+
+            if (version == 9340U)
+            {
+                _authorshipStorageV9340.blockHash = blockHash;
+                param = await _authorshipStorageV9340.Author(token);
+            }
+
+            if (version == 9360U)
+            {
+                _authorshipStorageV9360.blockHash = blockHash;
+                param = await _authorshipStorageV9360.Author(token);
+            }
+
+            if (version == 9370U)
+            {
+                _authorshipStorageV9370.blockHash = blockHash;
+                param = await _authorshipStorageV9370.Author(token);
+            }
+
+            if (version == 9420U)
+            {
+                _authorshipStorageV9420.blockHash = blockHash;
+                param = await _authorshipStorageV9420.Author(token);
+            }
+
+            if (version == 9430U)
+            {
+                _authorshipStorageV9430.blockHash = blockHash;
+                param = await _authorshipStorageV9430.Author(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DidSetUnclesParams
         ///  Whether uncles were already set in this block.
         /// </summary>
-        public static string DidSetUnclesParams()
+        public static string DidSetUnclesParams(uint version)
         {
-            return RequestGenerator.GetStorage("Authorship", "DidSetUncles", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage.DidSetUnclesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage.DidSetUnclesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DidSetUnclesDefault
         /// Default value as hex string
         /// </summary>
-        public static string DidSetUnclesDefault()
+        public static string DidSetUnclesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage.DidSetUnclesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage.DidSetUnclesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DidSetUncles
         ///  Whether uncles were already set in this block.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> DidSetUncles(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.Bool> DidSetUnclesAsync(CancellationToken token)
         {
-            string parameters = AuthorshipStorage.DidSetUnclesParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.Bool>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.Bool param = null;
+            if (version == 9110U)
+            {
+                _authorshipStorageV9110.blockHash = blockHash;
+                param = await _authorshipStorageV9110.DidSetUncles(token);
+            }
+
+            if (version == 9122U)
+            {
+                _authorshipStorageV9122.blockHash = blockHash;
+                param = await _authorshipStorageV9122.DidSetUncles(token);
+            }
+
+            if (version == 9140U)
+            {
+                _authorshipStorageV9140.blockHash = blockHash;
+                param = await _authorshipStorageV9140.DidSetUncles(token);
+            }
+
+            if (version == 9151U)
+            {
+                _authorshipStorageV9151.blockHash = blockHash;
+                param = await _authorshipStorageV9151.DidSetUncles(token);
+            }
+
+            if (version == 9170U)
+            {
+                _authorshipStorageV9170.blockHash = blockHash;
+                param = await _authorshipStorageV9170.DidSetUncles(token);
+            }
+
+            if (version == 9180U)
+            {
+                _authorshipStorageV9180.blockHash = blockHash;
+                param = await _authorshipStorageV9180.DidSetUncles(token);
+            }
+
+            if (version == 9190U)
+            {
+                _authorshipStorageV9190.blockHash = blockHash;
+                param = await _authorshipStorageV9190.DidSetUncles(token);
+            }
+
+            if (version == 9200U)
+            {
+                _authorshipStorageV9200.blockHash = blockHash;
+                param = await _authorshipStorageV9200.DidSetUncles(token);
+            }
+
+            if (version == 9220U)
+            {
+                _authorshipStorageV9220.blockHash = blockHash;
+                param = await _authorshipStorageV9220.DidSetUncles(token);
+            }
+
+            if (version == 9230U)
+            {
+                _authorshipStorageV9230.blockHash = blockHash;
+                param = await _authorshipStorageV9230.DidSetUncles(token);
+            }
+
+            if (version == 9250U)
+            {
+                _authorshipStorageV9250.blockHash = blockHash;
+                param = await _authorshipStorageV9250.DidSetUncles(token);
+            }
+
+            if (version == 9260U)
+            {
+                _authorshipStorageV9260.blockHash = blockHash;
+                param = await _authorshipStorageV9260.DidSetUncles(token);
+            }
+
+            if (version == 9270U)
+            {
+                _authorshipStorageV9270.blockHash = blockHash;
+                param = await _authorshipStorageV9270.DidSetUncles(token);
+            }
+
+            if (version == 9280U)
+            {
+                _authorshipStorageV9280.blockHash = blockHash;
+                param = await _authorshipStorageV9280.DidSetUncles(token);
+            }
+
+            if (version == 9281U)
+            {
+                _authorshipStorageV9281.blockHash = blockHash;
+                param = await _authorshipStorageV9281.DidSetUncles(token);
+            }
+
+            if (version == 9291U)
+            {
+                _authorshipStorageV9291.blockHash = blockHash;
+                param = await _authorshipStorageV9291.DidSetUncles(token);
+            }
+
+            if (version == 9300U)
+            {
+                _authorshipStorageV9300.blockHash = blockHash;
+                param = await _authorshipStorageV9300.DidSetUncles(token);
+            }
+
+            if (version == 9340U)
+            {
+                _authorshipStorageV9340.blockHash = blockHash;
+                param = await _authorshipStorageV9340.DidSetUncles(token);
+            }
+
+            if (version == 9360U)
+            {
+                _authorshipStorageV9360.blockHash = blockHash;
+                param = await _authorshipStorageV9360.DidSetUncles(token);
+            }
+
+            if (version == 9370U)
+            {
+                _authorshipStorageV9370.blockHash = blockHash;
+                param = await _authorshipStorageV9370.DidSetUncles(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public AuthorshipStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _authorshipStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipStorage(_client);
+            _authorshipStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipStorage(_client);
+            _authorshipStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipStorage(_client);
+            _authorshipStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipStorage(_client);
+            _authorshipStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipStorage(_client);
+            _authorshipStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipStorage(_client);
+            _authorshipStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipStorage(_client);
+            _authorshipStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipStorage(_client);
+            _authorshipStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipStorage(_client);
+            _authorshipStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipStorage(_client);
+            _authorshipStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipStorage(_client);
+            _authorshipStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipStorage(_client);
+            _authorshipStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipStorage(_client);
+            _authorshipStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipStorage(_client);
+            _authorshipStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipStorage(_client);
+            _authorshipStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipStorage(_client);
+            _authorshipStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipStorage(_client);
+            _authorshipStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipStorage(_client);
+            _authorshipStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipStorage(_client);
+            _authorshipStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipStorage(_client);
+            _authorshipStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.AuthorshipStorage(_client);
+            _authorshipStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.AuthorshipStorage(_client);
         }
     }
-    
-    public sealed class AuthorshipCalls
-    {
-        
-        /// <summary>
-        /// >> set_uncles
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SetUncles(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.generic.header.Header> new_uncles)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(new_uncles.Encode());
-            return new Method(6, "Authorship", 0, "set_uncles", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class AuthorshipConstants
     {
-        
         /// <summary>
         /// >> UncleGenerations
         ///  The number of blocks back we should accept uncles.
         ///  This means that we will deal with uncle-parents that are
         ///  `UncleGenerations + 1` before `now`.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 UncleGenerations()
+        public Substrate.NetApi.Model.Types.Primitive.U32 UncleGenerations(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x00000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.AuthorshipConstants().UncleGenerations();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.AuthorshipConstants().UncleGenerations();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.AuthorshipConstants().UncleGenerations();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.AuthorshipConstants().UncleGenerations();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.AuthorshipConstants().UncleGenerations();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.AuthorshipConstants().UncleGenerations();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.AuthorshipConstants().UncleGenerations();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.AuthorshipConstants().UncleGenerations();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.AuthorshipConstants().UncleGenerations();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.AuthorshipConstants().UncleGenerations();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.AuthorshipConstants().UncleGenerations();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.AuthorshipConstants().UncleGenerations();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.AuthorshipConstants().UncleGenerations();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.AuthorshipConstants().UncleGenerations();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.AuthorshipConstants().UncleGenerations();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.AuthorshipConstants().UncleGenerations();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.AuthorshipConstants().UncleGenerations();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.AuthorshipConstants().UncleGenerations();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.AuthorshipConstants().UncleGenerations();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.AuthorshipConstants().UncleGenerations();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum AuthorshipErrors
     {
-        
         /// <summary>
         /// >> InvalidUncleParent
         /// The uncle parent not in the chain.
         /// </summary>
         InvalidUncleParent,
-        
         /// <summary>
         /// >> UnclesAlreadySet
         /// Uncles already set in the block.
         /// </summary>
         UnclesAlreadySet,
-        
         /// <summary>
         /// >> TooManyUncles
         /// Too many uncles.
         /// </summary>
         TooManyUncles,
-        
         /// <summary>
         /// >> GenesisUncle
         /// The uncle is genesis.
         /// </summary>
         GenesisUncle,
-        
         /// <summary>
         /// >> TooHighUncle
         /// The uncle is too high in chain.
         /// </summary>
         TooHighUncle,
-        
         /// <summary>
         /// >> UncleAlreadyIncluded
         /// The uncle is already included.
         /// </summary>
         UncleAlreadyIncluded,
-        
         /// <summary>
         /// >> OldUncle
         /// The uncle isn't recent enough to be included.
         /// </summary>
-        OldUncle,
+        OldUncle
     }
 }

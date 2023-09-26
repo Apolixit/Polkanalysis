@@ -6,67 +6,376 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class DmpStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public DmpStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Dmp", "DownwardMessageQueues"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Dmp", "DownwardMessageQueueHeads"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.DmpStorage _dmpStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.DmpStorage _dmpStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.DmpStorage _dmpStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.DmpStorage _dmpStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.DmpStorage _dmpStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.DmpStorage _dmpStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.DmpStorage _dmpStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.DmpStorage _dmpStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.DmpStorage _dmpStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.DmpStorage _dmpStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.DmpStorage _dmpStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.DmpStorage _dmpStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.DmpStorage _dmpStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.DmpStorage _dmpStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.DmpStorage _dmpStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.DmpStorage _dmpStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.DmpStorage _dmpStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.DmpStorage _dmpStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.DmpStorage _dmpStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.DmpStorage _dmpStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage _dmpStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage _dmpStorageV9430;
         /// <summary>
         /// >> DownwardMessageQueuesParams
         ///  The downward messages addressed for a certain para.
         /// </summary>
-        public static string DownwardMessageQueuesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string DownwardMessageQueuesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Dmp", "DownwardMessageQueues", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage.DownwardMessageQueuesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DownwardMessageQueuesDefault
         /// Default value as hex string
         /// </summary>
-        public static string DownwardMessageQueuesDefault()
+        public static string DownwardMessageQueuesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage.DownwardMessageQueuesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage.DownwardMessageQueuesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DownwardMessageQueues
         ///  The downward messages addressed for a certain para.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>> DownwardMessageQueues(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> DownwardMessageQueuesAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, CancellationToken token)
         {
-            string parameters = DmpStorage.DownwardMessageQueuesParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_core_primitives.InboundDownwardMessage>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _dmpStorageV9110.blockHash = blockHash;
+                param = await _dmpStorageV9110.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _dmpStorageV9122.blockHash = blockHash;
+                param = await _dmpStorageV9122.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _dmpStorageV9140.blockHash = blockHash;
+                param = await _dmpStorageV9140.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _dmpStorageV9151.blockHash = blockHash;
+                param = await _dmpStorageV9151.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _dmpStorageV9170.blockHash = blockHash;
+                param = await _dmpStorageV9170.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _dmpStorageV9180.blockHash = blockHash;
+                param = await _dmpStorageV9180.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _dmpStorageV9190.blockHash = blockHash;
+                param = await _dmpStorageV9190.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _dmpStorageV9200.blockHash = blockHash;
+                param = await _dmpStorageV9200.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _dmpStorageV9220.blockHash = blockHash;
+                param = await _dmpStorageV9220.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _dmpStorageV9230.blockHash = blockHash;
+                param = await _dmpStorageV9230.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _dmpStorageV9250.blockHash = blockHash;
+                param = await _dmpStorageV9250.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _dmpStorageV9260.blockHash = blockHash;
+                param = await _dmpStorageV9260.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _dmpStorageV9270.blockHash = blockHash;
+                param = await _dmpStorageV9270.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _dmpStorageV9280.blockHash = blockHash;
+                param = await _dmpStorageV9280.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _dmpStorageV9281.blockHash = blockHash;
+                param = await _dmpStorageV9281.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _dmpStorageV9291.blockHash = blockHash;
+                param = await _dmpStorageV9291.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _dmpStorageV9300.blockHash = blockHash;
+                param = await _dmpStorageV9300.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _dmpStorageV9340.blockHash = blockHash;
+                param = await _dmpStorageV9340.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _dmpStorageV9360.blockHash = blockHash;
+                param = await _dmpStorageV9360.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _dmpStorageV9370.blockHash = blockHash;
+                param = await _dmpStorageV9370.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _dmpStorageV9420.blockHash = blockHash;
+                param = await _dmpStorageV9420.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _dmpStorageV9430.blockHash = blockHash;
+                param = await _dmpStorageV9430.DownwardMessageQueues((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DownwardMessageQueueHeadsParams
         ///  A mapping that stores the downward message queue MQC head for each para.
@@ -77,22 +386,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  - `B`: is the relay-chain block number in which a message was appended.
         ///  - `H(M)`: is the hash of the message being appended.
         /// </summary>
-        public static string DownwardMessageQueueHeadsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key)
+        public static string DownwardMessageQueueHeadsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, uint version)
         {
-            return RequestGenerator.GetStorage("Dmp", "DownwardMessageQueueHeads", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage.DownwardMessageQueueHeadsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DownwardMessageQueueHeadsDefault
         /// Default value as hex string
         /// </summary>
-        public static string DownwardMessageQueueHeadsDefault()
+        public static string DownwardMessageQueueHeadsDefault(uint version)
         {
-            return "0x0000000000000000000000000000000000000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage.DownwardMessageQueueHeadsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> DownwardMessageQueueHeads
         ///  A mapping that stores the downward message queue MQC head for each para.
@@ -103,18 +504,232 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  - `B`: is the relay-chain block number in which a message was appended.
         ///  - `H(M)`: is the hash of the message being appended.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256> DownwardMessageQueueHeads(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base> DownwardMessageQueueHeadsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, CancellationToken token)
         {
-            string parameters = DmpStorage.DownwardMessageQueueHeadsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base param = null;
+            if (version == 9110U)
+            {
+                _dmpStorageV9110.blockHash = blockHash;
+                param = await _dmpStorageV9110.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _dmpStorageV9122.blockHash = blockHash;
+                param = await _dmpStorageV9122.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _dmpStorageV9140.blockHash = blockHash;
+                param = await _dmpStorageV9140.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _dmpStorageV9151.blockHash = blockHash;
+                param = await _dmpStorageV9151.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _dmpStorageV9170.blockHash = blockHash;
+                param = await _dmpStorageV9170.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _dmpStorageV9180.blockHash = blockHash;
+                param = await _dmpStorageV9180.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _dmpStorageV9190.blockHash = blockHash;
+                param = await _dmpStorageV9190.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _dmpStorageV9200.blockHash = blockHash;
+                param = await _dmpStorageV9200.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _dmpStorageV9220.blockHash = blockHash;
+                param = await _dmpStorageV9220.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _dmpStorageV9230.blockHash = blockHash;
+                param = await _dmpStorageV9230.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _dmpStorageV9250.blockHash = blockHash;
+                param = await _dmpStorageV9250.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _dmpStorageV9260.blockHash = blockHash;
+                param = await _dmpStorageV9260.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _dmpStorageV9270.blockHash = blockHash;
+                param = await _dmpStorageV9270.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _dmpStorageV9280.blockHash = blockHash;
+                param = await _dmpStorageV9280.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _dmpStorageV9281.blockHash = blockHash;
+                param = await _dmpStorageV9281.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _dmpStorageV9291.blockHash = blockHash;
+                param = await _dmpStorageV9291.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _dmpStorageV9300.blockHash = blockHash;
+                param = await _dmpStorageV9300.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _dmpStorageV9340.blockHash = blockHash;
+                param = await _dmpStorageV9340.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _dmpStorageV9360.blockHash = blockHash;
+                param = await _dmpStorageV9360.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _dmpStorageV9370.blockHash = blockHash;
+                param = await _dmpStorageV9370.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _dmpStorageV9420.blockHash = blockHash;
+                param = await _dmpStorageV9420.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _dmpStorageV9430.blockHash = blockHash;
+                param = await _dmpStorageV9430.DownwardMessageQueueHeads((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> DeliveryFeeFactorParams
+        ///  The number to multiply the base delivery fee by.
+        /// </summary>
+        public static string DeliveryFeeFactorParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage.DeliveryFeeFactorParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage.DeliveryFeeFactorParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> DeliveryFeeFactorDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string DeliveryFeeFactorDefault(uint version)
+        {
+            string param = null;
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage.DeliveryFeeFactorDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage.DeliveryFeeFactorDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> DeliveryFeeFactor
+        ///  The number to multiply the base delivery fee by.
+        /// </summary>
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.fixed_point.FixedU128Base> DeliveryFeeFactorAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.fixed_point.FixedU128Base param = null;
+            if (version == 9420U)
+            {
+                _dmpStorageV9420.blockHash = blockHash;
+                param = await _dmpStorageV9420.DeliveryFeeFactor((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _dmpStorageV9430.blockHash = blockHash;
+                param = await _dmpStorageV9430.DeliveryFeeFactor((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public DmpStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _dmpStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.DmpStorage(_client);
+            _dmpStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.DmpStorage(_client);
+            _dmpStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.DmpStorage(_client);
+            _dmpStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.DmpStorage(_client);
+            _dmpStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.DmpStorage(_client);
+            _dmpStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.DmpStorage(_client);
+            _dmpStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.DmpStorage(_client);
+            _dmpStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.DmpStorage(_client);
+            _dmpStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.DmpStorage(_client);
+            _dmpStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.DmpStorage(_client);
+            _dmpStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.DmpStorage(_client);
+            _dmpStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.DmpStorage(_client);
+            _dmpStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.DmpStorage(_client);
+            _dmpStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.DmpStorage(_client);
+            _dmpStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.DmpStorage(_client);
+            _dmpStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.DmpStorage(_client);
+            _dmpStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.DmpStorage(_client);
+            _dmpStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.DmpStorage(_client);
+            _dmpStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.DmpStorage(_client);
+            _dmpStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.DmpStorage(_client);
+            _dmpStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.DmpStorage(_client);
+            _dmpStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.DmpStorage(_client);
         }
     }
-    
-    public sealed class DmpCalls
-    {
-    }
-    
+
     public sealed class DmpConstants
     {
     }

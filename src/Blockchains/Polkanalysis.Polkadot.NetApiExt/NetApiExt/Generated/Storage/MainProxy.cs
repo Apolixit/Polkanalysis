@@ -6,235 +6,665 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ProxyStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public ProxyStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Proxies"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Substrate.NetApi.Model.Types.Primitive.U128>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Proxy", "Announcements"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Substrate.NetApi.Model.Types.Primitive.U128>)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyStorage _proxyStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyStorage _proxyStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyStorage _proxyStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyStorage _proxyStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyStorage _proxyStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyStorage _proxyStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyStorage _proxyStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyStorage _proxyStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyStorage _proxyStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyStorage _proxyStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyStorage _proxyStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyStorage _proxyStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyStorage _proxyStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyStorage _proxyStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyStorage _proxyStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyStorage _proxyStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyStorage _proxyStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyStorage _proxyStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyStorage _proxyStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyStorage _proxyStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyStorage _proxyStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyStorage _proxyStorageV9430;
         /// <summary>
         /// >> ProxiesParams
         ///  The set of account proxies. Maps the account which has delegated to the accounts
         ///  which are being delegated to, together with the amount held on deposit.
         /// </summary>
-        public static string ProxiesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string ProxiesParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Proxy", "Proxies", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyStorage.ProxiesParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ProxiesDefault
         /// Default value as hex string
         /// </summary>
-        public static string ProxiesDefault()
+        public static string ProxiesDefault(uint version)
         {
-            return "0x0000000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyStorage.ProxiesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyStorage.ProxiesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyStorage.ProxiesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyStorage.ProxiesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyStorage.ProxiesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyStorage.ProxiesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyStorage.ProxiesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyStorage.ProxiesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyStorage.ProxiesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyStorage.ProxiesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyStorage.ProxiesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyStorage.ProxiesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyStorage.ProxiesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyStorage.ProxiesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyStorage.ProxiesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyStorage.ProxiesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyStorage.ProxiesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyStorage.ProxiesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyStorage.ProxiesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyStorage.ProxiesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyStorage.ProxiesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyStorage.ProxiesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Proxies
         ///  The set of account proxies. Maps the account which has delegated to the accounts
         ///  which are being delegated to, together with the amount held on deposit.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Substrate.NetApi.Model.Types.Primitive.U128>> Proxies(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> ProxiesAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = ProxyStorage.ProxiesParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT22, Substrate.NetApi.Model.Types.Primitive.U128>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _proxyStorageV9110.blockHash = blockHash;
+                param = await _proxyStorageV9110.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _proxyStorageV9122.blockHash = blockHash;
+                param = await _proxyStorageV9122.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _proxyStorageV9140.blockHash = blockHash;
+                param = await _proxyStorageV9140.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _proxyStorageV9151.blockHash = blockHash;
+                param = await _proxyStorageV9151.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _proxyStorageV9170.blockHash = blockHash;
+                param = await _proxyStorageV9170.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _proxyStorageV9180.blockHash = blockHash;
+                param = await _proxyStorageV9180.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _proxyStorageV9190.blockHash = blockHash;
+                param = await _proxyStorageV9190.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _proxyStorageV9200.blockHash = blockHash;
+                param = await _proxyStorageV9200.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _proxyStorageV9220.blockHash = blockHash;
+                param = await _proxyStorageV9220.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _proxyStorageV9230.blockHash = blockHash;
+                param = await _proxyStorageV9230.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _proxyStorageV9250.blockHash = blockHash;
+                param = await _proxyStorageV9250.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _proxyStorageV9260.blockHash = blockHash;
+                param = await _proxyStorageV9260.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _proxyStorageV9270.blockHash = blockHash;
+                param = await _proxyStorageV9270.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _proxyStorageV9280.blockHash = blockHash;
+                param = await _proxyStorageV9280.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _proxyStorageV9281.blockHash = blockHash;
+                param = await _proxyStorageV9281.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _proxyStorageV9291.blockHash = blockHash;
+                param = await _proxyStorageV9291.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _proxyStorageV9300.blockHash = blockHash;
+                param = await _proxyStorageV9300.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _proxyStorageV9340.blockHash = blockHash;
+                param = await _proxyStorageV9340.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _proxyStorageV9360.blockHash = blockHash;
+                param = await _proxyStorageV9360.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _proxyStorageV9370.blockHash = blockHash;
+                param = await _proxyStorageV9370.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _proxyStorageV9420.blockHash = blockHash;
+                param = await _proxyStorageV9420.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _proxyStorageV9430.blockHash = blockHash;
+                param = await _proxyStorageV9430.Proxies((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AnnouncementsParams
         ///  The announcements made by the proxy (key).
         /// </summary>
-        public static string AnnouncementsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string AnnouncementsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("Proxy", "Announcements", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyStorage.AnnouncementsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> AnnouncementsDefault
         /// Default value as hex string
         /// </summary>
-        public static string AnnouncementsDefault()
+        public static string AnnouncementsDefault(uint version)
         {
-            return "0x0000000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyStorage.AnnouncementsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyStorage.AnnouncementsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyStorage.AnnouncementsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyStorage.AnnouncementsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyStorage.AnnouncementsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyStorage.AnnouncementsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyStorage.AnnouncementsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyStorage.AnnouncementsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyStorage.AnnouncementsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyStorage.AnnouncementsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyStorage.AnnouncementsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyStorage.AnnouncementsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyStorage.AnnouncementsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyStorage.AnnouncementsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyStorage.AnnouncementsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyStorage.AnnouncementsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyStorage.AnnouncementsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyStorage.AnnouncementsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyStorage.AnnouncementsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyStorage.AnnouncementsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyStorage.AnnouncementsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyStorage.AnnouncementsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Announcements
         ///  The announcements made by the proxy (key).
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Substrate.NetApi.Model.Types.Primitive.U128>> Announcements(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> AnnouncementsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = ProxyStorage.AnnouncementsParams(key);
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT23, Substrate.NetApi.Model.Types.Primitive.U128>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _proxyStorageV9110.blockHash = blockHash;
+                param = await _proxyStorageV9110.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _proxyStorageV9122.blockHash = blockHash;
+                param = await _proxyStorageV9122.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _proxyStorageV9140.blockHash = blockHash;
+                param = await _proxyStorageV9140.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _proxyStorageV9151.blockHash = blockHash;
+                param = await _proxyStorageV9151.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _proxyStorageV9170.blockHash = blockHash;
+                param = await _proxyStorageV9170.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _proxyStorageV9180.blockHash = blockHash;
+                param = await _proxyStorageV9180.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _proxyStorageV9190.blockHash = blockHash;
+                param = await _proxyStorageV9190.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _proxyStorageV9200.blockHash = blockHash;
+                param = await _proxyStorageV9200.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _proxyStorageV9220.blockHash = blockHash;
+                param = await _proxyStorageV9220.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _proxyStorageV9230.blockHash = blockHash;
+                param = await _proxyStorageV9230.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _proxyStorageV9250.blockHash = blockHash;
+                param = await _proxyStorageV9250.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _proxyStorageV9260.blockHash = blockHash;
+                param = await _proxyStorageV9260.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _proxyStorageV9270.blockHash = blockHash;
+                param = await _proxyStorageV9270.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _proxyStorageV9280.blockHash = blockHash;
+                param = await _proxyStorageV9280.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _proxyStorageV9281.blockHash = blockHash;
+                param = await _proxyStorageV9281.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _proxyStorageV9291.blockHash = blockHash;
+                param = await _proxyStorageV9291.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _proxyStorageV9300.blockHash = blockHash;
+                param = await _proxyStorageV9300.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _proxyStorageV9340.blockHash = blockHash;
+                param = await _proxyStorageV9340.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _proxyStorageV9360.blockHash = blockHash;
+                param = await _proxyStorageV9360.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _proxyStorageV9370.blockHash = blockHash;
+                param = await _proxyStorageV9370.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _proxyStorageV9420.blockHash = blockHash;
+                param = await _proxyStorageV9420.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _proxyStorageV9430.blockHash = blockHash;
+                param = await _proxyStorageV9430.Announcements((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public ProxyStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _proxyStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyStorage(_client);
+            _proxyStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyStorage(_client);
+            _proxyStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyStorage(_client);
+            _proxyStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyStorage(_client);
+            _proxyStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyStorage(_client);
+            _proxyStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyStorage(_client);
+            _proxyStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyStorage(_client);
+            _proxyStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyStorage(_client);
+            _proxyStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyStorage(_client);
+            _proxyStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyStorage(_client);
+            _proxyStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyStorage(_client);
+            _proxyStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyStorage(_client);
+            _proxyStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyStorage(_client);
+            _proxyStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyStorage(_client);
+            _proxyStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyStorage(_client);
+            _proxyStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyStorage(_client);
+            _proxyStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyStorage(_client);
+            _proxyStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyStorage(_client);
+            _proxyStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyStorage(_client);
+            _proxyStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyStorage(_client);
+            _proxyStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyStorage(_client);
+            _proxyStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyStorage(_client);
         }
     }
-    
-    public sealed class ProxyCalls
-    {
-        
-        /// <summary>
-        /// >> proxy
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Proxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(real.Encode());
-            byteArray.AddRange(force_proxy_type.Encode());
-            byteArray.AddRange(call.Encode());
-            return new Method(29, "Proxy", 0, "proxy", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> add_proxy
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method AddProxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U32 delay)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@delegate.Encode());
-            byteArray.AddRange(proxy_type.Encode());
-            byteArray.AddRange(delay.Encode());
-            return new Method(29, "Proxy", 1, "add_proxy", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> remove_proxy
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RemoveProxy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U32 delay)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@delegate.Encode());
-            byteArray.AddRange(proxy_type.Encode());
-            byteArray.AddRange(delay.Encode());
-            return new Method(29, "Proxy", 2, "remove_proxy", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> remove_proxies
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RemoveProxies()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(29, "Proxy", 3, "remove_proxies", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> create_pure
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CreatePure(Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U32 delay, Substrate.NetApi.Model.Types.Primitive.U16 index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(proxy_type.Encode());
-            byteArray.AddRange(delay.Encode());
-            byteArray.AddRange(index.Encode());
-            return new Method(29, "Proxy", 4, "create_pure", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> kill_pure
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method KillPure(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress spawner, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType proxy_type, Substrate.NetApi.Model.Types.Primitive.U16 index, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> height, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> ext_index)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(spawner.Encode());
-            byteArray.AddRange(proxy_type.Encode());
-            byteArray.AddRange(index.Encode());
-            byteArray.AddRange(height.Encode());
-            byteArray.AddRange(ext_index.Encode());
-            return new Method(29, "Proxy", 5, "kill_pure", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> announce
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Announce(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(real.Encode());
-            byteArray.AddRange(call_hash.Encode());
-            return new Method(29, "Proxy", 6, "announce", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> remove_announcement
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RemoveAnnouncement(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(real.Encode());
-            byteArray.AddRange(call_hash.Encode());
-            return new Method(29, "Proxy", 7, "remove_announcement", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> reject_announcement
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RejectAnnouncement(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.primitive_types.H256 call_hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@delegate.Encode());
-            byteArray.AddRange(call_hash.Encode());
-            return new Method(29, "Proxy", 8, "reject_announcement", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> proxy_announced
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ProxyAnnounced(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress @delegate, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress real, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumProxyType> force_proxy_type, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(@delegate.Encode());
-            byteArray.AddRange(real.Encode());
-            byteArray.AddRange(force_proxy_type.Encode());
-            byteArray.AddRange(call.Encode());
-            return new Method(29, "Proxy", 9, "proxy_announced", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class ProxyConstants
     {
-        
         /// <summary>
         /// >> ProxyDepositBase
         ///  The base amount of currency needed to reserve for creating a proxy.
@@ -242,13 +672,58 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is held for an additional storage item whose value size is
         ///  `sizeof(Balance)` bytes and whose key size is `sizeof(AccountId)` bytes.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 ProxyDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 ProxyDepositBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x0084B2952E0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyConstants().ProxyDepositBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyConstants().ProxyDepositBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyConstants().ProxyDepositBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyConstants().ProxyDepositBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyConstants().ProxyDepositBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyConstants().ProxyDepositBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyConstants().ProxyDepositBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyConstants().ProxyDepositBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyConstants().ProxyDepositBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyConstants().ProxyDepositBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyConstants().ProxyDepositBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyConstants().ProxyDepositBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyConstants().ProxyDepositBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyConstants().ProxyDepositBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyConstants().ProxyDepositBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyConstants().ProxyDepositBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyConstants().ProxyDepositBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyConstants().ProxyDepositBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyConstants().ProxyDepositBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyConstants().ProxyDepositBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyConstants().ProxyDepositBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyConstants().ProxyDepositBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> ProxyDepositFactor
         ///  The amount of currency needed per proxy added.
@@ -257,35 +732,170 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  pre-existing storage value. Thus, when configuring `ProxyDepositFactor` one should take
         ///  into account `32 + proxy_type.encode().len()` bytes of data.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 ProxyDepositFactor()
+        public Substrate.NetApi.Model.Types.Primitive.U128 ProxyDepositFactor(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x8066AB13000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyConstants().ProxyDepositFactor();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyConstants().ProxyDepositFactor();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyConstants().ProxyDepositFactor();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyConstants().ProxyDepositFactor();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyConstants().ProxyDepositFactor();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyConstants().ProxyDepositFactor();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyConstants().ProxyDepositFactor();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyConstants().ProxyDepositFactor();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyConstants().ProxyDepositFactor();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyConstants().ProxyDepositFactor();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyConstants().ProxyDepositFactor();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyConstants().ProxyDepositFactor();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyConstants().ProxyDepositFactor();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyConstants().ProxyDepositFactor();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyConstants().ProxyDepositFactor();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyConstants().ProxyDepositFactor();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyConstants().ProxyDepositFactor();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyConstants().ProxyDepositFactor();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyConstants().ProxyDepositFactor();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyConstants().ProxyDepositFactor();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyConstants().ProxyDepositFactor();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyConstants().ProxyDepositFactor();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxProxies
         ///  The maximum amount of proxies allowed for a single account.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxProxies()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxProxies(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x20000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyConstants().MaxProxies();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyConstants().MaxProxies();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyConstants().MaxProxies();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyConstants().MaxProxies();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyConstants().MaxProxies();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyConstants().MaxProxies();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyConstants().MaxProxies();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyConstants().MaxProxies();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyConstants().MaxProxies();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyConstants().MaxProxies();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyConstants().MaxProxies();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyConstants().MaxProxies();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyConstants().MaxProxies();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyConstants().MaxProxies();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyConstants().MaxProxies();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyConstants().MaxProxies();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyConstants().MaxProxies();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyConstants().MaxProxies();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyConstants().MaxProxies();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyConstants().MaxProxies();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyConstants().MaxProxies();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyConstants().MaxProxies();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxPending
         ///  The maximum amount of time-delayed announcements that are allowed to be pending.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxPending()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxPending(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x20000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyConstants().MaxPending();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyConstants().MaxPending();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyConstants().MaxPending();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyConstants().MaxPending();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyConstants().MaxPending();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyConstants().MaxPending();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyConstants().MaxPending();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyConstants().MaxPending();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyConstants().MaxPending();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyConstants().MaxPending();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyConstants().MaxPending();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyConstants().MaxPending();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyConstants().MaxPending();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyConstants().MaxPending();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyConstants().MaxPending();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyConstants().MaxPending();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyConstants().MaxPending();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyConstants().MaxPending();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyConstants().MaxPending();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyConstants().MaxPending();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyConstants().MaxPending();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyConstants().MaxPending();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> AnnouncementDepositBase
         ///  The base amount of currency needed to reserve for creating an announcement.
@@ -293,13 +903,58 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is held when a new storage item holding a `Balance` is created (typically 16
         ///  bytes).
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 AnnouncementDepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 AnnouncementDepositBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x0084B2952E0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyConstants().AnnouncementDepositBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyConstants().AnnouncementDepositBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> AnnouncementDepositFactor
         ///  The amount of currency needed per announcement made.
@@ -307,63 +962,100 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This is held for adding an `AccountId`, `Hash` and `BlockNumber` (typically 68 bytes)
         ///  into a pre-existing storage value.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 AnnouncementDepositFactor()
+        public Substrate.NetApi.Model.Types.Primitive.U128 AnnouncementDepositFactor(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00CD5627000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ProxyConstants().AnnouncementDepositFactor();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ProxyConstants().AnnouncementDepositFactor();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum ProxyErrors
     {
-        
         /// <summary>
         /// >> TooMany
         /// There are too many proxies registered or too many announcements pending.
         /// </summary>
         TooMany,
-        
         /// <summary>
         /// >> NotFound
         /// Proxy registration not found.
         /// </summary>
         NotFound,
-        
         /// <summary>
         /// >> NotProxy
         /// Sender is not a proxy of the account to be proxied.
         /// </summary>
         NotProxy,
-        
         /// <summary>
         /// >> Unproxyable
         /// A call which is incompatible with the proxy type's filter was attempted.
         /// </summary>
         Unproxyable,
-        
         /// <summary>
         /// >> Duplicate
         /// Account is already a proxy.
         /// </summary>
         Duplicate,
-        
         /// <summary>
         /// >> NoPermission
         /// Call may not be made by proxy because it may escalate its privileges.
         /// </summary>
         NoPermission,
-        
         /// <summary>
         /// >> Unannounced
         /// Announcement, if made at all, was made too recently.
         /// </summary>
         Unannounced,
-        
         /// <summary>
         /// >> NoSelfProxy
         /// Cannot add self as proxy.
         /// </summary>
-        NoSelfProxy,
+        NoSelfProxy
     }
 }

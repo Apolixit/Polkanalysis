@@ -6,37 +6,147 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class ParachainsOriginStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
+        {
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
+        }
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParachainsOriginStorage _parachainsOriginStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParachainsOriginStorage _parachainsOriginStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParachainsOriginStorage _parachainsOriginStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParachainsOriginStorage _parachainsOriginStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParachainsOriginStorage _parachainsOriginStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParachainsOriginStorage _parachainsOriginStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParachainsOriginStorage _parachainsOriginStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParachainsOriginStorage _parachainsOriginStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParachainsOriginStorage _parachainsOriginStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParachainsOriginStorage _parachainsOriginStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParachainsOriginStorage _parachainsOriginStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParachainsOriginStorage _parachainsOriginStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParachainsOriginStorage _parachainsOriginStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParachainsOriginStorage _parachainsOriginStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParachainsOriginStorage _parachainsOriginStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParachainsOriginStorage _parachainsOriginStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParachainsOriginStorage _parachainsOriginStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParachainsOriginStorage _parachainsOriginStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParachainsOriginStorage _parachainsOriginStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParachainsOriginStorage _parachainsOriginStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParachainsOriginStorage _parachainsOriginStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParachainsOriginStorage _parachainsOriginStorageV9430;
         public ParachainsOriginStorage(SubstrateClientExt client)
         {
-            this._client = client;
+            _client = client;
+            _parachainsOriginStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.ParachainsOriginStorage(_client);
+            _parachainsOriginStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.ParachainsOriginStorage(_client);
         }
     }
-    
-    public sealed class ParachainsOriginCalls
-    {
-    }
-    
+
     public sealed class ParachainsOriginConstants
     {
     }

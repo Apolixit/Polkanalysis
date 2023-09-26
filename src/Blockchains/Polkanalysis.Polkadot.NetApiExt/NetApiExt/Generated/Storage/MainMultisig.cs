@@ -6,130 +6,611 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class MultisigStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public MultisigStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("Multisig", "Multisigs"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Multisig)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigStorage _multisigStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigStorage _multisigStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigStorage _multisigStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigStorage _multisigStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigStorage _multisigStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigStorage _multisigStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigStorage _multisigStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigStorage _multisigStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigStorage _multisigStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigStorage _multisigStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigStorage _multisigStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigStorage _multisigStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigStorage _multisigStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigStorage _multisigStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigStorage _multisigStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigStorage _multisigStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigStorage _multisigStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.MultisigStorage _multisigStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.MultisigStorage _multisigStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.MultisigStorage _multisigStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.MultisigStorage _multisigStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.MultisigStorage _multisigStorageV9430;
         /// <summary>
         /// >> MultisigsParams
         ///  The set of open multisig operations.
         /// </summary>
-        public static string MultisigsParams(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> key)
+        public static string MultisigsParams(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, uint version)
         {
-            return RequestGenerator.GetStorage("Multisig", "Multisigs", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat,
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat}, key.Value);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.MultisigStorage.MultisigsParams((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MultisigsDefault
         /// Default value as hex string
         /// </summary>
-        public static string MultisigsDefault()
+        public static string MultisigsDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigStorage.MultisigsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigStorage.MultisigsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigStorage.MultisigsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigStorage.MultisigsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigStorage.MultisigsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigStorage.MultisigsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigStorage.MultisigsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigStorage.MultisigsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigStorage.MultisigsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigStorage.MultisigsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigStorage.MultisigsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigStorage.MultisigsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigStorage.MultisigsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigStorage.MultisigsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigStorage.MultisigsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigStorage.MultisigsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigStorage.MultisigsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.MultisigStorage.MultisigsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.MultisigStorage.MultisigsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.MultisigStorage.MultisigsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.MultisigStorage.MultisigsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.MultisigStorage.MultisigsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Multisigs
         ///  The set of open multisig operations.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Multisig> Multisigs(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8> key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_multisig.MultisigBase> MultisigsAsync(Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable key, CancellationToken token)
         {
-            string parameters = MultisigStorage.MultisigsParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Multisig>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_multisig.MultisigBase param = null;
+            if (version == 9110U)
+            {
+                _multisigStorageV9110.blockHash = blockHash;
+                param = await _multisigStorageV9110.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _multisigStorageV9122.blockHash = blockHash;
+                param = await _multisigStorageV9122.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _multisigStorageV9140.blockHash = blockHash;
+                param = await _multisigStorageV9140.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _multisigStorageV9151.blockHash = blockHash;
+                param = await _multisigStorageV9151.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _multisigStorageV9170.blockHash = blockHash;
+                param = await _multisigStorageV9170.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _multisigStorageV9180.blockHash = blockHash;
+                param = await _multisigStorageV9180.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _multisigStorageV9190.blockHash = blockHash;
+                param = await _multisigStorageV9190.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _multisigStorageV9200.blockHash = blockHash;
+                param = await _multisigStorageV9200.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _multisigStorageV9220.blockHash = blockHash;
+                param = await _multisigStorageV9220.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _multisigStorageV9230.blockHash = blockHash;
+                param = await _multisigStorageV9230.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _multisigStorageV9250.blockHash = blockHash;
+                param = await _multisigStorageV9250.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _multisigStorageV9260.blockHash = blockHash;
+                param = await _multisigStorageV9260.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _multisigStorageV9270.blockHash = blockHash;
+                param = await _multisigStorageV9270.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _multisigStorageV9280.blockHash = blockHash;
+                param = await _multisigStorageV9280.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _multisigStorageV9281.blockHash = blockHash;
+                param = await _multisigStorageV9281.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _multisigStorageV9291.blockHash = blockHash;
+                param = await _multisigStorageV9291.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _multisigStorageV9300.blockHash = blockHash;
+                param = await _multisigStorageV9300.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _multisigStorageV9340.blockHash = blockHash;
+                param = await _multisigStorageV9340.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _multisigStorageV9360.blockHash = blockHash;
+                param = await _multisigStorageV9360.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _multisigStorageV9370.blockHash = blockHash;
+                param = await _multisigStorageV9370.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _multisigStorageV9420.blockHash = blockHash;
+                param = await _multisigStorageV9420.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _multisigStorageV9430.blockHash = blockHash;
+                param = await _multisigStorageV9430.Multisigs((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8>)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> CallsParams
+        /// </summary>
+        public static string CallsParams(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 key, uint version)
+        {
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigStorage.CallsParams((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> CallsDefault
+        /// Default value as hex string
+        /// </summary>
+        public static string CallsDefault(uint version)
+        {
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigStorage.CallsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigStorage.CallsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigStorage.CallsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigStorage.CallsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigStorage.CallsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigStorage.CallsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigStorage.CallsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigStorage.CallsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigStorage.CallsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigStorage.CallsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigStorage.CallsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigStorage.CallsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigStorage.CallsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigStorage.CallsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigStorage.CallsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigStorage.CallsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigStorage.CallsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        /// <summary>
+        /// >> Calls
+        /// </summary>
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> CallsAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _multisigStorageV9110.blockHash = blockHash;
+                param = await _multisigStorageV9110.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _multisigStorageV9122.blockHash = blockHash;
+                param = await _multisigStorageV9122.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _multisigStorageV9140.blockHash = blockHash;
+                param = await _multisigStorageV9140.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _multisigStorageV9151.blockHash = blockHash;
+                param = await _multisigStorageV9151.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _multisigStorageV9170.blockHash = blockHash;
+                param = await _multisigStorageV9170.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _multisigStorageV9180.blockHash = blockHash;
+                param = await _multisigStorageV9180.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _multisigStorageV9190.blockHash = blockHash;
+                param = await _multisigStorageV9190.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _multisigStorageV9200.blockHash = blockHash;
+                param = await _multisigStorageV9200.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _multisigStorageV9220.blockHash = blockHash;
+                param = await _multisigStorageV9220.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _multisigStorageV9230.blockHash = blockHash;
+                param = await _multisigStorageV9230.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _multisigStorageV9250.blockHash = blockHash;
+                param = await _multisigStorageV9250.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _multisigStorageV9260.blockHash = blockHash;
+                param = await _multisigStorageV9260.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _multisigStorageV9270.blockHash = blockHash;
+                param = await _multisigStorageV9270.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _multisigStorageV9280.blockHash = blockHash;
+                param = await _multisigStorageV9280.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _multisigStorageV9281.blockHash = blockHash;
+                param = await _multisigStorageV9281.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _multisigStorageV9291.blockHash = blockHash;
+                param = await _multisigStorageV9291.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _multisigStorageV9300.blockHash = blockHash;
+                param = await _multisigStorageV9300.Calls((Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public MultisigStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _multisigStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigStorage(_client);
+            _multisigStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigStorage(_client);
+            _multisigStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigStorage(_client);
+            _multisigStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigStorage(_client);
+            _multisigStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigStorage(_client);
+            _multisigStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigStorage(_client);
+            _multisigStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigStorage(_client);
+            _multisigStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigStorage(_client);
+            _multisigStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigStorage(_client);
+            _multisigStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigStorage(_client);
+            _multisigStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigStorage(_client);
+            _multisigStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigStorage(_client);
+            _multisigStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigStorage(_client);
+            _multisigStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigStorage(_client);
+            _multisigStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigStorage(_client);
+            _multisigStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigStorage(_client);
+            _multisigStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigStorage(_client);
+            _multisigStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.MultisigStorage(_client);
+            _multisigStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.MultisigStorage(_client);
+            _multisigStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.MultisigStorage(_client);
+            _multisigStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.MultisigStorage(_client);
+            _multisigStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.MultisigStorage(_client);
         }
     }
-    
-    public sealed class MultisigCalls
-    {
-        
-        /// <summary>
-        /// >> as_multi_threshold_1
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method AsMultiThreshold1(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(other_signatories.Encode());
-            byteArray.AddRange(call.Encode());
-            return new Method(30, "Multisig", 0, "as_multi_threshold_1", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> as_multi
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method AsMulti(Substrate.NetApi.Model.Types.Primitive.U16 threshold, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeCall call, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight max_weight)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(threshold.Encode());
-            byteArray.AddRange(other_signatories.Encode());
-            byteArray.AddRange(maybe_timepoint.Encode());
-            byteArray.AddRange(call.Encode());
-            byteArray.AddRange(max_weight.Encode());
-            return new Method(30, "Multisig", 1, "as_multi", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> approve_as_multi
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method ApproveAsMulti(Substrate.NetApi.Model.Types.Primitive.U16 threshold, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Substrate.NetApi.Model.Types.Base.BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint> maybe_timepoint, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 call_hash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_weights.weight_v2.Weight max_weight)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(threshold.Encode());
-            byteArray.AddRange(other_signatories.Encode());
-            byteArray.AddRange(maybe_timepoint.Encode());
-            byteArray.AddRange(call_hash.Encode());
-            byteArray.AddRange(max_weight.Encode());
-            return new Method(30, "Multisig", 2, "approve_as_multi", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> cancel_as_multi
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CancelAsMulti(Substrate.NetApi.Model.Types.Primitive.U16 threshold, Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> other_signatories, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_multisig.Timepoint timepoint, Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr32U8 call_hash)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(threshold.Encode());
-            byteArray.AddRange(other_signatories.Encode());
-            byteArray.AddRange(timepoint.Encode());
-            byteArray.AddRange(call_hash.Encode());
-            return new Method(30, "Multisig", 3, "cancel_as_multi", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class MultisigConstants
     {
-        
         /// <summary>
         /// >> DepositBase
         ///  The base amount of currency needed to reserve for creating a multisig execution or to
@@ -139,123 +620,244 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  `4 + sizeof((BlockNumber, Balance, AccountId))` bytes and whose key size is
         ///  `32 + sizeof(AccountId)` bytes.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 DepositBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 DepositBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x008C61C52E0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigConstants().DepositBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigConstants().DepositBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigConstants().DepositBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigConstants().DepositBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigConstants().DepositBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigConstants().DepositBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigConstants().DepositBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigConstants().DepositBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigConstants().DepositBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigConstants().DepositBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigConstants().DepositBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigConstants().DepositBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigConstants().DepositBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigConstants().DepositBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigConstants().DepositBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigConstants().DepositBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigConstants().DepositBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.MultisigConstants().DepositBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.MultisigConstants().DepositBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.MultisigConstants().DepositBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.MultisigConstants().DepositBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.MultisigConstants().DepositBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> DepositFactor
         ///  The amount of currency needed per unit threshold when creating a multisig execution.
         /// 
         ///  This is held for adding 32 bytes more into a pre-existing storage value.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 DepositFactor()
+        public Substrate.NetApi.Model.Types.Primitive.U128 DepositFactor(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00D01213000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigConstants().DepositFactor();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigConstants().DepositFactor();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigConstants().DepositFactor();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigConstants().DepositFactor();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigConstants().DepositFactor();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigConstants().DepositFactor();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigConstants().DepositFactor();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigConstants().DepositFactor();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigConstants().DepositFactor();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigConstants().DepositFactor();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigConstants().DepositFactor();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigConstants().DepositFactor();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigConstants().DepositFactor();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigConstants().DepositFactor();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigConstants().DepositFactor();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigConstants().DepositFactor();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigConstants().DepositFactor();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.MultisigConstants().DepositFactor();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.MultisigConstants().DepositFactor();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.MultisigConstants().DepositFactor();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.MultisigConstants().DepositFactor();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.MultisigConstants().DepositFactor();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxSignatories
         ///  The maximum amount of signatories allowed in the multisig.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxSignatories()
+        public IType MaxSignatories(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x64000000");
+            IType result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.MultisigConstants().MaxSignatories();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.MultisigConstants().MaxSignatories();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.MultisigConstants().MaxSignatories();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.MultisigConstants().MaxSignatories();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.MultisigConstants().MaxSignatories();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.MultisigConstants().MaxSignatories();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.MultisigConstants().MaxSignatories();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.MultisigConstants().MaxSignatories();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.MultisigConstants().MaxSignatories();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.MultisigConstants().MaxSignatories();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.MultisigConstants().MaxSignatories();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.MultisigConstants().MaxSignatories();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.MultisigConstants().MaxSignatories();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.MultisigConstants().MaxSignatories();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.MultisigConstants().MaxSignatories();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.MultisigConstants().MaxSignatories();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.MultisigConstants().MaxSignatories();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.MultisigConstants().MaxSignatories();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.MultisigConstants().MaxSignatories();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.MultisigConstants().MaxSignatories();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.MultisigConstants().MaxSignatories();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.MultisigConstants().MaxSignatories();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum MultisigErrors
     {
-        
         /// <summary>
         /// >> MinimumThreshold
         /// Threshold must be 2 or greater.
         /// </summary>
         MinimumThreshold,
-        
         /// <summary>
         /// >> AlreadyApproved
         /// Call is already approved by this signatory.
         /// </summary>
         AlreadyApproved,
-        
         /// <summary>
         /// >> NoApprovalsNeeded
         /// Call doesn't need any (more) approvals.
         /// </summary>
         NoApprovalsNeeded,
-        
         /// <summary>
         /// >> TooFewSignatories
         /// There are too few signatories in the list.
         /// </summary>
         TooFewSignatories,
-        
         /// <summary>
         /// >> TooManySignatories
         /// There are too many signatories in the list.
         /// </summary>
         TooManySignatories,
-        
         /// <summary>
         /// >> SignatoriesOutOfOrder
         /// The signatories were provided out of order; they should be ordered.
         /// </summary>
         SignatoriesOutOfOrder,
-        
         /// <summary>
         /// >> SenderInSignatories
         /// The sender was contained in the other signatories; it shouldn't be.
         /// </summary>
         SenderInSignatories,
-        
         /// <summary>
         /// >> NotFound
         /// Multisig operation not found when attempting to cancel.
         /// </summary>
         NotFound,
-        
         /// <summary>
         /// >> NotOwner
         /// Only the account that originally created the multisig is able to cancel it.
         /// </summary>
         NotOwner,
-        
         /// <summary>
         /// >> NoTimepoint
         /// No timepoint was given, yet the multisig operation is already underway.
         /// </summary>
         NoTimepoint,
-        
         /// <summary>
         /// >> WrongTimepoint
         /// A different timepoint was given to the multisig operation that is underway.
         /// </summary>
         WrongTimepoint,
-        
         /// <summary>
         /// >> UnexpectedTimepoint
         /// A timepoint was given, yet no multisig operation is underway.
         /// </summary>
         UnexpectedTimepoint,
-        
         /// <summary>
         /// >> MaxWeightTooLow
         /// The maximum weight information provided was too low.
         /// </summary>
         MaxWeightTooLow,
-        
         /// <summary>
         /// >> AlreadyStored
         /// The data to be stored is already stored.
         /// </summary>
-        AlreadyStored,
+        AlreadyStored
     }
 }

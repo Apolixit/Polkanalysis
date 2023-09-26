@@ -6,71 +6,380 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using Substrate.NetApi;
-using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-
+using Substrate.NetApi.Model.Meta;
+using System.Threading;
+using Substrate.NetApi;
+using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Extrinsics;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    
-    
     public sealed class PhragmenElectionStorage
     {
-        
-        // Substrate client for the storage calls.
+        /// <summary>
+        /// Substrate client for the storage calls.
+        /// </summary>
         private SubstrateClientExt _client;
-        
-        public PhragmenElectionStorage(SubstrateClientExt client)
+        public string blockHash { get; set; } = null;
+
+        public async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            this._client = client;
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Members"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "RunnersUp"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Candidates"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>>)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "ElectionRounds"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(null, null, typeof(Substrate.NetApi.Model.Types.Primitive.U32)));
-            _client.StorageKeyDict.Add(new System.Tuple<string, string>("PhragmenElection", "Voting"), new System.Tuple<Substrate.NetApi.Model.Meta.Storage.Hasher[], System.Type, System.Type>(new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                            Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32), typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter)));
+            var result = await _client.State.GetRuntimeVersionAtAsync(blockHash, token);
+            return result.SpecVersion;
         }
-        
+
+        /// <summary>
+        /// Storage for SpecVersion 9110
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage _phragmenElectionStorageV9110;
+        /// <summary>
+        /// Storage for SpecVersion 9122
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage _phragmenElectionStorageV9122;
+        /// <summary>
+        /// Storage for SpecVersion 9140
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage _phragmenElectionStorageV9140;
+        /// <summary>
+        /// Storage for SpecVersion 9151
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage _phragmenElectionStorageV9151;
+        /// <summary>
+        /// Storage for SpecVersion 9170
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage _phragmenElectionStorageV9170;
+        /// <summary>
+        /// Storage for SpecVersion 9180
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage _phragmenElectionStorageV9180;
+        /// <summary>
+        /// Storage for SpecVersion 9190
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage _phragmenElectionStorageV9190;
+        /// <summary>
+        /// Storage for SpecVersion 9200
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage _phragmenElectionStorageV9200;
+        /// <summary>
+        /// Storage for SpecVersion 9220
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage _phragmenElectionStorageV9220;
+        /// <summary>
+        /// Storage for SpecVersion 9230
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage _phragmenElectionStorageV9230;
+        /// <summary>
+        /// Storage for SpecVersion 9250
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage _phragmenElectionStorageV9250;
+        /// <summary>
+        /// Storage for SpecVersion 9260
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage _phragmenElectionStorageV9260;
+        /// <summary>
+        /// Storage for SpecVersion 9270
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage _phragmenElectionStorageV9270;
+        /// <summary>
+        /// Storage for SpecVersion 9280
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage _phragmenElectionStorageV9280;
+        /// <summary>
+        /// Storage for SpecVersion 9281
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage _phragmenElectionStorageV9281;
+        /// <summary>
+        /// Storage for SpecVersion 9291
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage _phragmenElectionStorageV9291;
+        /// <summary>
+        /// Storage for SpecVersion 9300
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage _phragmenElectionStorageV9300;
+        /// <summary>
+        /// Storage for SpecVersion 9340
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage _phragmenElectionStorageV9340;
+        /// <summary>
+        /// Storage for SpecVersion 9360
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage _phragmenElectionStorageV9360;
+        /// <summary>
+        /// Storage for SpecVersion 9370
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage _phragmenElectionStorageV9370;
+        /// <summary>
+        /// Storage for SpecVersion 9420
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage _phragmenElectionStorageV9420;
+        /// <summary>
+        /// Storage for SpecVersion 9430
+        /// </summary>
+        private Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage _phragmenElectionStorageV9430;
         /// <summary>
         /// >> MembersParams
         ///  The current elected members.
         /// 
         ///  Invariant: Always sorted based on account id.
         /// </summary>
-        public static string MembersParams()
+        public static string MembersParams(uint version)
         {
-            return RequestGenerator.GetStorage("PhragmenElection", "Members", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.MembersParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.MembersParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.MembersParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.MembersParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.MembersParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.MembersParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.MembersParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.MembersParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.MembersParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.MembersParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.MembersParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.MembersParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.MembersParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.MembersParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.MembersParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.MembersParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.MembersParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.MembersParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.MembersParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.MembersParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.MembersParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.MembersParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> MembersDefault
         /// Default value as hex string
         /// </summary>
-        public static string MembersDefault()
+        public static string MembersDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.MembersDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.MembersDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.MembersDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.MembersDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.MembersDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.MembersDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.MembersDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.MembersDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.MembersDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.MembersDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.MembersDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.MembersDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.MembersDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.MembersDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.MembersDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.MembersDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.MembersDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.MembersDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.MembersDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.MembersDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.MembersDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.MembersDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Members
         ///  The current elected members.
         /// 
         ///  Invariant: Always sorted based on account id.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> Members(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> MembersAsync(CancellationToken token)
         {
-            string parameters = PhragmenElectionStorage.MembersParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _phragmenElectionStorageV9110.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9110.Members(token);
+            }
+
+            if (version == 9122U)
+            {
+                _phragmenElectionStorageV9122.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9122.Members(token);
+            }
+
+            if (version == 9140U)
+            {
+                _phragmenElectionStorageV9140.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9140.Members(token);
+            }
+
+            if (version == 9151U)
+            {
+                _phragmenElectionStorageV9151.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9151.Members(token);
+            }
+
+            if (version == 9170U)
+            {
+                _phragmenElectionStorageV9170.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9170.Members(token);
+            }
+
+            if (version == 9180U)
+            {
+                _phragmenElectionStorageV9180.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9180.Members(token);
+            }
+
+            if (version == 9190U)
+            {
+                _phragmenElectionStorageV9190.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9190.Members(token);
+            }
+
+            if (version == 9200U)
+            {
+                _phragmenElectionStorageV9200.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9200.Members(token);
+            }
+
+            if (version == 9220U)
+            {
+                _phragmenElectionStorageV9220.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9220.Members(token);
+            }
+
+            if (version == 9230U)
+            {
+                _phragmenElectionStorageV9230.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9230.Members(token);
+            }
+
+            if (version == 9250U)
+            {
+                _phragmenElectionStorageV9250.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9250.Members(token);
+            }
+
+            if (version == 9260U)
+            {
+                _phragmenElectionStorageV9260.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9260.Members(token);
+            }
+
+            if (version == 9270U)
+            {
+                _phragmenElectionStorageV9270.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9270.Members(token);
+            }
+
+            if (version == 9280U)
+            {
+                _phragmenElectionStorageV9280.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9280.Members(token);
+            }
+
+            if (version == 9281U)
+            {
+                _phragmenElectionStorageV9281.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9281.Members(token);
+            }
+
+            if (version == 9291U)
+            {
+                _phragmenElectionStorageV9291.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9291.Members(token);
+            }
+
+            if (version == 9300U)
+            {
+                _phragmenElectionStorageV9300.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9300.Members(token);
+            }
+
+            if (version == 9340U)
+            {
+                _phragmenElectionStorageV9340.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9340.Members(token);
+            }
+
+            if (version == 9360U)
+            {
+                _phragmenElectionStorageV9360.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9360.Members(token);
+            }
+
+            if (version == 9370U)
+            {
+                _phragmenElectionStorageV9370.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9370.Members(token);
+            }
+
+            if (version == 9420U)
+            {
+                _phragmenElectionStorageV9420.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9420.Members(token);
+            }
+
+            if (version == 9430U)
+            {
+                _phragmenElectionStorageV9430.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9430.Members(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RunnersUpParams
         ///  The current reserved runners-up.
@@ -78,20 +387,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant: Always sorted based on rank (worse to best). Upon removal of a member, the
         ///  last (i.e. _best_) runner-up will be replaced.
         /// </summary>
-        public static string RunnersUpParams()
+        public static string RunnersUpParams(uint version)
         {
-            return RequestGenerator.GetStorage("PhragmenElection", "RunnersUp", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.RunnersUpParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.RunnersUpParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RunnersUpDefault
         /// Default value as hex string
         /// </summary>
-        public static string RunnersUpDefault()
+        public static string RunnersUpDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.RunnersUpDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.RunnersUpDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> RunnersUp
         ///  The current reserved runners-up.
@@ -99,13 +502,147 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Invariant: Always sorted based on rank (worse to best). Upon removal of a member, the
         ///  last (i.e. _best_) runner-up will be replaced.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>> RunnersUp(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> RunnersUpAsync(CancellationToken token)
         {
-            string parameters = PhragmenElectionStorage.RunnersUpParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.SeatHolder>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _phragmenElectionStorageV9110.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9110.RunnersUp(token);
+            }
+
+            if (version == 9122U)
+            {
+                _phragmenElectionStorageV9122.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9122.RunnersUp(token);
+            }
+
+            if (version == 9140U)
+            {
+                _phragmenElectionStorageV9140.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9140.RunnersUp(token);
+            }
+
+            if (version == 9151U)
+            {
+                _phragmenElectionStorageV9151.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9151.RunnersUp(token);
+            }
+
+            if (version == 9170U)
+            {
+                _phragmenElectionStorageV9170.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9170.RunnersUp(token);
+            }
+
+            if (version == 9180U)
+            {
+                _phragmenElectionStorageV9180.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9180.RunnersUp(token);
+            }
+
+            if (version == 9190U)
+            {
+                _phragmenElectionStorageV9190.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9190.RunnersUp(token);
+            }
+
+            if (version == 9200U)
+            {
+                _phragmenElectionStorageV9200.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9200.RunnersUp(token);
+            }
+
+            if (version == 9220U)
+            {
+                _phragmenElectionStorageV9220.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9220.RunnersUp(token);
+            }
+
+            if (version == 9230U)
+            {
+                _phragmenElectionStorageV9230.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9230.RunnersUp(token);
+            }
+
+            if (version == 9250U)
+            {
+                _phragmenElectionStorageV9250.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9250.RunnersUp(token);
+            }
+
+            if (version == 9260U)
+            {
+                _phragmenElectionStorageV9260.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9260.RunnersUp(token);
+            }
+
+            if (version == 9270U)
+            {
+                _phragmenElectionStorageV9270.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9270.RunnersUp(token);
+            }
+
+            if (version == 9280U)
+            {
+                _phragmenElectionStorageV9280.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9280.RunnersUp(token);
+            }
+
+            if (version == 9281U)
+            {
+                _phragmenElectionStorageV9281.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9281.RunnersUp(token);
+            }
+
+            if (version == 9291U)
+            {
+                _phragmenElectionStorageV9291.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9291.RunnersUp(token);
+            }
+
+            if (version == 9300U)
+            {
+                _phragmenElectionStorageV9300.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9300.RunnersUp(token);
+            }
+
+            if (version == 9340U)
+            {
+                _phragmenElectionStorageV9340.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9340.RunnersUp(token);
+            }
+
+            if (version == 9360U)
+            {
+                _phragmenElectionStorageV9360.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9360.RunnersUp(token);
+            }
+
+            if (version == 9370U)
+            {
+                _phragmenElectionStorageV9370.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9370.RunnersUp(token);
+            }
+
+            if (version == 9420U)
+            {
+                _phragmenElectionStorageV9420.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9420.RunnersUp(token);
+            }
+
+            if (version == 9430U)
+            {
+                _phragmenElectionStorageV9430.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9430.RunnersUp(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CandidatesParams
         ///  The present candidate list. A current member or runner-up can never enter this vector
@@ -115,20 +652,114 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Invariant: Always sorted based on account id.
         /// </summary>
-        public static string CandidatesParams()
+        public static string CandidatesParams(uint version)
         {
-            return RequestGenerator.GetStorage("PhragmenElection", "Candidates", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.CandidatesParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.CandidatesParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> CandidatesDefault
         /// Default value as hex string
         /// </summary>
-        public static string CandidatesDefault()
+        public static string CandidatesDefault(uint version)
         {
-            return "0x00";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.CandidatesDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.CandidatesDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Candidates
         ///  The present candidate list. A current member or runner-up can never enter this vector
@@ -138,176 +769,807 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         /// 
         ///  Invariant: Always sorted based on account id.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>>> Candidates(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable> CandidatesAsync(CancellationToken token)
         {
-            string parameters = PhragmenElectionStorage.CandidatesParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U128>>>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnumerable param = null;
+            if (version == 9110U)
+            {
+                _phragmenElectionStorageV9110.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9110.Candidates(token);
+            }
+
+            if (version == 9122U)
+            {
+                _phragmenElectionStorageV9122.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9122.Candidates(token);
+            }
+
+            if (version == 9140U)
+            {
+                _phragmenElectionStorageV9140.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9140.Candidates(token);
+            }
+
+            if (version == 9151U)
+            {
+                _phragmenElectionStorageV9151.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9151.Candidates(token);
+            }
+
+            if (version == 9170U)
+            {
+                _phragmenElectionStorageV9170.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9170.Candidates(token);
+            }
+
+            if (version == 9180U)
+            {
+                _phragmenElectionStorageV9180.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9180.Candidates(token);
+            }
+
+            if (version == 9190U)
+            {
+                _phragmenElectionStorageV9190.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9190.Candidates(token);
+            }
+
+            if (version == 9200U)
+            {
+                _phragmenElectionStorageV9200.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9200.Candidates(token);
+            }
+
+            if (version == 9220U)
+            {
+                _phragmenElectionStorageV9220.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9220.Candidates(token);
+            }
+
+            if (version == 9230U)
+            {
+                _phragmenElectionStorageV9230.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9230.Candidates(token);
+            }
+
+            if (version == 9250U)
+            {
+                _phragmenElectionStorageV9250.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9250.Candidates(token);
+            }
+
+            if (version == 9260U)
+            {
+                _phragmenElectionStorageV9260.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9260.Candidates(token);
+            }
+
+            if (version == 9270U)
+            {
+                _phragmenElectionStorageV9270.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9270.Candidates(token);
+            }
+
+            if (version == 9280U)
+            {
+                _phragmenElectionStorageV9280.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9280.Candidates(token);
+            }
+
+            if (version == 9281U)
+            {
+                _phragmenElectionStorageV9281.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9281.Candidates(token);
+            }
+
+            if (version == 9291U)
+            {
+                _phragmenElectionStorageV9291.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9291.Candidates(token);
+            }
+
+            if (version == 9300U)
+            {
+                _phragmenElectionStorageV9300.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9300.Candidates(token);
+            }
+
+            if (version == 9340U)
+            {
+                _phragmenElectionStorageV9340.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9340.Candidates(token);
+            }
+
+            if (version == 9360U)
+            {
+                _phragmenElectionStorageV9360.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9360.Candidates(token);
+            }
+
+            if (version == 9370U)
+            {
+                _phragmenElectionStorageV9370.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9370.Candidates(token);
+            }
+
+            if (version == 9420U)
+            {
+                _phragmenElectionStorageV9420.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9420.Candidates(token);
+            }
+
+            if (version == 9430U)
+            {
+                _phragmenElectionStorageV9430.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9430.Candidates(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ElectionRoundsParams
         ///  The total number of vote rounds that have happened, excluding the upcoming one.
         /// </summary>
-        public static string ElectionRoundsParams()
+        public static string ElectionRoundsParams(uint version)
         {
-            return RequestGenerator.GetStorage("PhragmenElection", "ElectionRounds", Substrate.NetApi.Model.Meta.Storage.Type.Plain);
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.ElectionRoundsParams();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.ElectionRoundsParams();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ElectionRoundsDefault
         /// Default value as hex string
         /// </summary>
-        public static string ElectionRoundsDefault()
+        public static string ElectionRoundsDefault(uint version)
         {
-            return "0x00000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.ElectionRoundsDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> ElectionRounds
         ///  The total number of vote rounds that have happened, excluding the upcoming one.
         /// </summary>
-        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ElectionRounds(CancellationToken token)
+        public async Task<Substrate.NetApi.Model.Types.Primitive.U32> ElectionRoundsAsync(CancellationToken token)
         {
-            string parameters = PhragmenElectionStorage.ElectionRoundsParams();
-            var result = await _client.GetStorageAsync<Substrate.NetApi.Model.Types.Primitive.U32>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Substrate.NetApi.Model.Types.Primitive.U32 param = null;
+            if (version == 9110U)
+            {
+                _phragmenElectionStorageV9110.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9110.ElectionRounds(token);
+            }
+
+            if (version == 9122U)
+            {
+                _phragmenElectionStorageV9122.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9122.ElectionRounds(token);
+            }
+
+            if (version == 9140U)
+            {
+                _phragmenElectionStorageV9140.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9140.ElectionRounds(token);
+            }
+
+            if (version == 9151U)
+            {
+                _phragmenElectionStorageV9151.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9151.ElectionRounds(token);
+            }
+
+            if (version == 9170U)
+            {
+                _phragmenElectionStorageV9170.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9170.ElectionRounds(token);
+            }
+
+            if (version == 9180U)
+            {
+                _phragmenElectionStorageV9180.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9180.ElectionRounds(token);
+            }
+
+            if (version == 9190U)
+            {
+                _phragmenElectionStorageV9190.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9190.ElectionRounds(token);
+            }
+
+            if (version == 9200U)
+            {
+                _phragmenElectionStorageV9200.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9200.ElectionRounds(token);
+            }
+
+            if (version == 9220U)
+            {
+                _phragmenElectionStorageV9220.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9220.ElectionRounds(token);
+            }
+
+            if (version == 9230U)
+            {
+                _phragmenElectionStorageV9230.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9230.ElectionRounds(token);
+            }
+
+            if (version == 9250U)
+            {
+                _phragmenElectionStorageV9250.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9250.ElectionRounds(token);
+            }
+
+            if (version == 9260U)
+            {
+                _phragmenElectionStorageV9260.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9260.ElectionRounds(token);
+            }
+
+            if (version == 9270U)
+            {
+                _phragmenElectionStorageV9270.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9270.ElectionRounds(token);
+            }
+
+            if (version == 9280U)
+            {
+                _phragmenElectionStorageV9280.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9280.ElectionRounds(token);
+            }
+
+            if (version == 9281U)
+            {
+                _phragmenElectionStorageV9281.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9281.ElectionRounds(token);
+            }
+
+            if (version == 9291U)
+            {
+                _phragmenElectionStorageV9291.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9291.ElectionRounds(token);
+            }
+
+            if (version == 9300U)
+            {
+                _phragmenElectionStorageV9300.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9300.ElectionRounds(token);
+            }
+
+            if (version == 9340U)
+            {
+                _phragmenElectionStorageV9340.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9340.ElectionRounds(token);
+            }
+
+            if (version == 9360U)
+            {
+                _phragmenElectionStorageV9360.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9360.ElectionRounds(token);
+            }
+
+            if (version == 9370U)
+            {
+                _phragmenElectionStorageV9370.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9370.ElectionRounds(token);
+            }
+
+            if (version == 9420U)
+            {
+                _phragmenElectionStorageV9420.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9420.ElectionRounds(token);
+            }
+
+            if (version == 9430U)
+            {
+                _phragmenElectionStorageV9430.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9430.ElectionRounds(token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> VotingParams
         ///  Votes and locked stake of a particular voter.
         /// 
         ///  TWOX-NOTE: SAFE as `AccountId` is a crypto hash.
         /// </summary>
-        public static string VotingParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key)
+        public static string VotingParams(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, uint version)
         {
-            return RequestGenerator.GetStorage("PhragmenElection", "Voting", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                        Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat}, new Substrate.NetApi.Model.Types.IType[] {
-                        key});
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key);
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key);
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key);
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key);
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key);
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key);
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key);
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key);
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key);
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key);
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key);
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key);
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key);
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key);
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key);
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key);
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key);
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key);
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key);
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key);
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key);
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.VotingParams((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key);
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> VotingDefault
         /// Default value as hex string
         /// </summary>
-        public static string VotingDefault()
+        public static string VotingDefault(uint version)
         {
-            return "0x000000000000000000000000000000000000000000000000000000000000000000";
+            string param = null;
+            if (version == 9110U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage.VotingDefault();
+            if (version == 9122U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage.VotingDefault();
+            if (version == 9140U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage.VotingDefault();
+            if (version == 9151U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage.VotingDefault();
+            if (version == 9170U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage.VotingDefault();
+            if (version == 9180U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage.VotingDefault();
+            if (version == 9190U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage.VotingDefault();
+            if (version == 9200U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage.VotingDefault();
+            if (version == 9220U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage.VotingDefault();
+            if (version == 9230U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage.VotingDefault();
+            if (version == 9250U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage.VotingDefault();
+            if (version == 9260U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage.VotingDefault();
+            if (version == 9270U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage.VotingDefault();
+            if (version == 9280U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage.VotingDefault();
+            if (version == 9281U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage.VotingDefault();
+            if (version == 9291U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage.VotingDefault();
+            if (version == 9300U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage.VotingDefault();
+            if (version == 9340U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage.VotingDefault();
+            if (version == 9360U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage.VotingDefault();
+            if (version == 9370U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage.VotingDefault();
+            if (version == 9420U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage.VotingDefault();
+            if (version == 9430U)
+                param = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage.VotingDefault();
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
         }
-        
+
         /// <summary>
         /// >> Voting
         ///  Votes and locked stake of a particular voter.
         /// 
         ///  TWOX-NOTE: SAFE as `AccountId` is a crypto hash.
         /// </summary>
-        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter> Voting(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32 key, CancellationToken token)
+        public async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_elections_phragmen.VoterBase> VotingAsync(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base key, CancellationToken token)
         {
-            string parameters = PhragmenElectionStorage.VotingParams(key);
-            var result = await _client.GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.Voter>(parameters, token);
-            return result;
+            var version = await GetVersionAsync(token);
+            Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_elections_phragmen.VoterBase param = null;
+            if (version == 9110U)
+            {
+                _phragmenElectionStorageV9110.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9110.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9122U)
+            {
+                _phragmenElectionStorageV9122.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9122.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9140U)
+            {
+                _phragmenElectionStorageV9140.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9140.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9151U)
+            {
+                _phragmenElectionStorageV9151.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9151.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9170U)
+            {
+                _phragmenElectionStorageV9170.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9170.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9180U)
+            {
+                _phragmenElectionStorageV9180.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9180.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9190U)
+            {
+                _phragmenElectionStorageV9190.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9190.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9200U)
+            {
+                _phragmenElectionStorageV9200.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9200.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9220U)
+            {
+                _phragmenElectionStorageV9220.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9220.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9230U)
+            {
+                _phragmenElectionStorageV9230.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9230.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9250U)
+            {
+                _phragmenElectionStorageV9250.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9250.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9260U)
+            {
+                _phragmenElectionStorageV9260.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9260.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9270U)
+            {
+                _phragmenElectionStorageV9270.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9270.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9280U)
+            {
+                _phragmenElectionStorageV9280.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9280.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9281U)
+            {
+                _phragmenElectionStorageV9281.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9281.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9291U)
+            {
+                _phragmenElectionStorageV9291.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9291.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9300U)
+            {
+                _phragmenElectionStorageV9300.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9300.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9340U)
+            {
+                _phragmenElectionStorageV9340.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9340.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9360U)
+            {
+                _phragmenElectionStorageV9360.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9360.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9370U)
+            {
+                _phragmenElectionStorageV9370.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9370.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9420U)
+            {
+                _phragmenElectionStorageV9420.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9420.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (version == 9430U)
+            {
+                _phragmenElectionStorageV9430.blockHash = blockHash;
+                param = await _phragmenElectionStorageV9430.Voting((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+            }
+
+            if (param == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return param;
+        }
+
+        public PhragmenElectionStorage(SubstrateClientExt client)
+        {
+            _client = client;
+            _phragmenElectionStorageV9110 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9122 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9151 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9170 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9180 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9190 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9200 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9220 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9250 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9260 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9270 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9280 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9281 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9291 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9300 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9360 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9420 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionStorage(_client);
+            _phragmenElectionStorageV9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionStorage(_client);
         }
     }
-    
-    public sealed class PhragmenElectionCalls
-    {
-        
-        /// <summary>
-        /// >> vote
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method Vote(Substrate.NetApi.Model.Types.Base.BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32> votes, Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U128> value)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(votes.Encode());
-            byteArray.AddRange(value.Encode());
-            return new Method(17, "PhragmenElection", 0, "vote", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> remove_voter
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RemoveVoter()
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            return new Method(17, "PhragmenElection", 1, "remove_voter", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> submit_candidacy
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method SubmitCandidacy(Substrate.NetApi.Model.Types.Base.BaseCom<Substrate.NetApi.Model.Types.Primitive.U32> candidate_count)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(candidate_count.Encode());
-            return new Method(17, "PhragmenElection", 2, "submit_candidacy", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> renounce_candidacy
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RenounceCandidacy(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_elections_phragmen.EnumRenouncing renouncing)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(renouncing.Encode());
-            return new Method(17, "PhragmenElection", 3, "renounce_candidacy", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> remove_member
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method RemoveMember(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.multiaddress.EnumMultiAddress who, Substrate.NetApi.Model.Types.Primitive.Bool slash_bond, Substrate.NetApi.Model.Types.Primitive.Bool rerun_election)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(who.Encode());
-            byteArray.AddRange(slash_bond.Encode());
-            byteArray.AddRange(rerun_election.Encode());
-            return new Method(17, "PhragmenElection", 4, "remove_member", byteArray.ToArray());
-        }
-        
-        /// <summary>
-        /// >> clean_defunct_voters
-        /// Contains one variant per dispatchable that can be called by an extrinsic.
-        /// </summary>
-        public static Method CleanDefunctVoters(Substrate.NetApi.Model.Types.Primitive.U32 num_voters, Substrate.NetApi.Model.Types.Primitive.U32 num_defunct)
-        {
-            System.Collections.Generic.List<byte> byteArray = new List<byte>();
-            byteArray.AddRange(num_voters.Encode());
-            byteArray.AddRange(num_defunct.Encode());
-            return new Method(17, "PhragmenElection", 5, "clean_defunct_voters", byteArray.ToArray());
-        }
-    }
-    
+
     public sealed class PhragmenElectionConstants
     {
-        
         /// <summary>
         /// >> PalletId
         ///  Identifier for the elections-phragmen pallet's lock
         /// </summary>
-        public Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 PalletId()
+        public Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 PalletId(uint version)
         {
-            var result = new Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8();
-            result.Create("0x706872656C656374");
+            Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr8U8 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionConstants().PalletId();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionConstants().PalletId();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionConstants().PalletId();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionConstants().PalletId();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionConstants().PalletId();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionConstants().PalletId();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionConstants().PalletId();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionConstants().PalletId();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionConstants().PalletId();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionConstants().PalletId();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionConstants().PalletId();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionConstants().PalletId();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionConstants().PalletId();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().PalletId();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().PalletId();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().PalletId();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().PalletId();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().PalletId();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().PalletId();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().PalletId();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().PalletId();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().PalletId();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> CandidacyBond
         ///  How much should be locked up in order to submit one's candidacy.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 CandidacyBond()
+        public Substrate.NetApi.Model.Types.Primitive.U128 CandidacyBond(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x0010A5D4E80000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().CandidacyBond();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().CandidacyBond();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> VotingBondBase
         ///  Base deposit associated with voting.
@@ -315,59 +1577,284 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  This should be sensibly high to economically ensure the pallet cannot be attacked by
         ///  creating a gigantic number of votes.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 VotingBondBase()
+        public Substrate.NetApi.Model.Types.Primitive.U128 VotingBondBase(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x007013B72E0000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().VotingBondBase();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().VotingBondBase();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> VotingBondFactor
         ///  The amount of bond that need to be locked for each vote (32 bytes).
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U128 VotingBondFactor()
+        public Substrate.NetApi.Model.Types.Primitive.U128 VotingBondFactor(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U128();
-            result.Create("0x00D01213000000000000000000000000");
+            Substrate.NetApi.Model.Types.Primitive.U128 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().VotingBondFactor();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().VotingBondFactor();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> DesiredMembers
         ///  Number of members to elect.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 DesiredMembers()
+        public Substrate.NetApi.Model.Types.Primitive.U32 DesiredMembers(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x0D000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().DesiredMembers();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().DesiredMembers();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> DesiredRunnersUp
         ///  Number of runners_up to keep.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 DesiredRunnersUp()
+        public Substrate.NetApi.Model.Types.Primitive.U32 DesiredRunnersUp(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x14000000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().DesiredRunnersUp();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().DesiredRunnersUp();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> TermDuration
         ///  How long each seat is kept. This defines the next block number at which an election
         ///  round will happen. If set to zero, no elections are ever triggered and the module will
         ///  be in passive mode.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 TermDuration()
+        public Substrate.NetApi.Model.Types.Primitive.U32 TermDuration(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0xC0890100");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9110U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9110.PhragmenElectionConstants().TermDuration();
+            if (version == 9122U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9122.PhragmenElectionConstants().TermDuration();
+            if (version == 9140U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9140.PhragmenElectionConstants().TermDuration();
+            if (version == 9151U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9151.PhragmenElectionConstants().TermDuration();
+            if (version == 9170U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9170.PhragmenElectionConstants().TermDuration();
+            if (version == 9180U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9180.PhragmenElectionConstants().TermDuration();
+            if (version == 9190U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9190.PhragmenElectionConstants().TermDuration();
+            if (version == 9200U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9200.PhragmenElectionConstants().TermDuration();
+            if (version == 9220U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9220.PhragmenElectionConstants().TermDuration();
+            if (version == 9230U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9230.PhragmenElectionConstants().TermDuration();
+            if (version == 9250U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9250.PhragmenElectionConstants().TermDuration();
+            if (version == 9260U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9260.PhragmenElectionConstants().TermDuration();
+            if (version == 9270U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9270.PhragmenElectionConstants().TermDuration();
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().TermDuration();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().TermDuration();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().TermDuration();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().TermDuration();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().TermDuration();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().TermDuration();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().TermDuration();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().TermDuration();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().TermDuration();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxCandidates
         ///  The maximum number of candidates in a phragmen election.
@@ -376,13 +1863,32 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  the size of the election. When this limit is reached no more
         ///  candidates are accepted in the election.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxCandidates()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxCandidates(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0xE8030000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().MaxCandidates();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().MaxCandidates();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
-        
+
         /// <summary>
         /// >> MaxVoters
         ///  The maximum number of voters to allow in a phragmen election.
@@ -390,117 +1896,143 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
         ///  Warning: This impacts the size of the election which is run onchain.
         ///  When the limit is reached the new voters are ignored.
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U32 MaxVoters()
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxVoters(uint version)
         {
-            var result = new Substrate.NetApi.Model.Types.Primitive.U32();
-            result.Create("0x10270000");
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9280U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9280.PhragmenElectionConstants().MaxVoters();
+            if (version == 9281U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9281.PhragmenElectionConstants().MaxVoters();
+            if (version == 9291U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9291.PhragmenElectionConstants().MaxVoters();
+            if (version == 9300U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9300.PhragmenElectionConstants().MaxVoters();
+            if (version == 9340U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9340.PhragmenElectionConstants().MaxVoters();
+            if (version == 9360U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9360.PhragmenElectionConstants().MaxVoters();
+            if (version == 9370U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9370.PhragmenElectionConstants().MaxVoters();
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().MaxVoters();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().MaxVoters();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
+            return result;
+        }
+
+        /// <summary>
+        /// >> MaxVotesPerVoter
+        ///  Maximum numbers of votes per voter.
+        /// 
+        ///  Warning: This impacts the size of the election which is run onchain. Chose wisely, and
+        ///  consider how it will impact `T::WeightInfo::election_phragmen`.
+        /// </summary>
+        public Substrate.NetApi.Model.Types.Primitive.U32 MaxVotesPerVoter(uint version)
+        {
+            Substrate.NetApi.Model.Types.Primitive.U32 result = null;
+            if (version == 9420U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9420.PhragmenElectionConstants().MaxVotesPerVoter();
+            if (version == 9430U)
+                result = new Polkanalysis.Polkadot.NetApiExt.Generated.Storage.v9430.PhragmenElectionConstants().MaxVotesPerVoter();
+            if (result == null)
+                throw new System.InvalidOperationException("Error while fetching data");
             return result;
         }
     }
-    
+
     public enum PhragmenElectionErrors
     {
-        
         /// <summary>
         /// >> UnableToVote
         /// Cannot vote when no candidates or members exist.
         /// </summary>
         UnableToVote,
-        
         /// <summary>
         /// >> NoVotes
         /// Must vote for at least one candidate.
         /// </summary>
         NoVotes,
-        
         /// <summary>
         /// >> TooManyVotes
         /// Cannot vote more than candidates.
         /// </summary>
         TooManyVotes,
-        
         /// <summary>
         /// >> MaximumVotesExceeded
         /// Cannot vote more than maximum allowed.
         /// </summary>
         MaximumVotesExceeded,
-        
         /// <summary>
         /// >> LowBalance
         /// Cannot vote with stake less than minimum balance.
         /// </summary>
         LowBalance,
-        
         /// <summary>
         /// >> UnableToPayBond
         /// Voter can not pay voting bond.
         /// </summary>
         UnableToPayBond,
-        
         /// <summary>
         /// >> MustBeVoter
         /// Must be a voter.
         /// </summary>
         MustBeVoter,
-        
+        /// <summary>
+        /// >> ReportSelf
+        /// Cannot report self.
+        /// </summary>
+        ReportSelf,
         /// <summary>
         /// >> DuplicatedCandidate
         /// Duplicated candidate submission.
         /// </summary>
         DuplicatedCandidate,
-        
-        /// <summary>
-        /// >> TooManyCandidates
-        /// Too many candidates have been created.
-        /// </summary>
-        TooManyCandidates,
-        
         /// <summary>
         /// >> MemberSubmit
         /// Member cannot re-submit candidacy.
         /// </summary>
         MemberSubmit,
-        
         /// <summary>
         /// >> RunnerUpSubmit
         /// Runner cannot re-submit candidacy.
         /// </summary>
         RunnerUpSubmit,
-        
         /// <summary>
         /// >> InsufficientCandidateFunds
         /// Candidate does not have enough funds.
         /// </summary>
         InsufficientCandidateFunds,
-        
         /// <summary>
         /// >> NotMember
         /// Not a member.
         /// </summary>
         NotMember,
-        
         /// <summary>
         /// >> InvalidWitnessData
         /// The provided count of number of candidates is incorrect.
         /// </summary>
         InvalidWitnessData,
-        
         /// <summary>
         /// >> InvalidVoteCount
         /// The provided count of number of votes is incorrect.
         /// </summary>
         InvalidVoteCount,
-        
         /// <summary>
         /// >> InvalidRenouncing
         /// The renouncing origin presented a wrong `Renouncing` parameter.
         /// </summary>
         InvalidRenouncing,
-        
         /// <summary>
         /// >> InvalidReplacement
         /// Prediction regarding replacement after member removal is wrong.
         /// </summary>
         InvalidReplacement,
+        /// <summary>
+        /// >> TooManyCandidates
+        /// Too many candidates have been created.
+        /// </summary>
+        TooManyCandidates
     }
 }
