@@ -149,21 +149,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             return true; // TODO
         }
 
-        public ITimeQueryable At(U32 blockNumber)
-        {
-            throw new NotImplementedException();
-        }
-
         public ITimeQueryable At(BlockNumber blockNumber)
         {
-            throw new NotImplementedException();
+            Storage.BlockHash = Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).GetAwaiter().GetResult().Value;
+            return this;
         }
 
-        public ITimeQueryable At(uint blockNumber)
-        {
-            //Rpc.Chain.GetBlockHashAsync(new BlockNumber(i), cancellationToken);
-            throw new NotImplementedException();
-        }
+        public ITimeQueryable At(U32 blockNumber) => At(blockNumber.Value);
+
+        public ITimeQueryable At(uint blockNumber) => At(new BlockNumber(blockNumber));
+
+        public ITimeQueryable At(int blockNumber) => At((uint)blockNumber);
 
         public ITimeQueryable At(Hash blockHash)
         {

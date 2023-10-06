@@ -33,7 +33,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 
         protected async Task<string> GetBlockHashAsync(int blockNum)
         {
-            return string.Empty;
+            var res = await _substrateRepository.AjunaClient.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber((uint)blockNum));
+            return res.Value;
         }
     }
 }

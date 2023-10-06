@@ -19,8 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Blockchains\Polkanalysis.Kusama.NetApiExt\Polkanalysis.Kusama.NetApiExt.csproj" />
-    <ProjectReference Include="..\..\Blockchains\Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj" />
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
   </ItemGroup>
@@ -28,6 +26,12 @@
   <ItemGroup>
     <Folder Include="Kusama\" />
     <Folder Include="Bajun\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Polkanalysis.Polkadot.NetApiExt">
+      <HintPath>..\..\..\..\SubstrateBlockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

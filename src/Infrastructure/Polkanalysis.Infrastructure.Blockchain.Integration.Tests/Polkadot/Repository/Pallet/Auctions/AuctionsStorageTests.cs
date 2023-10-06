@@ -27,7 +27,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCaseSource(nameof(AuctionInformationTestCases))]
         public async Task AuctionInformation_ShouldWorkAsync(int numBlock)
         {
-            var res = await _substrateRepository.At(await GetBlockHashAsync(numBlock)).Storage.Auctions.AuctionInfoAsync(CancellationToken.None);
+            var res = await _substrateRepository.At((uint)numBlock).Storage.Auctions.AuctionInfoAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
 
             // Lease period

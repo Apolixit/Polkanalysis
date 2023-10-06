@@ -19,6 +19,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary
         public ITimeQueryable At(U32 blockNumber);
         public ITimeQueryable At(BlockNumber blockNumber);
         public ITimeQueryable At(uint blockNumber);
+        public ITimeQueryable At(int blockNumber);
         public ITimeQueryable At(Hash blockHash);
         public ITimeQueryable At(string blockHash);
 
