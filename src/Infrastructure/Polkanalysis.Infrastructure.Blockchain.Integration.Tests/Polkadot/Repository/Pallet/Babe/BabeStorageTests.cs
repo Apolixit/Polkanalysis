@@ -5,10 +5,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
 {
     public class BabeStorageTests : PolkadotIntegrationTest
     {
+        
+
         [Test]
-        public async Task Authorities_ShouldWorkAsync()
+        [TestCaseSource(nameof(AllBlockVersionTestCases))]
+        public async Task Authorities_ShouldWorkAsync(int numBlock)
         {
-            var res = await _substrateRepository.Storage.Babe.AuthoritiesAsync(CancellationToken.None);
+            var res = await _substrateRepository.At(numBlock).Storage.Babe.AuthoritiesAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Value.Length, Is.GreaterThan(1));
