@@ -1,18 +1,15 @@
-﻿using Substrate.NetApi;
-using Substrate.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using BalancesStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.BalancesStorage;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -28,49 +25,63 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<AccountData> AccountAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var accountId32 = await MapAccoundId32Async(account, token);
 
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
-                AccountData>
-                (accountId32, BalancesStorageExt.AccountParams, token);
+            return Map<IType, AccountData>(await _client.BalancesStorage.AccountAsync(accountId32, token));
+
+            //if(res is Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.AccountDataBase acc1)
+            //    return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.AccountDataBase, AccountData>(acc1);
+            //else if(res is Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.AccountDataBase acc2)
+            //    return PolkadotMapping.Instance.Map<
+            //        Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.AccountDataBase, AccountData>(acc2);
+
+            //throw new MissingMappingException($"{nameof(AccountAsync)} call does not have mapping");
+            //return await GetStorageWithParamsAsync<
+            //    AccountId32,
+            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
+            //    AccountData>
+            //    (accountId32, BalancesStorageExt.AccountParams, token);
+        }
+
+        public async Task<IdAmount> FreezesAsync(SubstrateAccount key, CancellationToken token)
+        {
+            var accountId32 = await MapAccoundId32Async(key, token);
+            return Map<IBaseEnumerable, IdAmount>(await _client.BalancesStorage.FreezesAsync(accountId32, token));
+        }
+
+        public async Task<IdAmount> HoldsAsync(SubstrateAccount key, CancellationToken token)
+        {
+            var accountId32 = await MapAccoundId32Async(key, token);
+            return Map<IBaseEnumerable, IdAmount>(await _client.BalancesStorage.HoldsAsync(accountId32, token));
         }
 
         public async Task<U128> InactiveIssuanceAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U128>(BalancesStorageExt.InactiveIssuanceParams, token);
+            return await _client.BalancesStorage.InactiveIssuanceAsync(token);
         }
 
         public async Task<BaseVec<BalanceLock>> LocksAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            var res = await _client.BalancesStorage.LocksAsync(accountId32, token);
 
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                WeakBoundedVecT3,
-                BaseVec<BalanceLock>>
-                (accountId32, BalancesStorageExt.LocksParams, token);
+            return await MapWithVersionAsync<IBaseEnumerable, BaseVec<BalanceLock>>(res, token);
         }
 
         public async Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<IBaseEnumerable, BaseVec<ReserveData>>(await _client.BalancesStorage.ReservesAsync(accountId32, token));
+        }
 
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                BoundedVecT6,
-                BaseVec<ReserveData>>
-                (accountId32, BalancesStorageExt.ReservesParams, token);
-
-            //var res = await GetStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6>(BalancesStorageExt.ReservesParams(accountId32), token);
-
-            //return SubstrateMapper.Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT6, BaseVec<ReserveData>>(res);
+        public async Task<EnumReleases> StorageVersionAsync(CancellationToken token)
+        {
+            return Map<IBaseEnum, EnumReleases>(await _client.BalancesStorage.StorageVersionAsync(token));
         }
 
         public async Task<U128> TotalIssuanceAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U128>(BalancesStorageExt.TotalIssuanceParams, token);
+            return await _client.BalancesStorage.TotalIssuanceAsync(token);
         }
     }
 }

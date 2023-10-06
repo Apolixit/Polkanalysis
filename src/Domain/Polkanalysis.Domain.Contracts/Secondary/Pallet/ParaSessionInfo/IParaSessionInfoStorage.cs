@@ -46,5 +46,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.ParaSessionInfo
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BaseVec<SubstrateAccount>> AccountKeysAsync(U32 key, CancellationToken token);
+
+        Task<ExecutorParams> SessionExecutorParamsAsync(U32 key, CancellationToken token);
     }
 }

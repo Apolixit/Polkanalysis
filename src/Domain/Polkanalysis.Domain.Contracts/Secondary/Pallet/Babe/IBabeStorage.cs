@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Sp;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe
 {
@@ -34,14 +36,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<U64> GenesisSlotAsync(CancellationToken token);
+        public Task<Slot> GenesisSlotAsync(CancellationToken token);
 
         /// <summary>
         /// Current slot number.
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<U64> CurrentSlotAsync(CancellationToken token);
+        public Task<Slot> CurrentSlotAsync(CancellationToken token);
 
         /// <summary>
         ///  The epoch randomness for the *current* epoch.
@@ -158,5 +160,18 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BabeEpochConfiguration> NextEpochConfigAsync(CancellationToken token);
+
+        /// <summary>
+        /// >> SkippedEpochs
+        ///  A list of the last 100 skipped epochs and the corresponding session index
+        ///  when the epoch was skipped.
+        /// 
+        ///  This is only used for validating equivocation proofs. An equivocation proof
+        ///  must contains a key-ownership proof for a given session, therefore we need a
+        ///  way to tie together sessions and epoch indices, i.e. we need to validate that
+        ///  a validator was the owner of a given key on a given session, and what the
+        ///  active epoch index was during that session.
+        /// </summary>
+        public Task<BaseVec<BaseTuple<U64, U32>>> SkippedEpochsAsync(CancellationToken token);
     }
 }

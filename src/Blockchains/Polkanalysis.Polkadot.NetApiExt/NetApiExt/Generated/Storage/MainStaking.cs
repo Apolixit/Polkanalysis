@@ -14,6 +14,12 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Substrate.NetApi.Model.Types.Primitive;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.slashing;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
@@ -1226,133 +1232,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9110.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9122.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9140.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9151.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9170.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9180.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9190.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9200.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9220.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9230.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9250.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9260.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9270.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9280.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9281.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9291.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9300.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9340.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9360.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9370.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9420.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9430.Bonded((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -1997,133 +2003,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9110.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9122.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9140.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9151.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9170.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9180.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9190.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9200.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9220.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9230.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9250.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9260.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9270.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9280.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9281.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9291.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9300.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9340.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9360.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9370.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9420.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9430.Ledger((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -2254,133 +2260,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9110.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9122.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9140.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9151.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9170.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9180.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9190.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9200.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9220.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9230.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9250.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9260.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9270.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9280.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9281.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9291.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9300.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9340.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9360.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9370.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9420.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9430.Payee((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -2515,133 +2521,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9110.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9122.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9140.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9151.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9170.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9180.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9190.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9200.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9220.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9230.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9250.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9260.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9270.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9280.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9281.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9291.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9300.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9340.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9360.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9370.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9420.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9430.Validators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -3294,133 +3300,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9110.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9122.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9140.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9151.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9170.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9180.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9190.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9200.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9220.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9230.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9250.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9260.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9270.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9280.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9281.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9291.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9300.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9340.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9360.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9370.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9420.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9430.Nominators((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -4601,133 +4607,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9110.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9122.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9140.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9151.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9170.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9180.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9190.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9200.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9220.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9230.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9250.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9260.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9270.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9280.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9281.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9291.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9300.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9340.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9360.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9370.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9420.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9430.ErasStartSessionIndex((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -4868,133 +4874,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9110.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9122.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9140.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9151.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9170.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9180.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9190.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9200.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9220.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9230.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9250.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9260.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9270.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9280.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9281.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9291.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9300.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9340.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9360.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9370.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9420.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9430.ErasStakers((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (param == null)
@@ -5145,133 +5151,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9110.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9122.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9140.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9151.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9170.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9180.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9190.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9200.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9220.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9230.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9250.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9260.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9270.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9280.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9281.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9291.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9300.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9340.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9360.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9370.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9420.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9430.ErasStakersClipped((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (param == null)
@@ -5410,133 +5416,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9110.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9122.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9140.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9151.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9170.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9180.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9190.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9200.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9220.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9230.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9250.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9260.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9270.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9280.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9281.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9291.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9300.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9340.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9360.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9370.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9420.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9430.ErasValidatorPrefs((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (param == null)
@@ -5671,133 +5677,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9110.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9122.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9140.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9151.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9170.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9180.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9190.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9200.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9220.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9230.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9250.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9260.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9270.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9280.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9281.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9291.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9300.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9340.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9360.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9370.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9420.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9430.ErasValidatorReward((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -5930,133 +5936,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9110.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9122.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9140.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9151.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9170.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9180.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9190.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9200.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9220.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9230.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9250.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9260.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9270.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9280.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9281.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9291.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9300.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9340.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9360.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9370.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9420.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9430.ErasRewardPoints((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -6189,133 +6195,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9110.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9122.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9140.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9151.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9170.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9180.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9190.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9200.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9220.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9230.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9250.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9260.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9270.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9280.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9281.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9291.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9300.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9340.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9360.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9370.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9420.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9430.ErasTotalStake((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -7223,133 +7229,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9110.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9122.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9140.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9151.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9170.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9180.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9190.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9200.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9220.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9230.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9250.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9260.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9270.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9280.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9281.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9291.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9300.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9340.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9360.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9370.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9420.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _stakingStorageV9430.UnappliedSlashes((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -7745,133 +7751,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9110.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9122.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9140.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9151.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9170.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9180.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9190.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9200.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9220.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9230.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9250.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9260.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9270.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9280.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9281.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9291.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9300.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9340.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9360.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9370.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9420.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9430.ValidatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (param == null)
@@ -8002,133 +8008,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9110.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9122.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9140.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9151.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9170.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9180.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9190.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9200.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9220.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9230.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9250.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9260.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9270.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9280.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9281.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9291.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9300.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9340.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9360.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9370.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9420.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key,token);
+                param = await _stakingStorageV9430.NominatorSlashInEra((Substrate.NetApi.Model.Types.Base.BaseTuple<Substrate.NetApi.Model.Types.Primitive.U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32>)key, token);
             }
 
             if (param == null)
@@ -8259,133 +8265,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9110.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9122.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9140.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9151.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9170.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9180.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9190.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9200.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9220.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9230.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9250.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9260.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9270.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9280.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9281.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9291.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9300.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9340.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9360.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9370.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9420.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _stakingStorageV9430.SlashingSpans((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -8518,133 +8524,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _stakingStorageV9110.blockHash = blockHash;
-                param = await _stakingStorageV9110.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9110.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9122U)
             {
                 _stakingStorageV9122.blockHash = blockHash;
-                param = await _stakingStorageV9122.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9122.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9140U)
             {
                 _stakingStorageV9140.blockHash = blockHash;
-                param = await _stakingStorageV9140.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9140.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9151U)
             {
                 _stakingStorageV9151.blockHash = blockHash;
-                param = await _stakingStorageV9151.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9151.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9170U)
             {
                 _stakingStorageV9170.blockHash = blockHash;
-                param = await _stakingStorageV9170.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9170.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9180U)
             {
                 _stakingStorageV9180.blockHash = blockHash;
-                param = await _stakingStorageV9180.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9180.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9190U)
             {
                 _stakingStorageV9190.blockHash = blockHash;
-                param = await _stakingStorageV9190.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9190.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9200U)
             {
                 _stakingStorageV9200.blockHash = blockHash;
-                param = await _stakingStorageV9200.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9200.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9220U)
             {
                 _stakingStorageV9220.blockHash = blockHash;
-                param = await _stakingStorageV9220.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9220.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9230U)
             {
                 _stakingStorageV9230.blockHash = blockHash;
-                param = await _stakingStorageV9230.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9230.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9250U)
             {
                 _stakingStorageV9250.blockHash = blockHash;
-                param = await _stakingStorageV9250.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9250.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9260U)
             {
                 _stakingStorageV9260.blockHash = blockHash;
-                param = await _stakingStorageV9260.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9260.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9270U)
             {
                 _stakingStorageV9270.blockHash = blockHash;
-                param = await _stakingStorageV9270.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9270.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9280U)
             {
                 _stakingStorageV9280.blockHash = blockHash;
-                param = await _stakingStorageV9280.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9280.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9281U)
             {
                 _stakingStorageV9281.blockHash = blockHash;
-                param = await _stakingStorageV9281.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9281.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9291U)
             {
                 _stakingStorageV9291.blockHash = blockHash;
-                param = await _stakingStorageV9291.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9291.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9300U)
             {
                 _stakingStorageV9300.blockHash = blockHash;
-                param = await _stakingStorageV9300.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9300.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9340U)
             {
                 _stakingStorageV9340.blockHash = blockHash;
-                param = await _stakingStorageV9340.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9340.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9360U)
             {
                 _stakingStorageV9360.blockHash = blockHash;
-                param = await _stakingStorageV9360.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9360.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9370U)
             {
                 _stakingStorageV9370.blockHash = blockHash;
-                param = await _stakingStorageV9370.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9370.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9420U)
             {
                 _stakingStorageV9420.blockHash = blockHash;
-                param = await _stakingStorageV9420.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9420.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (version == 9430U)
             {
                 _stakingStorageV9430.blockHash = blockHash;
-                param = await _stakingStorageV9430.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key,token);
+                param = await _stakingStorageV9430.SpanSlash((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32, Substrate.NetApi.Model.Types.Primitive.U32>)key, token);
             }
 
             if (param == null)

@@ -14,10 +14,24 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class IdentityStorage
+    public interface IIdentityStorage
+    {
+        string blockHash { get; set; }
+
+        Task<uint> GetVersionAsync(CancellationToken token);
+        Task<RegistrationBase> IdentityOfAsync(AccountId32Base key, CancellationToken token);
+        Task<IBaseEnumerable> RegistrarsAsync(CancellationToken token);
+        Task<IBaseEnumerable> SubsOfAsync(AccountId32Base key, CancellationToken token);
+        Task<IBaseEnumerable> SuperOfAsync(AccountId32Base key, CancellationToken token);
+    }
+
+    public sealed class IdentityStorage : IIdentityStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -246,133 +260,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _identityStorageV9110.blockHash = blockHash;
-                param = await _identityStorageV9110.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9110.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _identityStorageV9122.blockHash = blockHash;
-                param = await _identityStorageV9122.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9122.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _identityStorageV9140.blockHash = blockHash;
-                param = await _identityStorageV9140.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9140.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _identityStorageV9151.blockHash = blockHash;
-                param = await _identityStorageV9151.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9151.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _identityStorageV9170.blockHash = blockHash;
-                param = await _identityStorageV9170.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9170.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _identityStorageV9180.blockHash = blockHash;
-                param = await _identityStorageV9180.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9180.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _identityStorageV9190.blockHash = blockHash;
-                param = await _identityStorageV9190.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9190.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _identityStorageV9200.blockHash = blockHash;
-                param = await _identityStorageV9200.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9200.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _identityStorageV9220.blockHash = blockHash;
-                param = await _identityStorageV9220.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9220.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _identityStorageV9230.blockHash = blockHash;
-                param = await _identityStorageV9230.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9230.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _identityStorageV9250.blockHash = blockHash;
-                param = await _identityStorageV9250.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9250.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _identityStorageV9260.blockHash = blockHash;
-                param = await _identityStorageV9260.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9260.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _identityStorageV9270.blockHash = blockHash;
-                param = await _identityStorageV9270.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9270.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _identityStorageV9280.blockHash = blockHash;
-                param = await _identityStorageV9280.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9280.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _identityStorageV9281.blockHash = blockHash;
-                param = await _identityStorageV9281.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9281.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _identityStorageV9291.blockHash = blockHash;
-                param = await _identityStorageV9291.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9291.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _identityStorageV9300.blockHash = blockHash;
-                param = await _identityStorageV9300.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9300.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _identityStorageV9340.blockHash = blockHash;
-                param = await _identityStorageV9340.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9340.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _identityStorageV9360.blockHash = blockHash;
-                param = await _identityStorageV9360.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9360.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _identityStorageV9370.blockHash = blockHash;
-                param = await _identityStorageV9370.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9370.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _identityStorageV9420.blockHash = blockHash;
-                param = await _identityStorageV9420.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9420.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _identityStorageV9430.blockHash = blockHash;
-                param = await _identityStorageV9430.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9430.IdentityOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -505,133 +519,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _identityStorageV9110.blockHash = blockHash;
-                param = await _identityStorageV9110.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9110.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _identityStorageV9122.blockHash = blockHash;
-                param = await _identityStorageV9122.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9122.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _identityStorageV9140.blockHash = blockHash;
-                param = await _identityStorageV9140.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9140.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _identityStorageV9151.blockHash = blockHash;
-                param = await _identityStorageV9151.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9151.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _identityStorageV9170.blockHash = blockHash;
-                param = await _identityStorageV9170.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9170.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _identityStorageV9180.blockHash = blockHash;
-                param = await _identityStorageV9180.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9180.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _identityStorageV9190.blockHash = blockHash;
-                param = await _identityStorageV9190.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9190.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _identityStorageV9200.blockHash = blockHash;
-                param = await _identityStorageV9200.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9200.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _identityStorageV9220.blockHash = blockHash;
-                param = await _identityStorageV9220.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9220.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _identityStorageV9230.blockHash = blockHash;
-                param = await _identityStorageV9230.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9230.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _identityStorageV9250.blockHash = blockHash;
-                param = await _identityStorageV9250.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9250.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _identityStorageV9260.blockHash = blockHash;
-                param = await _identityStorageV9260.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9260.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _identityStorageV9270.blockHash = blockHash;
-                param = await _identityStorageV9270.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9270.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _identityStorageV9280.blockHash = blockHash;
-                param = await _identityStorageV9280.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9280.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _identityStorageV9281.blockHash = blockHash;
-                param = await _identityStorageV9281.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9281.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _identityStorageV9291.blockHash = blockHash;
-                param = await _identityStorageV9291.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9291.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _identityStorageV9300.blockHash = blockHash;
-                param = await _identityStorageV9300.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9300.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _identityStorageV9340.blockHash = blockHash;
-                param = await _identityStorageV9340.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9340.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _identityStorageV9360.blockHash = blockHash;
-                param = await _identityStorageV9360.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9360.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _identityStorageV9370.blockHash = blockHash;
-                param = await _identityStorageV9370.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9370.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _identityStorageV9420.blockHash = blockHash;
-                param = await _identityStorageV9420.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9420.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _identityStorageV9430.blockHash = blockHash;
-                param = await _identityStorageV9430.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9430.SuperOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -770,133 +784,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _identityStorageV9110.blockHash = blockHash;
-                param = await _identityStorageV9110.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9110.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _identityStorageV9122.blockHash = blockHash;
-                param = await _identityStorageV9122.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9122.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _identityStorageV9140.blockHash = blockHash;
-                param = await _identityStorageV9140.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9140.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _identityStorageV9151.blockHash = blockHash;
-                param = await _identityStorageV9151.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9151.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _identityStorageV9170.blockHash = blockHash;
-                param = await _identityStorageV9170.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9170.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _identityStorageV9180.blockHash = blockHash;
-                param = await _identityStorageV9180.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9180.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _identityStorageV9190.blockHash = blockHash;
-                param = await _identityStorageV9190.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9190.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _identityStorageV9200.blockHash = blockHash;
-                param = await _identityStorageV9200.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9200.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _identityStorageV9220.blockHash = blockHash;
-                param = await _identityStorageV9220.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9220.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _identityStorageV9230.blockHash = blockHash;
-                param = await _identityStorageV9230.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9230.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _identityStorageV9250.blockHash = blockHash;
-                param = await _identityStorageV9250.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9250.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _identityStorageV9260.blockHash = blockHash;
-                param = await _identityStorageV9260.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9260.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _identityStorageV9270.blockHash = blockHash;
-                param = await _identityStorageV9270.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9270.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _identityStorageV9280.blockHash = blockHash;
-                param = await _identityStorageV9280.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9280.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _identityStorageV9281.blockHash = blockHash;
-                param = await _identityStorageV9281.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9281.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _identityStorageV9291.blockHash = blockHash;
-                param = await _identityStorageV9291.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9291.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _identityStorageV9300.blockHash = blockHash;
-                param = await _identityStorageV9300.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9300.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _identityStorageV9340.blockHash = blockHash;
-                param = await _identityStorageV9340.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9340.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _identityStorageV9360.blockHash = blockHash;
-                param = await _identityStorageV9360.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9360.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _identityStorageV9370.blockHash = blockHash;
-                param = await _identityStorageV9370.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9370.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _identityStorageV9420.blockHash = blockHash;
-                param = await _identityStorageV9420.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9420.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _identityStorageV9430.blockHash = blockHash;
-                param = await _identityStorageV9430.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _identityStorageV9430.SubsOf((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)

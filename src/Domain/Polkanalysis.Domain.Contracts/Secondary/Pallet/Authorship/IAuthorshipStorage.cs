@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship
 {

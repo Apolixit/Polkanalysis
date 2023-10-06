@@ -5,6 +5,10 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System.Runtime.CompilerServices;
 using Substrate.NetApi;
 using Ardalis.GuardClauses;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using System;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
@@ -18,6 +22,44 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
         {
             _client = client;
             _logger = logger;
+        }
+
+        protected async Task<uint> GetVersionAsync(CancellationToken token)
+        {
+            var result = await _client.State.GetRuntimeVersionAtAsync(BlockHash, token);
+            return result.SpecVersion;
+        }
+
+        protected TDestination Map<TSource, TDestination>(TSource source)
+        {
+            return PolkadotMapping.Instance.Map<TSource, TDestination>(source);
+        }
+
+        protected async Task<TDestination> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            return PolkadotMapping.Instance.Map<TSource, TDestination>(source, opts => opts.Items["version"] = version);
+        }
+
+        /// <summary>
+        /// Shortcut to build an AccountId32Base (often used as input)
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        protected Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base> MapAccoundId32Async(SubstrateAccount account, CancellationToken token)
+        {
+            return MapWithVersionAsync<SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base>(account, token);
+        }
+
+        protected Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase> MapIdAsync(Id key, CancellationToken token)
+        {
+            return MapWithVersionAsync<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase>(key, token);
+        }
+
+        protected Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase> MapHashAsync(Hash key, CancellationToken token)
+        {
+            return MapWithVersionAsync<Hash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase>(key, token);
         }
 
         /// <summary>
@@ -143,7 +185,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
                     || storageChangeSet.Changes.Length == 0
                     || storageChangeSet.Changes[0].Length < 2)
                 {
-                    throw new Exception("Couldn't update account information. Please check 'CallBackAccountChange'");
+                    throw new InvalidOperationException("Couldn't update account information. Please check 'CallBackAccountChange'");
                 }
 
                 var hexString = storageChangeSet.Changes[0][1];

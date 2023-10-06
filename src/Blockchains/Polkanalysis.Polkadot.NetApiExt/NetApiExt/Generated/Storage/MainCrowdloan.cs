@@ -14,10 +14,26 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Types.Primitive;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class CrowdloanStorage
+    public interface ICrowdloanStorage
+    {
+        string blockHash { get; set; }
+
+        Task<U32> EndingsCountAsync(CancellationToken token);
+        Task<FundInfoBase> FundsAsync(IdBase key, CancellationToken token);
+        Task<uint> GetVersionAsync(CancellationToken token);
+        Task<IBaseEnumerable> NewRaiseAsync(CancellationToken token);
+        Task<U32> NextFundIndexAsync(CancellationToken token);
+        Task<U32> NextTrieIndexAsync(CancellationToken token);
+    }
+
+    public sealed class CrowdloanStorage : ICrowdloanStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -242,133 +258,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _crowdloanStorageV9110.blockHash = blockHash;
-                param = await _crowdloanStorageV9110.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9110.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9122U)
             {
                 _crowdloanStorageV9122.blockHash = blockHash;
-                param = await _crowdloanStorageV9122.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9122.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9140U)
             {
                 _crowdloanStorageV9140.blockHash = blockHash;
-                param = await _crowdloanStorageV9140.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9140.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9151U)
             {
                 _crowdloanStorageV9151.blockHash = blockHash;
-                param = await _crowdloanStorageV9151.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9151.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9170U)
             {
                 _crowdloanStorageV9170.blockHash = blockHash;
-                param = await _crowdloanStorageV9170.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9170.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9180U)
             {
                 _crowdloanStorageV9180.blockHash = blockHash;
-                param = await _crowdloanStorageV9180.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9180.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9190U)
             {
                 _crowdloanStorageV9190.blockHash = blockHash;
-                param = await _crowdloanStorageV9190.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9190.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9200U)
             {
                 _crowdloanStorageV9200.blockHash = blockHash;
-                param = await _crowdloanStorageV9200.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9200.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9220U)
             {
                 _crowdloanStorageV9220.blockHash = blockHash;
-                param = await _crowdloanStorageV9220.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9220.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9230U)
             {
                 _crowdloanStorageV9230.blockHash = blockHash;
-                param = await _crowdloanStorageV9230.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9230.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9250U)
             {
                 _crowdloanStorageV9250.blockHash = blockHash;
-                param = await _crowdloanStorageV9250.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9250.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9260U)
             {
                 _crowdloanStorageV9260.blockHash = blockHash;
-                param = await _crowdloanStorageV9260.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9260.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9270U)
             {
                 _crowdloanStorageV9270.blockHash = blockHash;
-                param = await _crowdloanStorageV9270.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9270.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9280U)
             {
                 _crowdloanStorageV9280.blockHash = blockHash;
-                param = await _crowdloanStorageV9280.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9280.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9281U)
             {
                 _crowdloanStorageV9281.blockHash = blockHash;
-                param = await _crowdloanStorageV9281.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9281.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9291U)
             {
                 _crowdloanStorageV9291.blockHash = blockHash;
-                param = await _crowdloanStorageV9291.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9291.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9300U)
             {
                 _crowdloanStorageV9300.blockHash = blockHash;
-                param = await _crowdloanStorageV9300.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9300.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9340U)
             {
                 _crowdloanStorageV9340.blockHash = blockHash;
-                param = await _crowdloanStorageV9340.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9340.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9360U)
             {
                 _crowdloanStorageV9360.blockHash = blockHash;
-                param = await _crowdloanStorageV9360.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9360.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9370U)
             {
                 _crowdloanStorageV9370.blockHash = blockHash;
-                param = await _crowdloanStorageV9370.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9370.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9420U)
             {
                 _crowdloanStorageV9420.blockHash = blockHash;
-                param = await _crowdloanStorageV9420.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9420.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9430U)
             {
                 _crowdloanStorageV9430.blockHash = blockHash;
-                param = await _crowdloanStorageV9430.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+                param = await _crowdloanStorageV9430.Funds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (param == null)

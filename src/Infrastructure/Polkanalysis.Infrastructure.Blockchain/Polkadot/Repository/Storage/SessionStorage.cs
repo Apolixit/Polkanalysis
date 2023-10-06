@@ -6,9 +6,9 @@ using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using SessionStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.SessionStorage;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -18,49 +18,41 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<U32> CurrentIndexAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(SessionStorageExt.CurrentIndexParams, token);
+            return await _client.SessionStorage.CurrentIndexAsync(token);
         }
 
         public async Task<BaseVec<U32>> DisabledValidatorsAsync(CancellationToken token)
         {
-            return await GetStorageAsync<BaseVec<U32>>(SessionStorageExt.DisabledValidatorsParams, token);
+            return Map<IBaseEnumerable, BaseVec<U32>>(await _client.SessionStorage.DisabledValidatorsAsync(token));
         }
 
         public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa> key, CancellationToken token)
         {
-            var param = PolkadotMapping.Instance.Map<BaseTuple<KeyTypeId, BaseVec<U8>>>(key);
-            return await GetStorageWithParamsAsync<
-                BaseTuple<KeyTypeId, BaseVec<U8>>, AccountId32, SubstrateAccount>(param, SessionStorageExt.KeyOwnerParams, token);
+            var val = await MapWithVersionAsync<BaseTuple<FlexibleNameable, Hexa>, IBaseEnumerable>(key, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base, SubstrateAccount>(
+                await _client.SessionStorage.KeyOwnerAsync(val, token));
         }
 
         public async Task<SessionKeysPolka> NextKeysAsync(SubstrateAccount account, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys,
-                SessionKeysPolka>
-                (PolkadotMapping.Instance.Map<AccountId32>(account), SessionStorageExt.NextKeysParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime.SessionKeysBase, SessionKeysPolka>(
+                await _client.SessionStorage.NextKeysAsync(accountId32, token));
         }
 
         public async Task<Bool> QueuedChangedAsync(CancellationToken token)
         {
-            return await GetStorageAsync<Bool>(SessionStorageExt.QueuedChangedParams, token);
+            return await _client.SessionStorage.QueuedChangedAsync(token);
         }
 
         public async Task<BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>> QueuedKeysAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>,
-                BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>
-                (SessionStorageExt.QueuedKeysParams, token);
+            return Map<IBaseEnumerable, BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>(await _client.SessionStorage.QueuedKeysAsync(token));
         }
 
         public async Task<BaseVec<SubstrateAccount>> ValidatorsAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<AccountId32>,
-                BaseVec<SubstrateAccount>>
-                (SessionStorageExt.ValidatorsParams, token);
+            return Map<IBaseEnumerable, BaseVec<SubstrateAccount>>(await _client.SessionStorage.ValidatorsAsync(token));
         }
     }
 }

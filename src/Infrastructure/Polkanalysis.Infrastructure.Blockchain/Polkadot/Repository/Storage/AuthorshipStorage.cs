@@ -1,14 +1,13 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using AuthorshipStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.AuthorshipStorage;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -22,27 +21,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<SubstrateAccount> AuthorAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32,
-                    SubstrateAccount>
-                (AuthorshipStorageExt.AuthorParams, token);
+            return Map<AccountId32Base, SubstrateAccount>(await _client.AuthorshipStorage.AuthorAsync(token));
         }
 
         public async Task<Bool> DidSetUnclesAsync(CancellationToken token)
         {
-            return await GetStorageAsync<Bool>(AuthorshipStorageExt.DidSetUnclesParams, token);
+            return await _client.AuthorshipStorage.DidSetUnclesAsync(token);
         }
 
         public async Task<BaseVec<EnumUncleEntryItem>> UnclesAsync(CancellationToken token)
         {
-            return await GetStorageAsync<BoundedVecT7, BaseVec<EnumUncleEntryItem>>(AuthorshipStorageExt.UnclesParams, token);
-
-            //var res = await GetStorageAsync<
-            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec.BoundedVecT7,
-            //    BaseVec<EnumUncleEntryItem>>
-            //    (AuthorshipStorageExt.UnclesParams, token);
-
-            //return SubstrateMapper.Instance.Map<BaseVec<EnumUncleEntryItem>>(res.Value);
+            return Map<IBaseEnumerable, BaseVec<EnumUncleEntryItem>> (await _client.AuthorshipStorage.UnclesAsync(token));
         }
     }
 }

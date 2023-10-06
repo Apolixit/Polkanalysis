@@ -14,10 +14,42 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools;
+using Substrate.NetApi.Model.Types.Primitive;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class NominationPoolsStorage
+    public interface INominationPoolsStorage
+    {
+        string blockHash { get; set; }
+
+        Task<BondedPoolInnerBase> BondedPoolsAsync(U32 key, CancellationToken token);
+        Task<IBaseEnum> ClaimPermissionsAsync(AccountId32Base key, CancellationToken token);
+        Task<U32> CounterForBondedPoolsAsync(CancellationToken token);
+        Task<U32> CounterForMetadataAsync(CancellationToken token);
+        Task<U32> CounterForPoolMembersAsync(CancellationToken token);
+        Task<U32> CounterForReversePoolIdLookupAsync(CancellationToken token);
+        Task<U32> CounterForRewardPoolsAsync(CancellationToken token);
+        Task<U32> CounterForSubPoolsStorageAsync(CancellationToken token);
+        Task<uint> GetVersionAsync(CancellationToken token);
+        Task<PerbillBase> GlobalMaxCommissionAsync(CancellationToken token);
+        Task<U32> LastPoolIdAsync(CancellationToken token);
+        Task<U32> MaxPoolMembersAsync(CancellationToken token);
+        Task<U32> MaxPoolMembersPerPoolAsync(CancellationToken token);
+        Task<U32> MaxPoolsAsync(CancellationToken token);
+        Task<IBaseEnumerable> MetadataAsync(U32 key, CancellationToken token);
+        Task<U128> MinCreateBondAsync(CancellationToken token);
+        Task<U128> MinJoinBondAsync(CancellationToken token);
+        Task<PoolMemberBase> PoolMembersAsync(AccountId32Base key, CancellationToken token);
+        Task<U32> ReversePoolIdLookupAsync(AccountId32Base key, CancellationToken token);
+        Task<RewardPoolBase> RewardPoolsAsync(U32 key, CancellationToken token);
+        Task<SubPoolsBase> SubPoolsStorageAsync(U32 key, CancellationToken token);
+    }
+
+    public sealed class NominationPoolsStorage : INominationPoolsStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -791,55 +823,55 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9280U)
             {
                 _nominationPoolsStorageV9280.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9280.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9280.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _nominationPoolsStorageV9281.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9281.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9281.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _nominationPoolsStorageV9291.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9291.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9291.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _nominationPoolsStorageV9300.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9300.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9300.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _nominationPoolsStorageV9340.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9340.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9340.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _nominationPoolsStorageV9360.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9360.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9360.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _nominationPoolsStorageV9370.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9370.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9370.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _nominationPoolsStorageV9420.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9420.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9420.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _nominationPoolsStorageV9430.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9430.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9430.PoolMembers((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -1045,55 +1077,55 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9280U)
             {
                 _nominationPoolsStorageV9280.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9280.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9280.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _nominationPoolsStorageV9281.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9281.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9281.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _nominationPoolsStorageV9291.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9291.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9291.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _nominationPoolsStorageV9300.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9300.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9300.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _nominationPoolsStorageV9340.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9340.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9340.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _nominationPoolsStorageV9360.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9360.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9360.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _nominationPoolsStorageV9370.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9370.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9370.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _nominationPoolsStorageV9420.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9420.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9420.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _nominationPoolsStorageV9430.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9430.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9430.BondedPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -1301,55 +1333,55 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9280U)
             {
                 _nominationPoolsStorageV9280.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9280.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9280.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _nominationPoolsStorageV9281.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9281.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9281.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _nominationPoolsStorageV9291.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9291.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9291.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _nominationPoolsStorageV9300.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9300.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9300.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _nominationPoolsStorageV9340.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9340.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9340.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _nominationPoolsStorageV9360.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9360.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9360.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _nominationPoolsStorageV9370.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9370.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9370.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _nominationPoolsStorageV9420.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9420.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9420.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _nominationPoolsStorageV9430.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9430.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9430.RewardPools((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -1557,55 +1589,55 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9280U)
             {
                 _nominationPoolsStorageV9280.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9280.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9280.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _nominationPoolsStorageV9281.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9281.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9281.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _nominationPoolsStorageV9291.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9291.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9291.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _nominationPoolsStorageV9300.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9300.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9300.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _nominationPoolsStorageV9340.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9340.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9340.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _nominationPoolsStorageV9360.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9360.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9360.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _nominationPoolsStorageV9370.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9370.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9370.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _nominationPoolsStorageV9420.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9420.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9420.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _nominationPoolsStorageV9430.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9430.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9430.SubPoolsStorage((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -1811,55 +1843,55 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9280U)
             {
                 _nominationPoolsStorageV9280.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9280.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9280.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _nominationPoolsStorageV9281.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9281.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9281.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _nominationPoolsStorageV9291.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9291.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9291.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _nominationPoolsStorageV9300.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9300.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9300.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _nominationPoolsStorageV9340.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9340.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9340.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _nominationPoolsStorageV9360.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9360.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9360.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _nominationPoolsStorageV9370.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9370.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9370.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _nominationPoolsStorageV9420.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9420.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9420.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _nominationPoolsStorageV9430.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9430.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _nominationPoolsStorageV9430.Metadata((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -2198,55 +2230,55 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9280U)
             {
                 _nominationPoolsStorageV9280.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9280.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9280.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _nominationPoolsStorageV9281.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9281.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9281.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _nominationPoolsStorageV9291.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9291.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9291.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _nominationPoolsStorageV9300.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9300.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9300.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _nominationPoolsStorageV9340.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9340.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9340.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _nominationPoolsStorageV9360.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9360.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9360.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _nominationPoolsStorageV9370.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9370.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9370.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _nominationPoolsStorageV9420.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9420.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9420.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _nominationPoolsStorageV9430.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9430.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9430.ReversePoolIdLookup((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -2485,13 +2517,13 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9420U)
             {
                 _nominationPoolsStorageV9420.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9420.ClaimPermissions((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9420.ClaimPermissions((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _nominationPoolsStorageV9430.blockHash = blockHash;
-                param = await _nominationPoolsStorageV9430.ClaimPermissions((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _nominationPoolsStorageV9430.ClaimPermissions((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)

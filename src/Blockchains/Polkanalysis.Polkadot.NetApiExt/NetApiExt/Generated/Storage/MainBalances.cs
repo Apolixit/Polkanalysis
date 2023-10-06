@@ -14,10 +14,28 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class BalancesStorage
+    public interface IBalancesStorage
+    {
+        string blockHash { get; set; }
+
+        Task<IType> AccountAsync(AccountId32Base key, CancellationToken token);
+        Task<IBaseEnumerable> FreezesAsync(AccountId32Base key, CancellationToken token);
+        Task<uint> GetVersionAsync(CancellationToken token);
+        Task<IBaseEnumerable> HoldsAsync(AccountId32Base key, CancellationToken token);
+        Task<U128> InactiveIssuanceAsync(CancellationToken token);
+        Task<IBaseEnumerable> LocksAsync(AccountId32Base key, CancellationToken token);
+        Task<IBaseEnumerable> ReservesAsync(AccountId32Base key, CancellationToken token);
+        Task<IBaseEnum> StorageVersionAsync(CancellationToken token);
+        Task<U128> TotalIssuanceAsync(CancellationToken token);
+    }
+
+    public sealed class BalancesStorage : IBalancesStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -503,133 +521,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _balancesStorageV9110.blockHash = blockHash;
-                param = await _balancesStorageV9110.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9110.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _balancesStorageV9122.blockHash = blockHash;
-                param = await _balancesStorageV9122.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9122.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _balancesStorageV9140.blockHash = blockHash;
-                param = await _balancesStorageV9140.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9140.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _balancesStorageV9151.blockHash = blockHash;
-                param = await _balancesStorageV9151.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9151.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _balancesStorageV9170.blockHash = blockHash;
-                param = await _balancesStorageV9170.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9170.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _balancesStorageV9180.blockHash = blockHash;
-                param = await _balancesStorageV9180.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9180.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _balancesStorageV9190.blockHash = blockHash;
-                param = await _balancesStorageV9190.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9190.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _balancesStorageV9200.blockHash = blockHash;
-                param = await _balancesStorageV9200.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9200.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _balancesStorageV9220.blockHash = blockHash;
-                param = await _balancesStorageV9220.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9220.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _balancesStorageV9230.blockHash = blockHash;
-                param = await _balancesStorageV9230.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9230.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _balancesStorageV9250.blockHash = blockHash;
-                param = await _balancesStorageV9250.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9250.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _balancesStorageV9260.blockHash = blockHash;
-                param = await _balancesStorageV9260.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9260.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _balancesStorageV9270.blockHash = blockHash;
-                param = await _balancesStorageV9270.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9270.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _balancesStorageV9280.blockHash = blockHash;
-                param = await _balancesStorageV9280.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9280.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _balancesStorageV9281.blockHash = blockHash;
-                param = await _balancesStorageV9281.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9281.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _balancesStorageV9291.blockHash = blockHash;
-                param = await _balancesStorageV9291.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9291.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _balancesStorageV9300.blockHash = blockHash;
-                param = await _balancesStorageV9300.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9300.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _balancesStorageV9340.blockHash = blockHash;
-                param = await _balancesStorageV9340.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9340.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _balancesStorageV9360.blockHash = blockHash;
-                param = await _balancesStorageV9360.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9360.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _balancesStorageV9370.blockHash = blockHash;
-                param = await _balancesStorageV9370.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9370.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _balancesStorageV9420.blockHash = blockHash;
-                param = await _balancesStorageV9420.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9420.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _balancesStorageV9430.blockHash = blockHash;
-                param = await _balancesStorageV9430.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9430.Account((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -762,133 +780,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _balancesStorageV9110.blockHash = blockHash;
-                param = await _balancesStorageV9110.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9110.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _balancesStorageV9122.blockHash = blockHash;
-                param = await _balancesStorageV9122.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9122.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _balancesStorageV9140.blockHash = blockHash;
-                param = await _balancesStorageV9140.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9140.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _balancesStorageV9151.blockHash = blockHash;
-                param = await _balancesStorageV9151.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9151.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _balancesStorageV9170.blockHash = blockHash;
-                param = await _balancesStorageV9170.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9170.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _balancesStorageV9180.blockHash = blockHash;
-                param = await _balancesStorageV9180.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9180.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _balancesStorageV9190.blockHash = blockHash;
-                param = await _balancesStorageV9190.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9190.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _balancesStorageV9200.blockHash = blockHash;
-                param = await _balancesStorageV9200.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9200.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _balancesStorageV9220.blockHash = blockHash;
-                param = await _balancesStorageV9220.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9220.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _balancesStorageV9230.blockHash = blockHash;
-                param = await _balancesStorageV9230.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9230.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _balancesStorageV9250.blockHash = blockHash;
-                param = await _balancesStorageV9250.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9250.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _balancesStorageV9260.blockHash = blockHash;
-                param = await _balancesStorageV9260.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9260.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _balancesStorageV9270.blockHash = blockHash;
-                param = await _balancesStorageV9270.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9270.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _balancesStorageV9280.blockHash = blockHash;
-                param = await _balancesStorageV9280.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9280.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _balancesStorageV9281.blockHash = blockHash;
-                param = await _balancesStorageV9281.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9281.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _balancesStorageV9291.blockHash = blockHash;
-                param = await _balancesStorageV9291.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9291.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _balancesStorageV9300.blockHash = blockHash;
-                param = await _balancesStorageV9300.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9300.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _balancesStorageV9340.blockHash = blockHash;
-                param = await _balancesStorageV9340.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9340.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _balancesStorageV9360.blockHash = blockHash;
-                param = await _balancesStorageV9360.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9360.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _balancesStorageV9370.blockHash = blockHash;
-                param = await _balancesStorageV9370.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9370.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _balancesStorageV9420.blockHash = blockHash;
-                param = await _balancesStorageV9420.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9420.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _balancesStorageV9430.blockHash = blockHash;
-                param = await _balancesStorageV9430.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9430.Locks((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -1019,133 +1037,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _balancesStorageV9110.blockHash = blockHash;
-                param = await _balancesStorageV9110.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9110.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _balancesStorageV9122.blockHash = blockHash;
-                param = await _balancesStorageV9122.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9122.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _balancesStorageV9140.blockHash = blockHash;
-                param = await _balancesStorageV9140.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9140.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _balancesStorageV9151.blockHash = blockHash;
-                param = await _balancesStorageV9151.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9151.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _balancesStorageV9170.blockHash = blockHash;
-                param = await _balancesStorageV9170.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9170.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _balancesStorageV9180.blockHash = blockHash;
-                param = await _balancesStorageV9180.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9180.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _balancesStorageV9190.blockHash = blockHash;
-                param = await _balancesStorageV9190.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9190.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _balancesStorageV9200.blockHash = blockHash;
-                param = await _balancesStorageV9200.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9200.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _balancesStorageV9220.blockHash = blockHash;
-                param = await _balancesStorageV9220.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9220.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _balancesStorageV9230.blockHash = blockHash;
-                param = await _balancesStorageV9230.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9230.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _balancesStorageV9250.blockHash = blockHash;
-                param = await _balancesStorageV9250.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9250.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _balancesStorageV9260.blockHash = blockHash;
-                param = await _balancesStorageV9260.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9260.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _balancesStorageV9270.blockHash = blockHash;
-                param = await _balancesStorageV9270.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9270.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _balancesStorageV9280.blockHash = blockHash;
-                param = await _balancesStorageV9280.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9280.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _balancesStorageV9281.blockHash = blockHash;
-                param = await _balancesStorageV9281.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9281.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _balancesStorageV9291.blockHash = blockHash;
-                param = await _balancesStorageV9291.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9291.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _balancesStorageV9300.blockHash = blockHash;
-                param = await _balancesStorageV9300.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9300.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _balancesStorageV9340.blockHash = blockHash;
-                param = await _balancesStorageV9340.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9340.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _balancesStorageV9360.blockHash = blockHash;
-                param = await _balancesStorageV9360.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9360.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _balancesStorageV9370.blockHash = blockHash;
-                param = await _balancesStorageV9370.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9370.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _balancesStorageV9420.blockHash = blockHash;
-                param = await _balancesStorageV9420.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9420.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _balancesStorageV9430.blockHash = blockHash;
-                param = await _balancesStorageV9430.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9430.Reserves((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -1494,13 +1512,13 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9420U)
             {
                 _balancesStorageV9420.blockHash = blockHash;
-                param = await _balancesStorageV9420.Holds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9420.Holds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _balancesStorageV9430.blockHash = blockHash;
-                param = await _balancesStorageV9430.Holds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9430.Holds((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -1551,13 +1569,13 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9420U)
             {
                 _balancesStorageV9420.blockHash = blockHash;
-                param = await _balancesStorageV9420.Freezes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9420.Freezes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _balancesStorageV9430.blockHash = blockHash;
-                param = await _balancesStorageV9430.Freezes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _balancesStorageV9430.Freezes((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)

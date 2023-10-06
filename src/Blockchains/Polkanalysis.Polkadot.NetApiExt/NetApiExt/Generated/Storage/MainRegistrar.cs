@@ -14,10 +14,22 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.paras_registrar;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class RegistrarStorage
+    public interface IRegistrarStorage
+    {
+        string blockHash { get; set; }
+
+        Task<uint> GetVersionAsync(CancellationToken token);
+        Task<IdBase> NextFreeParaIdAsync(CancellationToken token);
+        Task<ParaInfoBase> ParasAsync(IdBase key, CancellationToken token);
+        Task<IdBase> PendingSwapAsync(IdBase key, CancellationToken token);
+    }
+
+    public sealed class RegistrarStorage : IRegistrarStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -242,133 +254,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _registrarStorageV9110.blockHash = blockHash;
-                param = await _registrarStorageV9110.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9110.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9122U)
             {
                 _registrarStorageV9122.blockHash = blockHash;
-                param = await _registrarStorageV9122.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9122.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9140U)
             {
                 _registrarStorageV9140.blockHash = blockHash;
-                param = await _registrarStorageV9140.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9140.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9151U)
             {
                 _registrarStorageV9151.blockHash = blockHash;
-                param = await _registrarStorageV9151.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9151.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9170U)
             {
                 _registrarStorageV9170.blockHash = blockHash;
-                param = await _registrarStorageV9170.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9170.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9180U)
             {
                 _registrarStorageV9180.blockHash = blockHash;
-                param = await _registrarStorageV9180.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9180.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9190U)
             {
                 _registrarStorageV9190.blockHash = blockHash;
-                param = await _registrarStorageV9190.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9190.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9200U)
             {
                 _registrarStorageV9200.blockHash = blockHash;
-                param = await _registrarStorageV9200.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9200.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9220U)
             {
                 _registrarStorageV9220.blockHash = blockHash;
-                param = await _registrarStorageV9220.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9220.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9230U)
             {
                 _registrarStorageV9230.blockHash = blockHash;
-                param = await _registrarStorageV9230.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9230.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9250U)
             {
                 _registrarStorageV9250.blockHash = blockHash;
-                param = await _registrarStorageV9250.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9250.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9260U)
             {
                 _registrarStorageV9260.blockHash = blockHash;
-                param = await _registrarStorageV9260.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9260.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9270U)
             {
                 _registrarStorageV9270.blockHash = blockHash;
-                param = await _registrarStorageV9270.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9270.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9280U)
             {
                 _registrarStorageV9280.blockHash = blockHash;
-                param = await _registrarStorageV9280.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9280.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9281U)
             {
                 _registrarStorageV9281.blockHash = blockHash;
-                param = await _registrarStorageV9281.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9281.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9291U)
             {
                 _registrarStorageV9291.blockHash = blockHash;
-                param = await _registrarStorageV9291.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9291.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9300U)
             {
                 _registrarStorageV9300.blockHash = blockHash;
-                param = await _registrarStorageV9300.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9300.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9340U)
             {
                 _registrarStorageV9340.blockHash = blockHash;
-                param = await _registrarStorageV9340.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9340.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9360U)
             {
                 _registrarStorageV9360.blockHash = blockHash;
-                param = await _registrarStorageV9360.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9360.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9370U)
             {
                 _registrarStorageV9370.blockHash = blockHash;
-                param = await _registrarStorageV9370.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9370.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9420U)
             {
                 _registrarStorageV9420.blockHash = blockHash;
-                param = await _registrarStorageV9420.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9420.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9430U)
             {
                 _registrarStorageV9430.blockHash = blockHash;
-                param = await _registrarStorageV9430.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9430.PendingSwap((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (param == null)
@@ -505,133 +517,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _registrarStorageV9110.blockHash = blockHash;
-                param = await _registrarStorageV9110.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9110.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9122U)
             {
                 _registrarStorageV9122.blockHash = blockHash;
-                param = await _registrarStorageV9122.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9122.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9140U)
             {
                 _registrarStorageV9140.blockHash = blockHash;
-                param = await _registrarStorageV9140.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9140.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9151U)
             {
                 _registrarStorageV9151.blockHash = blockHash;
-                param = await _registrarStorageV9151.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9151.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9170U)
             {
                 _registrarStorageV9170.blockHash = blockHash;
-                param = await _registrarStorageV9170.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9170.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9180U)
             {
                 _registrarStorageV9180.blockHash = blockHash;
-                param = await _registrarStorageV9180.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9180.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9190U)
             {
                 _registrarStorageV9190.blockHash = blockHash;
-                param = await _registrarStorageV9190.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9190.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9200U)
             {
                 _registrarStorageV9200.blockHash = blockHash;
-                param = await _registrarStorageV9200.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9200.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9220U)
             {
                 _registrarStorageV9220.blockHash = blockHash;
-                param = await _registrarStorageV9220.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9220.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9230U)
             {
                 _registrarStorageV9230.blockHash = blockHash;
-                param = await _registrarStorageV9230.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9230.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9250U)
             {
                 _registrarStorageV9250.blockHash = blockHash;
-                param = await _registrarStorageV9250.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9250.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9260U)
             {
                 _registrarStorageV9260.blockHash = blockHash;
-                param = await _registrarStorageV9260.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9260.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9270U)
             {
                 _registrarStorageV9270.blockHash = blockHash;
-                param = await _registrarStorageV9270.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9270.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9280U)
             {
                 _registrarStorageV9280.blockHash = blockHash;
-                param = await _registrarStorageV9280.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9280.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9281U)
             {
                 _registrarStorageV9281.blockHash = blockHash;
-                param = await _registrarStorageV9281.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9281.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9291U)
             {
                 _registrarStorageV9291.blockHash = blockHash;
-                param = await _registrarStorageV9291.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9291.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9300U)
             {
                 _registrarStorageV9300.blockHash = blockHash;
-                param = await _registrarStorageV9300.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9300.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9340U)
             {
                 _registrarStorageV9340.blockHash = blockHash;
-                param = await _registrarStorageV9340.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9340.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9360U)
             {
                 _registrarStorageV9360.blockHash = blockHash;
-                param = await _registrarStorageV9360.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9360.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9370U)
             {
                 _registrarStorageV9370.blockHash = blockHash;
-                param = await _registrarStorageV9370.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9370.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9420U)
             {
                 _registrarStorageV9420.blockHash = blockHash;
-                param = await _registrarStorageV9420.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9420.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (version == 9430U)
             {
                 _registrarStorageV9430.blockHash = blockHash;
-                param = await _registrarStorageV9430.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key,token);
+                param = await _registrarStorageV9430.Paras((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.polkadot_parachain.primitives.Id)key, token);
             }
 
             if (param == null)

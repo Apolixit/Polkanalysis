@@ -129,7 +129,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
                         {
                             await PolkadotClient.ConnectAsync(cancellationToken);
                         }
-                        catch (Exception ex)
+                        catch (System.Exception ex)
                         {
                             // TODO
                         }

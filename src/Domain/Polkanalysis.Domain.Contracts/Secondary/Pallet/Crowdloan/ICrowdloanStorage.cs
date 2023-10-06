@@ -42,5 +42,17 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<U32> EndingsCountAsync(CancellationToken token);
+
+        /// <summary>
+        /// >> NextFundIndex
+        ///  Tracker for the next available fund index
+        /// </summary>
+        Task<U32> NextFundIndexAsync(CancellationToken token);
+
+        /// <summary>
+        /// >> NextTrieIndex
+        ///  Tracker for the next available trie index
+        /// </summary>
+        Task<U32> NextTrieIndexAsync(CancellationToken token);
     }
 }

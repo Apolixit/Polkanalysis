@@ -30,5 +30,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 
             return substrateConfigurationMock;
         }
+
+        protected async Task<string> GetBlockHashAsync(int blockNum)
+        {
+            return string.Empty;
+        }
     }
 }

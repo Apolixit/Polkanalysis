@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
 {
@@ -17,6 +19,11 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
     /// </summary>
     public interface INominationPoolsStorage : IPalletStorage
     {
+        /// <summary>
+        /// >> ClaimPermissions
+        ///  Map from a pool member account to their opted claim permission.
+        /// </summary>
+        Task<EnumClaimPermission> ClaimPermissionsAsync(SubstrateAccount key, CancellationToken token);
         /// <summary>
         /// Minimum amount to bond to join a pool.
         /// </summary>
@@ -137,6 +144,14 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<U32> CounterForSubPoolsStorageAsync(CancellationToken token);
+
+        /// <summary>
+        /// >> GlobalMaxCommission
+        ///  The maximum commission that can be charged by a pool. Used on commission payouts to bound
+        ///  pool commissions that are > `GlobalMaxCommission`, necessary if a future
+        ///  `GlobalMaxCommission` is lower than some current pool commissions.
+        /// </summary>
+        public Task<Perbill> GlobalMaxCommissionAsync(CancellationToken token);
 
         /// <summary>
         /// Metadata for the pool.

@@ -14,10 +14,25 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Substrate.NetApi.Model.Types.Primitive;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.executor_params;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class ParaSessionInfoStorage
+    public interface IParaSessionInfoStorage
+    {
+        string blockHash { get; set; }
+
+        Task<IBaseEnumerable> AccountKeysAsync(U32 key, CancellationToken token);
+        Task<IBaseEnumerable> AssignmentKeysUnsafeAsync(CancellationToken token);
+        Task<U32> EarliestStoredSessionAsync(CancellationToken token);
+        Task<uint> GetVersionAsync(CancellationToken token);
+        Task<ExecutorParamsBase> SessionExecutorParamsAsync(U32 key, CancellationToken token);
+        Task<IType> SessionsAsync(U32 key, CancellationToken token);
+    }
+
+    public sealed class ParaSessionInfoStorage : IParaSessionInfoStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -764,133 +779,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _paraSessionInfoStorageV9110.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9110.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9110.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9122U)
             {
                 _paraSessionInfoStorageV9122.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9122.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9122.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9140U)
             {
                 _paraSessionInfoStorageV9140.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9140.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9140.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9151U)
             {
                 _paraSessionInfoStorageV9151.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9151.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9151.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9170U)
             {
                 _paraSessionInfoStorageV9170.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9170.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9170.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9180U)
             {
                 _paraSessionInfoStorageV9180.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9180.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9180.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9190U)
             {
                 _paraSessionInfoStorageV9190.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9190.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9190.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9200U)
             {
                 _paraSessionInfoStorageV9200.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9200.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9200.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9220U)
             {
                 _paraSessionInfoStorageV9220.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9220.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9220.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9230U)
             {
                 _paraSessionInfoStorageV9230.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9230.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9230.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _paraSessionInfoStorageV9250.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9250.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9250.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _paraSessionInfoStorageV9260.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9260.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9260.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _paraSessionInfoStorageV9270.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9270.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9270.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _paraSessionInfoStorageV9280.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9280.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9280.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _paraSessionInfoStorageV9281.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9281.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9281.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _paraSessionInfoStorageV9291.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9291.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9291.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _paraSessionInfoStorageV9300.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9300.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9300.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _paraSessionInfoStorageV9340.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9340.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9340.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _paraSessionInfoStorageV9360.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9360.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9360.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _paraSessionInfoStorageV9370.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9370.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9370.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _paraSessionInfoStorageV9420.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9420.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9420.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _paraSessionInfoStorageV9430.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9430.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9430.Sessions((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -985,79 +1000,79 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9230U)
             {
                 _paraSessionInfoStorageV9230.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9230.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9230.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _paraSessionInfoStorageV9250.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9250.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9250.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _paraSessionInfoStorageV9260.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9260.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9260.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _paraSessionInfoStorageV9270.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9270.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9270.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _paraSessionInfoStorageV9280.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9280.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9280.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _paraSessionInfoStorageV9281.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9281.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9281.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _paraSessionInfoStorageV9291.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9291.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9291.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _paraSessionInfoStorageV9300.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9300.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9300.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _paraSessionInfoStorageV9340.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9340.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9340.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _paraSessionInfoStorageV9360.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9360.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9360.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _paraSessionInfoStorageV9370.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9370.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9370.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _paraSessionInfoStorageV9420.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9420.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9420.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _paraSessionInfoStorageV9430.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9430.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9430.AccountKeys((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)
@@ -1108,13 +1123,13 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9420U)
             {
                 _paraSessionInfoStorageV9420.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9420.SessionExecutorParams((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9420.SessionExecutorParams((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _paraSessionInfoStorageV9430.blockHash = blockHash;
-                param = await _paraSessionInfoStorageV9430.SessionExecutorParams((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _paraSessionInfoStorageV9430.SessionExecutorParams((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)

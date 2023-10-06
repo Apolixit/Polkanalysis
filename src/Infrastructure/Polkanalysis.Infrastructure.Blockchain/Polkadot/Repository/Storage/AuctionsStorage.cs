@@ -5,10 +5,10 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using AuctionsStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.AuctionsStorage;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -24,26 +24,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<U32> AuctionCounterAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(AuctionsStorageExt.AuctionCounterParams, token);
+            return await _client.AuctionsStorage.AuctionCounterAsync(token);
         }
 
         public async Task<BaseTuple<U32, U32>> AuctionInfoAsync(CancellationToken token)
         {
-            return await GetStorageAsync<BaseTuple<U32, U32>>(AuctionsStorageExt.AuctionInfoParams, token);
+            return (BaseTuple<U32, U32>)await _client.AuctionsStorage.AuctionInfoAsync(token);
         }
 
         public async Task<U128> ReservedAmountsAsync(BaseTuple<SubstrateAccount, Id> key, CancellationToken token)
         {
-            var param = PolkadotMapping.Instance.Map<
-                BaseTuple<SubstrateAccount, Id>,
-                BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>>(key);
-
-            return await GetStorageWithParamsAsync<BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>, U128>(param, AuctionsStorageExt.ReservedAmountsParams, token);
+            var param = await MapWithVersionAsync<BaseTuple<SubstrateAccount, Id>, IBaseEnumerable>(key, token);
+            return await _client.AuctionsStorage.ReservedAmountsAsync(param, token);
         }
 
         public async Task<Winning> WinningAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<U32, Arr36BaseOpt, Winning>(key, AuctionsStorageExt.WinningParams, token);
+            var res = await _client.AuctionsStorage.WinningAsync(key, token);
+            return Map<Arr36BaseOpt, Winning>(res);
         }
     }
 }

@@ -11,7 +11,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using SystemStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.SystemStorage;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events
 {
@@ -29,7 +29,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events
         public async Task SubscribeEventsAsync(Action<BaseVec<EventRecord>> callback, CancellationToken token)
         {
             await _client.SubscribeStorageKeyAsync(
-                SystemStorageExt.EventsParams(),
+                RequestGenerator.GetStorage("System", "Events", Substrate.NetApi.Model.Meta.Storage.Type.Plain),
                 async (subscriptionId, storageChangeSet) =>
                 {
                     if (storageChangeSet.Changes == null
@@ -47,40 +47,40 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events
 
                     try
                     {
-                        var coreResult = new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>();
-                        coreResult.Create(hexString);
+                        //var coreResult = new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord>();
+                        //coreResult.Create(hexString);
 
 
-                        _logger.LogTrace(
-                            $"Parsed all the events ({coreResult.Value.Length}) from block {blockData.Block.Header.Number.Value}");
+                        //_logger.LogTrace(
+                        //    $"Parsed all the events ({coreResult.Value.Length}) from block {blockData.Block.Header.Number.Value}");
 
-                        var expectedResult = new List<EventRecord>();
-                        foreach (var coreEvent in coreResult.Value)
-                        {
-                            var mappedPhase = PolkadotMapping.Instance.Map<EnumPhase>(coreEvent.Phase);
-                            var mappedTopics = PolkadotMapping.Instance.Map<BaseVec<Hash>>(coreEvent.Topics);
-                            var maybeMappedEvents = new Maybe<EnumRuntimeEvent>();
+                        //var expectedResult = new List<EventRecord>();
+                        //foreach (var coreEvent in coreResult.Value)
+                        //{
+                        //    var mappedPhase = PolkadotMapping.Instance.Map<EnumPhase>(coreEvent.Phase);
+                        //    var mappedTopics = PolkadotMapping.Instance.Map<BaseVec<Hash>>(coreEvent.Topics);
+                        //    var maybeMappedEvents = new Maybe<EnumRuntimeEvent>();
 
-                            try
-                            {
+                        //    try
+                        //    {
 
-                                var mappedEvents = PolkadotMapping.Instance.Map<
-                          Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(coreEvent.Event);
+                        //        var mappedEvents = PolkadotMapping.Instance.Map<
+                        //  Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>(coreEvent.Event);
 
-                                maybeMappedEvents = new Maybe<EnumRuntimeEvent>(mappedEvents);
-                            }
-                            catch (Exception _)
-                            {
-                                maybeMappedEvents.Core = coreEvent;
-                            }
+                        //        maybeMappedEvents = new Maybe<EnumRuntimeEvent>(mappedEvents);
+                        //    }
+                        //    catch (Exception _)
+                        //    {
+                        //        maybeMappedEvents.Core = coreEvent;
+                        //    }
 
-                            var mappedEvent = new EventRecord(mappedPhase, maybeMappedEvents, mappedTopics);
-                            expectedResult.Add(mappedEvent);
-                        }
+                        //    var mappedEvent = new EventRecord(mappedPhase, maybeMappedEvents, mappedTopics);
+                        //    expectedResult.Add(mappedEvent);
+                        //}
 
-                        callback(new BaseVec<EventRecord>(expectedResult.ToArray()));
+                        //callback(new BaseVec<EventRecord>(expectedResult.ToArray()));
                     }
-                    catch (Exception ex)
+                    catch (System.Exception ex)
                     {
                         _logger.LogError(
                             $"Fail to parse all the events from block {blockData.Block.Header.Number.Value}",

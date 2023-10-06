@@ -4,10 +4,8 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using CrowdloanStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.CrowdloanStorage;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -17,34 +15,39 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<U32> EndingsCountAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(CrowdloanStorageExt.EndingsCountParams, token);
+            return await _client.CrowdloanStorage.EndingsCountAsync(token);
         }
 
         public async Task<FundInfo> FundsAsync(Id key, CancellationToken token)
         {
-            var id = PolkadotMapping.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key);
-
-            return await GetStorageWithParamsAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
-                FundInfo>
-                (id, CrowdloanStorageExt.FundsParams, token);
+            var id = await MapIdAsync(key, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>(
+                await _client.CrowdloanStorage.FundsAsync(id, token));
         }
 
         public QueryStorage<Id, FundInfo> FundsQuery()
         {
-            return new QueryStorage<Id, FundInfo>(
-                GetAllStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
-                Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
-                FundInfo>, "Crowdloan", "Funds");
+            //return new QueryStorage<Id, FundInfo>(
+            //    GetAllStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
+            //    Id,
+            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
+            //    FundInfo>, "Crowdloan", "Funds");
+            throw new NotImplementedException();
         }
 
         public async Task<BaseVec<Id>> NewRaiseAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
-                BaseVec<Id>>(CrowdloanStorageExt.NewRaiseParams, token);
+            return Map<IBaseEnumerable, BaseVec<Id>>(await _client.CrowdloanStorage.NewRaiseAsync(token));
+        }
+
+        public async Task<U32> NextFundIndexAsync(CancellationToken token)
+        {
+            return await _client.CrowdloanStorage.NextFundIndexAsync(token);
+        }
+
+        public async Task<U32> NextTrieIndexAsync(CancellationToken token)
+        {
+            return await _client.CrowdloanStorage.NextTrieIndexAsync(token);
         }
     }
 }

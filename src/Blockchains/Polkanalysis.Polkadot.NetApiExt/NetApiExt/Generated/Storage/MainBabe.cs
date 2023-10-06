@@ -14,10 +14,38 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe;
+using Substrate.NetApi.Model.Types.Primitive;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class BabeStorage
+    public interface IBabeStorage
+    {
+        string blockHash { get; set; }
+
+        Task<IBaseEnumerable> AuthoritiesAsync(CancellationToken token);
+        Task<IBaseValue> AuthorVrfRandomnessAsync(CancellationToken token);
+        Task<SlotBase> CurrentSlotAsync(CancellationToken token);
+        Task<BabeEpochConfigurationBase> EpochConfigAsync(CancellationToken token);
+        Task<U64> EpochIndexAsync(CancellationToken token);
+        Task<IBaseEnumerable> EpochStartAsync(CancellationToken token);
+        Task<SlotBase> GenesisSlotAsync(CancellationToken token);
+        Task<IBaseValue> InitializedAsync(CancellationToken token);
+        Task<U32> LatenessAsync(CancellationToken token);
+        Task<IBaseEnumerable> NextAuthoritiesAsync(CancellationToken token);
+        Task<BabeEpochConfigurationBase> NextEpochConfigAsync(CancellationToken token);
+        Task<Arr32U8> NextRandomnessAsync(CancellationToken token);
+        Task<IBaseEnum> PendingEpochConfigChangeAsync(CancellationToken token);
+        Task<Arr32U8> RandomnessAsync(CancellationToken token);
+        Task<U32> SegmentIndexAsync(CancellationToken token);
+        Task<IBaseEnumerable> SkippedEpochsAsync(CancellationToken token);
+        Task<IBaseEnumerable> UnderConstructionAsync(U32 key, CancellationToken token);
+    }
+
+    public sealed class BabeStorage : IBabeStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -2591,133 +2619,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _babeStorageV9110.blockHash = blockHash;
-                param = await _babeStorageV9110.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9110.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9122U)
             {
                 _babeStorageV9122.blockHash = blockHash;
-                param = await _babeStorageV9122.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9122.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9140U)
             {
                 _babeStorageV9140.blockHash = blockHash;
-                param = await _babeStorageV9140.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9140.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9151U)
             {
                 _babeStorageV9151.blockHash = blockHash;
-                param = await _babeStorageV9151.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9151.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9170U)
             {
                 _babeStorageV9170.blockHash = blockHash;
-                param = await _babeStorageV9170.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9170.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9180U)
             {
                 _babeStorageV9180.blockHash = blockHash;
-                param = await _babeStorageV9180.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9180.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9190U)
             {
                 _babeStorageV9190.blockHash = blockHash;
-                param = await _babeStorageV9190.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9190.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9200U)
             {
                 _babeStorageV9200.blockHash = blockHash;
-                param = await _babeStorageV9200.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9200.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9220U)
             {
                 _babeStorageV9220.blockHash = blockHash;
-                param = await _babeStorageV9220.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9220.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9230U)
             {
                 _babeStorageV9230.blockHash = blockHash;
-                param = await _babeStorageV9230.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9230.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9250U)
             {
                 _babeStorageV9250.blockHash = blockHash;
-                param = await _babeStorageV9250.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9250.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9260U)
             {
                 _babeStorageV9260.blockHash = blockHash;
-                param = await _babeStorageV9260.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9260.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9270U)
             {
                 _babeStorageV9270.blockHash = blockHash;
-                param = await _babeStorageV9270.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9270.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9280U)
             {
                 _babeStorageV9280.blockHash = blockHash;
-                param = await _babeStorageV9280.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9280.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9281U)
             {
                 _babeStorageV9281.blockHash = blockHash;
-                param = await _babeStorageV9281.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9281.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9291U)
             {
                 _babeStorageV9291.blockHash = blockHash;
-                param = await _babeStorageV9291.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9291.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9300U)
             {
                 _babeStorageV9300.blockHash = blockHash;
-                param = await _babeStorageV9300.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9300.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9340U)
             {
                 _babeStorageV9340.blockHash = blockHash;
-                param = await _babeStorageV9340.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9340.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9360U)
             {
                 _babeStorageV9360.blockHash = blockHash;
-                param = await _babeStorageV9360.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9360.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9370U)
             {
                 _babeStorageV9370.blockHash = blockHash;
-                param = await _babeStorageV9370.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9370.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9420U)
             {
                 _babeStorageV9420.blockHash = blockHash;
-                param = await _babeStorageV9420.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9420.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (version == 9430U)
             {
                 _babeStorageV9430.blockHash = blockHash;
-                param = await _babeStorageV9430.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key,token);
+                param = await _babeStorageV9430.UnderConstruction((Substrate.NetApi.Model.Types.Primitive.U32)key, token);
             }
 
             if (param == null)

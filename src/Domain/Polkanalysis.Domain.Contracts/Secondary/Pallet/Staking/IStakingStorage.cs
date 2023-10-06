@@ -272,6 +272,18 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
         public Task<EnumForcing> ForceEraAsync(CancellationToken token);
 
         /// <summary>
+        /// >> HistoryDepth
+        ///  Number of eras to keep in history.
+        /// 
+        ///  Information is kept for eras in `[current_era - history_depth; current_era]`.
+        /// 
+        ///  Must be more than the number of eras delayed by session otherwise. I.e. active era must
+        ///  always be in history. I.e. `active_era > current_era - history_depth` must be
+        ///  guaranteed.
+        /// </summary>
+        public Task<U32> HistoryDepthAsync(CancellationToken token);
+
+        /// <summary>
         ///  The percentage of the slash that is distributed to reporters.
         /// 
         ///  The rest of the slashed value is handled by the `Slash`.
@@ -378,7 +390,7 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        //public Task<EnumReleases> StorageVersionAsync(CancellationToken token);
+        public Task<EnumReleases> StorageVersionAsync(CancellationToken token);
 
         /// <summary>
         ///  The threshold for when users can start calling `chill_other` for other validators /

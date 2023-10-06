@@ -14,10 +14,28 @@ using System.Threading;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Extrinsics;
+using Substrate.NetApi.Model.Types.Primitive;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime;
 
 namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
 {
-    public sealed class SessionStorage
+    public interface ISessionStorage
+    {
+        string blockHash { get; set; }
+
+        Task<U32> CurrentIndexAsync(CancellationToken token);
+        Task<IBaseEnumerable> DisabledValidatorsAsync(CancellationToken token);
+        Task<uint> GetVersionAsync(CancellationToken token);
+        Task<AccountId32Base> KeyOwnerAsync(IBaseEnumerable key, CancellationToken token);
+        Task<SessionKeysBase> NextKeysAsync(AccountId32Base key, CancellationToken token);
+        Task<Bool> QueuedChangedAsync(CancellationToken token);
+        Task<IBaseEnumerable> QueuedKeysAsync(CancellationToken token);
+        Task<IBaseEnumerable> ValidatorsAsync(CancellationToken token);
+    }
+
+    public sealed class SessionStorage : ISessionStorage
     {
         /// <summary>
         /// Substrate client for the storage calls.
@@ -1535,133 +1553,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _sessionStorageV9110.blockHash = blockHash;
-                param = await _sessionStorageV9110.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9110.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9122U)
             {
                 _sessionStorageV9122.blockHash = blockHash;
-                param = await _sessionStorageV9122.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9122.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9140U)
             {
                 _sessionStorageV9140.blockHash = blockHash;
-                param = await _sessionStorageV9140.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9140.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9151U)
             {
                 _sessionStorageV9151.blockHash = blockHash;
-                param = await _sessionStorageV9151.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9151.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9170U)
             {
                 _sessionStorageV9170.blockHash = blockHash;
-                param = await _sessionStorageV9170.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9170.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9180U)
             {
                 _sessionStorageV9180.blockHash = blockHash;
-                param = await _sessionStorageV9180.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9180.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9190U)
             {
                 _sessionStorageV9190.blockHash = blockHash;
-                param = await _sessionStorageV9190.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9190.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9200U)
             {
                 _sessionStorageV9200.blockHash = blockHash;
-                param = await _sessionStorageV9200.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9200.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9220U)
             {
                 _sessionStorageV9220.blockHash = blockHash;
-                param = await _sessionStorageV9220.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9220.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9230U)
             {
                 _sessionStorageV9230.blockHash = blockHash;
-                param = await _sessionStorageV9230.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9230.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9250U)
             {
                 _sessionStorageV9250.blockHash = blockHash;
-                param = await _sessionStorageV9250.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9250.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9260U)
             {
                 _sessionStorageV9260.blockHash = blockHash;
-                param = await _sessionStorageV9260.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9260.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9270U)
             {
                 _sessionStorageV9270.blockHash = blockHash;
-                param = await _sessionStorageV9270.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9270.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9280U)
             {
                 _sessionStorageV9280.blockHash = blockHash;
-                param = await _sessionStorageV9280.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9280.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9281U)
             {
                 _sessionStorageV9281.blockHash = blockHash;
-                param = await _sessionStorageV9281.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9281.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9291U)
             {
                 _sessionStorageV9291.blockHash = blockHash;
-                param = await _sessionStorageV9291.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9291.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9300U)
             {
                 _sessionStorageV9300.blockHash = blockHash;
-                param = await _sessionStorageV9300.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9300.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9340U)
             {
                 _sessionStorageV9340.blockHash = blockHash;
-                param = await _sessionStorageV9340.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9340.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9360U)
             {
                 _sessionStorageV9360.blockHash = blockHash;
-                param = await _sessionStorageV9360.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9360.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9370U)
             {
                 _sessionStorageV9370.blockHash = blockHash;
-                param = await _sessionStorageV9370.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9370.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9420U)
             {
                 _sessionStorageV9420.blockHash = blockHash;
-                param = await _sessionStorageV9420.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9420.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.AccountId32)key, token);
             }
 
             if (version == 9430U)
             {
                 _sessionStorageV9430.blockHash = blockHash;
-                param = await _sessionStorageV9430.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key,token);
+                param = await _sessionStorageV9430.NextKeys((Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.AccountId32)key, token);
             }
 
             if (param == null)
@@ -1792,133 +1810,133 @@ namespace Polkanalysis.Polkadot.NetApiExt.Generated.Storage
             if (version == 9110U)
             {
                 _sessionStorageV9110.blockHash = blockHash;
-                param = await _sessionStorageV9110.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9110.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9122U)
             {
                 _sessionStorageV9122.blockHash = blockHash;
-                param = await _sessionStorageV9122.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9122.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9140U)
             {
                 _sessionStorageV9140.blockHash = blockHash;
-                param = await _sessionStorageV9140.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9140.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9151U)
             {
                 _sessionStorageV9151.blockHash = blockHash;
-                param = await _sessionStorageV9151.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9151.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9151.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9170U)
             {
                 _sessionStorageV9170.blockHash = blockHash;
-                param = await _sessionStorageV9170.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9170.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9170.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9180U)
             {
                 _sessionStorageV9180.blockHash = blockHash;
-                param = await _sessionStorageV9180.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9180.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9180.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9190U)
             {
                 _sessionStorageV9190.blockHash = blockHash;
-                param = await _sessionStorageV9190.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9190.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9190.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9200U)
             {
                 _sessionStorageV9200.blockHash = blockHash;
-                param = await _sessionStorageV9200.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9200.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9220U)
             {
                 _sessionStorageV9220.blockHash = blockHash;
-                param = await _sessionStorageV9220.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9220.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9220.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9230U)
             {
                 _sessionStorageV9230.blockHash = blockHash;
-                param = await _sessionStorageV9230.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9230.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9250U)
             {
                 _sessionStorageV9250.blockHash = blockHash;
-                param = await _sessionStorageV9250.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9250.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9250.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9260U)
             {
                 _sessionStorageV9260.blockHash = blockHash;
-                param = await _sessionStorageV9260.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9260.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9260.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9270U)
             {
                 _sessionStorageV9270.blockHash = blockHash;
-                param = await _sessionStorageV9270.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9270.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9270.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9280U)
             {
                 _sessionStorageV9280.blockHash = blockHash;
-                param = await _sessionStorageV9280.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9280.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9280.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9281U)
             {
                 _sessionStorageV9281.blockHash = blockHash;
-                param = await _sessionStorageV9281.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9281.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9281.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9291U)
             {
                 _sessionStorageV9291.blockHash = blockHash;
-                param = await _sessionStorageV9291.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9291.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9291.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9300U)
             {
                 _sessionStorageV9300.blockHash = blockHash;
-                param = await _sessionStorageV9300.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9300.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9300.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9340U)
             {
                 _sessionStorageV9340.blockHash = blockHash;
-                param = await _sessionStorageV9340.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9340.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9360U)
             {
                 _sessionStorageV9360.blockHash = blockHash;
-                param = await _sessionStorageV9360.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9360.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9360.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9370U)
             {
                 _sessionStorageV9370.blockHash = blockHash;
-                param = await _sessionStorageV9370.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9370.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9420U)
             {
                 _sessionStorageV9420.blockHash = blockHash;
-                param = await _sessionStorageV9420.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9420.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9420.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (version == 9430U)
             {
                 _sessionStorageV9430.blockHash = blockHash;
-                param = await _sessionStorageV9430.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key,token);
+                param = await _sessionStorageV9430.KeyOwner((Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>)key, token);
             }
 
             if (param == null)

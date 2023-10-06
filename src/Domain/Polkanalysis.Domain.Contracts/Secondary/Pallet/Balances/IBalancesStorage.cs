@@ -9,6 +9,8 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
 {
@@ -59,6 +61,20 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
         /// <returns></returns>
         public Task<AccountData> AccountAsync(SubstrateAccount account, CancellationToken token);
 
+
+        /// <summary>
+        /// >> Freezes
+        ///  Freeze locks on account balances.
+        /// </summary>
+        public Task<IdAmount> FreezesAsync(SubstrateAccount key, CancellationToken token);
+
+
+        /// <summary>
+        /// >> Holds
+        ///  Holds on account balances.
+        /// </summary>
+        public Task<IdAmount> HoldsAsync(SubstrateAccount key, CancellationToken token);
+
         /// <summary>
         ///  Any liquidity locks on some account balances.
         ///  NOTE: Should only be accessed when setting, changing and freeing a lock.
@@ -75,5 +91,15 @@ namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token);
+
+
+
+        /// <summary>
+        /// >> StorageVersion
+        ///  Storage version of the pallet.
+        /// 
+        ///  This is set to v2.0.0 for new networks.
+        /// </summary>
+        public Task<EnumReleases> StorageVersionAsync(CancellationToken token);
     };
 }
