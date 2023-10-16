@@ -16,7 +16,34 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
     {
         protected readonly SubstrateClientExt _client;
         protected readonly ILogger _logger;
-        public string? BlockHash { get; set; } = null;
+
+        private string? _blockHash = null;
+        public string? BlockHash {
+            get
+            {
+                return _blockHash;
+            }
+            set
+            {
+                _blockHash = value;
+
+                // TODO : change it in Toolchain SDK to get blockHash property as interface member
+                _client.AuctionsStorage.blockHash = _blockHash;
+                _client.AuthorshipStorage.blockHash = _blockHash;
+                _client.BabeStorage.blockHash = _blockHash;
+                _client.BalancesStorage.blockHash = _blockHash;
+                _client.CrowdloanStorage.blockHash = _blockHash;
+                _client.IdentityStorage.blockHash = _blockHash;
+                _client.NominationPoolsStorage.blockHash = _blockHash;
+                _client.ParaSessionInfoStorage.blockHash = _blockHash;
+                _client.ParasStorage.blockHash = _blockHash;
+                _client.RegistrarStorage.blockHash = _blockHash;
+                _client.SessionStorage.blockHash = _blockHash;
+                _client.StakingStorage.blockHash = _blockHash;
+                _client.SystemStorage.blockHash = _blockHash;
+                _client.TimestampStorage.blockHash = _blockHash;
+            }
+        }
 
         protected MainStorage(SubstrateClientExt client, ILogger logger)
         {
@@ -32,7 +59,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 
         protected TDestination Map<TSource, TDestination>(TSource source)
         {
-            return PolkadotMapping.Instance.Map<TSource, TDestination>(source);
+            var mapped = PolkadotMapping.Instance.Map<TSource, TDestination>(source);
+            return mapped;
         }
 
         protected async Task<TDestination> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token)

@@ -7,9 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Bajun\**" />
     <Compile Remove="Helpers\**" />
+    <Compile Remove="Kusama\**" />
+    <EmbeddedResource Remove="Bajun\**" />
     <EmbeddedResource Remove="Helpers\**" />
+    <EmbeddedResource Remove="Kusama\**" />
+    <None Remove="Bajun\**" />
     <None Remove="Helpers\**" />
+    <None Remove="Kusama\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,11 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Kusama\" />
-    <Folder Include="Bajun\" />
   </ItemGroup>
 
   <ItemGroup>

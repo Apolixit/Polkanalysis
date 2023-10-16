@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />

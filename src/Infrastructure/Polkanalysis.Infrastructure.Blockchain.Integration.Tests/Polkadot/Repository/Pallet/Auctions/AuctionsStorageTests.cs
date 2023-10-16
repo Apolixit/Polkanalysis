@@ -11,6 +11,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         {
             var res = await _substrateRepository.Storage.Auctions.AuctionCounterAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
+
+            // Nb Auctions
             Assert.That(res.As<U32>().Value, Is.GreaterThan(1));
         }
 

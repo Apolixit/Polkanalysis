@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Exceptions
 {
-    public class MissingMappingException : SubstrateException
+    public class InvalidTypeSizeException : SubstrateException
     {
-        public MissingMappingException(string? message) : base(message) { }
+        public InvalidTypeSizeException(string? message) : base(message) { }
     }
 }

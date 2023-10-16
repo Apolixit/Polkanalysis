@@ -30,6 +30,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseOpt<Hexa>> AuthorVrfRandomnessAsync(CancellationToken token)
         {
+            //BaseOpt<Arr32U8>
             return Map<IBaseValue, BaseOpt<Hexa>>(await _client.BabeStorage.AuthorVrfRandomnessAsync(token));
         }
 

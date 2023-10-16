@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Exceptions
 {
-    internal class InvalidMappingException : SubstrateException
+    public class InvalidMappingException : SubstrateException
     {
         public InvalidMappingException(string? message) : base(message) { }
     }

@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Core.Display;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core.Random;
+using AutoMapper.Extensions.EnumMapping;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
 using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
@@ -41,6 +42,9 @@ using Polkanalysis.Domain.Contracts.Core.Signature;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Exceptions;
+using Polkanalysis.Domain.Contracts.Secondary.Pallet.Sp;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe;
+using static Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping.PolkadotMapping.BaseTypeProfile;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
@@ -83,7 +87,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             cfg.AddProfile<DemocracyStorageProfile>();
             cfg.AddProfile<IdentityStorageProfile>();
             cfg.AddProfile<NominationPoolsStorageProfile>();
-            cfg.AddProfile<BabeStorageProfile>();
+            //cfg.AddProfile<BabeStorageProfile>();
             cfg.AddProfile<ParaSessionInfoStorageProfile>();
             cfg.AddProfile<ParachainStorageProfile>();
             cfg.AddProfile<RegistarStorageProfile>();
@@ -168,6 +172,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 //CreateMap(typeof(IBaseEnumerable), typeof(BaseVec<>)).ConvertUsing(typeof(BaseEnumerableConverter<,>));
                 CreateMap(typeof(BaseVec<>), typeof(BaseVec<>)).ConvertUsing(typeof(BaseVecConverter<,>));
                 CreateMap(typeof(BaseCom<>), typeof(BaseCom<>)).ConvertUsing(typeof(BaseComConverter<,>));
+
+                //CreateMap<
+                //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_consensus_babe.digests.NextConfigDescriptor, 
+                //    NextConfigDescriptor>().ConvertUsingEnumMapping(opt => opt.);
+                //CreateMap(typeof(IBaseEnum), typeof(IBaseEnum)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumConverterInherit<,,,>));
+                CreateMap(typeof(BaseEnum<>), typeof(BaseEnum<>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumConverter<,>));
 
                 CreateMap(typeof(BaseEnumExt<,,,>), typeof(BaseEnumExt<,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
                 CreateMap(typeof(BaseEnumExt<,,,,,,,,,,>), typeof(BaseEnumExt<,,,,,,,,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
@@ -314,6 +324,26 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             //        //return destination;
             //    }
             //}
+
+            public class BaseEnumConverter<I0, D0> : ITypeConverter<BaseEnum<I0>, BaseEnum<D0>>
+                where I0 : Enum
+                where D0 : struct, Enum
+            {
+                public BaseEnum<D0> Convert(BaseEnum<I0> source, BaseEnum<D0> destination, ResolutionContext context)
+                {
+                    destination = new BaseEnum<D0>();
+                    if (source == null) return destination;
+
+                    D0 mapped;
+                    if(Enum.TryParse(source.Value.ToString(), out mapped))
+                    {
+                        destination.Create(mapped);
+                        return destination;
+                    }
+
+                    throw new MissingMappingException($"Impossible to cast BaseEnum<{typeof(I0)}> to BaseEnum<{typeof(D0)}>");
+                }
+            }
 
             public class BaseEnumExtConverter<I0, I1, D0, D1> : ITypeConverter<BaseEnumExt<I0, I1>, BaseEnumExt<D0, D1>>
                 where I0 : Enum
@@ -503,8 +533,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public BabeStorageProfile()
             {
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public, PublicSr25519>().ConvertUsing(x => Instance.Map<
-                //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public, PublicSr25519>(x.Value));
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.app.PublicBase, PublicSr25519>().ConvertUsing(x => 
+                Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.sr25519.PublicBase, PublicSr25519>(x.Value));
+
+                CreateMap<IBaseValue, BaseOpt<Hexa>>().ConvertUsing(typeof(BaseOptHexaConverter));
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase, Slot>();
+                CreateMap<BabeEpochConfigurationBase, BabeEpochConfiguration>();
+
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public, PublicSr25519>().ConvertUsing(x => Instance.Map<
                 //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public, PublicSr25519>(x.Value));
 
@@ -517,31 +552,62 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor, EnumNextConfigDescriptor>();
             }
 
-        //    public class BoundedVecT5Converter : ITypeConverter<BoundedVecT5, BaseVec<Hexa>>
-        //    {
-        //        public BaseVec<Hexa> Convert(BoundedVecT5 source, BaseVec<Hexa> destination, ResolutionContext context)
-        //        {
-        //            destination = new BaseVec<Hexa>();
-        //            if (source == null) return destination;
+            public class BaseOptHexaConverter : ITypeConverter<IBaseValue, BaseOpt<Hexa>>
+            {
+                public BaseOpt<Hexa> Convert(IBaseValue source, BaseOpt<Hexa> destination, ResolutionContext context)
+                {
+                    destination = new BaseOpt<Hexa>();
+                    if (source == null) return destination;
 
-        //            return context.Mapper.Map<BaseVec<Arr32U8>, BaseVec<Hexa>>(source.Value);
-        //        }
-        //    }
+                    switch(source)
+                    {
+                        case BaseOpt<Arr32U8> b:
+                            destination = context.Mapper.Map<BaseOpt<Hexa>>(b.Value);
+                            return destination;
+                        default:
+                            throw new MissingMappingException($"IBaseValue -> BaseOpt<Hexa>");
+                    }
+                }
+            }
 
-        //    public class WeakBoundedVecT2Converter : ITypeConverter<WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>
-        //    {
-        //        public BaseVec<BaseTuple<PublicSr25519, U64>> Convert(WeakBoundedVecT2 source, BaseVec<BaseTuple<PublicSr25519, U64>> destination, ResolutionContext context)
-        //        {
-        //            destination = new BaseVec<BaseTuple<PublicSr25519, U64>>();
-        //            if (source == null) return destination;
+            public class BabeEpochConfigurationConverter : 
+                ITypeConverter<BabeEpochConfigurationBase, BabeEpochConfiguration>
+            {
+                public BabeEpochConfiguration Convert(BabeEpochConfigurationBase source, BabeEpochConfiguration destination, ResolutionContext context)
+                {
+                    destination = new BabeEpochConfiguration();
+                    if (source == null) return destination;
 
-        //            destination = context.Mapper.Map<
-        //                BaseVec<BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public, U64>>,
-        //                BaseVec<BaseTuple<PublicSr25519, U64>>>(source.Value);
+                    return null;
+                }
+            }
 
-        //            return destination;
-        //        }
-        //    }
+
+            //    public class BoundedVecT5Converter : ITypeConverter<BoundedVecT5, BaseVec<Hexa>>
+            //    {
+            //        public BaseVec<Hexa> Convert(BoundedVecT5 source, BaseVec<Hexa> destination, ResolutionContext context)
+            //        {
+            //            destination = new BaseVec<Hexa>();
+            //            if (source == null) return destination;
+
+            //            return context.Mapper.Map<BaseVec<Arr32U8>, BaseVec<Hexa>>(source.Value);
+            //        }
+            //    }
+
+            //    public class WeakBoundedVecT2Converter : ITypeConverter<WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>
+            //    {
+            //        public BaseVec<BaseTuple<PublicSr25519, U64>> Convert(WeakBoundedVecT2 source, BaseVec<BaseTuple<PublicSr25519, U64>> destination, ResolutionContext context)
+            //        {
+            //            destination = new BaseVec<BaseTuple<PublicSr25519, U64>>();
+            //            if (source == null) return destination;
+
+            //            destination = context.Mapper.Map<
+            //                BaseVec<BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public, U64>>,
+            //                BaseVec<BaseTuple<PublicSr25519, U64>>>(source.Value);
+
+            //            return destination;
+            //        }
+            //    }
         }
 
         public class CrowdloanStorageProfile : Profile

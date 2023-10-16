@@ -25,5 +25,12 @@ namespace Polkanalysis.Domain.Contracts.Core.Public
         public PublicSr25519(string hex) : this(Utils.HexToByteArray(hex).Select(x => new U8(x)).ToArray())
         {
         }
+
+        public string ToHex() => Utils.Bytes2HexString(Bytes);
+
+        public override string ToString()
+        {
+            return ToHex();
+        }
     }
 }
