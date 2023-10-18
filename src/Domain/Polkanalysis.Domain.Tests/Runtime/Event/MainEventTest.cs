@@ -1,5 +1,5 @@
 ﻿using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event

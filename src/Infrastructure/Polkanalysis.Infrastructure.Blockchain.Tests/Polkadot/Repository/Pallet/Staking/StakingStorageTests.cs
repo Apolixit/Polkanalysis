@@ -2,8 +2,8 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Staking

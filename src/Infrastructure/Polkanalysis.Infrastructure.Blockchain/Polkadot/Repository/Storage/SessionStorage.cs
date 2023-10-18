@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Core.Random;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using SessionStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.SessionStorage;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;

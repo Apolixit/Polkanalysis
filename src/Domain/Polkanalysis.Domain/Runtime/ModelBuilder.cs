@@ -7,7 +7,7 @@ using Polkanalysis.Domain.Contracts.Dto.Common;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System;
 using System.Collections.Generic;
 using System.Linq;

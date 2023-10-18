@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;

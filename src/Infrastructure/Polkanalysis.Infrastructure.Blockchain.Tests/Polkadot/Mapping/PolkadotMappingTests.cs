@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 

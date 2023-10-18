@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Registrar;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using RegistrarStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.RegistrarStorage;

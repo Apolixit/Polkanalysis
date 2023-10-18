@@ -7,8 +7,8 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore;
 
 namespace Polkanalysis.Domain.Tests.Node
 {

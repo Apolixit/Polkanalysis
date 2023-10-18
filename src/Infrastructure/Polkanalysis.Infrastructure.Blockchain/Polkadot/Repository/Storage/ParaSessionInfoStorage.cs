@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Public;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using ParaSessionStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.ParaSessionInfoStorage;
 using Substrate.NetApi.Model.Types.Base.Abstraction;

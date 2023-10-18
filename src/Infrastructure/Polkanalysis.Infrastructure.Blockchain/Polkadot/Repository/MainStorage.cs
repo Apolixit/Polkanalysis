@@ -57,17 +57,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             return result.SpecVersion;
         }
 
-        protected TDestination Map<TSource, TDestination>(TSource source)
-        {
-            var mapped = PolkadotMapping.Instance.Map<TSource, TDestination>(source);
-            return mapped;
-        }
+        //protected TDestination Map<TSource, TDestination>(TSource source)
+        //{
+        //    var mapped = PolkadotMapping.Instance.Map<TSource, TDestination>(source);
+        //    return mapped;
+        //}
 
-        protected async Task<TDestination> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token)
-        {
-            var version = await GetVersionAsync(token);
-            return PolkadotMapping.Instance.Map<TSource, TDestination>(source, opts => opts.Items["version"] = version);
-        }
+        //protected async Task<TDestination> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token)
+        //{
+        //    var version = await GetVersionAsync(token);
+        //    return PolkadotMapping.Instance.Map<TSource, TDestination>(source, opts => opts.Items["version"] = version);
+        //}
 
         /// <summary>
         /// Shortcut to build an AccountId32Base (often used as input)

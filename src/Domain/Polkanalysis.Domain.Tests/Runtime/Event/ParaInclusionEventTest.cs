@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {

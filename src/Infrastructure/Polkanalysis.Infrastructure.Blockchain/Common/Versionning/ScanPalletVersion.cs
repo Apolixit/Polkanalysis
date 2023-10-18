@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Versionning;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 

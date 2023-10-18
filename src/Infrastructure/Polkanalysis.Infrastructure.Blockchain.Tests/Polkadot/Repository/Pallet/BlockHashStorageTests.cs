@@ -2,7 +2,7 @@
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

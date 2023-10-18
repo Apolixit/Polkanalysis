@@ -1,11 +1,7 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
-using Polkanalysis.Domain.Contracts.Secondary.Rpc;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Substrate.NetApi;
@@ -13,6 +9,7 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage;
 using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events;
 using Substrate.NetApi.Model.Rpc;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {

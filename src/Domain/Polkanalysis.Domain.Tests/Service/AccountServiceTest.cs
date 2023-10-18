@@ -3,7 +3,7 @@ using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using System;

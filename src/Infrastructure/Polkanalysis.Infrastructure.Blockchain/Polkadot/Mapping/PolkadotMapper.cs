@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System.Text;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using Substrate.NetApi.Model.Types.Base;
@@ -8,95 +7,83 @@ using Polkanalysis.Domain.Contracts.Core.Display;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core.Random;
-using AutoMapper.Extensions.EnumMapping;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Registrar;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Domain.Contracts.Core.Empty;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
-using Polkanalysis.Domain.Contracts.Core.Enum.FrameSupport;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Babe.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Democracy;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Democracy.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
 using Polkanalysis.Domain.Contracts.Core.Public;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Domain.Contracts.Core.Map;
-using Polkanalysis.Domain.Contracts.Core.Multi;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives;
 using Polkanalysis.Domain.Contracts.Core.Signature;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
-using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Exceptions;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Sp;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe;
-using static Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping.PolkadotMapping.BaseTypeProfile;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Microsoft.Extensions.Logging;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
     public class PolkadotMapping : IBlockchainMapping
     {
-        public IMapper Mapper
+        private readonly IMapper _mapper;
+        private readonly ILogger<PolkadotMapping> _logger;
+
+        public IMapper StandardMapper => throw new NotImplementedException();
+
+        public PolkadotMapping(IMapper mapper, ILogger<PolkadotMapping> logger)
         {
-            get
-            {
-                return Instance;
-            }
+            _mapper = mapper;
+            _logger = logger;
         }
 
-        #region Singleton
-        private static IMapper? _instance;
-        public static IMapper Instance
+        public TDestination MapWithVersion<TSource, TDestination>(uint version, TSource source, CancellationToken token)
+            where TSource : IType
+            where TDestination : IType
         {
-            get
+            return _mapper.Map<TSource, TDestination>(source, opts => opts.Items["version"] = version);
+        }
+
+        public TDestination Map<TSource, TDestination>(TSource source) where TSource : IType
+        {
+            var mapped = _mapper.Map<TSource, TDestination>(source);
+            return mapped;
+        }
+
+        public TDestination MapEnum<TDestination, TDestinationEnum>(IBaseEnum source)
+            where TDestination : IBaseEnum, new()
+            where TDestinationEnum : struct, Enum
+        {
+            var destination = new TDestination();
+            if (source == null) return destination;
+
+            TDestinationEnum mapped;
+            if (Enum.TryParse(source.GetEnum().ToString(), out mapped))
             {
-                if (_instance == null)
+                var baseEnumExtBytes = new List<byte>()
                 {
-                    _instance = configuration.CreateMapper();
-                }
-                return _instance;
-            }
-        }
-        #endregion
+                    Convert.ToByte(mapped)
+                };
+                baseEnumExtBytes.AddRange(source.GetValues().Encode());
+                destination.Create(baseEnumExtBytes.ToArray());
 
-        private static MapperConfiguration configuration =
-            new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<BaseTypeProfile>();
-            cfg.AddProfile<CommonProfile>();
-            cfg.AddProfile<EnumProfile>();
-            cfg.AddProfile<BytesProfile>();
-            cfg.AddProfile<AuctionsStorageProfile>();
-            cfg.AddProfile<AuthorshipStorageProfile>();
-            cfg.AddProfile<BalancesStorageProfile>();
-            cfg.AddProfile<CrowdloanStorageProfile>();
-            cfg.AddProfile<DemocracyStorageProfile>();
-            cfg.AddProfile<IdentityStorageProfile>();
-            cfg.AddProfile<NominationPoolsStorageProfile>();
-            //cfg.AddProfile<BabeStorageProfile>();
-            cfg.AddProfile<ParaSessionInfoStorageProfile>();
-            cfg.AddProfile<ParachainStorageProfile>();
-            cfg.AddProfile<RegistarStorageProfile>();
-            cfg.AddProfile<SchedulerStorageProfile>();
-            cfg.AddProfile<SessionStorageProfile>();
-            cfg.AddProfile<SystemStorageProfile>();
-            cfg.AddProfile<StakingStorageProfile>();
-            cfg.AddProfile<XcmStorageProfile>();
-        });
+                // Check if Value2 type is valid
+                int sourceTypeSize = source.GetValues().TypeSize;
+                int destinationTypeSize = destination.GetValues().TypeSize;
+                if (sourceTypeSize != destinationTypeSize)
+                {
+                    throw new InvalidTypeSizeException($"Error while trying to map {source.GetType()} to {typeof(TDestination)}," +
+                        $"associated data (Value2) does not have same TypeSize (source = {sourceTypeSize} / " +
+                        $"destination = {destinationTypeSize})");
+                }
+
+                return destination;
+            }
+
+            throw new MissingMappingException($"Impossible to cast {source.GetType()} to BaseEnum<{typeof(TDestination)}>");
+        }
+
+        
 
         public class BytesProfile : Profile
         {
@@ -317,7 +304,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
             //        destination.Create(res.Bytes);
             //        return destination;
-            //        //destination = new Polkanalysis.Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent();
+            //        //destination = new Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.BagsList.Enums.EnumEvent();
             //        //if (source == null) return destination;
 
             //        ////destination.Create(context.Mapper.Map<D0>(source.Value), context.Mapper.Map<D1>(source.Value2));
@@ -525,7 +512,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 //// Events
                 //CreateMap<EnumBalanceStatus, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumBalanceStatus>();
                 //CreateMap<EnumReasons, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumReasons>();
-                ////CreateMap<Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
+                ////CreateMap<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
             }
         }
 
@@ -533,8 +520,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public BabeStorageProfile()
             {
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.app.PublicBase, PublicSr25519>().ConvertUsing(x => 
-                Instance.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.sr25519.PublicBase, PublicSr25519>(x.Value));
+                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.app.PublicBase, PublicSr25519>().ConvertUsing(x => 
+                //Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.sr25519.PublicBase, PublicSr25519>(x.Value));
 
                 CreateMap<IBaseValue, BaseOpt<Hexa>>().ConvertUsing(typeof(BaseOptHexaConverter));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase, Slot>();
@@ -915,7 +902,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
                 ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
 
-                ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>().ConvertUsing((s, d) =>
+                ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent>().ConvertUsing((s, d) =>
                 ////{
                 ////    d = new();
                 ////    d.Value = Instance.Map<Domain.Contracts.Secondary.Pallet.Balances.Enums.Event>(s.Value);
@@ -923,7 +910,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
                 ////    return d;
                 ////});
-                ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
+                ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
 
                 ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(typeof(BaseEnumTypeConverter));
 

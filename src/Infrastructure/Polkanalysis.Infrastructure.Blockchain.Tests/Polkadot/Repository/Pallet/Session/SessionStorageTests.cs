@@ -5,7 +5,7 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Core.Random;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;

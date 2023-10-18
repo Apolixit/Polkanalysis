@@ -1,7 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using System;
 using System.Collections.Generic;
 using System.Linq;

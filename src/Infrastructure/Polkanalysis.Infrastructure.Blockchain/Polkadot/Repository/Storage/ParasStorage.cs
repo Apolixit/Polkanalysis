@@ -2,8 +2,8 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using ParasStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.ParasStorage;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;

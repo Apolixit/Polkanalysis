@@ -1,8 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using IdExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParasStorage

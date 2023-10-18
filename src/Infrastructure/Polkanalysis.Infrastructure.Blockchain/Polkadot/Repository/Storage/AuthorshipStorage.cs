@@ -2,8 +2,8 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;

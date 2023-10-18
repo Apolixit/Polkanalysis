@@ -2,7 +2,7 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System.Numerics;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;

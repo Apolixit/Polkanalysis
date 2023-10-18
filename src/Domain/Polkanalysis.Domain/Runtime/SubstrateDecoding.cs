@@ -12,7 +12,7 @@ using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 using Ardalis.GuardClauses;
 
 namespace Polkanalysis.Domain.Runtime

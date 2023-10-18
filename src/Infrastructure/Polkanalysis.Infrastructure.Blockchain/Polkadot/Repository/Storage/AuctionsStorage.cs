@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;

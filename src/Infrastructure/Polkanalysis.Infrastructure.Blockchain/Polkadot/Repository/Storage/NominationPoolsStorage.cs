@@ -2,14 +2,14 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using NominationStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.NominationPoolsStorage;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Substrate.NetApi;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {

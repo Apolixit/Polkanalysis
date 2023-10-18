@@ -2,7 +2,7 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System;
 using System.Collections.Generic;

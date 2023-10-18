@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

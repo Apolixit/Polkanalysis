@@ -1,8 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
 using System.Numerics;

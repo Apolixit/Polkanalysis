@@ -1,8 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 

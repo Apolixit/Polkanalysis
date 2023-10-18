@@ -1,11 +1,11 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Configuration.Contracts.Information;
 using Ardalis.GuardClauses;

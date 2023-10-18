@@ -1,6 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Versionning;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning;
 using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Common.Versionning

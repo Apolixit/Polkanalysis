@@ -1,8 +1,8 @@
 ﻿using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Versionning;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning;
 using Polkanalysis.Infrastructure.Blockchain.Common.Versionning;
 using Substrate.NetApi.Model.Types.Base;
 using System;

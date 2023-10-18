@@ -1,6 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Registrar;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Registar
 {

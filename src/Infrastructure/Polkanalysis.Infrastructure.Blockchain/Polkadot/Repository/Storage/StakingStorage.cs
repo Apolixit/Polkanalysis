@@ -2,8 +2,8 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Substrate.NetApi;

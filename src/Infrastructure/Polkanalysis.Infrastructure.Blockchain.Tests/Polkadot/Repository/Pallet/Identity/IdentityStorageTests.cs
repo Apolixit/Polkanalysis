@@ -2,8 +2,8 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Display;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
 using System.Text;
