@@ -2,19 +2,13 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BabeConsensusExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_babe;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Babe
 {
@@ -46,9 +40,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            var resCore = new WeakBoundedVecT2();
+            var resCore = new BaseVec<BaseTuple<BabeConsensusExt.app.Public, U64>>();
             resCore.Create("0x0866F60202B962C40E58FCF3481F5773DC178B9FE096F81511EAA4C7BAD20E612001000000000000009C40155989F6072E82CABA245D7DB7E40A60F866B403257976B89ABA6BE2B55B0100000000000000");
-            _substrateRepository.AjunaClient.GetStorageAsync<WeakBoundedVecT2>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(resCore);
+            _substrateRepository.AjunaClient.GetStorageAsync<BaseVec<BaseTuple<BabeConsensusExt.app.Public, U64>>>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(resCore);
 
             await MockStorageCallAsync(resCore, expectedResult, _substrateRepository.Storage.Babe.AuthoritiesAsync);
         }
@@ -57,12 +51,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task AuthoritiesNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>(_substrateRepository.Storage.Babe.AuthoritiesAsync);
+                BaseVec<BaseTuple<BabeConsensusExt.app.Public, U64>>, BaseVec<BaseTuple<PublicSr25519, U64>>>(_substrateRepository.Storage.Babe.AuthoritiesAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U64TestCase))]
-        public async Task GenesisSlot_ShouldWorkAsync(U64 expectedOutput)
+        public async Task GenesisSlot_ShouldWorkAsync(Slot expectedOutput)
         {
             await MockStorageCallAsync(expectedOutput, _substrateRepository.Storage.Babe.GenesisSlotAsync);
         }
@@ -77,7 +71,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
         [Test]
         [TestCaseSource(nameof(U64TestCase))]
-        public async Task CurrentSlot_ShouldWorkAsync(U64 expectedOutput)
+        public async Task CurrentSlot_ShouldWorkAsync(Slot expectedOutput)
         {
             await MockStorageCallAsync(expectedOutput, _substrateRepository.Storage.Babe.CurrentSlotAsync);
         }
@@ -109,12 +103,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task PendingEpochConfigChange_ShouldWorkAsync()
         {
-            var extAllowedSlot = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots();
-            extAllowedSlot.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.AllowedSlots.PrimarySlots);
-            var extResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor();
+            var extAllowedSlot = new BabeConsensusExt.EnumAllowedSlots();
+            extAllowedSlot.Create(BabeConsensusExt.AllowedSlots.PrimarySlots);
+            var extResult = new BabeConsensusExt.digests.EnumNextConfigDescriptor();
             extResult.Create(
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.NextConfigDescriptor.V1,
-                new BaseTuple<BaseTuple<U64, U64>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.EnumAllowedSlots>(
+                BabeConsensusExt.digests.NextConfigDescriptor.V1,
+                new BaseTuple<BaseTuple<U64, U64>, BabeConsensusExt.EnumAllowedSlots>(
                     new BaseTuple<U64, U64>(new U64(2), new U64(4)), extAllowedSlot));
 
             var allowedSlot = new EnumAllowedSlots();
@@ -130,7 +124,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task PendingEpochConfigChangeNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumNextConfigDescriptor,
+            await MockStorageCallNullAsync<BabeConsensusExt.digests.EnumNextConfigDescriptor,
                 EnumNextConfigDescriptor>(_substrateRepository.Storage.Babe.PendingEpochConfigChangeAsync);
         }
 
@@ -165,9 +159,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            var resCore = new WeakBoundedVecT2();
+            var resCore = new BaseVec<BaseTuple<BabeConsensusExt.app.Public, U64>>();
             resCore.Create("0x0866F60202B962C40E58FCF3481F5773DC178B9FE096F81511EAA4C7BAD20E612001000000000000009C40155989F6072E82CABA245D7DB7E40A60F866B403257976B89ABA6BE2B55B0100000000000000");
-            _substrateRepository.AjunaClient.GetStorageAsync<WeakBoundedVecT2>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(resCore);
+            _substrateRepository.AjunaClient.GetStorageAsync<BaseVec<BaseTuple<BabeConsensusExt.app.Public, U64>>>
+                (Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(resCore);
 
             await MockStorageCallAsync(resCore, expectedResult, _substrateRepository.Storage.Babe.NextAuthoritiesAsync);
         }
@@ -175,7 +170,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task NextAuthoritiesNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<WeakBoundedVecT2,
+            await MockStorageCallNullAsync<BaseVec<BaseTuple<BabeConsensusExt.app.Public, U64>>,
                 BaseVec<BaseTuple<PublicSr25519, U64>>>(_substrateRepository.Storage.Babe.NextAuthoritiesAsync);
         }
 
@@ -197,7 +192,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task UnderConstruction_ShouldWorkAsync()
         {
-            var extResult = new BoundedVecT5();
+            var extResult = new BaseVec<Arr32U8>();
             extResult.Create(Utils.HexToByteArray("0x089A24025AD716349176BD6F75EDBC971D6BB5D970BB2A89A490AFA0A93709F75898B0603D0E55EA7E16E86DE8D6037C39B4F3E68EB18C6ABE4A8D5E837AEC2DFC"));
 
             var expectedResult = new BaseVec<Hexa>(new Hexa[]
@@ -216,7 +211,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task UnderConstructionNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullWithInputAsync<U32, BoundedVecT5, BaseVec<Hexa>>(new U32(0), _substrateRepository.Storage.Babe.UnderConstructionAsync);
+            await MockStorageCallNullWithInputAsync<U32, BaseVec<Arr32U8>, BaseVec<Hexa>>(new U32(0), _substrateRepository.Storage.Babe.UnderConstructionAsync);
         }
 
         [Test]
@@ -238,7 +233,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task InitializedNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                BaseOpt<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.digests.EnumPreDigest>,
+                BaseOpt<BabeConsensusExt.digests.EnumPreDigest>,
                 BaseOpt<EnumPreDigest>>(_substrateRepository.Storage.Babe.InitializedAsync);
         }
 
@@ -291,7 +286,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task EpochConfig_ShouldWorkAsync()
         {
 
-            var extResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
+            var extResult = new BabeConsensusExt.BabeEpochConfiguration();
             extResult.Create("0x0100000000000000040000000000000002");
 
             var expectedResult = new BabeEpochConfiguration();
@@ -306,13 +301,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task EpochConfigNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.EpochConfigAsync);
+                BabeConsensusExt.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.EpochConfigAsync);
         }
 
         [Test]
         public async Task NextEpochConfig_ShouldWorkAsync()
         {
-            var extResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration();
+            var extResult = new BabeConsensusExt.BabeEpochConfiguration();
             extResult.Create("0x0100000000000000040000000000000002");
 
             var expectedResult = new BabeEpochConfiguration();
@@ -326,7 +321,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task NextEpochConfigNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.NextEpochConfigAsync);
+            await MockStorageCallNullAsync<BabeConsensusExt.BabeEpochConfiguration, BabeEpochConfiguration>(_substrateRepository.Storage.Babe.NextEpochConfigAsync);
         }
     }
 }

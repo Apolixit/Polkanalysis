@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Ardalis.GuardClauses;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             string blockchainName,
             bool registerAsSingleton = false)
         {
-            Guard.Against.NullOrEmpty(blockchainName, message: "Blockchain has not be defined when starting application.");
+            Guard.Against.NullOrEmpty(blockchainName, nameof(blockchainName), message: "Blockchain has not be defined when starting application.");
 
             _ = blockchainName.ToLower() switch
             {

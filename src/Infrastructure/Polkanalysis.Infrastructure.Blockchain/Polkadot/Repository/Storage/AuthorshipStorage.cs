@@ -8,6 +8,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -17,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
     /// </summary>
     public class AuthorshipStorage : MainStorage, IAuthorshipStorage
     {
-        public AuthorshipStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public AuthorshipStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<SubstrateAccount> AuthorAsync(CancellationToken token)
         {

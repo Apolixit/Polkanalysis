@@ -7,10 +7,10 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
-using BabeStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.BabeStorage;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
     /// </summary>
     public class BabeStorage : MainStorage, IBabeStorage
     {
-        public BabeStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public BabeStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<BaseVec<BaseTuple<PublicSr25519, U64>>> AuthoritiesAsync(CancellationToken token)
         {

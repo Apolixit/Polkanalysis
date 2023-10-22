@@ -326,7 +326,7 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<BlockLightDto>> GetLastBlocksAsync(int nbBlock, CancellationToken cancellationToken)
         {
-            Guard.Against.NegativeOrZero(nbBlock);
+            Guard.Against.NegativeOrZero(nbBlock, nameof(nbBlock));
             if (nbBlock > 1000)
                 throw new ArgumentException($"{nameof(nbBlock)} should be lower than 1000 (currently : {nbBlock}");
 

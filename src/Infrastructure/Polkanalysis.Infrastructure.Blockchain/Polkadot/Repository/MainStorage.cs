@@ -9,12 +9,14 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using System;
 using Substrate.NetApi.Model.Types.Base;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
     public abstract class MainStorage
     {
         protected readonly SubstrateClientExt _client;
+        protected readonly IBlockchainMapping _mapper;
         protected readonly ILogger _logger;
 
         private string? _blockHash = null;
@@ -45,9 +47,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             }
         }
 
-        protected MainStorage(SubstrateClientExt client, ILogger logger)
+        protected MainStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger)
         {
             _client = client;
+            _mapper = mapper;
             _logger = logger;
         }
 
@@ -57,17 +60,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             return result.SpecVersion;
         }
 
-        //protected TDestination Map<TSource, TDestination>(TSource source)
-        //{
-        //    var mapped = PolkadotMapping.Instance.Map<TSource, TDestination>(source);
-        //    return mapped;
-        //}
+        protected TDestination Map<TSource, TDestination>(TSource source)
+            where TSource : IType
+            where TDestination : IType
+        {
+            var mapped = _mapper.Map<TSource, TDestination>(source);
+            return mapped;
+        }
 
-        //protected async Task<TDestination> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token)
-        //{
-        //    var version = await GetVersionAsync(token);
-        //    return PolkadotMapping.Instance.Map<TSource, TDestination>(source, opts => opts.Items["version"] = version);
-        //}
+        protected async Task<TDestination> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token)
+            where TSource : IType
+            where TDestination : IType
+        {
+            var version = await GetVersionAsync(token);
+            return _mapper.MapWithVersion<TSource, TDestination>(version, source, token);
+        }
 
         /// <summary>
         /// Shortcut to build an AccountId32Base (often used as input)
@@ -75,19 +82,25 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
         /// <param name="account"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        protected Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base> MapAccoundId32Async(SubstrateAccount account, CancellationToken token)
+        protected async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base> MapAccoundId32Async(SubstrateAccount account, CancellationToken token)
         {
-            return MapWithVersionAsync<SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base>(account, token);
+            var version = await GetVersionAsync(token);
+            return _mapper.MapWithVersion<
+                SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base>(version, account, token);
         }
 
-        protected Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase> MapIdAsync(Id key, CancellationToken token)
+        protected async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase> MapIdAsync(Id key, CancellationToken token)
         {
-            return MapWithVersionAsync<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase>(key, token);
+            var version = await GetVersionAsync(token);
+            return _mapper.MapWithVersion<
+                Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase>(version, key, token);
         }
 
-        protected Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase> MapHashAsync(Hash key, CancellationToken token)
+        protected async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase> MapHashAsync(Hash key, CancellationToken token)
         {
-            return MapWithVersionAsync<Hash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase>(key, token);
+            var version = await GetVersionAsync(token);
+            return _mapper.MapWithVersion<
+                Hash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase>(version, key, token);
         }
 
         /// <summary>
@@ -133,8 +146,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
         where R : IType, new()
         where T : IType, new()
         {
-            Guard.Against.Null(input);
-            Guard.Against.Null(funcParams);
+            Guard.Against.Null(input, nameof(input));
+            Guard.Against.Null(funcParams, nameof(funcParams));
 
             var result = await GetStorageAsync<R>(funcParams(input), token, callerName);
 
@@ -154,7 +167,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             [CallerMemberName] string callerName = "")
             where T : IType, new()
         {
-            Guard.Against.Null(funcParams);
+            Guard.Against.Null(funcParams, nameof(funcParams));
 
             return await GetStorageAsync<T>(funcParams(), token, callerName) ?? new T();
         }
@@ -166,7 +179,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
         where R : IType, new()
         where T : IType, new()
         {
-            Guard.Against.Null(funcParams);
+            Guard.Against.Null(funcParams, nameof(funcParams));
 
             var result = await GetStorageAsync<R>(funcParams(), token, callerName);
             var mappedType = new T();
@@ -243,8 +256,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             where TStorage : IType, new()
             where TStorageSource : IType, new()
         {
-            Guard.Against.NullOrEmpty(module);
-            Guard.Against.NullOrEmpty(item);
+            Guard.Against.NullOrEmpty(module, nameof(module));
+            Guard.Against.NullOrEmpty(item, nameof(item));
 
             byte[]? startKey = null;
             int defaultPagination = 1000;

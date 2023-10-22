@@ -18,8 +18,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Common.Versionning
 
         public virtual List<PalletVersionning> GetPallets(string blockchainName, uint blockNumber)
         {
-            Guard.Against.NullOrEmpty(blockchainName);
-            Guard.Against.Negative(blockNumber);
+            Guard.Against.NullOrEmpty(blockchainName, nameof(blockchainName));
+            Guard.Against.Negative(blockNumber, nameof(blockNumber));
 
             var res = _scanPallets.ScanAttribute()
                 .Where(x => x.Version.BlockchainName == blockchainName);

@@ -4,14 +4,9 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
+using NominationPoolsExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_nomination_pools;
 using Substrate.NET.Utils;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using NSubstitute;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.NominationPools
@@ -112,7 +107,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task PoolMembers_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember();
+            var coreResult = new NominationPoolsExt.PoolMember();
             coreResult.Create("0x010000009F5B4BC9B500000000000000000000006A0B97D2D0178D00000000000000000000");
 
             coreResult.Encode();
@@ -131,14 +126,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
+                NominationPoolsExt.PoolMember,
                 PoolMember>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.NominationPools.PoolMembersAsync);
         }
 
         [Test]
         public async Task BondedPools_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner();
+            var coreResult = new NominationPoolsExt.BondedPoolInner();
             coreResult.Create("0x45408D5E38C90400000000000000000000B80100003C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD28802013C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD28802013C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD28802013C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD28802");
 
             var expectedResult = new BondedPoolInner(
@@ -162,7 +157,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 U32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner,
+                NominationPoolsExt.BondedPoolInner,
                 BondedPoolInner>
                 (new U32(1), _substrateRepository.Storage.NominationPools.BondedPoolsAsync);
         }
@@ -170,7 +165,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task RewardPools_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool();
+            var coreResult = new NominationPoolsExt.RewardPool();
             coreResult.Create("0x93EED213FC32CB0000000000000000008D58FA27B21F0000000000000000000034E489F83E1800000000000000000000");
 
             var expectedResult = new RewardPool(
@@ -188,7 +183,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 U32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool,
+                NominationPoolsExt.RewardPool,
                 RewardPool>
                 (new U32(1), _substrateRepository.Storage.NominationPools.RewardPoolsAsync);
         }
@@ -209,7 +204,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task SubPoolsStorage_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools();
+            var coreResult = new NominationPoolsExt.SubPools();
             coreResult.Create("0x9D41C0E4430A000000000000000000009D41C0E4430A0000000000000000000050F40300003F739C5AFD00000000000000000000003F739C5AFD0000000000000000000000F60300002071F9245F06000000000000000000002071F9245F0600000000000000000000F80300000010ACD15300000000000000000000000010ACD1530000000000000000000000F903000000C033C504010000000000000000000000C033C5040100000000000000000000FB030000004429353A0000000000000000000000004429353A0000000000000000000000FC0300000070C9B28B00000000000000000000000070C9B28B0000000000000000000000FD03000000E8764817000000000000000000000000E87648170000000000000000000000FF03000000487835A3020000000000000000000000487835A30200000000000000000000020400004EC429DA0501000000000000000000004EC429DA050100000000000000000000030400000010A5D4E800000000000000000000000010A5D4E80000000000000000000000040400004F836B4E1000000000000000000000004F836B4E10000000000000000000000006040000428012402A0100000000000000000000428012402A010000000000000000000008040000004647FB170000000000000000000000004647FB17000000000000000000000009040000004429353A0000000000000000000000004429353A00000000000000000000000A040000B90FB3A4130100000000000000000000B90FB3A41301000000000000000000000B04000014F401A11C000000000000000000000014F401A11C00000000000000000000000C040000C326B5B6430200000000000000000000C326B5B64302000000000000000000000F04000000C817A804000000000000000000000000C817A8040000000000000000000000100400001558E2F40D2E000000000000000000001558E2F40D2E0000000000000000000011040000EC7515E3600200000000000000000000EC7515E3600200000000000000000000");
 
             var expectedResult = new SubPools(
@@ -298,7 +293,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             Assert.That(coreResult.NoEra.Encode(), Is.EqualTo(expectedResult.NoEra.Encode()));
 
-            var coreTab = coreResult.WithEra.Value.Value.Value;
+            //new BaseVec<BaseTuple<U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_nomination_pools.UnbondPool>>();
+            var coreTab = coreResult.WithEra.GetValues();
             for (int i = 0; i < coreTab.Length; i++)
             {
                 Assert.That(coreTab[i].Encode(), Is.EqualTo(expectedResult.WithEra.Value[i].Encode()));
@@ -313,7 +309,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 U32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools,
+                NominationPoolsExt.SubPools,
                 SubPools>
                 (new U32(1), _substrateRepository.Storage.NominationPools.SubPoolsStorageAsync);
         }
@@ -334,22 +330,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task Metadata_ShouldWorkAsync()
         {
-            var coreResult = new BoundedVecT28();
+            var coreResult = new BaseVec<U8>();
             coreResult.Create("0x99012331202D2050617261646F78207C20506172614E6F6465732E696F20F09F9A80202D204E6F6D696E6174696E6720747275737465642076616C696461746F7273207769746820686967682072657475726E7320616E642074696D656C79207061796F7574732E");
 
             var expectedResult = new FlexibleNameable().FromText("#1 - Paradox | ParaNodes.io 🚀 - Nominating trusted validators with high returns and timely payouts.");
 
-            _substrateRepository.AjunaClient.GetStorageAsync<BoundedVecT28>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(coreResult);
+            _substrateRepository.AjunaClient.GetStorageAsync<BaseVec<U8>>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(coreResult);
 
             var res = await _substrateRepository.Storage.NominationPools.MetadataAsync(new U32(1), CancellationToken.None);
             var nameableUncleaned = new FlexibleNameable(res);
             var nameableCleaned = new FlexibleNameable(res.Value);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(nameableUncleaned.Bytes, Is.EqualTo(coreResult.Value.Bytes));
+            Assert.That(nameableUncleaned.Bytes, Is.EqualTo(coreResult.Bytes));
 
             Assert.That(nameableCleaned.Display(), Is.EqualTo(expectedResult.Display()));
-            Assert.That(expectedResult.Display(), Is.EqualTo(Encoding.Default.GetString(coreResult.Value.Value.ToBytes())));
+            Assert.That(expectedResult.Display(), Is.EqualTo(Encoding.Default.GetString(coreResult.Value.ToBytes())));
         }
 
         [Test]
@@ -357,7 +353,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 U32,
-                BoundedVecT28,
+                BaseVec<U8>,
                 BaseVec<U8>>
                 (new U32(1), _substrateRepository.Storage.NominationPools.MetadataAsync);
         }

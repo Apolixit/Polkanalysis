@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.AwesomeAvatars;
@@ -13,7 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 
@@ -22,11 +22,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
     public class PolkadotStorage : IStorage
     {
         private SubstrateClientExt _polkadotClient;
+        public readonly IBlockchainMapping _mapper;
         private readonly ILogger _logger;
 
-        public PolkadotStorage(SubstrateClientExt polkadotClient, ILogger logger)
+        public PolkadotStorage(SubstrateClientExt polkadotClient, IBlockchainMapping mapper, ILogger logger)
         {
             _polkadotClient = polkadotClient;
+            _mapper = mapper;
             _logger = logger;
         }
 
@@ -53,7 +55,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_auctionsStorages == null)
-                    _auctionsStorages = new AuctionsStorage(_polkadotClient, _logger);
+                    _auctionsStorages = new AuctionsStorage(_polkadotClient, _mapper, _logger);
 
                 _auctionsStorages.BlockHash = BlockHash;
                 return _auctionsStorages;
@@ -65,7 +67,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_authorshipStorages == null)
-                    _authorshipStorages = new AuthorshipStorage(_polkadotClient, _logger);
+                    _authorshipStorages = new AuthorshipStorage(_polkadotClient, _mapper, _logger);
 
                 _authorshipStorages.BlockHash = BlockHash;
                 return _authorshipStorages;
@@ -85,7 +87,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_babeStorages == null)
-                    _babeStorages = new BabeStorage(_polkadotClient, _logger);
+                    _babeStorages = new BabeStorage(_polkadotClient, _mapper, _logger);
 
                 _babeStorages.BlockHash = BlockHash;
                 return _babeStorages;
@@ -97,7 +99,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_balancesStorages == null)
-                    _balancesStorages = new BalancesStorage(_polkadotClient, _logger);
+                    _balancesStorages = new BalancesStorage(_polkadotClient, _mapper, _logger);
 
                 _balancesStorages.BlockHash = BlockHash;
                 return _balancesStorages;
@@ -109,7 +111,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_crowdloanStorage == null)
-                    _crowdloanStorage = new CrowdloanStorage(_polkadotClient, _logger);
+                    _crowdloanStorage = new CrowdloanStorage(_polkadotClient, _mapper, _logger);
 
                 _crowdloanStorage.BlockHash = BlockHash;
                 return _crowdloanStorage;
@@ -121,7 +123,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_identityStorage == null)
-                    _identityStorage = new IdentityStorage(_polkadotClient, _logger);
+                    _identityStorage = new IdentityStorage(_polkadotClient, _mapper, _logger);
 
                 _identityStorage.BlockHash = BlockHash;
                 return _identityStorage;
@@ -133,7 +135,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_nominationPoolsStorage == null)
-                    _nominationPoolsStorage = new NominationPoolsStorage(_polkadotClient, _logger);
+                    _nominationPoolsStorage = new NominationPoolsStorage(_polkadotClient, _mapper, _logger);
 
                 _nominationPoolsStorage.BlockHash = BlockHash;
                 return _nominationPoolsStorage;
@@ -145,7 +147,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_parasStorage == null)
-                    _parasStorage = new ParasStorage(_polkadotClient, _logger);
+                    _parasStorage = new ParasStorage(_polkadotClient, _mapper, _logger);
 
                 _parasStorage.BlockHash = BlockHash;
                 return _parasStorage;
@@ -157,7 +159,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_paraSessionInfoStorage == null)
-                    _paraSessionInfoStorage = new ParaSessionInfoStorage(_polkadotClient, _logger);
+                    _paraSessionInfoStorage = new ParaSessionInfoStorage(_polkadotClient, _mapper, _logger);
 
                 _paraSessionInfoStorage.BlockHash = BlockHash;
                 return _paraSessionInfoStorage;
@@ -169,7 +171,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_registrarStorage == null)
-                    _registrarStorage = new RegistrarStorage(_polkadotClient, _logger);
+                    _registrarStorage = new RegistrarStorage(_polkadotClient, _mapper, _logger);
 
                 _registrarStorage.BlockHash = BlockHash;
                 return _registrarStorage;
@@ -181,7 +183,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_sessionStorage == null)
-                    _sessionStorage = new SessionStorage(_polkadotClient, _logger);
+                    _sessionStorage = new SessionStorage(_polkadotClient, _mapper, _logger);
 
                 _sessionStorage.BlockHash = BlockHash;
                 return _sessionStorage;
@@ -193,7 +195,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_stakingStorage == null)
-                    _stakingStorage = new StakingStorage(_polkadotClient, _logger);
+                    _stakingStorage = new StakingStorage(_polkadotClient, _mapper, _logger);
 
                 _stakingStorage.BlockHash = BlockHash;
                 return _stakingStorage;
@@ -205,7 +207,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_systemStorage == null)
-                    _systemStorage = new SystemStorage(_polkadotClient, _logger);
+                    _systemStorage = new SystemStorage(_polkadotClient, _mapper, _logger);
 
                 _systemStorage.BlockHash = BlockHash;
                 return _systemStorage;
@@ -217,7 +219,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             get
             {
                 if (_timestampStorage == null)
-                    _timestampStorage = new TimestampStorage(_polkadotClient, _logger);
+                    _timestampStorage = new TimestampStorage(_polkadotClient, _mapper, _logger);
 
                 _timestampStorage.BlockHash = BlockHash;
                 return _timestampStorage;

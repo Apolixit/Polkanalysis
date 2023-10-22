@@ -3,9 +3,8 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.weak_bounded_vec;
 using System.Numerics;
+using BalancesExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_balances;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Balances
 {
@@ -42,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             var account = new SubstrateAccount(MockAddress);
 
-            var coreRes = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData();
+            var coreRes = new BalancesExt.AccountData();
             coreRes.Create("0x00CA9A3B000000000000000000000000400D030000000000000000000000000020A1070000000000000000000000000020030000000000000000000000000000");
 
             var expectedResult = new AccountData();
@@ -58,7 +57,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var testAccount = new SubstrateAccount(MockAddress);
 
             var res = await MockStorageCallNullWithInputAsync<SubstrateAccount,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.AccountData,
+                BalancesExt.AccountData,
                 AccountData>(testAccount, _substrateRepository.Storage.Balances.AccountAsync);
 
             Assert.That(res, Is.Not.Null);
@@ -71,7 +70,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task Locks_ShouldWorkAsync()
         {
-            var extResult = new WeakBoundedVecT3();
+            var extResult = new BaseVec<BalancesExt.BalanceLock>();
             extResult.Create("0x0464656D6F6372616300E40B5402000000000000000000000001");
 
             var reason = new EnumReasons();
@@ -79,7 +78,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var firstResult = new BalanceLock();
             var name = new Domain.Contracts.Core.Display.NameableSize8();
-            name.Create(extResult.Value.Value[0].Id.Bytes);
+            name.Create(extResult.Value[0].Id.Bytes);
             firstResult.Create(name,
                 new U128(new BigInteger(10000000000)),
                 reason);
@@ -106,7 +105,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task LocksNull_ShouldReturnEmptyAsync()
         {
             await MockStorageCallNullWithInputAsync<SubstrateAccount,
-                WeakBoundedVecT3,
+                BaseVec<BalancesExt.BalanceLock>,
                 BaseVec<BalanceLock>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Balances.LocksAsync);
         }
 
@@ -114,7 +113,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Ignore("TODO Data")]
         public async Task Reserves_ShouldReturnEmptyAsync()
         {
-            //var extResult = new BoundedVecT6();
+            //var extResult = new BaseVec<BalancesExt.ReserveData>();
             //var expectedResult = new BaseVec<ReserveData>();
             //await MockStorageCallWithInputAsync(
             //    new SubstrateAccount(MockAddress),
@@ -129,7 +128,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
-                BoundedVecT6,
+                BaseVec<BalancesExt.ReserveData>,
                 BaseVec<ReserveData>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Balances.ReservesAsync);
         }
     }

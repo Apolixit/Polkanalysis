@@ -5,12 +5,13 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class IdentityStorage : MainStorage, IIdentityStorage
     {
-        public IdentityStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public IdentityStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<Registration> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {

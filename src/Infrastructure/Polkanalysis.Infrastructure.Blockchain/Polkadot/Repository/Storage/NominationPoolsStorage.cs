@@ -4,18 +4,17 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using NominationStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.NominationPoolsStorage;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Substrate.NetApi;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class NominationPoolsStorage : MainStorage, INominationPoolsStorage
     {
-        public NominationPoolsStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public NominationPoolsStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token)
         {

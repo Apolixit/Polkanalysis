@@ -1,29 +1,24 @@
 ﻿using Substrate.NetApi;
-using Substrate.NetApi.Model.Rpc;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core.Map;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using SystemStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.SystemStorage;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events
 {
     public partial class PolkadotEvents : IEvents
     {
         protected readonly SubstrateClientExt _client;
+        protected readonly IBlockchainMapping _mapper;
         protected readonly ILogger _logger;
 
-        public PolkadotEvents(SubstrateClientExt client, ILogger logger)
+        public PolkadotEvents(SubstrateClientExt client, ILogger logger, IBlockchainMapping mapper)
         {
             _client = client;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public async Task SubscribeEventsAsync(Action<BaseVec<EventRecord>> callback, CancellationToken token)

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet
 {
@@ -59,13 +60,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new U64(100);
 
             _substrateRepository.PolkadotClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), Arg.Is(CancellationToken.None)).ReturnsNull();
-            _substrateRepository.PolkadotClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), Arg.Is(CancellationToken.None)).Returns(expectedResult);
+            _substrateRepository.PolkadotClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Is<string>(x => !string.IsNullOrEmpty(x)), 
+                Arg.Is(CancellationToken.None)).Returns(expectedResult);
 
-            var resWithoutBlockHash = await _substrateRepository.Storage.Babe.GenesisSlotAsync(CancellationToken.None);
+            var resWithoutBlockHash = await _substrateRepository.Storage.Babe.EpochIndexAsync(CancellationToken.None);
 
             Assert.That(resWithoutBlockHash.Bytes, Is.EqualTo(new U64().Bytes));
 
-            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Babe.GenesisSlotAsync(CancellationToken.None);
+            var resWithBlockHash = await _substrateRepository.At(BlockHash).Storage.Babe.EpochIndexAsync(CancellationToken.None);
 
             Assert.That(resWithBlockHash, Is.EqualTo(expectedResult));
         }

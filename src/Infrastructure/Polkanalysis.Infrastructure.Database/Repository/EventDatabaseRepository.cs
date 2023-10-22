@@ -41,8 +41,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository
             IType data,
             CancellationToken token)
         {
-            Guard.Against.Null(eventModel);
-            Guard.Against.Null(data);
+            Guard.Against.Null(eventModel, nameof(eventModel));
+            Guard.Against.Null(data, nameof(data));
 
             try
             {

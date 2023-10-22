@@ -1,14 +1,12 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
-using AuctionsStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.AuctionsStorage;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -18,7 +16,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
     /// </summary>
     public class AuctionsStorage : MainStorage, IAuctionsStorage
     {
-        public AuctionsStorage(SubstrateClientExt client, ILogger logger) : base(client, logger)
+        public AuctionsStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
 
@@ -41,7 +39,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<Winning> WinningAsync(U32 key, CancellationToken token)
         {
             var res = await _client.AuctionsStorage.WinningAsync(key, token);
-            return Map<Arr36BaseOpt, Winning>(res);
+            return _mapper.Map<Arr36BaseOpt, Winning>(res);
         }
     }
 }

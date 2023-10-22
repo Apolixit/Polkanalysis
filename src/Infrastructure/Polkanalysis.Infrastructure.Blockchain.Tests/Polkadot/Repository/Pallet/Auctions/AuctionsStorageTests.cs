@@ -5,12 +5,11 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System.Numerics;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives;
 
-using AccountId32v9200 = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_core.crypto.AccountId32;
-using Idv9200 = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.polkadot_parachain.primitives.Id;
+using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
+using IdExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Auctions
 {
@@ -71,12 +70,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             // Let's build the output we want
             var testAccount = new SubstrateAccount("13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY");
-            var accountId32TestAccount = (AccountId32v9200)AccountId32Base.Create(testAccount.Encode(), 9200);
+            var accountId32TestAccount = (AccountId32Ext)AccountId32Base.Create(testAccount.Encode(), 9200);
             var testId = new Id(1);
-            var idExt = (Idv9200)IdBase.Create(testId.Encode(), 9220);
+            var idExt = (IdExt)IdBase.Create(testId.Encode(), 9220);
             var baseTuple = new BaseTuple<
-                AccountId32v9200,
-                Idv9200, 
+                AccountId32Ext,
+                IdExt, 
                 U128>(accountId32TestAccount, idExt, new U128(10));
 
             var extResult = new Arr36BaseOpt();

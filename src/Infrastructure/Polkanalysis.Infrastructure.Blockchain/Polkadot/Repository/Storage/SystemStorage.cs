@@ -2,21 +2,20 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using SystemStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.SystemStorage;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Substrate.NetApi;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class SystemStorage : MainStorage, ISystemStorage
     {
-        public SystemStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public SystemStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
         {

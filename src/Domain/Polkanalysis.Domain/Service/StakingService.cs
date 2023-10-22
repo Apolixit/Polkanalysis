@@ -26,6 +26,7 @@ using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
 using Polkanalysis.Domain.Helper.Enumerables;
 using System.ComponentModel.DataAnnotations;
 using Polkanalysis.Infrastructure.Common.Migrations;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -236,7 +237,7 @@ namespace Polkanalysis.Domain.Service
 
             // List eras
             var bondedEras = await _substrateService.Storage.Staking.BondedErasAsync(cancellationToken);
-            Guard.Against.Null(bondedEras);
+            Guard.Against.Null(bondedEras, nameof(bondedEras));
 
             foreach (var bondedEra in bondedEras.Value)
             {
@@ -389,7 +390,7 @@ namespace Polkanalysis.Domain.Service
         public async Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
         {
             var nominatorsResult = await _substrateService.Storage.Staking.NominatorsQuery().Take(100).ExecuteAsync(cancellationToken);
-            Guard.Against.Null(nominatorsResult);
+            Guard.Against.Null(nominatorsResult, nameof(nominatorsResult));
 
             var nominatorsDto = new List<NominatorLightDto>();
             if (nominatorsResult.Count == 0) return nominatorsDto;
@@ -540,7 +541,7 @@ namespace Polkanalysis.Domain.Service
         {
             var poolsQuery = _substrateService.Storage.NominationPools.BondedPoolsQuery();
             var pools = await poolsQuery.ExecuteAsync(cancellationToken);
-            Guard.Against.Null(pools);
+            Guard.Against.Null(pools, nameof(pools));
 
             var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);
 

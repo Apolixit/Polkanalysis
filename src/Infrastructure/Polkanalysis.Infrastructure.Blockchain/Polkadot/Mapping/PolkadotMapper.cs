@@ -26,22 +26,49 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
     public class PolkadotMapping : IBlockchainMapping
     {
-        private readonly IMapper _mapper;
+        private IMapper _mapper;
         private readonly ILogger<PolkadotMapping> _logger;
 
-        public IMapper StandardMapper => throw new NotImplementedException();
+        //public IMapper StandardMapper => throw new NotImplementedException();
 
-        public PolkadotMapping(IMapper mapper, ILogger<PolkadotMapping> logger)
+        public PolkadotMapping(ILogger<PolkadotMapping> logger)
         {
-            _mapper = mapper;
+            //_mapper = mapper;
             _logger = logger;
+
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<BaseTypeProfile>();
+                cfg.AddProfile<CommonProfile>();
+                cfg.AddProfile<EnumProfile>();
+                cfg.AddProfile<BytesProfile>();
+                cfg.AddProfile<AuctionsStorageProfile>();
+                cfg.AddProfile<AuthorshipStorageProfile>();
+                cfg.AddProfile<BalancesStorageProfile>();
+                cfg.AddProfile<CrowdloanStorageProfile>();
+                cfg.AddProfile<DemocracyStorageProfile>();
+                cfg.AddProfile<IdentityStorageProfile>();
+                cfg.AddProfile<NominationPoolsStorageProfile>();
+                //cfg.AddProfile<BabeStorageProfile>();
+                cfg.AddProfile<ParaSessionInfoStorageProfile>();
+                cfg.AddProfile<ParachainStorageProfile>();
+                cfg.AddProfile<RegistarStorageProfile>();
+                cfg.AddProfile<SchedulerStorageProfile>();
+                cfg.AddProfile<SessionStorageProfile>();
+                cfg.AddProfile<SystemStorageProfile>();
+                cfg.AddProfile<StakingStorageProfile>();
+                cfg.AddProfile<XcmStorageProfile>();
+            });
+
+            _mapper = mapperConfig.CreateMapper();
         }
 
         public TDestination MapWithVersion<TSource, TDestination>(uint version, TSource source, CancellationToken token)
             where TSource : IType
             where TDestination : IType
         {
-            return _mapper.Map<TSource, TDestination>(source, opts => opts.Items["version"] = version);
+            var mapped = _mapper.Map<TSource, TDestination>(source, opts => opts.Items["version"] = version);
+            return mapped;
         }
 
         public TDestination Map<TSource, TDestination>(TSource source) where TSource : IType
@@ -83,7 +110,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             throw new MissingMappingException($"Impossible to cast {source.GetType()} to BaseEnum<{typeof(TDestination)}>");
         }
 
-        
+        //public static TDestination MapBaseEnum<TSource, TSourceEnum, TDestination, TDestinationEnum>(TSource source)
+        //    where TSource : BaseEnum<TSourceEnum>
+        //    where TSourceEnum : Enum
+        //    where TDestination : BaseEnum<TDestinationEnum>, new()
+        //    where TDestinationEnum : Enum
+        //{
+        //    var mapped = PolkadotMapping.Instance.Map<BaseEnum<TSourceEnum>, BaseEnum<TDestinationEnum>>(source);
+        //    var res = new TDestination();
+        //    res.Create(mapped.Value);
+
+        //    return res;
+        //}
+
 
         public class BytesProfile : Profile
         {

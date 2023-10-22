@@ -9,7 +9,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task NextFreeParaId_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id();
             coreResult.Create("0x0D0D0000");
 
             var expectedResult = new Id(3341);
@@ -21,13 +21,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task NextFreeParaIdNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, Id>(_substrateRepository.Storage.Registrar.NextFreeParaIdAsync);
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id, Id>(_substrateRepository.Storage.Registrar.NextFreeParaIdAsync);
         }
 
         [Test]
         public async Task Paras_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo();
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.paras_registrar.ParaInfo();
             coreResult.Create("0x24F6561B36AF544CC2619B9EE0276753E6A9C5E20E27D4CA231F9E7F489246510010A5D4E8000000000000000000000000");
 
             var expectedResult = new ParaInfo(
@@ -44,14 +44,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.paras_registrar.ParaInfo,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.paras_registrar.ParaInfo,
                 ParaInfo>(new Id(1), _substrateRepository.Storage.Registrar.ParasAsync);
         }
 
         [Test]
         public async Task PendingSwap_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id();
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id();
             coreResult.Create("0x01000000");
 
             var expectedResult = new Id(1);
@@ -64,7 +64,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id,
                 Id>(new Id(1), _substrateRepository.Storage.Registrar.PendingSwapAsync);
         }
     }

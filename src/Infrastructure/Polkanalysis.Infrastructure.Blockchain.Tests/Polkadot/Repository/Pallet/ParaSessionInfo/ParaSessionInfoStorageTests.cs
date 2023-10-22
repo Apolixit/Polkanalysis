@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
+using PrimitiveV2Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_primitives.v2;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParaSessionInfo
 {
@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task AssignmentKeysUnsafe_ShouldWorkAsync()
         {
             var coreResult = new BaseVec<
-                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>();
+                        PrimitiveV2Ext.assignment_app.Public>();
             coreResult.Create("0x081C9A9A52E094114C0C1CD1AF7B0F7F2023B34B78AD842A87AF690AECBF2DA7258AC16E2487AE411A37A41F7A086824B2EFD39C94B3494EFA7C1B708E360B380C");
 
             var expectedResult = new BaseVec<PublicSr25519>(
@@ -31,7 +31,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task AssignmentKeysUnsafeNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<BaseVec<
-                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>, BaseVec<PublicSr25519>>(_substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
+                        PrimitiveV2Ext.assignment_app.Public>, BaseVec<PublicSr25519>>(
+                _substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
         }
 
         [Test]
@@ -97,7 +98,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task Sessions_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo();
+            var coreResult = new PrimitiveV2Ext.SessionInfo();
             IEnumerable<byte> encoded =
                 Substrate.NetApi.Utils.HexToByteArray("0x089000000051000000") // ActiveValidatorIndices
                 .Concat(Substrate.NetApi.Utils.HexToByteArray("0xD385F13394068E87B0CF39C525782DF628EA9A5D41364914CAE4A951EB7C3359")) // RandomSeed
@@ -147,14 +148,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 U32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo,
+                PrimitiveV2Ext.SessionInfo,
                 SessionInfo>(new U32(1), _substrateRepository.Storage.ParaSessionInfo.SessionsAsync);
         }
 
         [Test]
         public async Task AccountKeys_ShouldWorkAsync()
         {
-            var coreResult = new BaseVec<AccountId32>();
+            var coreResult = new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>();
             coreResult.Create("0x087E74E295C040927DE4200C770994A314185D3EE447BE3D70C79ED056FDD1AC533C017930B46AB5A4413BF3153B001287ED5FF7FDBD2734CF69ABC843F4EE0447");
 
             var expectedResult = new BaseVec<SubstrateAccount>(
@@ -172,7 +173,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task AccountKeysNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync<U32,
-                BaseVec<AccountId32>,
+                BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32>,
                 BaseVec<SubstrateAccount>>(new U32(1), _substrateRepository.Storage.ParaSessionInfo.AccountKeysAsync);
         }
     }

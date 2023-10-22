@@ -271,7 +271,7 @@ namespace Polkanalysis.Domain.Runtime
             } else
             {
                 var currentValue = (IType?)value.GetValue();
-                Guard.Against.Null(currentValue);
+                Guard.Against.Null(currentValue, nameof(currentValue));
 
                 if (currentValue.GetType().IsGenericType)
                 {

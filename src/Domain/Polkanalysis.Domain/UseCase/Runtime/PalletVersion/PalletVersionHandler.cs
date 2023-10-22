@@ -87,8 +87,8 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
             var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart), cancellationToken);
             var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAtAsync(startBlockHash.Value, cancellationToken);
 
-            Guard.Against.NullOrEmpty(metadataSource);
-            Guard.Against.NullOrEmpty(metadataTarget);
+            Guard.Against.NullOrEmpty(metadataSource, nameof(metadataSource));
+            Guard.Against.NullOrEmpty(metadataTarget, nameof(metadataTarget));
 
             // Just ensure previous block was on same Metadata, otherwise we don't do any comparison
             var sourceVersion = _metadataService.GetMetadataVersion(metadataSource);

@@ -2,13 +2,13 @@
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using TimestampStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.TimestampStorage;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class TimestampStorage : MainStorage, ITimestampStorage
     {
-        public TimestampStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public TimestampStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<Bool> DidUpdateAsync(CancellationToken token)
         {

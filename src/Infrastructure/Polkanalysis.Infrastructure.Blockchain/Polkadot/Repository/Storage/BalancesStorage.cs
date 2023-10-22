@@ -4,12 +4,11 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using BalancesStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.BalancesStorage;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -19,7 +18,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
     /// </summary>
     public class BalancesStorage : MainStorage, IBalancesStorage
     {
-        public BalancesStorage(SubstrateClientExt client, ILogger logger) : base(client, logger)
+
+        public BalancesStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
 

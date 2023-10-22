@@ -54,8 +54,8 @@ namespace Polkanalysis.Domain.Service
 
         public BlockchainProject? GetBlockchainProject(string relayChain, uint parachainId)
         {
-            Guard.Against.NullOrEmpty(relayChain);
-            Guard.Against.Null(parachainId);
+            Guard.Against.NullOrEmpty(relayChain, nameof(relayChain));
+            Guard.Against.Null(parachainId, nameof(parachainId));
 
             var infos = _blockchainStaticInformations.RelayChains.SingleOrDefault(x => x.RelayChainName == relayChain);
             if (infos == null)

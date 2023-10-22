@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
@@ -9,7 +10,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class RegistrarStorage : MainStorage, IRegistrarStorage
     {
-        public RegistrarStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public RegistrarStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<Id> NextFreeParaIdAsync(CancellationToken token)
         {

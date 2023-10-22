@@ -14,7 +14,7 @@ namespace Polkanalysis.Components.Services
     {
         public static string Shorten(this string elem, int nbTake)
         {
-            Guard.Against.NegativeOrZero(nbTake);
+            Guard.Against.NegativeOrZero(nbTake, nameof(nbTake));
 
             if(elem.Length > nbTake)
             {

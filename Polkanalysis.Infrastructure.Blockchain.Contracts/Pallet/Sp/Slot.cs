@@ -1,4 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp
 {
     public class Slot : BaseType
     {
+        public Slot() { }
+
+        public Slot(U64 value)
+        {
+            Value = value;
+        }
+
         /// <summary>
         /// >> value
         /// </summary>
-        public Substrate.NetApi.Model.Types.Primitive.U64 Value { get; set; }
+        public U64 Value { get; set; }
 
-        public override System.String TypeName()
+        public override string TypeName()
         {
             return "Slot";
         }
 
-        public override System.Byte[] Encode()
+        public override byte[] Encode()
         {
             var result = new List<byte>();
             result.AddRange(Value.Encode());

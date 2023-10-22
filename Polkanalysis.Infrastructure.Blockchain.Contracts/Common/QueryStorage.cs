@@ -1,10 +1,5 @@
 ﻿using Ardalis.GuardClauses;
 using Substrate.NetApi.Model.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
 {
@@ -57,7 +52,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
 
         public QueryStorage<TKey, TStorage> Take(int take)
         {
-            Guard.Against.NegativeOrZero(take);
+            Guard.Against.NegativeOrZero(take, nameof(take));
 
             NbTake = take;
             return this;
@@ -65,7 +60,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
 
         public QueryStorage<TKey, TStorage> Skip(int skip)
         {
-            Guard.Against.NegativeOrZero(skip);
+            Guard.Against.NegativeOrZero(skip, nameof(skip));
 
             NbSkip = skip;
             return this;
