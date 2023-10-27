@@ -1,10 +1,9 @@
 ﻿using Substrate.NetApi.Model.Meta;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 
 namespace Polkanalysis.Domain.Runtime
 {

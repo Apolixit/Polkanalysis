@@ -24,20 +24,20 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
         public void Setup()
         {
             _currentMetaData = new CurrentMetaData(
-                _substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
+                _substrateService, Substitute.For<ILogger<CurrentMetaData>>());
 
-            _accountRepository = new AccountService(_substrateRepository);
+            _accountRepository = new AccountService(_substrateService);
 
             _substrateDecoding = new SubstrateDecoding(
                 new EventNodeMapping(),
-                _substrateRepository,
+                _substrateService,
                 new PalletBuilder(
-                    _substrateRepository,
+                    _substrateService,
                     _currentMetaData),
                 _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
             _explorerRepository = new ExplorerService(
-                _substrateRepository,
+                _substrateService,
                 _substrateDecoding,
                 new ModelBuilder(),
                 _accountRepository,

@@ -1,9 +1,4 @@
-﻿using FluentValidation.Validators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Logs
 {
@@ -11,7 +6,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Logs
     {
         public ulong BlockNumber { get; set; }
         public int LogIndex { get; set; }
-        public Secondary.Pallet.SystemCore.Enums.DigestItem LogType { get; set; }
+        public DigestItem LogType { get; set; }
         public string ConsensusName { get; set; } = string.Empty;
         public string DateHex { get; set; } = string.Empty;
     }

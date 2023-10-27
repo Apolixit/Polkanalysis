@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Worker.Parameters.Context;
 using Polkanalysis.Worker.Parameters;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -212,7 +212,7 @@ namespace Polkanalysis.Worker.Tasks
             {
             };
 
-            var subEvent = (BaseEnumType)ev.Event.Value.Value2;
+            var subEvent = (BaseEnumType)ev.Event;
             await _eventsFactory.ExecuteInsertAsync(
                 eventNode.Module,
                 eventNode.Method,

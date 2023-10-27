@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Enum.FrameSupport
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum
 {
     public enum LookupError
     {

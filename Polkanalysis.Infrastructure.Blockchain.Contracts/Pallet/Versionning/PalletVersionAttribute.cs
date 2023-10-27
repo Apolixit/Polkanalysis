@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning
+﻿namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning
 {
     /// <summary>
     /// Define pallet version
     /// What is very important, is when blockEnd is not set, it should be equal to uint.MaxValue
     /// </summary>
-    [System.AttributeUsage(System.AttributeTargets.Class | System.AttributeTargets.Struct, AllowMultiple = true)]
-    public class PalletVersionAttribute : System.Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true)]
+    public class PalletVersionAttribute : Attribute
     {
         public PalletVersionAttribute(string blockchainName, string name, uint blockStart, uint blockEnd)
         {

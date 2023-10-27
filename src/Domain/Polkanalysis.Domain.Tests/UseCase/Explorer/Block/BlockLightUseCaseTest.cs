@@ -18,20 +18,20 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
     public class BlockLightUseCaseTest : UseCaseTest<BlockLightHandler, BlockLightDto, BlockLightQuery>
     {
-        private IExplorerService _explorerRepository;
+        private IExplorerService _explorerService;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerService>();
+            _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<BlockLightHandler>>();
-            _useCase = new BlockLightHandler(_explorerRepository, _logger);
+            _useCase = new BlockLightHandler(_explorerService, _logger);
         }
 
         [Test]
         public async Task BlockLightUseCaseReturnNullDto_ShouldFailedAsync()
         {
-            _explorerRepository.GetBlockLightAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
+            _explorerService.GetBlockLightAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
             var result = await _useCase.Handle(new BlockLightQuery(1), CancellationToken.None);
 
@@ -44,7 +44,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         [Test]
         public async Task BlockLightUseCaseWithBlockNumber_ShouldSucceedAsync()
         {
-            _explorerRepository.GetBlockLightAsync(1, CancellationToken.None).Returns(Substitute.For<BlockLightDto>());
+            _explorerService.GetBlockLightAsync(1, CancellationToken.None).Returns(Substitute.For<BlockLightDto>());
 
             var result = await _useCase.Handle(new BlockLightQuery(1), CancellationToken.None);
 
@@ -55,7 +55,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         [Test]
         public async Task BlockLightUseCaseWithBlockHash_ShouldSucceedAsync()
         {
-            _explorerRepository.GetBlockLightAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockLightDto>());
+            _explorerService.GetBlockLightAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockLightDto>());
 
             var result = await _useCase.Handle(new BlockLightQuery("0x00"), CancellationToken.None);
 

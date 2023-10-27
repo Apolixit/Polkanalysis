@@ -1,6 +1,7 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary;
 using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
 {

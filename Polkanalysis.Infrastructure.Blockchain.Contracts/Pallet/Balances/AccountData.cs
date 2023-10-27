@@ -1,11 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning;
-using Polkanalysis.Domain.Contracts.Secondary.Repository.Models;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
 {
-    [PalletVersion("Polkadot", nameof(AccountData), 1, uint.MaxValue)]
     public class AccountData : BaseType
     {
         public U128 Free { get; set; } = new U128();

@@ -14,12 +14,12 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 
         public SystemErrorListenerTest()
         {
-            var currentMetadata = new CurrentMetaData(_substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
+            var currentMetadata = new CurrentMetaData(_substrateService, Substitute.For<ILogger<CurrentMetaData>>());
 
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),
-                _substrateRepository,
-                new PalletBuilder(_substrateRepository, currentMetadata),
+                _substrateService,
+                new PalletBuilder(_substrateService, currentMetadata),
                 currentMetadata,
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }

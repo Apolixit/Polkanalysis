@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NetApi.Model.Types.Base;
@@ -10,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 {
@@ -36,7 +36,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 
         protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
-            var convertedData = _mapping.Mapper.Map<BaseTuple<SubstrateAccount, U128>>(data);
+            var convertedData = _mapping.Map<IType, BaseTuple<SubstrateAccount, U128>>(data);
 
             var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
             var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);

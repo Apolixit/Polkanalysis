@@ -1,17 +1,10 @@
 ﻿using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Exception;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 
 namespace Polkanalysis.Domain.Tests.Service
 {
@@ -37,7 +30,7 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public async Task GetAccountsNull_ShouldReturnEmptyAsync()
         {
-            _substrateRepository.Storage.System.AccountsQuery().Returns(new Contracts.Secondary.Common.QueryStorage<SubstrateAccount, AccountInfo>(Arg.Any<Func<string, string, CancellationToken, int?, int?, Task<List<(SubstrateAccount, AccountInfo)>>>>(), "module", "test"));
+            _substrateRepository.Storage.System.AccountsQuery().Returns(new Infrastructure.Blockchain.Contracts.Common.QueryStorage<SubstrateAccount, AccountInfo>(Arg.Any<Func<string, string, CancellationToken, int?, int?, Task<List<(SubstrateAccount, AccountInfo)>>>>(), "module", "test"));
             //accountsQuery.Take(Arg.Any<int>()).ExecuteAsync(Arg.Any<CancellationToken>()).ReturnsNull();
 
             var res = await _accountService.GetAccountsAsync(CancellationToken.None);

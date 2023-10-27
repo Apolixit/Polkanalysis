@@ -1,28 +1,20 @@
-﻿using Polkanalysis.Domain.Contracts.Dto.Block;
-using Polkanalysis.Domain.Contracts.Dto.Module;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.UseCase.Explorer.Block;
+﻿using Polkanalysis.Domain.Contracts.Dto.Module;
 using Microsoft.Extensions.Logging;
 using OperationResult;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Primary.Result;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.UseCase.Runtime
 {
     public class RuntimeModuleDetailHandler : Handler<RuntimeModuleDetailHandler, ModuleDetailDto, RuntimeModuleDetailQuery>
     {
-        private readonly IModuleInformation _moduleRepository;
+        private readonly IModuleInformationService _moduleService;
         public RuntimeModuleDetailHandler(
             ILogger<RuntimeModuleDetailHandler> logger, 
-            IModuleInformation moduleRepository) : base(logger)
+            IModuleInformationService moduleRepository) : base(logger)
         {
-            _moduleRepository = moduleRepository;
+            _moduleService = moduleRepository;
         }
 
         public override async Task<Result<ModuleDetailDto, ErrorResult>> Handle(RuntimeModuleDetailQuery command, CancellationToken cancellationToken)
@@ -35,7 +27,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, "No module name specified");
             }
 
-            var moduleDetail = _moduleRepository.GetModuleDetail(command.ModuleName);
+            var moduleDetail = _moduleService.GetModuleDetail(command.ModuleName);
 
             if(moduleDetail == null)
             {

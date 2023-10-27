@@ -22,7 +22,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
             _explorerRepository = Substitute.For<IExplorerService>();
             _blockchainInformations = Substitute.For<IBlockchainInformations>();
 
-            _parachainService = new ParachainService(_substrateRepository, _accountRepository, _explorerRepository, _blockchainInformations);
+            _parachainService = new ParachainService(_substrateService, _accountRepository, _explorerRepository, _blockchainInformations);
         }
 
         [Test]

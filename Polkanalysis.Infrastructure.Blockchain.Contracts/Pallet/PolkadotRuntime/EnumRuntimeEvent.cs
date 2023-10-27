@@ -1,191 +1,104 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PreImage.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.FastUnstake.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Offences.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Utility.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Membership.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Tips.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionsPhragmen.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime
 {
     public enum RuntimeEvent
     {
-
         System = 0,
-
         Scheduler = 1,
-
-        Preimage = 10,
-
-        Indices = 4,
-
-        Balances = 5,
-
-        TransactionPayment = 32,
-
-        Staking = 7,
-
-        Offences = 8,
-
-        Session = 9,
-
-        Grandpa = 11,
-
-        ImOnline = 12,
-
-        Democracy = 14,
-
-        Council = 15,
-
-        TechnicalCommittee = 16,
-
-        PhragmenElection = 17,
-
-        TechnicalMembership = 18,
-
-        Treasury = 19,
-
-        Claims = 24,
-
-        Vesting = 25,
-
-        Utility = 26,
-
-        Identity = 28,
-
-        Proxy = 29,
-
-        Multisig = 30,
-
-        Bounties = 34,
-
-        ChildBounties = 38,
-
-        Tips = 35,
-
-        ElectionProviderMultiPhase = 36,
-
-        VoterList = 37,
-
-        NominationPools = 39,
-
-        FastUnstake = 40,
-
-        ParaInclusion = 53,
-
-        Paras = 56,
-
-        Ump = 59,
-
-        Hrmp = 60,
-
-        ParasDisputes = 62,
-
-        Registrar = 70,
-
-        Slots = 71,
-
-        Auctions = 72,
-
-        Crowdloan = 73,
-
-        XcmPallet = 99,
+        Preimage = 2,
+        Indices = 3,
+        Balances = 4,
+        TransactionPayment = 5,
+        Staking = 6,
+        Offences = 7,
+        Session = 8,
+        Grandpa = 9,
+        ImOnline = 10,
+        Democracy = 11,
+        Council = 12,
+        TechnicalCommittee = 13,
+        PhragmenElection = 14,
+        TechnicalMembership = 15,
+        Treasury = 16,
+        Claims = 17,
+        Vesting = 18,
+        Utility = 19,
+        Identity = 20,
+        Proxy = 21,
+        Multisig = 22,
+        Bounties = 23,
+        ChildBounties = 24,
+        Tips = 25,
+        ElectionProviderMultiPhase = 26,
+        VoterList = 27,
+        NominationPools = 28,
+        FastUnstake = 29,
+        ParaInclusion = 30,
+        Paras = 31,
+        Ump = 32,
+        Hrmp = 33,
+        ParasDisputes = 34,
+        Registrar = 35,
+        Slots = 36,
+        Auctions = 37,
+        Crowdloan = 38,
+        XcmPallet = 39,
+        ConvictionVoting = 40,
+        Referenda = 41,
+        Whitelist = 42,
+        MessageQueue = 43
     }
 
     /// <summary>
     /// >> 19 - Variant[polkadot_runtime.RuntimeEvent]
     /// </summary>
     public sealed class EnumRuntimeEvent : BaseEnumExt<RuntimeEvent,
-        EnumEvent,
+        System.Enums.EnumEvent,
         Scheduler.Enums.EnumEvent,
-        BaseVoid,
-        BaseVoid,
+        PreImage.Enums.EnumEvent,
         Indices.Enums.EnumEvent,
         Balances.Enums.EnumEvent,
-        BaseVoid,
+        TransactionPayment.Enums.EnumEvent,
         Staking.Enums.EnumEvent,
         Offences.Enums.EnumEvent,
         Session.Enums.EnumEvent,
-        PreImage.Enums.EnumEvent,
         GrandPa.Enums.EnumEvent,
-        EnumEvent,
-        BaseVoid,
+        ImOnline.Enums.EnumEvent,
         Democracy.Enums.EnumEvent,
-        Collective.Enums.EnumEvent,
-        Collective.Enums.EnumEvent,
+        Collective.Enums.EnumEvent, // Council
+        Collective.Enums.EnumEvent, // TechnicalCommittee
         ElectionsPhragmen.Enums.EnumEvent,
         Membership.Enums.EnumEvent,
         Treasury.Enums.EnumEvent,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        PolkadotRuntimeCommon.Enums.EnumEvent,
+        PolkadotRuntimeCommon.Claims.Enum.EnumEvent,
         Vesting.Enums.EnumEvent,
         Utility.Enums.EnumEvent,
-        BaseVoid,
         Identity.Enums.EnumEvent,
         Proxy.Enums.EnumEvent,
         Multisig.Enums.EnumEvent,
-        BaseVoid,
-        TransactionPayment.Enums.EnumEvent,
-        BaseVoid,
         Bounties.Enums.EnumEvent,
+        ChildBounties.Enums.EnumEvent,
         Tips.Enums.EnumEvent,
         ElectionProviderMultiPhase.Enums.EnumEvent,
-        BagsList.Enums.EnumEvent,
-        ChildBounties.Enums.EnumEvent,
+        BagsList.Enums.EnumEvent, // VoterList
         NominationPools.Enums.EnumEvent,
         FastUnstake.Enums.EnumEvent,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
         PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent,
-        BaseVoid,
-        BaseVoid,
         PolkadotRuntimeParachain.Paras.Enums.EnumEvent,
-        BaseVoid,
-        BaseVoid,
         PolkadotRuntimeParachain.Ump.Enums.EnumEvent,
         PolkadotRuntimeParachain.Hrmp.Enums.EnumEvent,
-        BaseVoid,
         PolkadotRuntimeParachain.Disputes.Enums.EnumEvent,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
-        BaseVoid,
         PolkadotRuntimeCommon.ParasRegistar.Enums.EnumEvent,
         PolkadotRuntimeCommon.Slots.Enums.EnumEvent,
         PolkadotRuntimeCommon.Auctions.Enums.EnumEvent,
         PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent,
-        BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid,
-        Xcm.Enums.EnumEvent>
+        Xcm.Enums.EnumEvent,
+        ConvictionVoting.Enums.EnumEvent,
+        Referenda.Enums.EnumEvent,
+        WhiteList.Enums.EnumEvent,
+        MessageQueue.Enums.EnumEvent
+        >
     {
     }
 }

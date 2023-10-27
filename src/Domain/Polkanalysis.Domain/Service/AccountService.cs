@@ -3,12 +3,10 @@ using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using System.Net;
 using Newtonsoft.Json.Linq;
 using Polkanalysis.Domain.Contracts.Service;
-using System.Threading;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -125,13 +123,13 @@ namespace Polkanalysis.Domain.Service
                 userInformation.Matrix = identity.Info.Riot.ToHuman();
                 userInformation.Image = identity.Info.Image.ToHuman();
 
-                var additionnal = identity.Info.Additional?.Value?.Select(x => ((Contracts.Secondary.Pallet.Identity.Enums.EnumData)x.Value[1])?.ToHuman());
+                var additionnal = identity.Info.Additional?.Value?.Select(x => ((Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumData)x.Value[1])?.ToHuman());
                 if (additionnal != null)
                     await GetAccountIdentityAsync(account, token);
                 {
                     userInformation.Other = string.Join(", ", additionnal);
                 }
-                userInformation.IdentityLevel = (Contracts.Secondary.Pallet.Identity.Enums.EnumJudgement?)identity.Judgements?.Value[0]?.Value[1];
+                userInformation.IdentityLevel = (Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumJudgement?)identity.Judgements?.Value[0]?.Value[1];
             }
 
             var accountType = await GetAccountTypeAsync(account, token);

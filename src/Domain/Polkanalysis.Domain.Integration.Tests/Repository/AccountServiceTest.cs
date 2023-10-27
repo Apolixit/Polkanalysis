@@ -14,7 +14,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new AccountService(_substrateRepository);
+            _accountRepository = new AccountService(_substrateService);
         }
 
         [Test]

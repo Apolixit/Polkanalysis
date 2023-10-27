@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.UseCase.Runtime;
 using Polkanalysis.Domain.UseCase.Runtime.SpecVersion;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
 using Substrate.NetApi.Model.Meta;

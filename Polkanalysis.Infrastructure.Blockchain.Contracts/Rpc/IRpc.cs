@@ -1,11 +1,4 @@
-﻿using Substrate.NetApi.Modules;
-using Substrate.NetApi.Modules.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Substrate.NetApi.Modules.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc
 {

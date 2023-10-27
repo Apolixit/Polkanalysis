@@ -2,19 +2,14 @@
 using Microsoft.Extensions.Logging;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
@@ -41,7 +36,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 
         protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
-            var convertedData = _mapping.Mapper.Map<BaseTuple<SubstrateAccount, U128>>(data);
+            var convertedData = _mapping.Map<IType, BaseTuple<SubstrateAccount, U128>>(data);
 
             var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
             var transferAmount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);

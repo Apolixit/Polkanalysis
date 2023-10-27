@@ -23,7 +23,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions
             for (var i = 0; i < array.Length; i++) { var t = new BaseOpt<BaseTuple<SubstrateAccount, Id, U128>>(); t.Decode(byteArray, ref p); array[i] = t; };
             var bytesLength = p - start;
             Bytes = new byte[bytesLength];
-            System.Array.Copy(byteArray, start, Bytes, 0, bytesLength);
+            Array.Copy(byteArray, start, Bytes, 0, bytesLength);
             Value = array;
         }
 

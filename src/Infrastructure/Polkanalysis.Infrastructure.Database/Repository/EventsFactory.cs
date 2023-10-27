@@ -24,51 +24,51 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(BalancesDustLostRepository)),
                     RuntimeEvent.Balances,
-                    Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.DustLost),
+                    Blockchain.Contracts.Pallet.Balances.Enums.Event.DustLost),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(BalancesEndowedRepository)),
                     RuntimeEvent.Balances,
-                    Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Endowed),
+                    Blockchain.Contracts.Pallet.Balances.Enums.Event.Endowed),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(BalancesReservedRepository)),
                     RuntimeEvent.Balances,
-                    Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Reserved),
+                    Blockchain.Contracts.Pallet.Balances.Enums.Event.Reserved),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(BalancesSetRepository)),
                     RuntimeEvent.Balances,
-                    Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.BalanceSet),
+                    Blockchain.Contracts.Pallet.Balances.Enums.Event.BalanceSet),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(BalancesSlashedRepository)),
                     RuntimeEvent.Balances,
-                    Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Slashed),
+                    Blockchain.Contracts.Pallet.Balances.Enums.Event.Slashed),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(BalancesTransferRepository)),
                     RuntimeEvent.Balances,
-                    Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Transfer),
+                    Blockchain.Contracts.Pallet.Balances.Enums.Event.Transfer),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(BalancesUnreservedRepository)),
                     RuntimeEvent.Balances,
-                    Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Unreserved),
+                    Blockchain.Contracts.Pallet.Balances.Enums.Event.Unreserved),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(IdentityIdentityClearedRepository)),
                     RuntimeEvent.Identity,
-                    Domain.Contracts.Secondary.Pallet.Identity.Enums.Event.IdentityCleared),
+                    Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentityCleared),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(IdentityIdentityKilledRepository)),
                     RuntimeEvent.Identity,
-                    Domain.Contracts.Secondary.Pallet.Identity.Enums.Event.IdentityKilled),
+                    Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentityKilled),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(IdentityIdentitySetRepository)),
                     RuntimeEvent.Identity,
-                    Domain.Contracts.Secondary.Pallet.Identity.Enums.Event.IdentitySet),
+                    Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentitySet),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(SystemKilledAccountRepository)),
                     RuntimeEvent.System,
-                    Domain.Contracts.Secondary.Pallet.SystemCore.Enums.Event.KilledAccount),
+                    Blockchain.Contracts.Pallet.System.Enums.Event.KilledAccount),
                 new EventElementFactory(
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(SystemNewAccountRepository)),
                     RuntimeEvent.System,
-                    Domain.Contracts.Secondary.Pallet.SystemCore.Enums.Event.NewAccount),
+                    Blockchain.Contracts.Pallet.System.Enums.Event.NewAccount),
             };
 
             _logger.LogInformation($"{nameof(EventsFactory)} instanciated. {Mapped.Count()} events link to database found");

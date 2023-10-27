@@ -18,8 +18,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         {
             var logger = Substitute.For<ILogger<StakingService>>();
             _stakingRepository = new StakingService(
-                _substrateRepository, 
-                new AccountService(_substrateRepository),
+                _substrateService, 
+                new AccountService(_substrateService),
                 Substitute.For<IStakingDatabaseRepository>(),
                 logger);
         }
@@ -35,7 +35,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         [Test]
         public async Task GetValidatorDetail_ShouldWorkAsync()
         {
-            var validators = await _substrateRepository.Storage.Session.ValidatorsAsync(CancellationToken.None);
+            var validators = await _substrateService.Storage.Session.ValidatorsAsync(CancellationToken.None);
 
             Assert.That(validators, Is.Not.Null);
             Assert.That(validators.Value.Length, Is.GreaterThanOrEqualTo(1));

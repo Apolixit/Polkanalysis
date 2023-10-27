@@ -14,20 +14,20 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 {
     public class EventDetailUseCaseTest : UseCaseTest<EventDetailHandler, EventDto, EventDetailQuery>
     {
-        private IExplorerService _explorerRepository;
+        private IExplorerService _explorerService;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerService>();
+            _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<EventDetailHandler>>();
-            _useCase = new EventDetailHandler(_explorerRepository, _logger);
+            _useCase = new EventDetailHandler(_explorerService, _logger);
         }
 
         [Test]
         public async Task EventDetailsUseCaseReturnNullDto_ShouldFailedAsync()
         {
-            _explorerRepository.GetEventAsync(Arg.Any<uint>(), Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
+            _explorerService.GetEventAsync(Arg.Any<uint>(), Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
             var result = await _useCase.Handle(new EventDetailQuery() { 
                 BlockNumber = 1, 
@@ -43,9 +43,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         [Test]
         public async Task EventDetailsUseCaseWithValidParameters_ShouldSucceedAsync()
         {
-            var useCase = new EventDetailHandler(_explorerRepository, _logger);
+            var useCase = new EventDetailHandler(_explorerService, _logger);
 
-            _explorerRepository.GetEventAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<EventDto>());
+            _explorerService.GetEventAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<EventDto>());
 
             var result = await useCase.Handle(new EventDetailQuery()
             {

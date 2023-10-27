@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
 {
     public interface IBlockchainMapping
     {
-        //public IMapper StandardMapper { get; }
+        public IConfigurationProvider ConfigurationProvider { get; }
 
         /// <summary>
         /// Classic mapping between a source and a destination class

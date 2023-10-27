@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 
-namespace Polkanalysis.Domain.Contracts.Runtime.Module
+namespace Polkanalysis.Domain.Contracts.Service
 {
-    public interface IModuleInformation
+    public interface IModuleInformationService
     {
         public ModuleDetailDto GetModuleDetail(string palletName);
         public ModuleDetailDto GetModuleDetail(PalletModule palletModule);

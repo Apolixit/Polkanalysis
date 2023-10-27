@@ -4,31 +4,25 @@ using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Exception;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Substrate.NetApi.Model.Extrinsics;
 using Polkanalysis.Domain.Contracts.Dto;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Adapter.Block;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Substrate.NET.Utils;
-using System.ComponentModel.DataAnnotations;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
-using System.Xml.Linq;
-using Serilog;
 using Ardalis.GuardClauses;
 using Polkanalysis.Domain.Helper;
 using Polkanalysis.Domain.Contracts.Dto.Logs;
-using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
-using static System.Reflection.Metadata.BlobBuilder;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -59,7 +53,7 @@ namespace Polkanalysis.Domain.Service
         }
 
         public async Task<SubstrateAccount> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
-            => await GetBlockAuthorAsync(new BlockParameterLike(blockId), cancellationToken);
+            => await GetBlockAuthorAsync((BlockParameterLike)blockId, cancellationToken);
 
         /// <summary>
         /// Return the validator block
@@ -484,15 +478,15 @@ namespace Polkanalysis.Domain.Service
             {
                 foreach (EventRecord eventReceived in eventsReceived.Value)
                 {
-                    if (!eventReceived.Event.HasBeenMapped)
-                    {
-                        // Log
-                        _logger.LogWarning($"Event unmapped : from {eventReceived.Event.CoreType.Name} to {eventReceived.Event.DestinationType.Name}");
-                        continue;
-                    }
+                    //if (!eventReceived.Event.HasBeenMapped)
+                    //{
+                    //    // Log
+                    //    _logger.LogWarning($"Event unmapped : from {eventReceived.Event.CoreType.Name} to {eventReceived.Event.DestinationType.Name}");
+                    //    continue;
+                    //}
                     try
                     {
-                        _logger.LogInformation($"Event mapped : {eventReceived.Event.Value.Value}");
+                        _logger.LogInformation($"Event mapped : {eventReceived.Event.Value}");
                     }
                     catch (Exception ex)
                     {

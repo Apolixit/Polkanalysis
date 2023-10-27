@@ -14,11 +14,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events
         protected readonly IBlockchainMapping _mapper;
         protected readonly ILogger _logger;
 
-        public PolkadotEvents(SubstrateClientExt client, ILogger logger, IBlockchainMapping mapper)
+        public PolkadotEvents(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger)
         {
             _client = client;
-            _logger = logger;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task SubscribeEventsAsync(Action<BaseVec<EventRecord>> callback, CancellationToken token)

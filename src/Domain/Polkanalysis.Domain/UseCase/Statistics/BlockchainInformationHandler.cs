@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Contracts.Dto.Stats;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Statistics;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.UseCase.Statistics
 {
@@ -12,12 +13,12 @@ namespace Polkanalysis.Domain.UseCase.Statistics
         BlockchainInformationHandler, BlockchainInformationDto, BlockchainInformationQuery>
     {
 
-        private readonly ISubstrateService _substrateRepository;
+        private readonly ISubstrateService _substrateService;
         private readonly IConfiguration _configuration;
 
         public BlockchainInformationHandler(ISubstrateService substrateRepository, IConfiguration configuration, ILogger<BlockchainInformationHandler> logger) : base(logger)
         {
-            _substrateRepository = substrateRepository;
+            _substrateService = substrateRepository;
             _configuration = configuration;
         }
 
@@ -26,10 +27,10 @@ namespace Polkanalysis.Domain.UseCase.Statistics
             if (_configuration == null)
                 throw new InvalidOperationException($"{nameof(_configuration)} is not set");
 
-            var blockchainName = _substrateRepository.Rpc.System.ChainAsync();
-            var blockchainFullName = _substrateRepository.Rpc.System.NameAsync();
-            var blockchainProperty = _substrateRepository.Rpc.System.PropertiesAsync();
-            var blockchainChainType = _substrateRepository.Rpc.System.ChainTypeAsync();
+            var blockchainName = _substrateService.Rpc.System.ChainAsync();
+            var blockchainFullName = _substrateService.Rpc.System.NameAsync();
+            var blockchainProperty = _substrateService.Rpc.System.PropertiesAsync();
+            var blockchainChainType = _substrateService.Rpc.System.ChainTypeAsync();
 
             await Task.WhenAll(new Task[] { blockchainName, blockchainFullName, blockchainProperty, blockchainChainType });
 

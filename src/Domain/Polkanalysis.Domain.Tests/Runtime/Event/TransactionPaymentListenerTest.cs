@@ -4,8 +4,9 @@ using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using SystemEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.TransactionPayment.Enums;
+using PolkadotRuntime = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using SystemEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -37,7 +38,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             PrerequisiteEvent(nodeResult);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.TransactionPayment));
-            Assert.That(nodeResult.Method, Is.EqualTo(SystemEvent.Event.TransactionFeePaid));
+            Assert.That(nodeResult.Method, Is.EqualTo(Infrastructure.Blockchain.Contracts.Pallet.TransactionPayment.Enums.Event.TransactionFeePaid));
 
             //var expectedResult = EventResult.Create("TransactionPayment", "TransactionFeePaid", new List<EventDetailsResult>()
             //{

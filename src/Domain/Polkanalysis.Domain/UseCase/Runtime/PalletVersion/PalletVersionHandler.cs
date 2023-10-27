@@ -26,6 +26,7 @@ using Substrate.NET.Metadata.V14;
 using Substrate.NET.Metadata.Compare.Base;
 using Substrate.NetApi.Model.Types.Base;
 using Ardalis.GuardClauses;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
 {

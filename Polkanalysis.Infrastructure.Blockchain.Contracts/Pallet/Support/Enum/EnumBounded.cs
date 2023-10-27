@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Enum.FrameSupport
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum
 {
     public enum Bounded
     {
@@ -21,9 +21,9 @@ namespace Polkanalysis.Domain.Contracts.Core.Enum.FrameSupport
     /// <summary>
     /// >> 180 - Variant[frame_support.traits.preimages.Bounded]
     /// </summary>
-    public sealed class EnumBounded : BaseEnumExt<Bounded, 
-        Hash, 
-        BaseVec<U8>, 
+    public sealed class EnumBounded : BaseEnumExt<Bounded,
+        Hash,
+        BaseVec<U8>,
         BaseTuple<Hash, U32>>
     {
     }

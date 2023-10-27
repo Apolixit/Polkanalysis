@@ -19,14 +19,14 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
         public void Setup()
         {
             _currentMetaData = new CurrentMetaData(
-                _substrateRepository,
+                _substrateService,
                 Substitute.For<ILogger<CurrentMetaData>>());
 
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),
-                _substrateRepository,
+                _substrateService,
                 new PalletBuilder(
-                    _substrateRepository,
+                    _substrateService,
                     _currentMetaData),
                 _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());

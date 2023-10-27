@@ -14,13 +14,12 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives;
 using Polkanalysis.Domain.Contracts.Core.Signature;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Exceptions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
@@ -30,6 +29,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         private readonly ILogger<PolkadotMapping> _logger;
 
         //public IMapper StandardMapper => throw new NotImplementedException();
+
+        public IConfigurationProvider ConfigurationProvider => _mapper.ConfigurationProvider;
 
         public PolkadotMapping(ILogger<PolkadotMapping> logger)
         {
@@ -109,6 +110,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
             throw new MissingMappingException($"Impossible to cast {source.GetType()} to BaseEnum<{typeof(TDestination)}>");
         }
+
+        //public TDestination MapEnum<TDestination, TDestinationEnum>(IBaseEnum source)
+        //    where TDestination : IBaseEnum, new()
+        //    where TDestinationEnum : struct, Enum
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         //public static TDestination MapBaseEnum<TSource, TSourceEnum, TDestination, TDestinationEnum>(TSource source)
         //    where TSource : BaseEnum<TSourceEnum>

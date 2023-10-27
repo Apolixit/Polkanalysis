@@ -15,15 +15,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe
         public U32 AuthorityIndex { get; set; }
         public U64 Slot { get; set; }
         public Hash VrfOutput { get; set; }
-        public Hash64 VrfProof { get; set; }
+        public Hash VrfProof { get; set; }
 
         public SecondaryVRFPreDigest() { }
-        public SecondaryVRFPreDigest(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash64 vrfProof)
+        public SecondaryVRFPreDigest(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash vrfProof)
         {
             Create(authorityIndex, slot, vrfOutput, vrfProof);
         }
 
-        public void Create(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash64 vrfProof)
+        public void Create(U32 authorityIndex, U64 slot, Hash vrfOutput, Hash vrfProof)
         {
             AuthorityIndex = authorityIndex;
             Slot = slot;
@@ -53,7 +53,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe
             Slot.Decode(byteArray, ref p);
             VrfOutput = new Hash();
             VrfOutput.Decode(byteArray, ref p);
-            VrfProof = new Hash64();
+            VrfProof = new Hash();
             VrfProof.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

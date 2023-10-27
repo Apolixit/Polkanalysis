@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Text.Json.Serialization;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Api
 {

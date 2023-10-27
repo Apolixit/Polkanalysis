@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
@@ -10,9 +9,9 @@ using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Configuration.Contracts.Information;
 using Ardalis.GuardClauses;
 using Polkanalysis.Domain.Contracts.Dto.Informations;
-using Newtonsoft.Json.Linq;
 using Polkanalysis.Domain.Helper;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Service
 {

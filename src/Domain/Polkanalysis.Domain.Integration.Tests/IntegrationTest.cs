@@ -1,6 +1,7 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary;
 using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Integration.Tests
 {
@@ -9,7 +10,7 @@ namespace Polkanalysis.Domain.Integration.Tests
     /// </summary>
     public abstract class IntegrationTest
     {
-        protected ISubstrateService _substrateRepository;
+        protected ISubstrateService _substrateService;
         protected ISubstrateEndpoint _substrateEndpoint;
 
         /// <summary>
@@ -34,11 +35,11 @@ namespace Polkanalysis.Domain.Integration.Tests
         [OneTimeSetUp]
         public virtual async Task ConnectAsync()
         {
-            if (_substrateRepository != null && !_substrateRepository.IsConnected())
+            if (_substrateService != null && !_substrateService.IsConnected())
             {
                 try
                 {
-                    await _substrateRepository.ConnectAsync();
+                    await _substrateService.ConnectAsync();
                 }
                 catch (Exception)
                 {
@@ -54,9 +55,9 @@ namespace Polkanalysis.Domain.Integration.Tests
         [OneTimeTearDown]
         public virtual async Task DisconnectAsync()
         {
-            if (_substrateRepository != null && _substrateRepository.IsConnected())
+            if (_substrateService != null && _substrateService.IsConnected())
             {
-                await _substrateRepository.CloseAsync();
+                await _substrateService.CloseAsync();
             }
         }
     }

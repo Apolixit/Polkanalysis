@@ -16,20 +16,20 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
 {
     public class ExtrinsicDetailUseCaseTest : UseCaseTest<ExtrinsicDetailsHandler, ExtrinsicDto, ExtrinsicDetailQuery>
     {
-        private IExplorerService _explorerRepository;
+        private IExplorerService _explorerService;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerService>();
+            _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<ExtrinsicDetailsHandler>>();
-            _useCase = new ExtrinsicDetailsHandler(_explorerRepository, _logger);
+            _useCase = new ExtrinsicDetailsHandler(_explorerService, _logger);
         }
 
         [Test]
         public async Task ExtrinsicDetailsUseCaseReturnNullDto_ShouldFailedAsync()
         {
-            _explorerRepository.GetExtrinsicAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).ReturnsNull();
+            _explorerService.GetExtrinsicAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).ReturnsNull();
 
             var result = await _useCase.Handle(new ExtrinsicDetailQuery()
             {
@@ -46,7 +46,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
         [Test]
         public async Task ExtrinsicDetailsUseCaseWithValidParameters_ShouldSucceedAsync()
         {
-            _explorerRepository.GetExtrinsicAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<ExtrinsicDto>());
+            _explorerService.GetExtrinsicAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<ExtrinsicDto>());
 
             var result = await _useCase.Handle(new ExtrinsicDetailQuery()
             {

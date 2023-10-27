@@ -1,28 +1,28 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class ModuleInformationTest : PolkadotIntegrationTest
     {
-        private IModuleInformation _moduleRepository;
-        private ISubstrateService _substrateService;
+        private IModuleInformationService _moduleRepository;
 
         [SetUp]
         public void Setup()
         {
             _moduleRepository = new ModuleInformation(
                 new CurrentMetaData(
-                    _substrateRepository,
+                    base._substrateService,
                     Substitute.For<ILogger<CurrentMetaData>>()
             ),
-            new ModelBuilder(), _substrateRepository
+            new ModelBuilder(), base._substrateService
             );
         }
 

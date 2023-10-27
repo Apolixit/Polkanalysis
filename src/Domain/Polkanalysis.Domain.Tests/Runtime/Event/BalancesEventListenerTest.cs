@@ -4,8 +4,10 @@ using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using BalancesEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.Balances.Enums;
+using PolkadotRuntime = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using BalancesEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
+using TreasuryEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -125,7 +127,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             PrerequisiteEvent(nodeResult);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Treasury));
-            Assert.That(nodeResult.Method, Is.EqualTo(Polkanalysis.Domain.Contracts.Secondary.Pallet.Treasury.Enums.Event.Deposit));
+            Assert.That(nodeResult.Method, Is.EqualTo(TreasuryEvent.Event.Deposit));
         }
     }
 }

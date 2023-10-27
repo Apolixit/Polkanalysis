@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Primary.Price;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Parameters.Context;
 

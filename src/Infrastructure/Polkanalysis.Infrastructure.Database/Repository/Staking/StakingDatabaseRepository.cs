@@ -5,8 +5,8 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Staking;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Microsoft.EntityFrameworkCore;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Staking
 {

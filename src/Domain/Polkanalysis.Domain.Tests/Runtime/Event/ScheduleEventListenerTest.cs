@@ -5,8 +5,10 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using ScheduleEvent = Polkanalysis.Domain.Contracts.Secondary.Pallet.Scheduler.Enums;
+using PolkadotRuntime = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using ScheduleEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Scheduler.Enums;
+using SystemEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -37,7 +39,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
 
-            PrerequisiteEvent(nodeResult, Contracts.Secondary.Pallet.SystemCore.Enums.Phase.Initialization);
+            PrerequisiteEvent(nodeResult, SystemEvent.Phase.Initialization);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
             Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Scheduled));
@@ -76,7 +78,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         public void Scheduler_Dispatched_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            PrerequisiteEvent(nodeResult, Contracts.Secondary.Pallet.SystemCore.Enums.Phase.Initialization);
+            PrerequisiteEvent(nodeResult, SystemEvent.Phase.Initialization);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
             Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Dispatched));

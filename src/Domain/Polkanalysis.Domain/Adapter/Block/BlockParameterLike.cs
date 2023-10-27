@@ -2,6 +2,7 @@
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Adapter.Block
 {
@@ -9,7 +10,15 @@ namespace Polkanalysis.Domain.Adapter.Block
     {
         private uint? _blockNumber;
         private Hash? _blockHash;
-        private readonly ISubstrateService _substrateService;
+
+        public static implicit operator BlockParameterLike(uint blockNumber) => new BlockParameterLike(blockNumber);
+        public static explicit operator uint(BlockParameterLike blockNumber) => blockNumber._blockNumber ?? throw new NullReferenceException();
+
+        public static implicit operator BlockParameterLike(Hash blockHash) => new BlockParameterLike(blockHash);
+        public static explicit operator Hash(BlockParameterLike blockHash) => blockHash._blockHash ?? throw new NullReferenceException();
+
+        public static implicit operator BlockParameterLike(string blockHash) => new BlockParameterLike(blockHash);
+        public static explicit operator string(BlockParameterLike blockHash) => blockHash._blockHash?.Value ?? throw new NullReferenceException();
 
         public BlockParameterLike(uint blockNumber)
         {
@@ -27,11 +36,6 @@ namespace Polkanalysis.Domain.Adapter.Block
             _blockHash = new Hash(blockAddress);
         }
 
-        //public BlockParameterLike(ISubstrateRepository substrateService)
-        //{
-        //    _substrateService = substrateService;
-        //}
-
         public async Task<bool> EnsureBlockNumberIsValidAsync(ISubstrateService substrateService)
         {
             var lastHeader = await substrateService.Rpc.Chain.GetHeaderAsync();
@@ -41,33 +45,6 @@ namespace Polkanalysis.Domain.Adapter.Block
 
             return true;
         }
-
-        //public async Task<BlockParameterLike> FromBlockNumberAsync(uint blockNumber)
-        //{
-        //    var isBlockValid = await EnsureBlockNumberIsValidAsync(blockNumber);
-        //    if(!isBlockValid)
-        //        throw new BlockException($"Block number {blockNumber} has not been produced yet");
-
-        //    _blockNumber = blockNumber;
-        //    return this;
-        //}
-
-        //public BlockParameterLike FromBlockHash(Hash blockHash)
-        //{
-        //    Reset();
-
-        //    _blockHash = blockHash;
-        //    return this;
-        //}
-
-        //public BlockParameterLike FromBlockHash(string blockAddress)
-        //{
-        //    Reset();
-
-        //    if (!SubstrateCheck.CheckHash(blockAddress)) throw new BlockException("Invalid block format");
-        //    _blockHash = new Hash(blockAddress);
-        //    return this;
-        //}
 
         private async Task EnsureDataIsSetAsync(ISubstrateService substrateService)
         {
@@ -90,7 +67,7 @@ namespace Polkanalysis.Domain.Adapter.Block
 
         public async Task<Hash> ToBlockHashAsync(ISubstrateService substrateService)
         {
-            EnsureDataIsSetAsync(substrateService);
+            await EnsureDataIsSetAsync(substrateService);
 
             if (_blockHash != null)
                 return _blockHash;

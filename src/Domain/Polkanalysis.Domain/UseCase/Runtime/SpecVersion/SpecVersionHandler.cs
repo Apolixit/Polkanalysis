@@ -13,6 +13,7 @@ using Substrate.NET.Metadata.Service;
 using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Substrate.NET.Metadata.Base;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {

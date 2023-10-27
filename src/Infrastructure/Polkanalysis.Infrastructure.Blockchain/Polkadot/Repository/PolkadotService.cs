@@ -20,13 +20,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
     {
         private SubstrateClientExt? _polkadotClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
+        private readonly IBlockchainMapping _blockchainMapping;
         private readonly ILogger<PolkadotService> _logger;
 
         public PolkadotService(
             ISubstrateEndpoint substrateconfiguration,
+            IBlockchainMapping blockchainMapping,
             ILogger<PolkadotService> logger)
         {
             _substrateconfiguration = substrateconfiguration;
+            _blockchainMapping = blockchainMapping;
             _logger = logger;
         }
 
@@ -57,7 +60,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             get
             {
                 if (_polkadotStorage == null)
-                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _logger);
+                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _blockchainMapping, _logger);
 
                 return _polkadotStorage;
             }
@@ -85,7 +88,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             get
             {
                 if (_events == null)
-                    _events = new PolkadotEvents(PolkadotClient, _logger);
+                    _events = new PolkadotEvents(PolkadotClient, _blockchainMapping, _logger);
 
                 return _events;
             }

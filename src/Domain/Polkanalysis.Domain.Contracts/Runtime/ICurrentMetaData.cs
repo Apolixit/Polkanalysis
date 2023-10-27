@@ -1,11 +1,6 @@
 ﻿using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Dto.Module;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 
 namespace Polkanalysis.Domain.Contracts.Runtime
 {
@@ -53,7 +48,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         public string WriteNodeCompact(NodeTypeCompact nodeType);
 
         /// <summary>
-        /// The easiest value. Primitive is like U32, I54, Boolean etc
+        /// The easiest value. Primitive is like U32, I64, Boolean etc
         /// </summary>
         /// <param name="nodeType"></param>
         /// <returns></returns>

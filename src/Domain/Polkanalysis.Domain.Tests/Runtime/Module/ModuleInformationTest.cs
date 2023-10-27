@@ -7,15 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Dto;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.DirectAccess.Tests.Repository
 {
     public class ModuleInformationTest
     {
-        private IModuleInformation _moduleRepository;
+        private IModuleInformationService _moduleRepository;
         private ICurrentMetaData _currentMetaData;
         private IModelBuilder _modelBuilder;
         private ISubstrateService _substrateService;

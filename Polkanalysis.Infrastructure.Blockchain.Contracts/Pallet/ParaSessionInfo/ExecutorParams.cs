@@ -17,7 +17,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInf
             throw new NotImplementedException();
         }
 
-        public override System.Byte[] Encode()
+        public override byte[] Encode()
         {
             var result = new List<byte>();
             result.AddRange(Value.Encode());

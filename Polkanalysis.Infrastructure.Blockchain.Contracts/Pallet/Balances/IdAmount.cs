@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
         public BaseTuple Id { get; set; }
         public U128 Amount { get; set; }
 
-        public override System.Byte[] Encode()
+        public override byte[] Encode()
         {
             var result = new List<byte>();
             result.AddRange(Id.Encode());
@@ -24,14 +24,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Id = new Substrate.NetApi.Model.Types.Base.BaseTuple();
+            Id = new BaseTuple();
             Id.Decode(byteArray, ref p);
-            Amount = new Substrate.NetApi.Model.Types.Primitive.U128();
+            Amount = new U128();
             Amount.Decode(byteArray, ref p);
             var bytesLength = p - start;
             TypeSize = bytesLength;
             Bytes = new byte[bytesLength];
-            System.Array.Copy(byteArray, start, Bytes, 0, bytesLength);
+            Array.Copy(byteArray, start, Bytes, 0, bytesLength);
         }
     }
 }

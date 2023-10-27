@@ -18,15 +18,15 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
 {
     public class AccountDetailUseCaseTest : UseCaseTest<AccountDetailHandler, AccountDto, AccountDetailQuery>
     {
-        private IAccountService _accountRepository;
+        private IAccountService _accountService;
 
         [SetUp]
         public override void Setup()
         {
             _logger = Substitute.For<ILogger<AccountDetailHandler>>();
-            _accountRepository = Substitute.For<IAccountService>();
+            _accountService = Substitute.For<IAccountService>();
 
-            _useCase = new AccountDetailHandler(_accountRepository, _logger);
+            _useCase = new AccountDetailHandler(_accountService, _logger);
             base.Setup();
         }
     }

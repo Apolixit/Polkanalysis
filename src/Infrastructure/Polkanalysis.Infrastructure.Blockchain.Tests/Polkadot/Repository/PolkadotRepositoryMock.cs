@@ -9,6 +9,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System.Text;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 {
@@ -56,6 +57,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         {
             var polkadotRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
+                new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                 Substitute.For<ILogger<PolkadotService>>()
                 );
 
@@ -77,6 +79,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         {
             var polkadotRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
+                new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                 Substitute.For<ILogger<PolkadotService>>()
                 );
 

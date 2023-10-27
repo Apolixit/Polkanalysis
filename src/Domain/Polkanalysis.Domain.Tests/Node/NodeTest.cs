@@ -1,14 +1,13 @@
-﻿using Substrate.NetApi;
-using Substrate.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.SystemCore;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 
 namespace Polkanalysis.Domain.Tests.Node
 {
