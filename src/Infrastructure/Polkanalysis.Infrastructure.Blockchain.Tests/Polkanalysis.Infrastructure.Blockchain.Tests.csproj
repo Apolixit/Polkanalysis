@@ -46,7 +46,7 @@
 
   <ItemGroup>
     <Reference Include="Polkanalysis.Polkadot.NetApiExt">
-      <HintPath>..\..\..\..\SubstrateBlockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
+      <HintPath>..\..\..\..\Substrate.NET.Blockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
     </Reference>
   </ItemGroup>
 

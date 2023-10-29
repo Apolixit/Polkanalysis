@@ -9,6 +9,9 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using BabeConsensusExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Substrate.NetApi.Model.Types;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Babe
 {

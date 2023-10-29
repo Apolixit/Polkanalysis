@@ -118,19 +118,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             }
         }
 
-        IMetadata ISubstrateService.RuntimeMetadata => throw new NotImplementedException();
+        //IMetadata ISubstrateService.RuntimeMetadata => throw new NotImplementedException();
 
-        IRpc ISubstrateService.Rpc => throw new NotImplementedException();
+        //IRpc ISubstrateService.Rpc => throw new NotImplementedException();
 
-        IConstants ISubstrateService.Constants => throw new NotImplementedException();
+        //IConstants ISubstrateService.Constants => throw new NotImplementedException();
 
-        ICalls ISubstrateService.Calls => throw new NotImplementedException();
+        //ICalls ISubstrateService.Calls => throw new NotImplementedException();
 
-        IEvents ISubstrateService.Events => throw new NotImplementedException();
+        //IEvents ISubstrateService.Events => throw new NotImplementedException();
 
-        IErrors ISubstrateService.Errors => throw new NotImplementedException();
+        //IErrors ISubstrateService.Errors => throw new NotImplementedException();
 
-        IStorage ITimeQueryable.Storage => throw new NotImplementedException();
+        //IStorage ITimeQueryable.Storage => throw new NotImplementedException();
 
         public async Task CheckBlockchainStateAsync(Action<bool> isConnectedCallback, CancellationToken cancellationToken, int millisecondCheck = 500)
         {

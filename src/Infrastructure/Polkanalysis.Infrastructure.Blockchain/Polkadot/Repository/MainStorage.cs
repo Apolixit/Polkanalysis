@@ -73,7 +73,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             where TDestination : IType
         {
             var version = await GetVersionAsync(token);
-            return _mapper.MapWithVersion<TSource, TDestination>(version, source, token);
+            return _mapper.MapWithVersion<TSource, TDestination>(version, source);
         }
 
         /// <summary>
@@ -86,21 +86,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
         {
             var version = await GetVersionAsync(token);
             return _mapper.MapWithVersion<
-                SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base>(version, account, token);
+                SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base>(version, account);
         }
 
         protected async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase> MapIdAsync(Id key, CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             return _mapper.MapWithVersion<
-                Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase>(version, key, token);
+                Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase>(version, key);
         }
 
         protected async Task<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase> MapHashAsync(Hash key, CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             return _mapper.MapWithVersion<
-                Hash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase>(version, key, token);
+                Hash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase>(version, key);
         }
 
         /// <summary>

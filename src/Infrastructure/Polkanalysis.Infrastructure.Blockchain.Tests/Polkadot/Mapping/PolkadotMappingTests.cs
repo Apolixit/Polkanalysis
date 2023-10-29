@@ -10,6 +10,11 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using NSubstitute;
 using Microsoft.Extensions.Logging;
 using SpCoreExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto;
+using Polkanalysis.Domain.Contracts.Core.Public;
+using BabeConsensusExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_babe;
+using Substrate.NET.Utils;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {
@@ -24,26 +29,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
         }
 
         [Test]
-        [Ignore("Todo: debug")]
         public void PolkadotMapping_ShouldBeValid()
         {
             _blockchainMapping.ConfigurationProvider.AssertConfigurationIsValid();
         }
 
-        //[Test]
-        //public void CreateAccount_FromHash_ShouldSuceed()
-        //{
-        //    var subsrateAccount = new SubstrateAccount();
-        //    Assert.That(substrateAccount, Is.Not.Null);
-        //}
-
         [Test]
         public void SubstrateAccount_ToAccountId32_ShouldWork()
         {
             var substrateAccount = new SubstrateAccount(MockAddress);
-            var accountId32 = _blockchainMapping.Map<SubstrateAccount, SpCoreExt.AccountId32>(substrateAccount);
+            var accountId32 = _blockchainMapping.MapWithVersion<SubstrateAccount, SpCoreExt.AccountId32>(9370, substrateAccount);
 
-            Assert.That(Utils.GetAddressFrom(substrateAccount.Bytes), Is.EqualTo(Utils.GetAddressFrom(accountId32.Value.Encode())));
+            Assert.That(substrateAccount.ToStringAddress(), Is.EqualTo(Utils.GetAddressFrom(accountId32.Value.Encode())));
         }
 
         [Test]
@@ -55,7 +52,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             var accountId32 = new SpCoreExt.AccountId32();
             accountId32.Create("0x0000966D74F8027E07B43717B6876D97544FE0D71FACEF06ACC8382749AE944E");
 
-            var accountId32_2 = _blockchainMapping.Map<SubstrateAccount, SpCoreExt.AccountId32>(substrateAccount);
+            var accountId32_2 = _blockchainMapping.MapWithVersion<SubstrateAccount, SpCoreExt.AccountId32>(9370, substrateAccount);
 
             Assert.That(Utils.GetAddressFrom(substrateAccount.Bytes), Is.EqualTo(Utils.GetAddressFrom(accountId32.Value.Encode())));
             Assert.That(substrateAccount.Encode(), Is.EqualTo(accountId32_2.Encode()));
@@ -75,19 +72,106 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
         }
 
         [Test]
-        public void Perbill_ShouldWork()
+        public void PerbillCore_ToDomain_ShouldWork()
         {
             var p1 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_arithmetic.per_things.Perbill();
-            p1.Create("0x00000000");
+            p1.Create("0x10000000");
 
-            var p2 = new Perbill(new U32(0));
+            var p2 = new Perbill(new U32(16));
 
-            Assert.That(p2.Bytes, Is.EqualTo(_blockchainMapping.Map<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_arithmetic.per_things.Perbill, Perbill>(p1).Bytes));
+            var mappedPerbill = _blockchainMapping.Map<
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_arithmetic.per_things.Perbill, Perbill>(p1);
+            Assert.That(p2.Bytes, Is.EqualTo(mappedPerbill.Bytes));
         }
 
         [Test]
-        public void ParachainId_ShouldWork()
+        public void PerbillDomain_ToCore_ShouldWork()
+        {
+            var perbillCore = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_arithmetic.per_things.Perbill();
+            perbillCore.Create("0x10000000");
+
+            var perbillDomain = new Perbill(new U32(16));
+
+            var mappedPerbill = _blockchainMapping.MapWithVersion<Perbill, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase>(9370, perbillDomain);
+            Assert.That(perbillDomain.Bytes, Is.EqualTo(mappedPerbill.Bytes));
+        }
+
+        [Test]
+        public void PublicCore_ToDomain_ShouldWork()
+        {
+            var core = new BabeConsensusExt.app.Public();
+            core.Create(Utils.HexToByteArray(PublicSr25519_Signature_1));
+
+            var expectedResult = _polkadotMapping.Map<BabeConsensusExt.app.Public, PublicSr25519>(core);
+
+            Assert.That(expectedResult.Key, Is.EqualTo(KeyType.Sr25519));
+            Assert.That(Utils.Bytes2HexString(expectedResult.Value.ToBytes()), Is.EqualTo(PublicSr25519_Signature_1));
+
+        }
+
+        [Test]
+        public void PublicDomain_ToCore_ShouldWork()
+        {
+            var domainPublic = new PublicSr25519();
+            domainPublic.Create(Utils.HexToByteArray(PublicSr25519_Signature_1));
+
+            var corePublic = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.sr25519.Public();
+            corePublic.Create(Utils.HexToByteArray(PublicSr25519_Signature_1));
+
+            var expectedResult = _polkadotMapping.MapWithVersion<PublicSr25519, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.sr25519.PublicBase>(9370, domainPublic);
+
+            Assert.That(corePublic.Encode(), Is.EqualTo(expectedResult.Encode()));
+        }
+
+        [Test]
+        public void SlotCore_ToDomain_ShouldWork()
+        {
+            var numberResult = new U64(2);
+            List<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase> slotBases = new();
+
+            var coreSlotv9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_consensus_slots.Slot();
+            coreSlotv9140.Create(numberResult.Encode());
+
+            var coreSlotv9230 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9230.sp_consensus_slots.Slot();
+            coreSlotv9230.Create(numberResult.Encode());
+
+            var coreSlotv9340 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9340.sp_consensus_slots.Slot();
+            coreSlotv9340.Create(numberResult.Encode());
+
+            var coreSlotv9370 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_slots.Slot();
+            coreSlotv9370.Create(numberResult.Encode());
+
+            var coreSlotv9430 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.sp_consensus_slots.Slot();
+            coreSlotv9430.Create(numberResult.Encode());
+
+            slotBases.Add(coreSlotv9140);
+            slotBases.Add(coreSlotv9230);
+            slotBases.Add(coreSlotv9340);
+            slotBases.Add(coreSlotv9370);
+            slotBases.Add(coreSlotv9430);
+
+            foreach (var slot in slotBases)
+            {
+                var mapped = _polkadotMapping.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase, Slot>(slot);
+                Assert.That(mapped.Value.Value, Is.EqualTo(new Slot(numberResult).Value.Value));
+            }
+        }
+
+        [Test]
+        public void SlotDomain_ToCore_ShouldWork()
+        {
+            var numberResult = new U64(2);
+            var slotDomain = new Slot(numberResult);
+
+            var coreSlotv9140 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9140.sp_consensus_slots.Slot();
+            coreSlotv9140.Create(numberResult.Encode());
+
+            var mapped = _polkadotMapping.MapWithVersion<Slot, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase>(9140, slotDomain);
+            Assert.That(mapped.Encode(), Is.EqualTo(coreSlotv9140.Encode()));
+        }
+
+        [Test]
+        public void ParachainIdCore_ToDomain_ShouldWork()
         {
             var s1 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id();
             s1.Create("0x01000000");
@@ -97,13 +181,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Id>(s1);
 
             Assert.That(s1.Value.Bytes, Is.EqualTo(d1.Value.Bytes));
+        }
 
-            // Reverse
+        [Test]
+        public void ParachainIdDomain_ToCore_ShouldWork()
+        {
             var s2 = new Id(1);
 
-            var d2 = _blockchainMapping.Map<
+            var d2 = _blockchainMapping.MapWithVersion<
                 Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id>(s2);
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id>(9370, s2);
 
             Assert.That(s2.Value.Bytes, Is.EqualTo(d2.Value.Bytes));
         }
@@ -118,22 +205,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             });
 
             // Convert BaseVec<SubstrateAccount> to BaseVec<AccountId32>
-            BaseVec<SpCoreExt.AccountId32> dest = _blockchainMapping.Map<BaseVec<SubstrateAccount>, BaseVec<SpCoreExt.AccountId32>>(source);
-            Assert.That(dest, Is.Not.Null);
+            BaseVec<SpCoreExt.AccountId32> dest = _blockchainMapping.MapWithVersion<BaseVec<SubstrateAccount>, BaseVec<SpCoreExt.AccountId32>>(9370, source);
+            Assert.That(source.Value.Select(x => x.Encode()), Is.EquivalentTo(dest.Value.Select(x => x.Encode())));
         }
-
-        //[Test]
-        //public void PublicEd25519_ShouldWork()
-        //{
-        //    var publicEd = new PublicEd25519();
-        //    Assert.Fail();
-        //}
-
-        //[Test]
-        //public void PublicSr25519_ShouldWork()
-        //{
-        //    Assert.Fail();
-        //}
 
         [Test]
         public void BaseCom_ShouldWork()

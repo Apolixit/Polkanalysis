@@ -18,6 +18,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         public TDestination Map<TSource, TDestination>(TSource source)
             where TSource : IType;
 
+        public TDestination Map<TDestination>(object source);
+
         /// <summary>
         /// Mapping between source and destination which also depend on pallet version (System.SpecVersion)
         /// </summary>
@@ -27,7 +29,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         /// <param name="source"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public TDestination MapWithVersion<TSource, TDestination>(uint version, TSource source, CancellationToken token)
+        public TDestination MapWithVersion<TSource, TDestination>(uint version, TSource source)
             where TSource : IType
             where TDestination: IType;
 
