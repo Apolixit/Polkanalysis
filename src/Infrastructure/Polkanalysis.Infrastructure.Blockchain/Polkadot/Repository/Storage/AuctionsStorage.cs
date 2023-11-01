@@ -7,6 +7,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using System.Security.AccessControl;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -29,10 +30,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         {
             return (BaseTuple<U32, U32>)await _client.AuctionsStorage.AuctionInfoAsync(token);
         }
-
+        
+        //public Type dynamicType()
+        //{
+        //    return typeof(Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id>);
+        //}
         public async Task<U128> ReservedAmountsAsync(BaseTuple<SubstrateAccount, Id> key, CancellationToken token)
         {
-            var param = await MapWithVersionAsync<BaseTuple<SubstrateAccount, Id>, IBaseEnumerable>(key, token);
+            var version = await GetVersionAsync(token);
+            
+            var param = (IBaseEnumerable)_mapper.Map(version, key, _client.AuctionsStorage.ReservedAmountsInputType(version));
             return await _client.AuctionsStorage.ReservedAmountsAsync(param, token);
         }
 

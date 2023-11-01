@@ -10,6 +10,7 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using System;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using System.Security.Cryptography;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
@@ -60,21 +61,60 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             return result.SpecVersion;
         }
 
-        protected TDestination Map<TSource, TDestination>(TSource source)
+        protected TDestination? Map<TSource, TDestination>(TSource source, [CallerMemberName] string callerName = "")
             where TSource : IType
-            where TDestination : IType
+            where TDestination : IType, new()
         {
+            if (source is null)
+            {
+                _logger.LogDebug($"Storage version call {callerName} response is null");
+                return default;
+            }
+
+            _logger.LogDebug($"Storage call {callerName} response is {source}");
+
             var mapped = _mapper.Map<TSource, TDestination>(source);
+
+            _logger.LogDebug($"Storage call {callerName} mapped response is {mapped}");
             return mapped;
         }
 
-        protected async Task<TDestination> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token)
+        protected object? Map(object? source, Type sourceType, Type destinationType, [CallerMemberName] string callerName = "")
+        {
+            if (source is null)
+            {
+                _logger.LogDebug($"Storage call {callerName} response is null");
+                return default;
+            }
+
+            _logger.LogDebug($"Storage call {callerName} response is {source}");
+
+            var mapped = _mapper.Map(source, sourceType, destinationType);
+
+            _logger.LogDebug($"Storage call {callerName} mapped response is {mapped}");
+            return mapped;
+        }
+
+        protected async Task<TDestination?> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token, [CallerMemberName] string callerName = "")
             where TSource : IType
             where TDestination : IType
         {
             var version = await GetVersionAsync(token);
-            return _mapper.MapWithVersion<TSource, TDestination>(version, source);
+            if (source is null)
+            {
+                _logger.LogDebug($"Storage version (= {version}) call {callerName} response is null");
+                return default;
+            }
+
+            _logger.LogDebug($"Storage version (= {version}) call {callerName} response is {source}");
+
+            var mapped = _mapper.MapWithVersion<TSource, TDestination>(version, source);
+
+            _logger.LogDebug($"Storage version (= {version}) call {callerName} mapped response is {mapped}");
+            return mapped;
         }
+
+        
 
         /// <summary>
         /// Shortcut to build an AccountId32Base (often used as input)

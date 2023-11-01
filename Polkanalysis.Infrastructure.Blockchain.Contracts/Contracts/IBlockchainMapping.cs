@@ -15,10 +15,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         /// <typeparam name="TDestination"></typeparam>
         /// <param name="source">Source value</param>
         /// <returns>Mapped value</returns>
-        public TDestination Map<TSource, TDestination>(TSource source)
-            where TSource : IType;
-
+        public TDestination Map<TSource, TDestination>(TSource source) where TSource : IType;
         public TDestination Map<TDestination>(object source);
+        public IType Map<TSource>(uint version, TSource source, Type destinationType)
+            where TSource : IType;
+        public object Map(object source, Type sourceType, Type destinationType);
 
         /// <summary>
         /// Mapping between source and destination which also depend on pallet version (System.SpecVersion)
@@ -31,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         /// <returns></returns>
         public TDestination MapWithVersion<TSource, TDestination>(uint version, TSource source)
             where TSource : IType
-            where TDestination: IType;
+            where TDestination : IType;
 
         /// <summary>
         /// Map a versionned enum to a Domain enum.
@@ -44,5 +45,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         public TDestination MapEnum<TDestination, TDestinationEnum>(IBaseEnum source)
             where TDestination : IBaseEnum, new()
             where TDestinationEnum : struct, Enum;
+
+        public IType? MapEnum(IBaseEnum source, Type destinationType);
     }
 }

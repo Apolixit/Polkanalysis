@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Substrate.NetApi.Model.Types.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,12 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
     public class NameableSize8 : Nameable
     {
         protected override int IntegerSize { get; set; } = 8;
+
+        public NameableSize8() { }
+        public NameableSize8(BaseType elem)
+        {
+            Create(elem.Bytes);
+        }
     }
     public class NameableSize9 : Nameable
     {

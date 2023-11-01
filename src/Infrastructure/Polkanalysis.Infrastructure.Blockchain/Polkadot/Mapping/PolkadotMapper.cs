@@ -15,10 +15,14 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types;
 using Polkanalysis.Domain.Contracts.Core.Signature;
 using Polkanalysis.Infrastructure.Blockchain.Exceptions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Microsoft.Extensions.Logging;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Substrate.NET.Utils;
+using Ardalis.GuardClauses;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
@@ -71,10 +75,35 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             return mapped;
         }
 
+        public object Map(object source, Type sourceType, Type destinationType)
+        {
+            var mapped = _mapper.Map(source, sourceType, destinationType);
+            return mapped;
+        }
+
+        private object Map(uint version, object source, Type sourceType, Type destinationType)
+        {
+            var mapped = _mapper.Map(source, sourceType, destinationType, opts => opts.Items["version"] = version);
+            return mapped;
+        }
+
+        public IType Map<TSource>(uint version, TSource source, Type destinationType)
+            where TSource : IType
+        {
+            return (IType)Map(version, source, typeof(TSource), destinationType);
+        }
+
         public TDestination Map<TSource, TDestination>(TSource source) where TSource : IType
         {
-            var mapped = _mapper.Map<TSource, TDestination>(source);
-            return mapped;
+            if(source is IBaseEnum sourceEnum)
+            {
+                var mapped = (TDestination)MapEnum(sourceEnum, typeof(TDestination));
+                return mapped;
+            } else
+            {
+                var mapped = _mapper.Map<TSource, TDestination>(source);
+                return mapped;
+            }
         }
 
         public TDestination Map<TDestination>(object source)
@@ -87,7 +116,48 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             where TDestination : IBaseEnum, new()
             where TDestinationEnum : struct, Enum
         {
+            return MapEnumInternal<TDestination, TDestinationEnum>(source);
+        }
+
+        public IType? MapEnum(IBaseEnum source, Type destinationType)
+        {
+            return MapEnumInternal(source, destinationType);
+        }
+
+        private static IType? MapEnumInternal(IBaseEnum source, Type destinationType)
+        {
+            if (source is null) return default;
+
+            var destination = (IBaseEnum?)Activator.CreateInstance(destinationType);
+            if (destination is null)
+                throw new InvalidOperationException($"Cannot create instance of {destinationType}");
+
+            var destinationEnumType = destination.GetValue().GetType();
+            if (!destinationEnumType.IsEnum)
+                throw new InvalidCastException($"{nameof(destinationEnumType)} is not an enum");
+
+            var destinationEnumNames = destinationEnumType.GetEnumNames();
+            if (destinationEnumNames.Length == 0)
+                throw new InvalidOperationException($"{nameof(destinationEnumType)} is a enum with no data");
+
+            object? mappedEnum;
+            if (!Enum.TryParse(destinationEnumType, source.GetEnum().ToString(), true, out mappedEnum))
+                throw new InvalidOperationException($"Cannot parse source enum to destination enum");
+
+            destination = BuildDestinationEnum(source, destinationType, destination, mappedEnum);
+            return destination;
+        }
+
+        private static TDestination MapEnumInternal<TDestination, TDestinationEnum>(IBaseEnum source)
+            where TDestination : IBaseEnum, new()
+            where TDestinationEnum : struct, Enum
+        {
             var destination = new TDestination();
+
+            // Check that TDestinationEnum is the right enum linked to TDestination enum
+            //if (destination.GetEnum().GetType() != typeof(TDestination))
+            //    throw new InvalidMappingException("Try to cast enums that are different !");
+
             if (source == null) return destination;
 
             TDestinationEnum mapped;
@@ -110,32 +180,34 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                         $"destination = {destinationTypeSize})");
                 }
 
+                destination = (TDestination)BuildDestinationEnum(source, typeof(TDestination), destination, mapped);
                 return destination;
             }
 
             throw new MissingMappingException($"Impossible to cast {source.GetType()} to BaseEnum<{typeof(TDestination)}>");
         }
 
-        //public TDestination MapEnum<TDestination, TDestinationEnum>(IBaseEnum source)
-        //    where TDestination : IBaseEnum, new()
-        //    where TDestinationEnum : struct, Enum
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private static IBaseEnum BuildDestinationEnum(IBaseEnum source, Type destinationType, IBaseEnum destination, object? mappedEnum)
+        {
+            var baseEnumExtBytes = new List<byte>()
+                {
+                    Convert.ToByte(mappedEnum)
+                };
+            baseEnumExtBytes.AddRange(source.GetValues().Encode());
+            destination.Create(baseEnumExtBytes.ToArray());
 
-        //public static TDestination MapBaseEnum<TSource, TSourceEnum, TDestination, TDestinationEnum>(TSource source)
-        //    where TSource : BaseEnum<TSourceEnum>
-        //    where TSourceEnum : Enum
-        //    where TDestination : BaseEnum<TDestinationEnum>, new()
-        //    where TDestinationEnum : Enum
-        //{
-        //    var mapped = PolkadotMapping.Instance.Map<BaseEnum<TSourceEnum>, BaseEnum<TDestinationEnum>>(source);
-        //    var res = new TDestination();
-        //    res.Create(mapped.Value);
+            // Check if Value2 type is valid
+            int sourceTypeSize = source.GetValues().TypeSize;
+            int destinationTypeSize = destination.GetValues().TypeSize;
+            if (sourceTypeSize != destinationTypeSize)
+            {
+                throw new InvalidTypeSizeException($"Error while trying to map {source.GetType()} to {destinationType}," +
+                    $"associated data (Value2) does not have same TypeSize (source = {sourceTypeSize} / " +
+                    $"destination = {destinationTypeSize})");
+            }
 
-        //    return res;
-        //}
-
+            return destination;
+        }
 
         public class BytesProfile : Profile
         {
@@ -525,7 +597,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Arr30U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
                 CreateMap<Arr31U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
                 CreateMap<Arr32U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
+
                 CreateMap<Arr32U8, Hexa>().ConvertUsing(x => new Hexa(x));
+
+                CreateMap<Arr8U8, NameableSize8>().ConvertUsing(x => new NameableSize8(x));
                 //CreateMap<WeakBoundedVecT1, FlexibleNameable>().ConvertUsing(new NameableConverter());
             }
         }
@@ -573,15 +648,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public BalancesStorageProfile()
             {
-                //// Balance lock
+                // Balance lock
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.BalanceLockBase, BalanceLock>().IncludeAllDerived().ConvertUsing(new BalanceLockConverter1());
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase, BalanceLock>().IncludeAllDerived().ConvertUsing(new BalanceLockConverter2());
                 //CreateMap<WeakBoundedVecT3, BaseVec<BalanceLock>>().ConvertUsing((i, o) => i.Value);
                 //// Map WeakBoundedVecT3 to Domain
                 //CreateMap<WeakBoundedVecT3, BaseVec<Domain.Contracts.Secondary.Pallet.Balances.BalanceLock>>().ConvertUsing(x => Instance.Map<BaseVec<BalanceLock>, BaseVec<Domain.Contracts.Secondary.Pallet.Balances.BalanceLock>>(x.Value));
 
                 //CreateMap<BalanceLock, Domain.Contracts.Secondary.Pallet.Balances.BalanceLock>();
 
-                //// Account data
-                //CreateMap<AccountData, Domain.Contracts.Secondary.Pallet.Balances.AccountData>();
+                // Account data
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.AccountDataBase, AccountData>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.AccountDataBase, AccountData>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.ExtraFlagsBase, ExtraFlags>().IncludeAllDerived();
 
 
                 //// Reserve data
@@ -594,6 +673,32 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 //CreateMap<EnumBalanceStatus, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumBalanceStatus>();
                 //CreateMap<EnumReasons, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumReasons>();
                 ////CreateMap<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
+            }
+
+            public class BalanceLockConverter1 : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.BalanceLockBase, BalanceLock>
+            {
+                public BalanceLock Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.BalanceLockBase source, BalanceLock destination, ResolutionContext context)
+                {
+                    destination = new BalanceLock();
+                    destination.Amount = source.Amount;
+                    destination.Id = context.Mapper.Map<NameableSize8>(source.Id);
+                    destination.Reasons = (EnumReasons)MapEnumInternal(source.Reasons, typeof(EnumReasons));
+
+                    return destination;
+                }
+            }
+
+            public class BalanceLockConverter2 : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase, BalanceLock>
+            {
+                public BalanceLock Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase source, BalanceLock destination, ResolutionContext context)
+                {
+                    destination = new BalanceLock();
+                    destination.Amount = source.Amount;
+                    destination.Id = context.Mapper.Map<NameableSize8>(source.Id);
+                    destination.Reasons = (EnumReasons)MapEnumInternal(source.Reasons, typeof(EnumReasons));
+
+                    return destination;
+                }
             }
         }
 
@@ -614,8 +719,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Slot, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase>()
                     .IncludeAllDerived().ConvertUsing(new SlotConverter());
 
-                //CreateMap<BabeEpochConfigurationBase, BabeEpochConfiguration>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase, BabeEpochConfiguration>().IncludeAllDerived().ConvertUsing(new BabeEpochConfigurationConverter());
 
+                //CreateMap<Substrate.NetApi.Model.Types.Base.Abstraction.IBaseEnum, EnumAllowedSlots>().ConvertUsing(x => (EnumAllowedSlots)MapEnumInternal(x, typeof(EnumAllowedSlots)));
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_im_online.sr25519.app_sr25519.Public, PublicSr25519>().ConvertUsing(x => Instance.Map<
                 //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.sr25519.Public, PublicSr25519>(x.Value));
 
@@ -682,14 +788,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             }
 
             public class BabeEpochConfigurationConverter : 
-                ITypeConverter<BabeEpochConfigurationBase, BabeEpochConfiguration>
+                ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase, BabeEpochConfiguration>
             {
-                public BabeEpochConfiguration Convert(BabeEpochConfigurationBase source, BabeEpochConfiguration destination, ResolutionContext context)
+                public BabeEpochConfiguration Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase source, BabeEpochConfiguration destination, ResolutionContext context)
                 {
                     destination = new BabeEpochConfiguration();
                     if (source == null) return destination;
 
-                    return null;
+                    destination.C = context.Mapper.Map<BaseTuple<U64, U64>>(source.C);
+                    destination.AllowedSlots = (EnumAllowedSlots)MapEnumInternal(source.AllowedSlots, typeof(EnumAllowedSlots));
+                    return destination;
                 }
             }
 
@@ -1192,6 +1300,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public SubstrateAccount Convert(AccountId32Base source, SubstrateAccount destination, ResolutionContext context)
             {
+                destination = new SubstrateAccount();
+                if (source is null || source.Value is null) return destination;
+
                 destination = new SubstrateAccount(source.Value.Value);
 
                 return destination;
@@ -1213,6 +1324,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 return new FlexibleNameable(source);
             }
         }
+
+        //public class NameableSizeConverter : ITypeConverter<BaseType, Nameable>
+        //{
+        //    public Nameable Convert(BaseType source, Nameable destination, ResolutionContext context)
+        //    {
+                
+        //    }
+        //}
 
         public class BaseTupleConverter<I1, I2, O1, O2> : ITypeConverter<BaseTuple<I1, I2>, BaseTuple<O1, O2>>
         where I1 : IType, new()
@@ -1295,7 +1414,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
                 foreach (var val in source.Value)
                 {
-                    list.Add(context.Mapper.Map<T1, T2>(val));
+                    if (val is IBaseEnum valEnum)
+                    {
+                        var enumMapping = MapEnumInternal(valEnum, typeof(T2));
+                        if (enumMapping is null)
+                            throw new InvalidMappingException($"Unable to convert enum {typeof(T1)} to {typeof(T2)}");
+
+                        list.Add((T2)enumMapping);
+                    }
+                    else
+                    {
+                        list.Add(context.Mapper.Map<T1, T2>(val));
+                    }
                 }
 
                 destination.Create(list.ToArray());

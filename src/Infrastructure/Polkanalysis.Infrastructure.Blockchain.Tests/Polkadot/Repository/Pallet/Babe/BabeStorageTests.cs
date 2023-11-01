@@ -59,9 +59,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
         [Test]
         [TestCaseSource(nameof(U64TestCase))]
-        public async Task GenesisSlot_ShouldWorkAsync(Slot expectedOutput)
+        public async Task GenesisSlot_ShouldWorkAsync(U64 expectedOutput)
         {
-            await MockStorageCallAsync(expectedOutput, _substrateRepository.Storage.Babe.GenesisSlotAsync);
+            var coreSlots = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_slots.Slot();
+            coreSlots.Create(expectedOutput.Encode());
+
+            var domainSlots = new Slot(expectedOutput);
+            await MockStorageCallAsync(coreSlots, domainSlots, _substrateRepository.Storage.Babe.GenesisSlotAsync);
         }
 
         [Test]
@@ -69,20 +73,26 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             //_substrateRepository.AjunaClient.GetStorageAsync<U64>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.GenesisSlotAsync);
+            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_slots.Slot, Slot>(_substrateRepository.Storage.Babe.GenesisSlotAsync);
         }
 
         [Test]
         [TestCaseSource(nameof(U64TestCase))]
-        public async Task CurrentSlot_ShouldWorkAsync(Slot expectedOutput)
+        public async Task CurrentSlot_ShouldWorkAsync(U64 expectedOutput)
         {
-            await MockStorageCallAsync(expectedOutput, _substrateRepository.Storage.Babe.CurrentSlotAsync);
+            var coreSlots = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_slots.Slot();
+            coreSlots.Create(expectedOutput.Encode());
+
+            var domainSlot = new Slot(expectedOutput);
+            await MockStorageCallAsync(coreSlots, domainSlot, _substrateRepository.Storage.Babe.CurrentSlotAsync);
+
+            Assert.That(domainSlot.Value, Is.EqualTo(expectedOutput));
         }
 
         [Test]
         public async Task CurrentSlotNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync(_substrateRepository.Storage.Babe.CurrentSlotAsync);
+            await MockStorageCallNullAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_slots.Slot, Slot>(_substrateRepository.Storage.Babe.CurrentSlotAsync);
         }
 
         [Test]
@@ -298,6 +308,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             expectedResult.Create(new BaseTuple<U64, U64>(new U64(1), new U64(4)), allowedSlots);
 
             await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.EpochConfigAsync);
+            Assert.That(extResult.AllowedSlots.GetValue(), Is.Not.Null);
+            Assert.That(extResult.AllowedSlots.GetValue().ToString(), Is.EqualTo(expectedResult.AllowedSlots.GetValue().ToString()));
         }
 
         [Test]

@@ -4,6 +4,10 @@ using Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Castle.Core.Logging;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {
@@ -127,9 +131,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 
         private readonly IBlockchainMapping _mapper;
 
-        public EnumMappingTests(IBlockchainMapping mapper)
+        public EnumMappingTests()
         {
-            _mapper = mapper;
+            _mapper = new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>());
         }
 
         [Test]
@@ -285,6 +289,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That(res8.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome5));
                 Assert.That(res8.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
                 Assert.That(res8.GetValues().Encode(), Is.EqualTo(new BaseVoid().Encode()));
+            });
+
+            var res9 = (EnumSubstrateEnumExtDomain?)_mapper.MapEnum(se3_3, typeof(EnumSubstrateEnumExtDomain));
+            Assert.That(res9, Is.Not.Null);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(res9.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
+                Assert.That(res9.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
+                Assert.That((int)res9.Value2.As<U128>().Value, Is.EqualTo(11));
+                Assert.That((int)res9.GetValues().As<U128>().Value, Is.EqualTo(11));
             });
         }
 

@@ -21,10 +21,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
 
         [Test]
         [Category("NO_DATA")]
-        public async Task AccountData_ShouldWorkAsync()
+        public async Task Account_ShouldWorkAsync()
         {
             var testAccount = new SubstrateAccount("13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY");
-            var res = await _substrateRepository.Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
+            var res = await _substrateRepository.At("0xb00b97e5f34bf0b92770a3cd8a23f56ff3c48422e05a68e51cd8f94f2cdd3d72").Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
