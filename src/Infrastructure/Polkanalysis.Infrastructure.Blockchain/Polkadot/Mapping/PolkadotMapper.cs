@@ -23,6 +23,11 @@ using Ardalis.GuardClauses;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
+using Polkanalysis.Domain.Contracts.Core.Multi;
+using System.Collections.Generic;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
@@ -67,6 +72,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             _mapper = mapperConfig.CreateMapper();
         }
 
+        /// <summary>
+        /// Map TSource to TDestination by given a specific version. Depend on pallet version (System.SpecVersion)
+        /// </summary>
+        /// <typeparam name="TSource">Source type</typeparam>
+        /// <typeparam name="TDestination">Destination type</typeparam>
+        /// <param name="version">Substrate blockchain SpecVersion</param>
+        /// <param name="source">TSource instance data</param>
+        /// <returns>Mapped object</returns>
         public TDestination MapWithVersion<TSource, TDestination>(uint version, TSource source)
             where TSource : IType
             where TDestination : IType
@@ -75,6 +88,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             return mapped;
         }
 
+        /// <summary>
+        /// Map a dynamic runtime source type to a dynamic runtime destination type
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="sourceType"></param>
+        /// <param name="destinationType"></param>
+        /// <returns></returns>
         public object Map(object source, Type sourceType, Type destinationType)
         {
             var mapped = _mapper.Map(source, sourceType, destinationType);
@@ -95,18 +115,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
         public TDestination Map<TSource, TDestination>(TSource source) where TSource : IType
         {
-            if(source is IBaseEnum sourceEnum)
-            {
-                var mapped = (TDestination)MapEnum(sourceEnum, typeof(TDestination));
-                return mapped;
-            } else
-            {
-                var mapped = _mapper.Map<TSource, TDestination>(source);
-                return mapped;
-            }
+            var mapped = _mapper.Map<TSource, TDestination>(source);
+            return mapped;
+
+            //if (source is IBaseEnum sourceEnum)
+            //{
+            //    var mapped = (TDestination)MapEnum(sourceEnum, typeof(TDestination));
+            //    return mapped;
+            //} else
+            //{
+            //    var mapped = _mapper.Map<TSource, TDestination>(source);
+            //    return mapped;
+            //}
         }
 
         public TDestination Map<TDestination>(object source)
+            where TDestination : IType
         {
             var mapped = _mapper.Map<TDestination>(source);
             return mapped;
@@ -119,14 +143,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             return MapEnumInternal<TDestination, TDestinationEnum>(source);
         }
 
-        public IType? MapEnum(IBaseEnum source, Type destinationType)
+        public IType MapEnum(IBaseEnum source, Type destinationType)
         {
             return MapEnumInternal(source, destinationType);
         }
 
-        private static IType? MapEnumInternal(IBaseEnum source, Type destinationType)
+        private static IType MapEnumInternal(IBaseEnum source, Type destinationType)
         {
-            if (source is null) return default;
+            if (source is null) throw new ArgumentNullException(nameof(source));
 
             var destination = (IBaseEnum?)Activator.CreateInstance(destinationType);
             if (destination is null)
@@ -209,6 +233,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             return destination;
         }
 
+        private static O internalMapGeneric<I, O>(ResolutionContext context, I source)
+        {
+            if (source is IBaseEnum valEnum)
+            {
+                var enumMapping = MapEnumInternal(valEnum, typeof(O));
+                if (enumMapping is null)
+                    throw new InvalidMappingException($"Unable to convert enum {typeof(I)} to {typeof(O)}");
+
+                return (O)enumMapping;
+            }
+            else
+            {
+                return context.Mapper.Map<I, O>(source);
+            }
+        }
+
         public class BytesProfile : Profile
         {
             public BytesProfile()
@@ -220,6 +260,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public CommonProfile()
             {
+                //CreateMap<IBaseEnum, IBaseEnum>().IncludeAllDerived().ConvertUsing(typeof(BaseEnumConverter));
+
+                CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumEvent>().IncludeAllDerived().ConvertUsing(x => (Contracts.Pallet.Balances.Enums.EnumEvent)MapEnumInternal(x, typeof(Contracts.Pallet.Balances.Enums.EnumEvent)));
+                CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumError>().IncludeAllDerived().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumError>());
+
+                CreateMap(typeof(BaseOpt<>), typeof(Nullable<>)).ConvertUsing(typeof(BaseOptNullConverter<>));
+
                 CreateMap<AccountId32Base, SubstrateAccount>().IncludeAllDerived().ConvertUsing(new AccountId32Converter());
                 CreateMap<SubstrateAccount, AccountId32Base>().IncludeAllDerived().ConvertUsing(new SubstrateAccountConverter());
 
@@ -317,10 +364,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_consensus_babe.digests.NextConfigDescriptor, 
                 //    NextConfigDescriptor>().ConvertUsingEnumMapping(opt => opt.);
                 //CreateMap(typeof(IBaseEnum), typeof(IBaseEnum)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumConverterInherit<,,,>));
+
+
                 CreateMap(typeof(BaseEnum<>), typeof(BaseEnum<>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumConverter<,>));
 
-                CreateMap(typeof(BaseEnumExt<,,,>), typeof(BaseEnumExt<,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
-                CreateMap(typeof(BaseEnumExt<,,,,,,,,,,>), typeof(BaseEnumExt<,,,,,,,,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
+                //CreateMap(typeof(BaseEnumExt<,,,>), typeof(BaseEnumExt<,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
+                //CreateMap(typeof(BaseEnumExt<,,,,,,,,,,>), typeof(BaseEnumExt<,,,,,,,,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
 
                 BaseComMapping<I8>();
                 BaseComMapping<I16>();
@@ -474,14 +523,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     destination = new BaseEnum<D0>();
                     if (source == null) return destination;
 
-                    D0 mapped;
-                    if(Enum.TryParse(source.Value.ToString(), out mapped))
-                    {
-                        destination.Create(mapped);
-                        return destination;
-                    }
+                    return (BaseEnum<D0>)MapEnumInternal((IBaseEnum)source, typeof(BaseEnum<D0>));
 
-                    throw new MissingMappingException($"Impossible to cast BaseEnum<{typeof(I0)}> to BaseEnum<{typeof(D0)}>");
+                    //D0 mapped;
+                    //if(Enum.TryParse(source.Value.ToString(), out mapped))
+                    //{
+                    //    destination.Create(mapped);
+                    //    return destination;
+                    //}
+
+                    //throw new MissingMappingException($"Impossible to cast BaseEnum<{typeof(I0)}> to BaseEnum<{typeof(D0)}>");
                 }
             }
 
@@ -800,42 +851,40 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     return destination;
                 }
             }
-
-
-            //    public class BoundedVecT5Converter : ITypeConverter<BoundedVecT5, BaseVec<Hexa>>
-            //    {
-            //        public BaseVec<Hexa> Convert(BoundedVecT5 source, BaseVec<Hexa> destination, ResolutionContext context)
-            //        {
-            //            destination = new BaseVec<Hexa>();
-            //            if (source == null) return destination;
-
-            //            return context.Mapper.Map<BaseVec<Arr32U8>, BaseVec<Hexa>>(source.Value);
-            //        }
-            //    }
-
-            //    public class WeakBoundedVecT2Converter : ITypeConverter<WeakBoundedVecT2, BaseVec<BaseTuple<PublicSr25519, U64>>>
-            //    {
-            //        public BaseVec<BaseTuple<PublicSr25519, U64>> Convert(WeakBoundedVecT2 source, BaseVec<BaseTuple<PublicSr25519, U64>> destination, ResolutionContext context)
-            //        {
-            //            destination = new BaseVec<BaseTuple<PublicSr25519, U64>>();
-            //            if (source == null) return destination;
-
-            //            destination = context.Mapper.Map<
-            //                BaseVec<BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_consensus_babe.app.Public, U64>>,
-            //                BaseVec<BaseTuple<PublicSr25519, U64>>>(source.Value);
-
-            //            return destination;
-            //        }
-            //    }
         }
 
         public class CrowdloanStorageProfile : Profile
         {
             public CrowdloanStorageProfile()
             {
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo, FundInfo>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>().ConvertUsing(new FundInfoConverter());
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner, EnumMultiSigner>();
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution, EnumLastContribution>();
+            }
+
+            public class FundInfoConverter :            ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>
+            {
+                public FundInfo Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase source, FundInfo destination, ResolutionContext context)
+                {
+                    destination = new FundInfo();
+                    if (source == null) return destination;
+
+                    destination.Depositor = context.Mapper.Map<SubstrateAccount>(source.Depositor);
+                    
+                    destination.Cap = source.Cap;
+                    destination.Deposit = source.Deposit;
+                    destination.Raised = source.Raised;
+                    destination.End = source.End;
+                    destination.FirstPeriod = source.FirstPeriod;
+                    destination.LastPeriod = source.LastPeriod;
+                    destination.TrieIndex = source.TrieIndex;
+                    destination.FundIndex = source.FundIndex;
+
+                    destination.Verifier = context.Mapper.Map<BaseOpt<EnumMultiSigner>>(source.Verifier);
+                    destination.LastContribution = (EnumLastContribution)MapEnumInternal(source.LastContribution, typeof(EnumLastContribution));
+
+                    return destination;
+                }
             }
         }
         public class DemocracyStorageProfile : Profile
@@ -875,9 +924,44 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 //CreateMap<BoundedVecT20, BaseVec<SubstrateAccount>>().ConvertUsing(new BoundedVecT20Converter());
                 //CreateMap<BaseTuple<U128, BoundedVecT20>, SubsOfResult>().ConvertUsing(new SubsOfResultInverseConverter());
 
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration, Registration>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.IdentityInfo, IdentityInfo>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.IdentityInfoBase, IdentityInfo>().ConvertUsing(new IdentityInfoConverter());
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.RegistrarInfo, RegistrarInfo>();
+            }
+
+            public class RegistrationConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>
+            {
+                public Registration Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase source, Registration destination, ResolutionContext context)
+                {
+                    destination = new Registration();
+                    if (source == null) return destination;
+
+                    destination.Judgements = context.Mapper.Map<BaseVec<BaseTuple<U32, EnumJudgement>>>(source.Judgements);
+                    
+
+                    return destination;
+                }
+            }
+
+            public class IdentityInfoConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.IdentityInfoBase, IdentityInfo>
+            {
+                public IdentityInfo Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.IdentityInfoBase source, IdentityInfo destination, ResolutionContext context)
+                {
+                    destination = new IdentityInfo();
+                    if (source == null) return destination;
+
+                    destination.Display = (EnumData)MapEnumInternal(source.Display, typeof(EnumData));
+                    destination.Legal = (EnumData)MapEnumInternal(source.Legal, typeof(EnumData));
+                    destination.Web = (EnumData)MapEnumInternal(source.Web, typeof(EnumData));
+                    destination.Riot = (EnumData)MapEnumInternal(source.Riot, typeof(EnumData));
+                    destination.Email = (EnumData)MapEnumInternal(source.Email, typeof(EnumData));
+                    destination.PgpFingerprint = context.Mapper.Map<BaseOpt<FlexibleNameable>>(source.PgpFingerprint);
+                    destination.Twitter = (EnumData)MapEnumInternal(source.Twitter, typeof(EnumData));
+                    destination.Image = (EnumData)MapEnumInternal(source.Image, typeof(EnumData));
+                    destination.Additional = context.Mapper.Map<BaseVec<BaseTuple<EnumData, EnumData>>>(source.Additional);
+
+                    return destination;
+                }
             }
 
             //public class SubsOfResultInverseConverter : ITypeConverter<BaseTuple<U128, BoundedVecT20>, SubsOfResult>
@@ -1284,6 +1368,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         //        return destination;
         //    }
         //}
+
         public class SubstrateAccountConverter : ITypeConverter<SubstrateAccount, AccountId32Base>
         {
             public AccountId32Base Convert(SubstrateAccount source, AccountId32Base destination, ResolutionContext context)
@@ -1346,6 +1431,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 if (source == null || source.Value == null) return destination;
 
                 var first = context.Mapper.Map<I1, O1>((I1)source.Value[0]);
+
+
                 var second = context.Mapper.Map<I2, O2>((I2)source.Value[1]);
                 destination.Create(first, second);
 
@@ -1474,9 +1561,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             public BaseOpt<T2> Convert(BaseOpt<T1> source, BaseOpt<T2> destination, ResolutionContext context)
             {
                 destination = new BaseOpt<T2>();
-                if (source == null) return destination;
+                if (source == null || !source.OptionFlag) return destination;
 
-                destination.Create(context.Mapper.Map<T1, T2>(source.Value));
+                if (source.Value is IBaseEnum valEnum)
+                {
+                    var enumMapping = MapEnumInternal(valEnum, typeof(T2));
+                    if (enumMapping is null)
+                        throw new InvalidMappingException($"Unable to convert enum {typeof(T1)} to {typeof(T2)}");
+
+                    destination.Create((T2)enumMapping);
+                }
+                else
+                {
+                    destination.Create(context.Mapper.Map<T1, T2>(source.Value));
+                }
+
                 return destination;
             }
         }
@@ -1527,13 +1626,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         //    }
         //}
 
-        //public class BoundedVecT1Converter : ITypeConverter<BoundedVecT1, Hash>
-        //{
-        //    public Hash Convert(BoundedVecT1 source, Hash destination, ResolutionContext context)
-        //    {
-        //        destination.Create(source.Bytes);
-        //        return destination;
-        //    }
-        //}
+        public class EnumConverter<T> : ITypeConverter<IBaseEnum, T>
+            where T : IType, new()
+        {
+            public T Convert(IBaseEnum source, T destination, ResolutionContext context)
+            {
+                return (T)MapEnumInternal(source, typeof(T));
+            }
+        }
     }
 }

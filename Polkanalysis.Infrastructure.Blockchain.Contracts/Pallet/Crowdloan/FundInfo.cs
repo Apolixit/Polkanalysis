@@ -19,6 +19,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
         public U32 FirstPeriod { get; set; }
         public U32 LastPeriod { get; set; }
         public U32 FundIndex { get; set; }
+        public U32 TrieIndex { get; set; }
 
         public FundInfo() { }
 
@@ -32,9 +33,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
             EnumLastContribution lastContribution,
             U32 firstPeriod,
             U32 lastPeriod,
-            U32 fundIndex)
+            U32 fundIndex,
+            U32 trieIndex)
         {
-            Create(depositor, verifier, deposit, raised, end, cap, lastContribution, firstPeriod, lastPeriod, fundIndex);
+            Create(depositor, verifier, deposit, raised, end, cap, lastContribution, firstPeriod, lastPeriod, fundIndex, trieIndex);
         }
 
         public void Create(SubstrateAccount depositor,
@@ -46,7 +48,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
             EnumLastContribution lastContribution,
             U32 firstPeriod,
             U32 lastPeriod,
-            U32 fundIndex)
+            U32 fundIndex,
+            U32 trieIndex)
         {
             Depositor = depositor;
             Verifier = verifier;
@@ -58,6 +61,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
             FirstPeriod = firstPeriod;
             LastPeriod = lastPeriod;
             FundIndex = fundIndex;
+            TrieIndex = trieIndex;
 
             Bytes = Encode();
             TypeSize =
@@ -70,8 +74,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
                 LastContribution.TypeSize +
                 FirstPeriod.TypeSize +
                 LastPeriod.TypeSize +
-                FundIndex.TypeSize;
-
+                FundIndex.TypeSize +
+                TrieIndex.TypeSize;
         }
 
         public override byte[] Encode()

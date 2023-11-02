@@ -82,7 +82,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
             _substrateRepository = polkadotRepository;
         }
 
-        public void MockStorageAndVersion<T>(T storageResult, uint version)
+        protected virtual void MockStorageAndVersion<T>(T storageResult, uint version)
             where T : IType, new()
         {
             _substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(storageResult);
@@ -195,12 +195,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
             where T : IType, new()
         {
             MockStorageAndVersion(storageResult, version);
-            //_substrateRepository.AjunaClient.GetStorageAsync<R>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(storageResult);
-
-            //_substrateRepository.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
-            //{
-            //    SpecVersion = version
-            //});
 
             var res = await storageCall(input, CancellationToken.None);
 

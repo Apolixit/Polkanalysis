@@ -47,7 +47,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 enumLastContribution,
                 new U32(11),
                 new U32(18),
-                new U32(55));
+                new U32(55),
+                new U32(0));
 
             await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Crowdloan.FundsAsync);
         }

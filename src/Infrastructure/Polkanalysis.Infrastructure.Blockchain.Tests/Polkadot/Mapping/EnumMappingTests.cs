@@ -8,6 +8,8 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_arithmetic.fixed_point;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {
@@ -331,6 +333,34 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(enum2));
+        }
+
+        [Test]
+        public void EnumExtTest_Test()
+        {
+
+            var se1 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumError();
+            se1.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.Error.VestingBalance);
+
+            //var res1 = _mapper.MapEnum<Contracts.Pallet.Balances.Enums.EnumError, Contracts.Pallet.Balances.Enums.Error>(se1);
+            //Assert.That(res1.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Error.VestingBalance));
+
+            //var res2 = (Contracts.Pallet.Balances.Enums.EnumError)_mapper.MapEnum(se1, typeof(Contracts.Pallet.Balances.Enums.EnumError));
+            //Assert.That(res2.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Error.VestingBalance));
+
+            var res3 = _mapper.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumError, Contracts.Pallet.Balances.Enums.EnumError>(se1);
+            Assert.That(res3.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Error.VestingBalance));
+
+            var accountId32 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32();
+            accountId32.Create("0x17316829C406A05CD9CDB8D5DE5FB23D26B3672F8CBCA1FCC6538833589A121A");
+            var coreRes = new BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32, U128>(accountId32, new U128(10));
+            var se2 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumEvent();
+            se2.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.Event.Endowed, coreRes);
+
+            var domainRes = new BaseTuple<SubstrateAccount, U128>(new SubstrateAccount("1XQn94kWaMVJG16AWPKGmYFERfttsjZq4ompSTz2jxHK6uL"), new U128(10));
+            var res4 = _mapper.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumEvent, Contracts.Pallet.Balances.Enums.EnumEvent>(se2);
+            Assert.That(res4.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Event.Endowed));
+            Assert.That(res4.GetValues().Encode(), Is.EqualTo(domainRes.Encode()));
         }
     }
 
