@@ -181,16 +181,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             var se3 = new EnumSubstrateEnum3();
             se3.Create(SubstrateEnum3.TheFourth);
 
-            var res1 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se1);
+            var res1 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se1);
             Assert.That(res1.Value, Is.EqualTo(DomainSubstrateEnum.PrimaryAndSecondaryPlainSlots));
 
-            var res2_1 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se2_1);
+            var res2_1 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se2_1);
             Assert.That(res2_1.Value, Is.EqualTo(DomainSubstrateEnum.PrimarySlots));
 
-            var res2_2 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se2_2);
+            var res2_2 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se2_2);
             Assert.That(res2_2.Value, Is.EqualTo(DomainSubstrateEnum.AnotherOne));
 
-            var res3 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se3);
+            var res3 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se3);
             Assert.That(res3.Value, Is.EqualTo(DomainSubstrateEnum.TheFourth));
         }
 
@@ -221,7 +221,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             var se3_4 = new EnumSubstrateEnumExt3();
             se3_4.Create(SubstrateEnumExt3.Awesome5, new BaseVoid());
 
-            var res1 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se1_1);
+            var res1 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se1_1);
             Assert.Multiple(() =>
             {
                 Assert.That(res1.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
@@ -230,7 +230,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That(res1.GetValues().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 
-            var res2 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se1_2);
+            var res2 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se1_2);
             Assert.Multiple(() =>
             {
                 Assert.That(res2.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
@@ -239,7 +239,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That(res2.GetValues().As<U32>().Value, Is.EqualTo(4));
             });
 
-            var res3 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se2_1);
+            var res3 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se2_1);
             Assert.Multiple(() =>
             {
                 Assert.That(res3.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome3));
@@ -248,7 +248,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That(res3.GetValues().As<Bool>().Value, Is.True);
             });
 
-            var res4 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se2_2);
+            var res4 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se2_2);
             Assert.Multiple(() =>
             {
                 Assert.That(res4.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
@@ -257,7 +257,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That((int)res4.GetValues().As<U128>().Value, Is.EqualTo(10));
             });
 
-            var res5 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se3_1);
+            var res5 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_1);
             Assert.Multiple(() =>
             {
                 Assert.That(res5.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
@@ -266,7 +266,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That(res5.GetValues().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 
-            var res6 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se3_2);
+            var res6 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_2);
             Assert.Multiple(() =>
             {
                 Assert.That(res6.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
@@ -275,7 +275,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That(res6.GetValues().As<U32>().Value, Is.EqualTo(5));
             });
 
-            var res7 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se3_3);
+            var res7 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_3);
             Assert.Multiple(() =>
             {
                 Assert.That(res7.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
@@ -284,7 +284,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
                 Assert.That((int)res7.GetValues().As<U128>().Value, Is.EqualTo(11));
             });
 
-            var res8 = _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(se3_4);
+            var res8 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_4);
             Assert.Multiple(() =>
             {
                 Assert.That(res8.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome5));
@@ -312,7 +312,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             enum3.Create(SubstrateEnumExt4Error.Awesome10, new U32(4));
 
             Assert.Throws<MissingMappingException>(() =>
-            _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(enum3));
+            _mapper.MapEnum<EnumSubstrateEnumExtDomain>(enum3));
+        }
+
+        [Test]
+        public void MappingEnum_WhenSourceEnumIsNull_ShouldFail()
+        {
+            Assert.Throws<ArgumentNullException>(() => _mapper.MapEnum<EnumSubstrateEnumExtDomain>(null!));
+        }
+
+        [Test]
+        public void MappingEnum_WhenDestinationIsNotValidEnum_ShouldFail()
+        {
+            var se1 = new EnumSubstrateEnum1();
+            se1.Create(SubstrateEnum1.PrimaryAndSecondaryPlainSlots);
+
+            Assert.Throws<InvalidCastException>(() => _mapper.MapEnum(se1, typeof(U32)));
         }
 
         [Test]
@@ -322,7 +337,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             enum1.Create(SubstrateEnumExt4Error.Awesome1, new U32(10));
 
             Assert.Throws<InvalidTypeSizeException>(() =>
-            _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(enum1));
+            _mapper.MapEnum<EnumSubstrateEnumExtDomain>(enum1));
         }
 
         [Test]
@@ -332,33 +347,35 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             enum2.Create(SubstrateEnumExt4Error.Awesome2, new BaseVoid());
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-            _mapper.MapEnum<EnumSubstrateEnumExtDomain, SubstrateEnumExtDomain>(enum2));
+            _mapper.MapEnum<EnumSubstrateEnumExtDomain>(enum2));
         }
 
         [Test]
-        public void EnumExtTest_Test()
+        public void ConcreteEnumTest_ShouldMap()
         {
 
             var se1 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumError();
             se1.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.Error.VestingBalance);
 
-            //var res1 = _mapper.MapEnum<Contracts.Pallet.Balances.Enums.EnumError, Contracts.Pallet.Balances.Enums.Error>(se1);
-            //Assert.That(res1.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Error.VestingBalance));
-
-            //var res2 = (Contracts.Pallet.Balances.Enums.EnumError)_mapper.MapEnum(se1, typeof(Contracts.Pallet.Balances.Enums.EnumError));
-            //Assert.That(res2.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Error.VestingBalance));
-
             var res3 = _mapper.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumError, Contracts.Pallet.Balances.Enums.EnumError>(se1);
             Assert.That(res3.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Error.VestingBalance));
+        }
 
+        [Test]
+        public void ConcreteEnumExtTest_ShouldMap()
+        {
             var accountId32 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32();
             accountId32.Create("0x17316829C406A05CD9CDB8D5DE5FB23D26B3672F8CBCA1FCC6538833589A121A");
+
+
             var coreRes = new BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.AccountId32, U128>(accountId32, new U128(10));
             var se2 = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumEvent();
             se2.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.Event.Endowed, coreRes);
 
             var domainRes = new BaseTuple<SubstrateAccount, U128>(new SubstrateAccount("1XQn94kWaMVJG16AWPKGmYFERfttsjZq4ompSTz2jxHK6uL"), new U128(10));
+
             var res4 = _mapper.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumEvent, Contracts.Pallet.Balances.Enums.EnumEvent>(se2);
+
             Assert.That(res4.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Event.Endowed));
             Assert.That(res4.GetValues().Encode(), Is.EqualTo(domainRes.Encode()));
         }

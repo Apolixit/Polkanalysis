@@ -6,6 +6,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using IdentityExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_identity.types;
 using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Identity
 {
@@ -82,10 +83,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task SubsOf_ShouldWorkAsync()
         {
-            var coreResult = new BaseTuple<U128, BaseTuple<U128, BaseVec<AccountId32Ext>>>();
+            var coreResult = new BaseTuple<U128, BaseVec<AccountId32Ext>>();
             coreResult.Create("0x80E98E118C00000000000000000000000CA4C5B68728F7FDBDB4426714A385017A471D5CD22A156ACD30A40277E6417B600EDAA0D08E8B21D6E8F946EFF381AD4BE29AA63569A54A6A75C91B878B463033F6BE65CC16C65708BB6A0E4B9958FFE23D1C56EE5683670A69DBBBB70C10D507");
 
-            var expectedResult = new SubsOfResult(
+            var expectedResult = new BaseTuple<U128, BaseVec<SubstrateAccount>>(
                 new U128(601590000000),
                 new BaseVec<SubstrateAccount>(new SubstrateAccount[] {
                     new SubstrateAccount("14j3azi9gKGx2de7ADL3dkzZXFzTTUy1t3RND21PymHRXRp6"),
@@ -93,14 +94,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                     new SubstrateAccount("16aXLhFh9mZoyW5emqZM6fJWTqbWENGrJkAoGwtR1S8XoFwY")
                 }));
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.SubsOfAsync);
+            var res = await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.SubsOfAsync);
+
+            Assert.That(res.Value[0].As<U128>().Value, Is.EqualTo(expectedResult.Value[0].As<U128>().Value));
+
+            Assert.That(res.Value[1].As<BaseVec<SubstrateAccount>>().Value[0].As<SubstrateAccount>().ToPolkadotAddress(), Is.EqualTo(expectedResult.Value[1].As<BaseVec<SubstrateAccount>>().Value[0].As<SubstrateAccount>().ToPolkadotAddress()));
+
+            Assert.That(res.Value[1].As<BaseVec<SubstrateAccount>>().Value[1].As<SubstrateAccount>().ToPolkadotAddress(), Is.EqualTo(expectedResult.Value[1].As<BaseVec<SubstrateAccount>>().Value[1].As<SubstrateAccount>().ToPolkadotAddress()));
+
+            Assert.That(res.Value[1].As<BaseVec<SubstrateAccount>>().Value[2].As<SubstrateAccount>().ToPolkadotAddress(), Is.EqualTo(expectedResult.Value[1].As<BaseVec<SubstrateAccount>>().Value[2].As<SubstrateAccount>().ToPolkadotAddress()));
         }
 
         [Test]
         public async Task SubsOfNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync
-                <SubstrateAccount, BaseTuple<U128, BaseTuple<U128, BaseTuple<U128, BaseVec<AccountId32Ext>>>>, SubsOfResult>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SubsOfAsync);
+                <SubstrateAccount, BaseTuple<U128, BaseVec<AccountId32Ext>>, BaseTuple<U128, BaseVec<SubstrateAccount>>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SubsOfAsync);
         }
 
         [Test]

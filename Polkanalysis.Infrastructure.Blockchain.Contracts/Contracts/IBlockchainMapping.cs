@@ -69,9 +69,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         /// <typeparam name="TDestinationEnum"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public TDestination MapEnum<TDestination, TDestinationEnum>(IBaseEnum source)
-            where TDestination : IBaseEnum, new()
-            where TDestinationEnum : struct, Enum;
+        public TDestination MapEnum<TDestination>(IBaseEnum source)
+            where TDestination : IBaseEnum, new();
 
         
         /// <summary>

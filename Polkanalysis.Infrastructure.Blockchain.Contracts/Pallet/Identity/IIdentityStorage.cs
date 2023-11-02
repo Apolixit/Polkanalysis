@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
 {
@@ -37,7 +38,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
         /// <param name="account"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<SubsOfResult> SubsOfAsync(SubstrateAccount account, CancellationToken token);
+        public Task<BaseTuple<U128, BaseVec<SubstrateAccount>>> SubsOfAsync(SubstrateAccount account, CancellationToken token);
 
         /// <summary>
         ///  The set of registrars. Not expected to get very big as can only be added through a

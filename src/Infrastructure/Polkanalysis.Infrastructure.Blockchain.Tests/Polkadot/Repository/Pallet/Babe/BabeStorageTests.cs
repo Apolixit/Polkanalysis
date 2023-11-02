@@ -307,9 +307,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             allowedSlots.Create(AllowedSlots.PrimaryAndSecondaryVRFSlots);
             expectedResult.Create(new BaseTuple<U64, U64>(new U64(1), new U64(4)), allowedSlots);
 
-            await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.EpochConfigAsync);
-            Assert.That(extResult.AllowedSlots.GetValue(), Is.Not.Null);
-            Assert.That(extResult.AllowedSlots.GetValue().ToString(), Is.EqualTo(expectedResult.AllowedSlots.GetValue().ToString()));
+            var result = await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.EpochConfigAsync);
+
+            Assert.That(result.AllowedSlots.GetValue(), Is.EqualTo(expectedResult.AllowedSlots.GetValue()));
+            Assert.That(result.C.Value[0].As<U64>().Value, Is.EqualTo(expectedResult.C.Value[0].As<U64>().Value));
+            Assert.That(result.C.Value[1].As<U64>().Value, Is.EqualTo(expectedResult.C.Value[1].As<U64>().Value));
         }
 
         [Test]
