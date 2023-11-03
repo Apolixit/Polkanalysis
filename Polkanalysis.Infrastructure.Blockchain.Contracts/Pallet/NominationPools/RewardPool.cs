@@ -10,19 +10,23 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         public U128 LastRecordedRewardCounter { get; set; }
         public U128 LastRecordedTotalPayouts { get; set; }
         public U128 TotalRewardsClaimed { get; set; }
+        public U128? TotalCommissionPending { get; set; }
+        public U128? TotalCommissionClaimed { get; set; }
 
         public RewardPool() { }
 
-        public RewardPool(U128 lastRecordedRewardCounter, U128 lastRecordedTotalPayouts, U128 totalRewardsClaimed)
+        public RewardPool(U128 lastRecordedRewardCounter, U128 lastRecordedTotalPayouts, U128 totalRewardsClaimed, U128? totalCommissionPending, U128? totalCommissionClaimed)
         {
-            Create(lastRecordedRewardCounter, lastRecordedTotalPayouts, totalRewardsClaimed);
+            Create(lastRecordedRewardCounter, lastRecordedTotalPayouts, totalRewardsClaimed, totalCommissionPending, totalCommissionClaimed);
         }
 
-        public void Create(U128 lastRecordedRewardCounter, U128 lastRecordedTotalPayouts, U128 totalRewardsClaimed)
+        public void Create(U128 lastRecordedRewardCounter, U128 lastRecordedTotalPayouts, U128 totalRewardsClaimed, U128? totalCommissionPending, U128? totalCommissionClaimed)
         {
             LastRecordedRewardCounter = lastRecordedRewardCounter;
             LastRecordedTotalPayouts = lastRecordedTotalPayouts;
             TotalRewardsClaimed = totalRewardsClaimed;
+            TotalCommissionPending = totalCommissionPending;
+            TotalCommissionClaimed = totalCommissionClaimed;
 
             Bytes = Encode();
             TypeSize = LastRecordedRewardCounter.TypeSize + LastRecordedTotalPayouts.TypeSize + TotalRewardsClaimed.TypeSize;

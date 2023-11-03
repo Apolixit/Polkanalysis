@@ -9,6 +9,7 @@ using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Domain.Contracts.Core.Display;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -79,9 +80,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             return await _client.NominationPoolsStorage.MaxPoolsAsync(token);
         }
 
-        public async Task<BaseVec<U8>> MetadataAsync(U32 key, CancellationToken token)
+        public async Task<FlexibleNameable> MetadataAsync(U32 key, CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<U8>>(await _client.NominationPoolsStorage.MetadataAsync(key, token));
+            return Map<IBaseEnumerable, FlexibleNameable>(await _client.NominationPoolsStorage.MetadataAsync(key, token));
         }
 
         public async Task<U128> MinCreateBondAsync(CancellationToken token)

@@ -159,7 +159,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BaseVec<U8>> MetadataAsync(U32 key, CancellationToken token);
+        public Task<FlexibleNameable> MetadataAsync(U32 key, CancellationToken token);
 
         /// <summary>
         /// Counter for the related counted storage map

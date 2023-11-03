@@ -17,23 +17,25 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         public EnumPoolState State { get; set; }
         public U32 MemberCounter { get; set; }
         public PoolRoles Roles { get; set; }
+        public Commission? Commission { get; set; }
 
         public BondedPoolInner() { }
 
-        public BondedPoolInner(U128 points, EnumPoolState state, U32 memberCounter, PoolRoles roles)
+        public BondedPoolInner(U128 points, EnumPoolState state, U32 memberCounter, PoolRoles roles, Commission? commission)
         {
-            Create(points, state, memberCounter, roles);
+            Create(points, state, memberCounter, roles, commission);
         }
 
-        public void Create(U128 points, EnumPoolState state, U32 memberCounter, PoolRoles roles)
+        public void Create(U128 points, EnumPoolState state, U32 memberCounter, PoolRoles roles, Commission? commission)
         {
             Points = points;
             State = state;
             MemberCounter = memberCounter;
             Roles = roles;
+            Commission = commission;
 
             Bytes = Encode();
-            TypeSize = Points.TypeSize + State.TypeSize + MemberCounter.TypeSize + Roles.TypeSize;
+            TypeSize = Points.TypeSize + State.TypeSize + MemberCounter.TypeSize + Roles.TypeSize + Commission?.TypeSize ?? 0;
         }
 
         public override byte[] Encode()
@@ -43,21 +45,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
             result.AddRange(State.Encode());
             result.AddRange(MemberCounter.Encode());
             result.AddRange(Roles.Encode());
+            
+            if(Commission is not null)
+                result.AddRange(Commission.Encode());
             return result.ToArray();
         }
 
         public override void Decode(byte[] byteArray, ref int p)
         {
-            var start = p;
-            Points = new U128();
-            Points.Decode(byteArray, ref p);
-            State = new EnumPoolState();
-            State.Decode(byteArray, ref p);
-            MemberCounter = new U32();
-            MemberCounter.Decode(byteArray, ref p);
-            Roles = new PoolRoles();
-            Roles.Decode(byteArray, ref p);
-            TypeSize = p - start;
+            throw new InvalidOperationException();
         }
     }
 }

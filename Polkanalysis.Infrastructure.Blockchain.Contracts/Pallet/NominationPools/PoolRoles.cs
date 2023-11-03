@@ -56,5 +56,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
             StateToggler.Decode(byteArray, ref p);
             TypeSize = p - start;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is PoolRoles roles &&
+                   TypeSize == roles.TypeSize &&
+                   EqualityComparer<byte[]>.Default.Equals(Bytes, roles.Bytes) &&
+                   EqualityComparer<SubstrateAccount>.Default.Equals(Depositor, roles.Depositor) &&
+                   EqualityComparer<BaseOpt<SubstrateAccount>>.Default.Equals(Root, roles.Root) &&
+                   EqualityComparer<BaseOpt<SubstrateAccount>>.Default.Equals(Nominator, roles.Nominator) &&
+                   EqualityComparer<BaseOpt<SubstrateAccount>>.Default.Equals(StateToggler, roles.StateToggler);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TypeSize, Bytes, Depositor, Root, Nominator, StateToggler);
+        }
     }
 }

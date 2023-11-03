@@ -85,7 +85,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         public async Task Metadata_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.NominationPools.MetadataAsync(
-                new U32(1), CancellationToken.None);
+                new U32(7), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 

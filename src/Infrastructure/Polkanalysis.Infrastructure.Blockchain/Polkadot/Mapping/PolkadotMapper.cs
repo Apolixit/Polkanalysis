@@ -30,6 +30,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using static Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping.PolkadotMapping.BabeStorageProfile;
 using System.ComponentModel;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
@@ -38,13 +40,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         private IMapper _mapper;
         private readonly ILogger<PolkadotMapping> _logger;
 
-        //public IMapper StandardMapper => throw new NotImplementedException();
-
         public IConfigurationProvider ConfigurationProvider => _mapper.ConfigurationProvider;
 
         public PolkadotMapping(ILogger<PolkadotMapping> logger)
         {
-            //_mapper = mapper;
             _logger = logger;
 
             var mapperConfig = new MapperConfiguration(cfg =>
@@ -616,6 +615,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Arr31U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
                 CreateMap<Arr32U8, FlexibleNameable>().ConvertUsing(new NameableConverter());
 
+                CreateMap<BaseVec<U8>, FlexibleNameable>().ConvertUsing(x => new FlexibleNameable().FromU8(x.Value));
+
                 CreateMap<Arr32U8, Hexa>().ConvertUsing(x => new Hexa(x));
 
                 CreateMap<Arr8U8, NameableSize8>().ConvertUsing(x => new NameableSize8(x));
@@ -665,56 +666,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             public BalancesStorageProfile()
             {
                 // Balance lock
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.BalanceLockBase, BalanceLock>().IncludeAllDerived().ConvertUsing(new BalanceLockConverter1());
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase, BalanceLock>().IncludeAllDerived().ConvertUsing(new BalanceLockConverter2());
-                //CreateMap<WeakBoundedVecT3, BaseVec<BalanceLock>>().ConvertUsing((i, o) => i.Value);
-                //// Map WeakBoundedVecT3 to Domain
-                //CreateMap<WeakBoundedVecT3, BaseVec<Domain.Contracts.Secondary.Pallet.Balances.BalanceLock>>().ConvertUsing(x => Instance.Map<BaseVec<BalanceLock>, BaseVec<Domain.Contracts.Secondary.Pallet.Balances.BalanceLock>>(x.Value));
-
-                //CreateMap<BalanceLock, Domain.Contracts.Secondary.Pallet.Balances.BalanceLock>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.BalanceLockBase, BalanceLock>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase, BalanceLock>().IncludeAllDerived();
+                
 
                 // Account data
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.AccountDataBase, AccountData>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.AccountDataBase, AccountData>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.ExtraFlagsBase, ExtraFlags>().IncludeAllDerived();
 
-
-                //// Reserve data
-                //CreateMap<BoundedVecT6, BaseVec<ReserveData>>().ConvertUsing((i, o) => i.Value);
-                //CreateMap<ReserveData, Domain.Contracts.Secondary.Pallet.Balances.ReserveData>();
-                //// Map BoundedVecT6 to Domain
-                //CreateMap<BoundedVecT6, BaseVec<Domain.Contracts.Secondary.Pallet.Balances.ReserveData>>().ConvertUsing(x => Instance.Map<BaseVec<ReserveData>, BaseVec<Domain.Contracts.Secondary.Pallet.Balances.ReserveData>>(x.Value));
-
-                //// Events
-                //CreateMap<EnumBalanceStatus, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumBalanceStatus>();
-                //CreateMap<EnumReasons, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumReasons>();
-                ////CreateMap<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>();
-            }
-
-            public class BalanceLockConverter1 : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.BalanceLockBase, BalanceLock>
-            {
-                public BalanceLock Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.BalanceLockBase source, BalanceLock destination, ResolutionContext context)
-                {
-                    destination = new BalanceLock();
-                    destination.Amount = source.Amount;
-                    destination.Id = context.Mapper.Map<NameableSize8>(source.Id);
-                    destination.Reasons = (EnumReasons)MapEnumInternal(source.Reasons, typeof(EnumReasons));
-
-                    return destination;
-                }
-            }
-
-            public class BalanceLockConverter2 : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase, BalanceLock>
-            {
-                public BalanceLock Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.BalanceLockBase source, BalanceLock destination, ResolutionContext context)
-                {
-                    destination = new BalanceLock();
-                    destination.Amount = source.Amount;
-                    destination.Id = context.Mapper.Map<NameableSize8>(source.Id);
-                    destination.Reasons = (EnumReasons)MapEnumInternal(source.Reasons, typeof(EnumReasons));
-
-                    return destination;
-                }
+                // Events
+                CreateMap<IBaseEnum, EnumBalanceStatus>().ConvertUsing(new EnumConverter<EnumBalanceStatus>());
+                CreateMap<IBaseEnum, EnumReasons>().ConvertUsing(new EnumConverter<EnumReasons>());
+                //CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumEvent>());
             }
         }
 
@@ -750,9 +714,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public CrowdloanStorageProfile()
             {
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>().ConvertUsing(new FundInfoConverter());
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_runtime.EnumMultiSigner, EnumMultiSigner>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.EnumLastContribution, EnumLastContribution>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>().IncludeAllDerived().ConvertUsing(new FundInfoConverter());
+                CreateMap<IBaseEnum, EnumMultiSigner>().ConvertUsing(new EnumConverter<EnumMultiSigner>());
+                CreateMap<IBaseEnum, EnumLastContribution>().ConvertUsing(new EnumConverter<EnumLastContribution>());
             }
 
             public class FundInfoConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>
@@ -774,7 +738,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     destination.FundIndex = source.FundIndex;
 
                     destination.Verifier = context.Mapper.Map<BaseOpt<EnumMultiSigner>>(source.Verifier);
-                    destination.LastContribution = (EnumLastContribution)MapEnumInternal(source.LastContribution, typeof(EnumLastContribution));
+                    destination.LastContribution = context.Mapper.Map<EnumLastContribution>(source.LastContribution);
 
                     return destination;
                 }
@@ -929,17 +893,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public NominationPoolsStorageProfile()
             {
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner, BondedPoolInner>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.EnumPoolState, EnumPoolState>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolRoles, PoolRoles>();
-                //CreateMap<BoundedVecT28, FlexibleNameable>().ConvertUsing(x => new FlexibleNameable().FromU8(x.Value.Value));
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.fixed_point.FixedU128, U128>().ConvertUsing(x => x.Value);
-                //CreateMap<
-                //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT1, BaseVec<BaseTuple<U32, U128>>>().ConvertUsing(x => x.Value.Value);
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember, PoolMember>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.RewardPool, RewardPool>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.SubPools, SubPools>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.UnbondPool, UnbondPool>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.BondedPoolInnerBase, BondedPoolInner>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.PoolRolesBase, PoolRoles>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.CommissionBase, Commission>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.CommissionChangeRateBase, CommissionChangeRate>().IncludeAllDerived();
+                CreateMap<IBaseEnum, EnumPoolState>().ConvertUsing(new EnumConverter<EnumPoolState>());
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.PoolMemberBase, PoolMember>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.fixed_point.FixedU128Base, U128>().IncludeAllDerived().ConvertUsing(x => x.Value);
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.RewardPoolBase, RewardPool>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.SubPoolsBase, SubPools>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.UnbondPoolBase, UnbondPool>().IncludeAllDerived();
                 //CreateMap<
                 //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2, BaseVec<BaseTuple<U32, UnbondPool>>>().ConvertUsing(new BoundedBTreeMapT2Converter());
             }
