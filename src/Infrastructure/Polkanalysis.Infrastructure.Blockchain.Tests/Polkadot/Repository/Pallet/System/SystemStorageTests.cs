@@ -13,6 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using FrameSystemExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.frame_system;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.System
 {
@@ -66,7 +67,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 new Weight(new U64(0), new U64(0)),
                 new Weight(new U64(498963718992), new U64(0)));
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.BlockWeightAsync);
+            var result = await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.BlockWeightAsync);
+
+            Assert.That(result.Normal.RefTime.Value.Value, Is.EqualTo(coreResult.Normal.RefTime1.Value.Value));
+            Assert.That(result.Normal.ProofSize.Value.Value, Is.EqualTo(coreResult.Normal.ProofSize.Value.Value));
+
+            Assert.That(result.Mandatory.RefTime.Value.Value, Is.EqualTo(coreResult.Mandatory.RefTime1.Value.Value));
+            Assert.That(result.Mandatory.ProofSize.Value.Value, Is.EqualTo(coreResult.Mandatory.ProofSize.Value.Value));
+
+            Assert.That(result.Operational.RefTime.Value.Value, Is.EqualTo(coreResult.Operational.RefTime1.Value.Value));
+            Assert.That(result.Operational.ProofSize.Value.Value, Is.EqualTo(coreResult.Operational.ProofSize.Value.Value));
         }
 
         [Test]
@@ -203,7 +213,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             firstEvent.Create(phase, runtimeEvent, topics);
             expectedResult.Create(new EventRecord[] { firstEvent });
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.EventsAsync);
+            var result = await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.EventsAsync);
+
+            Assert.That(result.Value[0].Phase.Value, Is.EqualTo(Phase.ApplyExtrinsic));
+            Assert.That(result.Value[0].Phase.Value2.As<U32>().Value, Is.EqualTo(0));
+            
+            Assert.That(result.Value[0].Event.Value, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(result.Value[0].Event.Value2.As<EnumEvent>().Value, Is.EqualTo(Event.ExtrinsicSuccess));
+
+            var extrinsicSuccessAssociatedData = result.Value[0].Event.Value2.As<EnumEvent>().Value2.As<DispatchInfo>();
+            Assert.That(extrinsicSuccessAssociatedData.Weight.As<Weight>().RefTime.Value.Value, Is.EqualTo(new BigInteger(229721000)));
+            Assert.That(extrinsicSuccessAssociatedData.Weight.As<Weight>().ProofSize.Value.Value, Is.EqualTo(new BigInteger(0)));
+            Assert.That(extrinsicSuccessAssociatedData.Class.Value, Is.EqualTo(DispatchClass.Mandatory));
+            Assert.That(extrinsicSuccessAssociatedData.PaysFee.Value, Is.EqualTo(Pays.Yes));
         }
 
         [Test]

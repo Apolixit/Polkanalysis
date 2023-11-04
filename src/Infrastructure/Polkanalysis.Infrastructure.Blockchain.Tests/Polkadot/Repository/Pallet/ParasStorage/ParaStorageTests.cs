@@ -6,6 +6,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using RuntimeParachainsExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_parachains.paras;
 using ParachainPrimitivesExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives;
 using PrimitivesV2Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_primitives.v2;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParasStorage
 {
@@ -80,7 +81,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             coreResult.Create(RuntimeParachainsExt.ParaLifecycle.Parachain);
 
             var expectedResult = new EnumParaLifecycle();
-            expectedResult.Create(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.ParaLifecycle.Parachain);
+            expectedResult.Create(Contracts.Pallet.Paras.Enums.ParaLifecycle.Parachain);
 
             await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Paras.ParaLifecyclesAsync);
         }
@@ -133,14 +134,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         }
 
         [Test]
-        public async Task PastCodeHash_ShouldWorkAsync()
+        [TestCase("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB")]
+        public async Task PastCodeHash_ShouldWorkAsync(string hash)
         {
             var coreResult = new ParachainPrimitivesExt.ValidationCodeHash();
-            coreResult.Create("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB");
+            coreResult.Create(hash);
 
-            var expectedResult = new Hash("0x9C900905BF8CB084BE9CE07BFC122857071F81D53142B25F5FEA04986E5D79AB");
+            var expectedResult = new Hash(hash);
 
-            await MockStorageCallWithInputAsync(new BaseTuple<Id, U32>(new Id(2094), new U32(1)), coreResult, expectedResult, _substrateRepository.Storage.Paras.PastCodeHashAsync);
+            var result = await MockStorageCallWithInputAsync(new BaseTuple<Id, U32>(new Id(2094), new U32(1)), coreResult, expectedResult, _substrateRepository.Storage.Paras.PastCodeHashAsync);
+
+            Assert.That(Utils.Bytes2HexString(result.Bytes), Is.EqualTo(hash));
         }
 
         [Test]

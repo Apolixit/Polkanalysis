@@ -74,7 +74,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<Hash> PastCodeHashAsync(BaseTuple<Id, U32> key, CancellationToken token)
         {
-            throw new NotImplementedException();
+            var version = await GetVersionAsync(token);
+
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.ParasStorage.PastCodeHashInputType(version));
+
+
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase, Hash>(await _client.ParasStorage.PastCodeHashAsync(input, token));
         }
 
         public async Task<ParaPastCodeMeta> PastCodeMetaAsync(Id key, CancellationToken token)

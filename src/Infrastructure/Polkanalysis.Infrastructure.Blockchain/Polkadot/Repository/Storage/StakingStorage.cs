@@ -9,6 +9,8 @@ using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using System;
+using Ardalis.GuardClauses;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -78,9 +80,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<Exposure> ErasStakersAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            var val = await MapWithVersionAsync<BaseTuple<U32, SubstrateAccount>, IBaseEnumerable>(key, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ErasStakersInputType(version));
+
             return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>(
-                await _client.StakingStorage.ErasStakersAsync(val, token));
+                await _client.StakingStorage.ErasStakersAsync(input, token));
         }
 
         public QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure> ErasStakersQuery(uint eraId)
@@ -104,9 +108,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<Exposure> ErasStakersClippedAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            var val = await MapWithVersionAsync<BaseTuple<U32, SubstrateAccount>, IBaseEnumerable>(key, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ErasStakersInputType(version));
             return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>(
-                await _client.StakingStorage.ErasStakersClippedAsync(val, token));
+                await _client.StakingStorage.ErasStakersClippedAsync(input, token));
         }
 
         public async Task<U32> ErasStartSessionIndexAsync(U32 key, CancellationToken token)
@@ -121,9 +126,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<ValidatorPrefs> ErasValidatorPrefsAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            var val = await MapWithVersionAsync<BaseTuple<U32, SubstrateAccount>, IBaseEnumerable>(key, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ErasValidatorPrefsInputType(version));
             return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ValidatorPrefsBase, ValidatorPrefs>(
-                await _client.StakingStorage.ErasValidatorPrefsAsync(val, token));
+                await _client.StakingStorage.ErasValidatorPrefsAsync(input, token));
         }
 
         public async Task<U128> ErasValidatorRewardAsync(U32 key, CancellationToken token)
@@ -195,8 +201,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<U128> NominatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            var val = await MapWithVersionAsync<BaseTuple<U32, SubstrateAccount>, IBaseEnumerable>(key, token);
-            return await _client.StakingStorage.NominatorSlashInEraAsync(val, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.NominatorSlashInEraInputType(version));
+            return await _client.StakingStorage.NominatorSlashInEraAsync(input, token);
         }
 
         public async Task<BaseVec<BaseTuple<U32, Bool>>> OffendingValidatorsAsync(CancellationToken token)
@@ -225,9 +232,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<SpanRecord> SpanSlashAsync(BaseTuple<SubstrateAccount, U32> key, CancellationToken token)
         {
-            var val = await MapWithVersionAsync<BaseTuple<SubstrateAccount, U32>, IBaseEnumerable>(key, token);
+            Guard.Against.Null(key);
+
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.SpanSlashInputType(version));
             return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.slashing.SpanRecordBase, SpanRecord>(
-                await _client.StakingStorage.SpanSlashAsync(val, token));
+                await _client.StakingStorage.SpanSlashAsync(input, token));
         }
 
         // Add versionning ?
@@ -262,8 +272,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseTuple<Perbill, U128>> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            var val = await MapWithVersionAsync<BaseTuple<U32, SubstrateAccount>, IBaseEnumerable>(key, token);
-            return Map<IBaseEnumerable, BaseTuple<Perbill, U128>>(await _client.StakingStorage.ValidatorSlashInEraAsync(val, token));
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ValidatorSlashInEraInputType(version));
+
+            return Map<IBaseEnumerable, BaseTuple<Perbill, U128>>(await _client.StakingStorage.ValidatorSlashInEraAsync(input, token));
         }
 
         public async Task<U32> HistoryDepthAsync(CancellationToken token)

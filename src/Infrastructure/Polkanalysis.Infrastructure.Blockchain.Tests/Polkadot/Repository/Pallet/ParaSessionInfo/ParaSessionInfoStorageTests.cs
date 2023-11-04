@@ -4,6 +4,8 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using PrimitiveV2Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_primitives.v2;
+using Substrate.NET.Utils;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParaSessionInfo
 {
@@ -24,7 +26,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 }
             );
 
-            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
+            var res = await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.ParaSessionInfo.AssignmentKeysUnsafeAsync);
+
+            Assert.That(res.Value[0].As<PublicSr25519>().Key, Is.EqualTo(KeyType.Sr25519));
+            Assert.That(res.Value[1].As<PublicSr25519>().Key, Is.EqualTo(KeyType.Sr25519));
         }
 
         [Test]

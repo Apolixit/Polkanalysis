@@ -8,6 +8,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using System;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -27,9 +28,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa> key, CancellationToken token)
         {
-            var val = await MapWithVersionAsync<BaseTuple<FlexibleNameable, Hexa>, IBaseEnumerable>(key, token);
+            // (Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.SessionStorage.KeyOwnerInputType(version));
+
             return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base, SubstrateAccount>(
-                await _client.SessionStorage.KeyOwnerAsync(val, token));
+                await _client.SessionStorage.KeyOwnerAsync(input, token));
         }
 
         public async Task<SessionKeysPolka> NextKeysAsync(SubstrateAccount account, CancellationToken token)

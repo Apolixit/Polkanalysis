@@ -709,25 +709,25 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             await MockStorageCallNullAsync(_substrateRepository.Storage.Staking.OffendingValidatorsAsync);
         }
 
-        //[Test]
-        //public async Task StorageVersion_ShouldWorkAsync()
-        //{
-        //    var coreResult = new StackingExt.EnumReleases();
-        //    coreResult.Create("0x0A");
+        [Test]
+        public async Task StorageVersion_ShouldWorkAsync()
+        {
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_staking.EnumReleases();
+            coreResult.Create("0x0A");
 
-        //    var expectedResult = new EnumReleases();
-        //    expectedResult.Create(Releases.V11_0_0);
+            var expectedResult = new EnumReleases();
+            expectedResult.Create(Releases.V11_0_0);
 
-        //    await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.StorageVersionAsync);
-        //}
+            await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.Staking.StorageVersionAsync, 9122);
+        }
 
-        //[Test]
-        //public async Task StorageVersionNull_ShouldWorkAsync()
-        //{
-        //    await MockStorageCallNullAsync<
-        //        StackingExt.EnumReleases,
-        //        EnumReleases>(_substrateRepository.Storage.Staking.StorageVersionAsync);
-        //}
+        [Test]
+        public async Task StorageVersionNull_ShouldWorkAsync()
+        {
+            await MockStorageCallNullAsync<
+                Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_staking.EnumReleases,
+                EnumReleases>(_substrateRepository.Storage.Staking.StorageVersionAsync, 9122);
+        }
 
         [Test]
         public async Task ChillThreshold_ShouldWorkAsync()

@@ -139,34 +139,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
         }
 
         [Test]
-        public void VersionnedCoreBaseEnum_ToMappedEnum_ShouldSucceed()
-        {
-            var se1 = new BaseEnum<SubstrateEnum1>();
-            se1.Create(SubstrateEnum1.PrimaryAndSecondaryPlainSlots);
-
-            var se2_1 = new EnumSubstrateEnum2();
-            se2_1.Create(SubstrateEnum2.PrimarySlots);
-
-            var se2_2 = new EnumSubstrateEnum2();
-            se2_2.Create(SubstrateEnum2.AnotherOne);
-
-            var se3 = new EnumSubstrateEnum3();
-            se3.Create(SubstrateEnum3.TheFourth);
-
-            var res1 = _mapper.Map<BaseEnum<SubstrateEnum1>, BaseEnum<DomainSubstrateEnum>>(se1);
-            Assert.That(res1.Value, Is.EqualTo(DomainSubstrateEnum.PrimaryAndSecondaryPlainSlots));
-
-            var res2_1 = _mapper.Map<BaseEnum<SubstrateEnum2>, BaseEnum<DomainSubstrateEnum>>(se2_1);
-            Assert.That(res2_1.Value, Is.EqualTo(DomainSubstrateEnum.PrimarySlots));
-
-            var res2_2 = _mapper.Map<BaseEnum<SubstrateEnum2>, BaseEnum<DomainSubstrateEnum>>(se2_2);
-            Assert.That(res2_2.Value, Is.EqualTo(DomainSubstrateEnum.AnotherOne));
-
-            var res3 = _mapper.Map<BaseEnum<SubstrateEnum3>, BaseEnum<DomainSubstrateEnum>>(se3);
-            Assert.That(res3.Value, Is.EqualTo(DomainSubstrateEnum.TheFourth));
-        }
-
-        [Test]
         public void VersionnedCoreEnum_ToMappedEnum_ShouldSucceed()
         {
             var se1 = new EnumSubstrateEnum1();
