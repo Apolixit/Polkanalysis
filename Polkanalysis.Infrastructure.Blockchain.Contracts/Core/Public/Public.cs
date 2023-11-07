@@ -22,8 +22,13 @@ namespace Polkanalysis.Domain.Contracts.Core.Public
         public U8[] Value { get; set; }
         public abstract KeyType Key { get; }
 
+        protected Public() { }
+
         protected Public(U8[] value)
         {
+            if (value.Length != TypeSize)
+                throw new InvalidOperationException($"Public should be {TypeSize} bytes but is {value.Length}");
+
             Value = value;
         }
 

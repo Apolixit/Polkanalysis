@@ -14,7 +14,8 @@ namespace Polkanalysis.Domain.Contracts.Core.Public
     {
         public override KeyType Key => KeyType.Sr25519;
 
-        public PublicEcdsa() : this(new U8[] { }) { }
+        //public PublicEcdsa() : this(new U8[] { }) { }
+        public PublicEcdsa() : base() { }
         public PublicEcdsa(U8[] value) : base(value)
         {
         }

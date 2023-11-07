@@ -13,7 +13,9 @@ namespace Polkanalysis.Domain.Contracts.Core.Public
     {
         public override KeyType Key => KeyType.Ed25519;
 
-        public PublicEd25519() : this(new U8[] { }) { }
+        //public PublicEd25519() : this(new U8[] { }) { }
+        public PublicEd25519() : base() { }
+
         public PublicEd25519(U8[] value) : base(value)
         {
         }

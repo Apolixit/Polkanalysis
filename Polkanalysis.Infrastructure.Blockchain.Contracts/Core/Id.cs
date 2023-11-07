@@ -28,6 +28,8 @@ namespace Polkanalysis.Domain.Contracts.Core
 
         public U32 Value { get; set; }
 
+        public uint ToHuman() => Value.Value;
+
         public override byte[] Encode()
         {
             var result = new List<byte>();

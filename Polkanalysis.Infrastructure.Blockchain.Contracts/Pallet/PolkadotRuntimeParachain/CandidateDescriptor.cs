@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Core.Signature;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain
 {
@@ -17,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntim
         public Hash PersistedValidationDataHash { get; set; }
         public Hash PovHash { get; set; }
         public Hash ErasureRoot { get; set; }
-        public PublicSr25519 Signature { get; set; }
+        public SignatureSr25519 Signature { get; set; }
         public Hash ParaHead { get; set; }
         public Hash ValidationCodeHash { get; set; }
 
@@ -51,7 +52,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntim
             PovHash.Decode(byteArray, ref p);
             ErasureRoot = new Hash();
             ErasureRoot.Decode(byteArray, ref p);
-            Signature = new PublicSr25519();
+            Signature = new SignatureSr25519();
             Signature.Decode(byteArray, ref p);
             ParaHead = new Hash();
             ParaHead.Decode(byteArray, ref p);

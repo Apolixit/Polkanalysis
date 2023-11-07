@@ -17,7 +17,7 @@ namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
         Mandatory = 2,
     }
 
-    public sealed class EnumDispatchClass : BaseEnum<DispatchClass>
+    public sealed class EnumDispatchClass : BaseEnum<DispatchClass> 
     {
     }
 }

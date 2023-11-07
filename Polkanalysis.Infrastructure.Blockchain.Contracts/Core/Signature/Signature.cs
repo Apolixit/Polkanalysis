@@ -12,11 +12,23 @@ namespace Polkanalysis.Domain.Contracts.Core.Signature
     public abstract class Signature : BaseType
     {
         // Check length = 64
+        public override int TypeSize
+        {
+            get
+            {
+                return 64;
+            }
+        }
         public U8[] Value { get; set; }
         public abstract KeyType Key { get; }
 
+        protected Signature() { }
+
         protected Signature(U8[] value)
         {
+            if (value.Length != TypeSize)
+                throw new InvalidOperationException($"Signature should be {TypeSize} bytes but is {value.Length}");
+
             Value = value;
         }
 

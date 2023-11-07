@@ -14,7 +14,8 @@ namespace Polkanalysis.Domain.Contracts.Core.Signature
     {
         public override KeyType Key => KeyType.Ed25519;
 
-        public SignatureEd25519() : this(new U8[] { }) { }
+        //public SignatureEd25519() : this(new U8[] { }) { }
+        public SignatureEd25519() : base() { }
         public SignatureEd25519(U8[] value) : base(value)
         {
         }

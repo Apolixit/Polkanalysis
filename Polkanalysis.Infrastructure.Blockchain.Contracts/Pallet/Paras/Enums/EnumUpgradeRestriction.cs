@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums
 {
     public enum UpgradeRestriction
     {
