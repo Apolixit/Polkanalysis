@@ -8,13 +8,10 @@
 
   <ItemGroup>
     <Compile Remove="Bajun\**" />
-    <Compile Remove="Helpers\**" />
     <Compile Remove="Kusama\**" />
     <EmbeddedResource Remove="Bajun\**" />
-    <EmbeddedResource Remove="Helpers\**" />
     <EmbeddedResource Remove="Kusama\**" />
     <None Remove="Bajun\**" />
-    <None Remove="Helpers\**" />
     <None Remove="Kusama\**" />
   </ItemGroup>
 

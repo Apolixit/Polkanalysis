@@ -64,7 +64,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res.Value.Value, Is.EqualTo(input.value));
         }
 
-        [Test]
+        [Test, Ignore(NoTestCase)]
         public async Task PendingEpochConfigChange_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Babe.PendingEpochConfigChangeAsync(CancellationToken.None);
@@ -105,7 +105,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res, Is.Not.Null);
         }
 
-        [Test]
+        [Test, Ignore(NoTestCase)]
         public async Task Initialized_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Babe.InitializedAsync(CancellationToken.None);

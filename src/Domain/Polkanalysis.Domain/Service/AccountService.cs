@@ -40,7 +40,8 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<AccountLightDto>> GetAccountsAsync(CancellationToken cancellationToken)
         {
-            var result = await _substrateNodeRepository.Storage.System.AccountsQuery().Take(100).ExecuteAsync(cancellationToken);
+            var accountsQuery = await _substrateNodeRepository.Storage.System.AccountsQueryAsync(cancellationToken);
+            var result = await accountsQuery.Take(100).ExecuteAsync(cancellationToken);
 
             var accountsDto = new List<AccountLightDto>();
             if (result == null) return accountsDto;

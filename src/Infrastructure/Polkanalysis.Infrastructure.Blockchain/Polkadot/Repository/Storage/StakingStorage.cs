@@ -11,6 +11,9 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using System;
 using Ardalis.GuardClauses;
+using Newtonsoft.Json.Linq;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -87,14 +90,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.StakingStorage.ErasStakersAsync(input, token));
         }
 
-        public QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure> ErasStakersQuery(uint eraId)
+        public async Task<QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token)
         {
-            //return new QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>(
-            //    GetAllStorageAsync<BaseTuple<U32, AccountId32>,
-            //    BaseTuple<U32, SubstrateAccount>,
-            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
-            //    Exposure>, "Staking", "ErasStakers", ErasStakersParams(new U32(eraId)), 36);
-            throw new NotImplementedException();
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = _client.StakingStorage.ErasStakersInputType(version);
+            var storageKeyType = ExposureBase.TypeByVersion(version);
+
+            var storageFunction = new QueryStorageFunction("Staking", "ErasStakers", sourceKeyType, storageKeyType, 36, ErasStakersParams(new U32(eraId)));
+
+            return new QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>(GetAllStorageAsync<BaseTuple<U32, SubstrateAccount>, Exposure>, storageFunction);
         }
         private static string ErasStakersParams(U32 key)
         {
@@ -192,11 +196,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.StakingStorage.NominatorsAsync(accountId32, token));
         }
 
-        public QueryStorage<SubstrateAccount, Nominations> NominatorsQuery()
+        public async Task<QueryStorage<SubstrateAccount, Nominations>> NominatorsQueryAsync(CancellationToken token)
         {
-            //return new QueryStorage<SubstrateAccount, Nominations>(
-            //    GetAllStorageAsync<AccountId32, SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations, Nominations>, "Staking", "Nominators");
-            throw new InvalidOperationException();
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = _client.StakingStorage.NominatorsInputType(version);
+            var storageKeyType = NominationsBase.TypeByVersion(version);
+            var storageFunction = new QueryStorageFunction("Staking", "Nominators", sourceKeyType, storageKeyType);
+
+            return new QueryStorage<SubstrateAccount, Nominations>(GetAllStorageAsync<SubstrateAccount, Nominations>, storageFunction);
         }
 
         public async Task<U128> NominatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)

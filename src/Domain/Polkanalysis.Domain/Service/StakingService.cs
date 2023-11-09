@@ -385,7 +385,8 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
         {
-            var nominatorsResult = await _substrateService.Storage.Staking.NominatorsQuery().Take(100).ExecuteAsync(cancellationToken);
+            var nominatorsQuery = await _substrateService.Storage.Staking.NominatorsQueryAsync(cancellationToken);
+            var nominatorsResult = await nominatorsQuery.Take(100).ExecuteAsync(cancellationToken);
             Guard.Against.Null(nominatorsResult, nameof(nominatorsResult));
 
             var nominatorsDto = new List<NominatorLightDto>();
@@ -535,9 +536,9 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<PoolLightDto>> GetPoolsAsync(CancellationToken cancellationToken)
         {
-            var poolsQuery = _substrateService.Storage.NominationPools.BondedPoolsQuery();
+            var poolsQuery = await _substrateService.Storage.NominationPools.BondedPoolsQueryAsync(cancellationToken);
             var pools = await poolsQuery.ExecuteAsync(cancellationToken);
-            Guard.Against.Null(pools, nameof(pools));
+            Guard.Against.Null(pools);
 
             var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);
 

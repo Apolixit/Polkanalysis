@@ -1,6 +1,8 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
 using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Core;
+using System.Numerics;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.Auctions
 {
@@ -40,7 +42,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        [Category("NO_DATA")]
+        [Category("NO_DATA"), Ignore(NoTestCase)]
         public async Task ReservedAmounts_ShouldWorkAsync()
         {
             //var blockHashWithAuction = "0x5d257ad59f00bbaaefe7bbc2a170842d77e6ac3d68b140dc4999c2e053209926";
@@ -50,18 +52,30 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        [Category("NO_DATA")]
-        public async Task AuctionWinning_ShouldWorkAsync()
+        [TestCase(30)]
+        [TestCase(40)]
+        [TestCase(45)]
+        [TestCase(50)]
+        [TestCase(52)]
+        public async Task AuctionWinning_ShouldWorkAsync(int num)
         {
             /* Test case
              * Auction num 40 (https://polkadot.subscan.io/auction/40)
              * Start block = 14238400 (hash : 0x5d257ad59f00bbaaefe7bbc2a170842d77e6ac3d68b140dc4999c2e053209926)
              */
-            var blockHashWithAuction = "0x5d257ad59f00bbaaefe7bbc2a170842d77e6ac3d68b140dc4999c2e053209926";
-            var u32 = new U32();
-            u32.Create(1);
-            var res = await _substrateRepository.At(blockHashWithAuction).Storage.Auctions.WinningAsync(u32, CancellationToken.None);
+            //var blockHashWithAuction = "0x5d257ad59f00bbaaefe7bbc2a170842d77e6ac3d68b140dc4999c2e053209926";
+            var res = await _substrateRepository.Storage.Auctions.WinningAsync(new U32((uint)num), CancellationToken.None);
+            
             Assert.That(res, Is.Not.Null);
+            Assert.That(res.Value[7], Is.Not.Null);
+
+            var first = res.Value[7].Value.Value[0].As<SubstrateAccount>();
+            var second = res.Value[7].Value.Value[1].As<Id>();
+            var third = res.Value[7].Value.Value[2].As<U128>();
+            
+            Assert.That(first.ToPolkadotAddress(), Is.EqualTo("13UVJyLnbVp77Z2t6qvevjrhAHvhXzEKzVRLFA8VLSMjLCw7"));
+            Assert.That(second.ToHuman(), Is.EqualTo(3350));
+            Assert.That(third.Value, Is.EqualTo(new BigInteger(2087624539191036)));
         }
     }
 }

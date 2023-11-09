@@ -27,7 +27,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(10000)]
         public async Task GetAllAccounts_ShouldWorkAsync(int nb)
         {
-            var res = await _substrateRepository.Storage.System.AccountsQuery().Take(nb).ExecuteAsync(CancellationToken.None);
+            var query = await _substrateRepository.Storage.System.AccountsQueryAsync(CancellationToken.None);
+            var res = await query.Take(nb).ExecuteAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count, Is.LessThanOrEqualTo(nb));

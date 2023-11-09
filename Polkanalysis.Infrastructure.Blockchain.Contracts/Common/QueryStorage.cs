@@ -7,69 +7,57 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
         where TKey : IType, new()
         where TStorage : IType, new()
     {
-        public const int DefaultPagination = 100;
+        /// <summary>
+        /// Parameter to be send to <see cref="StorageFunctionAsync"/>
+        /// </summary>
+        public QueryStorageFunction QueryStorageFunction { get; set; }
 
-        public int? NbTake { get; internal set; } = null;
-        public int? NbSkip { get; internal set; } = null;
-        public int Pagination { get; internal set; } = DefaultPagination;
+        /// <summary>
+        /// Filters parameters
+        /// </summary>
+        public QueryFilterFunction QueryFilterFunction { get; set; }
 
-        public Func<string, string, CancellationToken, int?, int?, Task<List<(TKey, TStorage)>>> StorageFunctionAsync { get; set; }
-        public Func<string, string, string, CancellationToken, int?, int?, int?, Task<List<(TKey, TStorage)>>> StorageFunctionAsyncFull { get; set; }
-        public string ModuleName { get; init; }
-        public string ItemName { get; init; }
+        /// <summary>
+        /// Storage function to be called
+        /// </summary>
+        public Func<QueryStorageFunction, QueryFilterFunction, CancellationToken, Task<List<(TKey, TStorage)>>> StorageFunctionAsync { get; set; }
 
-        public string StorageParam { get; init; }
-        public int KeyParamSize { get; init; }
+        public QueryStorage(
+            Func<QueryStorageFunction, QueryFilterFunction, CancellationToken, Task<List<(TKey, TStorage)>>> storageFunctionAsync, QueryStorageFunction query) : this(storageFunctionAsync, query, new QueryFilterFunction()) { }
 
-        public QueryStorage(Func<string, string, string, CancellationToken, int?, int?, int?, Task<List<(TKey, TStorage)>>> storageFunctionAsync, string module, string item, string storageParam, int keyParamSize)
+        public QueryStorage(
+            Func<QueryStorageFunction, QueryFilterFunction, CancellationToken, Task<List<(TKey, TStorage)>>> storageFunctionAsync, QueryStorageFunction query, QueryFilterFunction filter)
         {
-            StorageFunctionAsyncFull = storageFunctionAsync;
-            StorageParam = storageParam;
-            KeyParamSize = keyParamSize;
-
-            ModuleName = module;
-            ItemName = item;
-        }
-        public QueryStorage(Func<string, string, CancellationToken, int?, int?, Task<List<(TKey, TStorage)>>> storageFunctionAsync, string module, string item)
-        {
-            ModuleName = module;
-            ItemName = item;
-
             StorageFunctionAsync = storageFunctionAsync;
+            QueryStorageFunction = query;
+            QueryFilterFunction = filter;
         }
 
         public async Task<List<(TKey, TStorage)>> ExecuteAsync(CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(StorageParam))
-            {
-                return await StorageFunctionAsyncFull(ModuleName, ItemName, StorageParam, cancellationToken, NbTake, NbSkip, KeyParamSize);
-            }
-            else
-            {
-                return await StorageFunctionAsync(ModuleName, ItemName, cancellationToken, NbTake, NbSkip);
-            }
+            return await StorageFunctionAsync(QueryStorageFunction, QueryFilterFunction, cancellationToken);
         }
 
         public QueryStorage<TKey, TStorage> Take(int take)
         {
-            Guard.Against.NegativeOrZero(take, nameof(take));
+            Guard.Against.NegativeOrZero(take);
 
-            NbTake = take;
+            QueryFilterFunction.NbElementTake = take;
             return this;
         }
 
         public QueryStorage<TKey, TStorage> Skip(int skip)
         {
-            Guard.Against.NegativeOrZero(skip, nameof(skip));
+            Guard.Against.NegativeOrZero(skip);
 
-            NbSkip = skip;
+            QueryFilterFunction.NbElementSkip = skip;
             return this;
         }
 
         public QueryStorage<TKey, TStorage> ResetFilters()
         {
-            NbSkip = null;
-            NbTake = null;
+            QueryFilterFunction.NbElementSkip = null;
+            QueryFilterFunction.NbElementTake = null;
 
             return this;
         }

@@ -27,7 +27,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task FundsAll_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.Crowdloan.FundsQuery().ExecuteAsync(CancellationToken.None);
+            var query = await _substrateRepository.Storage.Crowdloan.FundsQueryAsync(CancellationToken.None);
+            var res = await query.ExecuteAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count, Is.GreaterThan(2));
         }

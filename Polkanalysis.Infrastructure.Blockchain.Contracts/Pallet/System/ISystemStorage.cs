@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
         /// Full information from each account
         /// </summary>
         /// <returns></returns>
-        public QueryStorage<SubstrateAccount, AccountInfo> AccountsQuery();
+        public Task<QueryStorage<SubstrateAccount, AccountInfo>> AccountsQueryAsync(CancellationToken token);
 
         /// <summary>
         /// Total extrinsics count for the current block.

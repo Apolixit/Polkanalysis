@@ -48,12 +48,14 @@ using Polkanalysis.Domain.Contracts.Core.Enum;
 using Polkanalysis.Domain.Contracts.Core.Error;
 using static Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping.PolkadotMapping.ParachainStorageProfile;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain;
+using AutoMapper.Execution;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
     public class PolkadotMapping : IBlockchainMapping
     {
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
         private readonly ILogger<PolkadotMapping> _logger;
 
         public IConfigurationProvider ConfigurationProvider => _mapper.ConfigurationProvider;
@@ -225,8 +227,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumError>().IncludeAllDerived().ConvertUsing(
                     new EnumConverter<Contracts.Pallet.Balances.Enums.EnumError>());
 
-                CreateMap(typeof(BaseOpt<>), typeof(Nullable<>)).ConvertUsing(typeof(BaseOptNullConverter<>));
-
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base, SubstrateAccount>().IncludeAllDerived().ConvertUsing(new AccountId32Converter());
                 CreateMap<SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base>().IncludeAllDerived().ConvertUsing(new SubstrateAccountConverter());
 
@@ -327,32 +327,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public EnumProfile()
             {
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.bounded_collections.bounded_vec.BoundedVecT3Base, BaseVec<U8>>().ConvertUsing(x => x.Value);
-
-                /*
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.preimages.EnumBounded, EnumBounded>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_support.traits.schedule.EnumLookupError, EnumLookupError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.pallet.EnumError, Domain.Contracts.Secondary.Pallet.SystemCore.Enums.EnumError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_authorship.pallet.EnumError, Domain.Contracts.Secondary.Pallet.Authorship.Enums.EnumError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_babe.pallet.EnumError, Domain.Contracts.Secondary.Pallet.Babe.Enums.EnumError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.list.EnumListError, Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumListError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumError, Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumError>();
-
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent, Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent>().ConvertUsing(typeof(BagListEnumExtConverter));
-
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.pallet.EnumEvent, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumEvent>()
-                    .ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_balances.EnumReleases, Domain.Contracts.Secondary.Pallet.Balances.Enums.EnumReleases>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.EnumBountyStatus, Domain.Contracts.Secondary.Pallet.Bounties.Enums.EnumBountyStatus>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bounties.pallet.EnumError, Domain.Contracts.Secondary.Pallet.Bounties.Enums.EnumError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.EnumChildBountyStatus, Domain.Contracts.Secondary.Pallet.ChildBounties.Enums.EnumChildBountyStatus>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_child_bounties.pallet.EnumError, Domain.Contracts.Secondary.Pallet.ChildBounties.Enums.EnumError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_collective.pallet.EnumError, Domain.Contracts.Secondary.Pallet.Collective.Enums.EnumError>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_collective.EnumRawOrigin, Domain.Contracts.Secondary.Pallet.Collective.Enums.EnumRawOrigin>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.conviction.EnumConviction, EnumConviction>();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_democracy.pallet.EnumError, Domain.Contracts.Secondary.Pallet.Democracy.Enums.EnumError>();
-                */
-
                 CreateMap<IBaseEnum, EnumDispatchClass>().ConvertUsing(new EnumConverter<EnumDispatchClass>());
                 CreateMap<IBaseEnum, EnumPays>().ConvertUsing(new EnumConverter<EnumPays>());
                 CreateMap<IBaseEnum, EnumRawOrigin>().ConvertUsing(new EnumConverter<EnumRawOrigin>());
@@ -373,188 +347,188 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<IBaseEnum, Contracts.Pallet.BagsList.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.BagsList.Enums.EnumError>());
                 CreateMap<IBaseEnum, Contracts.Pallet.BagsList.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.BagsList.Enums.EnumEvent>());
                 CreateMap<IBaseEnum, Contracts.Pallet.BagsList.Enums.EnumListError>().ConvertUsing(new EnumConverter<Contracts.Pallet.BagsList.Enums.EnumListError>());
-                CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumBalanceStatus>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumBalanceStatus>());
-                //CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumError>());
-                //CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReleases>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Bounties.Enums.EnumBountyStatus>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Bounties.Enums.EnumBountyStatus>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Bounties.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Bounties.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Bounties.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Bounties.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ChildBounties.Enums.EnumChildBountyStatus>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ChildBounties.Enums.EnumChildBountyStatus>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ChildBounties.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ChildBounties.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ChildBounties.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ChildBounties.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums.EnumRawOrigin>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums.EnumRawOrigin>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ConvictionVoting.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ConvictionVoting.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ConvictionVoting.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ConvictionVoting.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan.EnumLastContribution>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan.EnumLastContribution>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumAccountVote>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumAccountVote>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumConviction>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumConviction>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumPreimageStatus>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumPreimageStatus>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumReferendumInfo>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumReferendumInfo>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumReleases>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumVoteThreshold>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumVoteThreshold>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumVoting>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.EnumVoting>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumElectionCompute>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumElectionCompute>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumPhase>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumPhase>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionsPhragmen.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionsPhragmen.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionsPhragmen.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionsPhragmen.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionsPhragmen.Enums.EnumRenouncing>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ElectionsPhragmen.Enums.EnumRenouncing>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.FastUnstake.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.FastUnstake.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.FastUnstake.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.FastUnstake.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumEquivocation>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumEquivocation>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumStoredState>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums.EnumStoredState>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumData>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumData>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumIdentityField>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumIdentityField>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumJudgement>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumJudgement>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ImOnline.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ImOnline.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ImOnline.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ImOnline.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Indices.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Indices.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Indices.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Indices.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Membership.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Membership.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Membership.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Membership.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.MessageQueue.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.MessageQueue.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.MessageQueue.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.MessageQueue.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Multisig.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Multisig.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Multisig.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Multisig.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumBondExtra>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumBondExtra>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumClaimPermission>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumClaimPermission>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumConfigOp>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumConfigOp>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumDefensiveError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumDefensiveError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumPoolState>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.EnumPoolState>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Offences.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Offences.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumParaLifecycle>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumParaLifecycle>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumPvfCheckCause>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumPvfCheckCause>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumUpgradeGoAhead>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumUpgradeGoAhead>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumUpgradeRestriction>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums.EnumUpgradeRestriction>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo.Enums.EnumExecutorParam>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo.Enums.EnumExecutorParam>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumBalanceStatus>().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumBalanceStatus>());
+                //CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumError>());
+                //CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumReasons>().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumReasons>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumReleases>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Bounties.Enums.EnumBountyStatus>().ConvertUsing(new EnumConverter<Contracts.Pallet.Bounties.Enums.EnumBountyStatus>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Bounties.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Bounties.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Bounties.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Bounties.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ChildBounties.Enums.EnumChildBountyStatus>().ConvertUsing(new EnumConverter<Contracts.Pallet.ChildBounties.Enums.EnumChildBountyStatus>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ChildBounties.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.ChildBounties.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ChildBounties.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.ChildBounties.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Collective.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Collective.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Collective.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Collective.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Collective.Enums.EnumRawOrigin>().ConvertUsing(new EnumConverter<Contracts.Pallet.Collective.Enums.EnumRawOrigin>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ConvictionVoting.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.ConvictionVoting.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ConvictionVoting.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.ConvictionVoting.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Crowdloan.EnumLastContribution>().ConvertUsing(new EnumConverter<Contracts.Pallet.Crowdloan.EnumLastContribution>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumAccountVote>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumAccountVote>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumConviction>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumConviction>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumPreimageStatus>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumPreimageStatus>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumReferendumInfo>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumReferendumInfo>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumReleases>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumVoteThreshold>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumVoteThreshold>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Democracy.Enums.EnumVoting>().ConvertUsing(new EnumConverter<Contracts.Pallet.Democracy.Enums.EnumVoting>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumElectionCompute>().ConvertUsing(new EnumConverter<Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumElectionCompute>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumPhase>().ConvertUsing(new EnumConverter<Contracts.Pallet.ElectionProviderMultiPhase.Enums.EnumPhase>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ElectionsPhragmen.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.ElectionsPhragmen.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ElectionsPhragmen.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.ElectionsPhragmen.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ElectionsPhragmen.Enums.EnumRenouncing>().ConvertUsing(new EnumConverter<Contracts.Pallet.ElectionsPhragmen.Enums.EnumRenouncing>());
+                CreateMap<IBaseEnum, Contracts.Pallet.FastUnstake.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.FastUnstake.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.FastUnstake.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.FastUnstake.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.GrandPa.Enums.EnumEquivocation>().ConvertUsing(new EnumConverter<Contracts.Pallet.GrandPa.Enums.EnumEquivocation>());
+                CreateMap<IBaseEnum, Contracts.Pallet.GrandPa.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.GrandPa.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.GrandPa.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.GrandPa.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.GrandPa.Enums.EnumStoredState>().ConvertUsing(new EnumConverter<Contracts.Pallet.GrandPa.Enums.EnumStoredState>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Identity.Enums.EnumData>().ConvertUsing(new EnumConverter<Contracts.Pallet.Identity.Enums.EnumData>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Identity.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Identity.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Identity.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Identity.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Identity.Enums.EnumIdentityField>().ConvertUsing(new EnumConverter<Contracts.Pallet.Identity.Enums.EnumIdentityField>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Identity.Enums.EnumJudgement>().ConvertUsing(new EnumConverter<Contracts.Pallet.Identity.Enums.EnumJudgement>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ImOnline.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.ImOnline.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ImOnline.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.ImOnline.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Indices.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Indices.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Indices.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Indices.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Membership.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Membership.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Membership.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Membership.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.MessageQueue.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.MessageQueue.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.MessageQueue.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.MessageQueue.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Multisig.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Multisig.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Multisig.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Multisig.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.NominationPools.Enums.EnumBondExtra>().ConvertUsing(new EnumConverter<Contracts.Pallet.NominationPools.Enums.EnumBondExtra>());
+                CreateMap<IBaseEnum, Contracts.Pallet.NominationPools.Enums.EnumClaimPermission>().ConvertUsing(new EnumConverter<Contracts.Pallet.NominationPools.Enums.EnumClaimPermission>());
+                CreateMap<IBaseEnum, Contracts.Pallet.NominationPools.Enums.EnumConfigOp>().ConvertUsing(new EnumConverter<Contracts.Pallet.NominationPools.Enums.EnumConfigOp>());
+                CreateMap<IBaseEnum, Contracts.Pallet.NominationPools.Enums.EnumDefensiveError>().ConvertUsing(new EnumConverter<Contracts.Pallet.NominationPools.Enums.EnumDefensiveError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.NominationPools.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.NominationPools.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.NominationPools.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.NominationPools.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.NominationPools.Enums.EnumPoolState>().ConvertUsing(new EnumConverter<Contracts.Pallet.NominationPools.Enums.EnumPoolState>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Offences.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Offences.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Paras.Enums.EnumParaLifecycle>().ConvertUsing(new EnumConverter<Contracts.Pallet.Paras.Enums.EnumParaLifecycle>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Paras.Enums.EnumPvfCheckCause>().ConvertUsing(new EnumConverter<Contracts.Pallet.Paras.Enums.EnumPvfCheckCause>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Paras.Enums.EnumUpgradeGoAhead>().ConvertUsing(new EnumConverter<Contracts.Pallet.Paras.Enums.EnumUpgradeGoAhead>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Paras.Enums.EnumUpgradeRestriction>().ConvertUsing(new EnumConverter<Contracts.Pallet.Paras.Enums.EnumUpgradeRestriction>());
+                CreateMap<IBaseEnum, Contracts.Pallet.ParaSessionInfo.Enums.EnumExecutorParam>().ConvertUsing(new EnumConverter<Contracts.Pallet.ParaSessionInfo.Enums.EnumExecutorParam>());
                 CreateMap<IBaseEnum, Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum.EnumCoreOccupied>().ConvertUsing(new EnumConverter<Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum.EnumCoreOccupied>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumDisputeStatement>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumDisputeStatement>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumInvalidDisputeStatementKind>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumInvalidDisputeStatementKind>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidDisputeStatementKind>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidDisputeStatementKind>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidityAttestation>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidityAttestation>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfExecTimeoutKind>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfExecTimeoutKind>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfPrepTimeoutKind>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfPrepTimeoutKind>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.EnumOriginCaller>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.EnumOriginCaller>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.EnumProxyType>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.EnumProxyType>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.EnumRuntimeEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.EnumRuntimeEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumLastContribution>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumLastContribution>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Configuration.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Configuration.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeLocation>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeLocation>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeResult>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeResult>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumAggregateMessageOrigin>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumAggregateMessageOrigin>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumUmpQueueId>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumUmpQueueId>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Origin.Enums.EnumOrigin>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Origin.Enums.EnumOrigin>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.ParaInherent.Enum.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.ParaInherent.Enum.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Scheduler.Enums.EnumAssignmentKind>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Scheduler.Enums.EnumAssignmentKind>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PreImage.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PreImage.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PreImage.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PreImage.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PreImage.Enums.EnumRequestStatus>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PreImage.Enums.EnumRequestStatus>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Proxy.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Proxy.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Proxy.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Proxy.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Proxy.Enums.EnumProxyType>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Proxy.Enums.EnumProxyType>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Referenda.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Referenda.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Referenda.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Referenda.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Scheduler.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Scheduler.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Scheduler.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Scheduler.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumConfigOp>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumConfigOp>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumForcing>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumForcing>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumReleases>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumRewardDestination>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumRewardDestination>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum.EnumBounded>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum.EnumBounded>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum.EnumLookupError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum.EnumLookupError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum.EnumProcessMessageError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum.EnumProcessMessageError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumDigestItem>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumDigestItem>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumPhase>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumPhase>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.EnumCall>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.EnumCall>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Tips.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Tips.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Tips.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Tips.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.TransactionPayment.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.TransactionPayment.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.TransactionPayment.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.TransactionPayment.Enums.EnumReleases>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Utility.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Utility.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Utility.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Utility.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums.EnumReleases>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.WhiteList.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.WhiteList.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.WhiteList.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.WhiteList.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumEvent>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumOrigin>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumOrigin>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumQueryStatus>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumQueryStatus>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedMultiAssets>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedMultiAssets>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedMultiLocation>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedMultiLocation>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedResponse>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedResponse>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedXcm>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedXcm>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionMigrationStage>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionMigrationStage>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumBodyId>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumBodyId>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumBodyPart>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumBodyPart>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumJunction>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumJunction>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumMultiAsset>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumMultiAsset>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumMultiLocation>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumMultiLocation>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumNetworkId>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumNetworkId>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumOrder>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumOrder>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumOriginKind>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumOriginKind>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumResponse>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumResponse>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumXcm>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v0.Enums.EnumXcm>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumAssetId>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumAssetId>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumAssetInstance>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumAssetInstance>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumBodyId>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumBodyId>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumBodyPart>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumBodyPart>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumFungibility>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumFungibility>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumJunction>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumJunction>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumJunctions>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumJunctions>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumMultiAssetFilter>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumMultiAssetFilter>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumOrder>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumOrder>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumResponse>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumResponse>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumWildFungibility>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumWildFungibility>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumWildMultiAsset>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumWildMultiAsset>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumXcm>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums.EnumXcm>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumError>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumError>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumInstruction>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumInstruction>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumOutcome>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumOutcome>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumResponse>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumResponse>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumWeightLimit>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums.EnumWeightLimit>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumDisputeStatement>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumDisputeStatement>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumInvalidDisputeStatementKind>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumInvalidDisputeStatementKind>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidDisputeStatementKind>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidDisputeStatementKind>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidityAttestation>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotPrimitive.v2.Enum.EnumValidityAttestation>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfExecTimeoutKind>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfExecTimeoutKind>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfPrepTimeoutKind>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotPrimitive.v4.EnumPvfPrepTimeoutKind>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntime.EnumOriginCaller>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntime.EnumOriginCaller>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntime.EnumProxyType>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntime.EnumProxyType>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntime.EnumRuntimeEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntime.EnumRuntimeEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Claims.Enum.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumLastContribution>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumLastContribution>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.ParasRegistar.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeCommon.Slots.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Configuration.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Configuration.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeLocation>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeLocation>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeResult>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumDisputeResult>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Disputes.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Hrmp.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumAggregateMessageOrigin>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumAggregateMessageOrigin>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumUmpQueueId>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumUmpQueueId>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Origin.Enums.EnumOrigin>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Origin.Enums.EnumOrigin>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.ParaInherent.Enum.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.ParaInherent.Enum.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Paras.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Scheduler.Enums.EnumAssignmentKind>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Scheduler.Enums.EnumAssignmentKind>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PreImage.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.PreImage.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PreImage.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.PreImage.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.PreImage.Enums.EnumRequestStatus>().ConvertUsing(new EnumConverter<Contracts.Pallet.PreImage.Enums.EnumRequestStatus>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Proxy.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Proxy.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Proxy.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Proxy.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Proxy.Enums.EnumProxyType>().ConvertUsing(new EnumConverter<Contracts.Pallet.Proxy.Enums.EnumProxyType>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Referenda.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Referenda.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Referenda.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Referenda.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Scheduler.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Scheduler.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Scheduler.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Scheduler.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Session.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Session.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Session.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Session.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Staking.Enums.EnumConfigOp>().ConvertUsing(new EnumConverter<Contracts.Pallet.Staking.Enums.EnumConfigOp>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Staking.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Staking.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Staking.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Staking.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Staking.Enums.EnumForcing>().ConvertUsing(new EnumConverter<Contracts.Pallet.Staking.Enums.EnumForcing>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Staking.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Contracts.Pallet.Staking.Enums.EnumReleases>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Staking.Enums.EnumRewardDestination>().ConvertUsing(new EnumConverter<Contracts.Pallet.Staking.Enums.EnumRewardDestination>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Support.Enum.EnumBounded>().ConvertUsing(new EnumConverter<Contracts.Pallet.Support.Enum.EnumBounded>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Support.Enum.EnumLookupError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Support.Enum.EnumLookupError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Support.Enum.EnumProcessMessageError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Support.Enum.EnumProcessMessageError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.System.Enums.EnumDigestItem>().ConvertUsing(new EnumConverter<Contracts.Pallet.System.Enums.EnumDigestItem>());
+                CreateMap<IBaseEnum, Contracts.Pallet.System.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.System.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.System.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.System.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.System.Enums.EnumPhase>().ConvertUsing(new EnumConverter<Contracts.Pallet.System.Enums.EnumPhase>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Timestamp.Enums.EnumCall>().ConvertUsing(new EnumConverter<Contracts.Pallet.Timestamp.Enums.EnumCall>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Tips.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Tips.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Tips.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Tips.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.TransactionPayment.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.TransactionPayment.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.TransactionPayment.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Contracts.Pallet.TransactionPayment.Enums.EnumReleases>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Treasury.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Treasury.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Treasury.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Treasury.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Utility.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Utility.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Utility.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Utility.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Vesting.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Vesting.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Vesting.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Vesting.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Vesting.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Contracts.Pallet.Vesting.Enums.EnumReleases>());
+                CreateMap<IBaseEnum, Contracts.Pallet.WhiteList.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.WhiteList.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.WhiteList.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.WhiteList.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumEvent>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumOrigin>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumOrigin>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumQueryStatus>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumQueryStatus>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumVersionedMultiAssets>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumVersionedMultiAssets>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumVersionedMultiLocation>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumVersionedMultiLocation>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumVersionedResponse>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumVersionedResponse>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumVersionedXcm>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumVersionedXcm>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.Enums.EnumVersionMigrationStage>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.Enums.EnumVersionMigrationStage>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumBodyId>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumBodyId>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumBodyPart>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumBodyPart>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumJunction>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumJunction>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumMultiAsset>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumMultiAsset>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumMultiLocation>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumMultiLocation>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumNetworkId>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumNetworkId>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumOrder>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumOrder>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumOriginKind>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumOriginKind>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumResponse>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumResponse>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v0.Enums.EnumXcm>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v0.Enums.EnumXcm>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumAssetId>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumAssetId>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumAssetInstance>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumAssetInstance>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumBodyId>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumBodyId>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumBodyPart>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumBodyPart>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumFungibility>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumFungibility>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumJunction>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumJunction>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumJunctions>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumJunctions>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumMultiAssetFilter>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumMultiAssetFilter>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumOrder>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumOrder>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumResponse>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumResponse>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumWildFungibility>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumWildFungibility>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumWildMultiAsset>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumWildMultiAsset>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v1.Enums.EnumXcm>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v1.Enums.EnumXcm>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v2.Enums.EnumError>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumError>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v2.Enums.EnumInstruction>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumInstruction>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v2.Enums.EnumOutcome>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumOutcome>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v2.Enums.EnumResponse>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumResponse>());
+                CreateMap<IBaseEnum, Contracts.Pallet.Xcm.v2.Enums.EnumWeightLimit>().ConvertUsing(new EnumConverter<Contracts.Pallet.Xcm.v2.Enums.EnumWeightLimit>());
             }
         }
         public class BaseTypeProfile : Profile
@@ -568,22 +542,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap(typeof(BaseTuple<,,>), typeof(BaseTuple<,,>)).ConvertUsing(typeof(BaseTupleConverter<,,,,,>));
                 CreateMap(typeof(BaseTuple<,,,>), typeof(BaseTuple<,,,>)).ConvertUsing(typeof(BaseTupleConverter<,,,,,,,>));
                 CreateMap(typeof(BaseTuple<,,,,>), typeof(BaseTuple<,,,,>)).ConvertUsing(typeof(BaseTupleConverter<,,,,,,,,,>));
-                //CreateMap(typeof(IBaseEnumerable), typeof(BaseVec<>)).ConvertUsing(typeof(BaseEnumerableConverter<,>));
                 CreateMap(typeof(BaseVec<>), typeof(BaseVec<>)).ConvertUsing(typeof(BaseVecConverter<,>));
                 CreateMap(typeof(BaseCom<>), typeof(BaseCom<>)).ConvertUsing(typeof(BaseComConverter<,>));
                 CreateMap(typeof(IBaseCom), typeof(BaseCom<>)).ConvertUsing(typeof(BaseComGenericConverter<>));
-
-                //CreateMap<
-                //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.sp_consensus_babe.digests.NextConfigDescriptor, 
-                //    NextConfigDescriptor>().ConvertUsingEnumMapping(opt => opt.);
-                //CreateMap(typeof(IBaseEnum), typeof(IBaseEnum)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumConverterInherit<,,,>));
-
-
-                //BaseEnum
-                //CreateMap(typeof(BaseEnum<>), typeof(BaseEnum<>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumConverter<,>));
-
-                //CreateMap(typeof(BaseEnumExt<,,,>), typeof(BaseEnumExt<,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,>));
-                //CreateMap(typeof(BaseEnumExt<,,,,,,,,,,>), typeof(BaseEnumExt<,,,,,,,,,,>)).IncludeAllDerived().ConvertUsing(typeof(BaseEnumExtConverter<,,,,,,,,,,,,,,,,,,,,,>));
 
                 BaseComMapping<I8>();
                 BaseComMapping<I16>();
@@ -765,25 +726,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 }
             }
 
-            //public class BagListEnumExtConverter : ITypeConverter<
-            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent, Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent>
-
-            //{
-            //    public Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.EnumEvent source, Domain.Contracts.Secondary.Pallet.BagsList.Enums.EnumEvent destination, ResolutionContext context)
-            //    {
-            //        var x = new BaseEnumExtConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_bags_list.pallet.Event, BaseTuple<AccountId32, U64, U64>, BaseTuple<AccountId32, U64>, Domain.Contracts.Secondary.Pallet.BagsList.Enums.Event, BaseTuple<SubstrateAccount, U64, U64>, BaseTuple<SubstrateAccount, U64>>();
-            //        var res = x.Convert(source, destination, context);
-
-            //        destination.Create(res.Bytes);
-            //        return destination;
-            //        //destination = new Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.BagsList.Enums.EnumEvent();
-            //        //if (source == null) return destination;
-
-            //        ////destination.Create(context.Mapper.Map<D0>(source.Value), context.Mapper.Map<D1>(source.Value2));
-            //        //return destination;
-            //    }
-            //}
-
             public class BaseEnumConverter<I0, D0> : ITypeConverter<BaseEnum<I0>, BaseEnum<D0>>
                 where I0 : Enum
                 where D0 : struct, Enum
@@ -954,15 +896,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public AuthorshipStorageProfile()
             {
-                CreateMap<IBaseEnum, Contracts.Pallet.Authorship.Enums.EnumUncleEntryItem>().IncludeAllDerived().ConvertUsing(
-                    new EnumConverter<Contracts.Pallet.Authorship.Enums.EnumUncleEntryItem>());
+                
             }
         }
         public class AuctionsStorageProfile : Profile
         {
             public AuctionsStorageProfile()
             {
-                //CreateMap<Arr36BaseOpt, Winning>().ConvertUsing(typeof(Arr36BaseOptConverter));
+                CreateMap<Arr36BaseOpt, Winning>();//.ConvertUsing(typeof(Arr36BaseOptConverter));
             }
 
             //public class Arr36BaseOptConverter : ITypeConverter<Arr36BaseOpt, Winning>
@@ -997,14 +938,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
 
                 // Account data
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.AccountDataBase, AccountData>().IncludeAllDerived();
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.AccountDataBase, AccountData>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.AccountDataBase, AccountData>().DisableCtorValidation();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.AccountDataBase, AccountData>().DisableCtorValidation();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types.ExtraFlagsBase, ExtraFlags>().IncludeAllDerived();
-
-                // Events
-                CreateMap<IBaseEnum, EnumBalanceStatus>().ConvertUsing(new EnumConverter<EnumBalanceStatus>());
-                CreateMap<IBaseEnum, EnumReasons>().ConvertUsing(new EnumConverter<EnumReasons>());
-                //CreateMap<IBaseEnum, Contracts.Pallet.Balances.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.Balances.Enums.EnumEvent>());
             }
         }
 
@@ -1013,8 +949,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             public BabeStorageProfile()
             {
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase, BabeEpochConfiguration>().IncludeAllDerived();
-                CreateMap<IBaseEnum, EnumNextConfigDescriptor>().ConvertUsing(new EnumConverter<EnumNextConfigDescriptor>());
-                CreateMap<IBaseEnum, EnumAllowedSlots>().ConvertUsing(new EnumConverter<EnumAllowedSlots>());
             }
 
             public class BaseOptHexaConverter : ITypeConverter<IBaseValue, BaseOpt<Hexa>>
@@ -1041,8 +975,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             public CrowdloanStorageProfile()
             {
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>().IncludeAllDerived().ConvertUsing(new FundInfoConverter());
-                CreateMap<IBaseEnum, EnumMultiSigner>().ConvertUsing(new EnumConverter<EnumMultiSigner>());
-                CreateMap<IBaseEnum, EnumLastContribution>().ConvertUsing(new EnumConverter<EnumLastContribution>());
             }
 
             public class FundInfoConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>
@@ -1099,19 +1031,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public IdentityStorageProfile()
             {
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData, EnumData>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumJudgement, EnumJudgement>();
-                //CreateMap<BoundedVecT2, BaseVec<BaseTuple<EnumData, EnumData>>>().ConvertUsing(new BoundedVecT2Converter());
-                //CreateMap<BoundedVecT19, BaseVec<BaseTuple<U32, EnumJudgement>>>().ConvertUsing(new BoundedVecT19Converter());
-                //CreateMap<BoundedVecT21, BaseVec<BaseOpt<RegistrarInfo>>>().ConvertUsing(new BoundedVecT21Converter());
-                //CreateMap<BoundedVecT20, BaseVec<SubstrateAccount>>().ConvertUsing(new BoundedVecT20Converter());
-                //CreateMap<BaseTuple<U128, BoundedVecT20>, SubsOfResult>().ConvertUsing(new SubsOfResultInverseConverter());
-
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.IdentityInfoBase, IdentityInfo>();
-                //.ConvertUsing(new IdentityInfoConverter());
-                CreateMap<IBaseEnum, EnumData>().ConvertUsing(new EnumConverter<EnumData>());
-                CreateMap<IBaseEnum, EnumJudgement>().ConvertUsing(new EnumConverter<EnumJudgement>());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrarInfoBase, RegistrarInfo>();
             }
 
@@ -1149,70 +1070,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     return destination;
                 }
             }
-
-            //BaseTuple<U128, BaseVec<AccountId32>>
-            //public class SubsOfResultInverseConverter : ITypeConverter<BaseTuple<U128, BoundedVecT20>, SubsOfResult>
-            //{
-            //    public SubsOfResult Convert(BaseTuple<U128, BoundedVecT20> source, SubsOfResult destination, ResolutionContext context)
-            //    {
-            //        destination = new SubsOfResult();
-            //        if (source == null) return destination;
-
-            //        destination = new SubsOfResult(
-            //            (U128)source.Value[0],
-            //            context.Mapper.Map<BoundedVecT20, BaseVec<SubstrateAccount>>((BoundedVecT20)source.Value[1]));
-
-            //        return destination;
-            //    }
-            //}
-
-            //public class BoundedVecT20Converter : ITypeConverter<BoundedVecT20, BaseVec<SubstrateAccount>>
-            //{
-            //    public BaseVec<SubstrateAccount> Convert(BoundedVecT20 source, BaseVec<SubstrateAccount> destination, ResolutionContext context)
-            //    {
-            //        destination = new BaseVec<SubstrateAccount>();
-            //        if (source == null) return destination;
-
-            //        destination = context.Mapper.Map<BaseVec<SubstrateAccount>>(source.Value);
-            //        return destination;
-            //    }
-            //}
-
-            //public class BoundedVecT21Converter : ITypeConverter<BoundedVecT21, BaseVec<BaseOpt<RegistrarInfo>>>
-            //{
-            //    public BaseVec<BaseOpt<RegistrarInfo>> Convert(BoundedVecT21 source, BaseVec<BaseOpt<RegistrarInfo>> destination, ResolutionContext context)
-            //    {
-            //        destination = new BaseVec<BaseOpt<RegistrarInfo>>();
-            //        if (source == null) return destination;
-
-            //        destination = context.Mapper.Map<BaseVec<BaseOpt<RegistrarInfo>>>(source.Value);
-            //        return destination;
-            //    }
-            //}
-
-            //public class BoundedVecT19Converter : ITypeConverter<BoundedVecT19, BaseVec<BaseTuple<U32, EnumJudgement>>>
-            //{
-            //    public BaseVec<BaseTuple<U32, EnumJudgement>> Convert(BoundedVecT19 source, BaseVec<BaseTuple<U32, EnumJudgement>> destination, ResolutionContext context)
-            //    {
-            //        destination = new BaseVec<BaseTuple<U32, EnumJudgement>>();
-            //        if (source == null) return destination;
-
-            //        destination = context.Mapper.Map<BaseVec<BaseTuple<U32, EnumJudgement>>>(source.Value);
-            //        return destination;
-            //    }
-            //}
-
-            //public class BoundedVecT2Converter : ITypeConverter<BoundedVecT2, BaseVec<BaseTuple<EnumData, EnumData>>>
-            //{
-            //    public BaseVec<BaseTuple<EnumData, EnumData>> Convert(BoundedVecT2 source, BaseVec<BaseTuple<EnumData, EnumData>> destination, ResolutionContext context)
-            //    {
-            //        destination = new BaseVec<BaseTuple<EnumData, EnumData>>();
-            //        if (source == null) return destination;
-
-            //        destination = context.Mapper.Map<BaseVec<BaseTuple<EnumData, EnumData>>>(source.Value);
-            //        return destination;
-            //    }
-            //}
         }
 
         public class NominationPoolsStorageProfile : Profile
@@ -1223,27 +1080,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.PoolRolesBase, PoolRoles>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.CommissionBase, Commission>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.CommissionChangeRateBase, CommissionChangeRate>().IncludeAllDerived();
-                CreateMap<IBaseEnum, EnumPoolState>().ConvertUsing(new EnumConverter<EnumPoolState>());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.PoolMemberBase, PoolMember>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.fixed_point.FixedU128Base, U128>().IncludeAllDerived().ConvertUsing(x => x.Value);
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.RewardPoolBase, RewardPool>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.SubPoolsBase, SubPools>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.UnbondPoolBase, UnbondPool>().IncludeAllDerived();
-                //CreateMap<
-                //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2, BaseVec<BaseTuple<U32, UnbondPool>>>().ConvertUsing(new BoundedBTreeMapT2Converter());
             }
-
-            //public class BoundedBTreeMapT2Converter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2, BaseVec<BaseTuple<U32, UnbondPool>>>
-            //{
-            //    public BaseVec<BaseTuple<U32, UnbondPool>> Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_btree_map.BoundedBTreeMapT2 source, BaseVec<BaseTuple<U32, UnbondPool>> destination, ResolutionContext context)
-            //    {
-            //        destination = new BaseVec<BaseTuple<U32, UnbondPool>>();
-            //        if (source == null) return destination;
-
-            //        destination = context.Mapper.Map<BaseVec<BaseTuple<U32, UnbondPool>>>(source.Value.Value);
-            //        return destination;
-            //    }
-            //}
         }
 
         public class ParaSessionInfoStorageProfile : Profile
@@ -1327,22 +1169,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase, Id>().IncludeAllDerived().ConvertUsing(new IdBaseConverter());
                 CreateMap<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase>().ConvertUsing(new IdConverter());
 
-                //CreateMap<ValidationCode, Hexa>().ConvertUsing(x => new Hexa(x)); // TODO Inverse
-                //CreateMap<HeadData, Hexa>().ConvertUsing(x => new Hexa(x)); // TODO Inverse
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.HeadDataBase, DataCode>().ConvertUsing(x => new DataCode((BaseVec<U8>)x.Value));
 
                 CreateMap<
                     Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.paras.ParaPastCodeMetaBase, ParaPastCodeMeta>();
                 CreateMap<
                     Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.paras.ReplacementTimesBase, ReplacementTimes>();
-
-
-                //CreateMap<ValidationCode, DataCode>().ConvertUsing(x => new DataCode(x.Value));
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_parachains.paras.ParaGenesisArgs, ParaGenesisArgs>();
-
-                CreateMap<IBaseEnum, EnumParaLifecycle>().ConvertUsing(new EnumConverter<EnumParaLifecycle>());
-                CreateMap<IBaseEnum, EnumUpgradeGoAhead>().ConvertUsing(new EnumConverter<EnumUpgradeGoAhead>());
-                CreateMap<IBaseEnum, EnumUpgradeRestriction>().ConvertUsing(new EnumConverter<EnumUpgradeRestriction>());
             }
 
             public class IdBaseConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase, Id>
@@ -1473,8 +1305,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.dispatch.PerDispatchClassT1Base, FrameSupportDispatchPerDispatchClassWeight>().IncludeAllDerived().ConvertUsing(new PerDispatchClassT1Converter());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_weights.weight_v2.WeightBase, Weight>().IncludeAllDerived().ConvertUsing(new WeightConverter());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_runtime.generic.digest.DigestBase, Digest>();
-                CreateMap<IBaseEnum, EnumDigestItem>().ConvertUsing(new EnumConverter<EnumDigestItem>());
-                CreateMap<IBaseEnum, EnumPhase>().ConvertUsing(new EnumConverter<EnumPhase>());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system.EventRecordBase, EventRecord>().ConvertUsing(new EventRecordConverter());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.dispatch.DispatchInfoBase, DispatchInfo>();
                 ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>().ForMember(o => o.Value2, m => m.MapFrom(s => s.Value2));
@@ -1585,27 +1415,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public StakingStorageProfile()
             {
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PercentBase, Percent>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.EraRewardPointsBase, EraRewardPoints>();
-                //CreateMap<BTreeMapT1, BaseVec<BaseTuple<SubstrateAccount, U32>>>().ConvertUsing(new BTreeMapT1Converter());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.IndividualExposureBase, IndividualExposure>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ValidatorPrefsBase, ValidatorPrefs>().IncludeAllDerived();
-                CreateMap<IBaseEnum, EnumForcing>().ConvertUsing(new EnumConverter<EnumForcing>());
-                CreateMap<IBaseEnum, EnumRewardDestination>().ConvertUsing(new EnumConverter<EnumRewardDestination>());
-                CreateMap<IBaseEnum, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumReleases>().ConvertUsing(new EnumConverter<Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.EnumReleases>());
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger, StakingLedger>();
-                //CreateMap<BoundedVecT8, BaseVec<UnlockChunk>>().ConvertUsing(new BoundedVecT8Converter());
-                //CreateMap<BoundedVecT10, BaseVec<SubstrateAccount>>().ConvertUsing(new BoundedVecT10Converter());
-                //CreateMap<BoundedVecT9, BaseVec<U32>>().ConvertUsing(x => x.Value);
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnlockChunk, UnlockChunk>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.NominationsBase, Nominations>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination, EnumRewardDestination>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.slashing.SlashingSpansBase, SlashingSpans>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.slashing.SpanRecordBase, SpanRecord>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumReleases, Domain.Contracts.Secondary.Pallet.Staking.Enums.EnumReleases>();
-                //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash, UnappliedSlash>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ActiveEraInfoBase, ActiveEraInfo>().IncludeAllDerived();
             }
         }

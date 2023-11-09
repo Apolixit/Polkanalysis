@@ -10,6 +10,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -24,14 +26,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.SystemStorage.AccountAsync(accountId32, token));
         }
 
-        public QueryStorage<SubstrateAccount, AccountInfo> AccountsQuery()
+        public async Task<QueryStorage<SubstrateAccount, AccountInfo>> AccountsQueryAsync(CancellationToken token)
         {
-            //return new QueryStorage<SubstrateAccount, AccountInfo>(
-            //    GetAllStorageAsync<AccountId32,
-            //    SubstrateAccount,
-            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.AccountInfo,
-            //    AccountInfo>, "System", "Account");
-            throw new InvalidOperationException();
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = AccountId32Base.TypeByVersion(version);
+            var storageKeyType = AccountInfoBase.TypeByVersion(version);
+
+            var storageFunction = new QueryStorageFunction("System", "Account", sourceKeyType, storageKeyType);
+
+            return new QueryStorage<SubstrateAccount, AccountInfo>(
+                GetAllStorageAsync<SubstrateAccount, AccountInfo>, storageFunction);
         }
 
         public async Task<U32> AllExtrinsicsLenAsync(CancellationToken token)

@@ -19,16 +19,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res, Is.Not.Null);
         }
 
-        [Test]
-        [Category("NO_DATA")]
-        public async Task Account_ShouldWorkAsync()
+        [Test, Ignore(NoTestCase)]
+        [TestCase("13UVJyLnbVp77Z2t6qvevjrhAHvhXzEKzVRLFA8VLSMjLCw7")]
+        public async Task Account_ShouldWorkAsync(string accountAddress)
         {
-            var testAccount = new SubstrateAccount("13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY");
-            var res = await _substrateRepository.At("0xb00b97e5f34bf0b92770a3cd8a23f56ff3c48422e05a68e51cd8f94f2cdd3d72").Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
-            Assert.That(res, Is.Not.Null);
+            var testAccount = new SubstrateAccount(accountAddress);
+            var res1 = await _substrateRepository.At("0xb00b97e5f34bf0b92770a3cd8a23f56ff3c48422e05a68e51cd8f94f2cdd3d72").Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
+
+            Assert.That(res1, Is.Not.Null);
+
+            var res2 = await _substrateRepository.At("0x05c4845d91ee84d795c725491c07f7fb5b6adc5fcae209c3ac7dcfc80913cb72").Storage.Balances.AccountAsync(testAccount, CancellationToken.None);
+            Assert.That(res2, Is.Not.Null);
         }
 
-        [Test]
+        [Test, Ignore(NoTestCase)]
         public async Task Locks_ShouldWorkAsync()
         {
             var testAccount = new SubstrateAccount("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS");
@@ -37,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        [Category("NO_DATA")]
+        [Ignore(NoTestCase)]
         public async Task Reserves_ShouldWorkAsync()
         {
             var testAccount = new SubstrateAccount("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS");

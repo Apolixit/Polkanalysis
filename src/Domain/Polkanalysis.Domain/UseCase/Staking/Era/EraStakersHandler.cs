@@ -32,7 +32,8 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
         {
             var eraId = new U32(request.EraId);
 
-            var result = await _substrateService.Storage.Staking.ErasStakersQuery(eraId.Value).ExecuteAsync(cancellationToken);
+            var erasStakersQuery = await _substrateService.Storage.Staking.ErasStakersQueryAsync(eraId.Value, cancellationToken);
+            var result = await erasStakersQuery.ExecuteAsync(cancellationToken);
 
             if (result == null || !result.Any())
             {

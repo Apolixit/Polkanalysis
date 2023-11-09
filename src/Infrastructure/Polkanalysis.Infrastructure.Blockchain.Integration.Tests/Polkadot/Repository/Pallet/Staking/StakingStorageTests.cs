@@ -98,7 +98,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(10000)]
         public async Task NominatorsAll_ShouldWorkAsync(int nbTake)
         {
-            var query = _substrateRepository.Storage.Staking.NominatorsQuery();
+            var query = await _substrateRepository.Storage.Staking.NominatorsQueryAsync(CancellationToken.None);
             var res = await query.Take(nbTake).ExecuteAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count, Is.LessThanOrEqualTo(nbTake));
@@ -112,7 +112,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(1000, 1000)]
         public async Task NominatorsAll_WithAdvancedQuery_ShouldWorkAsync(int nbSkip, int nbTake)
         {
-            var query = _substrateRepository.Storage.Staking.NominatorsQuery();
+            var query = await _substrateRepository.Storage.Staking.NominatorsQueryAsync(CancellationToken.None);
             var res = await query.Skip(nbSkip).Take(nbTake).ExecuteAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count, Is.LessThanOrEqualTo(nbTake));
@@ -124,7 +124,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task NominatorsAll_EnsurePaginationIsValidAsync()
         {
-            var nominatorsQuery = _substrateRepository.Storage.Staking.NominatorsQuery();
+            var nominatorsQuery = await _substrateRepository.Storage.Staking.NominatorsQueryAsync(CancellationToken.None);
             var res_2000 = await nominatorsQuery.Take(2000).ExecuteAsync(CancellationToken.None);
 
             var res_1200_800 = await nominatorsQuery.Skip(1200).Take(800).ExecuteAsync(CancellationToken.None);
@@ -196,7 +196,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [TestCase(1104, 297)]
         public async Task ErasStakersAll_ShouldWorkAsync(int era, int nbValidatorExpected)
         {
-            var res = await _substrateRepository.Storage.Staking.ErasStakersQuery((uint)era).ExecuteAsync(CancellationToken.None);
+            var query = await _substrateRepository.Storage.Staking.ErasStakersQueryAsync((uint)era, CancellationToken.None);
+            var res = await query.ExecuteAsync(CancellationToken.None);
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count, Is.EqualTo(nbValidatorExpected));
         }

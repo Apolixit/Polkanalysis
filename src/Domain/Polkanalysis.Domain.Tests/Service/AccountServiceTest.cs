@@ -4,6 +4,7 @@ using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 
 namespace Polkanalysis.Domain.Tests.Service
@@ -30,8 +31,10 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test]
         public async Task GetAccountsNull_ShouldReturnEmptyAsync()
         {
-            _substrateRepository.Storage.System.AccountsQuery().Returns(new Infrastructure.Blockchain.Contracts.Common.QueryStorage<SubstrateAccount, AccountInfo>(Arg.Any<Func<string, string, CancellationToken, int?, int?, Task<List<(SubstrateAccount, AccountInfo)>>>>(), "module", "test"));
-            //accountsQuery.Take(Arg.Any<int>()).ExecuteAsync(Arg.Any<CancellationToken>()).ReturnsNull();
+            _substrateRepository.Storage.System.AccountsQueryAsync(Arg.Any<CancellationToken>())
+                .Returns(new QueryStorage<SubstrateAccount, AccountInfo>(
+                    Arg.Any<Func<QueryStorageFunction, QueryFilterFunction, CancellationToken, Task<List<(SubstrateAccount, AccountInfo)>>>>(), 
+                    Arg.Any<QueryStorageFunction>()));
 
             var res = await _accountService.GetAccountsAsync(CancellationToken.None);
             Assert.That(res.Count(), Is.EqualTo(0));

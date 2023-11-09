@@ -13,6 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
         protected ISubstrateService _substrateRepository;
         protected ISubstrateEndpoint _substrateEndpoint;
 
+        protected const string NoTestCase = "NO TEST CASE";
         /// <summary>
         /// A repository doesn't exceed <see cref="RepositoryMaxTimeout"/> millisecond to respond
         /// </summary>

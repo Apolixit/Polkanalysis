@@ -131,7 +131,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// <returns></returns>
         public Task<Nominations> NominatorsAsync(SubstrateAccount account, CancellationToken token);
 
-        public QueryStorage<SubstrateAccount, Nominations> NominatorsQuery();
+        public Task<QueryStorage<SubstrateAccount, Nominations>> NominatorsQueryAsync(CancellationToken token);
 
         /// <summary>
         /// Counter for the related counted storage map
@@ -204,7 +204,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// 
         /// </summary>
         /// <returns></returns>
-        public QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure> ErasStakersQuery(uint eraId);
+        public Task<QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token);
 
         /// <summary>
         ///  Clipped Exposure of validator at era.

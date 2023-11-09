@@ -10,6 +10,9 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.En
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Domain.Contracts.Core.Display;
+using Newtonsoft.Json.Linq;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -23,11 +26,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.NominationPoolsStorage.BondedPoolsAsync(poolId, token));
         }
 
-        public QueryStorage<U32, BondedPoolInner> BondedPoolsQuery()
+        public async Task<QueryStorage<U32, BondedPoolInner>> BondedPoolsQueryAsync(CancellationToken token)
         {
-            //return new QueryStorage<U32, BondedPoolInner>(
-            //    GetAllStorageAsync<U32, U32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.BondedPoolInner, BondedPoolInner>, "NominationPools", "BondedPools");
-            throw new NotImplementedException();
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = _client.NominationPoolsStorage.BondedPoolsInputType(version);
+            var storageKeyType = BondedPoolInnerBase.TypeByVersion(version);
+            var storageFunction = new QueryStorageFunction("NominationPools", "BondedPools", sourceKeyType, storageKeyType);
+
+            return new QueryStorage<U32, BondedPoolInner>(GetAllStorageAsync<U32, BondedPoolInner>, storageFunction);
         }
 
         public async Task<U32> CounterForBondedPoolsAsync(CancellationToken token)
@@ -102,14 +108,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.NominationPoolsStorage.PoolMembersAsync(accountId32, token));
         }
 
-        public QueryStorage<SubstrateAccount, PoolMember> PoolMembersQuery()
+        public async Task<QueryStorage<SubstrateAccount, PoolMember>> PoolMembersQueryAsync(CancellationToken token)
         {
-            //return new QueryStorage<SubstrateAccount, PoolMember>(
-            //    GetAllStorageAsync<AccountId32,
-            //    SubstrateAccount,
-            //    Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_nomination_pools.PoolMember,
-            //    PoolMember>, "NominationPools", "PoolMembers");
-            throw new NotImplementedException();
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = _client.NominationPoolsStorage.PoolMembersInputType(version);
+            var storageKeyType = PoolMemberBase.TypeByVersion(version);
+            var storageFunction = new QueryStorageFunction("NominationPools", "PoolMembers", sourceKeyType, storageKeyType);
+
+            return new QueryStorage<SubstrateAccount, PoolMember>(GetAllStorageAsync<SubstrateAccount, PoolMember>, storageFunction);
         }
 
         public async Task<U32> ReversePoolIdLookupAsync(SubstrateAccount account, CancellationToken token)
