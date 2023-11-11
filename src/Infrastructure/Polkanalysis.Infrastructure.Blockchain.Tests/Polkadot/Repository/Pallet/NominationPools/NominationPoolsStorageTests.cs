@@ -134,6 +134,30 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         }
 
         [Test]
+        public async Task BondedPools_WithCommission_ShouldWorkAsync()
+        {
+            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9431.pallet_nomination_pools.BondedPoolInner();
+            coreResult.Create("0x0000000052030000B4ABADA09D030A0000000000000000003C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD28802013C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD28802013C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD28802013C92BC22C4934341504E8B6F0755BB76906171BCF8A55C49A78E2055DDD2880200");
+
+            
+            var expectedResult = new BondedPoolInner();
+            expectedResult.Points = new U128(47095007212320);
+            expectedResult.Commission = new Commission();
+            expectedResult.Commission.Create(new byte[] { 0, 0, 0, 0 });
+            expectedResult.State = new EnumPoolState(PoolState.Open);
+            expectedResult.MemberCounter = new U32(850);
+            expectedResult.Roles = new PoolRoles(
+                new SubstrateAccount("12NRTphLWqYK5Tri7V2aVGcXWuJ78NFPPjwSN9ZkUxLhCa78"),
+                new BaseOpt<SubstrateAccount>(new SubstrateAccount("12d3Rt2khozZE2sZdUr5Gu5kJzCC9HHX3CDN4pAyraHp34H")),
+                new BaseOpt<SubstrateAccount>(new SubstrateAccount("12d3Rt2khozZE2sZdUr5Gu5kJzCC9HHX3CDN4pAyraHp34H")),
+                null!,
+                new BaseOpt<SubstrateAccount>(new SubstrateAccount("12d3Rt2khozZE2sZdUr5Gu5kJzCC9HHX3CDN4pAyraHp34H"))
+            );
+
+            await MockStorageCallWithInputAsync(new U32(1), coreResult, expectedResult, _substrateRepository.Storage.NominationPools.BondedPoolsAsync, 9431);
+        }
+
+        [Test]
         public async Task BondedPools_ShouldWorkAsync()
         {
             var coreResult = new NominationPoolsExt.BondedPoolInner();
@@ -147,7 +171,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                     new SubstrateAccount("12NRTphLWqYK5Tri7V2aVGcXWuJ78NFPPjwSN9ZkUxLhCa78"),
                     new BaseOpt<SubstrateAccount>(new SubstrateAccount("12NRTphLWqYK5Tri7V2aVGcXWuJ78NFPPjwSN9ZkUxLhCa78")),
                     new BaseOpt<SubstrateAccount>(new SubstrateAccount("12NRTphLWqYK5Tri7V2aVGcXWuJ78NFPPjwSN9ZkUxLhCa78")),
-                    new BaseOpt<SubstrateAccount>(new SubstrateAccount("12NRTphLWqYK5Tri7V2aVGcXWuJ78NFPPjwSN9ZkUxLhCa78"))
+                    new BaseOpt<SubstrateAccount>(new SubstrateAccount("12NRTphLWqYK5Tri7V2aVGcXWuJ78NFPPjwSN9ZkUxLhCa78")),
+                    null!
                 ),
                 null
             );
@@ -163,8 +188,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             Assert.That(result.Roles.StateToggler.Value.ToPolkadotAddress(), Is.EqualTo(expectedResult.Roles.StateToggler.Value.ToPolkadotAddress()));
             Assert.That(result.Roles.Root.Value.ToPolkadotAddress(), Is.EqualTo(expectedResult.Roles.Root.Value.ToPolkadotAddress()));
             Assert.That(result.Roles.Nominator.Value.ToPolkadotAddress(), Is.EqualTo(expectedResult.Roles.Nominator.Value.ToPolkadotAddress()));
-            //Assert.That(result.Roles, Is.EqualTo(expectedResult.Roles));
-
 
             Assert.That(result.Commission, Is.Null);
         }

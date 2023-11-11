@@ -13,16 +13,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
     public class NominationPoolsStorageTests : PolkadotIntegrationTest
     {
         [Test]
-        [TestCase("14bbKkUuXD7qpkn8TbbdVcMkeaAXUApuYU7bycv8R6kR9Wmh")]
-        [TestCase("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")]
-        public async Task PoolMembers_ShouldWorkAsync(string address)
+        public async Task PoolMembers_ShouldWorkAsync()
         {
-            var x = Utils.GetPublicKeyFrom("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS");
-            var s = new SubstrateAccount();
-            s.Create(x);
-            // 0xF6A27C9D9868B21FFD9F5220FE90872336419FF32C21ADBBD42232923EE0F301
+            var query = await _substrateRepository.Storage.NominationPools.PoolMembersQueryAsync(CancellationToken.None);
+            var poolMembersAll = await query.Take(2).ExecuteAsync(CancellationToken.None);
+
             var res = await _substrateRepository.Storage.NominationPools.PoolMembersAsync(
-                new SubstrateAccount(address), CancellationToken.None);
+                poolMembersAll.First().Item1, CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 
@@ -50,8 +47,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
 
             Assert.That(res, Is.Not.Null);
 
-            //var res_10_10 = await boundedPoolsQuery.Skip(10).Take(10).ExecuteAsync(CancellationToken.None);
-            var res_10_10 = await boundedPoolsQuery.ExecuteAsync(CancellationToken.None);
+            var res_10_10 = await boundedPoolsQuery.Skip(10).Take(10).ExecuteAsync(CancellationToken.None);
             Assert.That(res[10].Item1.Bytes, Is.EqualTo(res_10_10.First().Item1.Bytes));
             Assert.That(res[19].Item1.Bytes, Is.EqualTo(res_10_10.Last().Item1.Bytes));
         }

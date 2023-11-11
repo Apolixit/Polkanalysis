@@ -32,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             var sourceKeyType = AccountId32Base.TypeByVersion(version);
             var storageKeyType = AccountInfoBase.TypeByVersion(version);
 
-            var storageFunction = new QueryStorageFunction("System", "Account", sourceKeyType, storageKeyType);
+            var storageFunction = new QueryStorageFunction("System", "Account", sourceKeyType, storageKeyType, 32);
 
             return new QueryStorage<SubstrateAccount, AccountInfo>(
                 GetAllStorageAsync<SubstrateAccount, AccountInfo>, storageFunction);

@@ -13,24 +13,30 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         public SubstrateAccount Depositor { get; set; }
         public BaseOpt<SubstrateAccount> Root { get; set; }
         public BaseOpt<SubstrateAccount> Nominator { get; set; }
-        public BaseOpt<SubstrateAccount> StateToggler { get; set; }
+        public BaseOpt<SubstrateAccount>? StateToggler { get; set; }
+        public BaseOpt<SubstrateAccount>? Bouncer { get; set; }
 
         public PoolRoles() { }
 
-        public PoolRoles(SubstrateAccount depositor, BaseOpt<SubstrateAccount> root, BaseOpt<SubstrateAccount> nominator, BaseOpt<SubstrateAccount> stateToggler)
+        public PoolRoles(SubstrateAccount depositor, BaseOpt<SubstrateAccount> root, BaseOpt<SubstrateAccount> nominator, BaseOpt<SubstrateAccount>? stateToggler, BaseOpt<SubstrateAccount>? bouncer)
         {
-            Create(depositor, root, nominator, stateToggler);
+            Create(depositor, root, nominator, stateToggler, bouncer);
         }
 
-        public void Create(SubstrateAccount depositor, BaseOpt<SubstrateAccount> root, BaseOpt<SubstrateAccount> nominator, BaseOpt<SubstrateAccount> stateToggler)
+        public void Create(SubstrateAccount depositor, BaseOpt<SubstrateAccount> root, BaseOpt<SubstrateAccount> nominator, BaseOpt<SubstrateAccount>? stateToggler, BaseOpt<SubstrateAccount>? bouncer)
         {
             Depositor = depositor;
             Root = root;
             Nominator = nominator;
             StateToggler = stateToggler;
+            Bouncer = bouncer;
 
             Bytes = Encode();
-            TypeSize = Depositor.TypeSize + Root.TypeSize + Nominator.TypeSize + StateToggler.TypeSize;
+            TypeSize = Depositor.TypeSize + Root.TypeSize + Nominator.TypeSize;
+            if (StateToggler is not null)
+                TypeSize += StateToggler.TypeSize;
+            if (Bouncer is not null)
+                TypeSize += Bouncer.TypeSize;
         }
 
         public override byte[] Encode()
@@ -39,7 +45,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
             result.AddRange(Depositor.Encode());
             result.AddRange(Root.Encode());
             result.AddRange(Nominator.Encode());
-            result.AddRange(StateToggler.Encode());
+
+            if(StateToggler is not null)
+                result.AddRange(StateToggler.Encode());
+
+            if(Bouncer is not null)
+                result.AddRange(Bouncer.Encode());
             return result.ToArray();
         }
 

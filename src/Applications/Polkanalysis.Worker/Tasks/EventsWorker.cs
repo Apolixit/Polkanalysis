@@ -8,10 +8,11 @@ using Polkanalysis.Worker.Parameters;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Microsoft.Extensions.Hosting;
 
 namespace Polkanalysis.Worker.Tasks
 {
-    public class EventsWorker
+    public class EventsWorker : BackgroundService
     {
         private readonly ISubstrateService _polkadotRepository;
         private readonly IExplorerService _explorerRepository;
@@ -36,6 +37,11 @@ namespace Polkanalysis.Worker.Tasks
             _substrateDecode = substrateDecode;
             _perimeterService = perimeterService;
             _logger = logger;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            RunAsync(stoppingToken);
         }
 
         public async Task RunAsync(CancellationToken stoppingToken)
@@ -166,33 +172,41 @@ namespace Polkanalysis.Worker.Tasks
         {
             var currentDate = await _explorerRepository.GetDateTimeFromTimestampAsync(blockHash, stoppingToken);
 
-            // Get events associated at each block
-            var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
-
-            if (events == null)
+            try
             {
-                _logger.LogWarning("No events associated to block num {blockId}", blockNumber);
-            }
-            else
-            {
-                _logger.LogInformation($"Scan block num {blockNumber}, associated events = {events.Value.Length}");
+                // Get events associated at each block
+                var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
 
-                for (int i = 0; i < events.Value.Length; i++)
+                if (events == null)
                 {
-                    var ev = events.Value[i];
-                    var eventNode = _substrateDecode.DecodeEvent(ev);
+                    _logger.LogWarning("No events associated to block num {blockId}", blockNumber);
+                }
+                else
+                {
+                    _logger.LogInformation($"Scan block num {blockNumber}, associated events = {events.Value.Length}");
 
-                    // Is this event has to be insert in database ?
-                    if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
+                    for (int i = 0; i < events.Value.Length; i++)
                     {
-                        _logger.LogDebug("[{module}][{method}] has no database event linked", eventNode.Module, eventNode.Method);
-                        continue;
-                    }
-                    _logger.LogInformation("[{module}][{method}] is linked to database !", eventNode.Module, eventNode.Method);
+                        var ev = events.Value[i];
+                        var eventNode = _substrateDecode.DecodeEvent(ev);
 
-                    await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
+                        // Is this event has to be insert in database ?
+                        if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
+                        {
+                            _logger.LogDebug("[{module}][{method}] has no database event linked", eventNode.Module, eventNode.Method);
+                            continue;
+                        }
+                        _logger.LogInformation("[{module}][{method}] is linked to database !", eventNode.Module, eventNode.Method);
+
+                        await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Fail to get events from block {blockNum}", blockNumber.Value);
+            }
+
         }
 
         private async Task InsertDatabaseAsync(

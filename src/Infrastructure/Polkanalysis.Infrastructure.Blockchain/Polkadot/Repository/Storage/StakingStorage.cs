@@ -154,11 +154,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<StakingLedger> LedgerAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.StakingLedgerBase, StakingLedger>(
+            return Map<StakingLedgerBase, StakingLedger>(
                 await _client.StakingStorage.LedgerAsync(accountId32, token));
         }
 
-        public async Task<U32> MaxNominatorsCountAsync(CancellationToken token)
+        public async Task<U32?> MaxNominatorsCountAsync(CancellationToken token)
         {
             return await _client.StakingStorage.MaxNominatorsCountAsync(token);
         }
@@ -201,7 +201,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.StakingStorage.NominatorsInputType(version);
             var storageKeyType = NominationsBase.TypeByVersion(version);
-            var storageFunction = new QueryStorageFunction("Staking", "Nominators", sourceKeyType, storageKeyType);
+            var storageFunction = new QueryStorageFunction("Staking", "Nominators", sourceKeyType, storageKeyType, 32);
 
             return new QueryStorage<SubstrateAccount, Nominations>(GetAllStorageAsync<SubstrateAccount, Nominations>, storageFunction);
         }
@@ -213,7 +213,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             return await _client.StakingStorage.NominatorSlashInEraAsync(input, token);
         }
 
-        public async Task<BaseVec<BaseTuple<U32, Bool>>> OffendingValidatorsAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<U32, Bool>>?> OffendingValidatorsAsync(CancellationToken token)
         {
             return Map<IBaseEnumerable, BaseVec<BaseTuple<U32, Bool>>>(await _client.StakingStorage.OffendingValidatorsAsync(token));
         }
@@ -260,7 +260,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             return await _client.StakingStorage.MinimumActiveStakeAsync(token);
         }
 
-        public async Task<BaseVec<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token)
+        public async Task<BaseVec<UnappliedSlash>?> UnappliedSlashesAsync(U32 key, CancellationToken token)
         {
             return Map<IBaseEnumerable, BaseVec<UnappliedSlash>>(await _client.StakingStorage.UnappliedSlashesAsync(key, token));
         }
@@ -277,7 +277,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.StakingStorage.ValidatorsAsync(accountId32, token));
         }
 
-        public async Task<BaseTuple<Perbill, U128>> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
+        public async Task<BaseTuple<Perbill, U128>?> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ValidatorSlashInEraInputType(version));

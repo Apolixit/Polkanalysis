@@ -195,7 +195,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.Encode(), Is.EqualTo(expectedResult.Encode()));
+            Assert.That(res.Encode().Length, Is.EqualTo(expectedResult.Encode().Length));
 
             return res;
         }

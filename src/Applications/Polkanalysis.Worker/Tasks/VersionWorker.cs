@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
@@ -9,7 +10,7 @@ using System.Threading;
 
 namespace Polkanalysis.Worker.Tasks
 {
-    public class VersionWorker
+    public class VersionWorker : BackgroundService
     {
         private readonly ISubstrateService _polkadotService;
         private readonly IMediator _mediator;
@@ -22,6 +23,11 @@ namespace Polkanalysis.Worker.Tasks
             _polkadotService = polkadotService;
             _mediator = mediator;
             _logger = logger;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            RunAsync(stoppingToken);
         }
 
         public async Task RunAsync(CancellationToken stoppingToken)

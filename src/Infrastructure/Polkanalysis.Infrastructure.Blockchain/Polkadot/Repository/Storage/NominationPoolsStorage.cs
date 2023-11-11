@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token)
         {
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.BondedPoolInnerBase, BondedPoolInner>(
+            return Map<BondedPoolInnerBase, BondedPoolInner>(
                 await _client.NominationPoolsStorage.BondedPoolsAsync(poolId, token));
         }
 
@@ -104,7 +104,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<PoolMember> PoolMembersAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools.PoolMemberBase, PoolMember>(
+            return Map<PoolMemberBase, PoolMember>(
                 await _client.NominationPoolsStorage.PoolMembersAsync(accountId32, token));
         }
 
@@ -113,7 +113,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.NominationPoolsStorage.PoolMembersInputType(version);
             var storageKeyType = PoolMemberBase.TypeByVersion(version);
-            var storageFunction = new QueryStorageFunction("NominationPools", "PoolMembers", sourceKeyType, storageKeyType);
+            var storageFunction = new QueryStorageFunction("NominationPools", "PoolMembers", sourceKeyType, storageKeyType, 32);
 
             return new QueryStorage<SubstrateAccount, PoolMember>(GetAllStorageAsync<SubstrateAccount, PoolMember>, storageFunction);
         }

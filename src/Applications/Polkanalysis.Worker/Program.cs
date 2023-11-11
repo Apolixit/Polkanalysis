@@ -33,7 +33,10 @@ var host = Host.CreateDefaultBuilder(args)
 .ConfigureServices((hostContext, services) =>
 {
     services
-    .AddHostedService<MainWorker>()
+    .AddHostedService<EventsWorker>()
+    //.AddHostedService<PriceWorker>()
+    //.AddHostedService<StakingWorker>()
+    //.AddHostedService<VersionWorker>()
     .AddSingleton(config)
     .AddDbContext<SubstrateDbContext>(options =>
     {

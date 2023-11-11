@@ -307,9 +307,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
                 if (storageKeys == null || !storageKeys.Any())
                     break;
 
-                if (storageId.Count() <= filter.NbElementSkip)
+                if (storageKeys.Count() <= filter.NbElementSkip)
                 {
-                    filter.NbElementSkip -= storageId.Count();
+                    filter.NbElementSkip -= storageKeys.Count();
                     startKey = Utils.HexToByteArray(storageKeys.Last().ToString());
 
                     continue;

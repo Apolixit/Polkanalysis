@@ -33,11 +33,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res.Count, Is.GreaterThan(2));
         }
 
-        [Test]
+        [Test, Category(NoTestCase)]
         public async Task NewRaise_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Crowdloan.NewRaiseAsync(CancellationToken.None);
-            Assert.That(res, Is.Not.Null);
+            Assert.That(res, Is.Null);
         }
     }
 }

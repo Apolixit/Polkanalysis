@@ -147,7 +147,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<U32> MaxNominatorsCountAsync(CancellationToken token);
+        public Task<U32?> MaxNominatorsCountAsync(CancellationToken token);
 
         /// <summary>
         ///  The current era index.
@@ -312,7 +312,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BaseVec<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token);
+        public Task<BaseVec<UnappliedSlash>?> UnappliedSlashesAsync(U32 key, CancellationToken token);
 
         /// <summary>
         ///  A mapping from still-bonded eras to the first session index of that era.
@@ -331,7 +331,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// <param name="key"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BaseTuple<Perbill, U128>> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
+        public Task<BaseTuple<Perbill, U128>?> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
 
         /// <summary>
         /// All slashing events on nominators, mapped by era to the highest slash value of the era.
@@ -380,7 +380,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<BaseVec<BaseTuple<U32, Bool>>> OffendingValidatorsAsync(CancellationToken token);
+        public Task<BaseVec<BaseTuple<U32, Bool>>?> OffendingValidatorsAsync(CancellationToken token);
 
         /// <summary>
         ///  True if network has been upgraded to this version.

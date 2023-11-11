@@ -27,6 +27,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums
         Deposit = 6,
 
         SpendApproved = 7,
+
+        UpdatedInactive = 8
     }
 
     /// <summary>
@@ -36,7 +38,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Treasury.Enums
     ///			by this pallet.
     ///			
     /// </summary>
-    public sealed class EnumEvent : BaseEnumExt<Event, U32, U128, BaseTuple<U32, U128, SubstrateAccount>, BaseTuple<U32, U128>, U128, U128, U128, BaseTuple<U32, U128, SubstrateAccount>>
+    public sealed class EnumEvent : BaseEnumExt<Event, U32, U128, BaseTuple<U32, U128, SubstrateAccount>, BaseTuple<U32, U128>, U128, U128, U128, BaseTuple<U32, U128, SubstrateAccount>,
+        BaseTuple<U128, U128>>
     {
     }
 }
