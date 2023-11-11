@@ -89,7 +89,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{364393
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substrate.NetApi", "..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj", "{1009542C-567D-4A0B-BDDB-C97DFCC204A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.Infrastructure.Blockchain.Contracts", "Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj", "{B298267F-3AC0-46E7-B66E-DAD67A53EEF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Contracts", "Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj", "{B298267F-3AC0-46E7-B66E-DAD67A53EEF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.Architecture.Tests", "Polkanalysis.Architecture.Tests\Polkanalysis.Architecture.Tests.csproj", "{060CC874-D6D9-45FB-876A-BA5C7658299A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -193,6 +195,10 @@ Global
 		{B298267F-3AC0-46E7-B66E-DAD67A53EEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B298267F-3AC0-46E7-B66E-DAD67A53EEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B298267F-3AC0-46E7-B66E-DAD67A53EEF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{060CC874-D6D9-45FB-876A-BA5C7658299A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{060CC874-D6D9-45FB-876A-BA5C7658299A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{060CC874-D6D9-45FB-876A-BA5C7658299A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{060CC874-D6D9-45FB-876A-BA5C7658299A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,6 +233,7 @@ Global
 		{3643934D-6D4A-498E-811E-FCA72BA3D2DF} = {95DEEDB4-3C7D-4D06-9A97-CC16D7721152}
 		{1009542C-567D-4A0B-BDDB-C97DFCC204A1} = {B6463D88-968C-4EEB-A7B4-A56007B3FDF6}
 		{B298267F-3AC0-46E7-B66E-DAD67A53EEF9} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
+		{060CC874-D6D9-45FB-876A-BA5C7658299A} = {F54F8885-056B-4991-8E99-518851FC9CCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31C4F337-85EF-42F2-9358-F402619BBAE7}
