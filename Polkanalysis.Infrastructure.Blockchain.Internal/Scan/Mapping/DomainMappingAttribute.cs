@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Attribute
+namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
 {
-    public class DomainMappingAttribute : System.Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Enum, AllowMultiple = true)]
+    public class DomainMappingAttribute : Attribute
     {
         public IEnumerable<string> OriginClasses { get; set; }
 
@@ -15,7 +16,7 @@ namespace Polkanalysis.Domain.Contracts.Attribute
             OriginClasses = originClasses;
         }
 
-        public DomainMappingAttribute(string originClass) 
+        public DomainMappingAttribute(string originClass)
         {
             OriginClasses = new List<string>() { originClass };
         }
@@ -34,5 +35,7 @@ namespace Polkanalysis.Domain.Contracts.Attribute
         {
             OriginClasses = new List<string>() { originClass1, originClass2, originClass3, originClass4 };
         }
+
+        public const string PalletAuthorshipExt = "pallet_authorship/pallet";
     }
 }

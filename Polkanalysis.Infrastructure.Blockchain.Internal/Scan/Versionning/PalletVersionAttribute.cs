@@ -1,4 +1,4 @@
-﻿namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning
+﻿namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning
 {
     /// <summary>
     /// Define pallet version

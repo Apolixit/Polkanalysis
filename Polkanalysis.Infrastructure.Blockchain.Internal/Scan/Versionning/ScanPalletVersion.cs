@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning;
-using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 
-namespace Polkanalysis.Infrastructure.Blockchain.Common.Versionning
+namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning
 {
     public class ScanAssemblyPalletVersion
     {

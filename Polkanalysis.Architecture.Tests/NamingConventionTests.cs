@@ -48,5 +48,17 @@ namespace Polkanalysis.Architecture.Tests
 
             Assert.That(useCasesHandler.IsSuccessful, Is.True);
         }
+
+        [Test]
+        public void Interface_ShouldHaveValidPrefix()
+        {
+            var interfacesName = Types
+                .InAssembly(DomainContractAssembly)
+                .That().AreInterfaces()
+                .Should().HaveNameStartingWith("I")
+                .GetResult();
+
+            Assert.That(interfacesName.IsSuccessful, Is.True);
+        }
     }
 }

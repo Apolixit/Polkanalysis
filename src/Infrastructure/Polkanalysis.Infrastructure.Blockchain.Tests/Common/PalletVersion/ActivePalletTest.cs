@@ -1,15 +1,7 @@
-﻿using Castle.Core.Logging;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning;
-using Polkanalysis.Infrastructure.Blockchain.Common.Versionning;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning;
 using Substrate.NetApi.Model.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Common.PalletVersion
 {

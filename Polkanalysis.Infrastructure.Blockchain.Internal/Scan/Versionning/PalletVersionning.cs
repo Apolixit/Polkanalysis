@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning
+namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning
 {
     public class PalletVersionning
     {

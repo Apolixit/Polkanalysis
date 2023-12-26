@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj" />
     <ProjectReference Include="..\src\Applications\Polkanalysis.Api\Polkanalysis.Api.csproj" />
     <ProjectReference Include="..\src\Applications\Polkanalysis.WebApp\Polkanalysis.WebApp.csproj" />
     <ProjectReference Include="..\src\Applications\Polkanalysis.Worker\Polkanalysis.Worker.csproj" />

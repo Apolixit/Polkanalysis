@@ -1,9 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Versionning;
-using Substrate.NetApi.Model.Types;
 
-namespace Polkanalysis.Infrastructure.Blockchain.Common.Versionning
+namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning
 {
     public class ActivePallets
     {
