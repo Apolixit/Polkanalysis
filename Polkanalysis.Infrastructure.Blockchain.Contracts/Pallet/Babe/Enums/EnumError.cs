@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums
 
         DuplicateOffenceReport = 2,
 
-        InvalidConfiguration = 3,
+        //InvalidConfiguration = 3,
     }
 
     /// <summary>

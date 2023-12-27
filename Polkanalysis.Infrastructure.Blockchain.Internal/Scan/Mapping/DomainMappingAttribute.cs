@@ -35,7 +35,5 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
         {
             OriginClasses = new List<string>() { originClass1, originClass2, originClass3, originClass4 };
         }
-
-        public const string PalletAuthorshipExt = "pallet_authorship/pallet";
     }
 }

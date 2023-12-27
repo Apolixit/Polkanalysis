@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Domain.Contracts.Core.Enum
 {
+    [DomainMapping("")]
     public enum Result
     {
         Ok = 0,

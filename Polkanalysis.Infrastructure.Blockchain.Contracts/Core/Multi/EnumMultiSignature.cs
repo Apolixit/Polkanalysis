@@ -2,9 +2,11 @@ using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Core.Signature;
 using System.Collections.Generic;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Domain.Contracts.Core.Multi
 {
+    [DomainMapping("sp_runtime")]
     public enum MultiSignature
     {
         

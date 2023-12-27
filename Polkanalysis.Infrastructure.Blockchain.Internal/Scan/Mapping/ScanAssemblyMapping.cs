@@ -1,14 +1,8 @@
 ﻿using Ardalis.GuardClauses;
-using Microsoft.Extensions.Logging;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning;
-using Substrate.NetApi.Model.Types.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Substrate.NET.Utils;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Architecture.Tests")]
 namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
@@ -24,55 +18,108 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
             var assemblyExt = LoadEnumNetApiExtType(netApiExtAssembly);
             var assemblyDomain = LoadEnumDomainType(domainAssembly);
 
+            if (!assemblyExt.Any()) return result;
+
+            foreach (var aExt in assemblyExt)
+            {
+                var foundInDomain = assemblyDomain.FirstOrDefault(x => aExt.GetType().FullName.EndsWith(x.ExtNameBuilder));
+
+                string destinationClass = foundInDomain?.FullName;
+                var scan = new ScanMappingResult(aExt.GetType())
+                {
+                    DestinationClass = destinationClass,
+                };
+
+                if (foundInDomain is not null)
+                {
+                    var sourceEnumNames = aExt.GetValue().GetType().GetEnumNames();
+                    var destinationEnumNames = foundInDomain.Enum.GetType().GetEnumNames();
+
+                    scan.MapProperties(sourceEnumNames, destinationEnumNames);
+                }
+
+                result.Add(scan);
+            }
 
             return result;
-
         }
 
-        private static IEnumerable<Type> LoadEnumNetApiExtType(string netApiExtAssembly)
+        private static IEnumerable<IBaseEnum> LoadEnumNetApiExtType(string netApiExtAssembly)
         {
-            var x1 = Assembly.Load(netApiExtAssembly);
+            Guard.Against.NullOrEmpty(netApiExtAssembly, nameof(netApiExtAssembly));
 
-            var compatibleType = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(assembly => assembly.FullName.Contains(netApiExtAssembly))
-                .SelectMany(x => x.GetTypes())
-                .Where(x =>
-                {
-                    // For each type, check if it is a class and got parameterless constructor
-                    return
-                        x.IsAssignableFrom(x) &&
-                        x.IsClass &&
-                        !x.ContainsGenericParameters &&
-                        x.GetConstructor(Type.EmptyTypes) is not null &&
-                        x.Name.StartsWith("Enum") ;
-                });
+            var loadedAssembly = Assembly.Load(netApiExtAssembly);
 
-            return compatibleType;
-        }
+            if (loadedAssembly is null)
+                throw new InvalidOperationException($"Unable to load assembly {netApiExtAssembly}");
 
-        private static IEnumerable<Type> LoadEnumDomainType(string domainAssembly)
-        {
-            var compatibleType = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(assembly => assembly.FullName.Contains(domainAssembly))
-                .SelectMany(x => x.GetTypes())
-                .Where(x =>
-                {
-                    // For each type, check if it is a class and got parameterless constructor
-                    return
-                        x.IsAssignableFrom(x) &&
-                        x.IsClass &&
-                        !x.ContainsGenericParameters &&
-                        x.GetConstructor(Type.EmptyTypes) is not null;
-                });
+            var enumSource = new List<IBaseEnum>();
 
-            foreach (var t in compatibleType)
+            var compatibleType = loadedAssembly.GetTypes().Where(x =>
             {
-                var palletAttribute = t.GetCustomAttributes<DomainMappingAttribute>();
-                if (palletAttribute is not null && palletAttribute.Any())
+                // For each type, check if it is a class and got parameterless constructor
+                return
+                    x.IsAssignableFrom(x) &&
+                    x.IsClass &&
+                    !x.ContainsGenericParameters &&
+                    x.GetConstructor(Type.EmptyTypes) is not null &&
+                    x.Name.StartsWith("Enum");
+            });
+
+            foreach (var foundedEnum in compatibleType)
+            {
+                enumSource.Add(foundedEnum.Instanciate<IBaseEnum>());
+            }
+
+            return enumSource;
+        }
+
+        private static IEnumerable<EnumAssemblyResult> LoadEnumDomainType(string domainAssembly)
+        {
+            Guard.Against.NullOrEmpty(domainAssembly, nameof(domainAssembly));
+
+            var loadedAssembly = Assembly.Load(domainAssembly);
+
+            if (loadedAssembly is null)
+                throw new InvalidOperationException($"Unable to load assembly {domainAssembly}");
+
+            var enumDomain = new List<EnumAssemblyResult>();
+
+            var compatibleType = loadedAssembly.GetTypes()
+                .Where(x =>
                 {
-                    yield return t;
+                    // For each type, check if it is a class and got parameterless constructor
+                    return
+                        x.GetCustomAttribute<DomainMappingAttribute>() is not null;
+                });
+
+            foreach (var foundedEnum in compatibleType)
+            {
+                var typeSearched = foundedEnum;
+                if (foundedEnum.IsEnum)
+                {
+                    string fullName = $"{typeSearched.Namespace}.Enum{typeSearched.Name}";
+                    typeSearched = loadedAssembly.GetTypes().FirstOrDefault(x => x.FullName == fullName);
+
+                    if (typeSearched is null)
+                        throw new InvalidOperationException($"{fullName} does not exist in {domainAssembly} types");
+                }
+
+                var attribute = foundedEnum.GetCustomAttribute<DomainMappingAttribute>();
+                if (attribute is not null)
+                {
+                    var enumExt = typeSearched.Instanciate<IBaseEnum>();
+                    enumDomain.Add(new EnumAssemblyResult()
+                    {
+                        Enum = enumExt.GetValue(),
+                        EnumExt = enumExt,
+                        MappingAttribute = attribute,
+                        FullName = foundedEnum.FullName
+                    });
                 }
             }
+
+            return enumDomain;
         }
     }
 }

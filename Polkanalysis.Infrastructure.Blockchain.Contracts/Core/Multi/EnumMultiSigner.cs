@@ -1,8 +1,10 @@
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Core.Public;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Domain.Contracts.Core.Multi
 {
+    [DomainMapping("sp_runtime/multiaddress")]
     public enum MultiSigner
     {
         

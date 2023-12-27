@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
 {
+    [DomainMapping("frame_support/weights")]
     public enum Pays
     {
 

@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.BagsList.Enums
 {
-    [DomainMapping("sp_consensus_babe/digests")]
+    [DomainMapping("pallet_bags_list/pallet")]
     public enum Error
     {
 

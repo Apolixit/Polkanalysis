@@ -1,4 +1,5 @@
-﻿using Substrate.NetApi.Model.Types.Base;
+﻿using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
 {
+    [DomainMapping("frame_support/weights")]
+    [DomainMapping("frame_support/dispatch")]
     public enum RawOrigin
     {
 

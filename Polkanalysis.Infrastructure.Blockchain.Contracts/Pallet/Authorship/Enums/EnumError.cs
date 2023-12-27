@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship.Enums
 {
-    [DomainMapping(DomainMappingAttribute.PalletAuthorshipExt)]
+    [DomainMapping("pallet_authorship/pallet")]
     public enum Error
     {
 

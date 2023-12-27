@@ -1,9 +1,11 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Domain.Contracts.Core.Multi
 {
+    [DomainMapping("sp_runtime/multiaddress")]
     public enum MultiAddress
     {
         
