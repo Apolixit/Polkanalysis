@@ -1,4 +1,5 @@
-﻿using Substrate.NetApi.Model.Types.Base;
+﻿using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums
 {
+    [DomainMapping("pallet_timestamp/pallet")]
     public enum Call
     {
         set = 0

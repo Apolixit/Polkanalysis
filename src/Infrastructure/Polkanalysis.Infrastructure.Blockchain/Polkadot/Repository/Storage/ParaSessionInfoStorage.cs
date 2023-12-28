@@ -32,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<ExecutorParams> SessionExecutorParamsAsync(U32 key, CancellationToken token)
         {
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.executor_params.ExecutorParamsBase, ExecutorParams>(
+            return Map<IType, ExecutorParams>(
                 await _client.ParaSessionInfoStorage.SessionExecutorParamsAsync(key, token));
         }
 

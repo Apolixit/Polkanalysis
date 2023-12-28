@@ -1,7 +1,9 @@
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime
 {
+    [DomainMapping("polkadot_runtime")]
     public enum ProxyType
     {
 

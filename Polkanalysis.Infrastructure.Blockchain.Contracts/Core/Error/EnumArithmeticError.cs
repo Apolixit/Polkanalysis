@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Core.Error
 {
-    [DomainMapping("sp_runtime")]
-    [DomainMapping("sp_arithmetic")]
+    [DomainMapping("sp_runtime", "sp_arithmetic")]
     public enum ArithmeticError
     {
 

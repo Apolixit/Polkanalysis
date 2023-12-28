@@ -1,4 +1,5 @@
 ﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v4;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo.Enums
 {
+    [DomainMapping("polkadot_primitives/v4/executor_params")]
     public enum ExecutorParam
     {
         MaxMemoryPages = 1,

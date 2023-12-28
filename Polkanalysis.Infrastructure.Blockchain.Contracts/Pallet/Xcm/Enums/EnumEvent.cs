@@ -10,9 +10,11 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums
 {
+    [DomainMapping("pallet_xcm/pallet")]
     public enum Event
     {
 

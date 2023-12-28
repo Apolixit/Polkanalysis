@@ -1,4 +1,5 @@
 ﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum
 {
+    [DomainMapping("frame_support/traits/messages")]
     public enum ProcessMessageError
     {
         BadFormat = 0,

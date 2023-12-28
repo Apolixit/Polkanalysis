@@ -7,6 +7,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -22,7 +23,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<DataCode> CodeByHashAsync(Hash key, CancellationToken token)
         {
             var hash = await MapHashAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeBase, DataCode>(
+            return Map<IType, DataCode>(
                 await _client.ParasStorage.CodeByHashAsync(hash, token));
         }
 
@@ -35,14 +36,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<Hash> CurrentCodeHashAsync(Id key, CancellationToken token)
         {
             var id = await MapIdAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase, Hash>(
+            return Map<IType, Hash>(
                 await _client.ParasStorage.CurrentCodeHashAsync(id, token));
         }
 
         public async Task<Hash> FutureCodeHashAsync(Id key, CancellationToken token)
         {
             var id = await MapIdAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase, Hash>(
+            return Map<IType, Hash>(
                 await _client.ParasStorage.FutureCodeHashAsync(id, token));
         }
 
@@ -55,8 +56,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<DataCode> HeadsAsync(Id key, CancellationToken token)
         {
             var id = await MapIdAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.HeadDataBase, DataCode>(
-                await _client.ParasStorage.HeadsAsync(id, token));
+            return Map<IType, DataCode>(await _client.ParasStorage.HeadsAsync(id, token));
         }
 
         public async Task<BaseVec<Id>> ParachainsAsync(CancellationToken token)
@@ -79,7 +79,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             var input = (IBaseEnumerable)_mapper.Map(version, key, _client.ParasStorage.PastCodeHashInputType(version));
 
 
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.ValidationCodeHashBase, Hash>(await _client.ParasStorage.PastCodeHashAsync(input, token));
+            return Map<IType, Hash>(await _client.ParasStorage.PastCodeHashAsync(input, token));
         }
 
         public async Task<ParaPastCodeMeta> PastCodeMetaAsync(Id key, CancellationToken token)

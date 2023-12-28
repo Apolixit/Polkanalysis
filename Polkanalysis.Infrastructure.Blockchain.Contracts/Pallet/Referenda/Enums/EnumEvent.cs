@@ -1,5 +1,6 @@
 ﻿using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Referenda.Enums
 {
+    [DomainMapping("pallet_referenda/pallet")]
     public enum Event
     {
         Submitted = 0,

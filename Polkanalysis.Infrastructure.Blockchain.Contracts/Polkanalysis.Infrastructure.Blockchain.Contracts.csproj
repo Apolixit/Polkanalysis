@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pallet\PolkadotRuntimeCommon\Enums\**" />
+    <EmbeddedResource Remove="Pallet\PolkadotRuntimeCommon\Enums\**" />
+    <None Remove="Pallet\PolkadotRuntimeCommon\Enums\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="4.1.1" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
   </ItemGroup>
@@ -19,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Core\Enum\FrameSupport\" />
-    <Folder Include="Pallet\PolkadotRuntimeCommon\Enums\" />
   </ItemGroup>
 
 </Project>

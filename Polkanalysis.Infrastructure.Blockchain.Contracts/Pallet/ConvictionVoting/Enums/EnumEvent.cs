@@ -1,4 +1,5 @@
 ﻿using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ConvictionVoting.Enums
 {
+    [DomainMapping("pallet_conviction_voting/pallet")]
     public enum Event
     {
         Delegated = 0,

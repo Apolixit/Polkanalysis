@@ -8,13 +8,14 @@
 //------------------------------------------------------------------------------
 
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 
 
 namespace Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotPrimitive.v2.Enum
 {
 
-
+    [DomainMapping("polkadot_primitives/v2")]
     public enum CoreOccupied
     {
         

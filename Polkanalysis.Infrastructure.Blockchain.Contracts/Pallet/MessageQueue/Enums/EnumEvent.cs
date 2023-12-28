@@ -1,4 +1,5 @@
 ﻿using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.MessageQueue.Enums
 {
+    [DomainMapping("pallet_message_queue/pallet")]
     public enum Event
     {
         ProcessingFailed = 0,

@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
 {
-    [DomainMapping("frame_support/weights")]
-    [DomainMapping("frame_support/dispatch")]
+    [DomainMapping("frame_support/weights", "frame_support/dispatch")]
     public enum RawOrigin
     {
 

@@ -5,9 +5,11 @@ using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Ump.Enums
 {
+    [DomainMapping("polkadot_runtime_parachains/ump/pallet")]
     public enum Event
     {
 
