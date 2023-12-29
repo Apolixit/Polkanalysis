@@ -8,7 +8,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2
 {
-    public class XcmT1 : BaseType
+    public class Xcm : BaseType
     {
         public BaseVec<EnumInstruction> Value { get; set; }
 

@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2
 {
-    public class XcmT2 : BaseType
+    public class MultiAssets : BaseType
     {
-        public BaseVec<EnumInstruction> Value { get; set; }
+        public BaseVec<MultiAsset> Value { get; set; }
 
         public override byte[] Encode()
         {
@@ -22,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Value = new BaseVec<EnumInstruction>();
+            Value = new BaseVec<MultiAsset>();
             Value.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

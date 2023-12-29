@@ -1,5 +1,4 @@
-﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System;
@@ -11,20 +10,15 @@ using System.Threading.Tasks;
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums
 {
     [DomainMapping("xcm")]
-    public enum VersionedXcm
+    public enum VersionedAssetId
     {
-
-        V0 = 0,
-
-        V1 = 1,
-
-        V2 = 2,
+        V3 = 3
     }
 
     /// <summary>
-    /// >> 435 - Variant[xcm.VersionedXcm]
+    /// >> 17157 - Variant[xcm.VersionedAssetId]
     /// </summary>
-    public sealed class EnumVersionedXcm : BaseEnumExt<VersionedXcm, v0.Enums.EnumXcm, EnumXcm, v3.Xcm>
+    public sealed class EnumVersionedAssetId : BaseEnumExt<VersionedAssetId, BaseVoid, BaseVoid, BaseVoid, EnumAssetId>
     {
     }
 }

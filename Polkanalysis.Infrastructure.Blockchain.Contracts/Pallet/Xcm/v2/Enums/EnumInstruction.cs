@@ -75,17 +75,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums
     /// </summary>
     public sealed class EnumInstruction : BaseEnumExt<Instruction, MultiAssets, MultiAssets, MultiAssets, BaseTuple<BaseCom<U64>, 
         EnumResponse, BaseCom<U64>>, 
-        BaseTuple<MultiAssets, v1.MultiLocation>, BaseTuple<MultiAssets, v1.MultiLocation, XcmT1>, 
+        BaseTuple<MultiAssets, v1.MultiLocation>, BaseTuple<MultiAssets, v1.MultiLocation, Xcm>, 
         BaseTuple<EnumOriginKind, BaseCom<U64>, DoubleEncoded>, 
         BaseTuple<BaseCom<U32>, BaseCom<U32>, BaseCom<U32>>, BaseCom<U32>, 
         BaseTuple<BaseCom<U32>, BaseCom<U32>, BaseCom<U32>>, BaseVoid, EnumJunctions, 
         BaseTuple<BaseCom<U64>, v1.MultiLocation, BaseCom<U64>>, 
         BaseTuple<EnumMultiAssetFilter, BaseCom<U32>, v1.MultiLocation>, 
-        BaseTuple<EnumMultiAssetFilter, BaseCom<U32>, v1.MultiLocation, XcmT1>, 
-        BaseTuple<EnumMultiAssetFilter, MultiAssets>, BaseTuple<EnumMultiAssetFilter, v1.MultiLocation, XcmT1>, 
-        BaseTuple<EnumMultiAssetFilter, v1.MultiLocation, XcmT1>, 
+        BaseTuple<EnumMultiAssetFilter, BaseCom<U32>, v1.MultiLocation, Xcm>, 
+        BaseTuple<EnumMultiAssetFilter, MultiAssets>, BaseTuple<EnumMultiAssetFilter, v1.MultiLocation, Xcm>, 
+        BaseTuple<EnumMultiAssetFilter, v1.MultiLocation, Xcm>, 
         BaseTuple<BaseCom<U64>, v1.MultiLocation, EnumMultiAssetFilter, BaseCom<U64>>, 
-        BaseTuple<v1.MultiAsset, EnumWeightLimit>, BaseVoid, XcmT2, XcmT2, BaseVoid, 
+        BaseTuple<v1.MultiAsset, EnumWeightLimit>, BaseVoid, Xcm, Xcm, BaseVoid, 
         BaseTuple<MultiAssets, v1.MultiLocation>, BaseCom<U64>, 
         BaseTuple<BaseCom<U64>, BaseCom<U64>>, BaseVoid>
     {

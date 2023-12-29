@@ -6,11 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v2;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v1;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3;
 using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums
 {
@@ -62,7 +61,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums
     /// </summary>
     public sealed class EnumEvent : BaseEnumExt<Event,
         EnumOutcome,
-        BaseTuple<MultiLocation, MultiLocation, XcmT1>, BaseTuple<MultiLocation, U64>, BaseTuple<U64, EnumResponse>, BaseTuple<U64, U8, U8>, BaseTuple<U64, U8, U8, Weight, Weight>, BaseTuple<U64, U8, U8>, BaseTuple<U64, U8, U8>, BaseTuple<MultiLocation, U64, BaseOpt<MultiLocation>>, BaseTuple<MultiLocation, U64>, U64, BaseTuple<Hash, MultiLocation, EnumVersionedMultiAssets>, BaseTuple<MultiLocation, U32>, BaseTuple<MultiLocation, U32>, BaseTuple<MultiLocation, U64, EnumError>, BaseTuple<EnumVersionedMultiLocation, U64>, BaseTuple<Hash, MultiLocation, EnumVersionedMultiAssets>>
+        BaseTuple<MultiLocation, MultiLocation, Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3.Xcm>, BaseTuple<MultiLocation, U64>, BaseTuple<U64, EnumResponse>, BaseTuple<U64, U8, U8>, BaseTuple<U64, U8, U8, Weight, Weight>, BaseTuple<U64, U8, U8>, BaseTuple<U64, U8, U8>, BaseTuple<MultiLocation, U64, BaseOpt<MultiLocation>>, BaseTuple<MultiLocation, U64>, U64, BaseTuple<Hash, MultiLocation, EnumVersionedMultiAssets>, BaseTuple<MultiLocation, U32>, BaseTuple<MultiLocation, U32>, BaseTuple<MultiLocation, U64, EnumError>, BaseTuple<EnumVersionedMultiLocation, U64>, BaseTuple<Hash, MultiLocation, EnumVersionedMultiAssets>>
     {
     }
 }
