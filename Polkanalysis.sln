@@ -93,7 +93,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Architecture.Tests", "Polkanalysis.Architecture.Tests\Polkanalysis.Architecture.Tests.csproj", "{060CC874-D6D9-45FB-876A-BA5C7658299A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.Infrastructure.Blockchain.Internal", "Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj", "{56D8FD7C-6C08-4281-BD1A-48D03CB01B17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Internal", "Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj", "{56D8FD7C-6C08-4281-BD1A-48D03CB01B17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.Build.Domain.Test", "src\Core\Polkanalysis.Build.Domain.Test\Polkanalysis.Build.Domain.Test.csproj", "{7B6598F0-FBC5-427E-AAAB-13A5714A0C23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.Build.Domain", "src\Core\Polkanalysis.Build.Domain\Polkanalysis.Build.Domain.csproj", "{D455B791-A6AA-4166-86E0-A09616605F34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -205,6 +209,14 @@ Global
 		{56D8FD7C-6C08-4281-BD1A-48D03CB01B17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56D8FD7C-6C08-4281-BD1A-48D03CB01B17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56D8FD7C-6C08-4281-BD1A-48D03CB01B17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B6598F0-FBC5-427E-AAAB-13A5714A0C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B6598F0-FBC5-427E-AAAB-13A5714A0C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B6598F0-FBC5-427E-AAAB-13A5714A0C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B6598F0-FBC5-427E-AAAB-13A5714A0C23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D455B791-A6AA-4166-86E0-A09616605F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D455B791-A6AA-4166-86E0-A09616605F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D455B791-A6AA-4166-86E0-A09616605F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D455B791-A6AA-4166-86E0-A09616605F34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -241,6 +253,8 @@ Global
 		{B298267F-3AC0-46E7-B66E-DAD67A53EEF9} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{060CC874-D6D9-45FB-876A-BA5C7658299A} = {F54F8885-056B-4991-8E99-518851FC9CCF}
 		{56D8FD7C-6C08-4281-BD1A-48D03CB01B17} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
+		{7B6598F0-FBC5-427E-AAAB-13A5714A0C23} = {F54F8885-056B-4991-8E99-518851FC9CCF}
+		{D455B791-A6AA-4166-86E0-A09616605F34} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31C4F337-85EF-42F2-9358-F402619BBAE7}

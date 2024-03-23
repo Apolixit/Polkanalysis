@@ -17,36 +17,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
 
             var sourceInstance = sourceClass.Instanciate<IBaseEnum>();
             SourceEnumName = sourceInstance.GetValue().GetType().GetEnumNames();
-
-            //SourceInstances = SourceEnumName.Select(enumValue =>
-            //{
-            //    object? mappedEnum;
-            //    Enum.TryParse(sourceInstance.GetValue().GetType(), SourceEnumName.First(), true, out mappedEnum);
-
-            //    var baseEnumExtBytes = new List<byte>()
-            //    {
-            //        Convert.ToByte(mappedEnum)
-            //    };
-                
-            //    sourceInstance.Create(baseEnumExtBytes.ToArray());
-            //    return sourceInstance;
-
-            //    //if (source is BaseEnumType sourceBaseEnumType && context is not null)
-            //    //{
-            //    //    var associatedDataType = destinationType.BaseType.GenericTypeArguments[(int)mappedEnum + 1];
-            //    //    var associatedData = (IType)context.Mapper.Map(sourceBaseEnumType.GetValue2(), sourceBaseEnumType.GetValue2()!.GetType(), associatedDataType);
-            //    //    baseEnumExtBytes.AddRange(associatedData.Encode());
-            //    //}
-            //    //else
-            //    //{
-            //    //    baseEnumExtBytes.AddRange(source.GetValues().Encode());
-            //    //}
-
-            //    //destination.Create(baseEnumExtBytes.ToArray());
-            //});
-
-
         }
+
         public string SourceClass { get; set; }
         public IEnumerable<IBaseEnum> SourceInstances { get; internal set; }
         public string[]  SourceEnumName { get; internal set; }

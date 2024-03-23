@@ -6,11 +6,13 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System.Collections.Generic;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3
 {
+    [DomainMapping("xcm/v3")]
     public enum Response
     {
         Null = 0,

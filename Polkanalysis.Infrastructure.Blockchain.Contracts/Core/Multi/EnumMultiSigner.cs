@@ -4,7 +4,7 @@ using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Domain.Contracts.Core.Multi
 {
-    [DomainMapping("sp_runtime/multiaddress")]
+    [DomainMapping("sp_runtime")]
     public enum MultiSigner
     {
         

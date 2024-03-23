@@ -9,6 +9,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
 {
     internal static class ScanAssemblyMapping
     {
+        public static IEnumerable<ScanMappingResult> ScanMappings(string netApiExtAssembly, string domainAssembly)
+        {
+
+        }
+
+        /// <summary>
+        /// Do a diff between enum from NetApiExt and Domain
+        /// </summary>
+        /// <param name="netApiExtAssembly"></param>
+        /// <param name="domainAssembly"></param>
+        /// <returns></returns>
         public static IEnumerable<ScanMappingResult> ScanEnumMappings(string netApiExtAssembly, string domainAssembly)
         {
             Guard.Against.NullOrEmpty(netApiExtAssembly, nameof(netApiExtAssembly));
@@ -63,7 +74,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
                     x.IsClass &&
                     !x.ContainsGenericParameters &&
                     x.GetConstructor(Type.EmptyTypes) is not null &&
-                    x.Name.StartsWith("Enum");
+                    x.Name.StartsWith("Enum") &&
+                    (!x.Name.EndsWith("EnumCall") || !x.Name.EndsWith("EnumRuntimeCall"));
             });
 
             foreach (var foundedEnum in compatibleType)

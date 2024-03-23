@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.GrandPa.Enums
 {
-    [DomainMapping("pallet_grandpa")]
+    [DomainMapping("sp_finality_grandpa", "sp_consensus_grandpa")]
     public enum Equivocation
     {
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Vesting.Enums
 {
-    [DomainMapping("pallet_vesting/pallet")]
+    [DomainMapping("pallet_vesting")]
     public enum Releases
     {
 
