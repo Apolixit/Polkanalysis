@@ -42,7 +42,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
                 {
                     await _substrateRepository.ConnectAsync();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     Assert.Ignore("Substrate node is not currently running. All tests are ignore.");
                 }

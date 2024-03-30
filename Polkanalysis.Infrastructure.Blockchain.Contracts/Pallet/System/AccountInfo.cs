@@ -17,6 +17,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System
         public U32 Sufficients { get; set; }
         public AccountData Data { get; set; }
 
+        public AccountInfo() { }
+
+        public AccountInfo(U32 nonce, U32 consumers, U32 providers, U32 sufficients, AccountData data)
+        {
+            Create(nonce, consumers, providers, sufficients, data);
+        }
+
         public void Create(U32 nonce, U32 consumers, U32 providers, U32 sufficients, AccountData data)
         {
             Nonce = nonce;

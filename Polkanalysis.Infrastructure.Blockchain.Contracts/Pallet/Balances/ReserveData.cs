@@ -13,6 +13,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
 {
     public class ReserveData : BaseType
     {
+        public ReserveData() { }
+
+        public ReserveData(FlexibleNameable id, U128 amount)
+        {
+            Create(id, amount);
+        }
+
+        public void Create(FlexibleNameable id, U128 amount)
+        {
+            Id = id;
+            Amount = amount;
+
+            Bytes = Encode();
+            TypeSize = Id.TypeSize + Amount.TypeSize;
+        }
+
         public FlexibleNameable Id { get; set; }
         public U128 Amount { get; set; } = new U128();
 

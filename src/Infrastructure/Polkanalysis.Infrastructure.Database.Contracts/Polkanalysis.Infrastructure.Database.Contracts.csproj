@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\..\..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />

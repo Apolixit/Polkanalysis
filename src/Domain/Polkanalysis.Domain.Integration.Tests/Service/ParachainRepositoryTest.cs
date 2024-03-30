@@ -5,7 +5,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Service;
 
-namespace Polkanalysis.Domain.Integration.Tests.Repository
+namespace Polkanalysis.Domain.Integration.Tests.Service
 {
     [Timeout(RepositoryMaxTimeout)]
     public class ParachainRepositoryTest : PolkadotIntegrationTest
@@ -31,8 +31,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         {
             var res = await _parachainService.GetParachainDetailAsync((uint)parachainId, CancellationToken.None);
 
-            Assert.That(res.ParachainId, Is.EqualTo(parachainId)); 
-            Assert.That(res.RegisterStatus, Is.EqualTo("Parachain")); 
+            Assert.That(res.ParachainId, Is.EqualTo(parachainId));
+            Assert.That(res.RegisterStatus, Is.EqualTo("Parachain"));
         }
     }
 }

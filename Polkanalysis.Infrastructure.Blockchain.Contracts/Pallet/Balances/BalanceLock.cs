@@ -18,6 +18,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
         public U128 Amount { get; set; } = new U128();
         public EnumReasons Reasons { get; set; }
 
+        public BalanceLock() { }
+
+        public BalanceLock(NameableSize8 id, U128 amount, EnumReasons reasons)
+        {
+            Create(id, amount, reasons);
+        }
+
         public void Create(NameableSize8 id, U128 amount, EnumReasons reasons)
         {
             Id = id;

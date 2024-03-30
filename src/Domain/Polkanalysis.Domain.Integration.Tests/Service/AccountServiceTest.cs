@@ -4,7 +4,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 
-namespace Polkanalysis.Domain.Integration.Tests.Repository
+namespace Polkanalysis.Domain.Integration.Tests.Service
 {
     [Timeout(RepositoryMaxTimeout)]
     public class AccountServiceTest : PolkadotIntegrationTest
@@ -31,6 +31,15 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
 
             var res = await _accountRepository.GetAccountDetailAsync(polkadotAdress, CancellationToken.None);
             Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task GetAllAccount_ShouldWorkAsync()
+        {
+            var res = await _accountRepository.GetAccountsAsync(CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Count(), Is.GreaterThan(0));
         }
     }
 }

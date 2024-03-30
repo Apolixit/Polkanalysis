@@ -6,7 +6,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Service;
 
-namespace Polkanalysis.Domain.Integration.Tests.Repository
+namespace Polkanalysis.Domain.Integration.Tests.Service
 {
     //[Timeout(RepositoryMaxTimeout)]
     public class StakingRepositoryTest : PolkadotIntegrationTest
@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
         {
             var logger = Substitute.For<ILogger<StakingService>>();
             _stakingRepository = new StakingService(
-                _substrateService, 
+                _substrateService,
                 new AccountService(_substrateService),
                 Substitute.For<IStakingDatabaseRepository>(),
                 logger);
@@ -40,7 +40,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Repository
             Assert.That(validators, Is.Not.Null);
             Assert.That(validators.Value.Length, Is.GreaterThanOrEqualTo(1));
 
-            var validatorDetail = await _stakingRepository.GetValidatorDetailAsync(validators.Value.First().ToStringAddress() , CancellationToken.None);
+            var validatorDetail = await _stakingRepository.GetValidatorDetailAsync(validators.Value.First().ToStringAddress(), CancellationToken.None);
             Assert.That(validatorDetail, Is.Not.Null);
         }
 

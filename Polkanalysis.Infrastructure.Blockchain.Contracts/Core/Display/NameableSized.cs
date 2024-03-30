@@ -1,4 +1,5 @@
-﻿using Substrate.NetApi.Model.Types.Base;
+﻿using Ardalis.GuardClauses;
+using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,6 +102,12 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
         protected override int IntegerSize { get; set; } = 8;
 
         public NameableSize8() { }
+        public NameableSize8(string name)
+        {
+            Guard.Against.Null(name);
+            Create(Encoding.ASCII.GetBytes(name));
+        }
+
         public NameableSize8(BaseType elem)
         {
             Create(elem.Bytes);

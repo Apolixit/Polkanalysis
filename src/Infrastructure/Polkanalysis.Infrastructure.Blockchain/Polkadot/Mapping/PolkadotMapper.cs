@@ -246,6 +246,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v1.assignment_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_im_online.sr25519.app_sr25519.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.assignment_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v5.assignment_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v6.assignment_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v2.assignment_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v2.validator_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_authority_discovery.app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
@@ -254,6 +256,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v0.validator_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.validator_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v5.validator_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v6.validator_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9431.polkadot_primitives.v4.collator_app.Public, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.sr25519.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value));
                 CreateMap<PublicSr25519, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.sr25519.PublicBase>().IncludeAllDerived().ConvertUsing(new PublicSr25519Converter());
@@ -1042,8 +1046,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
         {
             public IdentityStorageProfile()
             {
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>().ConvertUsing(new RegistrationConverter());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.IdentityInfoBase, IdentityInfo>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.simple.IdentityInfoBase, IdentityInfo>();
+
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrarInfoBase, RegistrarInfo>();
             }
 
@@ -1054,6 +1060,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     destination = new Registration();
                     if (source == null) return destination;
 
+                    if (source.Info != null)
+                    {
+                        destination.Info = context.Mapper.Map<IdentityInfo>(source.Info);
+                    }
+                    if (source.Info1 != null)
+                    {
+                        destination.Info = context.Mapper.Map<IdentityInfo>(source.Info1);
+                    }
+                    destination.Deposit = source.Deposit;
                     destination.Judgements = context.Mapper.Map<BaseVec<BaseTuple<U32, EnumJudgement>>>(source.Judgements);
 
 
@@ -1266,6 +1281,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                         paraValidator = context.Mapper.Map<PublicSr25519>(source.ParaValidator1);
                     else if (source.ParaValidator2 is not null)
                         paraValidator = context.Mapper.Map<PublicSr25519>(source.ParaValidator2);
+                    else if (source.ParaValidator3 is not null)
+                        paraValidator = context.Mapper.Map<PublicSr25519>(source.ParaValidator3);
+                    else if (source.ParaValidator4 is not null)
+                        paraValidator = context.Mapper.Map<PublicSr25519>(source.ParaValidator4);
                     else
                         throw new InvalidMappingException("Error while getting ParaValidator value from SessionKeys storage");
 
@@ -1276,6 +1295,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                         paraAssignment = context.Mapper.Map<PublicSr25519>(source.ParaAssignment1);
                     else if (source.ParaAssignment2 is not null)
                         paraAssignment = context.Mapper.Map<PublicSr25519>(source.ParaAssignment2);
+                    else if (source.ParaAssignment3 is not null)
+                        paraAssignment = context.Mapper.Map<PublicSr25519>(source.ParaAssignment3);
+                    else if (source.ParaAssignment4 is not null)
+                        paraAssignment = context.Mapper.Map<PublicSr25519>(source.ParaAssignment4);
                     else
                         throw new InvalidMappingException("Error while getting ParaAssignment value from SessionKeys storage");
 

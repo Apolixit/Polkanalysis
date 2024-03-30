@@ -9,10 +9,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
 {
     internal static class ScanAssemblyMapping
     {
-        public static IEnumerable<ScanMappingResult> ScanMappings(string netApiExtAssembly, string domainAssembly)
-        {
+        //public static IEnumerable<ScanMappingResult> ScanMappings(string netApiExtAssembly, string domainAssembly)
+        //{
 
-        }
+        //}
 
         /// <summary>
         /// Do a diff between enum from NetApiExt and Domain

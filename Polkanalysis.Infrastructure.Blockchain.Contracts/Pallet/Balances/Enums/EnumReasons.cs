@@ -24,5 +24,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums
     /// </summary>
     public sealed class EnumReasons : BaseEnum<Reasons>
     {
+        public EnumReasons() : base() { }
+
+        public EnumReasons(Reasons value) : base(value)
+        {
+        }
     }
 }

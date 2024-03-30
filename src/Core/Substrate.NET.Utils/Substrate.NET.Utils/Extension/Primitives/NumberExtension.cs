@@ -31,7 +31,7 @@ namespace Substrate.NET.Utils
         public static double ToDouble(this BigInteger num, int tokenDecimals)
         {
             var divider = new BigInteger(Math.Pow(10, tokenDecimals));
-            return (double)(num / divider);
+            return (double)((double)num / (double)divider);
         }
         public static double ToDouble(this U128 num, int tokenDecimals) => ToDouble(num.Value, tokenDecimals);
         public static double ToDouble(this U128 num, Properties properties) => ToDouble(num.Value, properties.TokenDecimals);

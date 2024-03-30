@@ -13,6 +13,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances
         public U128? Frozen { get; set; }
         public ExtraFlags? Flags { get; set; }
 
+        public AccountData() { }
+
+        public AccountData(U128 free, U128 reserved, U128 miscFrozen, U128 feeFrozen)
+        {
+            Create(free, reserved, miscFrozen, feeFrozen);
+        }
+
+        public AccountData(U128 free, U128 reserved, U128 frozen, ExtraFlags flags)
+        {
+            Create(free, reserved, frozen, flags);
+        }
+
         public void Create(U128 free, U128 reserved, U128 miscFrozen, U128 feeFrozen)
         {
             Free = free;

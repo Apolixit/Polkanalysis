@@ -130,7 +130,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
         public override byte[] Encode()
         {
             var result = new List<byte>();
-            result.AddRange(Additional.Encode());
+            if(Additional.Value is not null)
+                result.AddRange(Additional.Encode());
             result.AddRange(Display.Encode());
             result.AddRange(Legal.Encode());
             result.AddRange(Web.Encode());

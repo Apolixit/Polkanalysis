@@ -51,7 +51,7 @@ namespace Polkanalysis.Domain.Service
             foreach (var (accountAddress, accountInfo) in result)
             {
                 var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
-                var stakingAmount = accountInfo.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
+                var stakingAmount = accountInfo.Data.MiscFrozen?.Value.ToDouble(chainInfo.TokenDecimals);
                 var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
                 accountsDto.Add(new AccountLightDto()
                 {
@@ -71,28 +71,29 @@ namespace Polkanalysis.Domain.Service
         public Task<AccountDto> GetAccountDetailAsync(string accountAddress, CancellationToken cancellationToken)
         {
             EnsureAddressIsValid(accountAddress);
-            return GetAccountDetailInternalAsync(new SubstrateAccount(accountAddress), cancellationToken);
+            return GetAccountDetailAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
 
-        private async Task<AccountDto> GetAccountDetailInternalAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<AccountDto> GetAccountDetailAsync(SubstrateAccount account, CancellationToken token)
         {
-            var locks = await _substrateNodeRepository.Storage.Balances.LocksAsync(account, token);
-            var reserves = await _substrateNodeRepository.Storage.Balances.ReservesAsync(account, token);
+            var (locks, reserves, identity, identity2, identity3, isAccountPoolMember, accountInfo, chainInfo) = await Helper.WaiterHelper.WaitAndReturnAsync(
+                _substrateNodeRepository.Storage.Balances.LocksAsync(account, token),
+                _substrateNodeRepository.Storage.Balances.ReservesAsync(account, token),
+                _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, token),
+                _substrateNodeRepository.Storage.Identity.SubsOfAsync(account, token),
+                _substrateNodeRepository.Storage.Identity.SuperOfAsync(account, token),
+                _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, token),
+                _substrateNodeRepository.Storage.System.AccountAsync(account, token),
+                _substrateNodeRepository.Rpc.System.PropertiesAsync(token)
+            );
 
-            var identity = await _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, token);
-            var identity2 = await _substrateNodeRepository.Storage.Identity.SubsOfAsync(account, token);
-            var identity3 = await _substrateNodeRepository.Storage.Identity.SuperOfAsync(account, token);
-
-            var isAccountPoolMember = await _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, token);
-
-            var accountInfo = await _substrateNodeRepository.Storage.System.AccountAsync(account, token);
-            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.ToStringAddress()
+            var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.ToStringAddress((short)chainInfo.Ss58Format)
                 , token);
-            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(token);
+            
 
             //_substrateNodeRepository.Client.ParasStorage.
             var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
-            var stakingAmount = accountInfo.Data.MiscFrozen.Value.ToDouble(chainInfo.TokenDecimals);
+            var stakingAmount = accountInfo.Data.MiscFrozen?.Value.ToDouble(chainInfo.TokenDecimals);
             var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
 
             //double lockAmount = 0;
@@ -126,7 +127,6 @@ namespace Polkanalysis.Domain.Service
 
                 var additionnal = identity.Info.Additional?.Value?.Select(x => ((Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumData)x.Value[1])?.ToHuman());
                 if (additionnal != null)
-                    await GetAccountIdentityAsync(account, token);
                 {
                     userInformation.Other = string.Join(", ", additionnal);
                 }
@@ -148,7 +148,7 @@ namespace Polkanalysis.Domain.Service
                     Others = othersAmount
                 },
                 AvatarUrl = string.Empty,
-                AccountTypes = accountType
+                AccountTypes = accountType.ToList()
             };
             return accountDto;
         }
@@ -178,12 +178,14 @@ namespace Polkanalysis.Domain.Service
                 }
             }
 
-            return new UserAddressDto()
+            var userAddressDto = new UserAddressDto()
             {
                 Name = name,
                 Address = blockchainAddress,
                 PublicKey = Utils.Bytes2HexString(Utils.GetPublicKeyFrom(account.ToStringAddress()))
             };
+
+            return userAddressDto;
         }
 
         public Task<IEnumerable<AccountType>> GetAccountTypeAsync(string accountAddress, CancellationToken cancellationToken)

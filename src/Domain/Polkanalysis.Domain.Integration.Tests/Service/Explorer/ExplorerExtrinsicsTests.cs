@@ -1,7 +1,7 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using NUnit.Framework;
 
-namespace Polkanalysis.Domain.Integration.Tests.Repository.Explorer
+namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
     [Timeout(RepositoryMaxTimeout)]
     public class ExplorerExtrinsicsTests : ExplorerRepositoryTest

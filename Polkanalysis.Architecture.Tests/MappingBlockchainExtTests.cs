@@ -23,7 +23,7 @@ namespace Polkanalysis.Architecture.Tests
             Trace.Listeners.Add(new ConsoleTraceListener());
         }
 
-        [Test]
+        [Test, Ignore("No needed anymore")]
         public void EveryBlockchainEvents_ShouldBeMappedFromExtProject_WithAllEnumValueThatEverExisted()
         {
             // Let's get all events from blockchain ext

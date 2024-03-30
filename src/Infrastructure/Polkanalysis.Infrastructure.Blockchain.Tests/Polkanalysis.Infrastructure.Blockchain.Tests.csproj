@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\..\..\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj" />
     <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
@@ -47,7 +48,7 @@
 
   <ItemGroup>
     <Reference Include="Polkanalysis.Polkadot.NetApiExt">
-      <HintPath>..\..\..\..\Substrate.NET.Blockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
+      <HintPath>..\..\..\..\SubstrateBlockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
     </Reference>
   </ItemGroup>
 

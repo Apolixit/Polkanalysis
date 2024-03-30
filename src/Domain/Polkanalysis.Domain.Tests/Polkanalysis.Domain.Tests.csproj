@@ -28,6 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Substrate.NET.Wallet" Version="1.0.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
   </ItemGroup>
