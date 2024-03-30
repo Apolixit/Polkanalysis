@@ -43,27 +43,6 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
             Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Scheduled));
-
-            //var result = EventResult.Create(nodeResult);
-            //Assert.IsNotNull(result);
-
-            //var expectedResult = EventResult.Create("Scheduler", "Scheduled", new List<EventDetailsResult>()
-            //{
-            //    new EventDetailsResult()
-            //    {
-            //        ComponentName = "Component_U32",
-            //        Title = "BlockNumber",
-            //        Value = (uint)400
-            //    },
-            //    new EventDetailsResult()
-            //    {
-            //        ComponentName = "Component_U32",
-            //        Title = "Index",
-            //        Value = (uint)0
-            //    },
-            //});
-
-            //Assert.That(result, Is.EqualTo(expectedResult));
         }
 
         /// <summary>

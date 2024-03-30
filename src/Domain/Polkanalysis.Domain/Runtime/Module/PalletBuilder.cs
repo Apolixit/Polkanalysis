@@ -87,10 +87,10 @@ namespace Polkanalysis.Domain.Runtime.Module
             }
 
             Assembly assembly = Assembly.Load("Polkanalysis.Polkadot.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"); //typeof(Polkadot.NetApiExt.Generated.SubstrateClientExt).Assembly;
-            Type? palletType = assembly.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Model.{dynamicCall}");
+            Type? palletType = assembly.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Model.v{_currentMetaData.NodeVersion}.{dynamicCall}");
             if (palletType == null) throw new FormatException($"Dynamic call to EnumCall for pallet {palletName} has failed");
 
-            Type? enumType = assembly.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Model.{dynamicEnum}");
+            Type? enumType = assembly.GetType($"Polkanalysis.Polkadot.NetApiExt.Generated.Model.v{_currentMetaData.NodeVersion}.{dynamicEnum}");
             if (enumType == null) throw new FormatException($"Dynamic call to enum for pallet {palletName} has failed");
 
             IType? callInstance = (IType?)Activator.CreateInstance(palletType);

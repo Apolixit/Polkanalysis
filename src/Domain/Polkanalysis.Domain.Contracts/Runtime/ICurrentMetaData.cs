@@ -6,6 +6,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime
 {
     public interface ICurrentMetaData
     {
+        public uint NodeVersion { get; }
         /// <summary>
         /// Return current MetaData
         /// </summary>

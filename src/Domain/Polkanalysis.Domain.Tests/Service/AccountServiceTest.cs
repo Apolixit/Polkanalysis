@@ -30,7 +30,7 @@ namespace Polkanalysis.Domain.Tests.Service
             _accountService = new AccountService(_substrateRepository);
 
             // Mock Properties
-            _substrateRepository.Rpc.System.PropertiesAsync(Arg.Any<CancellationToken>()).Returns(new Substrate.NetApi.Model.Rpc.Properties()
+            _substrateRepository.Rpc.System.PropertiesAsync(CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.Properties()
             {
                 Ss58Format = 0,
                 TokenDecimals = 10,

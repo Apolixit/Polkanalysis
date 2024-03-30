@@ -2,6 +2,7 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Metadata.V14;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums
 {
@@ -10,12 +11,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums
     {
         public EventRecord() { }
 
-        public EventRecord(EnumPhase phase, EnumRuntimeEvent @event, BaseVec<Hash> topics)
+        public EventRecord(EnumPhase phase, EnumRuntimeEvent runtimeEvent, BaseVec<Hash> topics)
         {
-            Create(phase, @event, topics);
+            Create(phase, new Maybe<EnumRuntimeEvent>(runtimeEvent), topics);
         }
 
-        public void Create(EnumPhase phase, EnumRuntimeEvent maybeEvent, BaseVec<Hash> topics)
+        public EventRecord(EnumPhase phase, Maybe<EnumRuntimeEvent> runtimeEvent, BaseVec<Hash> topics)
+        {
+            Create(phase, runtimeEvent, topics);
+        }
+
+        public void Create(EnumPhase phase, Maybe<EnumRuntimeEvent> maybeEvent, BaseVec<Hash> topics)
         {
             Phase = phase;
             Event = maybeEvent;
@@ -26,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums
         }
 
         public EnumPhase Phase { get; set; }
-        public EnumRuntimeEvent Event { get; set; }
+        public Maybe<EnumRuntimeEvent> Event { get; set; }
         public BaseVec<Hash> Topics { get; set; }
 
         public override byte[] Encode()
@@ -43,7 +49,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums
             var start = p;
             Phase = new EnumPhase();
             Phase.Decode(byteArray, ref p);
-            Event = new EnumRuntimeEvent();
+            Event = new Maybe<EnumRuntimeEvent>();
             Event.Decode(byteArray, ref p);
             Topics = new BaseVec<Hash>();
             Topics.Decode(byteArray, ref p);

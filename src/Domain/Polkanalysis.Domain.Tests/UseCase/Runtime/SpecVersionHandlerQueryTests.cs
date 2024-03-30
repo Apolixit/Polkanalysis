@@ -12,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
 using Substrate.NetApi.Model.Meta;
+using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         [Test]
         public async Task SpecVersionHandlerQuery_GetAll_ShouldSuceedAsync()
         {
+            _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), Arg.Any<CancellationToken>()).Returns(new Hash("xxxx"));
+
             Assert.That(_substrateDbContext.SpecVersionModels.Count(), Is.EqualTo(0));
 
             insertRuntimeVersion(1);

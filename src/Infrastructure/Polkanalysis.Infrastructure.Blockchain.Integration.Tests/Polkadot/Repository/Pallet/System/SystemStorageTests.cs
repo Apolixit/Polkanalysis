@@ -80,10 +80,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        public async Task Events_ShouldWorkAsync()
+        public async Task EventsAt_ShouldWorkAsync()
         {
             // 18,112,436 -> 18,112,443
             var res = await _substrateRepository.At(18112436).Storage.System.EventsAsync(CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task Events_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.At(20127534).Storage.System.EventsAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }

@@ -486,7 +486,7 @@ namespace Polkanalysis.Domain.Service
                     //}
                     try
                     {
-                        _logger.LogInformation($"Event mapped : {eventReceived.Event.Value}");
+                        _logger.LogInformation($"Event mapped : {eventReceived.Event.Mapped}");
                     }
                     catch (Exception ex)
                     {

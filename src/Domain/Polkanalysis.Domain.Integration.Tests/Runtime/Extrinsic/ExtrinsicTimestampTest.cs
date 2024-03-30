@@ -43,7 +43,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
         {
             var extrinsic = new Substrate.NetApi.Model.Extrinsics.Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
             var res = _substrateDecode.DecodeExtrinsic(extrinsic);
-            Assert.IsTrue(true);
+            Assert.That(res.Name, Is.EqualTo("Timestamp"));
         }
     }
 }

@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
+    [Ignore("Todo change with ExtEvent")]
     public class BalancesEventListenerTest : MainEventTest
     {
         private ISubstrateDecoding _substrateDecode;

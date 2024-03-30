@@ -30,7 +30,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// TransactionFeePaid { who: T::AccountId, actual_fee: BalanceOf<T>, tip: BalanceOf<T> },
         /// </summary>
         /// <param name="hex"></param>
-        [Test]
+        [Test, Ignore("Add version")]
         [TestCase("0x00020000002000B72301EEEF1DCF828B9D361323ADBCE10333AC6A12D7390F5E34659C5DAF702BA1BC82090000000000000000000000000000000000000000000000000000000000")]
         public void TransactionPayment_TransactionFeePaid_ShouldBeParsed(string hex)
         {

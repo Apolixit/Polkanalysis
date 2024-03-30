@@ -36,6 +36,9 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 
         public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> Handle(SpecVersionsQuery request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
+
             IQueryable<SpecVersionModel> dbRes = _dbContext.SpecVersionModels;
 
             if (!string.IsNullOrEmpty(request.BlockchainName))

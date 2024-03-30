@@ -18,6 +18,9 @@ namespace Polkanalysis.Domain.Runtime
             _logger = logger;
         }
 
+        public uint NodeVersion => _substrateNodeRepository.RuntimeVersion.SpecVersion;
+
+
         #region Write Type
         public string WriteType(uint typeId)
         {

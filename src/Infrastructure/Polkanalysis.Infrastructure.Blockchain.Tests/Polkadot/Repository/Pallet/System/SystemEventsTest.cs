@@ -68,9 +68,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             Assert.That(automappedEvent.Bytes, Is.EqualTo(mappedEventHex.Bytes));
             Assert.That(automappedEvent.Bytes, Is.EqualTo(mappedEventBytes.Bytes));
 
-            Assert.That(automappedEvent.Event.GetEnum(), Is.EqualTo(RuntimeEvent.ParaInclusion));
+            Assert.That(automappedEvent.Event.Mapped!.GetEnum(), Is.EqualTo(RuntimeEvent.ParaInclusion));
 
-            var subEnum = (Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent)automappedEvent.Event.GetValues();
+            var subEnum = (Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent)automappedEvent.Event.Mapped!.GetValues();
             Assert.That(subEnum.GetEnum(), Is.EqualTo(Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.Event.CandidateBacked));
 
             var globalAnswer = subEnum.GetValues().As<BaseTuple<CandidateReceipt, HeadData, CoreIndex, GroupIndex>>();

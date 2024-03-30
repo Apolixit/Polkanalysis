@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
-    <ProjectReference Include="..\..\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj" />
     <ProjectReference Include="..\src\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
   </ItemGroup>

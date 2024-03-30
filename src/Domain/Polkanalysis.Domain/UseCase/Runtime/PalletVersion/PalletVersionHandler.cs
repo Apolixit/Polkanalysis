@@ -44,6 +44,9 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
 
         public async override Task<Result<IEnumerable<PalletVersionDto>, ErrorResult>> Handle(PalletVersionsQuery request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
+
             var res = await _dbContext.PalletVersionModels
                 .Where(x => x.PalletName == request.PalletName)
                 .Select(x => new PalletVersionDto()
@@ -82,7 +85,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            var endPreviousBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(Math.Min(request.BlockStart - 1, 0)), cancellationToken);
+            var endPreviousBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(Math.Max(request.BlockStart - 1, 0)), cancellationToken);
             var metadataSource = await _substrateService.Rpc.State.GetMetaDataAtAsync(endPreviousBlockHash.Value, cancellationToken);
 
             var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart), cancellationToken);

@@ -14,7 +14,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         {
             var res = await _client.TimestampStorage.DidUpdateAsync(token);
 
-            return res ?? new Bool(false);
+            return res;
         }
 
         public async Task<U64> NowAsync(CancellationToken token)
