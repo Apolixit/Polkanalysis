@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Ardalis.GuardClauses;
+using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
@@ -21,16 +22,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<ParaInfo> ParasAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.paras_registrar.ParaInfoBase, ParaInfo>(
-                await _client.RegistrarStorage.ParasAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.RegistrarStorage.ParasInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.RegistrarStorage.ParasInputType with version {version}");
+
+            return Map<IType, ParaInfo>(
+                await _client.RegistrarStorage.ParasAsync(input, token));
         }
 
         public async Task<Id> PendingSwapAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.RegistrarStorage.PendingSwapInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.RegistrarStorage.PendingSwapInputType with version {version}");
+
             return Map<IType, Id>(
-                await _client.RegistrarStorage.PendingSwapAsync(id, token));
+                await _client.RegistrarStorage.PendingSwapAsync(input, token));
         }
     }
 }

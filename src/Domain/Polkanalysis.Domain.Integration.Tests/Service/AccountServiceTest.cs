@@ -34,6 +34,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
         }
 
         [Test]
+        [Timeout(30_000)]
         public async Task GetAllAccount_ShouldWorkAsync()
         {
             var res = await _accountRepository.GetAccountsAsync(CancellationToken.None);

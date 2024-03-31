@@ -1,6 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Registar
 {
@@ -33,7 +34,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var expectedResult = new ParaInfo(
                 new SubstrateAccount("1qTuG515hwNxAFMSDB6tvhbPtJp1FMmxdcFehfswoJbA3n2"),
                 new U128(1000000000000),
-                new Bool(false)
+                new BaseOpt<Bool>(new Bool(false))
             );
 
             await MockStorageCallWithInputAsync(new Id(2098), coreResult, expectedResult, _substrateRepository.Storage.Registrar.ParasAsync);

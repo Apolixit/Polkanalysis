@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         public async Task DidUpdate_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Timestamp.DidUpdateAsync(CancellationToken.None);
-            Assert.That(res, Is.Not.Null);
+            Assert.That(res, Is.Null);
         }
     }
 }

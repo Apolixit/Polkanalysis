@@ -52,6 +52,7 @@ using AutoMapper.Execution;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using AutoMapper.Internal;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.paras_registrar;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
@@ -1141,9 +1142,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 //        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>, BaseVec<PublicSr25519>>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v2.SessionInfoBase, SessionInfo>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.SessionInfoBase, SessionInfo>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v5.SessionInfoBase, SessionInfo>().IncludeAllDerived();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v6.SessionInfoBase, SessionInfo>().IncludeAllDerived();
 
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v2.ValidatorIndexBase, U32>().IncludeAllDerived().ConvertUsing(x => x.Value);
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.ValidatorIndexBase, U32>().IncludeAllDerived().ConvertUsing(x => x.Value);
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v5.ValidatorIndexBase, U32>().IncludeAllDerived().ConvertUsing(x => x.Value);
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v6.ValidatorIndexBase, U32>().IncludeAllDerived().ConvertUsing(x => x.Value);
 
                 //ExecutorParamsBase
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.executor_params.ExecutorParamsBase, ExecutorParams>().IncludeAllDerived();
@@ -1201,6 +1206,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase, Id>().IncludeAllDerived().ConvertUsing(new IdBaseConverter());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain_primitives.primitives.IdBase, Id>().IncludeAllDerived().ConvertUsing(new IdBaseConverter2());
                 CreateMap<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.IdBase>().ConvertUsing(new IdConverter());
+                CreateMap<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain_primitives.primitives.IdBase>().ConvertUsing(new IdConverter2());
 
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives.HeadDataBase, DataCode>().ConvertUsing(x => new DataCode((BaseVec<U8>)x.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain_primitives.primitives.HeadDataBase, DataCode>().ConvertUsing(x => new DataCode((BaseVec<U8>)x.Value));
@@ -1241,14 +1247,50 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     return destination;
                 }
             }
+
+            public class IdConverter2 : ITypeConverter<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain_primitives.primitives.IdBase>
+            {
+                public Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain_primitives.primitives.IdBase Convert(Id source, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain_primitives.primitives.IdBase destination, ResolutionContext context)
+                {
+                    if (!context.Items.ContainsKey("version"))
+                        throw new SpecVersionMissingException("Version is missing while mapping Id to IdBase");
+
+                    destination = Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain_primitives.primitives.IdBase.Create(source.Bytes ?? source.Encode(), (uint)context.Items["version"]);
+
+                    return destination;
+                }
+            }
         }
 
         public class RegistarStorageProfile : Profile
         {
             public RegistarStorageProfile()
             {
-                CreateMap<
-                    Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.paras_registrar.ParaInfoBase, ParaInfo>().IncludeAllDerived();
+                CreateMap<ParaInfoBase, ParaInfo>().ConvertUsing(new ParaInfoConverter());
+            }
+
+            public class ParaInfoConverter : ITypeConverter<ParaInfoBase, ParaInfo>
+            {
+                public ParaInfo Convert(ParaInfoBase source, ParaInfo destination, ResolutionContext context)
+                {
+                    if (source == null) return new ParaInfo();
+
+                    BaseOpt<Bool> locked;
+                    if (source.Locked is not null)
+                        locked = new BaseOpt<Bool>(source.Locked);
+                    else if (source.Locked1 is not null)
+                        locked = source.Locked1.As<BaseOpt<Bool>>();
+                    else
+                        throw new InvalidMappingException("Error while getting Locked value from ParaInfo storage");
+
+                    destination = new ParaInfo(
+                        context.Mapper.Map<SubstrateAccount>(source.Manager),
+                        source.Deposit,
+                        locked
+                    );
+
+                    return destination;
+                }
             }
         }
 
@@ -1390,21 +1432,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     bool hasBeenMapped = true;
                     IBaseEnum sourceEvent = source.Event ?? source.Event1;
 
-                    if(sourceEvent is null)
+                    if (sourceEvent is null)
                         throw new InvalidMappingException("Error while getting Events value from EventRecord storage");
 
                     try
                     {
                         mappedEvents = (EnumRuntimeEvent)MapEnumInternal(sourceEvent, typeof(EnumRuntimeEvent), context);
-                    } catch(Exception)
+                    }
+                    catch (Exception)
                     {
                         hasBeenMapped = false;
                     }
-                    
+
                     var mappedPhase = context.Mapper.Map<EnumPhase>(source.Phase);
                     //(EnumPhase)MapEnumInternal(source.Phase, typeof(EnumPhase));
                     var mappedTopics = context.Mapper.Map<BaseVec<Hash>>(source.Topics);
-                    
+
                     var eventRuntime = hasBeenMapped ? new Maybe<EnumRuntimeEvent>(mappedEvents!, sourceEvent) : new Maybe<EnumRuntimeEvent>(sourceEvent);
                     destination = new EventRecord(mappedPhase, eventRuntime, mappedTopics);
 

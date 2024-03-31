@@ -226,7 +226,7 @@ namespace Polkanalysis.Worker.Tasks
             {
             };
 
-            var subEvent = (BaseEnumType)ev.Event.Mapped!;
+            var subEvent = (BaseEnumType)ev.Event.Value!;
             await _eventsFactory.ExecuteInsertAsync(
                 eventNode.Module,
                 eventNode.Method,

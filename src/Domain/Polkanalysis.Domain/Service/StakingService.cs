@@ -147,8 +147,8 @@ namespace Polkanalysis.Domain.Service
                 validatorsDto.Add(new ValidatorLightDto()
                 {
                     StashAddress = identity,
-                    SelfBonded = exposure.Own is not null ? exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
-                    TotalBonded = exposure.Total is not null ? exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
+                    SelfBonded = exposure is not null && exposure.Own is not null ? exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
+                    TotalBonded = exposure is not null && exposure.Total is not null ? exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
                     Commission = validatorPrefs.Commission is not null ? (double)validatorPrefs.Commission.Value.Value : 0,
                     NbNominatorsVote = nominatorsCount
                 });
@@ -607,7 +607,7 @@ namespace Polkanalysis.Domain.Service
 
             currentEraDto.NbTotalNominators = currentNbTotalNominators.Value;
             currentEraDto.MinAmountBondNominator = minNominatorBound.ToDouble(chainProperty);
-            currentEraDto.NbMaxNominators = maxNominatorsCount.Value;
+            currentEraDto.NbMaxNominators = maxNominatorsCount is not null ? maxNominatorsCount.Value : 0;
 
             return currentEraDto;
         }

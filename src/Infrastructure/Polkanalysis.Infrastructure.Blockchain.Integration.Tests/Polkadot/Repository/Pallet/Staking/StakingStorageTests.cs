@@ -19,7 +19,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         {
             var era = await _substrateRepository.Storage.Staking.CurrentEraAsync(CancellationToken.None);
 
-            return new U32(era.Value - 1);
+            return new U32(era.Value - 2);
         }
 
         private async Task<(U32, SubstrateAccount)> GetValidatorFromThisEraAsync()

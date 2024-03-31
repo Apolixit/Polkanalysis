@@ -14,12 +14,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 
         public Maybe(T value)
         {
-            Mapped = value;
+            Value = value;
         }
 
         public Maybe(T value, IType core) : this(core)
         {
-            Mapped = value;
+            Value = value;
         }
 
         public Maybe(IType core)
@@ -30,26 +30,26 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         /// <summary>
         /// The mapped value (from Domain)
         /// </summary>
-        public T? Mapped { get; set; }
+        public T? Value { get; set; }
 
         /// <summary>
         /// The core value (from ApiExt)
         /// </summary>
         public IType? Core { get; set; }
         public bool HasBeenMapped
-            => Mapped != null;
+            => Value != null;
 
         public override int TypeSize
         {
             get
             {
-                return HasBeenMapped ? Mapped!.TypeSize : Core.TypeSize;
+                return HasBeenMapped ? Value!.TypeSize : Core.TypeSize;
             }
             set
             {
                 if (HasBeenMapped)
                 {
-                    Mapped!.TypeSize = value;
+                    Value!.TypeSize = value;
                 }
                 else
                 {
@@ -66,7 +66,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 
             if (HasBeenMapped)
             {
-                result.AddRange(Mapped!.Encode());
+                result.AddRange(Value!.Encode());
             }
             else
             {
@@ -80,15 +80,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         {
             var start = p;
 
-            if (HasBeenMapped)
-            {
-                Mapped = new T();
-                Mapped.Decode(byteArray, ref p);
-            }
-            else
-            {
-                throw new InvalidOperationException();
-            }
+            Value = new T();
+            Value.Decode(byteArray, ref p);
+
+            //if (HasBeenMapped)
+            //{
+            //    Mapped = new T();
+            //    Mapped.Decode(byteArray, ref p);
+            //}
+            //else
+            //{
+            //    throw new InvalidOperationException();
+            //}
 
             TypeSize = p - start;
         }

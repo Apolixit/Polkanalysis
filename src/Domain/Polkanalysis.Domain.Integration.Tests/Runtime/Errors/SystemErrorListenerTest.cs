@@ -39,9 +39,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
         public void RuntimeEvent_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
 
-            Assert.That(result.EventName, Is.EqualTo("RuntimeEvent"));
+            var result = EventResult.Create(nodeResult.Children[1].Children[0]);
+
+            Assert.That(result.EventName, Is.EqualTo("ExtrinsicSuccess"));
         }
     }
 }

@@ -8,6 +8,7 @@ using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
+using Ardalis.GuardClauses;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -22,9 +23,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<FundInfo> FundsAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan.FundInfoBase, FundInfo>(
-                await _client.CrowdloanStorage.FundsAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.CrowdloanStorage.FundsInputType(version));
+            
+            Guard.Against.Null(input, $"Unable to get input type from _client.CrowdloanStorage.FundsInputType with version {version}");
+
+            return Map<FundInfoBase, FundInfo>(
+                await _client.CrowdloanStorage.FundsAsync(input!, token));
         }
 
         public async Task<QueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token)

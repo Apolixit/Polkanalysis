@@ -8,6 +8,8 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NetApi.Model.Types;
+using Ardalis.GuardClauses;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -35,28 +37,45 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<Hash> CurrentCodeHashAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.CurrentCodeHashInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.CurrentCodeHashAsync with version {version}");
+
             return Map<IType, Hash>(
-                await _client.ParasStorage.CurrentCodeHashAsync(id, token));
+                await _client.ParasStorage.CurrentCodeHashAsync(input, token));
         }
 
         public async Task<Hash> FutureCodeHashAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.FutureCodeHashInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.FutureCodeHashAsync with version {version}");
+
             return Map<IType, Hash>(
-                await _client.ParasStorage.FutureCodeHashAsync(id, token));
+                await _client.ParasStorage.FutureCodeHashAsync(input, token));
         }
 
         public async Task<U32> FutureCodeUpgradesAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return await _client.ParasStorage.FutureCodeUpgradesAsync(id, token);
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.FutureCodeUpgradesInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.FutureCodeUpgradesAsync with version {version}");
+
+            return await _client.ParasStorage.FutureCodeUpgradesAsync(input, token);
         }
 
         public async Task<DataCode> HeadsAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<IType, DataCode>(await _client.ParasStorage.HeadsAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.HeadsInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.HeadsAsync with version {version}");
+
+            return Map<IType, DataCode>(
+                await _client.ParasStorage.HeadsAsync(input, token));
         }
 
         public async Task<BaseVec<Id>> ParachainsAsync(CancellationToken token)
@@ -67,9 +86,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<EnumParaLifecycle> ParaLifecyclesAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<IBaseEnum, EnumParaLifecycle>(
-                await _client.ParasStorage.ParaLifecyclesAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.ParaLifecyclesInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.ParaLifecyclesAsync with version {version}");
+
+            return Map<IType, EnumParaLifecycle>(
+                await _client.ParasStorage.ParaLifecyclesAsync(input, token));
         }
 
         public async Task<Hash> PastCodeHashAsync(BaseTuple<Id, U32> key, CancellationToken token)
@@ -84,9 +107,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<ParaPastCodeMeta> PastCodeMetaAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.paras.ParaPastCodeMetaBase, ParaPastCodeMeta>(
-                await _client.ParasStorage.PastCodeMetaAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.PastCodeMetaInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.PastCodeMetaAsync with version {version}");
+
+            return Map<IType, ParaPastCodeMeta>(
+                await _client.ParasStorage.PastCodeMetaAsync(input, token));
         }
 
         public async Task<BaseVec<BaseTuple<Id, U32>>> PastCodePruningAsync(CancellationToken token)
@@ -108,9 +135,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<ParaGenesisArgs> UpcomingParasGenesisAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_parachains.paras.ParaGenesisArgsBase, ParaGenesisArgs>(
-                await _client.ParasStorage.UpcomingParasGenesisAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.UpcomingParasGenesisInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.UpcomingParasGenesisAsync with version {version}");
+
+            return Map<IType, ParaGenesisArgs>(
+                await _client.ParasStorage.UpcomingParasGenesisAsync(input, token));
         }
 
         public async Task<BaseVec<BaseTuple<Id, U32>>> UpcomingUpgradesAsync(CancellationToken token)
@@ -125,14 +156,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<EnumUpgradeGoAhead> UpgradeGoAheadSignalAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<IBaseEnum, EnumUpgradeGoAhead>(await _client.ParasStorage.UpgradeGoAheadSignalAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.UpgradeGoAheadSignalInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.UpgradeGoAheadSignalAsync with version {version}");
+
+            return Map<IType, EnumUpgradeGoAhead>(
+                await _client.ParasStorage.UpgradeGoAheadSignalAsync(input, token));
         }
 
         public async Task<EnumUpgradeRestriction> UpgradeRestrictionSignalAsync(Id key, CancellationToken token)
         {
-            var id = await MapIdAsync(key, token);
-            return Map<IBaseEnum, EnumUpgradeRestriction>(await _client.ParasStorage.UpgradeRestrictionSignalAsync(id, token));
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.ParasStorage.UpgradeRestrictionSignalInputType(version));
+
+            Guard.Against.Null(input, $"Unable to get input type from _client.ParasStorage.UpgradeRestrictionSignalAsync with version {version}");
+
+            return Map<IType, EnumUpgradeRestriction>(
+                await _client.ParasStorage.UpgradeRestrictionSignalAsync(input, token));
         }
     }
 }

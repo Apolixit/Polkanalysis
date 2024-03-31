@@ -218,10 +218,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             Assert.That(result.Value[0].Phase.Value, Is.EqualTo(Phase.ApplyExtrinsic));
             Assert.That(result.Value[0].Phase.Value2.As<U32>().Value, Is.EqualTo(0));
             
-            Assert.That(result.Value[0].Event.Mapped!.Value, Is.EqualTo(RuntimeEvent.System));
-            Assert.That(result.Value[0].Event.Mapped!.Value2.As<EnumEvent>().Value, Is.EqualTo(Event.ExtrinsicSuccess));
+            Assert.That(result.Value[0].Event.Value!.Value, Is.EqualTo(RuntimeEvent.System));
+            Assert.That(result.Value[0].Event.Value!.Value2.As<EnumEvent>().Value, Is.EqualTo(Event.ExtrinsicSuccess));
 
-            var extrinsicSuccessAssociatedData = result.Value[0].Event.Mapped!.Value2.As<EnumEvent>().Value2.As<DispatchInfo>();
+            var extrinsicSuccessAssociatedData = result.Value[0].Event.Value!.Value2.As<EnumEvent>().Value2.As<DispatchInfo>();
             Assert.That(extrinsicSuccessAssociatedData.Weight.As<Weight>().RefTime.Value.Value, Is.EqualTo(new BigInteger(229721000)));
             Assert.That(extrinsicSuccessAssociatedData.Weight.As<Weight>().ProofSize.Value.Value, Is.EqualTo(new BigInteger(0)));
             Assert.That(extrinsicSuccessAssociatedData.Class.Value, Is.EqualTo(DispatchClass.Mandatory));

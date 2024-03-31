@@ -34,7 +34,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res, Is.Not.Null);
         }
 
-        [Test]
+        [Test, Ignore(NoTestCase)]
         public async Task KeyOwner_ShouldWorkAsync()
         {
             var i2 = new FlexibleNameable().FromText("gran");

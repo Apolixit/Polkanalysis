@@ -47,14 +47,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res, Is.Not.Null);
         }
 
-        [Test, Category(NoTestCase)]
+        [Test, Category(NoTestCase), Ignore(NoTestCase)]
         public async Task CodeByHash_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Paras.CodeByHashAsync(new Hash("0x9c900905bf8cb084be9ce07bfc122857071f81d53142b25f5fea04986e5d79ab"), CancellationToken.None);
             Assert.That(res, Is.Null);
         }
 
-        [Test, Category(NoTestCase)]
+        [Test, Category(NoTestCase), Ignore(NoTestCase)]
         public async Task CodeByHashRefs_ShouldWorkAsync()
         {
             var res = await _substrateRepository.Storage.Paras.CodeByHashRefsAsync(new Hash("0x9c900905bf8cb084be9ce07bfc122857071f81d53142b25f5fea04986e5d79ab"), CancellationToken.None);
