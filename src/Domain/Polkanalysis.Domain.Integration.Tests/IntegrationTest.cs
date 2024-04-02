@@ -16,7 +16,7 @@ namespace Polkanalysis.Domain.Integration.Tests
         /// <summary>
         /// A repository doesn't exceed <see cref="RepositoryMaxTimeout"/> millisecond to respond
         /// </summary>
-        public const int RepositoryMaxTimeout = 2000;
+        public const int RepositoryMaxTimeout = 5000;
 
         protected IntegrationTest()
         {

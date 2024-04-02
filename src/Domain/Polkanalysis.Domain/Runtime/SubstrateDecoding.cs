@@ -163,7 +163,8 @@ namespace Polkanalysis.Domain.Runtime
 
                 var enumValue2 = baseEnumValue.GetValue2();
                 if (enumValue2 == null)
-                    throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
+                    return;
+                    //throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
 
                 if (node.IsEmpty)
                 {

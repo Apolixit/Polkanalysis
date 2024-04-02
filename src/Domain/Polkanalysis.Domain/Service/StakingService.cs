@@ -370,6 +370,8 @@ namespace Polkanalysis.Domain.Service
         {
             var rewardAccount = await _substrateService.Storage.Staking.PayeeAsync(stashAccount, cancellationToken);
 
+            if (rewardAccount is null) return null;
+
             var account = rewardAccount.Value switch
             {
                 RewardDestination.Staked => stashAccount,
@@ -377,6 +379,7 @@ namespace Polkanalysis.Domain.Service
                 RewardDestination.Stash => stashAccount,
                 RewardDestination.Account => (SubstrateAccount)rewardAccount.Value2,
                 RewardDestination.None => null,
+                _ => throw new NotImplementedException()
             };
 
             if (account == null) return null;
@@ -501,17 +504,22 @@ namespace Polkanalysis.Domain.Service
             };
 
             var rewardAccount = await PayeeAccountAsync(bondedPool.Roles.Depositor, cancellationToken);
+            var creatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken);
+            var nominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken);
+            var stashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
+            var togglerAccount = bondedPool.Roles.StateToggler is not null ? await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken) : null;
+            var rootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
 
             var poolDto = new PoolDto()
             {
                 Name = poolName,
                 PoolGlobalSettings = poolGlobalSettings,
-                CreatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken),
-                NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken),
+                CreatorAccount = creatorAccount,
+                NominatorAccount = nominatorAccount,
                 RewardAccount = rewardAccount,
-                StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken), // TODO change with real stash account
-                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken),
-                RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken),
+                StashAccount = stashAccount, // TODO change with real stash account
+                TogglerAccount = togglerAccount,
+                RootAccount = rootAccount,
                 Metadata = poolMetadata is not null ? Utils.Bytes2HexString(poolMetadata.Value.ToBytes()) : string.Empty,
                 MemberCount = bondedPool.MemberCounter.Value,
                 TotalBonded = bondedPool.Points.Value.ToDouble(chainInfo.TokenDecimals),

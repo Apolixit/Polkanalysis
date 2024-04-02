@@ -227,14 +227,8 @@ namespace Polkanalysis.Domain.Service
             var blockExecutionPhaseTask = _substrateService.At(blockHash).Storage.System.ExecutionPhaseAsync(cancellationToken);
             var specVersionTask = _substrateService.Rpc.State.GetRuntimeVersionAtAsync(blockHash.Value, cancellationToken);
 
-            await Task.WhenAll(new Task[] {
-                currentDateTask,
-                eventsCountTask,
-                blockExecutionPhaseTask,
-                specVersionTask,
-                blockDetailsTask });
+            var (currentDate, eventsCount, blockExecutionPhase, specVersion, blockDetails) = await WaiterHelper.WaitAndReturnAsync(currentDateTask, eventsCountTask, blockExecutionPhaseTask, specVersionTask, blockDetailsTask);
 
-            var blockDetails = await blockDetailsTask;
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
@@ -245,7 +239,7 @@ namespace Polkanalysis.Domain.Service
                 var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
             }
 
-            var status = blockExecutionPhaseTask.Result.Value switch
+            var status = blockExecutionPhase is null ? GlobalStatusDto.BlockStatusDto.Finalized : blockExecutionPhase.Value switch
             {
                 Phase.ApplyExtrinsic => GlobalStatusDto.BlockStatusDto.Broadcasted,
                 Phase.Initialization => GlobalStatusDto.BlockStatusDto.InBlock,
@@ -280,7 +274,7 @@ namespace Polkanalysis.Domain.Service
 
             var blockDto = new BlockDto()
             {
-                Date = _modelBuilder.BuildDateDto(await currentDateTask),
+                Date = _modelBuilder.BuildDateDto(currentDate),
                 ExtrinsicsRoot = blockDetails.Block.Header.ExtrinsicsRoot.Value,
                 ParentHash = blockDetails.Block.Header.ParentHash.Value,
                 StateRoot = blockDetails.Block.Header.StateRoot.Value,
@@ -288,9 +282,9 @@ namespace Polkanalysis.Domain.Service
                 Hash = blockHash.Value,
                 Status = status,
                 NbExtrinsics = (uint)blockDetails.Block.Extrinsics.Length,
-                NbEvents = (await eventsCountTask).Value,
+                NbEvents = eventsCount is not null ? eventsCount.Value : default,
                 NbLogs = (uint)blockDetails.Block.Header.Digest.Logs.Count,
-                SpecVersion = (await specVersionTask).SpecVersion,
+                SpecVersion = specVersion is not null ? specVersion.SpecVersion : default,
                 Validator = authorIdentity,
             };
 
@@ -396,16 +390,17 @@ namespace Polkanalysis.Domain.Service
         {
             var blockHash = await block.ToBlockHashAsync(_substrateService);
             var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
-            if (blockDetails == null)
+            
+            if (blockDetails is null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
             var extrinsicsDto = new List<ExtrinsicDto>();
+            // blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54)
             foreach (var extrinsic in blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54))
             {
                 var encodedExtrinsic = extrinsic.Encode();
                 var hexExtrinsic = Utils.Bytes2HexString(encodedExtrinsic);
-                var extrinsicHash = new Hash();
-                extrinsicHash.Create(hexExtrinsic);
+                var extrinsicHash = new Hash(hexExtrinsic);
                 var extrinsicFromEncoded = new Extrinsic(hexExtrinsic, ChargeTransactionPayment.Default());
                 //var extrinsicFromOfficial = new Extrinsic("0x280403000b207eba5c8501", ChargeTransactionPayment.Default());
                 var isEqual = extrinsic.Equals(extrinsicFromEncoded);
