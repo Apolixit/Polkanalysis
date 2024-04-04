@@ -1,6 +1,7 @@
 ﻿using Polkanalysis.Domain.Contracts.Secondary;
 using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
 {
@@ -12,6 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
         protected ISubstrateService _substrateRepository;
         protected ISubstrateEndpoint _substrateEndpoint;
 
+        protected const string NoTestCase = "NO TEST CASE";
         /// <summary>
         /// A repository doesn't exceed <see cref="RepositoryMaxTimeout"/> millisecond to respond
         /// </summary>
@@ -40,7 +42,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
                 {
                     await _substrateRepository.ConnectAsync();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     Assert.Ignore("Substrate node is not currently running. All tests are ignore.");
                 }

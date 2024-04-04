@@ -4,6 +4,7 @@ using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {

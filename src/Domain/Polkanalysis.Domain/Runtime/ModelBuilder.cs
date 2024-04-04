@@ -7,7 +7,7 @@ using Polkanalysis.Domain.Contracts.Dto.Common;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,7 +78,8 @@ namespace Polkanalysis.Domain.Runtime
             if (id == null) throw new ArgumentNullException($"{nameof(id)}");
 
             var splitted = id.Split("-");
-            if (splitted == null || splitted.Length != 2) throw new FormatException("Bad tupple identifier format");
+            if (splitted.Length != 2) 
+                throw new FormatException("Bad tupple identifier format");
 
             uint mainNumber = 0;
             uint secondaryIndex = 0;

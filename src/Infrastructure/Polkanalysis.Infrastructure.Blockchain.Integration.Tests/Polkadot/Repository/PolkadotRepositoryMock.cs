@@ -4,6 +4,8 @@ using NUnit.Framework;
 using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         {
             _substrateRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
+                new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                 Substitute.For<ILogger<PolkadotService>>()
                 );
         }

@@ -3,7 +3,6 @@ using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
-    public class ModuleInformation : IModuleInformation
+    public class ModuleInformation : IModuleInformationService
     {
         private readonly ICurrentMetaData _currentMetaData;
         private readonly IModelBuilder _modelBuilder;

@@ -4,6 +4,7 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Meta;
 
@@ -11,20 +12,20 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
 {
     public class PalletBuilderTest
     {
-        protected readonly ISubstrateService _substrateRepository;
+        protected readonly ISubstrateService _substrateService;
         private readonly IPalletBuilder _palletBuilder;
         private readonly ICurrentMetaData _currentMetaData;
 
         public PalletBuilderTest()
         {
-            _substrateRepository = Substitute.For<ISubstrateService>();
+            _substrateService = Substitute.For<ISubstrateService>();
 
             //var mockClient = Substitute.For<SubstrateClientExt>(default, default);
             //var mockClient = Substitute.For<ISubstrateClientRepository>();
             //_substrateRepository.Api.Returns(mockClient);
 
             _currentMetaData = Substitute.For<ICurrentMetaData>();
-            _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
+            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData);
         }
 
         [Test]
@@ -93,7 +94,7 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
 
             //_substrateRepository.Api.Returns(Substitute.For<ISubstrateClientRepository>());
 
-            _substrateRepository.RuntimeMetadata.NodeMetadata.Modules.Returns(dictionnaryModule);
+            _substrateService.RuntimeMetadata.NodeMetadata.Modules.Returns(dictionnaryModule);
 
             var timestampType = new NodeTypeVariant()
             {
@@ -104,7 +105,7 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
             {
                 { 0, timestampType }
             };
-            _substrateRepository.RuntimeMetadata.NodeMetadata.Types.Returns(dictionnaryType);
+            _substrateService.RuntimeMetadata.NodeMetadata.Types.Returns(dictionnaryType);
             //var callBuilded = _palletBuilder.BuildCall("Timestamp", new Method(3, 0, new byte[] { 1 }));
 
             //var timestampSet = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.EnumCall();

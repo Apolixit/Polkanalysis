@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
         public required UserAddressDto RewardAccount { get; set; }
         public required UserAddressDto CreatorAccount { get; set; }
         public required UserAddressDto RootAccount { get; set; }
-        public required UserAddressDto TogglerAccount { get; set; }
+        public required UserAddressDto? TogglerAccount { get; set; }
         public required UserAddressDto NominatorAccount { get; set; }
         public required double RewardPool { get; set; }
         public required double TotalBonded { get; set; }

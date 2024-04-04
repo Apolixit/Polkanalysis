@@ -1,54 +1,43 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using IdentityStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.IdentityStorage;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class IdentityStorage : MainStorage, IIdentityStorage
     {
-        public IdentityStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public IdentityStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<Registration> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {
-            var id = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
-
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration,
-                Registration>
-                (id, IdentityStorageExt.IdentityOfParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>(
+                await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
         }
 
         public async Task<BaseVec<BaseOpt<RegistrarInfo>>> RegistrarsAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BoundedVecT21,
-                BaseVec<BaseOpt<RegistrarInfo>>>
-                (IdentityStorageExt.RegistrarsParams, token);
+            return Map<IBaseEnumerable, BaseVec<BaseOpt<RegistrarInfo>>>(
+                await _client.IdentityStorage.RegistrarsAsync(token));
         }
 
-        public async Task<SubsOfResult> SubsOfAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<BaseTuple<U128, BaseVec<SubstrateAccount>>> SubsOfAsync(SubstrateAccount account, CancellationToken token)
         {
-            var id = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
-            return await GetStorageWithParamsAsync<AccountId32, BaseTuple<U128, BoundedVecT20>, SubsOfResult>
-                (id, IdentityStorageExt.SubsOfParams, token);
+
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<IBaseEnumerable, BaseTuple<U128, BaseVec<SubstrateAccount>>>(await _client.IdentityStorage.SubsOfAsync(accountId32, token));
         }
 
         public async Task<BaseTuple<SubstrateAccount, EnumData>> SuperOfAsync(SubstrateAccount account, CancellationToken token)
         {
-            var id = PolkadotMapping.Instance.Map<SubstrateAccount, AccountId32>(account);
-
-            return await GetStorageWithParamsAsync<AccountId32, BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>,
-                BaseTuple<SubstrateAccount, EnumData>>
-                (id, IdentityStorageExt.SuperOfParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<IBaseEnumerable, BaseTuple<SubstrateAccount, EnumData>>(await _client.IdentityStorage.SuperOfAsync(accountId32, token));
         }
     }
 }

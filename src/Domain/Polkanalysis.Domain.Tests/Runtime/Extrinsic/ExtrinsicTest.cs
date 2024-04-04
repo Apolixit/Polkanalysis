@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Extrinsic
 {
@@ -28,15 +29,6 @@ namespace Polkanalysis.Domain.Tests.Runtime.Extrinsic
                 Substitute.For<IPalletBuilder>(),
                 Substitute.For<ICurrentMetaData>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
-        }
-
-        [Test]
-        [TestCase("0x280403000b207eba5c8501")]
-        public async Task GetExtrinsic_ShouldWork(string extrinsicHash)
-        {
-            //var extrinsic = new Extrinsic();
-            //_substrateDecode.DecodeExtrinsic()
-            Assert.Fail();
         }
     }
 }

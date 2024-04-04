@@ -39,7 +39,7 @@ namespace Polkanalysis.Configuration.Extensions
                     if(string.IsNullOrEmpty(blockchainDetail["name"]))
                     {
                         throw new ConfigurationErrorsException("Blockchain name have to be filled in appsettings (BlockchainInformation > Informations > name)");
-                    };
+                    }
 
                     blockchainProjects.Add(new BlockchainProject()
                     {

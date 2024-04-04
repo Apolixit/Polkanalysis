@@ -2,11 +2,11 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Display;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Identity.Enums;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using System.Text;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
+using IdentityExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_identity.types;
+using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Identity
 {
@@ -15,7 +15,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task IdentityOf_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration();
+            var coreResult = new IdentityExt.Registration();
             coreResult.Create("0x04010000000200BB34642400000000000000000000000017506F6C6B61646F742E70726F202D205265616C676172001568747470733A2F2F706F6C6B61646F742E70726F14407265616C6761723A6D61747269782E6F72671368656C6C6F40706F6C6B61646F742E70726F00000D4070726F706F6C6B61646F74");
 
             var identityInfo = new IdentityInfo().From("Polkadot.pro - Realgar", null, "https://polkadot.pro", "@realgar:matrix.org", "hello@polkadot.pro", null, "@propolkadot", null, new BaseVec<BaseTuple<EnumData, EnumData>>(new BaseTuple<EnumData, EnumData>[] { }));
@@ -38,15 +38,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.IdentityOfAsync);
 
-            Assert.That(coreResult.Info.Display.Bytes, Is.EquivalentTo(expectedResult.Info.Display.Bytes));
-            Assert.That(coreResult.Info.Legal.Bytes, Is.EquivalentTo(expectedResult.Info.Legal.Bytes));
-            Assert.That(coreResult.Info.Web.Bytes, Is.EquivalentTo(expectedResult.Info.Web.Bytes));
-            Assert.That(coreResult.Info.Riot.Bytes, Is.EquivalentTo(expectedResult.Info.Riot.Bytes));
-            Assert.That(coreResult.Info.Email.Bytes, Is.EquivalentTo(expectedResult.Info.Email.Bytes));
-            Assert.That(coreResult.Info.PgpFingerprint.Bytes, Is.EquivalentTo(expectedResult.Info.PgpFingerprint.Bytes));
-            Assert.That(coreResult.Info.Twitter.Bytes, Is.EquivalentTo(expectedResult.Info.Twitter.Bytes));
-            Assert.That(coreResult.Info.Image.Bytes, Is.EquivalentTo(expectedResult.Info.Image.Bytes));
-            //Assert.That(coreResult.Info.Additional.Bytes, Is.EquivalentTo(expectedResult.Info.Additional.Bytes));
+            Assert.That(coreResult.Info.Display.Encode(), Is.EquivalentTo(expectedResult.Info.Display.Bytes));
+            Assert.That(coreResult.Info.Legal.Encode(), Is.EquivalentTo(expectedResult.Info.Legal.Bytes));
+            Assert.That(coreResult.Info.Web.Encode(), Is.EquivalentTo(expectedResult.Info.Web.Bytes));
+            Assert.That(coreResult.Info.Riot.Encode(), Is.EquivalentTo(expectedResult.Info.Riot.Bytes));
+            Assert.That(coreResult.Info.Email.Encode(), Is.EquivalentTo(expectedResult.Info.Email.Bytes));
+            Assert.That(coreResult.Info.PgpFingerprint.Encode(), Is.EquivalentTo(expectedResult.Info.PgpFingerprint.Bytes));
+            Assert.That(coreResult.Info.Twitter.Encode(), Is.EquivalentTo(expectedResult.Info.Twitter.Bytes));
+            Assert.That(coreResult.Info.Image.Encode(), Is.EquivalentTo(expectedResult.Info.Image.Bytes));
+            //Assert.That(coreResult.Info.Additional.Encode(), Is.EquivalentTo(expectedResult.Info.Additional.Bytes));
         }
 
         [Test]
@@ -54,14 +54,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.Registration,
+                IdentityExt.Registration,
                 Registration>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.IdentityOfAsync);
         }
 
         [Test]
         public async Task SuperOf_ShouldWorkAsync()
         {
-            var coreResult = new BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>();
+            var coreResult = new BaseTuple<AccountId32Ext, IdentityExt.EnumData>();
             coreResult.Create("0x127A30E486492921E58F2564B36AB1CA21FF630672F0E76920EDD601F8F2B89A07415A494D5554");
 
             var expectedResult = new BaseTuple<SubstrateAccount, EnumData>(
@@ -76,17 +76,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
-                BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_identity.types.EnumData>,
+                BaseTuple<AccountId32Ext, IdentityExt.EnumData>,
                     BaseTuple<SubstrateAccount, EnumData>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SuperOfAsync);
         }
 
         [Test]
         public async Task SubsOf_ShouldWorkAsync()
         {
-            var coreResult = new BaseTuple<U128, BoundedVecT20>();
+            var coreResult = new BaseTuple<U128, BaseVec<AccountId32Ext>>();
             coreResult.Create("0x80E98E118C00000000000000000000000CA4C5B68728F7FDBDB4426714A385017A471D5CD22A156ACD30A40277E6417B600EDAA0D08E8B21D6E8F946EFF381AD4BE29AA63569A54A6A75C91B878B463033F6BE65CC16C65708BB6A0E4B9958FFE23D1C56EE5683670A69DBBBB70C10D507");
 
-            var expectedResult = new SubsOfResult(
+            var expectedResult = new BaseTuple<U128, BaseVec<SubstrateAccount>>(
                 new U128(601590000000),
                 new BaseVec<SubstrateAccount>(new SubstrateAccount[] {
                     new SubstrateAccount("14j3azi9gKGx2de7ADL3dkzZXFzTTUy1t3RND21PymHRXRp6"),
@@ -94,20 +94,28 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                     new SubstrateAccount("16aXLhFh9mZoyW5emqZM6fJWTqbWENGrJkAoGwtR1S8XoFwY")
                 }));
 
-            await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.SubsOfAsync);
+            var res = await MockStorageCallWithInputAsync(new SubstrateAccount(MockAddress), coreResult, expectedResult, _substrateRepository.Storage.Identity.SubsOfAsync);
+
+            Assert.That(res.Value[0].As<U128>().Value, Is.EqualTo(expectedResult.Value[0].As<U128>().Value));
+
+            Assert.That(res.Value[1].As<BaseVec<SubstrateAccount>>().Value[0].As<SubstrateAccount>().ToPolkadotAddress(), Is.EqualTo(expectedResult.Value[1].As<BaseVec<SubstrateAccount>>().Value[0].As<SubstrateAccount>().ToPolkadotAddress()));
+
+            Assert.That(res.Value[1].As<BaseVec<SubstrateAccount>>().Value[1].As<SubstrateAccount>().ToPolkadotAddress(), Is.EqualTo(expectedResult.Value[1].As<BaseVec<SubstrateAccount>>().Value[1].As<SubstrateAccount>().ToPolkadotAddress()));
+
+            Assert.That(res.Value[1].As<BaseVec<SubstrateAccount>>().Value[2].As<SubstrateAccount>().ToPolkadotAddress(), Is.EqualTo(expectedResult.Value[1].As<BaseVec<SubstrateAccount>>().Value[2].As<SubstrateAccount>().ToPolkadotAddress()));
         }
 
         [Test]
         public async Task SubsOfNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync
-                <SubstrateAccount, BaseTuple<U128, BoundedVecT20>, SubsOfResult>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SubsOfAsync);
+                <SubstrateAccount, BaseTuple<U128, BaseVec<AccountId32Ext>>, BaseTuple<U128, BaseVec<SubstrateAccount>>>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Identity.SubsOfAsync);
         }
 
         [Test]
         public async Task Registrars_ShouldWorkAsync()
         {
-            var coreResult = new BoundedVecT21();
+            var coreResult = new BaseVec<BaseOpt<IdentityExt.RegistrarInfo>>();
             coreResult.Create("0x0C014C4BF7F93D0A5ED801EF778F8E7EF58201BDD7E33E167FAF42A01D439283CB430000000000000000000000000000000000000000000000000112CCB53338AC0DA571D3697548346FB5F0B637AC9412F8ABBF6D13588BE7563200B08EF01B00000000000000000000000000000000000000010A8A307EF15B9F928697FA09DCC72A2C19A266C1D32FA158F9916B8B804E1621000000000000000000000000000000000000000000000000");
 
             var expectedResult = new BaseVec<BaseOpt<RegistrarInfo>>(new BaseOpt<RegistrarInfo>[]
@@ -138,7 +146,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task RegistrarsNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                BoundedVecT21,
+                BaseVec<BaseOpt<IdentityExt.RegistrarInfo>>,
                 BaseVec<BaseOpt<RegistrarInfo>>>(_substrateRepository.Storage.Identity.RegistrarsAsync);
         }
     }

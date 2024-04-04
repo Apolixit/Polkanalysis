@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Substrate.NET.API" Version="0.9.7" />
+    <ProjectReference Include="..\..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
   </ItemGroup>
 
 </Project>

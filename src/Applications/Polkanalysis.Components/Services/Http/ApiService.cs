@@ -96,7 +96,7 @@ namespace Polkanalysis.Components.Services.Http
 
             _logger.LogInformation($"Json response : {responseString}");
             var res = JsonSerializer.Deserialize<T>(responseString, options);
-            Guard.Against.Null(res);
+            Guard.Against.Null(res, nameof(res));
 
             return res;
         }

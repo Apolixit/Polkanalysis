@@ -11,7 +11,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
 {
     public abstract class DatabaseTests
     {
-        protected SubstrateDbContext _substrateDbContext;
+        protected SubstrateDbContext _substrateDbContext = default!;
 
         public void SetupBase()
         {

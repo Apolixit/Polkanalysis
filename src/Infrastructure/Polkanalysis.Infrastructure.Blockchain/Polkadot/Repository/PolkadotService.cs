@@ -1,11 +1,7 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Configuration.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
-using Polkanalysis.Domain.Contracts.Secondary.Rpc;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Substrate.NetApi;
@@ -13,6 +9,10 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage;
 using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Events;
 using Substrate.NetApi.Model.Rpc;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
@@ -20,13 +20,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
     {
         private SubstrateClientExt? _polkadotClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
+        private readonly IBlockchainMapping _blockchainMapping;
         private readonly ILogger<PolkadotService> _logger;
 
         public PolkadotService(
             ISubstrateEndpoint substrateconfiguration,
+            IBlockchainMapping blockchainMapping,
             ILogger<PolkadotService> logger)
         {
             _substrateconfiguration = substrateconfiguration;
+            _blockchainMapping = blockchainMapping;
             _logger = logger;
         }
 
@@ -57,7 +60,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             get
             {
                 if (_polkadotStorage == null)
-                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _logger);
+                    _polkadotStorage = new PolkadotStorage(PolkadotClient, _blockchainMapping, _logger);
 
                 return _polkadotStorage;
             }
@@ -85,7 +88,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             get
             {
                 if (_events == null)
-                    _events = new PolkadotEvents(PolkadotClient, _logger);
+                    _events = new PolkadotEvents(PolkadotClient, _blockchainMapping, _logger);
 
                 return _events;
             }
@@ -115,6 +118,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             }
         }
 
+        //IMetadata ISubstrateService.RuntimeMetadata => throw new NotImplementedException();
+
+        //IRpc ISubstrateService.Rpc => throw new NotImplementedException();
+
+        //IConstants ISubstrateService.Constants => throw new NotImplementedException();
+
+        //ICalls ISubstrateService.Calls => throw new NotImplementedException();
+
+        //IEvents ISubstrateService.Events => throw new NotImplementedException();
+
+        //IErrors ISubstrateService.Errors => throw new NotImplementedException();
+
+        //IStorage ITimeQueryable.Storage => throw new NotImplementedException();
+
         public async Task CheckBlockchainStateAsync(Action<bool> isConnectedCallback, CancellationToken cancellationToken, int millisecondCheck = 500)
         {
             try
@@ -129,7 +146,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
                         {
                             await PolkadotClient.ConnectAsync(cancellationToken);
                         }
-                        catch (Exception ex)
+                        catch (System.Exception ex)
                         {
                             // TODO
                         }
@@ -149,21 +166,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             return true; // TODO
         }
 
-        public ITimeQueryable At(U32 blockNumber)
-        {
-            throw new NotImplementedException();
-        }
-
         public ITimeQueryable At(BlockNumber blockNumber)
         {
-            throw new NotImplementedException();
+            Storage.BlockHash = Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).GetAwaiter().GetResult().Value;
+            return this;
         }
 
-        public ITimeQueryable At(uint blockNumber)
-        {
-            //Rpc.Chain.GetBlockHashAsync(new BlockNumber(i), cancellationToken);
-            throw new NotImplementedException();
-        }
+        public ITimeQueryable At(U32 blockNumber) => At(blockNumber.Value);
+
+        public ITimeQueryable At(uint blockNumber) => At(new BlockNumber(blockNumber));
+
+        public ITimeQueryable At(int blockNumber) => At((uint)blockNumber);
 
         public ITimeQueryable At(Hash blockHash)
         {

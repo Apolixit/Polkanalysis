@@ -1,7 +1,9 @@
 ﻿using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,6 +55,20 @@ namespace Substrate.NET.Utils
             }
 
             throw new InvalidCastException();
+        }
+
+        public static T Instanciate<T>(this Type sender)
+        {
+            object? destinationInstance = Activator.CreateInstance(sender);
+
+            if (destinationInstance is null)
+                throw new InvalidOperationException($"Cannot create instance of {sender}");
+
+            var destination = (T)destinationInstance;
+            if (destination is null)
+                throw new InvalidCastException($"Unable to cast {sender.Name} to {nameof(IBaseEnum)}");
+
+            return destination;
         }
     }
 }

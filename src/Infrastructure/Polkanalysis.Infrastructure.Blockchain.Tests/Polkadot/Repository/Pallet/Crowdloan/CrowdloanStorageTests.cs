@@ -1,13 +1,14 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Core.Multi;
+using CrowdloanExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.crowdloan;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Crowdloan
 {
@@ -29,7 +30,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task Funds_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo();
+            var coreResult = new CrowdloanExt.FundInfo();
             coreResult.Create("0x521F755ACF5E3764DDAAB3E330C77125CF2DB266BEE14C6030D7D552F269B01700005039278C040000000000000000000000D42FF274A80A0000000000000000007822D800008053EE7BA80A00000000000000000001220000000B0000001200000037000000");
 
             var expectedResult = new FundInfo();
@@ -46,7 +47,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
                 enumLastContribution,
                 new U32(11),
                 new U32(18),
-                new U32(55));
+                new U32(55),
+                new U32(0));
 
             await MockStorageCallWithInputAsync(new Id(2094), coreResult, expectedResult, _substrateRepository.Storage.Crowdloan.FundsAsync);
         }
@@ -56,14 +58,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
+                CrowdloanExt.FundInfo,
                 FundInfo>(new Id(2), _substrateRepository.Storage.Crowdloan.FundsAsync);
         }
 
         [Test]
         public async Task NewRaise_ShouldWorkAsync()
         {
-            var coreResult = new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>();
+            var coreResult = new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id>();
             coreResult.Create("0x080A0D00000C0D0000");
 
             var expectedResult = new BaseVec<Id>(new Id[]
@@ -78,7 +80,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task NewRaiseNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
+            await MockStorageCallNullAsync<BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id>,
                 BaseVec<Id>>(_substrateRepository.Storage.Crowdloan.NewRaiseAsync);
         }
     }

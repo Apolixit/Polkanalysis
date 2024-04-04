@@ -2,10 +2,14 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Auctions;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System.Numerics;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.primitives;
+
+using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
+using IdExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Auctions
 {
@@ -66,17 +70,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             // Let's build the output we want
             var testAccount = new SubstrateAccount("13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY");
-            var accountId32TestAccount = PolkadotMapping.Instance.Map<SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32>(testAccount);
+            var accountId32TestAccount = (AccountId32Ext)AccountId32Base.Create(testAccount.Encode(), 9200);
             var testId = new Id(1);
-            var idExt = PolkadotMapping.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(testId);
-            var baseTuple = new BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id, U128>(accountId32TestAccount, idExt, new U128(10));
+            var idExt = (IdExt)IdBase.Create(testId.Encode(), 9220);
+            var baseTuple = new BaseTuple<
+                AccountId32Ext,
+                IdExt, 
+                U128>(accountId32TestAccount, idExt, new U128(10));
 
             var extResult = new Arr36BaseOpt();
-            extResult.Create(new[] { new BaseOpt<BaseTuple<
-                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto.AccountId32,
-                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
-                        U128>
-                    >(baseTuple) });
+            //extResult.Create(new[] { new BaseOpt<BaseTuple<AccountId32v9200, Idv9200, U128>>(baseTuple) });
 
             _substrateRepository.AjunaClient.GetStorageAsync<Arr36BaseOpt>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(extResult);
 

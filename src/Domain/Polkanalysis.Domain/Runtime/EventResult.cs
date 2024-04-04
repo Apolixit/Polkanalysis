@@ -22,7 +22,7 @@ namespace Polkanalysis.Domain.Runtime
 
         public static EventResult Create(INode eventNode)
         {
-            if (eventNode.IsEmpty || eventNode.HumanData == null || eventNode.IsLeaf) return null;
+            if (eventNode.IsEmpty || eventNode.HumanData == null && eventNode.IsLeaf) return null;
 
             string palletEventName = eventNode.HumanData.ToString();
 

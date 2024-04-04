@@ -2,112 +2,103 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using StakingStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.StakingStorage;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
 using Substrate.NetApi;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using System;
+using Ardalis.GuardClauses;
+using Newtonsoft.Json.Linq;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class StakingStorage : MainStorage, IStakingStorage
     {
-        public StakingStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public StakingStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<ActiveEraInfo> ActiveEraAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.ActiveEraInfo,
-                ActiveEraInfo>
-                (StakingStorageExt.ActiveEraParams, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ActiveEraInfoBase, ActiveEraInfo>(
+                await _client.StakingStorage.ActiveEraAsync(token));
         }
 
         public async Task<SubstrateAccount> BondedAsync(SubstrateAccount account, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                AccountId32,
-                SubstrateAccount>(PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.BondedParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base, SubstrateAccount>(
+                await _client.StakingStorage.BondedAsync(accountId32, token));
         }
 
         public async Task<BaseVec<BaseTuple<U32, U32>>> BondedErasAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<BaseTuple<U32, U32>>>
-                (StakingStorageExt.BondedErasParams, token);
+            return Map<IBaseEnumerable, BaseVec<BaseTuple<U32, U32>>>(await _client.StakingStorage.BondedErasAsync(token));
         }
 
         public async Task<U128> CanceledSlashPayoutAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U128>(StakingStorageExt.CanceledSlashPayoutParams, token);
+            return await _client.StakingStorage.CanceledSlashPayoutAsync(token);
         }
 
         public async Task<Percent> ChillThresholdAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Percent,
-                Percent>(StakingStorageExt.ChillThresholdParams, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PercentBase, Percent>(
+                await _client.StakingStorage.ChillThresholdAsync(token));
         }
 
         public async Task<U32> CounterForNominatorsAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.CounterForNominatorsParams, token);
+            return await _client.StakingStorage.CounterForNominatorsAsync(token);
         }
 
         public async Task<U32> CounterForValidatorsAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.CounterForValidatorsParams, token);
+            return await _client.StakingStorage.CounterForValidatorsAsync(token);
         }
 
         public async Task<U32> CurrentEraAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.CurrentEraParams, token);
+            return await _client.StakingStorage.CurrentEraAsync(token);
         }
 
         public async Task SubscribeNewCurrentEraAsync(Action<U32> callbackEra, CancellationToken token)
         {
-            await SubscribeToAsync(StakingStorageExt.CurrentEraParams(), callbackEra, token);
+            await SubscribeToAsync(RequestGenerator.GetStorage("Staking", "CurrentEra", Substrate.NetApi.Model.Meta.Storage.Type.Plain), callbackEra, token);
         }
 
         public async Task<U32> CurrentPlannedSessionAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.CurrentPlannedSessionParams, token);
+            return await _client.StakingStorage.CurrentPlannedSessionAsync(token);
         }
 
         public async Task<EraRewardPoints> ErasRewardPointsAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                U32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EraRewardPoints,
-                EraRewardPoints>(key, StakingStorageExt.ErasRewardPointsParams, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.EraRewardPointsBase, EraRewardPoints>(
+                await _client.StakingStorage.ErasRewardPointsAsync(key, token));
         }
 
         public async Task<Exposure> ErasStakersAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-               BaseTuple<U32, AccountId32>,
-               Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
-               Exposure>(PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasStakersParams, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ErasStakersInputType(version));
+
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>(
+                await _client.StakingStorage.ErasStakersAsync(input, token));
         }
 
-        //public async Task<BaseTuple<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersAsync(U32 key, CancellationToken token)
-        //{
-        //    return await GetStorageWithParamsAsync<
-        //       U32,
-        //       BaseTuple<BaseTuple<U32, AccountId32>, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure>,
-        //       BaseTuple<BaseTuple<U32, SubstrateAccount>, Exposure>>(key, ErasStakersParams, token);
-        //}
-        public QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure> ErasStakersQuery(uint eraId)
+        public async Task<QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token)
         {
-            var x = ErasStakersParams(new U32(1080));
-            return new QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>(
-                GetAllStorageAsync<BaseTuple<U32, AccountId32>,
-                BaseTuple<U32, SubstrateAccount>,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
-                Exposure>, "Staking", "ErasStakers", ErasStakersParams(new U32(eraId)), 36);
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = _client.StakingStorage.ErasStakersInputType(version);
+            var storageKeyType = ExposureBase.TypeByVersion(version);
+
+            var storageFunction = new QueryStorageFunction("Staking", "ErasStakers", sourceKeyType, storageKeyType, 36, ErasStakersParams(new U32(eraId)));
+
+            return new QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>(GetAllStorageAsync<BaseTuple<U32, SubstrateAccount>, Exposure>, storageFunction);
         }
         private static string ErasStakersParams(U32 key)
         {
@@ -121,147 +112,139 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<Exposure> ErasStakersClippedAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-               BaseTuple<U32, AccountId32>,
-               Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Exposure,
-               Exposure>(PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasStakersClippedParams, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ErasStakersInputType(version));
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>(
+                await _client.StakingStorage.ErasStakersClippedAsync(input, token));
         }
 
         public async Task<U32> ErasStartSessionIndexAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<U32, U32>(key, StakingStorageExt.ErasStartSessionIndexParams, token);
+            return await _client.StakingStorage.ErasStartSessionIndexAsync(key, token);
         }
 
         public async Task<U128> ErasTotalStakeAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<U32, U128>(key, StakingStorageExt.ErasTotalStakeParams, token);
+            return await _client.StakingStorage.ErasTotalStakeAsync(key, token);
         }
 
         public async Task<ValidatorPrefs> ErasValidatorPrefsAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-               BaseTuple<U32, AccountId32>,
-               Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
-               ValidatorPrefs>(PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ErasValidatorPrefsParams, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ErasValidatorPrefsInputType(version));
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ValidatorPrefsBase, ValidatorPrefs>(
+                await _client.StakingStorage.ErasValidatorPrefsAsync(input, token));
         }
 
         public async Task<U128> ErasValidatorRewardAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<U32, U128>(key, StakingStorageExt.ErasValidatorRewardParams, token);
+            return await _client.StakingStorage.ErasValidatorRewardAsync(key, token);
         }
 
         public async Task<EnumForcing> ForceEraAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumForcing, EnumForcing>(StakingStorageExt.ForceEraParams, token);
+            return Map<IBaseEnum, EnumForcing>(await _client.StakingStorage.ForceEraAsync(token));
         }
 
         public async Task<BaseVec<SubstrateAccount>> InvulnerablesAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<AccountId32>, BaseVec<SubstrateAccount>>(StakingStorageExt.InvulnerablesParams, token);
+            return Map<IBaseEnumerable, BaseVec<SubstrateAccount>>(await _client.StakingStorage.InvulnerablesAsync(token));
         }
 
         public async Task<StakingLedger> LedgerAsync(SubstrateAccount account, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.StakingLedger,
-                StakingLedger>(PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.LedgerParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<StakingLedgerBase, StakingLedger>(
+                await _client.StakingStorage.LedgerAsync(accountId32, token));
         }
 
-        public async Task<U32> MaxNominatorsCountAsync(CancellationToken token)
+        public async Task<U32?> MaxNominatorsCountAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.MaxNominatorsCountParams, token);
+            return await _client.StakingStorage.MaxNominatorsCountAsync(token);
         }
 
         public async Task<U32> MaxValidatorsCountAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.MaxValidatorsCountParams, token);
+            return await _client.StakingStorage.MaxValidatorsCountAsync(token);
         }
 
         public async Task<Perbill> MinCommissionAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
-                >(StakingStorageExt.MinCommissionParams, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase, Perbill>(
+                await _client.StakingStorage.MinCommissionAsync(token));
         }
 
         public async Task<U32> MinimumValidatorCountAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.MinimumValidatorCountParams, token);
+            return await _client.StakingStorage.MinimumValidatorCountAsync(token);
         }
 
         public async Task<U128> MinNominatorBondAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U128>(StakingStorageExt.MinNominatorBondParams, token);
+            return await _client.StakingStorage.MinNominatorBondAsync(token);
         }
 
         public async Task<U128> MinValidatorBondAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U128>(StakingStorageExt.MinValidatorBondParams, token);
+            return await _client.StakingStorage.MinValidatorBondAsync(token);
         }
 
         public async Task<Nominations> NominatorsAsync(SubstrateAccount account, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations,
-                Nominations>(PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.NominatorsParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.NominationsBase, Nominations>(
+                await _client.StakingStorage.NominatorsAsync(accountId32, token));
         }
 
-        public QueryStorage<SubstrateAccount, Nominations> NominatorsQuery()
+        public async Task<QueryStorage<SubstrateAccount, Nominations>> NominatorsQueryAsync(CancellationToken token)
         {
-            return new QueryStorage<SubstrateAccount, Nominations>(
-                GetAllStorageAsync<AccountId32, SubstrateAccount, Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.Nominations, Nominations>, "Staking", "Nominators");
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = _client.StakingStorage.NominatorsInputType(version);
+            var storageKeyType = NominationsBase.TypeByVersion(version);
+            var storageFunction = new QueryStorageFunction("Staking", "Nominators", sourceKeyType, storageKeyType, 32);
+
+            return new QueryStorage<SubstrateAccount, Nominations>(GetAllStorageAsync<SubstrateAccount, Nominations>, storageFunction);
         }
 
         public async Task<U128> NominatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                BaseTuple<U32, AccountId32>,
-                U128>(
-                PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.NominatorSlashInEraParams, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.NominatorSlashInEraInputType(version));
+            return await _client.StakingStorage.NominatorSlashInEraAsync(input, token);
         }
 
-        public async Task<BaseVec<BaseTuple<U32, Bool>>> OffendingValidatorsAsync(CancellationToken token)
+        public async Task<BaseVec<BaseTuple<U32, Bool>>?> OffendingValidatorsAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<BaseTuple<U32, Bool>>>(StakingStorageExt.OffendingValidatorsDefault, token);
+            return Map<IBaseEnumerable, BaseVec<BaseTuple<U32, Bool>>>(await _client.StakingStorage.OffendingValidatorsAsync(token));
         }
 
         public async Task<EnumRewardDestination> PayeeAsync(SubstrateAccount account, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.EnumRewardDestination,
-                EnumRewardDestination>(
-                PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.PayeeParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<IBaseEnum, EnumRewardDestination>(await _client.StakingStorage.PayeeAsync(accountId32, token));
         }
 
         public async Task<SlashingSpans> SlashingSpansAsync(SubstrateAccount account, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SlashingSpans,
-                SlashingSpans>(
-                PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.SlashingSpansParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.slashing.SlashingSpansBase, SlashingSpans>(
+                await _client.StakingStorage.SlashingSpansAsync(accountId32, token));
         }
 
         public async Task<Perbill> SlashRewardFractionAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, Perbill
-                >(StakingStorageExt.SlashRewardFractionParams, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase, Perbill>(
+                await _client.StakingStorage.SlashRewardFractionAsync(token));
         }
 
         public async Task<SpanRecord> SpanSlashAsync(BaseTuple<SubstrateAccount, U32> key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                BaseTuple<AccountId32, U32>,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.slashing.SpanRecord,
-                SpanRecord>(
-                PolkadotMapping.Instance.Map<BaseTuple<AccountId32, U32>>(key), StakingStorageExt.SpanSlashParams, token);
+            Guard.Against.Null(key);
+
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.SpanSlashInputType(version));
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.slashing.SpanRecordBase, SpanRecord>(
+                await _client.StakingStorage.SpanSlashAsync(input, token));
         }
 
         // Add versionning ?
@@ -274,38 +257,42 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<U128> MinimumActiveStakeAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U128>(StakingStorageExt.MinimumActiveStakeParams, token);
+            return await _client.StakingStorage.MinimumActiveStakeAsync(token);
         }
 
-        public async Task<BaseVec<UnappliedSlash>> UnappliedSlashesAsync(U32 key, CancellationToken token)
+        public async Task<BaseVec<UnappliedSlash>?> UnappliedSlashesAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                U32,
-                BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.UnappliedSlash>,
-                BaseVec<UnappliedSlash>>(key, StakingStorageExt.UnappliedSlashesParams, token);
+            return Map<IBaseEnumerable, BaseVec<UnappliedSlash>>(await _client.StakingStorage.UnappliedSlashesAsync(key, token));
         }
 
         public async Task<U32> ValidatorCountAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(StakingStorageExt.ValidatorCountParams, token);
+            return await _client.StakingStorage.ValidatorCountAsync(token);
         }
 
         public async Task<ValidatorPrefs> ValidatorsAsync(SubstrateAccount account, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                AccountId32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_staking.ValidatorPrefs,
-                ValidatorPrefs
-                >(PolkadotMapping.Instance.Map<AccountId32>(account), StakingStorageExt.ValidatorsParams, token);
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ValidatorPrefsBase, ValidatorPrefs>(
+                await _client.StakingStorage.ValidatorsAsync(accountId32, token));
         }
 
-        public async Task<BaseTuple<Perbill, U128>> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
+        public async Task<BaseTuple<Perbill, U128>?> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                BaseTuple<U32, AccountId32>,
-                BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_arithmetic.per_things.Perbill, U128>,
-                BaseTuple<Perbill, U128>
-                >(PolkadotMapping.Instance.Map<BaseTuple<U32, AccountId32>>(key), StakingStorageExt.ValidatorSlashInEraParams, token);
+            var version = await GetVersionAsync(token);
+            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.StakingStorage.ValidatorSlashInEraInputType(version));
+
+            return Map<IBaseEnumerable, BaseTuple<Perbill, U128>>(await _client.StakingStorage.ValidatorSlashInEraAsync(input, token));
+        }
+
+        public async Task<U32> HistoryDepthAsync(CancellationToken token)
+        {
+            return await _client.StakingStorage.ValidatorCountAsync(token);
+        }
+
+        public async Task<EnumReleases> StorageVersionAsync(CancellationToken token)
+        {
+            return Map<IBaseEnum, EnumReleases>(await _client.StakingStorage.StorageVersionAsync(token));
         }
     }
 }

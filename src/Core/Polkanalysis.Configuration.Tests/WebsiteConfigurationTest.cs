@@ -20,10 +20,12 @@ namespace Polkanalysis.Configuration.Tests
 
             var websiteConfig = new WebsiteConfiguration(config);
 
-            Assert.That(websiteConfig, Is.Not.Null);
-            Assert.That(websiteConfig.Maintenance, Is.Not.Null);
-            Assert.That(websiteConfig.Maintenance.IsActivated, Is.EqualTo(true));
-            Assert.That(websiteConfig.Maintenance.EndTime, Is.EqualTo("Soon..."));
+            Assert.Multiple(() => {
+                Assert.That(websiteConfig, Is.Not.Null);
+                Assert.That(websiteConfig.Maintenance, Is.Not.Null);
+                Assert.That(websiteConfig.Maintenance.IsActivated, Is.EqualTo(true));
+                Assert.That(websiteConfig.Maintenance.EndTime, Is.EqualTo("Soon..."));
+            });
         }
 
         [Test]
@@ -35,10 +37,14 @@ namespace Polkanalysis.Configuration.Tests
 
             var websiteConfig = new WebsiteConfiguration(config);
 
-            Assert.That(websiteConfig, Is.Not.Null);
-            Assert.That(websiteConfig.Maintenance, Is.Not.Null);
-            Assert.That(websiteConfig.Maintenance.IsActivated, Is.EqualTo(false));
-            Assert.That(websiteConfig.Maintenance.EndTime, Is.EqualTo(string.Empty));
+            Assert.Multiple(() =>
+            {
+                Assert.That(websiteConfig, Is.Not.Null);
+                Assert.That(websiteConfig.Maintenance, Is.Not.Null);
+                Assert.That(websiteConfig.Maintenance.IsActivated, Is.EqualTo(false));
+                Assert.That(websiteConfig.Maintenance.EndTime, Is.EqualTo(string.Empty));
+            });
+            
         }
 
         [Test]
@@ -50,10 +56,12 @@ namespace Polkanalysis.Configuration.Tests
 
             var websiteConfig = new WebsiteConfiguration(config);
 
-            Assert.That(websiteConfig, Is.Not.Null);
-            Assert.That(websiteConfig.Maintenance, Is.Not.Null);
-            Assert.That(websiteConfig.Maintenance.IsActivated, Is.EqualTo(false));
-            Assert.That(websiteConfig.Maintenance.EndTime, Is.EqualTo(string.Empty));
+            Assert.Multiple(() => {
+                Assert.That(websiteConfig, Is.Not.Null);
+                Assert.That(websiteConfig.Maintenance, Is.Not.Null);
+                Assert.That(websiteConfig.Maintenance.IsActivated, Is.EqualTo(false));
+                Assert.That(websiteConfig.Maintenance.EndTime, Is.EqualTo(string.Empty));
+            });
         }
     }
 }

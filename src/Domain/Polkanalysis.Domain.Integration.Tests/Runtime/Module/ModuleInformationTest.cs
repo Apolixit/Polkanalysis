@@ -1,37 +1,42 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class ModuleInformationTest : PolkadotIntegrationTest
     {
-        private IModuleInformation _moduleRepository;
-        private ISubstrateService _substrateService;
+        private IModuleInformationService _moduleRepository;
 
         [SetUp]
         public void Setup()
         {
             _moduleRepository = new ModuleInformation(
                 new CurrentMetaData(
-                    _substrateRepository,
+                    base._substrateService,
                     Substitute.For<ILogger<CurrentMetaData>>()
             ),
-            new ModelBuilder(), _substrateRepository
+            new ModelBuilder(), base._substrateService
             );
         }
 
         /// <summary>
         /// Got all current module to check if everything is ok
         /// </summary>
+        //private static string[] PolkadotModules = new string[]
+        //{
+        //    "System", "Scheduler", "Preimage", "Babe", "Timestamp", "Indices", "Balances", "TransactionPayment", "Authorship", "Staking", "Offences", "Historical", "Session", "Grandpa", "ImOnline", "AuthorityDiscovery", "Democracy", "Council", "TechnicalCommittee", "PhragmenElection", "TechnicalMembership", "Treasury", "Claims", "Vesting", "Utility", "Identity", "Proxy", "Multisig", "Bounties", "ChildBounties", "Tips", "ElectionProviderMultiPhase", "VoterList", "NominationPools", "FastUnstake", "ParachainsOrigin", "Configuration", "ParasShared", "ParaInclusion", "ParaInherent", "ParaScheduler", "Paras", "Initializer", "Dmp", "Ump", "Hrmp", "ParaSessionInfo", "ParasDisputes", "Registrar", "Slots", "Auctions", "Crowdloan", "XcmPallet"
+        //};
+
         private static string[] PolkadotModules = new string[]
         {
-            "System", "Scheduler", "Preimage", "Babe", "Timestamp", "Indices", "Balances", "TransactionPayment", "Authorship", "Staking", "Offences", "Historical", "Session", "Grandpa", "ImOnline", "AuthorityDiscovery", "Democracy", "Council", "TechnicalCommittee", "PhragmenElection", "TechnicalMembership", "Treasury", "Claims", "Vesting", "Utility", "Identity", "Proxy", "Multisig", "Bounties", "ChildBounties", "Tips", "ElectionProviderMultiPhase", "VoterList", "NominationPools", "FastUnstake", "ParachainsOrigin", "Configuration", "ParasShared", "ParaInclusion", "ParaInherent", "ParaScheduler", "Paras", "Initializer", "Dmp", "Ump", "Hrmp", "ParaSessionInfo", "ParasDisputes", "Registrar", "Slots", "Auctions", "Crowdloan", "XcmPallet"
+            "System", "Scheduler", "Preimage", "Babe", "Timestamp", "Indices", "Balances", "TransactionPayment", "Authorship", "Staking", "Offences", "Historical", "Session", "Grandpa", "ImOnline", "AuthorityDiscovery", "Treasury", "Claims", "Vesting", "Utility", "Identity", "Proxy", "Multisig", "Bounties", "ChildBounties", "ElectionProviderMultiPhase", "VoterList", "NominationPools", "FastUnstake", "ParachainsOrigin", "Configuration", "ParasShared", "ParaInclusion", "ParaInherent", "ParaScheduler", "Paras", "Initializer", "Dmp", "Hrmp", "ParaSessionInfo", "ParasDisputes", "Registrar", "Slots", "Auctions", "Crowdloan", "XcmPallet"
         };
 
         [Test, Timeout(2000)]
@@ -45,7 +50,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             Assert.That(res.Events.Count, Is.EqualTo(21));
 
             Assert.That(res.Calls, Is.Not.Null);
-            Assert.That(res.Calls.Count, Is.EqualTo(9));
+            Assert.That(res.Calls.Count, Is.EqualTo(7));
 
             Assert.That(res.Storage, Is.Not.Null);
             Assert.That(res.Storage.Count, Is.EqualTo(7));

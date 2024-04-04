@@ -15,7 +15,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Metadata
         public void Setup()
         {
             _currentMetaData = new CurrentMetaData(
-                _substrateRepository,
+                _substrateService,
                 Substitute.For<ILogger<CurrentMetaData>>());
         }
 

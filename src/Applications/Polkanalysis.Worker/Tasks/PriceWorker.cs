@@ -1,13 +1,15 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Primary.Price;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Parameters.Context;
 
 namespace Polkanalysis.Worker.Tasks
 {
-    public class PriceWorker
+    public class PriceWorker : BackgroundService
     {
         private readonly ISubstrateService _polkadotRepository;
         private readonly IMediator _mediator;
@@ -34,6 +36,11 @@ namespace Polkanalysis.Worker.Tasks
         protected DateTime FirstDayToken()
         {
             return new DateTime(2022, 01, 01);
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            RunAsync(stoppingToken);
         }
 
         /// <summary>

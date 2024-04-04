@@ -2,49 +2,59 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using CrowdloanStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.CrowdloanStorage;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
-using Polkanalysis.Infrastructure.Blockchain.Mapper;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
+using Ardalis.GuardClauses;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class CrowdloanStorage : MainStorage, ICrowdloanStorage
     {
-        public CrowdloanStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public CrowdloanStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<U32> EndingsCountAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(CrowdloanStorageExt.EndingsCountParams, token);
+            return await _client.CrowdloanStorage.EndingsCountAsync(token);
         }
 
         public async Task<FundInfo> FundsAsync(Id key, CancellationToken token)
         {
-            var id = PolkadotMapping.Instance.Map<Id, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>(key);
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.CrowdloanStorage.FundsInputType(version));
+            
+            Guard.Against.Null(input, $"Unable to get input type from _client.CrowdloanStorage.FundsInputType with version {version}");
 
-            return await GetStorageWithParamsAsync<
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
-                FundInfo>
-                (id, CrowdloanStorageExt.FundsParams, token);
+            return Map<FundInfoBase, FundInfo>(
+                await _client.CrowdloanStorage.FundsAsync(input!, token));
         }
 
-        public QueryStorage<Id, FundInfo> FundsQuery()
+        public async Task<QueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token)
         {
-            return new QueryStorage<Id, FundInfo>(
-                GetAllStorageAsync<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id,
-                Id,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime_common.crowdloan.FundInfo,
-                FundInfo>, "Crowdloan", "Funds");
+            var version = await GetVersionAsync(token);
+            var sourceKeyType = _client.CrowdloanStorage.FundsInputType(version);
+            var storageKeyType = FundInfoBase.TypeByVersion(version);
+            var storageFunction = new QueryStorageFunction("Crowdloan", "Funds", sourceKeyType, storageKeyType, 4);
+
+            return new QueryStorage<Id, FundInfo>(GetAllStorageAsync<Id, FundInfo>, storageFunction);
         }
 
         public async Task<BaseVec<Id>> NewRaiseAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_parachain.primitives.Id>,
-                BaseVec<Id>>(CrowdloanStorageExt.NewRaiseParams, token);
+            return Map<IBaseEnumerable, BaseVec<Id>>(await _client.CrowdloanStorage.NewRaiseAsync(token));
+        }
+
+        public async Task<U32> NextFundIndexAsync(CancellationToken token)
+        {
+            return await _client.CrowdloanStorage.NextFundIndexAsync(token);
+        }
+
+        public async Task<U32> NextTrieIndexAsync(CancellationToken token)
+        {
+            return await _client.CrowdloanStorage.NextTrieIndexAsync(token);
         }
     }
 }

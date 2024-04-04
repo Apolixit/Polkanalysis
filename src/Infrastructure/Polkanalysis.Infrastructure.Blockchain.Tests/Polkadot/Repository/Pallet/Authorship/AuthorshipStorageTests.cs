@@ -1,16 +1,10 @@
 ﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Authorship.Enums;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.bounded.bounded_vec;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship.Enums;
+using Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_authorship;
+using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Authorship
 {
@@ -19,10 +13,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task Uncles_ShouldWorkAsync()
         {
-            var coreResult = new BoundedVecT7();
-            var uncleEnum = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem();
-            uncleEnum.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_authorship.UncleEntryItem.InclusionHeight, new U32(10));
-            coreResult.Create(Utils.Bytes2HexString(new BaseVec<Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_authorship.EnumUncleEntryItem>(new[]
+            var coreResult = new BaseVec<Ext.EnumUncleEntryItem>();
+            var uncleEnum = new Ext.EnumUncleEntryItem();
+            uncleEnum.Create(Ext.UncleEntryItem.InclusionHeight, new U32(10));
+            coreResult.Create(Utils.Bytes2HexString(new BaseVec<Ext.EnumUncleEntryItem>(new[]
             {
                 uncleEnum
             }).Encode()));
@@ -40,7 +34,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task UnclesNull_ShouldWorkAsync()
         {
-            await MockStorageCallNullAsync<BoundedVecT7, BaseVec<EnumUncleEntryItem>>(_substrateRepository.Storage.Authorship.UnclesAsync);
+            await MockStorageCallNullAsync<BaseVec<Ext.EnumUncleEntryItem>, BaseVec<EnumUncleEntryItem>>(_substrateRepository.Storage.Authorship.UnclesAsync);
         }
 
         [Test]

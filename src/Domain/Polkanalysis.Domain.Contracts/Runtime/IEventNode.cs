@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System;
 using System.Collections.Generic;
 using System.Linq;

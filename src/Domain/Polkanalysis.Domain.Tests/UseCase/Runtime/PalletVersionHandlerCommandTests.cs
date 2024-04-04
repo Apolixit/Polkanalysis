@@ -4,6 +4,7 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.UseCase.Runtime.PalletVersion;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Substrate.NET.Metadata.Service;
 using Substrate.NetApi.Model.Types.Base;
@@ -101,7 +102,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             // In database we need to have version 1 of NominationPools pallet because it is new
             Assert.That(_substrateDbContext.PalletVersionModels.Single(x => x.PalletName == "NominationPools").PalletVersion, Is.EqualTo(1));
 
-            // We need to have version two for every pallet in changedPallet list
+            // We need to have version 2 for every pallet in changedPallet list
             foreach(var pallet in changedPallets)
             {
                 Assert.That(_substrateDbContext.PalletVersionModels.Last(x => x.PalletName == pallet).PalletVersion, Is.EqualTo(2));

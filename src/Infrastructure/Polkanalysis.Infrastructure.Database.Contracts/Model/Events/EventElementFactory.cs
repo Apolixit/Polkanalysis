@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events
 {

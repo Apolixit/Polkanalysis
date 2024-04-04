@@ -7,6 +7,7 @@ using Polkanalysis.Domain.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Primary.Statistics;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.UseCase.Statistics
 {
@@ -26,10 +27,10 @@ namespace Polkanalysis.Domain.UseCase.Statistics
                 .Must((_, account) => account == null || IsAccountValid(account));
 
             RuleFor(c => c.fromBlock)
-                .MustAsync(async (_, block, _) => block == null || await new BlockParameterLike((uint)block).EnsureBlockNumberIsValidAsync(_substrateService));
+                .MustAsync(async (_, block, _) => block == null || await ((BlockParameterLike)block).EnsureBlockNumberIsValidAsync(_substrateService));
 
             RuleFor(c => c.toBlock)
-                .MustAsync(async (_, block, _) => block == null || await new BlockParameterLike((uint)block).EnsureBlockNumberIsValidAsync(_substrateService));
+                .MustAsync(async (_, block, _) => block == null || await ((BlockParameterLike)block).EnsureBlockNumberIsValidAsync(_substrateService));
         }
     }
 

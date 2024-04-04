@@ -5,11 +5,12 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.UseCase.Staking.Era
 {
@@ -31,7 +32,8 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
         {
             var eraId = new U32(request.EraId);
 
-            var result = await _substrateService.Storage.Staking.ErasStakersQuery(eraId.Value).ExecuteAsync(cancellationToken);
+            var erasStakersQuery = await _substrateService.Storage.Staking.ErasStakersQueryAsync(eraId.Value, cancellationToken);
+            var result = await erasStakersQuery.ExecuteAsync(cancellationToken);
 
             if (result == null || !result.Any())
             {

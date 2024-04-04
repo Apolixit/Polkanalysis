@@ -1,17 +1,12 @@
-﻿using Substrate.NetApi;
-using Substrate.NetApi.Model.Types.Base;
+﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Domain.Contracts.Core.Random;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
+using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
+using RuntimeExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Session
 {
@@ -20,7 +15,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task Validators_ShouldWorkAsync()
         {
-            var coreResult = new BaseVec<AccountId32>();
+            var coreResult = new BaseVec<AccountId32Ext>();
             coreResult.Create("0x080000966D74F8027E07B43717B6876D97544FE0D71FACEF06ACC8382749AE944E000B93D72DCC12BD5577438C92A19C4778E12CFB8ADA871A17694E5A2F86C374");
 
             var expectedResult = new BaseVec<SubstrateAccount>(
@@ -38,7 +33,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task ValidatorsNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                BaseVec<AccountId32>,
+                BaseVec<AccountId32Ext>,
                 BaseVec<SubstrateAccount>>(_substrateRepository.Storage.Session.ValidatorsAsync);
         }
 
@@ -72,7 +67,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task QueuedKeys_ShouldWorkAsync()
         {
-            var coreResult = new BaseVec<BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>();
+            var coreResult = new BaseVec<BaseTuple<AccountId32Ext, RuntimeExt.SessionKeys>>();
             coreResult.Create("0x080000966D74F8027E07B43717B6876D97544FE0D71FACEF06ACC8382749AE944E3866D53E02DB8FF21AE934A03E06375BA5F3588BD444902794DDE526FAC2CAE066F60202B962C40E58FCF3481F5773DC178B9FE096F81511EAA4C7BAD20E6120789E92DD38C67EB7D8AF316EDE060936F8FCB834CCC6080F9ED76207BDB2B73748DC56202D8BF42D2F9B89DB6BA75DE85773AE2BAB085B2F8B115F6C3F7512151C9A9A52E094114C0C1CD1AF7B0F7F2023B34B78AD842A87AF690AECBF2DA725E0D5D79067887F1187849D2778DAA7A9109D644A27581A025D7FDFF78441B755000B93D72DCC12BD5577438C92A19C4778E12CFB8ADA871A17694E5A2F86C374FFF437FF18629BF1490E5C9B3EC6F1515D46BB9B2AEAA6E39E36611F2479B50D9C40155989F6072E82CABA245D7DB7E40A60F866B403257976B89ABA6BE2B55B8E7E98DE5E2A79DDBDB78030294BD73E2641B50B5B25FBAA2B40A6CA8CB2E0509EF1E3E727F41EBEB3AEA2815F004002D27714DB121FD6F92FAC8BEDBB9716098AC16E2487AE411A37A41F7A086824B2EFD39C94B3494EFA7C1B708E360B380C66F5B305293C5CE2538E4D8E773A6D51CB10ADC0C50D9B9CBA83E8429A2E2E1E");
 
             var expectedResult = new BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>(
@@ -110,7 +105,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task QueuedKeysNull_ShouldWorkAsync()
         {
             await MockStorageCallNullAsync<
-                BaseVec<BaseTuple<AccountId32, Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys>>,
+                BaseVec<BaseTuple<AccountId32Ext, RuntimeExt.SessionKeys>>,
                 BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>(_substrateRepository.Storage.Session.QueuedKeysAsync);
         }
 
@@ -130,7 +125,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         [Test]
         public async Task NextKeys_ShouldWorkAsync()
         {
-            var coreResult = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys(); coreResult.Create("0x608F61824D3AE16D443CD0FEC15C18590C890D4105E9402CAD8743FB423E52B4BE7C58318C49FF328D53A6D67830A8A046A41F5124824D3CE2E72CC9965EF57E7480718449722DA80B61AAB07EC8079CC85D7756D8C55E8D27689184172AB52D02D1AE50ABF4787916AA4D35E41D807F88E32460FB084187B4070C3A7331F92F20417266880FC4C2DE2E2D5C0529AF712EF5570DB2121F86419A0E63C1DA3D203A2CDCB143BA3E7FA41DCCF5534C6FD36EF91187D55E35DAC9D3925AC08E2C22");
+            var coreResult = new RuntimeExt.SessionKeys(); coreResult.Create("0x608F61824D3AE16D443CD0FEC15C18590C890D4105E9402CAD8743FB423E52B4BE7C58318C49FF328D53A6D67830A8A046A41F5124824D3CE2E72CC9965EF57E7480718449722DA80B61AAB07EC8079CC85D7756D8C55E8D27689184172AB52D02D1AE50ABF4787916AA4D35E41D807F88E32460FB084187B4070C3A7331F92F20417266880FC4C2DE2E2D5C0529AF712EF5570DB2121F86419A0E63C1DA3D203A2CDCB143BA3E7FA41DCCF5534C6FD36EF91187D55E35DAC9D3925AC08E2C22");
 
             var expectedResult = new SessionKeysPolka(
                 new PublicEd25519("0x608f61824d3ae16d443cd0fec15c18590c890d4105e9402cad8743fb423e52b4"),
@@ -149,7 +144,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         {
             await MockStorageCallNullWithInputAsync<
                 SubstrateAccount,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.SessionKeys,
+                RuntimeExt.SessionKeys,
                 SessionKeysPolka>(new SubstrateAccount(MockAddress), _substrateRepository.Storage.Session.NextKeysAsync);
         }
 
@@ -159,7 +154,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             var input = new BaseTuple<FlexibleNameable, Hexa>();
             input.Create(new FlexibleNameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b"));
 
-            var coreResult = new AccountId32();
+            var coreResult = new AccountId32Ext();
             coreResult.Create("0x17316829C406A05CD9CDB8D5DE5FB23D26B3672F8CBCA1FCC6538833589A121A");
 
             var expectedResult = new SubstrateAccount("1XQn94kWaMVJG16AWPKGmYFERfttsjZq4ompSTz2jxHK6uL");
@@ -171,7 +166,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         public async Task KeyOwnerNull_ShouldWorkAsync()
         {
             await MockStorageCallNullWithInputAsync<
-                BaseTuple<FlexibleNameable, Hexa>, AccountId32, SubstrateAccount>(
+                BaseTuple<FlexibleNameable, Hexa>, AccountId32Ext, SubstrateAccount>(
                 new BaseTuple<FlexibleNameable, Hexa>(new FlexibleNameable().FromText("gran"), new Hexa("0xf26945a8a64032a1defa76e720a99649125b55751b6088205e7acab901de670b")), _substrateRepository.Storage.Session.KeyOwnerAsync);
         }
     }

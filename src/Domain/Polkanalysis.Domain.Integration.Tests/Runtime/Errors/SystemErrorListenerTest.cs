@@ -14,12 +14,12 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 
         public SystemErrorListenerTest()
         {
-            var currentMetadata = new CurrentMetaData(_substrateRepository, Substitute.For<ILogger<CurrentMetaData>>());
+            var currentMetadata = new CurrentMetaData(_substrateService, Substitute.For<ILogger<CurrentMetaData>>());
 
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),
-                _substrateRepository,
-                new PalletBuilder(_substrateRepository, currentMetadata),
+                _substrateService,
+                new PalletBuilder(_substrateService, currentMetadata),
                 currentMetadata,
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
@@ -39,9 +39,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
         public void RuntimeEvent_ShouldBeParsed(string hex)
         {
             var nodeResult = _substrateDecode.DecodeEvent(hex);
-            var result = EventResult.Create(nodeResult);
 
-            Assert.That(result.EventName, Is.EqualTo("RuntimeEvent"));
+            var result = EventResult.Create(nodeResult.Children[1].Children[0]);
+
+            Assert.That(result.EventName, Is.EqualTo("ExtrinsicSuccess"));
         }
     }
 }

@@ -3,7 +3,7 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
-using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Substrate.NET.Metadata.Base;
 using Substrate.NET.Metadata.Service;

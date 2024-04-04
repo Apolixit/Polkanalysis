@@ -22,8 +22,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         public PalletBuilderTest()
         {
             _logger = Substitute.For<ILogger<CurrentMetaData>>();
-            _currentMetaData = new CurrentMetaData(_substrateRepository, _logger);
-            _palletBuilder = new PalletBuilder(_substrateRepository, _currentMetaData);
+            _currentMetaData = new CurrentMetaData(_substrateService, _logger);
+            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData);
         }
 
         [Test]
@@ -32,12 +32,12 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         {
             var callBuilded = _palletBuilder.BuildCall("Timestamp", new Method(3, 0, Utils.HexToByteArray(hex)));
 
-            var timestampSet = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.EnumCall();
+            var timestampSet = new Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.EnumCall();
 
             var timestampTarget = new BaseCom<U64>();
             timestampTarget.Create(new CompactInteger(1670094366012));
 
-            timestampSet.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.pallet_timestamp.pallet.Call.set, timestampTarget);
+            timestampSet.Create(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call.set, timestampTarget);
 
             Assert.That(callBuilded.Encode(), Is.EqualTo(timestampSet.Encode()));
         }

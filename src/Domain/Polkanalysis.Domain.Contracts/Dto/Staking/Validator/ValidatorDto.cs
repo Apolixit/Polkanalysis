@@ -3,7 +3,7 @@ using Polkanalysis.Domain.Contracts.Dto.Era;
 using Polkanalysis.Domain.Contracts.Dto.Staking;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Session;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;

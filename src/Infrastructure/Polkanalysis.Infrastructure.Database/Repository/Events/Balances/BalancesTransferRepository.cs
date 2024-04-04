@@ -2,14 +2,14 @@
 using Microsoft.Extensions.Logging;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
             IType data,
             CancellationToken token)
         {
-            var convertedData = _mapping.Mapper.Map<BaseTuple<SubstrateAccount, SubstrateAccount, U128>>(data);
+            var convertedData = _mapping.Map<IType, BaseTuple<SubstrateAccount, SubstrateAccount, U128>>(data);
 
             var transferAmount = ((U128)convertedData.Value[2]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 

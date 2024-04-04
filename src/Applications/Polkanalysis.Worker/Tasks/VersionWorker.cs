@@ -1,14 +1,16 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using StreamJsonRpc;
 using System.Threading;
 
 namespace Polkanalysis.Worker.Tasks
 {
-    public class VersionWorker
+    public class VersionWorker : BackgroundService
     {
         private readonly ISubstrateService _polkadotService;
         private readonly IMediator _mediator;
@@ -21,6 +23,11 @@ namespace Polkanalysis.Worker.Tasks
             _polkadotService = polkadotService;
             _mediator = mediator;
             _logger = logger;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            RunAsync(stoppingToken);
         }
 
         public async Task RunAsync(CancellationToken stoppingToken)
@@ -105,7 +112,7 @@ namespace Polkanalysis.Worker.Tasks
         public async Task SubscribeNewUpgradeVersionAsync(CancellationToken cancellationToken)
         {
             await _polkadotService.Storage.System.SubscribeNewLastRuntimeUpgradeAsync(
-                async (Domain.Contracts.Secondary.Pallet.SystemCore.LastRuntimeUpgradeInfo lastRuntimeUpgradeInfo) =>
+                async (Infrastructure.Blockchain.Contracts.Pallet.System.LastRuntimeUpgradeInfo lastRuntimeUpgradeInfo) =>
             {
                 _logger.LogInformation($"New Runtime upgrade ! Runtime spec name {lastRuntimeUpgradeInfo.SpecName} /  Runtime spec version {lastRuntimeUpgradeInfo.SpecVersion}");
 

@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Helpers\**" />
-    <EmbeddedResource Remove="Helpers\**" />
-    <None Remove="Helpers\**" />
+    <Compile Remove="Bajun\**" />
+    <Compile Remove="Kusama\**" />
+    <EmbeddedResource Remove="Bajun\**" />
+    <EmbeddedResource Remove="Kusama\**" />
+    <None Remove="Bajun\**" />
+    <None Remove="Kusama\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,14 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Blockchains\Polkanalysis.Polkadot.NetApiExt\Polkanalysis.Polkadot.NetApiExt.csproj" />
+    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Contracts\Polkanalysis.Configuration.Contracts.csproj" />
+    <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Kusama\" />
-    <Folder Include="Bajun\" />
+    <Reference Include="Polkanalysis.Polkadot.NetApiExt">
+      <HintPath>..\..\..\..\SubstrateBlockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

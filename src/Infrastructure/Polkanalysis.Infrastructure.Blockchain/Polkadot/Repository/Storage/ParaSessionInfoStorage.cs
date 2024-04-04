@@ -3,45 +3,43 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Public;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.ParaSessionInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.sp_core.crypto;
-using ParaSessionStorageExt = Polkanalysis.Polkadot.NetApiExt.Generated.Storage.ParaSessionInfoStorage;
+using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
     public class ParaSessionInfoStorage : MainStorage, IParaSessionInfoStorage
     {
-        public ParaSessionInfoStorage(SubstrateClientExt client, ILogger logger) : base(client, logger) { }
+        public ParaSessionInfoStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<BaseVec<SubstrateAccount>> AccountKeysAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                U32,
-                BaseVec<AccountId32>,
-                BaseVec<SubstrateAccount>>
-                (key, ParaSessionStorageExt.AccountKeysParams, token);
+            return Map<IBaseEnumerable, BaseVec<SubstrateAccount>>(await _client.ParaSessionInfoStorage.AccountKeysAsync(key, token));
         }
 
         public async Task<BaseVec<PublicSr25519>> AssignmentKeysUnsafeAsync(CancellationToken token)
         {
-            return await GetStorageAsync<
-                BaseVec<
-                        Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.assignment_app.Public>, BaseVec<PublicSr25519>>
-                        (ParaSessionStorageExt.AssignmentKeysUnsafeParams, token);
+            return Map<IBaseEnumerable, BaseVec<PublicSr25519>>(await _client.ParaSessionInfoStorage.AssignmentKeysUnsafeAsync(token));
         }
 
         public async Task<U32> EarliestStoredSessionAsync(CancellationToken token)
         {
-            return await GetStorageAsync<U32>(ParaSessionStorageExt.EarliestStoredSessionParams, token);
+            return await _client.ParaSessionInfoStorage.EarliestStoredSessionAsync(token);
+        }
+
+        public async Task<ExecutorParams> SessionExecutorParamsAsync(U32 key, CancellationToken token)
+        {
+            return Map<IType, ExecutorParams>(
+                await _client.ParaSessionInfoStorage.SessionExecutorParamsAsync(key, token));
         }
 
         public async Task<SessionInfo> SessionsAsync(U32 key, CancellationToken token)
         {
-            return await GetStorageWithParamsAsync<
-                U32,
-                Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_primitives.v2.SessionInfo,
-                SessionInfo>(key, ParaSessionStorageExt.SessionsParams, token);
+            return Map<IType, SessionInfo>(
+                await _client.ParaSessionInfoStorage.SessionsAsync(key, token));
         }
     }
 }

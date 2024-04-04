@@ -8,12 +8,11 @@ Polkanalysis is a Substrate-based blockchain explorer written in .NET.
 It provide front end application and display aggregated data from the blockchain.
 
 ## Developpement state
-__This application is under heavy developpement. It plans to be release Q4 2023 / Q1 2024 !__
+__This application is under heavy developpement. It plans to be release Q1 2024 !__
 
 The application currently support :
 * [Polkadot](https://polkadot.network)
 * [Kusama](https://kusama.network/)
-* [Bajun](https://ajuna.io/)
 
 For more information about the project, please check the Roadmap
 

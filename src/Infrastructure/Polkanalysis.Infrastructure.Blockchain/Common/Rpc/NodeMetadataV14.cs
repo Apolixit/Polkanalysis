@@ -1,6 +1,6 @@
-﻿using Substrate.NetApi;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Substrate.NetApi;
 using Substrate.NetApi.Model.Meta;
-using Polkanalysis.Domain.Contracts.Secondary.Common;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Common.Rpc
 {

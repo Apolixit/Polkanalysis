@@ -1,10 +1,7 @@
 ﻿using Ardalis.GuardClauses;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using Npgsql;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Substrate.NetApi.Model.Rpc;
@@ -41,8 +38,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository
             IType data,
             CancellationToken token)
         {
-            Guard.Against.Null(eventModel);
-            Guard.Against.Null(data);
+            Guard.Against.Null(eventModel, nameof(eventModel));
+            Guard.Against.Null(data, nameof(data));
 
             try
             {

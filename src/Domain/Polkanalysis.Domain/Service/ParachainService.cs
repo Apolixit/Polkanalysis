@@ -1,18 +1,17 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Paras.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Crowdloan;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Configuration.Contracts.Information;
 using Ardalis.GuardClauses;
 using Polkanalysis.Domain.Contracts.Dto.Informations;
-using Newtonsoft.Json.Linq;
 using Polkanalysis.Domain.Helper;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -54,8 +53,8 @@ namespace Polkanalysis.Domain.Service
 
         public BlockchainProject? GetBlockchainProject(string relayChain, uint parachainId)
         {
-            Guard.Against.NullOrEmpty(relayChain);
-            Guard.Against.Null(parachainId);
+            Guard.Against.NullOrEmpty(relayChain, nameof(relayChain));
+            Guard.Against.Null(parachainId, nameof(parachainId));
 
             var infos = _blockchainStaticInformations.RelayChains.SingleOrDefault(x => x.RelayChainName == relayChain);
             if (infos == null)
@@ -173,7 +172,8 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<CrowdloanLightDto>> GetCrowdloansAsync(CancellationToken cancellationToken)
         {
-            var crowdloans = await _substrateNodeRepository.Storage.Crowdloan.FundsQuery().ExecuteAsync(cancellationToken);
+            var fundsQuery = await _substrateNodeRepository.Storage.Crowdloan.FundsQueryAsync(cancellationToken);
+            var crowdloans = await fundsQuery.ExecuteAsync(cancellationToken);
 
             var crowdloansDto = new List<CrowdloanLightDto>();
             if (crowdloans == null) return crowdloansDto;

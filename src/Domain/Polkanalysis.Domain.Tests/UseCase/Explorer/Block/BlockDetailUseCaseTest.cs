@@ -19,21 +19,21 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
     public class BlockDetailUseCaseTest : UseCaseTest<BlockDetailHandler, BlockDto, BlockDetailsQuery>
     {
-        protected IExplorerService _explorerRepository;
+        protected IExplorerService _explorerService;
 
         [SetUp]
         public override void Setup()
         {
-            _explorerRepository = Substitute.For<IExplorerService>();
+            _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<BlockDetailHandler>>();
-            _useCase = new BlockDetailHandler(_explorerRepository, _logger);
+            _useCase = new BlockDetailHandler(_explorerService, _logger);
             base.Setup();
         }
 
         [Test]
         public async Task BlockDetailUseCaseReturnNullDto_ShouldFailedAsync()
         {
-            _explorerRepository.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
+            _explorerService.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
             var result = await _useCase.Handle(new BlockDetailsQuery(1), CancellationToken.None);
 
@@ -46,7 +46,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         [Test]
         public async Task BlockDetailUseCaseWithBlockNumber_ShouldSucceedAsync()
         {
-            _explorerRepository.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
+            _explorerService.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
             var result = await _useCase.Handle(new BlockDetailsQuery(1), CancellationToken.None);
 
@@ -57,7 +57,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         [Test]
         public async Task BlockDetailCaseWithBlockHash_ShouldSucceedAsync()
         {
-            _explorerRepository.GetBlockDetailsAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
+            _explorerService.GetBlockDetailsAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
             var result = await _useCase.Handle(new BlockDetailsQuery("0x00"), CancellationToken.None);
 

@@ -2,23 +2,23 @@
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.UseCase.Runtime;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Module
 {
     public class ModuleDetailUseCaseTest : 
         UseCaseTest<RuntimeModuleDetailHandler, ModuleDetailDto, RuntimeModuleDetailQuery>
     {
-        private IModuleInformation _moduleRepository;
+        private IModuleInformationService _moduleRepository;
 
         [SetUp]
         public override void Setup()
         {
             _logger = Substitute.For<ILogger<RuntimeModuleDetailHandler>>();
-            _moduleRepository = Substitute.For<IModuleInformation>();
+            _moduleRepository = Substitute.For<IModuleInformationService>();
 
             _useCase = new RuntimeModuleDetailHandler(_logger, _moduleRepository);
             base.Setup();

@@ -4,8 +4,10 @@ using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using PolkadotRuntime = Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using PolkadotRuntime = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using SystemEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -36,7 +38,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
             PrerequisiteEvent(nodeResult);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.ParaInclusion));
-            Assert.That(nodeResult.Method, Is.EqualTo(Polkanalysis.Domain.Contracts.Secondary.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.Event.CandidateBacked));
+            Assert.That(nodeResult.Method, Is.EqualTo(Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.Event.CandidateBacked));
         }
 
         [Test, Ignore("Debug Event updates")]

@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
 using Substrate.NET.Metadata.Service;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -17,7 +18,7 @@ namespace Polkanalysis.Domain.Runtime
             services.AddScoped<IPalletBuilder, PalletBuilder>();
             services.AddScoped<INodeMapping, EventNodeMapping>();
             services.AddScoped<ICurrentMetaData, CurrentMetaData>();
-            services.AddScoped<IModuleInformation, ModuleInformation>();
+            services.AddScoped<IModuleInformationService, ModuleInformation>();
             services.AddScoped<IMetadataService, MetadataService>();
 
             return services;

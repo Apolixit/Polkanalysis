@@ -6,12 +6,10 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Era;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.NominationPools.Enums;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums;
 using static Polkanalysis.Domain.Contracts.Dto.GlobalStatusDto;
-using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Domain.Helper;
 using Substrate.NetApi.Model.Rpc;
 using Ardalis.GuardClauses;
@@ -24,8 +22,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
 using Polkanalysis.Domain.Helper.Enumerables;
-using System.ComponentModel.DataAnnotations;
-using Polkanalysis.Infrastructure.Common.Migrations;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -150,8 +147,8 @@ namespace Polkanalysis.Domain.Service
                 validatorsDto.Add(new ValidatorLightDto()
                 {
                     StashAddress = identity,
-                    SelfBonded = exposure.Own is not null ? exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
-                    TotalBonded = exposure.Total is not null ? exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
+                    SelfBonded = exposure is not null && exposure.Own is not null ? exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
+                    TotalBonded = exposure is not null && exposure.Total is not null ? exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
                     Commission = validatorPrefs.Commission is not null ? (double)validatorPrefs.Commission.Value.Value : 0,
                     NbNominatorsVote = nominatorsCount
                 });
@@ -236,7 +233,7 @@ namespace Polkanalysis.Domain.Service
 
             // List eras
             var bondedEras = await _substrateService.Storage.Staking.BondedErasAsync(cancellationToken);
-            Guard.Against.Null(bondedEras);
+            Guard.Against.Null(bondedEras, nameof(bondedEras));
 
             foreach (var bondedEra in bondedEras.Value)
             {
@@ -373,6 +370,8 @@ namespace Polkanalysis.Domain.Service
         {
             var rewardAccount = await _substrateService.Storage.Staking.PayeeAsync(stashAccount, cancellationToken);
 
+            if (rewardAccount is null) return null;
+
             var account = rewardAccount.Value switch
             {
                 RewardDestination.Staked => stashAccount,
@@ -380,6 +379,7 @@ namespace Polkanalysis.Domain.Service
                 RewardDestination.Stash => stashAccount,
                 RewardDestination.Account => (SubstrateAccount)rewardAccount.Value2,
                 RewardDestination.None => null,
+                _ => throw new NotImplementedException()
             };
 
             if (account == null) return null;
@@ -388,8 +388,9 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
         {
-            var nominatorsResult = await _substrateService.Storage.Staking.NominatorsQuery().Take(100).ExecuteAsync(cancellationToken);
-            Guard.Against.Null(nominatorsResult);
+            var nominatorsQuery = await _substrateService.Storage.Staking.NominatorsQueryAsync(cancellationToken);
+            var nominatorsResult = await nominatorsQuery.Take(100).ExecuteAsync(cancellationToken);
+            Guard.Against.Null(nominatorsResult, nameof(nominatorsResult));
 
             var nominatorsDto = new List<NominatorLightDto>();
             if (nominatorsResult.Count == 0) return nominatorsDto;
@@ -503,17 +504,22 @@ namespace Polkanalysis.Domain.Service
             };
 
             var rewardAccount = await PayeeAccountAsync(bondedPool.Roles.Depositor, cancellationToken);
+            var creatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken);
+            var nominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken);
+            var stashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
+            var togglerAccount = bondedPool.Roles.StateToggler is not null ? await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken) : null;
+            var rootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
 
             var poolDto = new PoolDto()
             {
                 Name = poolName,
                 PoolGlobalSettings = poolGlobalSettings,
-                CreatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken),
-                NominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken),
+                CreatorAccount = creatorAccount,
+                NominatorAccount = nominatorAccount,
                 RewardAccount = rewardAccount,
-                StashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken), // TODO change with real stash account
-                TogglerAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken),
-                RootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken),
+                StashAccount = stashAccount, // TODO change with real stash account
+                TogglerAccount = togglerAccount,
+                RootAccount = rootAccount,
                 Metadata = poolMetadata is not null ? Utils.Bytes2HexString(poolMetadata.Value.ToBytes()) : string.Empty,
                 MemberCount = bondedPool.MemberCounter.Value,
                 TotalBonded = bondedPool.Points.Value.ToDouble(chainInfo.TokenDecimals),
@@ -538,7 +544,7 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<PoolLightDto>> GetPoolsAsync(CancellationToken cancellationToken)
         {
-            var poolsQuery = _substrateService.Storage.NominationPools.BondedPoolsQuery();
+            var poolsQuery = await _substrateService.Storage.NominationPools.BondedPoolsQueryAsync(cancellationToken);
             var pools = await poolsQuery.ExecuteAsync(cancellationToken);
             Guard.Against.Null(pools);
 
@@ -609,7 +615,7 @@ namespace Polkanalysis.Domain.Service
 
             currentEraDto.NbTotalNominators = currentNbTotalNominators.Value;
             currentEraDto.MinAmountBondNominator = minNominatorBound.ToDouble(chainProperty);
-            currentEraDto.NbMaxNominators = maxNominatorsCount.Value;
+            currentEraDto.NbMaxNominators = maxNominatorsCount is not null ? maxNominatorsCount.Value : 0;
 
             return currentEraDto;
         }

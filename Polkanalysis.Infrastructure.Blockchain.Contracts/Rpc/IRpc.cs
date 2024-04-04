@@ -1,0 +1,12 @@
+﻿using Substrate.NetApi.Modules.Contracts;
+
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc
+{
+    public interface IRpc
+    {
+        public IChain Chain { get; }
+        public IState State { get; }
+        public IAuthor Author { get; }
+        public ISystem System { get; }
+    }
+}

@@ -1,18 +1,15 @@
 ﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Extrinsics;
-using Substrate.NetApi.Model.Meta;
-using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi.Model.Types.Metadata.V14;
-using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.SystemCore.Enums;
+using Ardalis.GuardClauses;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -67,12 +64,9 @@ namespace Polkanalysis.Domain.Runtime
         public IEventNode DecodeEvent(EventRecord ev)
         {
             var eventNode = new EventNode();
-            if (!ev.Event.HasBeenMapped) return eventNode;
+            //if (!ev.Event.HasBeenMapped) return eventNode;
 
             VisitNode(eventNode, ev);
-
-            //eventNode.Module = eventNode.HumanData;
-            //eventNode.Method = eventNode.Children.First().HumanData;
 
             _logger.LogTrace("Node created from EventRecord");
             return eventNode;
@@ -169,7 +163,8 @@ namespace Polkanalysis.Domain.Runtime
 
                 var enumValue2 = baseEnumValue.GetValue2();
                 if (enumValue2 == null)
-                    throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
+                    return;
+                    //throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
 
                 if (node.IsEmpty)
                 {
@@ -247,14 +242,14 @@ namespace Polkanalysis.Domain.Runtime
         {
             if (value.GetValue() == null) return;
 
-            var isArray = value.GetValue().GetType().IsArray;
+            var isArray = value.GetValue()!.GetType().IsArray;
 
             if(isArray)
             {
                 var valueArray = value.GetValueArray();
 
                 if (valueArray == null)
-                    throw new ArgumentNullException($"{nameof(valueArray)} GetValueArray() is null");
+                    throw new ArgumentException($"{nameof(valueArray)} GetValueArray() is null");
 
                 foreach (IType currentValue in valueArray)
                 {
@@ -272,7 +267,9 @@ namespace Polkanalysis.Domain.Runtime
                 }
             } else
             {
-                var currentValue = (IType)value.GetValue();
+                var currentValue = (IType?)value.GetValue();
+                Guard.Against.Null(currentValue, nameof(currentValue));
+
                 if (currentValue.GetType().IsGenericType)
                 {
                     var childNode = new GenericNode().AddData(currentValue);
@@ -296,17 +293,6 @@ namespace Polkanalysis.Domain.Runtime
         private bool HasComplexeField(IType value)
         {
             return true;
-            var customAttributes = value.GetType().CustomAttributes;
-            if (customAttributes != null && customAttributes.Count() > 0)
-            {
-                var hasCompositeAttribute =
-                    customAttributes.Any(attr => attr.AttributeType.Name == "AjunaNodeTypeAttribute" && attr.ConstructorArguments.Any(
-                        constr => constr.Value != null &&
-                        (int)constr.Value == (int)Substrate.NetApi.Model.Types.Metadata.V14.TypeDefEnum.Composite));
-                return hasCompositeAttribute;
-            }
-
-            return false;
         }
 
         

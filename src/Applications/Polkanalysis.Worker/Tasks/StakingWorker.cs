@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Parameters.Context;
@@ -12,7 +14,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Worker.Tasks
 {
-    public class StakingWorker
+    public class StakingWorker : BackgroundService
     {
         private readonly ISubstrateService _polkadotService;
         private readonly IMediator _mediator;
@@ -37,6 +39,11 @@ namespace Polkanalysis.Worker.Tasks
         {
             var lastEra = _polkadotService.Storage.Staking.CurrentEraAsync(CancellationToken.None).Result;
             return lastEra.Value;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            RunAsync(stoppingToken);
         }
 
         public async Task RunAsync(CancellationToken stoppingToken)

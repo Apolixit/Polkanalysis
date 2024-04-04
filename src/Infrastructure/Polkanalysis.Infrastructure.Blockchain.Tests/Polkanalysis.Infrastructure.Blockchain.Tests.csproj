@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
-    <PackageReference Include="NSubstitute" Version="4.4.0" />
+    <PackageReference Include="NSubstitute" Version="5.0.0" />
     <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.16">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -39,9 +39,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
+    <ProjectReference Include="..\..\..\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj" />
     <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Polkanalysis.Polkadot.NetApiExt">
+      <HintPath>..\..\..\..\SubstrateBlockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

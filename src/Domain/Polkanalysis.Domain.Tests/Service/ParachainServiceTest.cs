@@ -4,6 +4,7 @@ using Polkanalysis.Configuration.Contracts.Information;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.Service
 {

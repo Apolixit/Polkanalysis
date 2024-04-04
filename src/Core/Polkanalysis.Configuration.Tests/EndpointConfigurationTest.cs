@@ -18,7 +18,7 @@ namespace Polkanalysis.Configuration.Tests
             var substrateEndpoint = new SubstrateEndpoint(config);
 
             Assert.That(substrateEndpoint.BlockchainName, Is.EqualTo("Polkadot"));
-            Assert.That(substrateEndpoint.WsEndpointUri, Is.EqualTo(new Uri("wss://rpc.polkadot.io")));
+            Assert.That(substrateEndpoint.WsEndpointUri, Is.EqualTo(new Uri("wss://polkadot-rpc.dwellir.com")));
             Assert.That(substrateEndpoint.ApiUri, Is.Null);
             Assert.That(substrateEndpoint.PrometheusUri, Is.Null);
         }
@@ -33,7 +33,7 @@ namespace Polkanalysis.Configuration.Tests
             var substrateEndpoint = new SubstrateEndpoint(config);
 
             Assert.That(substrateEndpoint.BlockchainName, Is.EqualTo("Polkadot"));
-            Assert.That(substrateEndpoint.WsEndpointUri, Is.EqualTo(new Uri("wss://rpc.polkadot.io")));
+            Assert.That(substrateEndpoint.WsEndpointUri, Is.EqualTo(new Uri("wss://polkadot-rpc.dwellir.com")));
         }
 
         [Test]

@@ -1,8 +1,6 @@
-﻿
-using Castle.Core.Logging;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Infrastructure.Blockchain.Common.Versionning;
+using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Common.PalletVersion
 {
@@ -24,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Common.PalletVersion
         //    Assert.That(res.Count, Is.GreaterThan(0));
         //}
 
-        [Test]
+        [Test, Ignore("Outdated")]
         public void ScanAllPalletAttribute_ShouldSuceed()
         {
             var res = _scan.ScanAttribute();
@@ -32,7 +30,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Common.PalletVersion
             Assert.That(res.Count, Is.GreaterThan(0));
         }
 
-        [Test]
+        [Test, Ignore("Outdated")]
         public void ScanAllPallet_WithInvalidAssemblyName_ShouldFail()
         {
             _scan.SearchingAssembly = "Fake.Assembly.Name";

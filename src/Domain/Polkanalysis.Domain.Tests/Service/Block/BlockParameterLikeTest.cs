@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Polkanalysis.Domain.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using System;

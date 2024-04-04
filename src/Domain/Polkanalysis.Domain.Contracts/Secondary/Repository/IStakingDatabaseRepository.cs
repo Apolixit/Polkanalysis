@@ -1,5 +1,5 @@
 ﻿using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Secondary.Pallet.Staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 

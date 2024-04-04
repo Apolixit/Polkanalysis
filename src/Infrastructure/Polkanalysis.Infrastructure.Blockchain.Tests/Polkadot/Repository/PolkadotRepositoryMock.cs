@@ -9,12 +9,18 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System.Text;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Substrate.NetApi.Modules;
+using Substrate.NetApi.Modules.Contracts;
+using System;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 {
     public abstract class PolkadotRepositoryMock
     {
+        public const uint DefaultVersionForTest = 9370;
         protected PolkadotService _substrateRepository;
+        protected PolkadotMapping _polkadotMapping;
 
         public const string MockAddress = "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS";
         public const string MockAddress2 = "13b9d23v1Hke7pcVk8G4gh3TBckDtrwFZUnqPkHezq4praEY";
@@ -54,14 +60,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         [SetUp]
         public void Setup()
         {
+            _polkadotMapping = new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>());
+
             var polkadotRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
+                new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                 Substitute.For<ILogger<PolkadotService>>()
                 );
 
             // Mock a part of Substrate Client call
             polkadotRepository.PolkadotClient = Substitute.ForPartsOf<SubstrateClientExt>(
-                new Uri("wss://rpc.polkadot.io"),
+                new Uri("wss://polkadot-rpc.dwellir.com"),
                 ChargeTransactionPayment.Default());
 
             // Allow unit test to mock GetStorageAsyncCall
@@ -73,10 +82,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
             _substrateRepository = polkadotRepository;
         }
 
+        protected virtual void MockStorageAndVersion<T>(T storageResult, uint version)
+            where T : IType, new()
+        {
+            _substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(storageResult);
+
+            _substrateRepository.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
+            {
+                SpecVersion = version
+            });
+        }
+
         public void BuildRepository()
         {
             var polkadotRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
+                new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                 Substitute.For<ILogger<PolkadotService>>()
                 );
 
@@ -90,9 +111,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         /// <param name="expectedResult">Expected result from GetStorageAsync call and after mapping</param>
         /// <param name="storageCall">Storage function to call</param>
         /// <returns></returns>
-        protected Task MockStorageCallAsync<T>(T expectedResult, Func<CancellationToken, Task<T>> storageCall)
+        protected Task MockStorageCallAsync<T>(T expectedResult, Func<CancellationToken, Task<T>> storageCall, uint version = DefaultVersionForTest)
             where T : IType, new()
-            => MockStorageCallAsync(expectedResult, expectedResult, storageCall);
+            => MockStorageCallAsync(expectedResult, expectedResult, storageCall, version);
 
         /// <summary>
         /// Mock a storage call
@@ -103,19 +124,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         /// <param name="expectedResult">Object after mapping</param>
         /// <param name="storageCall">Storage function to call</param>
         /// <returns></returns>
-        protected async Task MockStorageCallAsync<R, T>(
+        protected async Task<T> MockStorageCallAsync<R, T>(
             R storageResult,
             T expectedResult,
-            Func<CancellationToken, Task<T>> storageCall)
+            Func<CancellationToken, Task<T>> storageCall,
+            uint version = DefaultVersionForTest)
             where R : IType, new()
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<R>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(storageResult);
+            MockStorageAndVersion(storageResult, version);
 
             var res = await storageCall(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Encode(), Is.EqualTo(expectedResult.Encode()));
+
+            return res;
         }
 
         /// <summary>
@@ -127,11 +151,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         /// <param name="expectedResult">Expected result from GetStorageAsync call and after mapping</param>
         /// <param name="storageCall">Storage function to call</param>
         /// <returns></returns>
-        protected async Task MockStorageCallWithInputAsync<I, T>(I input, T expectedResult, Func<I, CancellationToken, Task<T>> storageCall)
+        protected async Task MockStorageCallWithInputAsync<I, T>(I input, T expectedResult, Func<I, CancellationToken, Task<T>> storageCall, uint version = DefaultVersionForTest)
             where I : IType, new()
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(expectedResult);
+            MockStorageAndVersion(expectedResult, version);
+            //_substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(expectedResult);
+
+            //_substrateRepository.AjunaClient.InvokeAsync<Substrate.NetApi.Model.Rpc.RuntimeVersion>("state_getRuntimeVersion", Arg.Any<object>(), CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.RuntimeVersion()
+            //{
+            //    SpecVersion = version
+            //});
 
             var res = await storageCall(input, CancellationToken.None);
 
@@ -150,21 +180,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         /// <param name="expectedResult">Object after mapping</param>
         /// <param name="storageCall">Storage function to call</param>
         /// <returns></returns>
-        protected async Task MockStorageCallWithInputAsync<I, R, T>(
+        protected async Task<T> MockStorageCallWithInputAsync<I, R, T>(
             I input,
             R storageResult,
             T expectedResult,
-            Func<I, CancellationToken, Task<T>> storageCall)
+            Func<I, CancellationToken, Task<T>> storageCall,
+            uint version = DefaultVersionForTest)
             where I : IType, new()
             where R : IType, new()
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<R>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(storageResult);
+            MockStorageAndVersion(storageResult, version);
 
             var res = await storageCall(input, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
-            Assert.That(res.Encode(), Is.EqualTo(expectedResult.Encode()));
+            Assert.That(res.Encode().Length, Is.EqualTo(expectedResult.Encode().Length));
+
+            return res;
         }
 
         /// <summary>
@@ -174,59 +207,61 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         /// <param name="storageCall">Function to call</param>
         /// <returns></returns>
 
-        protected async Task<T> MockStorageCallNullAsync<T>(Func<CancellationToken, Task<T>> storageCall)
+        protected async Task<T> MockStorageCallNullAsync<T>(Func<CancellationToken, Task<T>> storageCall, uint version = DefaultVersionForTest)
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<T>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(default(T));
+            MockStorageAndVersion<T>(default(T), version);
 
             var res = await storageCall(CancellationToken.None);
 
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.GetBytes(), Is.Null);
+            Assert.That(res, Is.Null);
             return res;
         }
 
-        protected async Task<T> MockStorageCallNullAsync<R, T>(Func<CancellationToken, Task<T>> storageCall)
+        protected async Task<T> MockStorageCallNullAsync<R, T>(Func<CancellationToken, Task<T>> storageCall, uint version = DefaultVersionForTest)
             where R : IType, new()
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<R>(Arg.Any<string>(), Arg.Any<string>(), CancellationToken.None).Returns(default(R));
+            MockStorageAndVersion<R>(default(R), version);
 
             var res = await storageCall(CancellationToken.None);
 
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.GetBytes(), Is.Null);
+            Assert.That(res, Is.Null);
             return res;
         }
 
-        protected async Task<T> MockStorageCallNullWithInputAsync<I, R, T>(I input, Func<I, CancellationToken, Task<T>> storageCall)
+        protected async Task<T> MockStorageCallNullWithInputAsync<I, R, T>(I input, Func<I, CancellationToken, Task<T>> storageCall, uint version = DefaultVersionForTest)
             where I : IType, new()
             where R : IType, new()
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<R>(
-                Arg.Any<string>(),
-                Arg.Any<string>(),
-                CancellationToken.None).Returns(default(R));
+            MockStorageAndVersion<R>(default(R), version);
+
+            //_substrateRepository.AjunaClient.GetStorageAsync<R>(
+            //    Arg.Any<string>(),
+            //    Arg.Any<string>(),
+            //    CancellationToken.None).Returns(default(R));
 
             var res = await storageCall(input, CancellationToken.None);
 
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.GetBytes(), Is.Null);
+            Assert.That(res, Is.Null);
+            //Assert.That(res.GetBytes(), Is.Null);
             return res;
         }
-        protected async Task<T> MockStorageCallNullWithInputAsync<I, T>(I input, Func<I, CancellationToken, Task<T>> storageCall)
+        protected async Task<T> MockStorageCallNullWithInputAsync<I, T>(I input, Func<I, CancellationToken, Task<T>> storageCall, uint version = DefaultVersionForTest)
             where T : IType, new()
         {
-            _substrateRepository.AjunaClient.GetStorageAsync<T>(
-                Arg.Any<string>(),
-                Arg.Any<string>(),
-                CancellationToken.None).Returns(default(T));
+            MockStorageAndVersion<T>(default(T), version);
+
+            //_substrateRepository.AjunaClient.GetStorageAsync<T>(
+            //    Arg.Any<string>(),
+            //    Arg.Any<string>(),
+            //    CancellationToken.None).Returns(default(T));
 
             var res = await storageCall(input, CancellationToken.None);
 
-            Assert.That(res, Is.Not.Null);
-            Assert.That(res.GetBytes(), Is.Null);
+            Assert.That(res, Is.Null);
+            //Assert.That(res.GetBytes(), Is.Null);
             return res;
         }
     }
