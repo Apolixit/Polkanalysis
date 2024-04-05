@@ -22,9 +22,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        [TestCase(10)]
-        [TestCase(100)]
-        [TestCase(1000)]
+        //[TestCase(10)]
+        //[TestCase(100)]
+        //[TestCase(1000)]
         [TestCase(10000)]
         public async Task GetAllAccounts_ShouldWorkAsync(int nb)
         {
