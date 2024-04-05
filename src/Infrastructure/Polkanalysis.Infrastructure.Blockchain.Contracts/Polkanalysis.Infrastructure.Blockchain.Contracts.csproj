@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
+    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
+    <ProjectReference Include="..\..\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj" />
-    <ProjectReference Include="..\src\Core\Substrate.NET.Utils\Substrate.NET.Utils\Substrate.NET.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <Reference Include="Polkanalysis.Polkadot.NetApiExt">
-      <HintPath>..\..\SubstrateBlockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
+      <HintPath>..\..\..\..\SubstrateBlockchains\Polkanalysis.Polkadot.NetApiExt\bin\Debug\net6.0\Polkanalysis.Polkadot.NetApiExt.dll</HintPath>
     </Reference>
   </ItemGroup>
 
