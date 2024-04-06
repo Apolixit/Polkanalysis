@@ -15,7 +15,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         public async Task GetBlockDetails_ValidBlockNumber_ShouldWorkAsync(int blockId)
         {
             var blockInfo = await _explorerRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
-            Assert.IsNotNull(blockInfo);
+            Assert.That(blockInfo, Is.Not.Null);
 
         }
 
@@ -40,7 +40,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         public async Task GetBlockDetails_ValidBlockHash_ShouldWorkAsync(string blockString)
         {
             var blockInfo = await _explorerRepository.GetBlockDetailsAsync(blockString, CancellationToken.None);
-            Assert.IsNotNull(blockInfo);
+            Assert.That(blockInfo, Is.Not.Null);
         }
 
         [Test]

@@ -69,7 +69,7 @@ namespace Polkanalysis.Api.Tests
         public async Task GetModule_WithInvalidParam_ShouldReturn400Async()
         {
             var res = await defaultUseCase().GetModuleAsync(string.Empty);
-            Assert.IsInstanceOf<BadRequestObjectResult>(res.Result);
+            Assert.That(res.Result, Is.InstanceOf<BadRequestObjectResult>());
             Assert.That(res.Result, Is.InstanceOf<BadRequestObjectResult>());
         }
 

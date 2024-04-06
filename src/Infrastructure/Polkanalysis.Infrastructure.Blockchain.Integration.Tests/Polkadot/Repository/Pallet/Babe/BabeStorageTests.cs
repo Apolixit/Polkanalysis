@@ -28,7 +28,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(res.Value.Length, Is.GreaterThan(1));
 
             var firstAuthority = res.Value.First().Value[0].As<PublicSr25519>().ToHex();
-            Assert.IsTrue(firstAuthority.ToUpper().Equals(input.firstAuthorityAddress.ToUpper()));
+            Assert.That(firstAuthority.ToUpper(), Is.EqualTo(input.firstAuthorityAddress.ToUpper()));
             Assert.That(((U64)res.Value.First().Value[1]).Value, Is.EqualTo((ulong)input.num));
 
             var lastAuthority = res.Value.Last().Value[0].As<PublicSr25519>().ToHex();

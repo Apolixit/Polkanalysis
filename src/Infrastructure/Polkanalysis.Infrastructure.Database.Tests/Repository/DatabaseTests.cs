@@ -26,6 +26,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
         public void TearDown()
         {
             _substrateDbContext.Database.EnsureDeleted();
+            _substrateDbContext.Dispose();
         }
     }
 }

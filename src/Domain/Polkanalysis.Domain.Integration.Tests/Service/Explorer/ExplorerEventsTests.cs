@@ -22,7 +22,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         {
             var eventInfoWithNumber = await _explorerRepository.GetEventsAsync((uint)blockId, CancellationToken.None);
 
-            Assert.IsNotNull(eventInfoWithNumber);
+            Assert.That(eventInfoWithNumber, Is.Not.Null);
             Assert.That(eventInfoWithNumber.Count(), Is.EqualTo(nbEvent));
         }
 

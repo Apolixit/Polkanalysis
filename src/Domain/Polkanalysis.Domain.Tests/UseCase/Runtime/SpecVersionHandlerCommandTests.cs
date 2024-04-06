@@ -57,6 +57,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         public void TearDown()
         {
             _substrateDbContext.Database.EnsureDeleted();
+            _substrateDbContext.Dispose();
         }
 
         [Test]

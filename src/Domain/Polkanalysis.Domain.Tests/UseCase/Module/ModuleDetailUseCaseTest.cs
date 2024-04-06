@@ -34,7 +34,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
             _moduleRepository.GetModuleDetail(Arg.Is("System")).Returns(Substitute.For<ModuleDetailDto>());
             var result = await _useCase.Handle(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
 
-            Assert.IsTrue(result.IsSuccess);
+            Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);
         }
 
@@ -47,7 +47,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         {
             var result = await _useCase.Handle(new RuntimeModuleDetailQuery(string.Empty), CancellationToken.None);
 
-            Assert.IsTrue(result.IsError);
+            Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
             Assert.That(result.Error, Is.Not.Null);
             Assert.That(result.Error.Status == ErrorResult.ErrorType.EmptyParam);
@@ -64,7 +64,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
 
             var result = await _useCase.Handle(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
 
-            Assert.IsTrue(result.IsError);
+            Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
             Assert.That(result.Error, Is.Not.Null);
             Assert.That(result.Error.Status == ErrorResult.ErrorType.EmptyModel);

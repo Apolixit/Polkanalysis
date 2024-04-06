@@ -17,7 +17,7 @@ namespace Polkanalysis.Domain.Tests.Node
         public void CreateNode_ShouldBeEmpty()
         {
             var newNode = new GenericNode();
-            Assert.IsTrue(newNode.IsEmpty);
+            Assert.That(newNode.IsEmpty, Is.True);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace Polkanalysis.Domain.Tests.Node
             node.AddData(u32Amount);
             Assert.That(node.Data, Is.EqualTo(u32Amount));
 
-            Assert.IsFalse(node.IsEmpty);
+            Assert.That(node.IsEmpty, Is.False);
 
             node.AddHumanData(u32Amount.Value);
             Assert.That(node.HumanData, Is.EqualTo(u32Amount.Value));
@@ -61,23 +61,23 @@ namespace Polkanalysis.Domain.Tests.Node
             nodeAccount.AddData(accountId32);
             nodeAccount.AddHumanData(addressAccount);
             nodeAccount.AddName("from");
-            Assert.IsTrue(nodeAccount.IsLeaf);
+            Assert.That(nodeAccount.IsLeaf, Is.True);
 
             var nodeAmount = new GenericNode();
             nodeAmount.AddData(u32Amount);
             nodeAmount.AddHumanData(u32Amount.Value);
             nodeAmount.AddName("amount");
-            Assert.IsTrue(nodeAmount.IsLeaf);
+            Assert.That(nodeAmount.IsLeaf, Is.True);
 
 
             var masterNode = new GenericNode();
-            Assert.IsEmpty(masterNode.Children);
+            Assert.That(masterNode.Children, Is.Empty);
 
             masterNode.AddChild(nodeAccount);
             masterNode.AddChild(nodeAmount);
             masterNode.AddName("transaction");
 
-            Assert.IsNotEmpty(masterNode.Children);
+            Assert.That(masterNode.Children, Is.Not.Empty);
             var jsonResult = @"{""transaction"":[{""from"":""5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY""},{""amount"":1000}]}";
             Assert.That(masterNode.ToJson(), Is.EqualTo(jsonResult));
         }

@@ -37,7 +37,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
                 ExtrinsicIndex = 1
             }, CancellationToken.None);
 
-            Assert.IsTrue(result.IsError);
+            Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
             Assert.That(result.Error, Is.Not.Null);
             Assert.That(result.Error.Status == ErrorResult.ErrorType.EmptyModel);
@@ -54,7 +54,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
                 ExtrinsicIndex = 1,
             }, CancellationToken.None);
 
-            Assert.IsTrue(result.IsSuccess);
+            Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);
         }
 
@@ -67,7 +67,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
                 ExtrinsicIndex = 1,
             }, CancellationToken.None);
 
-            Assert.IsTrue(result.IsError);
+            Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
             Assert.That(result.Error, Is.Not.Null);
             Assert.That(result.Error.Status == ErrorResult.ErrorType.InvalidParam);
@@ -82,7 +82,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Extrinsics
                 ExtrinsicIndex = 0,
             }, CancellationToken.None);
 
-            Assert.IsTrue(result.IsError);
+            Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
             Assert.That(result.Error, Is.Not.Null);
             Assert.That(result.Error.Status == ErrorResult.ErrorType.InvalidParam);
