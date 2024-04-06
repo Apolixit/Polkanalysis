@@ -42,7 +42,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
             var extrinsic = new Substrate.NetApi.Model.Extrinsics.Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
             var res = _substrateDecode.DecodeExtrinsic(extrinsic);
             Assert.That(res.Name, Is.EqualTo("Balances"));
-            Assert.IsTrue(res.Has("transfer_keep_alive"));
+            Assert.That(res.Has("transfer_keep_alive"), Is.True);
         }
     }
 }

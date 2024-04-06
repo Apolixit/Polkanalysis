@@ -132,7 +132,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             mapped.Create(coreEvent.Bytes);
 
             Assert.That(mapped, Is.Not.Null);
-            Assert.IsInstanceOf<BaseTuple<SubstrateAccount, U64, U64>>(mapped.Value2);
+            Assert.That(mapped.Value2, Is.InstanceOf<BaseTuple<SubstrateAccount, U64, U64>>());
         }
     }
 }

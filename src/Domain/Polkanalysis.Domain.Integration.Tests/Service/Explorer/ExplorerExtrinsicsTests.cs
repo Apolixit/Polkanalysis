@@ -16,7 +16,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         {
             var extrinsicInfoWithNumber = await _explorerRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
 
-            Assert.IsNotNull(extrinsicInfoWithNumber);
+            Assert.That(extrinsicInfoWithNumber, Is.Not.Null);
 
             // One of these extrinsics should have Timestamp.Set defined
             Assert.That(

@@ -36,6 +36,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             base.Setup();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            _substrateDbContext.Database.EnsureDeleted();
+            _substrateDbContext.Dispose();
+        }
+
         private void insertPalletVersion(int i, string palletName)
         {
             var model = new PalletVersionModel()

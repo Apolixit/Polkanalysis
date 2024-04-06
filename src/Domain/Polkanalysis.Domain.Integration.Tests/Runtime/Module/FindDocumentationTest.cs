@@ -29,28 +29,28 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.Error.AlreadyCanceled)]
         public void FindDocumentation_Enum_ShouldSuceed(object e)
         {
-            Assert.IsNotNull(_palletBuilder.FindDocumentation((Enum)e));
+            Assert.That(_palletBuilder.FindDocumentation((Enum)e), Is.Not.Null);
         }
 
         [Test, Ignore("Todo debug algo")]
         [TestCase(typeof(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call))]
         public void FindDocumentation_EnumType_ShouldSuceed(Type e)
         {
-            Assert.IsNotNull(_palletBuilder.FindDocumentation(e));
+            Assert.That(_palletBuilder.FindDocumentation(e), Is.Not.Null);
         }
 
         [Test, Ignore("Todo debug algo")]
         public void FindDocumentation_PalletTimestampEventSet_ShouldSuceed()
         {
             var nodeTypeGeneric = _palletBuilder.FindNodeType(typeof(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call));
-            Assert.IsNotNull(nodeTypeGeneric);
+            Assert.That(nodeTypeGeneric, Is.Not.Null);
 
             var nodeTypeExplicit = _palletBuilder.FindNodeType(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call.set.GetType());
-            Assert.IsNotNull(nodeTypeExplicit);
+            Assert.That(nodeTypeExplicit, Is.Not.Null);
 
-            Assert.AreEqual(nodeTypeExplicit, nodeTypeGeneric);
+            Assert.That(nodeTypeExplicit, Is.EqualTo(nodeTypeGeneric));
 
-            Assert.IsNotNull(nodeTypeGeneric.Docs);
+            Assert.That(nodeTypeGeneric.Docs, Is.Not.Null);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         //[TestCase(typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr2BaseTuple))]
         public void FindDocumentation_ButNoDocumentationAssociated_ShouldFail(Type e)
         {
-            Assert.IsNull(_palletBuilder.FindDocumentation(e));
+            Assert.That(_palletBuilder.FindDocumentation(e), Is.Null);
         }
     }
 }

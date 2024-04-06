@@ -39,7 +39,7 @@ namespace Polkanalysis.SubstrateDecode.Test.Node
             var node = _decode.Decode(emptyType);
 
             Assert.That(node, Is.Not.Null);
-            Assert.False(node.IsEmpty);
+            Assert.That(node.IsEmpty, Is.False);
         }
     }
 }

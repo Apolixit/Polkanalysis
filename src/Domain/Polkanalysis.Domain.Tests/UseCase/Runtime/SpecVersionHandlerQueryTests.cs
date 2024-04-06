@@ -44,6 +44,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             base.Setup();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            _substrateDbContext.Database.EnsureDeleted();
+            _substrateDbContext.Dispose();
+        }
+
         private void insertRuntimeVersion(int i)
         {
             var model = new SpecVersionModel()
