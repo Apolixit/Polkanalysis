@@ -10,6 +10,7 @@ using ApexCharts;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using Serilog;
+using Serilog.Extensions.Logging;
 
 namespace Polkanalysis.WebApp
 {

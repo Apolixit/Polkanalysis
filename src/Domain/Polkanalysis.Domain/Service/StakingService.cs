@@ -124,7 +124,7 @@ namespace Polkanalysis.Domain.Service
             var eraStakers = _stakingDatabaseRepository.GetAllEraStackers((int)eraId);
 
             var validatorsExtended = validators
-                .ExtendWith(x => _accountRepository.GetAccountIdentityAsync(x.Item1, cancellationToken))
+                .ExtendWith(x => _accountRepository.GetAccountAddressAsync(x.Item1, cancellationToken))
                 .ExtendWith(x => _substrateService.Storage.Staking.ValidatorsAsync(x.Item1, cancellationToken));
 
             foreach (var v in validatorsExtended.GetExendedList())
@@ -207,9 +207,9 @@ namespace Polkanalysis.Domain.Service
             var isValidatorActive = activeValidatorsTask != null && activeValidators.Value.Any(x => x.Equals(validator));
             var validatorDto = new ValidatorDto()
             {
-                ControllerAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
-                StashAddress = await _accountRepository.GetAccountIdentityAsync(boundedAccount, cancellationToken),
-                RewardAddress = await _accountRepository.GetAccountIdentityAsync(validator, cancellationToken),
+                ControllerAddress = await _accountRepository.GetAccountAddressAsync(boundedAccount, cancellationToken),
+                StashAddress = await _accountRepository.GetAccountAddressAsync(boundedAccount, cancellationToken),
+                RewardAddress = await _accountRepository.GetAccountAddressAsync(validator, cancellationToken),
                 SelfBonded = nominators.Own.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 TotalBonded = nominators.Total.Value.Value.ToDouble(chainInfo.TokenDecimals),
                 Commission = (double)validatorSettings.Commission.Value.Value,
@@ -336,10 +336,10 @@ namespace Polkanalysis.Domain.Service
                     (
                     _substrateService.Storage.Staking.NominatorsAsync(n.IndividualExposure.Who, cancellationToken),
                     n.BoundedAccount,
-                    _accountRepository.GetAccountIdentityAsync(n.IndividualExposure.Who, cancellationToken),
+                    _accountRepository.GetAccountAddressAsync(n.IndividualExposure.Who, cancellationToken),
                     PayeeAccountAsync(n.IndividualExposure.Who, cancellationToken),
                     n.IndividualExposure.Value.Value.Value.ToDouble(chainInfo.TokenDecimals),
-                    _accountRepository.GetAccountIdentityAsync(n.BoundedAccount.Result, cancellationToken)
+                    _accountRepository.GetAccountAddressAsync(n.BoundedAccount.Result, cancellationToken)
                     )
                 );
             }
@@ -383,7 +383,7 @@ namespace Polkanalysis.Domain.Service
             };
 
             if (account == null) return null;
-            return await _accountRepository.GetAccountIdentityAsync(account, cancellationToken);
+            return await _accountRepository.GetAccountAddressAsync(account, cancellationToken);
         }
 
         public async Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
@@ -397,7 +397,7 @@ namespace Polkanalysis.Domain.Service
 
             var stashAccount = await Task.WhenAll(nominatorsResult.Select(x =>
             {
-                return _accountRepository.GetAccountIdentityAsync(x.Item1, cancellationToken);
+                return _accountRepository.GetAccountAddressAsync(x.Item1, cancellationToken);
             }));
 
             foreach (var (nominatorAccount, nomination, stashAccountIdentity) in nominatorsResult.Zip(stashAccount).Select(x => Tuple.Create(x.First.Item1, x.First.Item2, x.Second)))
@@ -444,8 +444,8 @@ namespace Polkanalysis.Domain.Service
 
             var nominatorDto = new NominatorDto()
             {
-                StashAccount = await _accountRepository.GetAccountIdentityAsync(nominatorAccount, cancellationToken),
-                ControllerAccount = await _accountRepository.GetAccountIdentityAsync(controllerAccount, cancellationToken),
+                StashAccount = await _accountRepository.GetAccountAddressAsync(nominatorAccount, cancellationToken),
+                ControllerAccount = await _accountRepository.GetAccountAddressAsync(controllerAccount, cancellationToken),
                 RewardAccount = rewardAccount,
                 Bonded = 0, // TODO mapping
                 Status = nominatorSettings.Suppressed.Value ? AliveStatusDto.Inactive : AliveStatusDto.Active,
@@ -504,11 +504,11 @@ namespace Polkanalysis.Domain.Service
             };
 
             var rewardAccount = await PayeeAccountAsync(bondedPool.Roles.Depositor, cancellationToken);
-            var creatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Depositor, cancellationToken);
-            var nominatorAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Nominator.Value, cancellationToken);
-            var stashAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
-            var togglerAccount = bondedPool.Roles.StateToggler is not null ? await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.StateToggler.Value, cancellationToken) : null;
-            var rootAccount = await _accountRepository.GetAccountIdentityAsync(bondedPool.Roles.Root.Value, cancellationToken);
+            var creatorAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Depositor, cancellationToken);
+            var nominatorAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Nominator.Value, cancellationToken);
+            var stashAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Root.Value, cancellationToken);
+            var togglerAccount = bondedPool.Roles.StateToggler is not null ? await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.StateToggler.Value, cancellationToken) : null;
+            var rootAccount = await _accountRepository.GetAccountAddressAsync(bondedPool.Roles.Root.Value, cancellationToken);
 
             var poolDto = new PoolDto()
             {

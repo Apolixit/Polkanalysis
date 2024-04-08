@@ -3,6 +3,12 @@
     "WSL": {
       "commandName": "WSL2",
       "distributionName": ""
+    },
+    "Polkanalysis.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
     }
   }
 }

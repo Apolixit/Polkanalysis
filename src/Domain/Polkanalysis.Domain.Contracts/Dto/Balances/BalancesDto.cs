@@ -8,10 +8,41 @@ namespace Polkanalysis.Domain.Contracts.Dto.Balances
 {
     public class BalancesDto
     {
-        public double Transferable { get; set; } = 0;
-        public double? Stacking { get; set; } = null;
-        public double Others { get; set; } = 0;
-        public double TotalNative { get; set; } = 0;
-        public double TotalCurrency { get; set; } = 0;
+        /// <summary>
+        /// Free balance
+        /// </summary>
+        public CurrencyDto Transferable { get; set; } = CurrencyDto.Empty;
+
+        /// <summary>
+        /// Locked + reserve
+        /// </summary>
+        public List<(CurrencyDto Currency, string Reason)> NonTransferable { get; set; } = new List<(CurrencyDto, string)>();
+
+        /// <summary>
+        /// Amount locked in a pool
+        /// </summary>
+        public CurrencyDto Pool { get; set; } = CurrencyDto.Empty;
+
+        /// <summary>
+        /// Amount locked in a crowdloan
+        /// </summary>
+        public CurrencyDto Crowdloan { get; set; } = CurrencyDto.Empty;
+
+        /// <summary>
+        /// Total amount
+        /// </summary>
+        public CurrencyDto Total {
+            get
+            {
+                var res = Transferable + Pool + Crowdloan;
+                foreach(var nonTransferable in NonTransferable)
+                {
+                    res += nonTransferable.Item1;
+                }
+
+                return res;
+            }
+        }
+        public DateTime? LastTimeUsdUpdated { get; set; }
     }
 }

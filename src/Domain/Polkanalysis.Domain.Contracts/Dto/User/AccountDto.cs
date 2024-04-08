@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
         {
             Balances = new BalancesDto()
             {
-                Transferable = balance,
+                Transferable = new CurrencyDto(balance)
             };
             return this;
         }

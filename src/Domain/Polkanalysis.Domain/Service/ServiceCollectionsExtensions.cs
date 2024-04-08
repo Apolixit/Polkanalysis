@@ -13,10 +13,10 @@ namespace Polkanalysis.Domain.Service
     {
         public static IServiceCollection AddSubstrateService(this IServiceCollection services)
         {
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<IExplorerService, ExplorerService>();
-            services.AddScoped<IParachainService, ParachainService>();
-            services.AddScoped<IStakingService, StakingService>();
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IExplorerService, ExplorerService>();
+            services.AddTransient<IParachainService, ParachainService>();
+            services.AddTransient<IStakingService, StakingService>();
 
             return services;
         }

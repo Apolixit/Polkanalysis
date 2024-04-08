@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
             var logger = Substitute.For<ILogger<StakingService>>();
             _stakingRepository = new StakingService(
                 _substrateService,
-                new AccountService(_substrateService),
+                new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>()),
                 Substitute.For<IStakingDatabaseRepository>(),
                 logger);
         }

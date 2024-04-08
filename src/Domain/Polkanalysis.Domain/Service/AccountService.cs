@@ -7,20 +7,30 @@ using Newtonsoft.Json.Linq;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Domain.Contracts.Dto.Balances;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
+using Polkanalysis.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Polkanalysis.Domain.Service
 {
     public class AccountService : IAccountService
     {
         private readonly ISubstrateService _substrateNodeRepository;
+        private readonly SubstrateDbContext _db;
+        private readonly ILogger<AccountService> _logger;
 
         public AccountService(
-            ISubstrateService substrateNodeRepository)
+            ISubstrateService substrateNodeRepository, SubstrateDbContext db, ILogger<AccountService> logger)
         {
             _substrateNodeRepository = substrateNodeRepository;
 
             if (RequiredStorage.Any(s => s == null))
                 throw new PalletNotImplementedException($"{_substrateNodeRepository.BlockchainName} does not implement all storages required by {nameof(IAccountService)}");
+
+            _db = db;
+            _logger = logger;
         }
 
         public IEnumerable<IPalletStorage?> RequiredStorage => new List<IPalletStorage?>() {
@@ -48,24 +58,79 @@ namespace Polkanalysis.Domain.Service
 
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
-            foreach (var (accountAddress, accountInfo) in result)
+            foreach (var (account, accountInfo) in result)
             {
-                var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
-                var stakingAmount = accountInfo.Data.MiscFrozen?.Value.ToDouble(chainInfo.TokenDecimals);
-                var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
                 accountsDto.Add(new AccountLightDto()
                 {
-                    Address = await GetAccountIdentityAsync(accountAddress, cancellationToken),
-                    Balances = new Contracts.Dto.Balances.BalancesDto()
-                    {
-                        Transferable = freeAmount,
-                        Stacking = stakingAmount,
-                        Others = othersAmount
-                    }
+                    Address = await GetAccountAddressAsync(account, cancellationToken),
+                    Balances = await GetBalancesAsync(account, cancellationToken)
                 });
             }
 
             return accountsDto;
+        }
+
+        public Task<BalancesDto> GetBalancesAsync(string accountAddress, CancellationToken cancellationToken)
+        {
+            EnsureAddressIsValid(accountAddress);
+            return GetBalancesAsync(new SubstrateAccount(accountAddress), cancellationToken);
+        }
+
+        public async Task<BalancesDto> GetBalancesAsync(SubstrateAccount account, CancellationToken cancellationToken)
+        {
+            var (locks, reserves, accountInfo, chainInfo, poolMember) = await Helper.WaiterHelper.WaitAndReturnAsync(
+                _substrateNodeRepository.Storage.Balances.LocksAsync(account, cancellationToken),
+                _substrateNodeRepository.Storage.Balances.ReservesAsync(account, cancellationToken),
+                _substrateNodeRepository.Storage.System.AccountAsync(account, cancellationToken),
+                _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken),
+                _substrateNodeRepository.Storage.NominationPools.PoolMembersAsync(account, cancellationToken)
+            );
+
+            var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
+            var stakingAmount = accountInfo.Data.MiscFrozen?.Value.ToDouble(chainInfo.TokenDecimals);
+            var lockedAmount = accountInfo.Data.Frozen?.Value.ToDouble(chainInfo.TokenDecimals);
+            var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
+
+            var lastUsdValue = await _db.TokenPrices
+                .Where(x => x.BlockchainName.ToLower() == _substrateNodeRepository.BlockchainName.ToLower())
+                .OrderByDescending(x => x.Date)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            var nonTransferable = new List<(CurrencyDto, string)>();
+            if (locks != null && locks.Value.Any())
+            {
+                foreach(var lockBalance in locks.Value)
+                {
+                    string reason = lockBalance.Id.Display();
+                    switch (lockBalance.Id.Display())
+                    {
+                        case "pyconvot": reason = "Referenda"; break;
+                        case "democrac": reason = "Democracy"; break;
+                        default:
+                            _logger.LogWarning("[{serviceName}] Balances.Locks.Id = {lockBalancesId} is not handled correctly", nameof(AccountService), lockBalance.Id.Display());
+                            reason = lockBalance.Id.Display(); 
+                            break;
+                    }
+
+                    nonTransferable.Add((new CurrencyDto(lockBalance.Amount.ToDouble(chainInfo.TokenDecimals), lastUsdValue?.Price), reason));
+                }
+            }
+
+            // Nb of token in the pool
+            CurrencyDto pool = poolMember is null ? 
+                CurrencyDto.Empty : 
+                new CurrencyDto(poolMember.Points.Value.ToDouble(chainInfo.TokenDecimals), lastUsdValue?.Price);
+
+            var balances = new BalancesDto()
+            {
+                Transferable = new CurrencyDto(freeAmount - lockedAmount.GetValueOrDefault(0), lastUsdValue?.Price),
+                NonTransferable = nonTransferable,
+                Crowdloan = new CurrencyDto(0, lastUsdValue?.Price),
+                Pool = pool,
+                LastTimeUsdUpdated = lastUsdValue?.Date,
+            };
+
+            return balances;
         }
 
         public Task<AccountDto> GetAccountDetailAsync(string accountAddress, CancellationToken cancellationToken)
@@ -90,30 +155,6 @@ namespace Polkanalysis.Domain.Service
             var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.ToStringAddress((short)chainInfo.Ss58Format)
                 , token);
             
-
-            //_substrateNodeRepository.Client.ParasStorage.
-            var freeAmount = accountInfo.Data.Free.ToDouble(chainInfo.TokenDecimals);
-            var stakingAmount = accountInfo.Data.MiscFrozen?.Value.ToDouble(chainInfo.TokenDecimals);
-            var othersAmount = accountInfo.Data.Reserved.Value.ToDouble(chainInfo.TokenDecimals);
-
-            //double lockAmount = 0;
-            //double stackingAmount = 0;
-            //if (locks != null && locks.Value.Any())
-            //{
-            //    // Misc == democracy
-            //    lockAmount = locks.Value
-            //        .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.Misc)
-            //        .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
-
-            //    stackingAmount = locks.Value
-            //        .Where(x => x.Reasons.Value == Contracts.Secondary.Pallet.Balances.Enums.Reasons.All)
-            //        .Sum(x => x.Amount.ToDouble(chainInfo.TokenDecimals));
-            //}
-
-
-            // Stacking = lock + reason = ALL
-            // other = lock + reason = misc
-
             var userInformation = new UserInformationsDto();
             if (identity != null && identity.Info != null)
             {
@@ -138,29 +179,24 @@ namespace Polkanalysis.Domain.Service
             var accountDto = new AccountDto()
             {
                 InformationsDto = userInformation,
-                Address = await GetAccountIdentityAsync(account, token),
+                Address = await GetAccountAddressAsync(account, token),
                 AccountIndex = accountNextindex,
                 Nonce = accountInfo.Nonce.Value,
-                Balances = new Contracts.Dto.Balances.BalancesDto()
-                {
-                    Transferable = freeAmount,
-                    Stacking = stakingAmount,
-                    Others = othersAmount
-                },
+                Balances = await GetBalancesAsync(account, token),
                 AvatarUrl = string.Empty,
                 AccountTypes = accountType.ToList()
             };
             return accountDto;
         }
 
-        public Task<UserAddressDto> GetAccountIdentityAsync
+        public Task<UserAddressDto> GetAccountAddressAsync
             (string accountAddress, CancellationToken cancellationToken)
         {
             EnsureAddressIsValid(accountAddress);
-            return GetAccountIdentityAsync(new SubstrateAccount(accountAddress), cancellationToken);
+            return GetAccountAddressAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
 
-        public async Task<UserAddressDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken)
+        public async Task<UserAddressDto> GetAccountAddressAsync(SubstrateAccount account, CancellationToken cancellationToken)
         {
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
             var identity = await _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, cancellationToken);

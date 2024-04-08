@@ -11,6 +11,8 @@ using Polkanalysis.Infrastructure.Database;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Text.Json.Serialization;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Serilog.Extensions.Logging;
+using Polkanalysis.Infrastructure.Database.Extensions;
 
 namespace Polkanalysis.Api
 {
@@ -137,32 +139,7 @@ namespace Polkanalysis.Api
                 app.UseRateLimiter();
                 app.MapDefaultControllerRoute().RequireRateLimiting(ApiRateLimitOptions.TokenBucketPolicy);
 
-                logger.Information("Ensure database is ready and created");
-                using(var scope = app.Services.CreateScope())
-                {
-                    var services = scope.ServiceProvider;
-                    try
-                    {
-                        if (app.Environment.IsDevelopment()) {
-                            Thread.Sleep(5_000);
-                        }
-                        
-                        var dbContext = services.GetRequiredService<SubstrateDbContext>();
-                        var created = dbContext.Database.EnsureCreated();
-
-                        if(created)
-                        {
-                            logger.Information("Database created succesfully !");
-                        } else
-                        {
-
-                            logger.Information("Database already exists !");
-                        }
-                    } catch(Exception ex)
-                    {
-                        logger.Error(ex, "Error when try to create database");
-                    }
-                }
+                await app.ApplyMigrationAsync(new SerilogLoggerFactory(logger).CreateLogger("database"));
 
                 var substrateService = app.Services.GetRequiredService<ISubstrateService>();
                 await substrateService.ConnectAsync();

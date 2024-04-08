@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Infrastructure.Database.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Identity;
@@ -18,24 +20,24 @@ namespace Polkanalysis.Infrastructure.Database
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services)
         {
-            services.AddScoped<IEventsFactory, EventsFactory>();
+            services.AddTransient<IEventsFactory, EventsFactory>();
 
-            services.AddScoped<BalancesDustLostRepository>();
-            services.AddScoped<BalancesEndowedRepository>();
-            services.AddScoped<BalancesReservedRepository>();
-            services.AddScoped<BalancesSetRepository>();
-            services.AddScoped<BalancesSlashedRepository>();
-            services.AddScoped<BalancesTransferRepository>();
-            services.AddScoped<BalancesUnreservedRepository>();
+            services.AddTransient<BalancesDustLostRepository>();
+            services.AddTransient<BalancesEndowedRepository>();
+            services.AddTransient<BalancesReservedRepository>();
+            services.AddTransient<BalancesSetRepository>();
+            services.AddTransient<BalancesSlashedRepository>();
+            services.AddTransient<BalancesTransferRepository>();
+            services.AddTransient<BalancesUnreservedRepository>();
 
-            services.AddScoped<IdentityIdentityClearedRepository>();
-            services.AddScoped<IdentityIdentityKilledRepository>();
-            services.AddScoped<IdentityIdentitySetRepository>();
+            services.AddTransient<IdentityIdentityClearedRepository>();
+            services.AddTransient<IdentityIdentityKilledRepository>();
+            services.AddTransient<IdentityIdentitySetRepository>();
 
-            services.AddScoped<SystemKilledAccountRepository>();
-            services.AddScoped<SystemNewAccountRepository>();
+            services.AddTransient<SystemKilledAccountRepository>();
+            services.AddTransient<SystemNewAccountRepository>();
             
-            services.AddScoped<IStakingDatabaseRepository, StakingDatabaseRepository>();
+            services.AddTransient<IStakingDatabaseRepository, StakingDatabaseRepository>();
 
             return services;
         }

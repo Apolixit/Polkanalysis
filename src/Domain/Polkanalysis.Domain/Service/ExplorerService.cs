@@ -188,7 +188,7 @@ namespace Polkanalysis.Domain.Service
 
             var (blockDate, eventsCount, blockAuthor) = await WaiterHelper.WaitAndReturnAsync(blockDateTask, eventsCountTask, blockAuthorTask);
 
-            var authorIdentity = await _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken);
+            var authorIdentity = await _accountRepository.GetAccountAddressAsync(blockAuthor, cancellationToken);
 
             // I get the last finalized head (i.e. validate by granpa finality) and assume that every block ahead are not
             // finalized
@@ -270,7 +270,7 @@ namespace Polkanalysis.Domain.Service
             //var resMagic2 = await _substrateService.Client.Core.InvokeAsync<object>("grandpa_proveFinality", new object[1] { blockDetails.Block.Header.Number.Value }, cancellationToken);
 
             var blockAuthor = await GetBlockAuthorAsync(block, cancellationToken);
-            var authorIdentity = await _accountRepository.GetAccountIdentityAsync(blockAuthor, cancellationToken);
+            var authorIdentity = await _accountRepository.GetAccountAddressAsync(blockAuthor, cancellationToken);
 
             var blockDto = new BlockDto()
             {

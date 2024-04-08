@@ -26,7 +26,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             _currentMetaData = new CurrentMetaData(
                 _substrateService, Substitute.For<ILogger<CurrentMetaData>>());
 
-            _accountRepository = new AccountService(_substrateService);
+            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>());
 
             _substrateDecoding = new SubstrateDecoding(
                 new EventNodeMapping(),

@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             //IMapper mapper = mapperConfig.CreateMapper();
 
             //services.AddSingleton(mapper);
-            services.AddScoped<IBlockchainMapping, PolkadotMapping>();
+            services.AddTransient<IBlockchainMapping, PolkadotMapping>();
             return services;
         }
     }
