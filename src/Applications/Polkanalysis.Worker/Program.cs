@@ -16,6 +16,12 @@ using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Worker.Parameters.Context;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Tasks;
+using Serilog.Extensions.Logging;
+using Polkanalysis.Infrastructure.Database.Extensions;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Extensions;
+
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
 IConfiguration config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -38,12 +44,12 @@ var host = Host.CreateDefaultBuilder(args)
     //.AddHostedService<StakingWorker>()
     //.AddHostedService<VersionWorker>()
     .AddSingleton(config)
-    .AddDbContext<SubstrateDbContext>(options =>
+    .AddDbContextFactory<SubstrateDbContext>(options =>
     {
         options.UseNpgsql(
             hostContext.Configuration.GetConnectionString("SubstrateDb")
         );
-    })
+    }, ServiceLifetime.Transient)
     .AddLogging(l =>
     {
         l.ClearProviders();
@@ -51,15 +57,15 @@ var host = Host.CreateDefaultBuilder(args)
         l.SetMinimumLevel(LogLevel.Information);
         l.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
     })
-    .AddScoped<PerimeterService>()
-    .AddScoped<EventsWorker>()
-    .AddScoped<StakingWorker>()
-    .AddScoped<VersionWorker>()
-    .AddScoped<PriceWorker>();
+    .AddTransient<PerimeterService>();
+    //.AddScoped<EventsWorker>()
+    //.AddScoped<StakingWorker>()
+    //.AddScoped<VersionWorker>()
+    //.AddScoped<PriceWorker>();
 
-    services.AddEndpoint();
+    services.AddEndpoint(true);
     services.AddSubstrateService();
-    services.AddPolkadotBlockchain("polkadot");
+    services.AddPolkadotBlockchain("polkadot", true);
     services.AddDatabase();
     services.AddSubstrateLogic();
 
@@ -76,8 +82,9 @@ var host = Host.CreateDefaultBuilder(args)
 })
 .Build();
 
-logger.Information("Waiting 20s to ensure database is created...");
-Thread.Sleep(20_000);
+Microsoft.Extensions.Logging.ILogger log = new SerilogLoggerFactory(logger).CreateLogger("database");
+await host.ApplyMigrationAsync(log);
+await host.ConnectNodeAsync("Polkanalysis.Worker", log);
 
 await host.RunAsync();
 

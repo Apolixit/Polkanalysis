@@ -129,7 +129,7 @@ namespace Polkanalysis.Domain.Service
             var paraId = new Contracts.Core.Id(new U32(parachainId));
             var accountRegistar = await _substrateNodeRepository.Storage.Registrar.ParasAsync(paraId, cancellationToken);
 
-            var owner = await _accountRepository.GetAccountIdentityAsync(accountRegistar.Manager, cancellationToken);
+            var owner = await _accountRepository.GetAccountAddressAsync(accountRegistar.Manager, cancellationToken);
             //var fundAccount = accountRegistar.
             var registerStatus = await _substrateNodeRepository.Storage.Paras.ParaLifecyclesAsync(paraId, cancellationToken);
 
@@ -218,7 +218,7 @@ namespace Polkanalysis.Domain.Service
                 _ => throw new InvalidOperationException("Unknown crowdloan LastContribution")
             };
 
-            var depositorAccount = await _accountRepository.GetAccountIdentityAsync(crowdloanDetail.Depositor, cancellationToken);
+            var depositorAccount = await _accountRepository.GetAccountAddressAsync(crowdloanDetail.Depositor, cancellationToken);
             var fundTarget = crowdloanDetail.Cap.Value.ToDouble(chainInfo.TokenDecimals);
             var fundRaised = crowdloanDetail.Raised.Value.ToDouble(chainInfo.TokenDecimals);
 

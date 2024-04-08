@@ -22,10 +22,10 @@ namespace Polkanalysis.Configuration.Extensions
                 services.AddScoped<ISubstrateEndpoint, SubstrateEndpoint>();
             }
             
-            services.AddScoped<IApiEndpoint, ApiEndpoint>();
-            services.AddScoped<IMonitoringEndpoint, MonitoringEndpoint>();
-            services.AddScoped<IBlockchainInformations, BlockchainInformations>();
-            services.AddScoped<IWebsiteConfiguration, WebsiteConfiguration>();
+            services.AddTransient<IApiEndpoint, ApiEndpoint>();
+            services.AddTransient<IMonitoringEndpoint, MonitoringEndpoint>();
+            services.AddTransient<IBlockchainInformations, BlockchainInformations>();
+            services.AddTransient<IWebsiteConfiguration, WebsiteConfiguration>();
 
             return services;
         }

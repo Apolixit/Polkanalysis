@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using Microsoft.Extensions.Logging;
+using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.User;
@@ -27,7 +28,7 @@ namespace Polkanalysis.Domain.Tests.Service
         public void Setup()
         {
             _substrateRepository = Substitute.For<ISubstrateService>();
-            _accountService = new AccountService(_substrateRepository);
+            _accountService = new AccountService(_substrateRepository, _substrateDbContext,  Substitute.For<ILogger<AccountService>>());
 
             // Mock Properties
             _substrateRepository.Rpc.System.PropertiesAsync(CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.Properties()
@@ -61,7 +62,17 @@ namespace Polkanalysis.Domain.Tests.Service
                 new Contracts.Core.Display.NameableSize8("democrac"),
                 new U128(100),
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Reasons.Fee)
-            )
+                ),
+                new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock(
+                new Contracts.Core.Display.NameableSize8("pyconvot"),
+                new U128(150),
+                new Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Reasons.All)
+                ),
+                new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock(
+                new Contracts.Core.Display.NameableSize8("xxxxxxxx"),
+                new U128(200),
+                new Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Reasons.All)
+                )
             }));
             #endregion
 
@@ -123,7 +134,7 @@ namespace Polkanalysis.Domain.Tests.Service
                     new U32(30),
                     new U32(40),
                     new Infrastructure.Blockchain.Contracts.Pallet.Balances.AccountData(
-                        new U128(50),
+                        new U128(5000),
                         new U128(60),
                         new U128(70),
                         new U128(80))));
@@ -140,13 +151,21 @@ namespace Polkanalysis.Domain.Tests.Service
             Assert.That(res.InformationsDto.Email, Is.Empty);
             Assert.That(res.InformationsDto.Image, Is.EqualTo("www.alice.com/image.jpg"));
             Assert.That(res.InformationsDto.Other, Is.Null);
+
+            Assert.That(res.Balances.Transferable.Native, Is.EqualTo(0.0000005));
+            Assert.That(res.Balances.Pool.Native, Is.EqualTo(0.0000001));
             
-            Assert.That(res.Balances.Transferable, Is.EqualTo(0.000000005));
-            Assert.That(res.Balances.Stacking, Is.EqualTo(0.000000007));
-            Assert.That(res.Balances.TotalNative, Is.EqualTo(0));
-            Assert.That(res.Balances.TotalCurrency, Is.EqualTo(0));
-            Assert.That(res.Balances.Others, Is.EqualTo(0.000000006));
-            
+            Assert.That(res.Balances.NonTransferable.Count(), Is.EqualTo(3));
+            Assert.That(res.Balances.NonTransferable[0].Currency.Native, Is.EqualTo(0.00000001));
+            Assert.That(res.Balances.NonTransferable[0].Reason, Is.EqualTo("Democracy"));
+            Assert.That(res.Balances.NonTransferable[1].Currency.Native, Is.EqualTo(0.000000015));
+            Assert.That(res.Balances.NonTransferable[1].Reason, Is.EqualTo("Referenda"));
+            Assert.That(res.Balances.NonTransferable[2].Currency.Native, Is.EqualTo(0.00000002));
+            Assert.That(res.Balances.NonTransferable[2].Reason, Is.EqualTo("xxxxxxxx"));
+
+            Assert.That(res.Balances.Crowdloan.Native, Is.EqualTo(0));
+            Assert.That(res.Balances.Total.Native, Is.EqualTo(0.000000645));
+
             Assert.That(res.Address.Name, Is.EqualTo("AccountName"));
             Assert.That(res.Address.Address, Is.EqualTo("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS"));
             
@@ -238,7 +257,7 @@ namespace Polkanalysis.Domain.Tests.Service
                     judgements
                 ));
 
-            var aliceDto = await _accountService.GetAccountIdentityAsync(address, CancellationToken.None);
+            var aliceDto = await _accountService.GetAccountAddressAsync(address, CancellationToken.None);
 
             Assert.That(aliceDto.Address, Is.EqualTo(address));
             Assert.That(aliceDto.PublicKey, Is.EqualTo(Utils.Bytes2HexString(Utils.GetPublicKeyFrom(address))));
@@ -250,8 +269,8 @@ namespace Polkanalysis.Domain.Tests.Service
         {
             Assert.Multiple(() =>
             {
-                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountIdentityAsync((string)null!, CancellationToken.None));
-                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountIdentityAsync(string.Empty, CancellationToken.None));
+                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountAddressAsync((string)null!, CancellationToken.None));
+                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountAddressAsync(string.Empty, CancellationToken.None));
                 //Assert.ThrowsAsync<AddressException>(async () => await _accountService.GetAccountIdentityAsync("InvalidAddressHash", CancellationToken.None));
             });
         }

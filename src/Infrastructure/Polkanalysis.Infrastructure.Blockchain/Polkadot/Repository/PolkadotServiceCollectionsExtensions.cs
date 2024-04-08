@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
                 _ => throw new NotSupportedException($"{blockchainName} is not supported by the application")
             };
 
-            services.AddScoped<IBlockchainMapping, PolkadotMapping>();
+            services.AddTransient<IBlockchainMapping, PolkadotMapping>();
 
             return services;
         }

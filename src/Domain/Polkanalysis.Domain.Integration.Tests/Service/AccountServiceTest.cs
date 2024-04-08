@@ -3,6 +3,8 @@ using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using NSubstitute;
+using Microsoft.Extensions.Logging;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service
 {
@@ -14,10 +16,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new AccountService(_substrateService);
+            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>());
         }
 
         [Test]
+        [TestCase("", "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")]
         [TestCase("", "16ZL8yLyXv3V3L3z9ofR1ovFLziyXaN1DPq4yffMAZ9czzBD")]
         [TestCase("5He5uUCWMLXvfJmSWTcD2ZHDerBU4VH91z92SekRcctuGifV", "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")]
         [TestCase("", "124X3VPduasSodAjS6MPd5nEqM8SUdKN5taMUUPtkWqF1fVf")]

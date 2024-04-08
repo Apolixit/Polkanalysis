@@ -13,38 +13,38 @@ namespace Polkanalysis.Infrastructure.Database
         public SubstrateDbContext(DbContextOptions options) : base(options) { }
 
         #region Balances
-        public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet => Set<BalancesBalanceSetModel>();
-        public DbSet<BalancesDustLostModel> EventBalancesDustLost => Set<BalancesDustLostModel>();
-        public DbSet<BalancesEndowedModel> EventBalancesEndowed => Set<BalancesEndowedModel>();
-        public DbSet<BalancesReservedModel> EventBalancesReserved => Set<BalancesReservedModel>();
-        public DbSet<BalancesSlashedModel> EventBalancesSlashed => Set<BalancesSlashedModel>();
-        public DbSet<BalancesTransferModel> EventBalancesTransfer => Set<BalancesTransferModel>();
-        public DbSet<BalancesUnreservedModel> EventBalancesUnreserved => Set<BalancesUnreservedModel>();
+        public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
+        public DbSet<BalancesDustLostModel> EventBalancesDustLost  { get; set; }
+    public DbSet<BalancesEndowedModel> EventBalancesEndowed { get; set; }
+        public DbSet<BalancesReservedModel> EventBalancesReserved { get; set; }
+        public DbSet<BalancesSlashedModel> EventBalancesSlashed { get; set; }
+        public DbSet<BalancesTransferModel> EventBalancesTransfer { get; set; }
+        public DbSet<BalancesUnreservedModel> EventBalancesUnreserved { get; set; }
         #endregion
 
         #region Identity
-        public DbSet<IdentityIdentityClearedModel> EventIdentityIdentityCleared => Set<IdentityIdentityClearedModel>();
-        public DbSet<IdentityIdentityKilledModel> EventIdentityIdentityKilled => Set<IdentityIdentityKilledModel>();
-        public DbSet<IdentityIdentitySetModel> EventIdentityIdentitySet => Set<IdentityIdentitySetModel>();
+        public DbSet<IdentityIdentityClearedModel> EventIdentityIdentityCleared { get; set; }
+        public DbSet<IdentityIdentityKilledModel> EventIdentityIdentityKilled { get; set; }
+        public DbSet<IdentityIdentitySetModel> EventIdentityIdentitySet { get; set; }
         #endregion
 
         #region System
-        public DbSet<SystemKilledAccountModel> EventSystemKilledAccount => Set<SystemKilledAccountModel>();
-        public DbSet<SystemNewAccountModel> EventSystemNewAccount => Set<SystemNewAccountModel>();
+        public DbSet<SystemKilledAccountModel> EventSystemKilledAccount { get; set; }
+        public DbSet<SystemNewAccountModel> EventSystemNewAccount { get; set; }
         #endregion
 
         #region Historical data price
-        public DbSet<TokenPriceModel> TokenPrices => Set<TokenPriceModel>();
+        public DbSet<TokenPriceModel> TokenPrices { get; set; }
         #endregion
 
         #region Staking
-        public DbSet<EraStakersModel> EraStakersModels => Set<EraStakersModel>();
+        public DbSet<EraStakersModel> EraStakersModels { get; set; }
         #endregion
 
 
         #region
-        public DbSet<SpecVersionModel> SpecVersionModels => Set<SpecVersionModel>();
-        public DbSet<PalletVersionModel> PalletVersionModels => Set<PalletVersionModel>();
+        public DbSet<SpecVersionModel> SpecVersionModels { get; set; }
+        public DbSet<PalletVersionModel> PalletVersionModels { get; set; }
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

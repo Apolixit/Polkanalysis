@@ -95,6 +95,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Infrastructure.Blockchain.Internal", "src\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj", "{F1C68243-94C5-40BC-AA17-9315E751E7FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.App", "src\Applications\Polkanalysis.App\Polkanalysis.App.csproj", "{A35CD5A4-9FA6-4268-98C7-8B903A8FD6D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -205,6 +207,10 @@ Global
 		{F1C68243-94C5-40BC-AA17-9315E751E7FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C68243-94C5-40BC-AA17-9315E751E7FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1C68243-94C5-40BC-AA17-9315E751E7FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A35CD5A4-9FA6-4268-98C7-8B903A8FD6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35CD5A4-9FA6-4268-98C7-8B903A8FD6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35CD5A4-9FA6-4268-98C7-8B903A8FD6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35CD5A4-9FA6-4268-98C7-8B903A8FD6D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -241,6 +247,7 @@ Global
 		{4BDA2D65-B730-407E-A6ED-12B3F8A840C5} = {F54F8885-056B-4991-8E99-518851FC9CCF}
 		{7331F10F-D1E9-4F9D-BBCB-358BCB32F839} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
 		{F1C68243-94C5-40BC-AA17-9315E751E7FF} = {06CE1338-7D1F-4CA5-9936-65C31CED0F95}
+		{A35CD5A4-9FA6-4268-98C7-8B903A8FD6D6} = {CB427406-E3C9-402D-9C25-F35C450D7D2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31C4F337-85EF-42F2-9358-F402619BBAE7}
