@@ -16,6 +16,7 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="7.0.0-rc.2.22476.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
     <PackageReference Include="prometheus-net" Version="8.2.1" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Polkanalysis.Common\Polkanalysis.Common.csproj" />
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />

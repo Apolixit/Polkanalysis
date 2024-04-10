@@ -20,6 +20,8 @@ using Serilog.Extensions.Logging;
 using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Extensions;
+using Polkanalysis.Common.Monitoring.Opentelemetry;
+using Polkanalysis.Worker.Metrics;
 
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
@@ -57,7 +59,8 @@ var host = Host.CreateDefaultBuilder(args)
         l.SetMinimumLevel(LogLevel.Information);
         l.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
     })
-    .AddTransient<PerimeterService>();
+    .AddTransient<PerimeterService>()
+    .AddSingleton<WorkerMetrics>();
     //.AddScoped<EventsWorker>()
     //.AddScoped<StakingWorker>()
     //.AddScoped<VersionWorker>()
@@ -68,6 +71,10 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddPolkadotBlockchain("polkadot", true);
     services.AddDatabase();
     services.AddSubstrateLogic();
+
+    services.AddOpentelemetry(
+        "Polkanalysis.Worker", 
+        new List<string>() { "Polkanalysis.Worker.Metrics" });
 
     services.AddHttpClient();
 

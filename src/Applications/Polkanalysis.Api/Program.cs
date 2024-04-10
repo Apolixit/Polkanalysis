@@ -13,6 +13,7 @@ using System.Text.Json.Serialization;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Serilog.Extensions.Logging;
 using Polkanalysis.Infrastructure.Database.Extensions;
+using Polkanalysis.Common.Monitoring.Opentelemetry;
 
 namespace Polkanalysis.Api
 {
@@ -72,6 +73,8 @@ namespace Polkanalysis.Api
                                           policy.AllowAnyMethod();
                                       });
                 });
+
+                builder.Services.AddOpentelemetry("Polkanalysis.API");
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit

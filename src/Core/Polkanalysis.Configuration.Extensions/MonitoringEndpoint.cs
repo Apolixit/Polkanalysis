@@ -14,15 +14,18 @@ namespace Polkanalysis.Configuration.Extensions
         public Uri? PrometheusUri { get; set; }
         public Uri? GrafanaUri { get; set; }
         public Uri? ElasticSearchUri { get; set; }
+        public bool IsMonitoringActivated { get; set; }
+        public Uri? OpentelemetryUri { get; set; }
 
         public MonitoringEndpoint(IConfiguration configuration)
         {
             if (configuration == null)
                 throw new ConfigurationErrorsException($"{nameof(configuration)} is not set");
 
-            var prometheusUri = configuration["Prometheus:uri"];
-            var grafanaUri = configuration["Grafana:uri"];
-            var elasticSearchUri = configuration["ElasticSearch:uri"];
+            var prometheusUri = configuration["Monitoring:Prometheus:uri"];
+            var grafanaUri = configuration["Monitoring:Grafana:uri"];
+            var elasticSearchUri = configuration["Monitoring:ElasticSearch:uri"];
+            var opentelemetryUri = configuration["Monitoring:Opentelemetry:uri"];
 
             if (!string.IsNullOrEmpty(prometheusUri))
                 PrometheusUri = new Uri(prometheusUri);
@@ -32,6 +35,9 @@ namespace Polkanalysis.Configuration.Extensions
 
             if (!string.IsNullOrEmpty(elasticSearchUri))
                 ElasticSearchUri = new Uri(elasticSearchUri);
+
+            if (!string.IsNullOrEmpty(opentelemetryUri))
+                OpentelemetryUri = new Uri(opentelemetryUri);
         }
     }
 }

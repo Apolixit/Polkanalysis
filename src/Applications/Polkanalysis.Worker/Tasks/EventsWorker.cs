@@ -9,6 +9,8 @@ using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.Metrics;
+using Polkanalysis.Worker.Metrics;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -19,6 +21,7 @@ namespace Polkanalysis.Worker.Tasks
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly PerimeterService _perimeterService;
         private readonly IEventsFactory _eventsFactory;
+        private readonly WorkerMetrics _workerMetrics;
         private readonly ILogger<EventsWorker> _logger;
 
         private BlockPerimeter _blockPerimeter;
@@ -29,7 +32,8 @@ namespace Polkanalysis.Worker.Tasks
             IEventsFactory eventsFactory,
             ISubstrateDecoding substrateDecode,
             PerimeterService perimeterService,
-            ILogger<EventsWorker> logger)
+            ILogger<EventsWorker> logger,
+            WorkerMetrics workerMetrics)
         {
             _polkadotRepository = polkadotRepository;
             _explorerRepository = explorerRepository;
@@ -37,6 +41,7 @@ namespace Polkanalysis.Worker.Tasks
             _substrateDecode = substrateDecode;
             _perimeterService = perimeterService;
             _logger = logger;
+            _workerMetrics = workerMetrics;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -184,6 +189,9 @@ namespace Polkanalysis.Worker.Tasks
                 else
                 {
                     _logger.LogInformation($"Scan block num {blockNumber}, associated events = {events.Value.Length}");
+
+                    // Get the ratio of events that has been analyzed compare to the total number of events
+                    _workerMetrics.RecordEventAnalyzed((double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count());
 
                     for (int i = 0; i < events.Value.Length; i++)
                     {
