@@ -17,6 +17,14 @@ namespace Polkanalysis.Configuration.Tests
 
             Assert.That(monitoringConfig.PrometheusUri, Is.Not.Null);
             Assert.That(monitoringConfig.PrometheusUri.OriginalString, Is.EqualTo("https://localhost:1234"));
+
+            Assert.That(monitoringConfig.GrafanaUri, Is.Not.Null);
+            Assert.That(monitoringConfig.GrafanaUri.OriginalString, Is.EqualTo("https://localhost:3000"));
+
+            Assert.That(monitoringConfig.OpentelemetryUri, Is.Not.Null);
+            Assert.That(monitoringConfig.OpentelemetryUri.OriginalString, Is.EqualTo("https://localhost:4317"));
+
+            Assert.That(monitoringConfig.ElasticSearchUri, Is.Null);
         }
     }
 }
