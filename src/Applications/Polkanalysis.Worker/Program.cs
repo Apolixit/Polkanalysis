@@ -30,11 +30,11 @@ IConfiguration config = new ConfigurationBuilder()
             .AddEnvironmentVariables()
             .Build();
 
-var logger = new LoggerConfiguration().ReadFrom.Configuration(config)
-    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
-    .CreateLogger();
+var logger = Polkanalysis.Common.Logging.LoggerExtension.BuildLogger(config);
 
-logger.Information("Starting Polkanalysis Worker hosted service...");
+Microsoft.Extensions.Logging.ILogger log = Polkanalysis.Common.Logging.LoggerExtension.CreateLogger(logger, "Polkanalys.Worker");
+
+log.LogInformation("Starting Polkanalysis Worker hosted service...");
 
 var host = Host.CreateDefaultBuilder(args)
 .UseSerilog(logger)
@@ -72,7 +72,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddDatabase();
     services.AddSubstrateLogic();
 
-    services.AddOpentelemetry(
+    services.AddOpentelemetry(log, 
         "Polkanalysis.Worker", 
         new List<string>() { "Polkanalysis.Worker.Metrics" });
 
@@ -89,7 +89,6 @@ var host = Host.CreateDefaultBuilder(args)
 })
 .Build();
 
-Microsoft.Extensions.Logging.ILogger log = new SerilogLoggerFactory(logger).CreateLogger("database");
 await host.ApplyMigrationAsync(log);
 await host.ConnectNodeAsync("Polkanalysis.Worker", log);
 

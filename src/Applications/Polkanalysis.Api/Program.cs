@@ -26,6 +26,8 @@ namespace Polkanalysis.Api
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
                 .CreateLogger();
 
+            Microsoft.Extensions.Logging.ILogger log = new SerilogLoggerFactory(logger).CreateLogger("Polkanalys.Api");
+
             try
             {
                 logger.Information("Starting Polkanalysis API ...");
@@ -53,7 +55,6 @@ namespace Polkanalysis.Api
                     options.UseNpgsql(builder.Configuration.GetConnectionString("SubstrateDb"));
                 });
 
-                
                 // For the API, we register Polkadot as singleton
                 builder.Services.AddPolkadotBlockchain("polkadot", registerAsSingleton: true);
                 builder.Services.AddHttpClient();
@@ -74,7 +75,7 @@ namespace Polkanalysis.Api
                                       });
                 });
 
-                builder.Services.AddOpentelemetry("Polkanalysis.API");
+                builder.Services.AddOpentelemetry(log, "Polkanalysis.API");
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit

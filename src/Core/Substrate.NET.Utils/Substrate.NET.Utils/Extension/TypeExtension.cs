@@ -54,8 +54,20 @@ namespace Substrate.NET.Utils
                 return typed;
             }
 
-            throw new InvalidCastException();
+            throw new InvalidCastException($"Unable to cast {sender.GetType().FullName} to {typeof(T).FullName}");
         }
+
+        /// <summary>
+        /// Cast the data to the specified enum GetValue2 type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static U CastToEnumValues<T, U>(this IType data)
+            where T : IBaseEnum
+            where U : IType
+            => data.As<T>().GetValues().As<U>();
 
         public static T Instanciate<T>(this Type sender)
         {

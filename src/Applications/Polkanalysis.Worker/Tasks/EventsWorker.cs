@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Microsoft.Extensions.Hosting;
 using System.Diagnostics.Metrics;
 using Polkanalysis.Worker.Metrics;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -76,13 +77,13 @@ namespace Polkanalysis.Worker.Tasks
 
             if (lastBlockdata.Block.Header.Number.Value < _blockPerimeter.From)
             {
-                _logger.LogWarning($"Current block number (={lastBlockdata.Block.Header.Number.Value}) is lower than FromBlock param (={_blockPerimeter.From}), just go to subscribe new block");
+                _logger.LogWarning("[{workerName}] Current block number (={blockNumber}) is lower than FromBlock param (={from}), just go to subscribe new block", nameof(EventsWorker), lastBlockdata.Block.Header.Number.Value, _blockPerimeter.From);
                 return;
             }
 
             if (_blockPerimeter.To > lastBlockdata.Block.Header.Number.Value)
             {
-                _logger.LogWarning($"_blockPerimeter.ToBlock block number (={_blockPerimeter.To}) is greater than current max block (={lastBlockdata.Block.Header.Number.Value})");
+                _logger.LogWarning("[{workerName}] _blockPerimeter.ToBlock block number (={to}) is greater than current max block (={lastBlock})", nameof(EventsWorker), _blockPerimeter.To, lastBlockdata.Block.Header.Number.Value);
                 _blockPerimeter.To = (uint)lastBlockdata.Block.Header.Number.Value;
             }
 
@@ -93,7 +94,7 @@ namespace Polkanalysis.Worker.Tasks
 
                 if (hash == null)
                 {
-                    _logger.LogError($"Block hash for block number {i} is null");
+                    _logger.LogError("[{workerName}] Block hash for block number {i} is null", nameof(EventsWorker));
                     break;
                 }
 
@@ -136,11 +137,11 @@ namespace Polkanalysis.Worker.Tasks
 
                 if (events == null)
                 {
-                    _logger.LogWarning("No events associated to block num {blockId}", blockNumber);
+                    _logger.LogWarning("[{workerName}]  No events associated to block num {blockId}", nameof(EventsWorker), blockNumber);
                 }
                 else
                 {
-                    _logger.LogInformation($"Scan block num {blockNumber}, associated events = {events.Value.Length}");
+                    _logger.LogInformation("[{workerName}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(EventsWorker), blockNumber, events.Value.Length);
 
                     for (int i = 0; i < events.Value.Length; i++)
                     {
@@ -150,10 +151,10 @@ namespace Polkanalysis.Worker.Tasks
                         // Is this event has to be insert in database ?
                         if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
                         {
-                            _logger.LogDebug("[{module}][{method}] has no database event linked", eventNode.Module, eventNode.Method);
+                            _logger.LogDebug("[{workerName}][{module}][{method}] has no database event linked", nameof(EventsWorker), eventNode.Module, eventNode.Method);
                             continue;
                         }
-                        _logger.LogInformation("[{module}][{method}] is linked to database !", eventNode.Module, eventNode.Method);
+                        _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database !", nameof(EventsWorker), eventNode.Module, eventNode.Method);
 
                         await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
                     }
@@ -184,37 +185,54 @@ namespace Polkanalysis.Worker.Tasks
 
                 if (events == null)
                 {
-                    _logger.LogWarning("No events associated to block num {blockId}", blockNumber);
+                    _logger.LogWarning("[{workerName}] No events associated to block num {blockId}", nameof(EventsWorker), blockNumber);
                 }
                 else
                 {
-                    _logger.LogInformation($"Scan block num {blockNumber}, associated events = {events.Value.Length}");
-
-                    // Get the ratio of events that has been analyzed compare to the total number of events
-                    _workerMetrics.RecordEventAnalyzed((double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count());
+                    _logger.LogInformation("[{workerName}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(EventsWorker), blockNumber, events.Value.Length);
+                    
+                    PushEventAnalyzedRatio(events);
 
                     for (int i = 0; i < events.Value.Length; i++)
                     {
                         var ev = events.Value[i];
-                        var eventNode = _substrateDecode.DecodeEvent(ev);
-
-                        // Is this event has to be insert in database ?
-                        if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
+                        try
                         {
-                            _logger.LogDebug("[{module}][{method}] has no database event linked", eventNode.Module, eventNode.Method);
-                            continue;
-                        }
-                        _logger.LogInformation("[{module}][{method}] is linked to database !", eventNode.Module, eventNode.Method);
+                            var eventNode = _substrateDecode.DecodeEvent(ev);
 
-                        await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
+                            // Is this event has to be insert in database ?
+                            if (!_eventsFactory.Has(eventNode.Module, eventNode.Method))
+                            {
+                                _logger.LogDebug("[{workerName}][{module}][{method}] has no database event linked", nameof(EventsWorker), eventNode.Module, eventNode.Method);
+                                continue;
+                            }
+                            _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database !", nameof(EventsWorker), eventNode.Module, eventNode.Method);
+
+                            await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, "[{workerName}] Unable to successfully decode event index {eventIndex} from block {blockNum}. Event value = ({eventHex})", nameof(EventsWorker), i, blockNumber, Utils.Bytes2HexString(ev.Bytes));
+                        }
+
                     }
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Fail to get events from block {blockNum}", blockNumber.Value);
+                _logger.LogError(ex, "[{workerName}] Fail to get events from block {blockNum}", nameof(EventsWorker), blockNumber.Value);
             }
 
+        }
+
+        /// <summary>
+        /// Get the ratio of events that has been analyzed compare to the total number of events
+        /// </summary>
+        /// <param name="events"></param>
+        private void PushEventAnalyzedRatio(BaseVec<EventRecord> events)
+        {
+            var ratio = (double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count();
+            _workerMetrics.RecordEventAnalyzed(ratio);
         }
 
         private async Task InsertDatabaseAsync(

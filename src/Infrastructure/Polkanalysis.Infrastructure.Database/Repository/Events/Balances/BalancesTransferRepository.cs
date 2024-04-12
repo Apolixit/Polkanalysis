@@ -41,7 +41,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
             IType data,
             CancellationToken token)
         {
-            var convertedData = _mapping.Map<IType, BaseTuple<SubstrateAccount, SubstrateAccount, U128>>(data);
+            var convertedData = data.CastToEnumValues<
+                Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent, 
+                BaseTuple<SubstrateAccount, SubstrateAccount, U128>>();
 
             var transferAmount = ((U128)convertedData.Value[2]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
@@ -75,7 +77,5 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         {
             return Task.FromResult(_context.EventBalancesTransfer ?? Enumerable.Empty<BalancesTransferModel>());
         }
-
-
     }
 }

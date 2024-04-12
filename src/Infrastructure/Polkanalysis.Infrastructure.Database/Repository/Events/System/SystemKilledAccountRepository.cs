@@ -7,6 +7,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 {
@@ -32,7 +33,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 
         protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
-            var convertedData = _mapping.Map<IType, SubstrateAccount>(data);
+            var convertedData = data.CastToEnumValues<
+                Blockchain.Contracts.Pallet.System.Enums.EnumEvent,
+                SubstrateAccount>();
 
             var account = convertedData.ToStringAddress();
 

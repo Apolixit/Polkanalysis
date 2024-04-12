@@ -15,6 +15,6 @@ namespace Polkanalysis.Configuration.Contracts
 
         public Uri? GrafanaUri { get; set; }
         public Uri? ElasticSearchUri { get; set; }
-        public Uri OpentelemetryUri { get; set;}
+        public Uri? OpentelemetryUri { get; set;}
     }
 }
