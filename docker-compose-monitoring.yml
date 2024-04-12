@@ -1,0 +1,47 @@
+version: '3.4'
+
+networks:
+  polkanalysis_network:
+    driver: bridge
+
+volumes:
+  polkanalysis_data:
+    driver: local
+
+services:
+  prometheus:
+    container_name: Polkanalysis_Prometheus
+    build:
+      context: ./docker/prometheus
+    depends_on:
+      - polkanalysis.worker
+    ports:
+      - 9090:9090
+    networks:
+      - polkanalysis_network
+
+  grafana:
+    container_name: Polkanalysis_Grafana
+    build:
+      context: ./docker/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    networks:
+      - metrics
+
+  otel-collector:
+    container_name: Polkanalysis_OtelCollector
+    image: otel/opentelemetry-collector:0.97.0
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./docker/otel-collector/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "8888:8888"
+      - "8889:8889"
+      - "13133:13133"
+      - "4317:4317"
+    networks:
+      - polkanalysis_network
+

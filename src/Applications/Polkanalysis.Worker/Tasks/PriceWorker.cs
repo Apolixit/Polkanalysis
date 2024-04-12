@@ -44,7 +44,7 @@ namespace Polkanalysis.Worker.Tasks
         }
 
         /// <summary>
-        /// We mix two logic here, because our goal is to get price value everyday (and only one time per day) of the token price
+        /// We mix two logic here, because our goal is to get price value every hour (and only one time per hour) of the token price
         ///     - First we check if
         ///     - Second we check if we are seeking for old price
         /// </summary>

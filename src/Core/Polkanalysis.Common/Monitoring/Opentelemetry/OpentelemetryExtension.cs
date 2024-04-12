@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -17,11 +18,14 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
         /// <returns></returns>
         public static IServiceCollection AddOpentelemetry(
             this IServiceCollection services,
+            ILogger logger,
             string ressourceBuilderServiceName,
             IEnumerable<string>? customMetricsName = null,
             IEnumerable<string>? customTracesName = null)
         {
             services.AddTransient<IMonitoringEndpoint, MonitoringEndpoint>();
+
+            logger.LogInformation("Starting register OpenTelemetry");
 
             // Get the OTEL endpoint from the configuration
             string? otlpEndpoint = null;
@@ -29,7 +33,7 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
             {
                 var otlpConfiguration = serviceProvider.GetService<IMonitoringEndpoint>();
 
-                if (otlpConfiguration is not null)
+                if (otlpConfiguration is not null && otlpConfiguration.OpentelemetryUri is not null)
                     otlpEndpoint = otlpConfiguration.OpentelemetryUri.OriginalString;
             }
 
@@ -54,6 +58,12 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
                 .AddProcessInstrumentation()
                 .AddMeter("Microsoft.AspNetCore.Hosting")
                 .AddMeter("Microsoft.AspNetCore.Server.Kestrel");
+
+                //metrics.AddOtlpExporter(otlpOptions =>
+                //{
+                //    otlpOptions.Endpoint = new Uri("http://localhost:4317");
+
+                //});
 
                 if (!string.IsNullOrEmpty(otlpEndpoint))
                 {
@@ -81,7 +91,11 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation();
 
-                // Si on a spécifié un endpoint custom (en plus d'Azure Monitor) on l'ajoute
+                //tracing.AddOtlpExporter(otlpOptions =>
+                //{
+                //    otlpOptions.Endpoint = new Uri("http://localhost:4317");
+                //    });
+
                 if (!string.IsNullOrEmpty(otlpEndpoint))
                 {
                     tracing.AddOtlpExporter(otlpOptions =>
@@ -92,6 +106,8 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
 
                 tracing.AddConsoleExporter();
             });
+
+
 
             //services.ConfigureOpenTelemetryMeterProvider((sp, builder) => builder.AddRuntimeInstrumentation());
 

@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.API\Substrate.NetApi\Substrate.NetApi.csproj" />
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />
   </ItemGroup>
 

@@ -35,7 +35,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 
         protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
         {
-            var convertedData = _mapping.Map<IType, BaseTuple<SubstrateAccount, U128, U128>>(data);
+            var convertedData = data.CastToEnumValues<
+                Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
+                BaseTuple<SubstrateAccount, U128, U128>>();
 
             var rootAccount = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
             var amount1 = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
