@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using System.Diagnostics.Metrics;
 using Polkanalysis.Worker.Metrics;
 using Substrate.NetApi;
+using MediatR;
+using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -22,6 +24,7 @@ namespace Polkanalysis.Worker.Tasks
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly PerimeterService _perimeterService;
         private readonly IEventsFactory _eventsFactory;
+        private readonly IMediator _mediator;
         private readonly WorkerMetrics _workerMetrics;
         private readonly ILogger<EventsWorker> _logger;
 
@@ -34,7 +37,8 @@ namespace Polkanalysis.Worker.Tasks
             ISubstrateDecoding substrateDecode,
             PerimeterService perimeterService,
             ILogger<EventsWorker> logger,
-            WorkerMetrics workerMetrics)
+            WorkerMetrics workerMetrics,
+            IMediator mediator)
         {
             _polkadotRepository = polkadotRepository;
             _explorerRepository = explorerRepository;
@@ -43,6 +47,7 @@ namespace Polkanalysis.Worker.Tasks
             _perimeterService = perimeterService;
             _logger = logger;
             _workerMetrics = workerMetrics;
+            _mediator = mediator;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -94,7 +99,7 @@ namespace Polkanalysis.Worker.Tasks
 
                 if (hash == null)
                 {
-                    _logger.LogError("[{workerName}] Block hash for block number {i} is null", nameof(EventsWorker));
+                    _logger.LogError("[{workerName}] Block hash for block number {blockNum} is null", nameof(EventsWorker), i);
                     break;
                 }
 
@@ -191,11 +196,14 @@ namespace Polkanalysis.Worker.Tasks
                 {
                     _logger.LogInformation("[{workerName}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(EventsWorker), blockNumber, events.Value.Length);
                     
-                    PushEventAnalyzedRatio(events);
+                    var ratio = PushEventAnalyzedRatio(events);
 
                     for (int i = 0; i < events.Value.Length; i++)
                     {
                         var ev = events.Value[i];
+
+                        //if (!ev.Event.HasBeenMapped) continue;
+
                         try
                         {
                             var eventNode = _substrateDecode.DecodeEvent(ev);
@@ -206,13 +214,13 @@ namespace Polkanalysis.Worker.Tasks
                                 _logger.LogDebug("[{workerName}][{module}][{method}] has no database event linked", nameof(EventsWorker), eventNode.Module, eventNode.Method);
                                 continue;
                             }
-                            _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database !", nameof(EventsWorker), eventNode.Module, eventNode.Method);
+                            _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database. Ratio = {ratio}", nameof(EventsWorker), eventNode.Module, eventNode.Method, ratio);
 
                             await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
                         }
                         catch (Exception ex)
                         {
-                            _logger.LogError(ex, "[{workerName}] Unable to successfully decode event index {eventIndex} from block {blockNum}. Event value = ({eventHex})", nameof(EventsWorker), i, blockNumber, Utils.Bytes2HexString(ev.Bytes));
+                            _logger.LogError(ex, "[{workerName}] Unable to successfully decode event index {eventIndex} from block {blockNum}. Event value = ({eventHex}). Ratio = {ratio}", nameof(EventsWorker), i, blockNumber, Utils.Bytes2HexString(ev.Bytes), ratio);
                         }
 
                     }
@@ -229,10 +237,12 @@ namespace Polkanalysis.Worker.Tasks
         /// Get the ratio of events that has been analyzed compare to the total number of events
         /// </summary>
         /// <param name="events"></param>
-        private void PushEventAnalyzedRatio(BaseVec<EventRecord> events)
+        private double PushEventAnalyzedRatio(BaseVec<EventRecord> events)
         {
             var ratio = (double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count();
             _workerMetrics.RecordEventAnalyzed(ratio);
+
+            return ratio;
         }
 
         private async Task InsertDatabaseAsync(
@@ -242,22 +252,15 @@ namespace Polkanalysis.Worker.Tasks
             EventRecord ev,
             IEventNode eventNode)
         {
-            var databaseModel = new EventModel(
-                _polkadotRepository.BlockchainName,
-                (int)blockNumber.Value,
-                currentDate,
-                eventIndex,
-                eventNode.Module.ToString(),
-                eventNode.Method.ToString())
+            var res = await _mediator.Send(new SavedEventsCommand(blockNumber, currentDate, eventIndex, ev, eventNode));
+            
+            if (res.IsSuccess)
             {
-            };
-
-            var subEvent = (BaseEnumType)ev.Event.Value!;
-            await _eventsFactory.ExecuteInsertAsync(
-                eventNode.Module,
-                eventNode.Method,
-                databaseModel,
-                subEvent.GetValue2(), CancellationToken.None);
+                _workerMetrics.IncreaseAnalyzedEventsCount();
+            } else
+            {
+                _logger.LogError("[{workerName}] {errorReason}", nameof(EventsWorker), res.Error.Description);
+            }
         }
     }
 }

@@ -7,6 +7,9 @@ using Polkanalysis.Domain.Contracts.Core.Enum;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System.Numerics;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -70,8 +73,8 @@ namespace Polkanalysis.Domain.Runtime
 
                 //new EventMappingElem()
                 //{
-                //    CategoryName = "Result",
-                //    Mapping = new List<IMappingElement>() { new MappingElementEnumResult() }
+                //    CategoryName = "Maybe",
+                //    Mapping = new List<IMappingElement>() { new MappingMaybeEnum<EnumRuntimeEvent>() }
                 //},
                 //new EventMappingElem()
                 //{
@@ -99,6 +102,27 @@ namespace Polkanalysis.Domain.Runtime
             }
 
             return new MappingElementUnknown(searchType);
+        }
+    }
+
+    public class MappingMaybeEnum<T> : IMappingElement
+        where T : IType, new()
+    {
+        public Type ObjectType => typeof(Maybe<T>);
+
+        public bool IsIdentified => true;
+
+        dynamic IMappingElement.ToHuman(dynamic input)
+        {
+            var maybe = (Maybe<T>)input;
+            if (maybe.HasBeenMapped)
+            {
+                return maybe.Value.GetValue();
+            }
+            else
+            {
+                return maybe.Core.GetValue();
+            }
         }
     }
 

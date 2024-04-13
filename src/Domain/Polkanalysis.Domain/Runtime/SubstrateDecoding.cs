@@ -64,12 +64,32 @@ namespace Polkanalysis.Domain.Runtime
         public IEventNode DecodeEvent(EventRecord ev)
         {
             var eventNode = new EventNode();
-            //if (!ev.Event.HasBeenMapped) return eventNode;
-
-            VisitNode(eventNode, ev);
+            
+            if (!ev.Event.HasBeenMapped)
+            {
+                DecodeEventNotMapped(eventNode, ev);
+            } else
+            {
+                VisitNode(eventNode, ev);
+            }
 
             _logger.LogTrace("Node created from EventRecord");
             return eventNode;
+        }
+
+        private void DecodeEventNotMapped(INode node, EventRecord ev)
+        {
+            var phaseNode = new EventNode();
+            VisitNode(phaseNode, ev.Phase);
+            node.AddChild(phaseNode);
+
+            var notMappedNode = new EventNode();
+            VisitNode(notMappedNode, ev.Event.Core!);
+            node.AddChild(notMappedNode);
+
+            var topicNode = new EventNode();
+            VisitNode(topicNode, ev.Topics);
+            node.AddChild(topicNode);
         }
 
         public INode DecodeExtrinsic(string hex)
