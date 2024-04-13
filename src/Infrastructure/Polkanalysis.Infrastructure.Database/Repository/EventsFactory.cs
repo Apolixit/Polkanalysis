@@ -71,7 +71,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                     Blockchain.Contracts.Pallet.System.Enums.Event.NewAccount),
             };
 
-            _logger.LogInformation($"{nameof(EventsFactory)} instanciated. {Mapped.Count()} events link to database found");
+            _logger.LogDebug("[{className}] instanciated. {eventMappedCount} events link to database found", nameof(EventsFactory), Mapped.Count());
         }
 
         public async Task ExecuteInsertAsync(RuntimeEvent runtimeEvent, Enum eventValue, EventModel eventModel, IType details, CancellationToken token)

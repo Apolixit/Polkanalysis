@@ -51,7 +51,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                     if (nbRows != 1)
                         throw new InvalidOperationException("Inserted rows are inconsistent");
 
-                    _logger.LogInformation($"{eventModel.ModuleEvent} successfully inserted is database");
+                    _logger.LogDebug($"{eventModel.ModuleEvent} successfully inserted is database");
                 }
             }
             catch (Exception ex)

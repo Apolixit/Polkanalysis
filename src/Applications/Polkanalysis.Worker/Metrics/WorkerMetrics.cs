@@ -18,6 +18,7 @@ namespace Polkanalysis.Worker.Metrics
     public class WorkerMetrics
     {
         private Counter<int> CountBlockAnalyzed { get; set; }
+        private Counter<int> CountEventsAnalyzed { get; set; }
         private Histogram<double> RatioOfEventsAnalyzedPerBlockHistogram { get; set; }
         private Histogram<int> TimeDurationOfEventsAnalyzedPerBlockHistogram { get; set; }
 
@@ -30,6 +31,12 @@ namespace Polkanalysis.Worker.Metrics
                 "count.blocks.analyzed",
                 "block",
                 "Counter of the number of blocks analyzed by the worker");
+
+            // Counter of the number of blocks analyzed by the worker
+            CountEventsAnalyzed = meter.CreateCounter<int>(
+                "count.substrate.events.analyzed",
+                "block",
+                "Counter of the number of Substrate events inserted in the database");
 
             // Histogram of the ratio of Substrate succesfully parsed events analyzed by the worker
             RatioOfEventsAnalyzedPerBlockHistogram = meter.CreateHistogram<double>(
@@ -44,6 +51,7 @@ namespace Polkanalysis.Worker.Metrics
         }
 
         public void IncreaseBlockCount() => CountBlockAnalyzed.Add(1);
+        public void IncreaseAnalyzedEventsCount() => CountEventsAnalyzed.Add(1);
         public void RecordEventAnalyzed(double value) => RatioOfEventsAnalyzedPerBlockHistogram.Record(value);
         public void RecordEventAnalyzed(int value) => TimeDurationOfEventsAnalyzedPerBlockHistogram.Record(value);
     }

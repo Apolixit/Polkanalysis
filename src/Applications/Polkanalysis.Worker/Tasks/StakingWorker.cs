@@ -38,6 +38,8 @@ namespace Polkanalysis.Worker.Tasks
         protected uint GetLastEraId()
         {
             var lastEra = _polkadotService.Storage.Staking.CurrentEraAsync(CancellationToken.None).Result;
+
+            _logger.LogInformation("[{workerName}] Last Era {eraId}", nameof(StakingWorker), lastEra.Value);
             return lastEra.Value;
         }
 
@@ -69,7 +71,7 @@ namespace Polkanalysis.Worker.Tasks
         {
             await _polkadotService.Storage.Staking.SubscribeNewCurrentEraAsync(async (eraId) =>
             {
-                _logger.LogInformation($"New Era {eraId.Value} just started at {DateTime.Now}");
+                _logger.LogInformation("[{workerName}] New Era {eraId} just started at {datetimeNow}", nameof(StakingWorker), eraId.Value, DateTime.Now);
 
                 await _mediator.Send(new EraStakersCommand()
                 {
@@ -85,11 +87,20 @@ namespace Polkanalysis.Worker.Tasks
 
             for (uint i = _eraPerimeter.From; i <= _eraPerimeter.To; i++)
             {
-                await _mediator.Send(new EraStakersCommand()
+                var res = await _mediator.Send(new EraStakersCommand()
                 {
                     EraId = i,
                     OverrideIfAlreadyExist = _eraPerimeter.OverrideIfAlreadyExists
                 }, cancellationToken);
+
+                if(res.IsSuccess)
+                {
+                    _logger.LogInformation("[{workerName}] [EraStakersCommand] Era {eraId} successfully inserted in database", nameof(StakingWorker), i);
+                }
+                else
+                {
+                    _logger.LogError("[{workerName}] [EraStakersCommand] Era {eraId} fail to insert", nameof(StakingWorker), i);
+                }
             }
         }
     }

@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Runtime\Event\" />
+    <Compile Remove="Runtime\Event\**" />
+    <EmbeddedResource Remove="Runtime\Event\**" />
+    <None Remove="Runtime\Event\**" />
   </ItemGroup>
 
   <ItemGroup>

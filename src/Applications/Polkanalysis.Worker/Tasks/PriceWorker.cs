@@ -33,6 +33,10 @@ namespace Polkanalysis.Worker.Tasks
             _priceTokenPerimeter = perimeterService.GetTokenPricePerimeter(FirstDayToken);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected DateTime FirstDayToken()
         {
             return new DateTime(2022, 01, 01);
@@ -57,6 +61,8 @@ namespace Polkanalysis.Worker.Tasks
 
             if (_priceTokenPerimeter.IsSet)
             {
+                _logger.LogInformation("[{workerName}] Fetch price from {from} to {to}", nameof(PriceWorker), _priceTokenPerimeter.From.ToString("dd-MM-yyyy"), _priceTokenPerimeter.To.ToString("dd-MM-yyyy"));
+
                 var historicalPrice = await _mediator.Send(new HistoricalPriceQuery()
                 {
                     From = _priceTokenPerimeter.From,
@@ -74,30 +80,35 @@ namespace Polkanalysis.Worker.Tasks
                         .Except(historicalPrice.Value.TokenPrices.Select(x => x.Date.Date))
                         .ToList();
                 }
+
+                if(missingDates.Any())
+                    _logger.LogInformation("[{workerName}] {dateMissingCount} dates are missing from the database", nameof(PriceWorker), missingDates.Count());
+                else
+                    _logger.LogInformation("[{workerName}] No dates are missing from the database", nameof(PriceWorker));
             }
 
             using PeriodicTimer timer = new PeriodicTimer(_checkPeriod);
 
             while (!cancellationToken.IsCancellationRequested && await timer.WaitForNextTickAsync())
             {
-                _logger.LogDebug("Price new {second}s ticks ", _checkPeriod.Seconds);
+                _logger.LogDebug("[{workerName}] Price new {second}s ticks ", nameof(PriceWorker), _checkPeriod.Seconds);
 
                 var hasInsert = await PriceFeedAsync(cancellationToken);
 
                 if (!hasInsert && missingDates.Any())
                 {
                     var missingDate = missingDates.First();
-                    _logger.LogInformation("Price feed : no new price has been inserted, keep insert old date {oldDate}", missingDate);
+                    _logger.LogInformation("[{workerName}] Price feed : no new price has been inserted, keep insert old date {oldDate}", nameof(PriceWorker), missingDate);
 
                     await GetPriceAndInsertAsync(missingDate, cancellationToken);
 
                     if (missingDates.Remove(missingDate))
                     {
-                        _logger.LogDebug("{missingDate} successfully remove from missing dates", missingDate);
+                        _logger.LogDebug("[{workerName}] {missingDate} successfully remove from missing dates", nameof(PriceWorker), missingDate);
                     }
                     else
                     {
-                        _logger.LogError("Error when trying to remove {missingDate} from missing dates", missingDate);
+                        _logger.LogError("[{workerName}] Error when trying to remove {missingDate} from missing dates", nameof(PriceWorker), missingDate);
                     }
                 }
             }
@@ -114,7 +125,7 @@ namespace Polkanalysis.Worker.Tasks
             var currentDate = DateTime.Now;
             if (currentDate.Hour == 0)
             {
-                _logger.LogInformation("New hour start ({currentDate}), fetch price feed for {BlockchainName} network", currentDate.ToString("dd-MM-yyyy HH:mm:ss"), _polkadotRepository.BlockchainName);
+                _logger.LogInformation("[{workerName}] New hour start ({currentDate}), fetch price feed for {BlockchainName} network", nameof(PriceWorker), currentDate.ToString("dd-MM-yyyy HH:mm:ss"), _polkadotRepository.BlockchainName);
                 await GetPriceAndInsertAsync(currentDate, cancellationToken);
 
                 return true;
@@ -137,7 +148,7 @@ namespace Polkanalysis.Worker.Tasks
                 Date = currentDate.Date
             });
 
-            _logger.LogInformation("Price result = {priceResult}", tokenPriceResult.Value);
+            _logger.LogInformation("[{workerName}] Price result = {priceResult}", nameof(PriceWorker), tokenPriceResult.Value);
 
             // Let's insert the price in database
             await _mediator.Send(new TokenPriceCommand()
@@ -151,7 +162,7 @@ namespace Polkanalysis.Worker.Tasks
                 }
             }, cancellationToken);
 
-            _logger.LogInformation("{currentDate} {BlockchainName} price {tokenPrice} inserted in database", currentDate.ToString("dd-MM-yyyy HH:mm:ss"), _polkadotRepository.BlockchainName, tokenPriceResult.Value.Price);
+            _logger.LogInformation("[{workerName}] {currentDate} {BlockchainName} price {tokenPrice} inserted in database", nameof(PriceWorker), currentDate.ToString("dd-MM-yyyy HH:mm:ss"), _polkadotRepository.BlockchainName, tokenPriceResult.Value.Price);
         }
     }
 }

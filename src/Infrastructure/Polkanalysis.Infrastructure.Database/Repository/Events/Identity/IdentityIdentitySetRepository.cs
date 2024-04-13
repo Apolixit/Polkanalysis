@@ -50,7 +50,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 
             if (await IsAlreadyExistsAsync(model, token))
             {
-                _logger.LogWarning($"{model} already exists in database !");
+                _logger.LogDebug($"{model} already exists in database !");
                 return false;
             }
 
