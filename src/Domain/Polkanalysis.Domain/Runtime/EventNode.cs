@@ -20,7 +20,8 @@ namespace Polkanalysis.Domain.Runtime
                     var runtimeEvent = getRuntimeEvent();
                     
                     Guard.Against.Null(runtimeEvent, nameof(runtimeEvent));
-                    _module = (RuntimeEvent)runtimeEvent.HumanData;
+                    //_module = (RuntimeEvent)runtimeEvent.HumanData;
+                    _module = Enum.Parse<RuntimeEvent>(runtimeEvent.Name);
                     Guard.Against.Null(_module, nameof(_module));
                 }
 

@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Ardalis.GuardClauses;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using AutoMapper;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -64,14 +65,16 @@ namespace Polkanalysis.Domain.Runtime
         public IEventNode DecodeEvent(EventRecord ev)
         {
             var eventNode = new EventNode();
-            
-            if (!ev.Event.HasBeenMapped)
-            {
-                DecodeEventNotMapped(eventNode, ev);
-            } else
-            {
-                VisitNode(eventNode, ev);
-            }
+
+            VisitNode(eventNode, ev);
+
+            //if (!ev.Event.HasBeenMapped)
+            //{
+            //    DecodeEventNotMapped(eventNode, ev);
+            //} else
+            //{
+            //    VisitNode(eventNode, ev);
+            //}
 
             _logger.LogTrace("Node created from EventRecord");
             return eventNode;
@@ -80,14 +83,20 @@ namespace Polkanalysis.Domain.Runtime
         private void DecodeEventNotMapped(INode node, EventRecord ev)
         {
             var phaseNode = new EventNode();
+            phaseNode.AddName("Phase");
             VisitNode(phaseNode, ev.Phase);
             node.AddChild(phaseNode);
 
             var notMappedNode = new EventNode();
-            VisitNode(notMappedNode, ev.Event.Core!);
+            notMappedNode.AddName("Event");
+
+            var coreNode = new EventNode();
+            VisitNode(coreNode, ev.Event.Core!);
+            notMappedNode.AddChild(coreNode);
             node.AddChild(notMappedNode);
 
             var topicNode = new EventNode();
+            topicNode.AddName("Topics");
             VisitNode(topicNode, ev.Topics);
             node.AddChild(topicNode);
         }
@@ -217,7 +226,7 @@ namespace Polkanalysis.Domain.Runtime
             {
                 VisitNodeGeneric(node, value);
             }
-            else if (!mapper.IsIdentified && HasComplexeField(value))
+            else if (!mapper.IsIdentified)
             {
                 var properties = value.GetType().GetProperties();
                 foreach (var property in properties)
@@ -260,9 +269,11 @@ namespace Polkanalysis.Domain.Runtime
 
         private void VisitNodeGeneric(INode node, IType value)
         {
-            if (value.GetValue() == null) return;
+            // We try to get Value or Core
+            var data = value.GetValue("Value") ?? value.GetValue("Core");
+            if (data is null) return;
 
-            var isArray = value.GetValue()!.GetType().IsArray;
+            var isArray = data.GetType().IsArray;
 
             if(isArray)
             {
@@ -287,35 +298,27 @@ namespace Polkanalysis.Domain.Runtime
                 }
             } else
             {
-                var currentValue = (IType?)value.GetValue();
-                Guard.Against.Null(currentValue, nameof(currentValue));
-
-                if (currentValue.GetType().IsGenericType)
+                //var currentValue = (IType?)value.GetValue();
+                //var objectValue = value.GetValue();
+                if(data is IType currentValue)
                 {
-                    var childNode = new GenericNode().AddData(currentValue);
-                    node.AddChild(childNode);
+                    Guard.Against.Null(currentValue, nameof(currentValue));
 
-                    VisitNode(childNode, currentValue);
-                }
-                else
-                {
-                    VisitNode(node, currentValue);
+                    if (currentValue.GetType().IsGenericType)
+                    {
+                        var childNode = new GenericNode().AddData(currentValue);
+                        node.AddChild(childNode);
+
+                        VisitNode(childNode, currentValue);
+                    }
+                    else
+                    {
+                        VisitNode(node, currentValue);
+                    }
                 }
             }
             
         }
-
-        /// <summary>
-        /// Check if type contain TypeDefEnum.Composite attribute
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        private bool HasComplexeField(IType value)
-        {
-            return true;
-        }
-
-        
         #endregion
     }
 }
