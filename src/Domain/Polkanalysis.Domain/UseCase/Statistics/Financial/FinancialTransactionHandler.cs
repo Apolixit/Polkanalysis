@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Dto.Price
+namespace Polkanalysis.Domain.UseCase.Statistics.Financial
 {
-    public enum CurrencyDto
+    internal class FinancialTransactionHandler
     {
-        USD
     }
 }

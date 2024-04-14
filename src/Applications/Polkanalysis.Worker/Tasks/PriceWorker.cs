@@ -158,7 +158,7 @@ namespace Polkanalysis.Worker.Tasks
                 {
                     Price = tokenPriceResult.Value.Price,
                     Date = currentDate.Date,
-                    CompareToCurrency = Domain.Contracts.Dto.Price.CurrencyDto.USD
+                    CompareToCurrency = Domain.Contracts.Dto.Price.CurrencyEnumDto.USD
                 }
             }, cancellationToken);
 

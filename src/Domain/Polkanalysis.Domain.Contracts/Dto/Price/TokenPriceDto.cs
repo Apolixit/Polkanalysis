@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Price
     public class TokenPriceDto
     {
         public required double Price { get; set; }
-        public required CurrencyDto CompareToCurrency { get; set; }
+        public required CurrencyEnumDto CompareToCurrency { get; set; }
         public required DateTime Date { get; set; }
 
         public override string? ToString()

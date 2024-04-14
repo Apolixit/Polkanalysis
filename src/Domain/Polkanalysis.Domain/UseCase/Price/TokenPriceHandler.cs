@@ -35,7 +35,7 @@ namespace Polkanalysis.Domain.UseCase.Price
                     var tokenPriceDto = new TokenPriceDto()
                     {
                         Price = responseDto.market_data.current_price.usd,
-                        CompareToCurrency = CurrencyDto.USD,
+                        CompareToCurrency = CurrencyEnumDto.USD,
                         Date = request.Date
                     };
 
