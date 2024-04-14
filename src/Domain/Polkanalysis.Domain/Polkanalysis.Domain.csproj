@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UseCase\Statistics\Balances\**" />
+    <EmbeddedResource Remove="UseCase\Statistics\Balances\**" />
+    <None Remove="UseCase\Statistics\Balances\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="4.5.0" />
     <PackageReference Include="CSharp.OperationResult" Version="0.1.6" />
     <PackageReference Include="MediatR" Version="12.2.0" />
@@ -19,10 +25,6 @@
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UseCase\Statistics\Balances\" />
   </ItemGroup>
 
 </Project>

@@ -303,6 +303,13 @@ namespace Polkanalysis.Domain.Service
                 .AddMilliseconds(currentTimestamp.Value);
         }
 
+        public async Task<DateTime> GetDateTimeFromTimestampAsync(uint? blockNum, CancellationToken cancellationToken)
+        {
+            var blockHash = blockNum is null ? null : (await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(blockNum.Value), CancellationToken.None));
+
+            return await GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
+        }
+
         public async Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken)
         {
             //var lastHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(cancellationToken);

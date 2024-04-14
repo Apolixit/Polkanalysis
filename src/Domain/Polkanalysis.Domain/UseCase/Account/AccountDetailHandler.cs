@@ -4,9 +4,18 @@ using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Service;
+using FluentValidation;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.UseCase.Account
 {
+    public class AccountDetailValidator : AbstractValidator<AccountDetailQuery>
+    {
+        public AccountDetailValidator(ISubstrateService substrateService)
+        {
+            RuleFor(x => x.AccountAddress).Must(substrateService.IsValidAccountAddress);
+        }
+    }
     public class AccountDetailHandler : Handler<AccountDetailHandler, AccountDto, AccountDetailQuery>
     {
         private readonly IAccountService _accountRepository;
