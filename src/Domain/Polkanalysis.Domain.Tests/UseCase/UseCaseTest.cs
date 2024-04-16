@@ -14,6 +14,7 @@ using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using MediatR;
 using OperationResult;
+using Polkanalysis.Domain.Tests.Abstract;
 
 namespace Polkanalysis.Domain.Tests.UseCase
 {
@@ -22,7 +23,7 @@ namespace Polkanalysis.Domain.Tests.UseCase
     /// Every use cases have common behaviors to test
     /// </summary>
     /// <typeparam name="TLogger"></typeparam>
-    public abstract class UseCaseTest<TLogger, TDto, TRequest> 
+    public abstract class UseCaseTest<TLogger, TDto, TRequest> : DomainTestAbstract
         where TLogger : class
         where TRequest : IRequest<Result<TDto, ErrorResult>>
     {

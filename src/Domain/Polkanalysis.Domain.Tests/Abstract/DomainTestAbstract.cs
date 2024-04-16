@@ -35,6 +35,16 @@ namespace Polkanalysis.Domain.Tests.Abstract
             }
         }
 
+        private Account? _randomAccount;
+        public Account RandomAccount
+        {
+            get
+            {
+                return _randomAccount ??=
+                    Keyring.AddFromUri("//RandomAccount", new Meta() { Name = "RandomAccount" }, KeyType.Sr25519).Account;
+            }
+        }
+
         [SetUp]
         protected void Setup()
         {
