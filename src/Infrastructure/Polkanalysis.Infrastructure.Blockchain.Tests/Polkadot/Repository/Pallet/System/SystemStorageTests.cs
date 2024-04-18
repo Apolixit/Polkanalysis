@@ -14,6 +14,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.primitive_types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using FrameSystemExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.frame_system;
 using Substrate.NET.Utils;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.System
 {
@@ -69,14 +70,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var result = await MockStorageCallAsync(coreResult, expectedResult, _substrateRepository.Storage.System.BlockWeightAsync);
 
-            Assert.That(result.Normal.RefTime.Value.Value, Is.EqualTo(coreResult.Normal.RefTime1.Value.Value));
-            Assert.That(result.Normal.ProofSize.Value.Value, Is.EqualTo(coreResult.Normal.ProofSize.Value.Value));
+            Assert.That(
+                result.Normal.RefTime.Value.Value, 
+                Is.EqualTo(coreResult.Normal.RefTime1.GetValue<IType>().GetValue()));
+            Assert.That(result.Normal.ProofSize.Value.Value, Is.EqualTo(coreResult.Normal.ProofSize.GetValue<IType>().GetValue()));
 
-            Assert.That(result.Mandatory.RefTime.Value.Value, Is.EqualTo(coreResult.Mandatory.RefTime1.Value.Value));
-            Assert.That(result.Mandatory.ProofSize.Value.Value, Is.EqualTo(coreResult.Mandatory.ProofSize.Value.Value));
+            Assert.That(result.Mandatory.RefTime.Value.Value, Is.EqualTo(coreResult.Mandatory.RefTime1.GetValue<IType>().GetValue()));
+            Assert.That(result.Mandatory.ProofSize.Value.Value, Is.EqualTo(coreResult.Mandatory.ProofSize.GetValue<IType>().GetValue()));
 
-            Assert.That(result.Operational.RefTime.Value.Value, Is.EqualTo(coreResult.Operational.RefTime1.Value.Value));
-            Assert.That(result.Operational.ProofSize.Value.Value, Is.EqualTo(coreResult.Operational.ProofSize.Value.Value));
+            Assert.That(result.Operational.RefTime.Value.Value, Is.EqualTo(coreResult.Operational.RefTime1.GetValue<IType>().GetValue()));
+            Assert.That(result.Operational.ProofSize.Value.Value, Is.EqualTo(coreResult.Operational.ProofSize.GetValue<IType>().GetValue()));
         }
 
         [Test]

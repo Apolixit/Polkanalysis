@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Substrate.NetApi;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
@@ -67,18 +66,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<EventRecord>> EventsAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<EventRecord>>(await _client.SystemStorage.EventsAsync(token));
+            return Map<IType, BaseVec<EventRecord>>(await _client.SystemStorage.EventsAsync(token));
         }
 
         public async Task<BaseVec<BaseTuple<U32, U32>>> EventTopicsAsync(Hash key, CancellationToken token)
         {
             var hash = await MapWithVersionAsync<Hash, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types.H256Base>(key, token);
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<U32, U32>>>(await _client.SystemStorage.EventTopicsAsync(hash, token));
+            return Map<IType, BaseVec<BaseTuple<U32, U32>>>(await _client.SystemStorage.EventTopicsAsync(hash, token));
         }
 
         public async Task<EnumPhase> ExecutionPhaseAsync(CancellationToken token)
         {
-            return Map<IBaseEnum, EnumPhase>(await _client.SystemStorage.ExecutionPhaseAsync(token));
+            return Map<IType, EnumPhase>(await _client.SystemStorage.ExecutionPhaseAsync(token));
         }
 
         public async Task<U32> ExtrinsicCountAsync(CancellationToken token)
@@ -88,7 +87,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<U8>> ExtrinsicDataAsync(U32 extrinsicId, CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<U8>>(await _client.SystemStorage.ExtrinsicDataAsync(extrinsicId, token));
+            return Map<IType, BaseVec<U8>>(await _client.SystemStorage.ExtrinsicDataAsync(extrinsicId, token));
         }
 
         public async Task<LastRuntimeUpgradeInfo> LastRuntimeUpgradeAsync(CancellationToken token)

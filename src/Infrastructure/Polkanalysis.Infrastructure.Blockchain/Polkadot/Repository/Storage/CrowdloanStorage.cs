@@ -4,11 +4,11 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
 using Ardalis.GuardClauses;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -44,7 +44,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<Id>> NewRaiseAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<Id>>(await _client.CrowdloanStorage.NewRaiseAsync(token));
+            return Map<IType, BaseVec<Id>>(await _client.CrowdloanStorage.NewRaiseAsync(token));
         }
 
         public async Task<U32> NextFundIndexAsync(CancellationToken token)

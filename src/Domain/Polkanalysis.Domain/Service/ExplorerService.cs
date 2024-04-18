@@ -225,7 +225,7 @@ namespace Polkanalysis.Domain.Service
             var currentDateTask = GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
             var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
             var blockExecutionPhaseTask = _substrateService.At(blockHash).Storage.System.ExecutionPhaseAsync(cancellationToken);
-            var specVersionTask = _substrateService.Rpc.State.GetRuntimeVersionAtAsync(blockHash.Value, cancellationToken);
+            var specVersionTask = _substrateService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, cancellationToken);
 
             var (currentDate, eventsCount, blockExecutionPhase, specVersion, blockDetails) = await WaiterHelper.WaitAndReturnAsync(currentDateTask, eventsCountTask, blockExecutionPhaseTask, specVersionTask, blockDetailsTask);
 

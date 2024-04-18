@@ -57,10 +57,10 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             var blockStartHash = new Hash("0xfc7ed4b4ca798d49e2824868026ddcaf05d7fdd3ebd79a28b5872084c07af210");
 
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Is<BlockNumber>(x => x.Value == blockStart - 1), CancellationToken.None).Returns(blockStartPreviousHash);
-            _substrateService.Rpc.State.GetMetaDataAtAsync(Arg.Is<string>(x => x == blockStartPreviousHash.Value), CancellationToken.None).Returns(MetadataV14_9270);
+            _substrateService.Rpc.State.GetMetaDataAsync(Arg.Is<byte[]>(x => x == blockStartPreviousHash.Bytes), CancellationToken.None).Returns(MetadataV14_9270);
 
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Is<BlockNumber>(x => x.Value == blockStart), CancellationToken.None).Returns(blockStartHash);
-            _substrateService.Rpc.State.GetMetaDataAtAsync(Arg.Is<string>(x => x == blockStartHash.Value), CancellationToken.None).Returns(MetadataV14_9280);
+            _substrateService.Rpc.State.GetMetaDataAsync(Arg.Is<byte[]>(x => x == blockStartHash.Bytes), CancellationToken.None).Returns(MetadataV14_9280);
         }
 
         [TearDown]
@@ -129,7 +129,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         {
             var blockStartPreviousHash = new Hash("0x0a53110d116ec1550690d844dc44c3c74406d7970e3e04b2927fea6861e3e765");
 
-            _substrateService.Rpc.State.GetMetaDataAtAsync(Arg.Is<string>(x => x == blockStartPreviousHash.Value), CancellationToken.None).Returns(MetadataV13_9090);
+            _substrateService.Rpc.State.GetMetaDataAsync(Arg.Is<byte[]>(x => x == blockStartPreviousHash.Bytes), CancellationToken.None).Returns(MetadataV13_9090);
 
             var res = await _useCase!.Handle(new PalletVersionCommand()
             {

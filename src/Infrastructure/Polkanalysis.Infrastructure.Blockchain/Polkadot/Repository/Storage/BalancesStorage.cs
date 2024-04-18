@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
@@ -46,13 +45,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<IdAmount> FreezesAsync(SubstrateAccount key, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(key, token);
-            return Map<IBaseEnumerable, IdAmount>(await _client.BalancesStorage.FreezesAsync(accountId32, token));
+            return Map<IType, IdAmount>(await _client.BalancesStorage.FreezesAsync(accountId32, token));
         }
 
         public async Task<IdAmount> HoldsAsync(SubstrateAccount key, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(key, token);
-            return Map<IBaseEnumerable, IdAmount>(await _client.BalancesStorage.HoldsAsync(accountId32, token));
+            return Map<IType, IdAmount>(await _client.BalancesStorage.HoldsAsync(accountId32, token));
         }
 
         public async Task<U128> InactiveIssuanceAsync(CancellationToken token)
@@ -65,18 +64,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             var accountId32 = await MapAccoundId32Async(account, token);
             var res = await _client.BalancesStorage.LocksAsync(accountId32, token);
 
-            return await MapWithVersionAsync<IBaseEnumerable, BaseVec<BalanceLock>>(res, token);
+            return await MapWithVersionAsync<IType, BaseVec<BalanceLock>>(res, token);
         }
 
         public async Task<BaseVec<ReserveData>> ReservesAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
-            return Map<IBaseEnumerable, BaseVec<ReserveData>>(await _client.BalancesStorage.ReservesAsync(accountId32, token));
+            return Map<IType, BaseVec<ReserveData>>(await _client.BalancesStorage.ReservesAsync(accountId32, token));
         }
 
         public async Task<EnumReleases> StorageVersionAsync(CancellationToken token)
         {
-            return Map<IBaseEnum, EnumReleases>(await _client.BalancesStorage.StorageVersionAsync(token));
+            return Map<IType, EnumReleases>(await _client.BalancesStorage.StorageVersionAsync(token));
         }
 
         public async Task<U128> TotalIssuanceAsync(CancellationToken token)

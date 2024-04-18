@@ -5,9 +5,7 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using System.Security.AccessControl;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -39,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         {
             var version = await GetVersionAsync(token);
             
-            var param = (IBaseEnumerable)_mapper.Map(version, key, _client.AuctionsStorage.ReservedAmountsInputType(version));
+            var param = _mapper.Map(version, key, _client.AuctionsStorage.ReservedAmountsInputType(version));
             return await _client.AuctionsStorage.ReservedAmountsAsync(param, token);
         }
 

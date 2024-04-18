@@ -1,11 +1,5 @@
 ﻿using Substrate.NET.Utils;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
 {
@@ -15,12 +9,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
         {
             SourceClass = sourceClass.FullName;
 
-            var sourceInstance = sourceClass.Instanciate<IBaseEnum>();
-            SourceEnumName = sourceInstance.GetValue().GetType().GetEnumNames();
+            var sourceInstance = sourceClass.Instanciate<IType>();
+            SourceEnumName = sourceInstance.GetEnumValue().GetType().GetEnumNames();
         }
 
         public string SourceClass { get; set; }
-        public IEnumerable<IBaseEnum> SourceInstances { get; internal set; }
+        public IEnumerable<IType> SourceInstances { get; internal set; }
         public string[]  SourceEnumName { get; internal set; }
 
         public string? DestinationClass { get; set; }
@@ -38,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
     internal class EnumAssemblyResult
     {
         public Enum Enum { get; set; }
-        public IBaseEnum EnumExt { get; set; }
+        public IType EnumExt { get; set; }
         public string FullName { get; set; }
         public DomainMappingAttribute MappingAttribute { get; set; }
 

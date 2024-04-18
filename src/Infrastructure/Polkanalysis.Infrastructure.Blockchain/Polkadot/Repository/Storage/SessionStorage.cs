@@ -6,9 +6,8 @@ using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using System;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -23,14 +22,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<U32>> DisabledValidatorsAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<U32>>(await _client.SessionStorage.DisabledValidatorsAsync(token));
+            return Map<IType, BaseVec<U32>>(await _client.SessionStorage.DisabledValidatorsAsync(token));
         }
 
         public async Task<SubstrateAccount> KeyOwnerAsync(BaseTuple<FlexibleNameable, Hexa> key, CancellationToken token)
         {
             // (Substrate.NetApi.Model.Types.Base.BaseTuple<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.sp_core.crypto.KeyTypeId, Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>>
             var version = await GetVersionAsync(token);
-            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.SessionStorage.KeyOwnerInputType(version));
+            var input = _mapper.Map(version, key, _client.SessionStorage.KeyOwnerInputType(version));
 
             return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto.AccountId32Base, SubstrateAccount>(
                 await _client.SessionStorage.KeyOwnerAsync(input, token));
@@ -50,12 +49,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>> QueuedKeysAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>(await _client.SessionStorage.QueuedKeysAsync(token));
+            return Map<IType, BaseVec<BaseTuple<SubstrateAccount, SessionKeysPolka>>>(await _client.SessionStorage.QueuedKeysAsync(token));
         }
 
         public async Task<BaseVec<SubstrateAccount>> ValidatorsAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<SubstrateAccount>>(await _client.SessionStorage.ValidatorsAsync(token));
+            return Map<IType, BaseVec<SubstrateAccount>>(await _client.SessionStorage.ValidatorsAsync(token));
         }
     }
 }

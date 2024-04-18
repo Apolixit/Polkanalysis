@@ -68,12 +68,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             Assert.That(automappedEvent.Bytes, Is.EqualTo(mappedEventHex.Bytes));
             Assert.That(automappedEvent.Bytes, Is.EqualTo(mappedEventBytes.Bytes));
 
-            Assert.That(automappedEvent.Event.Value!.GetEnum(), Is.EqualTo(RuntimeEvent.ParaInclusion));
+            Assert.That(automappedEvent.Event.Value!.GetEnumValue(), Is.EqualTo(RuntimeEvent.ParaInclusion));
 
-            var subEnum = (Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent)automappedEvent.Event.Value!.GetValues();
-            Assert.That(subEnum.GetEnum(), Is.EqualTo(Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.Event.CandidateBacked));
+            var subEnum = (Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.EnumEvent)automappedEvent.Event.Value!.GetValue2();
+            Assert.That(subEnum.GetEnumValue(), Is.EqualTo(Contracts.Pallet.PolkadotRuntimeParachain.Inclusion.Enums.Event.CandidateBacked));
 
-            var globalAnswer = subEnum.GetValues().As<BaseTuple<CandidateReceipt, HeadData, CoreIndex, GroupIndex>>();
+            var globalAnswer = subEnum.GetValue2().As<BaseTuple<CandidateReceipt, HeadData, CoreIndex, GroupIndex>>();
             var candidateReceipt = globalAnswer.Value[0].As<CandidateReceipt>();
             var headData = globalAnswer.Value[1].As<HeadData>();
             var coreIndex = globalAnswer.Value[2].As<CoreIndex>();

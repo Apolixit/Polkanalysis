@@ -56,7 +56,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 
         protected async Task<uint> GetVersionAsync(CancellationToken token)
         {
-            var result = await _client.State.GetRuntimeVersionAtAsync(BlockHash, token);
+            var result = await _client.State.GetRuntimeVersionAsync(BlockHash, token);
             return result.SpecVersion;
         }
 
