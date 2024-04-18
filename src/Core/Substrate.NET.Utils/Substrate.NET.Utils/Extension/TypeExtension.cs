@@ -1,11 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Substrate.NET.Utils
 {
@@ -29,6 +23,15 @@ namespace Substrate.NET.Utils
                 return null;
         }
 
+        public static T GetValue<T>(this IType sender)
+            where T : IType
+        {
+            var prp = sender.GetType().GetProperty("Value");
+            if (prp != null && prp.GetValue(sender) is T prpType) return prpType;
+
+            throw new InvalidCastException($"Unable to cast {sender.GetType().FullName} to {typeof(T).FullName}");
+        }
+
         public static object? GetValue(this IType sender, string propName)
         {
             var prp = sender.GetType().GetProperty(propName);
@@ -47,9 +50,18 @@ namespace Substrate.NET.Utils
                 return null;
         }
 
+        public static T[] GetValueArray<T>(this IType sender)
+            where T : IType
+        {
+            var prp = sender.GetType().GetProperty("Value");
+            if (prp != null && prp.GetValue(sender) is T[] prpType) return prpType;
+
+            throw new InvalidCastException($"Unable to cast {sender.GetType().FullName} to {typeof(T).FullName}");
+        }
+
         public static T As<T>(this IType sender)
         {
-            if(sender is T typed)
+            if (sender is T typed)
             {
                 return typed;
             }
@@ -65,9 +77,9 @@ namespace Substrate.NET.Utils
         /// <param name="data"></param>
         /// <returns></returns>
         public static U CastToEnumValues<T, U>(this IType data)
-            where T : IBaseEnum
+            where T : BaseEnumType
             where U : IType
-            => data.As<T>().GetValues().As<U>();
+            => data.As<T>().GetValue2().As<U>();
 
         public static T Instanciate<T>(this Type sender)
         {
@@ -78,7 +90,7 @@ namespace Substrate.NET.Utils
 
             var destination = (T)destinationInstance;
             if (destination is null)
-                throw new InvalidCastException($"Unable to cast {sender.Name} to {nameof(IBaseEnum)}");
+                throw new InvalidCastException($"Unable to cast {sender.Name} to {nameof(T)}");
 
             return destination;
         }

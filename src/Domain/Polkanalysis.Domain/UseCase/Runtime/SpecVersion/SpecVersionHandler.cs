@@ -86,7 +86,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
             var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart), cancellationToken);
-            var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAtAsync(startBlockHash.Value, cancellationToken);
+            var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(startBlockHash.Bytes, cancellationToken);
 
             if (string.IsNullOrEmpty(metadataTarget))
                 throw new InvalidOperationException($"Metadata from block {request.BlockStart} is empty...");

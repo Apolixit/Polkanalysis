@@ -153,16 +153,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             var se3 = new EnumSubstrateEnum3();
             se3.Create(SubstrateEnum3.TheFourth);
 
-            var res1 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se1);
+            var res1 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se1);
             Assert.That(res1.Value, Is.EqualTo(DomainSubstrateEnum.PrimaryAndSecondaryPlainSlots));
 
-            var res2_1 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se2_1);
+            var res2_1 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se2_1);
             Assert.That(res2_1.Value, Is.EqualTo(DomainSubstrateEnum.PrimarySlots));
 
-            var res2_2 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se2_2);
+            var res2_2 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se2_2);
             Assert.That(res2_2.Value, Is.EqualTo(DomainSubstrateEnum.AnotherOne));
 
-            var res3 = _mapper.MapEnum<EnumDomainSubstrateEnum>(se3);
+            var res3 = _mapper.MapEnum<EnumDomainSubstrateEnum, DomainSubstrateEnum>(se3);
             Assert.That(res3.Value, Is.EqualTo(DomainSubstrateEnum.TheFourth));
         }
 
@@ -197,72 +197,72 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             Assert.Multiple(() =>
             {
                 Assert.That(res1.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
-                Assert.That(res1.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
+                Assert.That(res1.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
                 Assert.That(res1.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
-                Assert.That(res1.GetValues().Encode(), Is.EqualTo(new BaseVoid().Encode()));
+                Assert.That(res1.GetValue2().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 
             var res2 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se1_2);
             Assert.Multiple(() =>
             {
                 Assert.That(res2.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
-                Assert.That(res2.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
+                Assert.That(res2.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
                 Assert.That(res2.Value2.As<U32>().Value, Is.EqualTo(4));
-                Assert.That(res2.GetValues().As<U32>().Value, Is.EqualTo(4));
+                Assert.That(res2.GetValue2().As<U32>().Value, Is.EqualTo(4));
             });
 
             var res3 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se2_1);
             Assert.Multiple(() =>
             {
                 Assert.That(res3.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome3));
-                Assert.That(res3.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome3));
+                Assert.That(res3.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome3));
                 Assert.That(res3.Value2.As<Bool>().Value, Is.True);
-                Assert.That(res3.GetValues().As<Bool>().Value, Is.True);
+                Assert.That(res3.GetValue2().As<Bool>().Value, Is.True);
             });
 
             var res4 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se2_2);
             Assert.Multiple(() =>
             {
                 Assert.That(res4.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
-                Assert.That(res4.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
+                Assert.That(res4.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
                 Assert.That((int)res4.Value2.As<U128>().Value, Is.EqualTo(10));
-                Assert.That((int)res4.GetValues().As<U128>().Value, Is.EqualTo(10));
+                Assert.That((int)res4.GetValue2().As<U128>().Value, Is.EqualTo(10));
             });
 
             var res5 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_1);
             Assert.Multiple(() =>
             {
                 Assert.That(res5.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
-                Assert.That(res5.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
+                Assert.That(res5.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
                 Assert.That(res5.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
-                Assert.That(res5.GetValues().Encode(), Is.EqualTo(new BaseVoid().Encode()));
+                Assert.That(res5.GetValue2().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 
             var res6 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_2);
             Assert.Multiple(() =>
             {
                 Assert.That(res6.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
-                Assert.That(res6.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
+                Assert.That(res6.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome2));
                 Assert.That(res6.Value2.As<U32>().Value, Is.EqualTo(5));
-                Assert.That(res6.GetValues().As<U32>().Value, Is.EqualTo(5));
+                Assert.That(res6.GetValue2().As<U32>().Value, Is.EqualTo(5));
             });
 
             var res7 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_3);
             Assert.Multiple(() =>
             {
                 Assert.That(res7.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
-                Assert.That(res7.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
+                Assert.That(res7.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
                 Assert.That((int)res7.Value2.As<U128>().Value, Is.EqualTo(11));
-                Assert.That((int)res7.GetValues().As<U128>().Value, Is.EqualTo(11));
+                Assert.That((int)res7.GetValue2().As<U128>().Value, Is.EqualTo(11));
             });
 
             var res8 = _mapper.MapEnum<EnumSubstrateEnumExtDomain>(se3_4);
             Assert.Multiple(() =>
             {
                 Assert.That(res8.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome5));
-                Assert.That(res8.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome5));
+                Assert.That(res8.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome5));
                 Assert.That(res8.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
-                Assert.That(res8.GetValues().Encode(), Is.EqualTo(new BaseVoid().Encode()));
+                Assert.That(res8.GetValue2().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 
             var res9 = (EnumSubstrateEnumExtDomain?)_mapper.MapEnum(se3_3, typeof(EnumSubstrateEnumExtDomain));
@@ -271,9 +271,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             Assert.Multiple(() =>
             {
                 Assert.That(res9.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
-                Assert.That(res9.GetEnum(), Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
+                Assert.That(res9.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome4));
                 Assert.That((int)res9.Value2.As<U128>().Value, Is.EqualTo(11));
-                Assert.That((int)res9.GetValues().As<U128>().Value, Is.EqualTo(11));
+                Assert.That((int)res9.GetValue2().As<U128>().Value, Is.EqualTo(11));
             });
         }
 
@@ -349,7 +349,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             var res4 = _mapper.Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.pallet_balances.pallet.EnumEvent, Contracts.Pallet.Balances.Enums.EnumEvent>(se2);
 
             Assert.That(res4.Value, Is.EqualTo(Contracts.Pallet.Balances.Enums.Event.Endowed));
-            Assert.That(res4.GetValues().Encode(), Is.EqualTo(domainRes.Encode()));
+            Assert.That(res4.GetValue2().Encode(), Is.EqualTo(domainRes.Encode()));
         }
     }
 

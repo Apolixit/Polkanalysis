@@ -99,7 +99,7 @@ namespace Polkanalysis.Domain.Runtime.Module
             Enum? enumCall = (Enum?)Enum.ToObject(enumType, method.CallIndex);
             if (enumCall == null) throw new FormatException($"Dynamic create enum instance for {palletName} has failed");
 
-            callInstance.Create(Encode(enumCall, method.Parameters));
+            callInstance.Create(Encode(enumCall, method.Parameters.SelectMany(x => x.Encode()).ToArray()));
             return callInstance;
         }
 

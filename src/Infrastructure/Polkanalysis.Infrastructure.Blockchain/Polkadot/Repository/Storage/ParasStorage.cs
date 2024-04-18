@@ -5,11 +5,9 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NetApi.Model.Types;
 using Ardalis.GuardClauses;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -19,7 +17,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<Id>> ActionsQueueAsync(U32 key, CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<Id>>(await _client.ParasStorage.ActionsQueueAsync(key, token));
+            return Map<IType, BaseVec<Id>>(await _client.ParasStorage.ActionsQueueAsync(key, token));
         }
 
         public async Task<DataCode> CodeByHashAsync(Hash key, CancellationToken token)
@@ -80,7 +78,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<Id>> ParachainsAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<Id>>(
+            return Map<IType, BaseVec<Id>>(
                 await _client.ParasStorage.ParachainsAsync(token));
         }
 
@@ -99,7 +97,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         {
             var version = await GetVersionAsync(token);
 
-            var input = (IBaseEnumerable)_mapper.Map(version, key, _client.ParasStorage.PastCodeHashInputType(version));
+            var input = (IType)_mapper.Map(version, key, _client.ParasStorage.PastCodeHashInputType(version));
 
 
             return Map<IType, Hash>(await _client.ParasStorage.PastCodeHashAsync(input, token));
@@ -118,12 +116,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<BaseTuple<Id, U32>>> PastCodePruningAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<Id, U32>>>(await _client.ParasStorage.PastCodePruningAsync(token));
+            return Map<IType, BaseVec<BaseTuple<Id, U32>>>(await _client.ParasStorage.PastCodePruningAsync(token));
         }
 
         public async Task<BaseVec<Hash>> PvfActiveVoteListAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<Hash>>(await _client.ParasStorage.PvfActiveVoteListAsync(token));
+            return Map<IType, BaseVec<Hash>>(await _client.ParasStorage.PvfActiveVoteListAsync(token));
         }
 
         public async Task<PvfCheckActiveVoteState> PvfActiveVoteMapAsync(Hash key, CancellationToken token)
@@ -146,12 +144,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<BaseTuple<Id, U32>>> UpcomingUpgradesAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<Id, U32>>>(await _client.ParasStorage.UpcomingUpgradesAsync(token));
+            return Map<IType, BaseVec<BaseTuple<Id, U32>>>(await _client.ParasStorage.UpcomingUpgradesAsync(token));
         }
 
         public async Task<BaseVec<BaseTuple<Id, U32>>> UpgradeCooldownsAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<Id, U32>>>(await _client.ParasStorage.UpgradeCooldownsAsync(token));
+            return Map<IType, BaseVec<BaseTuple<Id, U32>>>(await _client.ParasStorage.UpgradeCooldownsAsync(token));
         }
 
         public async Task<EnumUpgradeGoAhead> UpgradeGoAheadSignalAsync(Id key, CancellationToken token)

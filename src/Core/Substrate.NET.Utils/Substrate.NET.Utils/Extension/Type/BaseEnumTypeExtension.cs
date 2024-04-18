@@ -1,20 +1,22 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 
 namespace Substrate.NET.Utils
 {
     public static class BaseEnumTypeExtension
     {
-        public static Enum? GetValue(this IBaseEnum sender)
+        public static Enum GetEnumValue(this BaseEnumType sender)
+            => GetEnumValue(sender);
+
+        public static Enum? GetEnumValue(this IType sender)
         {
             var prp = sender.GetType().GetProperty("Value");
-            return (Enum?)prp?.GetValue(sender);
+            var e = (Enum?)prp?.GetValue(sender);
+
+            if (e is null)
+                throw new InvalidCastException($"Unable to cast {sender.GetType().FullName} to {typeof(Enum).FullName}");
+
+            return e;
         }
 
         public static Enum? GetValue(this BaseEnumType sender)
@@ -23,10 +25,18 @@ namespace Substrate.NET.Utils
             return (Enum?)prp?.GetValue(sender);
         }
 
-        public static IType? GetValue2(this BaseEnumType sender)
+        public static IType GetValue2(this BaseEnumType sender)
+            => GetValue2(sender);
+
+        public static IType GetValue2(this IType sender)
         {
             var prp = sender.GetType().GetProperty("Value2");
-            return (IType?)prp?.GetValue(sender);
+            var casted = (IType?)prp?.GetValue(sender);
+
+            if(casted is null) 
+                throw new InvalidCastException($"Unable to cast {sender.GetType().FullName} to {typeof(IType).FullName}");
+
+            return (IType)casted;
         }
 
         public static T GetValue<T>(this BaseEnum<T> sender) where T : Enum

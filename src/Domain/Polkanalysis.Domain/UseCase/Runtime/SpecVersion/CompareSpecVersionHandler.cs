@@ -13,6 +13,7 @@ using Substrate.NET.Metadata.V12;
 using Substrate.NET.Metadata.V13;
 using Substrate.NET.Metadata.V14;
 using Substrate.NET.Metadata.V9;
+using Substrate.NetApi;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
@@ -57,13 +58,13 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
                 if(string.IsNullOrEmpty(sourceBlockHash?.Value) || string.IsNullOrEmpty(targetBlockHash?.Value))
                     return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"Block hash are invalid");
 
-                metadataSource = await _substrateService.Rpc.State.GetMetaDataAtAsync(sourceBlockHash.Value, cancellationToken);
-                metadataTarget = await _substrateService.Rpc.State.GetMetaDataAtAsync(targetBlockHash.Value, cancellationToken);
+                metadataSource = await _substrateService.Rpc.State.GetMetaDataAsync(sourceBlockHash.Bytes, cancellationToken);
+                metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(targetBlockHash.Bytes, cancellationToken);
 
             } else if(request.BlockHashSource is not null)
             {
-                metadataSource = await _substrateService.Rpc.State.GetMetaDataAtAsync(request.BlockHashSource, cancellationToken);
-                metadataTarget = await _substrateService.Rpc.State.GetMetaDataAtAsync(request.BlockHashTarget, cancellationToken);
+                metadataSource = await _substrateService.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray(request.BlockHashSource), cancellationToken);
+                metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray(request.BlockHashTarget), cancellationToken);
             } else
             {
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set properly");

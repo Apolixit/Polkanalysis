@@ -8,9 +8,9 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -25,13 +25,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<BaseVec<BaseTuple<PublicSr25519, U64>>> AuthoritiesAsync(CancellationToken token)
         {
             var res = await _client.BabeStorage.AuthoritiesAsync(token);
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<PublicSr25519, U64>>>(res);
+            return Map<IType, BaseVec<BaseTuple<PublicSr25519, U64>>>(res);
         }
 
         public async Task<BaseOpt<Hexa>> AuthorVrfRandomnessAsync(CancellationToken token)
         {
             //BaseOpt<Arr32U8>
-            return Map<IBaseValue, BaseOpt<Hexa>>(await _client.BabeStorage.AuthorVrfRandomnessAsync(token));
+            return Map<IType, BaseOpt<Hexa>>(await _client.BabeStorage.AuthorVrfRandomnessAsync(token));
         }
 
         public async Task<BabeEpochConfiguration> EpochConfigAsync(CancellationToken token)
@@ -46,12 +46,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseTuple<U32, U32>> EpochStartAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseTuple<U32, U32>>(await _client.BabeStorage.EpochStartAsync(token));
+            return Map<IType, BaseTuple<U32, U32>>(await _client.BabeStorage.EpochStartAsync(token));
         }
 
         public async Task<BaseOpt<EnumPreDigest>> InitializedAsync(CancellationToken token)
         {
-            return Map<IBaseValue, BaseOpt<EnumPreDigest>>(await _client.BabeStorage.InitializedAsync(token));
+            return Map<IType, BaseOpt<EnumPreDigest>>(await _client.BabeStorage.InitializedAsync(token));
         }
 
         public async Task<U32> LatenessAsync(CancellationToken token)
@@ -61,7 +61,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<BaseTuple<PublicSr25519, U64>>> NextAuthoritiesAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<PublicSr25519, U64>>>(await _client.BabeStorage.NextAuthoritiesAsync(token));
+            return Map<IType, BaseVec<BaseTuple<PublicSr25519, U64>>>(await _client.BabeStorage.NextAuthoritiesAsync(token));
         }
 
         public async Task<BabeEpochConfiguration> NextEpochConfigAsync(CancellationToken token)
@@ -76,7 +76,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<EnumNextConfigDescriptor> PendingEpochConfigChangeAsync(CancellationToken token)
         {
-            return Map<IBaseEnum, EnumNextConfigDescriptor>(await _client.BabeStorage.PendingEpochConfigChangeAsync(token));
+            return Map<IType, EnumNextConfigDescriptor>(await _client.BabeStorage.PendingEpochConfigChangeAsync(token));
         }
 
         public async Task<Hexa> RandomnessAsync(CancellationToken token)
@@ -91,12 +91,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<BaseTuple<U64, U32>>> SkippedEpochsAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<BaseTuple<U64, U32>>>(await _client.BabeStorage.SkippedEpochsAsync(token));
+            return Map<IType, BaseVec<BaseTuple<U64, U32>>>(await _client.BabeStorage.SkippedEpochsAsync(token));
         }
 
         public async Task<BaseVec<Hexa>> UnderConstructionAsync(U32 key, CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<Hexa>>(await _client.BabeStorage.UnderConstructionAsync(key, token));
+            return Map<IType, BaseVec<Hexa>>(await _client.BabeStorage.UnderConstructionAsync(key, token));
         }
 
         public async Task<Slot> CurrentSlotAsync(CancellationToken token)

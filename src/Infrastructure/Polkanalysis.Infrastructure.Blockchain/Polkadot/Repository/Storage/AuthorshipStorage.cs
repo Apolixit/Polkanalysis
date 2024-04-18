@@ -7,8 +7,8 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Authorship.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -32,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<EnumUncleEntryItem>> UnclesAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<EnumUncleEntryItem>> (await _client.AuthorshipStorage.UnclesAsync(token));
+            return Map<IType, BaseVec<EnumUncleEntryItem>>(await _client.AuthorshipStorage.UnclesAsync(token));
         }
     }
 }

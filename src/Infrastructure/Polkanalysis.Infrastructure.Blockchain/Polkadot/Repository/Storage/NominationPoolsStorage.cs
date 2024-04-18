@@ -1,18 +1,15 @@
-﻿using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi.Model.Types.Primitive;
+﻿using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Domain.Contracts.Core.Display;
-using Newtonsoft.Json.Linq;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -88,7 +85,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<FlexibleNameable> MetadataAsync(U32 key, CancellationToken token)
         {
-            return Map<IBaseEnumerable, FlexibleNameable>(await _client.NominationPoolsStorage.MetadataAsync(key, token));
+            return Map<IType, FlexibleNameable>(await _client.NominationPoolsStorage.MetadataAsync(key, token));
         }
 
         public async Task<U128> MinCreateBondAsync(CancellationToken token)
@@ -145,7 +142,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<EnumClaimPermission> ClaimPermissionsAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
-            return Map<IBaseEnum, EnumClaimPermission>(
+            return Map<IType, EnumClaimPermission>(
                 await _client.NominationPoolsStorage.ClaimPermissionsAsync(accountId32, token));
         }
 

@@ -61,7 +61,7 @@ namespace Polkanalysis.Worker.Tasks
             for (uint i = currentBlock; i <= lastBlockNum.Value; i++)
             {
                 var blockHash = await _polkadotService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(i), cancellationToken);
-                var runtimeVersion = await _polkadotService.Rpc.State.GetRuntimeVersionAtAsync(blockHash.Value, CancellationToken.None);
+                var runtimeVersion = await _polkadotService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, CancellationToken.None);
 
                 if (lastStoredVersion == null || lastStoredVersionNum != runtimeVersion.SpecVersion)
                 {

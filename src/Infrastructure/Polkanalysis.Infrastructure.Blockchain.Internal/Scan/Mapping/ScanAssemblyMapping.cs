@@ -1,8 +1,8 @@
 ﻿using Ardalis.GuardClauses;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Substrate.NET.Utils;
+using Substrate.NetApi.Model.Types;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Architecture.Tests")]
 namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
@@ -55,7 +55,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
             return result;
         }
 
-        private static IEnumerable<IBaseEnum> LoadEnumNetApiExtType(string netApiExtAssembly)
+        private static IEnumerable<IType> LoadEnumNetApiExtType(string netApiExtAssembly)
         {
             Guard.Against.NullOrEmpty(netApiExtAssembly, nameof(netApiExtAssembly));
 
@@ -64,7 +64,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
             if (loadedAssembly is null)
                 throw new InvalidOperationException($"Unable to load assembly {netApiExtAssembly}");
 
-            var enumSource = new List<IBaseEnum>();
+            var enumSource = new List<IType>();
 
             var compatibleType = loadedAssembly.GetTypes().Where(x =>
             {
@@ -80,7 +80,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
 
             foreach (var foundedEnum in compatibleType)
             {
-                enumSource.Add(foundedEnum.Instanciate<IBaseEnum>());
+                enumSource.Add(foundedEnum.Instanciate<IType>());
             }
 
             return enumSource;
@@ -120,10 +120,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping
                 var attribute = foundedEnum.GetCustomAttribute<DomainMappingAttribute>();
                 if (attribute is not null)
                 {
-                    var enumExt = typeSearched.Instanciate<IBaseEnum>();
+                    var enumExt = typeSearched.Instanciate<IType>();
                     enumDomain.Add(new EnumAssemblyResult()
                     {
-                        Enum = enumExt.GetValue(),
+                        Enum = enumExt.GetEnumValue(),
                         EnumExt = enumExt,
                         MappingAttribute = attribute,
                         FullName = foundedEnum.FullName

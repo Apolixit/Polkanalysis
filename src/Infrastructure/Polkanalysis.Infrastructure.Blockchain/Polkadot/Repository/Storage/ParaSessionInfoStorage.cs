@@ -5,7 +5,6 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
@@ -17,12 +16,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BaseVec<SubstrateAccount>> AccountKeysAsync(U32 key, CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<SubstrateAccount>>(await _client.ParaSessionInfoStorage.AccountKeysAsync(key, token));
+            return Map<IType, BaseVec<SubstrateAccount>>(await _client.ParaSessionInfoStorage.AccountKeysAsync(key, token));
         }
 
         public async Task<BaseVec<PublicSr25519>> AssignmentKeysUnsafeAsync(CancellationToken token)
         {
-            return Map<IBaseEnumerable, BaseVec<PublicSr25519>>(await _client.ParaSessionInfoStorage.AssignmentKeysUnsafeAsync(token));
+            return Map<IType, BaseVec<PublicSr25519>>(await _client.ParaSessionInfoStorage.AssignmentKeysUnsafeAsync(token));
         }
 
         public async Task<U32> EarliestStoredSessionAsync(CancellationToken token)

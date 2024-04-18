@@ -11,6 +11,7 @@ using NSubstitute;
 using StrobeNet.Extensions;
 using Newtonsoft.Json.Linq;
 using System;
+using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.NominationPools
 {
@@ -341,7 +342,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             Assert.That(coreResult.NoEra.Encode(), Is.EqualTo(expectedResult.NoEra.Encode()));
 
-            var coreTab = coreResult.WithEra.GetValues();
+            var coreTab = coreResult.WithEra.GetValueArray<IType>();
             for (int i = 0; i < coreTab.Length; i++)
             {
                 Assert.That(coreTab[i].Encode(), Is.EqualTo(expectedResult.WithEra.Value[i].Encode()));

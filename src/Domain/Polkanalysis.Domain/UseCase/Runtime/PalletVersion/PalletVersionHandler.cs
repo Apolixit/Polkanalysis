@@ -86,10 +86,10 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
             var endPreviousBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(Math.Max(request.BlockStart - 1, 0)), cancellationToken);
-            var metadataSource = await _substrateService.Rpc.State.GetMetaDataAtAsync(endPreviousBlockHash.Value, cancellationToken);
+            var metadataSource = await _substrateService.Rpc.State.GetMetaDataAsync(endPreviousBlockHash.Bytes, cancellationToken);
 
             var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart), cancellationToken);
-            var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAtAsync(startBlockHash.Value, cancellationToken);
+            var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(startBlockHash.Bytes, cancellationToken);
 
             Guard.Against.NullOrEmpty(metadataSource, nameof(metadataSource));
             Guard.Against.NullOrEmpty(metadataTarget, nameof(metadataTarget));

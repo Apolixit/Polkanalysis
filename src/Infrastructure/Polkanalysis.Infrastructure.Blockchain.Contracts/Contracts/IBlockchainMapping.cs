@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Substrate.NetApi.Model.Types;
-using Substrate.NetApi.Model.Types.Base.Abstraction;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
 {
@@ -69,16 +69,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
         /// <typeparam name="TDestinationEnum"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public TDestination MapEnum<TDestination>(IBaseEnum source)
-            where TDestination : IBaseEnum, new();
+        public TDestination MapEnum<TDestination, TEnum>(IType source)
+            where TDestination : BaseEnum<TEnum>, new()
+            where TEnum : Enum;
 
-        
+        public TDestination MapEnum<TDestination>(IType source)
+            where TDestination : BaseEnumType, new();
+
         /// <summary>
         /// Map a versionned enum to a dynamic runtime Domain enum
         /// </summary>
         /// <param name="source"></param>
         /// <param name="destinationType"></param>
         /// <returns></returns>
-        public IType MapEnum(IBaseEnum source, Type destinationType);
+        public IType MapEnum(IType source, Type destinationType);
     }
 }
