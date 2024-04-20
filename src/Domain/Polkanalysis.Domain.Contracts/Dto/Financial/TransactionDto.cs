@@ -10,15 +10,17 @@ namespace Polkanalysis.Domain.Contracts.Dto.Financial
 {
     public class TransactionDto
     {
-        public TransactionDto(uint blockNumber, CurrencyDto amount, string from, string to)
+        public TransactionDto(uint blockNumber, DateTime blockDate, CurrencyDto amount, string from, string to)
         {
             BlockNumber = blockNumber;
+            BlockDate = blockDate;
             Amount = amount;
             From = from;
             To = to;
         }
 
         public uint BlockNumber { get; set; }
+        public DateTime BlockDate { get; set; }
         public CurrencyDto Amount { get; set; }
         public string From { get; set; }
         public string To { get; set; }

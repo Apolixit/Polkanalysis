@@ -13,27 +13,20 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
-    public class BalancesSetRepository : EventDatabaseRepository, IDatabaseGet<BalancesBalanceSetModel>
+    public class BalancesSetRepository : EventDatabaseRepository<BalancesBalanceSetModel>
     {
         public BalancesSetRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
-            ILogger<EventDatabaseRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<BalancesSetRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {
         }
 
-        public async Task<bool> IsAlreadyExistsAsync(BalancesBalanceSetModel eventModel, CancellationToken token)
-        {
-            return await _context.EventBalancesBalanceSet.AnyAsync(x => x.Equals(eventModel), token);
-        }
+        protected override DbSet<BalancesBalanceSetModel> dbTable => _context.EventBalancesBalanceSet;
 
-        public Task<IEnumerable<BalancesBalanceSetModel>> GetAllAsync(CancellationToken token)
-        {
-            return Task.FromResult(_context.EventBalancesBalanceSet ?? Enumerable.Empty<BalancesBalanceSetModel>());
-        }
 
-        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<BalancesBalanceSetModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
@@ -43,7 +36,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
             var amount1 = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
             var amount2 = ((U128)convertedData.Value[2]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
-            var model = new BalancesBalanceSetModel(
+            return new BalancesBalanceSetModel(
                             eventModel.BlockchainName,
                             eventModel.BlockId,
                             eventModel.BlockDate,
@@ -53,17 +46,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                             rootAccount,
                             amount1,
                             amount2);
-
-            if (await IsAlreadyExistsAsync(model, token))
-            {
-                _logger.LogDebug($"{model} already exists in database !");
-                return false;
-            }
-
-            _context.EventBalancesBalanceSet.Add(model);
-            return true;
         }
-
-
     }
 }

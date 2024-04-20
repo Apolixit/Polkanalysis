@@ -11,7 +11,7 @@ using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 {
-    public class SystemNewAccountRepository : EventDatabaseRepository, IDatabaseGet<SystemNewAccountModel>
+    public class SystemNewAccountRepository : EventDatabaseRepository<SystemNewAccountModel>
     {
         public SystemNewAccountRepository(
             SubstrateDbContext context,
@@ -20,17 +20,10 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
             ILogger<SystemNewAccountRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {
         }
-        public async Task<bool> IsAlreadyExistsAsync(SystemNewAccountModel eventModel, CancellationToken token)
-        {
-            return await _context.EventSystemNewAccount.AnyAsync(x => x.Equals(eventModel), token);
-        }
 
-        public Task<IEnumerable<SystemNewAccountModel>> GetAllAsync(CancellationToken token)
-        {
-            return Task.FromResult(_context.EventSystemNewAccount ?? Enumerable.Empty<SystemNewAccountModel>());
-        }
+        protected override DbSet<SystemNewAccountModel> dbTable => _context.EventSystemNewAccount;
 
-        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<SystemNewAccountModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.System.Enums.EnumEvent,
@@ -38,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 
             var account = convertedData.ToStringAddress();
 
-            var model = new SystemNewAccountModel(
+            return new SystemNewAccountModel(
                 eventModel.BlockchainName,
                 eventModel.BlockId,
                 eventModel.BlockDate,
@@ -46,17 +39,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
                 account);
-
-            if (await IsAlreadyExistsAsync(model, token))
-            {
-                _logger.LogDebug($"{model} already exists in database !");
-                return false;
-            }
-
-            _context.EventSystemNewAccount.Add(model);
-            return true;
         }
-
-
     }
 }

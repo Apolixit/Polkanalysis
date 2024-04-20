@@ -11,7 +11,7 @@ using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 {
-    public class IdentityIdentitySetRepository : EventDatabaseRepository, IDatabaseGet<IdentityIdentitySetModel>
+    public class IdentityIdentitySetRepository : EventDatabaseRepository<IdentityIdentitySetModel>
     {
         public IdentityIdentitySetRepository(
             SubstrateDbContext context,
@@ -21,17 +21,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
         {
         }
 
-        public async Task<bool> IsAlreadyExistsAsync(IdentityIdentitySetModel eventModel, CancellationToken token)
-        {
-            return await _context.EventIdentityIdentitySet.AnyAsync(x => x.Equals(eventModel), token);
-        }
+        protected override DbSet<IdentityIdentitySetModel> dbTable => _context.EventIdentityIdentitySet;
 
-        public Task<IEnumerable<IdentityIdentitySetModel>> GetAllAsync(CancellationToken token)
-        {
-            return Task.FromResult(_context.EventIdentityIdentitySet ?? Enumerable.Empty<IdentityIdentitySetModel>());
-        }
-
-        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<IdentityIdentitySetModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.Identity.Enums.EnumEvent,
@@ -39,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 
             var account = convertedData.ToStringAddress();
 
-            var model = new IdentityIdentitySetModel(
+            return new IdentityIdentitySetModel(
                 eventModel.BlockchainName,
                 eventModel.BlockId,
                 eventModel.BlockDate,
@@ -47,17 +39,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
                 account);
-
-            if (await IsAlreadyExistsAsync(model, token))
-            {
-                _logger.LogDebug($"{model} already exists in database !");
-                return false;
-            }
-
-            _context.EventIdentityIdentitySet.Add(model);
-            return true;
         }
-
-
     }
 }

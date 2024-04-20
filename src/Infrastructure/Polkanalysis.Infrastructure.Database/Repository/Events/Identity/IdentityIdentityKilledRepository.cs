@@ -13,7 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 {
-    public class IdentityIdentityKilledRepository : EventDatabaseRepository, IDatabaseGet<IdentityIdentityKilledModel>
+    public class IdentityIdentityKilledRepository : EventDatabaseRepository<IdentityIdentityKilledModel>
     {
         public IdentityIdentityKilledRepository(
             SubstrateDbContext context,
@@ -23,18 +23,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
         {
         }
 
-        public async Task<bool> IsAlreadyExistsAsync(IdentityIdentityKilledModel eventModel, CancellationToken token)
-        {
-            return await _context.EventIdentityIdentityKilled.AnyAsync(x => x.Equals(eventModel), token);
-        }
+        protected override DbSet<IdentityIdentityKilledModel> dbTable => _context.EventIdentityIdentityKilled;
 
-
-        public Task<IEnumerable<IdentityIdentityKilledModel>> GetAllAsync(CancellationToken token)
-        {
-            return Task.FromResult(_context.EventIdentityIdentityKilled ?? Enumerable.Empty<IdentityIdentityKilledModel>());
-        }
-
-        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<IdentityIdentityKilledModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.Identity.Enums.EnumEvent,
@@ -43,7 +34,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
             var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
             var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
-            var model = new IdentityIdentityKilledModel(
+            return new IdentityIdentityKilledModel(
                 eventModel.BlockchainName,
                 eventModel.BlockId,
                 eventModel.BlockDate,
@@ -52,17 +43,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
                 eventModel.ModuleEvent,
                 account,
                 amount);
-
-            if (await IsAlreadyExistsAsync(model, token))
-            {
-                _logger.LogDebug($"{model} already exists in database !");
-                return false;
-            }
-
-            _context.EventIdentityIdentityKilled.Add(model);
-            return true;
         }
-
-
     }
 }

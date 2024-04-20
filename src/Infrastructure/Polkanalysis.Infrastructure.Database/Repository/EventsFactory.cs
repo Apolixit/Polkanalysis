@@ -4,6 +4,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Repository.Events.System;
 using Substrate.NetApi.Model.Types;
@@ -69,6 +70,10 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                     (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(SystemNewAccountRepository)),
                     RuntimeEvent.System,
                     Blockchain.Contracts.Pallet.System.Enums.Event.NewAccount),
+                new EventElementFactory(
+                    (IDatabaseInsert)serviceProvider.GetRequiredService(typeof(CrowloanContributedRepository)),
+                    RuntimeEvent.Crowdloan,
+                    Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.Event.Contributed)
             };
 
             _logger.LogDebug("[{className}] instanciated. {eventMappedCount} events link to database found", nameof(EventsFactory), Mapped.Count());

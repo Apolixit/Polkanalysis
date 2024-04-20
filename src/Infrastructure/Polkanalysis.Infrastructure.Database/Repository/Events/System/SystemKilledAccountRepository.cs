@@ -11,7 +11,7 @@ using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 {
-    public class SystemKilledAccountRepository : EventDatabaseRepository, IDatabaseGet<SystemKilledAccountModel>
+    public class SystemKilledAccountRepository : EventDatabaseRepository<SystemKilledAccountModel>
     {
         public SystemKilledAccountRepository(
             SubstrateDbContext context,
@@ -21,17 +21,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
         {
         }
 
-        public async Task<bool> IsAlreadyExistsAsync(SystemKilledAccountModel eventModel, CancellationToken token)
-        {
-            return await _context.EventSystemKilledAccount.AnyAsync(x => x.Equals(eventModel), token);
-        }
+        protected override DbSet<SystemKilledAccountModel> dbTable => _context.EventSystemKilledAccount;
 
-        public Task<IEnumerable<SystemKilledAccountModel>> GetAllAsync(CancellationToken token)
-        {
-            return Task.FromResult(_context.EventSystemKilledAccount ?? Enumerable.Empty<SystemKilledAccountModel>());
-        }
-
-        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<SystemKilledAccountModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.System.Enums.EnumEvent,
@@ -39,7 +31,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 
             var account = convertedData.ToStringAddress();
 
-            var model = new SystemKilledAccountModel(
+            return new SystemKilledAccountModel(
                 eventModel.BlockchainName,
                 eventModel.BlockId,
                 eventModel.BlockDate,
@@ -47,17 +39,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
                 account);
-
-            if (await IsAlreadyExistsAsync(model, token))
-            {
-                _logger.LogDebug($"{model} already exists in database !");
-                return false;
-            }
-
-            _context.EventSystemKilledAccount.Add(model);
-            return true;
         }
-
-
     }
 }

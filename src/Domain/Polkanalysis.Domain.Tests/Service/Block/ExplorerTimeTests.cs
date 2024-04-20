@@ -34,9 +34,9 @@ namespace Polkanalysis.Domain.Tests.Service.Block
         [Test]
         public async Task GetDateTimeFromTimestampAsync_WithNonNullBlockHash_ShouldReturnPastStorageDateTimeAsync()
         {
-            ulong nbTickInOneYear = 366 * 60 * 60 * 24 * (ulong)Math.Pow(10, 7);
+            ulong nbTickInOneYear = 365 * 60 * 60 * 24 * (ulong)Math.Pow(10, 3);
 
-            _substrateService.At(Arg.Any<Hash>()).Storage.Timestamp.NowAsync(CancellationToken.None).Returns(new U64(nbTickInOneYear));
+            _substrateService.Storage.Timestamp.NowAsync(CancellationToken.None).Returns(new U64(nbTickInOneYear));
 
             var res1 = await _explorerRepository.GetDateTimeFromTimestampAsync(blockHash: null, CancellationToken.None);
             var res2 = await _explorerRepository.GetDateTimeFromTimestampAsync(blockNum: null, CancellationToken.None);

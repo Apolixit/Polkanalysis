@@ -38,25 +38,25 @@ namespace Polkanalysis.Domain.UseCase.Finance
             var volume = transactions.Sum(x => x.Amount.Native);
 
             // Need to aggregage datetime from the transaction and his value
-            var extendedTransactions = await transactions
-                .ExtendWith(x => _explorerService.GetDateTimeFromTimestampAsync(x.BlockNumber, cancellationToken))
-                .WaitAllAndGetResultAsync();
+            //var extendedTransactions = await transactions
+            //    .ExtendWith(x => _explorerService.GetDateTimeFromTimestampAsync(x.BlockNumber, cancellationToken))
+            //    .WaitAllAndGetResultAsync();
 
-            var volumePerDay = extendedTransactions
-                .GroupBy(x => x.Item2.Date)
-                .Select(x => new { Date = x.Key, Volume = x.Average(x => x.Item1.Amount.Native) });
+            var volumePerDay = transactions
+                .GroupBy(x => x.BlockDate)
+                .Select(x => new { Date = x.Key, Volume = x.Sum(x => x.Amount.Native) });
 
-            var averageAmountPerDay = extendedTransactions
-                .GroupBy(x => x.Item2.Date)
-                .Select(x => new { Date = x.Key, Volume = x.Average(x => x.Item1.Amount.Native) });
+            var averageAmountPerDay = transactions
+                .GroupBy(x => x.BlockDate)
+                .Select(x => new { Date = x.Key, Volume = x.Average(x => x.Amount.Native) });
 
             var dto = new GlobalFinanceDto(
                 transactions.ToList(),
                 new Contracts.Dto.Balances.CurrencyDto(volume, null),
                 volumePerDay
-                    .Select(x => new AmountPerDateRangeDto<double>(x.Volume, x.Date, x.Date)),
+                    .Select(x => new AmountPerDateRangeDto<double>(x.Volume, x.Date, x.Date)).ToList(),
                 averageAmountPerDay
-                    .Select(x => new AmountPerDateRangeDto<double>(x.Volume, x.Date, x.Date)),
+                    .Select(x => new AmountPerDateRangeDto<double>(x.Volume, x.Date, x.Date)).ToList(),
                 request.From,
                 request.To);
 

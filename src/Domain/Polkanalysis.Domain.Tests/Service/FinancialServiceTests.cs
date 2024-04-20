@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using NSubstitute;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Tests.Abstract;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using System;
@@ -15,8 +19,13 @@ namespace Polkanalysis.Domain.Tests.Service
     {
         private IFinancialService _financialService;
 
+        [SetUp]
         public void Sart()
         {
+            _financialService = new FinancialService(Substitute.For<ISubstrateService>(),
+                                                     _substrateDbContext,
+                                                     Substitute.For<ILogger<FinancialService>>());
+
             _substrateDbContext.EventBalancesTransfer.Add(new BalancesTransferModel(
                 "Polkadot", 10, new DateTime(2024, 1, 1), 12, "Balances", "Transfer", Alice.ToString(), Bob.ToString(), 10));
 
@@ -34,6 +43,8 @@ namespace Polkanalysis.Domain.Tests.Service
 
             _substrateDbContext.EventBalancesTransfer.Add(new BalancesTransferModel(
                 "Polkadot", 10_001, new DateTime(2024, month: 2, 2), 12, "Balances", "Transfer", Alice.ToString(), RandomAccount.ToString(), 5));
+
+            _substrateDbContext.SaveChanges();
         }
 
         [Test]
