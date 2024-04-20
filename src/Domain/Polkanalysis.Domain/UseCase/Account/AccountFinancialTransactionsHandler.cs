@@ -43,7 +43,7 @@ namespace Polkanalysis.Domain.UseCase.Account
             var transactions = await _financialService.GetAccountTransactionsAsync(new SubstrateAccount(request.AccountAddress), request.From, request.To, cancellationToken);
 
             var accountAddress = await _accountService.GetAccountAddressAsync(request.AccountAddress, cancellationToken);
-            var totalAmountReceived = transactions.Where(x  => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Send).Sum(x => x.Amount.Native);
+            var totalAmountReceived = transactions.Where(x  => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Received).Sum(x => x.Amount.Native);
             var totalAmountSent = transactions.Where(x => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Send).Sum(x => x.Amount.Native);
 
             var result = new AccountFinancialTransactionsDto(

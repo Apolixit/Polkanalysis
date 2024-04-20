@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Crowdloan;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Price;
@@ -41,6 +42,9 @@ namespace Polkanalysis.Infrastructure.Database
         public DbSet<EraStakersModel> EraStakersModels { get; set; }
         #endregion
 
+        #region Crowdloan
+        public DbSet<CrowloanContributedModel> EventCrowdloanContributed { get; set; }
+        #endregion
 
         #region
         public DbSet<SpecVersionModel> SpecVersionModels { get; set; }
@@ -85,6 +89,9 @@ namespace Polkanalysis.Infrastructure.Database
 
             modelBuilder.Entity<SystemNewAccountModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account });
+
+            modelBuilder.Entity<CrowloanContributedModel>()
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.CrowdloanId, c.Amount });
 
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });
 

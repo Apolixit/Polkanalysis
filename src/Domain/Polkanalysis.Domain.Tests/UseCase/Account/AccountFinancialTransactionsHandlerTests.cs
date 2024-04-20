@@ -7,7 +7,9 @@ using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.UseCase.Account;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Substrate.NetApi;
@@ -23,7 +25,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
     {
         protected IFinancialService _financialService;
         protected IAccountService _accountService;
-        protected SubstrateDbContext _substrateDbContext;
 
         [SetUp]
         public override void Setup()
@@ -34,8 +35,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
             _substrateDbContext = new SubstrateDbContext(contextOption);
             PopulateDatabase();
 
-            _financialService = Substitute.For<IFinancialService>();
+            _financialService = new FinancialService(Substitute.For<ISubstrateService>(), _substrateDbContext, Substitute.For<ILogger<FinancialService>>());
             _accountService = Substitute.For<IAccountService>();
+
             _accountService.GetAccountAddressAsync(Alice.ToString(), CancellationToken.None)
                 .Returns(new UserAddressDto() { 
                     Address = Alice.ToString(), 
@@ -67,13 +69,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
 
             _substrateDbContext.EventBalancesTransfer.Add(new BalancesTransferModel(
                 "Polkadot", 10_001, new DateTime(2024, month: 2, 2), 12, "Balances", "Transfer", Alice.ToString(), RandomAccount.ToString(), 5));
-        }
 
-        [TearDown]
-        public void Finished()
-        {
-            _substrateDbContext.Database.EnsureDeleted();
-            _substrateDbContext.Dispose();
+            _substrateDbContext.SaveChanges();
         }
 
         [Test]
@@ -86,8 +83,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
 
             Assert.That(result.IsError, Is.False);
             Assert.That(result.IsSuccess, Is.True);
-            Assert.That(result.Value.TotalAmountSent.Native, Is.EqualTo(55));
-            Assert.That(result.Value.TotalAmountReceived.Native, Is.EqualTo(30));
+            Assert.That(result.Value.TotalAmountSent.Native, Is.EqualTo(50));
+            Assert.That(result.Value.TotalAmountReceived.Native, Is.EqualTo(20));
             Assert.That(result.Value.Address.Name, Is.EqualTo("Alice"));
             Assert.That(result.Value.From, Is.EqualTo(from));
             Assert.That(result.Value.To, Is.EqualTo(to));

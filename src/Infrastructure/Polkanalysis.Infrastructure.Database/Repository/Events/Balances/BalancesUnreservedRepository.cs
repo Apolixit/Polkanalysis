@@ -13,7 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
-    public class BalancesUnreservedRepository : EventDatabaseRepository, IDatabaseGet<BalancesUnreservedModel>
+    public class BalancesUnreservedRepository : EventDatabaseRepository<BalancesUnreservedModel>
     {
         public BalancesUnreservedRepository(
             SubstrateDbContext context,
@@ -23,17 +23,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         {
         }
 
-        public async Task<bool> IsAlreadyExistsAsync(BalancesUnreservedModel eventModel, CancellationToken token)
-        {
-            return await _context.EventBalancesUnreserved.AnyAsync(x => x.Equals(eventModel), token);
-        }
+        protected override DbSet<BalancesUnreservedModel> dbTable => _context.EventBalancesUnreserved;
 
-        public Task<IEnumerable<BalancesUnreservedModel>> GetAllAsync(CancellationToken token)
-        {
-            return Task.FromResult(_context.EventBalancesUnreserved ?? Enumerable.Empty<BalancesUnreservedModel>());
-        }
-
-        protected override async Task<bool> BuildRequestInsertAsync(EventModel eventModel, IType data, CancellationToken token)
+        protected override async Task<BalancesUnreservedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
@@ -42,7 +34,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
             var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
             var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
-            var model = new BalancesUnreservedModel(
+            return new BalancesUnreservedModel(
                 eventModel.BlockchainName,
                 eventModel.BlockId,
                 eventModel.BlockDate,
@@ -51,17 +43,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 eventModel.ModuleEvent,
                 account,
                 amount);
-
-            if (await IsAlreadyExistsAsync(model, token))
-            {
-                _logger.LogDebug($"{model} already exists in database !");
-                return false;
-            }
-
-            _context.EventBalancesUnreserved.Add(model);
-            return true;
         }
-
-
     }
 }

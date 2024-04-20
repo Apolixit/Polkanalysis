@@ -14,20 +14,17 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
     //[LinkedEvent("Domain.Contracts.Secondary.Pallet.Balances.Enums.Event.Transfer")]
-    public class BalancesTransferRepository : EventDatabaseRepository, IDatabaseGet<BalancesTransferModel>
+    public class BalancesTransferRepository : EventDatabaseRepository<BalancesTransferModel>
     {
         public BalancesTransferRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
             IBlockchainMapping mapping,
-            ILogger<EventDatabaseRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<BalancesTransferRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
         {
         }
 
-        public async Task<bool> IsAlreadyExistsAsync(BalancesTransferModel eventModel, CancellationToken token)
-        {
-            return await _context.EventBalancesTransfer.AnyAsync(x => x.Equals(eventModel), token);
-        }
+        protected override DbSet<BalancesTransferModel> dbTable => _context.EventBalancesTransfer;
 
         /// <summary>
         /// Insert a new transfer in the database
@@ -36,7 +33,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         /// <param name="data"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        protected override async Task<bool> BuildRequestInsertAsync(
+        protected override async Task<BalancesTransferModel> BuildModelAsync(
             EventModel eventModel,
             IType data,
             CancellationToken token)
@@ -47,7 +44,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 
             var transferAmount = ((U128)convertedData.Value[2]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
-            var model = new BalancesTransferModel(
+            return new BalancesTransferModel(
                 eventModel.BlockchainName,
                 eventModel.BlockId,
                 eventModel.BlockDate,
@@ -57,25 +54,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 ((SubstrateAccount)convertedData.Value[0]).ToStringAddress(),
                 ((SubstrateAccount)convertedData.Value[1]).ToStringAddress(),
                 transferAmount);
-
-            if (await IsAlreadyExistsAsync(model, token))
-            {
-                _logger.LogDebug($"{model} already exists in database !");
-                return false;
-            }
-
-            _context.EventBalancesTransfer.Add(model);
-            return true;
-        }
-
-        /// <summary>
-        /// Get all balances transfer saved in database
-        /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        public Task<IEnumerable<BalancesTransferModel>> GetAllAsync(CancellationToken token)
-        {
-            return Task.FromResult(_context.EventBalancesTransfer ?? Enumerable.Empty<BalancesTransferModel>());
         }
     }
 }

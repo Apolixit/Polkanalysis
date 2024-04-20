@@ -299,8 +299,9 @@ namespace Polkanalysis.Domain.Service
                 _ => await _substrateService.At(blockHash).Storage.Timestamp.NowAsync(cancellationToken)
             };
 
-            return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-                .AddMilliseconds(currentTimestamp.Value);
+            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(currentTimestamp.Value);
+
+            return dt;
         }
 
         public async Task<DateTime> GetDateTimeFromTimestampAsync(uint? blockNum, CancellationToken cancellationToken)
