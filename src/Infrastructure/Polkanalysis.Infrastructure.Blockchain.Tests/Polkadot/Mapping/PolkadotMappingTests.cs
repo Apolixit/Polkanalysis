@@ -90,6 +90,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
         }
 
         [Test]
+        [TestCase("0x82C3C901", 7500000)]
+        //[TestCase("0x02C2EB0B", 50000000)]
+        public void PerbillDomain_ToCore_RealUseCaseBug_ShouldWork(string hexValue, int value)
+        {
+            var perbillCore = new BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v1001003.sp_arithmetic.per_things.Perbill>();
+            perbillCore.Create(hexValue);
+
+            var perbillDomain = new BaseCom<Perbill>(new CompactInteger((uint)value));
+
+            var mappedPerbillDomain = _polkadotMapping.MapWithVersion<BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v1001003.sp_arithmetic.per_things.Perbill>, BaseCom<Perbill>>(1001003, perbillCore);
+            Assert.That(perbillCore.Bytes, Is.EqualTo(mappedPerbillDomain.Bytes));
+            Assert.That(perbillCore.Bytes, Is.EqualTo(perbillDomain.Bytes));
+
+            //var mappedPerbillCore = _polkadotMapping.MapWithVersion< BaseCom<Perbill>, BaseCom<Polkanalysis.Polkadot.NetApiExt.Generated.Model.v1001003.sp_arithmetic.per_things.Perbill>>(1001003, perbillDomain);
+            //Assert.That(perbillDomain.Bytes, Is.EqualTo(mappedPerbillCore.Bytes));
+        }
+
+        [Test]
         public void PublicCore_ToDomain_ShouldWork()
         {
             var core = new BabeConsensusExt.app.Public();

@@ -309,7 +309,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var result = await MockStorageCallAsync(extResult, expectedResult, _substrateRepository.Storage.Babe.EpochConfigAsync);
 
-            Assert.That(result.AllowedSlots.GetValue(), Is.EqualTo(expectedResult.AllowedSlots.GetValue()));
+            Assert.That(result.AllowedSlots.GetEnumValue(), Is.EqualTo(expectedResult.AllowedSlots.GetEnumValue()));
             Assert.That(result.C.Value[0].As<U64>().Value, Is.EqualTo(expectedResult.C.Value[0].As<U64>().Value));
             Assert.That(result.C.Value[1].As<U64>().Value, Is.EqualTo(expectedResult.C.Value[1].As<U64>().Value));
         }

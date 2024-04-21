@@ -56,7 +56,7 @@ namespace Polkanalysis.Domain.Runtime.Module
             if (palletModule == null)
                 throw new ArgumentException($"{nameof(palletModule)} has not been found in current Metadata");
 
-            if (method == null || method.Parameters == null)
+            if (method == null || method.ParametersBytes == null)
                 throw new ArgumentNullException($"BuildCall parameters are empty");
 
             NodeType? currentType = null;
@@ -99,7 +99,7 @@ namespace Polkanalysis.Domain.Runtime.Module
             Enum? enumCall = (Enum?)Enum.ToObject(enumType, method.CallIndex);
             if (enumCall == null) throw new FormatException($"Dynamic create enum instance for {palletName} has failed");
 
-            callInstance.Create(Encode(enumCall, method.Parameters.SelectMany(x => x.Encode()).ToArray()));
+            callInstance.Create(Encode(enumCall, method.ParametersBytes));
             return callInstance;
         }
 

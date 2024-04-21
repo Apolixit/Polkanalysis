@@ -28,5 +28,15 @@ namespace Substrate.NET.Utils
 
             return Encoding.UTF8.GetString(bytes);
         }
+
+        public static byte[] CompleteByteArray(this byte[] data, int desiredLength)
+        {
+            if (data.Length >= desiredLength)
+                return data;
+
+            byte[] newData = new byte[desiredLength];
+            Array.Copy(data, newData, data.Length);
+            return newData;
+        }
     }
 }

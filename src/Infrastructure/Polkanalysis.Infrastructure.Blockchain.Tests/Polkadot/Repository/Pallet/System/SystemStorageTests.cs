@@ -72,14 +72,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             Assert.That(
                 result.Normal.RefTime.Value.Value, 
-                Is.EqualTo(coreResult.Normal.RefTime1.GetValue<IType>().GetValue()));
-            Assert.That(result.Normal.ProofSize.Value.Value, Is.EqualTo(coreResult.Normal.ProofSize.GetValue<IType>().GetValue()));
+                Is.EqualTo(coreResult.Normal.RefTime1.GetValue<CompactInteger>().Value));
+            Assert.That(result.Normal.ProofSize.Value.Value, Is.EqualTo(coreResult.Normal.ProofSize.GetValue<CompactInteger>().Value));
 
-            Assert.That(result.Mandatory.RefTime.Value.Value, Is.EqualTo(coreResult.Mandatory.RefTime1.GetValue<IType>().GetValue()));
-            Assert.That(result.Mandatory.ProofSize.Value.Value, Is.EqualTo(coreResult.Mandatory.ProofSize.GetValue<IType>().GetValue()));
+            Assert.That(result.Mandatory.RefTime.Value.Value, Is.EqualTo(coreResult.Mandatory.RefTime1.GetValue<CompactInteger>().Value));
+            Assert.That(result.Mandatory.ProofSize.Value.Value, Is.EqualTo(coreResult.Mandatory.ProofSize.GetValue<CompactInteger>().Value));
 
-            Assert.That(result.Operational.RefTime.Value.Value, Is.EqualTo(coreResult.Operational.RefTime1.GetValue<IType>().GetValue()));
-            Assert.That(result.Operational.ProofSize.Value.Value, Is.EqualTo(coreResult.Operational.ProofSize.GetValue<IType>().GetValue()));
+            Assert.That(result.Operational.RefTime.Value.Value, Is.EqualTo(coreResult.Operational.RefTime1.GetValue<CompactInteger>().Value));
+            Assert.That(result.Operational.ProofSize.Value.Value, Is.EqualTo(coreResult.Operational.ProofSize.GetValue<CompactInteger>().Value));
         }
 
         [Test]

@@ -24,7 +24,6 @@ namespace Substrate.NET.Utils
         }
 
         public static T GetValue<T>(this IType sender)
-            where T : IType
         {
             var prp = sender.GetType().GetProperty("Value");
             if (prp != null && prp.GetValue(sender) is T prpType) return prpType;

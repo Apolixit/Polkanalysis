@@ -29,6 +29,9 @@ namespace Polkanalysis.Domain.UseCase.Finance
 
         public async override Task<Result<GlobalFinanceDto, ErrorResult>> Handle(GlobalFinanceQuery request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
+
             if (request.From is not null && request.To is not null && request.From.Value > request.To.Value)
             {
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"{request.From} is greater than {request.To}");

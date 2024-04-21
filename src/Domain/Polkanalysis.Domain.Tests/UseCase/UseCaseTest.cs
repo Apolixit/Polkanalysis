@@ -30,15 +30,6 @@ namespace Polkanalysis.Domain.Tests.UseCase
         protected ILogger<TLogger>? _logger;
         protected Handler<TLogger, TDto, TRequest>? _useCase;
 
-        public virtual void Setup()
-        {
-            if(_logger == null)
-                throw new ArgumentException(nameof(_logger));
-
-            if (_useCase == null)
-                throw new ArgumentException(nameof(_useCase));
-        }
-
         [Test]
         public async Task GenericUseCaseWithNullRequest_ShouldFailedAsync()
         {

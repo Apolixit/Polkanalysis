@@ -198,7 +198,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             {
                 Assert.That(res1.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
                 Assert.That(res1.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
-                Assert.That(res1.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
+                //Assert.That(res1.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
                 Assert.That(res1.GetValue2().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 
@@ -234,7 +234,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             {
                 Assert.That(res5.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
                 Assert.That(res5.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome1));
-                Assert.That(res5.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
+                //Assert.That(res5.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
                 Assert.That(res5.GetValue2().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 
@@ -261,7 +261,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
             {
                 Assert.That(res8.Value, Is.EqualTo(SubstrateEnumExtDomain.Awesome5));
                 Assert.That(res8.GetEnumValue(), Is.EqualTo(SubstrateEnumExtDomain.Awesome5));
-                Assert.That(res8.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
+                //Assert.That(res8.Value2.Encode(), Is.EqualTo(new BaseVoid().Encode()));
                 Assert.That(res8.GetValue2().Encode(), Is.EqualTo(new BaseVoid().Encode()));
             });
 

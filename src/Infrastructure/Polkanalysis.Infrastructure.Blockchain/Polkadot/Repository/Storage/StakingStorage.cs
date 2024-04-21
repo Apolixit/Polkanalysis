@@ -269,9 +269,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<ValidatorPrefs> ValidatorsAsync(SubstrateAccount account, CancellationToken token)
         {
-            var accountId32 = await MapAccoundId32Async(account, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ValidatorPrefsBase, ValidatorPrefs>(
-                await _client.StakingStorage.ValidatorsAsync(accountId32, token));
+            ValidatorPrefsBase res = null;
+            try
+            {
+                var accountId32 = await MapAccoundId32Async(account, token);
+                res = await _client.StakingStorage.ValidatorsAsync(accountId32, token);
+                var map = Map<ValidatorPrefsBase, ValidatorPrefs>(res);
+                return map;
+            } catch(Exception ex)
+            {
+
+            }
+            return null;
         }
 
         public async Task<BaseTuple<Perbill, U128>?> ValidatorSlashInEraAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)

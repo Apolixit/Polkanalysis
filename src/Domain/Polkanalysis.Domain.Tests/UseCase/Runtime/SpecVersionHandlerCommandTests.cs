@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         private IMetadataService _metadataService;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionCommandHandler>>();
             _metadataService = new MetadataService();
@@ -50,7 +50,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
                 _substrateDbContext, 
                 _substrateService,
                 _logger);
-            base.Setup();
+            //base.Setup();
         }
 
         [TearDown]

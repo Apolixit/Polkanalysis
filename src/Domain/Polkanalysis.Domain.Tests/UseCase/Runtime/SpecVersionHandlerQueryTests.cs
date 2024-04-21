@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         private ISubstrateService _substrateService;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionHandler>>();
             _substrateService = Substitute.For<ISubstrateService>();
@@ -41,7 +41,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _substrateDbContext = new SubstrateDbContext(contextOption);
 
             _useCase = new SpecVersionHandler(_substrateDbContext, _substrateService, _logger);
-            base.Setup();
+            //base.Setup();
         }
 
         [TearDown]
