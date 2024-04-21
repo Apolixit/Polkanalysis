@@ -32,7 +32,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
         protected IExplorerService _explorerService;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")
@@ -61,7 +61,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
             
 
             _useCase = new GlobalFinanceHandler(_financialService, _logger, _explorerService);
-            base.Setup();
+            //base.Setup();
         }
 
         private void PopulateDatabase()

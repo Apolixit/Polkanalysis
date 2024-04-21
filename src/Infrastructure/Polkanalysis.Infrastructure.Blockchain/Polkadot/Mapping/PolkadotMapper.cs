@@ -183,6 +183,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     Convert.ToByte(mappedEnum)
                 };
 
+            // BaseEnumType means that we have a complex enum (BaseEnumExt)
             if (source is BaseEnumType sourceBaseEnumType && context is not null)
             {
                 var associatedDataType = destinationType.BaseType.GenericTypeArguments[(int)mappedEnum + 1];
@@ -191,7 +192,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             }
             else
             {
+                // We have a BaseEnum here, so just add BaseVoid avec Value2 property
                 baseEnumExtBytes.AddRange(source.GetValue2().Encode());
+                //baseEnumExtBytes.AddRange(new BaseVoid().Encode());
             }
 
             destination.Create(baseEnumExtBytes.ToArray());
@@ -706,9 +709,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     catch
                     {
                         // Ugly hack, need to find a better solution
-                        var x1 = (CompactInteger)source.As<IType>().GetValue();
                         t1 = new T1();
-                        t1.Create(x1.Value.ToByteArray());
+                        var bytes = source.Value.Value.ToByteArray().CompleteByteArray(4);
+                        t1.Create(bytes);
                     }
                     var t2 = context.Mapper.Map<T1, T2>(t1);
 

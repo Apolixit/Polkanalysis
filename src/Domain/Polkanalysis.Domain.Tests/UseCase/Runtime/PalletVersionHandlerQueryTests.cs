@@ -22,7 +22,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         private SubstrateDbContext _substrateDbContext;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _logger = Substitute.For<ILogger<PalletVersionHandler>>();
 
@@ -33,7 +33,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _substrateDbContext = new SubstrateDbContext(contextOption);
 
             _useCase = new PalletVersionHandler(_substrateDbContext, _logger);
-            base.Setup();
+            //base.Setup();
         }
 
         [TearDown]

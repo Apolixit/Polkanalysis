@@ -21,13 +21,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
         private IAccountService _accountService;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _logger = Substitute.For<ILogger<AccountDetailHandler>>();
             _accountService = Substitute.For<IAccountService>();
 
             _useCase = new AccountDetailHandler(_accountService, _logger);
-            base.Setup();
+            //base.Setup();
         }
     }
 }

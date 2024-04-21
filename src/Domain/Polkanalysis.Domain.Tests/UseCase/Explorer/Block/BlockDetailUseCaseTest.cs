@@ -22,12 +22,12 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         protected IExplorerService _explorerService;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<BlockDetailHandler>>();
             _useCase = new BlockDetailHandler(_explorerService, _logger);
-            base.Setup();
+            //base.Setup();
         }
 
         [Test]

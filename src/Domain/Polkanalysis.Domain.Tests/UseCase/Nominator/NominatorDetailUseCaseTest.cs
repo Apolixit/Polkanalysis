@@ -20,13 +20,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Nominator
         private IStakingService _roleMemberRepository;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _logger = Substitute.For<ILogger<NominatorDetailHandler>>();
             _roleMemberRepository = Substitute.For<IStakingService>();
 
             _useCase = new NominatorDetailHandler(_roleMemberRepository, _logger);
-            base.Setup();
+            //base.Setup();
         }
     }
 }

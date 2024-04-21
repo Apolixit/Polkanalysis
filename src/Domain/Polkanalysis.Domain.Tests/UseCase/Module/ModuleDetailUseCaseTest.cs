@@ -15,13 +15,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         private IModuleInformationService _moduleRepository;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _logger = Substitute.For<ILogger<RuntimeModuleDetailHandler>>();
             _moduleRepository = Substitute.For<IModuleInformationService>();
 
             _useCase = new RuntimeModuleDetailHandler(_logger, _moduleRepository);
-            base.Setup();
+            //base.Setup();
         }
 
         /// <summary>

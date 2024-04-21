@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
         protected IAccountService _accountService;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")
@@ -47,7 +47,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
             _logger = Substitute.For<ILogger<AccountFinancialTransactionsHandler>>();
 
             _useCase = new AccountFinancialTransactionsHandler( _logger, _financialService, _accountService);
-            base.Setup();
+            //base.Setup();
         }
 
         private void PopulateDatabase()

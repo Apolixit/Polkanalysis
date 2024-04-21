@@ -133,11 +133,14 @@ namespace Polkanalysis.Domain.Service
                 var (_, exposure) = v.Item1;
                 var (identity, validatorPrefs) = await validatorsExtended.WaitAndReturnAsync(v);
 
+                if (validatorPrefs is null)
+                    _logger.LogWarning("[{serviceName}] ValidatorPrefs for validator {validatorAddress} is null", nameof(StakingService), v.Item1.Item1);
+
                 var validatorDatabase = eraStakers.SingleOrDefault(x => ((SubstrateAccount)x.Item1.Value[1]).Equals(v.Item1));
                 int nominatorsCount = 0;
                 if (validatorDatabase == default)
                 {
-                    _logger.LogWarning($"[Era {eraId}] Validator {v.Item1} does not found in database !");
+                    _logger.LogWarning("[{serviceName}] [Era {eraId}] Validator {validatorAddress} does not found in database !", nameof(StakingService), eraId, v.Item1.Item1);
                 }
                 else
                 {
@@ -149,7 +152,7 @@ namespace Polkanalysis.Domain.Service
                     StashAddress = identity,
                     SelfBonded = exposure is not null && exposure.Own is not null ? exposure.Own.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
                     TotalBonded = exposure is not null && exposure.Total is not null ? exposure.Total.Value.Value.ToDouble(chainInfo.TokenDecimals) : 0,
-                    Commission = validatorPrefs.Commission is not null ? (double)validatorPrefs.Commission.Value.Value : 0,
+                    Commission = validatorPrefs != null ? validatorPrefs.Commission is not null ? (double)validatorPrefs.Commission.Value.Value : 0 : 0,
                     NbNominatorsVote = nominatorsCount
                 });
             }

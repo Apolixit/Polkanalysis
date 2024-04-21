@@ -10,13 +10,14 @@ namespace Polkanalysis.Domain.Tests.UseCase.Parachain
     public class ParachainDetailUseCaseTest : UseCaseTest<ParachainDetailHandler, ParachainDto, ParachainDetailQuery>
     {
         protected IParachainService _parachainRepository;
+
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _parachainRepository = Substitute.For<IParachainService>();
             _logger = Substitute.For<ILogger<ParachainDetailHandler>>();
             _useCase = new ParachainDetailHandler(_parachainRepository, _logger);
-            base.Setup();
+            //base.Setup();
         }
     }
 }

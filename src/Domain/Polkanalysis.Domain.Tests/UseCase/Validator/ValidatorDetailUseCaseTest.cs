@@ -9,11 +9,11 @@ namespace Polkanalysis.Domain.Tests.UseCase.Validator
     public class ValidatorDetailUseCaseTest : UseCaseTest<ValidatorDetailHandler, ValidatorDto, ValidatorDetailQuery>
     {
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _logger = Substitute.For<ILogger<ValidatorDetailHandler>>();
             _useCase = new ValidatorDetailHandler(_logger);
-            base.Setup();
+            //base.Setup();
         }
     }
 }

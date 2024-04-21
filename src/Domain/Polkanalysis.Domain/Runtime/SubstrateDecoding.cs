@@ -170,7 +170,7 @@ namespace Polkanalysis.Domain.Runtime
         {
             if (value is BaseEnumType baseEnumValue)
             {
-                var val = baseEnumValue.GetValue();
+                var val = baseEnumValue.GetEnumValue();
 
                 if (val == null) throw new ArgumentNullException($"The value element (enum) from {baseEnumValue.TypeName()} is null while visiting node");
 
@@ -191,7 +191,7 @@ namespace Polkanalysis.Domain.Runtime
                 var childNode = AddDataToNode(new GenericNode());
 
                 var enumValue2 = baseEnumValue.GetValue2();
-                if (enumValue2 == null)
+                if (enumValue2.GetBytes() == null)
                     return;
                     //throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
 

@@ -21,7 +21,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         private IExplorerService _explorerService;
 
         [SetUp]
-        public override void Setup()
+        public void Setup()
         {
             _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<BlockLightHandler>>();
