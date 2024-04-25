@@ -22,7 +22,7 @@ namespace Polkanalysis.Api.Controllers
 
         [HttpGet("{address}")]
         [Produces(typeof(AccountDto))]
-        [Description("Retrieve account by his Polkadot address")]
+        [Description("Retrieve account by his Substrate address")]
         public async Task<ActionResult<AccountDto>> GetAccountAsync(string address)
         {
             if (string.IsNullOrEmpty(address)) return BadRequest();
@@ -30,6 +30,16 @@ namespace Polkanalysis.Api.Controllers
             return await SendAndHandleResponseAsync(new AccountDetailQuery() { 
                 AccountAddress = address 
             });
+        }
+
+        [HttpGet("{address}/transactions")]
+        [Produces(typeof(AccountFinancialTransactionsDto))]
+        [Description("Get account transactions related to this Substrate address")]
+        public async Task<ActionResult<AccountFinancialTransactionsDto>> GetAccountTransactionsAsync(string address, DateTime? from, DateTime? to)
+        {
+            if (string.IsNullOrEmpty(address)) return BadRequest();
+
+            return await SendAndHandleResponseAsync(new AccountFinancialTransactionsQuery(address, from, to));
         }
     }
 }

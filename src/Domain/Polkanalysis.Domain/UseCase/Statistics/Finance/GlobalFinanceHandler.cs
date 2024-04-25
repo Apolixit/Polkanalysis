@@ -7,7 +7,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Helper.Enumerables;
 
-namespace Polkanalysis.Domain.UseCase.Finance
+namespace Polkanalysis.Domain.UseCase.Statistics.Finance
 {
     public class GlobalFinanceValidator : AbstractValidator<GlobalFinanceQuery>
     {
@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.UseCase.Finance
             {
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"{request.From} is greater than {request.To}");
             }
-            
+
             var transactions = await _financialService.GetTransactionsAsync(request.From, request.To, cancellationToken);
             var volume = transactions.Sum(x => x.Amount.Native);
 

@@ -46,6 +46,11 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
                 dbRes = dbRes.Where(x => x.BlockchainName == request.BlockchainName);
             }
 
+            if (request.SpecVersionNumber is not null)
+            {
+                dbRes = dbRes.Where(x => x.SpecVersion == request.SpecVersionNumber);
+            }
+
             var specVersionExtended = await dbRes
                 .ExtendWith(x => _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(x.BlockStart), cancellationToken))
                 .WaitAllAndGetResultAsync();

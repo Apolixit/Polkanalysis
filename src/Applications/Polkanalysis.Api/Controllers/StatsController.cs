@@ -4,6 +4,9 @@ using Polkanalysis.Domain.Contracts.Primary.Statistics.Account;
 using Polkanalysis.Domain.Contracts.Primary.Statistics;
 using Polkanalysis.Domain.Contracts.Dto.Stats;
 using Polkanalysis.Domain.Contracts.Dto.Module;
+using Polkanalysis.Domain.Contracts.Dto.Financial;
+using Polkanalysis.Domain.Contracts.Primary.FInancial;
+using System.ComponentModel;
 
 namespace Polkanalysis.Api.Controllers
 {
@@ -32,6 +35,14 @@ namespace Polkanalysis.Api.Controllers
         public async Task<ActionResult<int>> GetHoldersAsync()
         {
             return await SendAndHandleResponseAsync(new HoldersQuery());
+        }
+
+        [HttpGet()]
+        [Produces(typeof(GlobalFinanceDto))]
+        [Description("Return transactions synthesis between given dates")]
+        public async Task<ActionResult<GlobalFinanceDto>> GetFinancialGlobalTransactionsAsync(DateTime? from, DateTime? to)
+        {
+            return await SendAndHandleResponseAsync(new GlobalFinanceQuery(from, to));
         }
     }
 }
