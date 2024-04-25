@@ -13,7 +13,8 @@ namespace Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion
     public class CompareSpecVersionsQuery : IRequest<Result<CompareSpecVersionDto, ErrorResult>>
     {
         protected CompareSpecVersionsQuery() { }
-        public static CompareSpecVersionsQuery FromSpecVersions(uint? specVersionSource, uint? specVersionTarget)
+
+        public static CompareSpecVersionsQuery FromSpecVersions(uint specVersionSource, uint specVersionTarget)
         {
             return new CompareSpecVersionsQuery()
             {
@@ -22,7 +23,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion
             };
         }
 
-        public static CompareSpecVersionsQuery FromBlockNumber(uint? blockNumberSource, uint? blockNumberTarget)
+        public static CompareSpecVersionsQuery FromBlockNumber(uint blockNumberSource, uint blockNumberTarget)
         {
             return new CompareSpecVersionsQuery()
             {
@@ -31,7 +32,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion
             };
         }
 
-        public static CompareSpecVersionsQuery FromBlockNumber(string blockHashSource, string blockHashTarget)
+        public static CompareSpecVersionsQuery FromBlockHash(string blockHashSource, string blockHashTarget)
         {
             return new CompareSpecVersionsQuery()
             {
