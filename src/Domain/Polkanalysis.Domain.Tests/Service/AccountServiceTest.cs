@@ -56,8 +56,8 @@ namespace Polkanalysis.Domain.Tests.Service
             var account = new SubstrateAccount(address);
 
             #region Mock balances lock
-            _substrateRepository.Storage.Balances.LocksAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock>(new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock[]
-            {
+            _substrateRepository.Storage.Balances.LocksAsync(account, CancellationToken.None).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock>(
+            [
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock(
                 new Contracts.Core.Display.NameableSize8("democrac"),
                 new U128(100),
@@ -73,7 +73,7 @@ namespace Polkanalysis.Domain.Tests.Service
                 new U128(200),
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumReasons(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Reasons.All)
                 )
-            }));
+            ]));
             #endregion
 
             #region Mock reserves

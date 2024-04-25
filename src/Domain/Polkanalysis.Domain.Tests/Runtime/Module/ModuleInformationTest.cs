@@ -35,9 +35,17 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Tests.Repository
         {
             Assert.Multiple(() => {
                 Assert.Throws<ArgumentNullException>(() => _moduleRepository.GetModuleDetail(palletName: null!));
-                Assert.Throws<ArgumentNullException>(() => _moduleRepository.GetModuleDetail(palletModule: null!));
             });
             
+        }
+
+        [Test]
+        public void GetModule_WithNullPalletModule_ShouldFailed()
+        {
+            Assert.Multiple(() => {
+                Assert.Throws<ArgumentNullException>(() => _moduleRepository.GetModuleDetail(palletModule: null!));
+            });
+
         }
     }
 }

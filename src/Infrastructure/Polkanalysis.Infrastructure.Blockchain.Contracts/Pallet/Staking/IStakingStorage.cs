@@ -400,5 +400,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<Percent> ChillThresholdAsync(CancellationToken token);
+        Task<Exposure> ErasStakersOverviewAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
     }
 }

@@ -74,36 +74,66 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<EraRewardPoints> ErasRewardPointsAsync(U32 key, CancellationToken token)
         {
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.EraRewardPointsBase, EraRewardPoints>(
+            return Map<EraRewardPointsBase, EraRewardPoints>(
                 await _client.StakingStorage.ErasRewardPointsAsync(key, token));
         }
 
         public async Task<Exposure> ErasStakersAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
             var version = await GetVersionAsync(token);
-            var input = (IType)_mapper.Map(version, key, _client.StakingStorage.ErasStakersInputType(version));
 
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>(
+            if (version < 1002000U)
+            {
+                var input = _mapper.Map(version, key, _client.StakingStorage.ErasStakersInputType(version));
+                return Map<IType, Exposure>(
                 await _client.StakingStorage.ErasStakersAsync(input, token));
+            }
+            else
+            {
+                // https://github.com/polkadot-js/apps/issues/10004
+                return await ErasStakersOverviewAsync(key, token);
+            }
+        }
+
+        /// <summary>
+        /// Since version 1002000, the storage function has changed to ErasStakersOverview (https://github.com/polkadot-js/apps/issues/10004)
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task<Exposure> ErasStakersOverviewAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.StakingStorage.ErasStakersOverviewInputType(version));
+
+            return Map<IType, Exposure>(
+                await _client.StakingStorage.ErasStakersOverviewAsync(input, token));
         }
 
         public async Task<QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.StakingStorage.ErasStakersInputType(version);
-            var storageKeyType = ExposureBase.TypeByVersion(version);
 
-            var storageFunction = new QueryStorageFunction("Staking", "ErasStakers", sourceKeyType, storageKeyType, 36, ErasStakersParams(new U32(eraId)));
+            QueryStorageFunction? storageFunction = null;
+
+            if (version < 1002000U)
+            {
+                storageFunction = new QueryStorageFunction("Staking", "ErasStakers", sourceKeyType, ExposureBase.TypeByVersion(version), 36, ErasStakersParams(new U32(eraId)));
+            } else
+            {
+                storageFunction = new QueryStorageFunction("Staking", "ErasStakersOverview", sourceKeyType, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_staking.PagedExposureMetadataBase.TypeByVersion(version), 36, ErasStakersOverviewParams(new U32(eraId)));
+            }
 
             return new QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>(GetAllStorageAsync<BaseTuple<U32, SubstrateAccount>, Exposure>, storageFunction);
         }
         private static string ErasStakersParams(U32 key)
         {
-            return RequestGenerator.GetStorage("Staking", "ErasStakers", Substrate.NetApi.Model.Meta.Storage.Type.Map, new Substrate.NetApi.Model.Meta.Storage.Hasher[] {
-                                Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat
-                }, new Substrate.NetApi.Model.Types.IType[] {
-                                            key
-            });
+            return RequestGenerator.GetStorage("Staking", "ErasStakers", Substrate.NetApi.Model.Meta.Storage.Type.Map, [ Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat ], [ key ]);
+        }
+        private static string ErasStakersOverviewParams(U32 key)
+        {
+            return RequestGenerator.GetStorage("Staking", "ErasStakersOverview", Substrate.NetApi.Model.Meta.Storage.Type.Map, [ Substrate.NetApi.Model.Meta.Storage.Hasher.Twox64Concat ], [ key ]);
         }
 
 
@@ -111,7 +141,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         {
             var version = await GetVersionAsync(token);
             var input = (IType)_mapper.Map(version, key, _client.StakingStorage.ErasStakersInputType(version));
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>(
+            return Map<IType, Exposure>(
                 await _client.StakingStorage.ErasStakersClippedAsync(input, token));
         }
 

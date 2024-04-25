@@ -245,6 +245,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase, Perbill>().IncludeAllDerived().ConvertUsing(new PerbillBaseConverter());
                 CreateMap<Perbill, Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PerbillBase>().IncludeAllDerived().ConvertUsing(new PerbillConverter());
 
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_beefy.ecdsa_crypto.PublicBase, PublicEcdsa>().IncludeAllDerived().ConvertUsing(x => new PublicEcdsa(x.Value.Value.Value));
+                
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v1.assignment_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_im_online.sr25519.app_sr25519.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_primitives.v4.assignment_app.PublicBase, PublicSr25519>().IncludeAllDerived().ConvertUsing(x => new PublicSr25519(x.Value.Value.Value));
@@ -1049,12 +1051,29 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             public IdentityStorageProfile()
             {
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>().ConvertUsing(new RegistrationConverter());
+                CreateMap<IType, BaseTuple<Registration, BaseOpt<BaseVec<U8>>>>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.IdentityInfoBase, IdentityInfo>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.simple.IdentityInfoBase, IdentityInfo>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.legacy.IdentityInfoBase, IdentityInfo>();
 
-                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrarInfoBase, RegistrarInfo>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrarInfoBase, RegistrarInfo>().ConvertUsing(new RegistrarInfoConverter());
             }
 
+            public class RegistrarInfoConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrarInfoBase, RegistrarInfo>
+            {
+                public RegistrarInfo Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrarInfoBase source, RegistrarInfo destination, ResolutionContext context)
+                {
+                    destination = new RegistrarInfo();
+                    if (source == null) return destination;
+
+                    destination = new RegistrarInfo(
+                        context.Mapper.Map<SubstrateAccount>(source.Account), 
+                        source.Fee,
+                        source.Fields is not null ? context.Mapper.Map<U64>(source.Fields) : source.Fields1);
+
+                    return destination;
+                }
+            }
             public class RegistrationConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>
             {
                 public Registration Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase source, Registration destination, ResolutionContext context)
@@ -1066,10 +1085,17 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                     {
                         destination.Info = context.Mapper.Map<IdentityInfo>(source.Info);
                     }
+
                     if (source.Info1 != null)
                     {
                         destination.Info = context.Mapper.Map<IdentityInfo>(source.Info1);
                     }
+
+                    if (source.Info2 != null)
+                    {
+                        destination.Info = context.Mapper.Map<IdentityInfo>(source.Info2);
+                    }
+
                     destination.Deposit = source.Deposit;
                     destination.Judgements = context.Mapper.Map<BaseVec<BaseTuple<U32, EnumJudgement>>>(source.Judgements);
 
@@ -1346,10 +1372,20 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                         throw new InvalidMappingException("Error while getting ParaAssignment value from SessionKeys storage");
 
                     var babe = context.Mapper.Map<PublicSr25519>(source.Babe);
-                    var imOnline = context.Mapper.Map<PublicSr25519>(source.ImOnline);
+                    
+                    PublicSr25519? imOnline = null;
+                    if(source.ImOnline is not null)
+                        imOnline  = context.Mapper.Map<PublicSr25519>(source.ImOnline);
+
                     var authorityDiscovery = context.Mapper.Map<PublicSr25519>(source.AuthorityDiscovery);
 
-                    destination = new SessionKeysPolka(grandPa, babe, imOnline, paraValidator, paraAssignment, authorityDiscovery);
+                    PublicEcdsa? beefy = null;
+                    if (source.Beefy is not null)
+                    {
+                        beefy = context.Mapper.Map<PublicEcdsa>(source.Beefy);
+                    }
+
+                    destination = new SessionKeysPolka(grandPa, babe, imOnline, paraValidator, paraAssignment, authorityDiscovery, beefy);
                     return destination;
                 }
             }
@@ -1517,6 +1553,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PercentBase, Percent>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.EraRewardPointsBase, EraRewardPoints>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>();
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_staking.PagedExposureMetadataBase, Exposure>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.IndividualExposureBase, IndividualExposure>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ValidatorPrefsBase, ValidatorPrefs>().IncludeAllDerived();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.NominationsBase, Nominations>();

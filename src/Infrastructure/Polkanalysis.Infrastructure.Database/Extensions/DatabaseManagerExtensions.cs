@@ -50,31 +50,6 @@ namespace Polkanalysis.Infrastructure.Database.Extensions
                 }
             }
 
-            //using var scope = services.BuildServiceProvider().CreateScope();
-
-            
-
-            //var dbContext = scope.ServiceProvider.GetRequiredService<SubstrateDbContext>();
-
-            //try
-            //{
-            //    dbContext.Database.EnsureCreated();
-
-            //    var pendingMigrations = dbContext.Database.GetPendingMigrations();
-            //    if(pendingMigrations.Count() == 0)
-            //    {
-            //        logger.LogInformation("No pending migrations");
-            //        return services;
-            //    }
-
-            //    logger.LogInformation($"Pending migrations (x{pendingMigrations.Count()}): {string.Join(", ", pendingMigrations)}");
-
-            //    dbContext.Database.Migrate();
-            //} catch(Exception ex)
-            //{
-            //    logger.LogError(ex, "Error applying EF Core migration");
-            //}
-
             return host;
         }
     }
