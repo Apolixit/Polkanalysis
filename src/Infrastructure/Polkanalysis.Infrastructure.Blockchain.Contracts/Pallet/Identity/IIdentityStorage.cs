@@ -19,7 +19,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
         /// <param name="account"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<Registration> IdentityOfAsync(SubstrateAccount account, CancellationToken token);
+        public Task<Registration?> IdentityOfAsync(SubstrateAccount account, CancellationToken token);
 
         /// <summary>
         ///  The super-identity of an alternative "sub" identity together with its name, within that

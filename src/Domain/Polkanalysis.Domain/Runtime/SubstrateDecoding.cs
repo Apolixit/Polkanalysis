@@ -191,7 +191,8 @@ namespace Polkanalysis.Domain.Runtime
                 var childNode = AddDataToNode(new GenericNode());
 
                 var enumValue2 = baseEnumValue.GetValue2();
-                if (enumValue2.GetBytes() == null)
+                //if (enumValue2.GetBytes() == null)
+                if (enumValue2 is null)
                     return;
                     //throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
 

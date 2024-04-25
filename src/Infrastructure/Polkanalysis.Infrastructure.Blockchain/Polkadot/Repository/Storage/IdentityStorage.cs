@@ -7,6 +7,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NetApi.Model.Types;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -14,11 +15,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
     {
         public IdentityStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
-        public async Task<Registration> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
+        public async Task<Registration?> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_identity.types.RegistrationBase, Registration>(
-                await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
+            var version = await GetVersionAsync(token);
+
+            Registration? res = null;
+            if(version < 1002000)
+            {
+                res = Map<IType, Registration>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
+            } else
+            {
+                var res2 = Map<IType, BaseTuple<Registration, BaseOpt<BaseVec<U8>>>>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
+                res = res2?.Value[0]?.As<Registration>();
+            }
+
+            return res;
         }
 
         public async Task<BaseVec<BaseOpt<RegistrarInfo>>> RegistrarsAsync(CancellationToken token)

@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system.AccountInfoBase, AccountInfo>(
+            return Map<AccountInfoBase, AccountInfo>(
                 await _client.SystemStorage.AccountAsync(accountId32, token));
         }
 
