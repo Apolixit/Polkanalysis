@@ -35,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Staking
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while trying to insert in database");
+                _logger.LogError(ex, "Error while trying to insert in database (EraId = {eraId})", eraId);
             }
         }
 

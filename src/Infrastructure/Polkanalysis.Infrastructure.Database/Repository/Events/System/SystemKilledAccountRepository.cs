@@ -23,7 +23,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 
         protected override DbSet<SystemKilledAccountModel> dbTable => _context.EventSystemKilledAccount;
 
-        protected override async Task<SystemKilledAccountModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal override async Task<SystemKilledAccountModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.System.Enums.EnumEvent,

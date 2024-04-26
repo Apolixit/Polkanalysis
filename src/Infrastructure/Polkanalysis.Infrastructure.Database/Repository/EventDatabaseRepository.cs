@@ -39,7 +39,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         /// <param name="data"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        protected abstract Task<TModel> BuildModelAsync(
+        internal abstract Task<TModel> BuildModelAsync(
             EventModel eventModel,
             IType data,
             CancellationToken token);
@@ -76,11 +76,11 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                 if (nbRows != 1)
                     throw new InvalidOperationException("Inserted rows are inconsistent");
 
-                _logger.LogDebug("{moduleEvent} successfully inserted is database", eventModel.ModuleEvent);
+                _logger.LogDebug("{moduleEvent} successfully inserted is database at block = {blockId}", eventModel.ModuleEvent, eventModel.BlockId);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while trying to insert in database");
+                _logger.LogError(ex, "[EventDatabaseRepository] Error while trying to insert in database : {moduleName} | {moduleEvent} at block = {blockId}", eventModel.ModuleName, eventModel.ModuleEvent, eventModel.BlockId);
             }
         }
 

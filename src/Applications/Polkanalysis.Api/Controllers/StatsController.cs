@@ -16,7 +16,7 @@ namespace Polkanalysis.Api.Controllers
         {
         }
 
-        [HttpGet]
+        [HttpGet("blockchaininfo")]
         [Produces(typeof(BlockchainInformationDto))]
         public async Task<ActionResult<BlockchainInformationDto>> GetBlockchainInformationAsync()
         {
@@ -37,7 +37,7 @@ namespace Polkanalysis.Api.Controllers
             return await SendAndHandleResponseAsync(new HoldersQuery());
         }
 
-        [HttpGet()]
+        [HttpGet("globaltransactions")]
         [Produces(typeof(GlobalFinanceDto))]
         [Description("Return transactions synthesis between given dates")]
         public async Task<ActionResult<GlobalFinanceDto>> GetFinancialGlobalTransactionsAsync(DateTime? from, DateTime? to)

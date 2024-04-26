@@ -50,13 +50,6 @@ namespace Polkanalysis.Worker.Tasks
             {
                 _logger.LogInformation("[{workerName}] Last version stored in database for {blockchainName} is {versionNumber}", nameof(VersionWorker), _polkadotService.BlockchainName, lastStoredVersionNum);
             }
-            //var block = new List<uint>()
-            //{
-            //    0, 29231, 188836, 199405, 214264,  244358, 303079, 314201, 342400, 443963, 528470, 687751, 746085, 787923, 799302, 1205128
-            //};
-            //foreach (uint i in block)
-            //{
-
 
             for (uint i = currentBlock; i <= lastBlockNum.Value; i++)
             {

@@ -16,7 +16,9 @@ using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
 {
     public class CrowloanContributedRepository : EventDatabaseRepository<CrowloanContributedModel>
@@ -31,7 +33,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
 
         protected override DbSet<CrowloanContributedModel> dbTable => _context.EventCrowdloanContributed;
 
-        protected async override Task<CrowloanContributedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal async override Task<CrowloanContributedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent,
@@ -39,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
 
             var account = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
             var crowloanId = (int)convertedData.Value[1].As<Id>().Value.Value;
-            var amount = convertedData.Value[1].As<U128>().Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
+            var amount = convertedData.Value[2].As<U128>().Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
             return new CrowloanContributedModel(
                 eventModel.BlockchainName,

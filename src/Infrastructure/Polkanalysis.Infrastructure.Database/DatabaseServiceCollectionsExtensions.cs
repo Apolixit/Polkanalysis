@@ -5,6 +5,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Infrastructure.Database.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Repository.Events.System;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
@@ -36,7 +37,9 @@ namespace Polkanalysis.Infrastructure.Database
 
             services.AddTransient<SystemKilledAccountRepository>();
             services.AddTransient<SystemNewAccountRepository>();
-            
+
+            services.AddTransient<CrowloanContributedRepository>();
+
             services.AddTransient<IStakingDatabaseRepository, StakingDatabaseRepository>();
 
             return services;
