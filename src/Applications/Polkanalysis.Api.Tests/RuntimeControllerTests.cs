@@ -1,15 +1,10 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using OperationResult;
 using Polkanalysis.Api.Controllers;
 using Polkanalysis.Domain.Contracts.Dto.Module;
-using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
-using System.Diagnostics.CodeAnalysis;
-using static Polkanalysis.Domain.Contracts.Primary.Result.ErrorResult;
 
 namespace Polkanalysis.Api.Tests
 {

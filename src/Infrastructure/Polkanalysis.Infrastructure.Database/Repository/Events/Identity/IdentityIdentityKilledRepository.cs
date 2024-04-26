@@ -25,7 +25,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 
         protected override DbSet<IdentityIdentityKilledModel> dbTable => _context.EventIdentityIdentityKilled;
 
-        protected override async Task<IdentityIdentityKilledModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal override async Task<IdentityIdentityKilledModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.Identity.Enums.EnumEvent,

@@ -20,7 +20,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
 {
-    internal class StakingDatabaseRepositoryTests : DatabaseTests
+    internal class StakingDatabaseRepositoryTests : EventsDatabaseTests
     {
         private ISubstrateService _substrateService;
         private IStakingDatabaseRepository _stakingDatabaseRepository;

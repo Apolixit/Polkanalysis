@@ -44,7 +44,7 @@ var host = Host.CreateDefaultBuilder(args)
     .AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
     //.AddHostedService<StakingWorker>()
-    //.AddHostedService<VersionWorker>()
+    .AddHostedService<VersionWorker>()
     .AddSingleton(config)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {
@@ -61,10 +61,6 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .AddTransient<PerimeterService>()
     .AddSingleton<WorkerMetrics>();
-    //.AddScoped<EventsWorker>()
-    //.AddScoped<StakingWorker>()
-    //.AddScoped<VersionWorker>()
-    //.AddScoped<PriceWorker>();
 
     services.AddEndpoint(true);
     services.AddSubstrateService();

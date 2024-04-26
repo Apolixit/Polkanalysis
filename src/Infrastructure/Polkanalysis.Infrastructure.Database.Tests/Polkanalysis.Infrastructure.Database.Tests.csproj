@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\Events\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />
   </ItemGroup>
 

@@ -33,7 +33,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         /// <param name="data"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        protected override async Task<BalancesTransferModel> BuildModelAsync(
+        internal override async Task<BalancesTransferModel> BuildModelAsync(
             EventModel eventModel,
             IType data,
             CancellationToken token)

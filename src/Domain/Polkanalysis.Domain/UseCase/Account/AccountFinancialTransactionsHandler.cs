@@ -35,6 +35,12 @@ namespace Polkanalysis.Domain.UseCase.Account
             _accountService = accountService;
         }
 
+        /// <summary>
+        /// Big use case : 5CuVA2rBdwhZr2aSbg6t81KxANxdjt6Ls9zNAYDEFs3Mx16N
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async override Task<Result<AccountFinancialTransactionsDto, ErrorResult>> Handle(AccountFinancialTransactionsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)

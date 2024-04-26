@@ -49,7 +49,7 @@ namespace Polkanalysis.Api.Controllers
             return await SendAndHandleResponseAsync(CompareSpecVersionsQuery.FromSpecVersions(sourceVersion, targetVersion));
         }
 
-        [HttpGet("specversion/{blockStart}/{blockEnd}")]
+        [HttpGet("specversion/blocknum/{blockStart}/{blockEnd}")]
         [Produces(typeof(CompareSpecVersionDto))]
         [Description("Compare spec version given associated to their block number")]
         public async Task<ActionResult<CompareSpecVersionDto>> CompareSpecVersionByBlockNumberAsync(uint blockStart, uint blockEnd)
@@ -57,7 +57,7 @@ namespace Polkanalysis.Api.Controllers
             return await SendAndHandleResponseAsync(CompareSpecVersionsQuery.FromBlockNumber(blockStart, blockEnd));
         }
 
-        [HttpGet("specversion/{blockStartHash}/{blockEndHash}")]
+        [HttpGet("specversion/hash/{blockStartHash}/{blockEndHash}")]
         [Produces(typeof(CompareSpecVersionDto))]
         [Description("Compare spec version given associated to their block hash")]
         public async Task<ActionResult<CompareSpecVersionDto>> CompareSpecVersionByBlockHashAsync(string blockStartHash, string blockEndHash)

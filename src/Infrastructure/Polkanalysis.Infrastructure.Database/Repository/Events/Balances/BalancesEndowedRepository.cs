@@ -25,7 +25,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 
         protected override DbSet<BalancesEndowedModel> dbTable => _context.EventBalancesEndowed;
 
-        protected override async Task<BalancesEndowedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal override async Task<BalancesEndowedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
                 Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
