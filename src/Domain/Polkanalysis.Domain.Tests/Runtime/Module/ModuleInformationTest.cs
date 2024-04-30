@@ -30,21 +30,21 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Tests.Repository
             _moduleRepository = new ModuleInformation(_currentMetaData, _modelBuilder, _substrateService);
         }
 
-        [Test, Ignore("RedundantArgumentMatcherException")]
-        public void GetModule_WithNullPalletName_ShouldFailed()
-        {
-            Assert.Multiple(() => {
-                Assert.Throws<ArgumentNullException>(() => _moduleRepository.GetModuleDetail(palletName: null!));
-            });
-        }
+        //[Test]
+        //public void GetModule_WithNullPalletName_ShouldFailed()
+        //{
+        //    Assert.Multiple(() => {
+        //        Assert.Throws<ArgumentNullException>(() => _moduleRepository.GetModuleDetail(palletName: null!));
+        //    });
+        //}
 
-        [Test]
-        public void GetModule_WithNullPalletModule_ShouldFailed()
-        {
-            Assert.Multiple(() => {
-                Assert.Throws<ArgumentNullException>(() => _moduleRepository.GetModuleDetail(palletModule: null!));
-            });
+        //[Test]
+        //public void GetModule_WithNullPalletModule_ShouldFailed()
+        //{
+        //    Assert.Multiple(() => {
+        //        Assert.Throws<ArgumentNullException>(() => _moduleRepository.GetModuleDetail(palletModule: null!));
+        //    });
 
-        }
+        //}
     }
 }

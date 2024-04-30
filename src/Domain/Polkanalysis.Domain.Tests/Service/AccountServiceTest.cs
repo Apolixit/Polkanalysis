@@ -49,7 +49,7 @@ namespace Polkanalysis.Domain.Tests.Service
             Assert.Fail();
         }
 
-        [Test, Ignore("RedundantArgumentMatcherException")]
+        [Test]
         public async Task GetAccountsDetails_WithValidAddress_ShouldSuceedAsync()
         {
             string address = "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS";

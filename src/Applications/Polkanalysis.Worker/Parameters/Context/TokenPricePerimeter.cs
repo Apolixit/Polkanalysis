@@ -9,7 +9,7 @@ namespace Polkanalysis.Worker.Parameters.Context
             IConfiguration configuration,
             ILogger<PerimeterService> logger,
             Func<DateTime> firstDay) : base(configuration, "tokenPricePerimeter", logger, firstDay(),
-                new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-1))
         {
         }
     }

@@ -8,19 +8,19 @@ namespace Polkanalysis.Domain.Contracts.Dto.Price
 {
     public class CoinHistoryDto
     {
-        public string id {  get; set; }
-        public string symbol {  get; set; }
-        public string name {  get; set; }
-        public MarketDataDto market_data { get; set; }
+        public string id { get; set; } = default!;
+        public string symbol { get; set; } = default!;
+        public string name { get; set; } = default!;
+        public MarketDataDto market_data { get; set; } = default!;
     }
 
     public class MarketDataDto
     {
-        public CurrentPriceDto current_price { get; set; }
+        public CurrentPriceDto current_price { get; set; } = default!;
     }
 
     public class CurrentPriceDto
     {
-        public double usd { get; set; }
+        public double usd { get; set; } = default!;
     }
 }

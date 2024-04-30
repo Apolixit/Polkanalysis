@@ -44,7 +44,7 @@ namespace Polkanalysis.Worker.Tasks
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            RunAsync(stoppingToken);
+            await RunAsync(stoppingToken);
         }
 
         /// <summary>
@@ -147,6 +147,12 @@ namespace Polkanalysis.Worker.Tasks
                 CoinId = _polkadotRepository.BlockchainName.ToLower(),
                 Date = currentDate.Date
             });
+
+            if(tokenPriceResult.IsError)
+            {
+                _logger.LogWarning("[{workerName}] Error while trying to fetch token value from API", nameof(PriceWorker));
+                return;
+            }
 
             _logger.LogInformation("[{workerName}] Price result = {priceResult}", nameof(PriceWorker), tokenPriceResult.Value);
 

@@ -46,7 +46,7 @@ namespace Polkanalysis.Domain.Tests.Abstract
         }
 
         [SetUp]
-        protected void Setup()
+        protected void DomainTestAbstractSetup()
         {
             var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
                 .UseInMemoryDatabase("SubstrateTest")

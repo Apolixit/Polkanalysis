@@ -20,7 +20,7 @@ namespace Polkanalysis.Api.Controllers
         [Description("Get all pallet versions for given pallet")]
         public async Task<ActionResult<IEnumerable<PalletVersionDto>>> GetPalletVersionsAsync(string palletName)
         {
-            Guard.Against.NullOrEmpty(palletName, nameof(palletName));
+            Guard.Against.NullOrEmpty(palletName);
 
             return await SendAndHandleResponseAsync(new PalletVersionsQuery() { PalletName = palletName });
         }
@@ -46,6 +46,9 @@ namespace Polkanalysis.Api.Controllers
         [Description("Compare spec version given their version number")]
         public async Task<ActionResult<CompareSpecVersionDto>> CompareSpecVersionByNumberVersionAsync(uint sourceVersion, uint targetVersion)
         {
+            if (sourceVersion > targetVersion)
+                BadRequest("Source version must be less than target version");
+
             return await SendAndHandleResponseAsync(CompareSpecVersionsQuery.FromSpecVersions(sourceVersion, targetVersion));
         }
 
@@ -54,6 +57,9 @@ namespace Polkanalysis.Api.Controllers
         [Description("Compare spec version given associated to their block number")]
         public async Task<ActionResult<CompareSpecVersionDto>> CompareSpecVersionByBlockNumberAsync(uint blockStart, uint blockEnd)
         {
+            if (blockStart > blockEnd)
+                BadRequest("Block start must be less than block end");
+
             return await SendAndHandleResponseAsync(CompareSpecVersionsQuery.FromBlockNumber(blockStart, blockEnd));
         }
 

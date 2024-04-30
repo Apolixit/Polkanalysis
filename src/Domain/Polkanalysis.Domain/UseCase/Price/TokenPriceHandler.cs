@@ -32,6 +32,12 @@ namespace Polkanalysis.Domain.UseCase.Price
                     var responseString = await requestResponse.Content.ReadAsStringAsync();
                     var responseDto = JsonSerializer.Deserialize<CoinHistoryDto>(responseString, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 
+                    if(responseDto is null)
+                    {
+                        _logger.LogError("[{handlerName}] Error when deserializing Coingecko API response", nameof(TokenPriceHandler));
+                        return UseCaseError(ErrorResult.ErrorType.BusinessError, $"CoinGecko deserialize to CoinHistoryDto failed");
+                    }
+
                     var tokenPriceDto = new TokenPriceDto()
                     {
                         Price = responseDto.market_data.current_price.usd,
@@ -42,11 +48,11 @@ namespace Polkanalysis.Domain.UseCase.Price
                     return Helpers.Ok(tokenPriceDto);
                 } else
                 {
-                    _logger.LogError("Error when requesting Coingecko API");
+                    _logger.LogError("[{handlerName}] Error when requesting Coingecko API", nameof(TokenPriceHandler));
                 }
             } catch(Exception ex)
             {
-                _logger.LogError(ex, "Error when requesting Coingecko API");
+                _logger.LogError(ex, "[{handlerName}] Error when requesting Coingecko API", nameof(TokenPriceHandler));
             }
 
             return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"Error...");

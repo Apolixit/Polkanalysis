@@ -13,7 +13,7 @@ namespace Polkanalysis.Worker.Tasks
         private readonly IMediator _mediator;
         private readonly ILogger<VersionWorker> _logger;
 
-        public uint currentBlock = 1_450_000; // Block when MetadataV14 was introduced
+        public uint currentBlock = 0; //1_450_000; // Block when MetadataV14 was introduced
 
         public VersionWorker(ISubstrateService polkadotService, IMediator mediator, ILogger<VersionWorker> logger)
         {
@@ -45,6 +45,7 @@ namespace Polkanalysis.Worker.Tasks
             var lastStoredVersion = storedVersions.Value.LastOrDefault();
             uint? lastStoredVersionNum = storedVersions.Value.LastOrDefault()?.SpecVersion;
             var lastBlockNum = await _polkadotService.Storage.System.NumberAsync(cancellationToken);
+            currentBlock = storedVersions.Value.LastOrDefault()?.BlockStart ?? 0;
 
             if (lastStoredVersion != null)
             {
@@ -56,7 +57,7 @@ namespace Polkanalysis.Worker.Tasks
                 var blockHash = await _polkadotService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(i), cancellationToken);
                 var runtimeVersion = await _polkadotService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, CancellationToken.None);
 
-                if (lastStoredVersion == null || lastStoredVersionNum != runtimeVersion.SpecVersion)
+                if (lastStoredVersionNum == null || lastStoredVersionNum != runtimeVersion.SpecVersion)
                 {
                     lastStoredVersionNum = runtimeVersion.SpecVersion;
 
