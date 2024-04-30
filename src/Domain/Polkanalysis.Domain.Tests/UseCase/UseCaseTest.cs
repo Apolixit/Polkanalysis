@@ -40,7 +40,5 @@ namespace Polkanalysis.Domain.Tests.UseCase
             Assert.That(result.Error, Is.Not.Null);
             Assert.That(result.Error.Status == ErrorResult.ErrorType.EmptyParam);
         }
-
-        
     }
 }

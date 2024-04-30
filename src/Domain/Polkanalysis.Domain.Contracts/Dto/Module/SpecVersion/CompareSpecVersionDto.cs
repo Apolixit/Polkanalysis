@@ -6,27 +6,32 @@ namespace Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion
     {
         public CompareSpecVersionDto(MetadataDiffV9 metadata)
         {
-
+            ModulesAdded = metadata.AddedModules.Select(x => x.ModuleName).ToList();
+            ModulesRemoved = metadata.RemovedModules.Select(x => x.ModuleName).ToList();
         }
 
         public CompareSpecVersionDto(MetadataDiffV10 metadata)
         {
-
+            ModulesAdded = metadata.AddedModules.Select(x => x.ModuleName).ToList();
+            ModulesRemoved = metadata.RemovedModules.Select(x => x.ModuleName).ToList();
         }
 
         public CompareSpecVersionDto(MetadataDiffV11 metadata)
         {
-
+            ModulesAdded = metadata.AddedModules.Select(x => x.ModuleName).ToList();
+            ModulesRemoved = metadata.RemovedModules.Select(x => x.ModuleName).ToList();
         }
 
         public CompareSpecVersionDto(MetadataDiffV12 metadata)
         {
-
+            ModulesAdded = metadata.AddedModules.Select(x => x.ModuleName).ToList();
+            ModulesRemoved = metadata.RemovedModules.Select(x => x.ModuleName).ToList();
         }
 
         public CompareSpecVersionDto(MetadataDiffV13 metadata)
         {
-
+            ModulesAdded = metadata.AddedModules.Select(x => x.ModuleName).ToList();
+            ModulesRemoved = metadata.RemovedModules.Select(x => x.ModuleName).ToList();
         }
 
         public CompareSpecVersionDto(MetadataDiffV14 metadata)
@@ -64,9 +69,9 @@ namespace Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion
             }).ToList();
         }
 
-        public List<string> ModulesAdded { get; set; }
-        public List<string> ModulesRemoved { get; set; }
-        public List<ChangedModuleDto> ModulesChanged { get; set; }
+        public List<string> ModulesAdded { get; set; } = new List<string>();
+        public List<string> ModulesRemoved { get; set; } = new List<string>();
+        public List<ChangedModuleDto> ModulesChanged { get; set; } = new List<ChangedModuleDto>();
         
         public class ChangedModuleDto
         {

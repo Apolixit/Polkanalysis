@@ -30,24 +30,6 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
                 _logger);
         }
 
-        ///// <summary>
-        ///// https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs#L253
-        ///// Pallet scheduler
-        ///// Schedule time
-        ///// </summary>
-        ///// <param name="hex"></param>
-        //[Test]
-        //[TestCase("0x020100CE41E9000000000000")]
-        //public void Scheduler_ScheduleBlock_ShouldBeParsed(string hex)
-        //{
-        //    var nodeResult = _substrateDecode.DecodeEvent(hex);
-
-        //    PrerequisiteEvent(nodeResult, SystemEvent.Phase.Initialization);
-
-        //    Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.Scheduler));
-        //    Assert.That(nodeResult.Method, Is.EqualTo(ScheduleEvent.Event.Scheduled));
-        //}
-
         /// <summary>
         /// https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs#L259
         /// https://github.com/paritytech/substrate/blob/master/frame/scheduler/src/lib.rs#L253
@@ -57,7 +39,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// </summary>
         /// <param name="hex"></param>
         [Test]
-        [TestCase("0x020100CE41E9000000000000", ScheduleEvent.Event.Scheduled), Ignore("RedundantArgumentMatcherException")]
+        [TestCase("0x020100CE41E9000000000000", ScheduleEvent.Event.Scheduled)]
         [TestCase("0x0201021D5DE200000000000164656D6F63726163650000000000000000000000000000000000000000000000010200", ScheduleEvent.Event.Dispatched)]
         public void Scheduler_Dispatched_ShouldBeParsed(string hex, ScheduleEvent.Event schedulerEvent)
         {

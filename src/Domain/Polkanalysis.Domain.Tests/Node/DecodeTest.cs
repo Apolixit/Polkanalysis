@@ -33,7 +33,7 @@ namespace Polkanalysis.SubstrateDecode.Test.Node
             Assert.Throws<InvalidOperationException>(() => _decode.DecodeEvent("I am a bad input"));
         }
 
-        [Test, Ignore("RedundantArgumentMatcherException")]
+        [Test]
         public void EmptyType_ShouldHaveEmptyNode()
         {
             IType emptyType = new U32();

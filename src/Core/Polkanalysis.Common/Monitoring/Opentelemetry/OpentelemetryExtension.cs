@@ -37,7 +37,7 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
                     otlpEndpoint = otlpConfiguration.OpentelemetryUri.OriginalString;
             }
 
-            var otel = services.AddOpenTelemetry();
+            var otel = services.AddOpenTelemetry().ConfigureResource(ressource => ressource.AddService(ressourceBuilderServiceName));
 
             otel.WithMetrics(metrics =>
             {

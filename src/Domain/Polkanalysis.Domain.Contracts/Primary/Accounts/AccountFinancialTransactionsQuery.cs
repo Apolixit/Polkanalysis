@@ -19,8 +19,16 @@ namespace Polkanalysis.Domain.Contracts.Primary.Accounts
             To = to;
         }
 
+        public AccountFinancialTransactionsQuery(string accountAddress, DateTime? from, DateTime? to, int pageSize, int pageNumber) : this(accountAddress, from, to)
+        {
+            PageSize = pageSize;
+            PageNumber = pageNumber;
+        }
+
         public string AccountAddress { get; set; }
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
+        public int PageSize { get; set; } = 20;
+        public int PageNumber { get; set; } = 1;
     }
 }

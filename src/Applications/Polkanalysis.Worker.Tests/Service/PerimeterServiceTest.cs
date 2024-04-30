@@ -92,7 +92,7 @@ namespace Polkanalysis.Worker.Tests.Service
             Assert.That(tokenPricePerimeter.From, Is.EqualTo(new DateTime(2020, 01, 01)));
 
             var now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            Assert.That(tokenPricePerimeter.To, Is.EqualTo(now));
+            Assert.That(tokenPricePerimeter.To, Is.EqualTo(now.AddDays(-1)));
         }
 
         [Test]

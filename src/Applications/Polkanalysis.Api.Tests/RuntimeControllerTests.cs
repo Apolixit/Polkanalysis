@@ -65,7 +65,6 @@ namespace Polkanalysis.Api.Tests
         {
             var res = await defaultUseCase().GetModuleAsync(string.Empty);
             Assert.That(res.Result, Is.InstanceOf<BadRequestObjectResult>());
-            Assert.That(res.Result, Is.InstanceOf<BadRequestObjectResult>());
         }
 
         [Test]

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using System.ComponentModel;
@@ -35,11 +36,11 @@ namespace Polkanalysis.Api.Controllers
         [HttpGet("{address}/transactions")]
         [Produces(typeof(AccountFinancialTransactionsDto))]
         [Description("Get account transactions related to this Substrate address")]
-        public async Task<ActionResult<AccountFinancialTransactionsDto>> GetAccountTransactionsAsync(string address, DateTime? from, DateTime? to)
+        public async Task<ActionResult<AccountFinancialTransactionsDto>> GetAccountTransactionsAsync(string address, DateTime? from, DateTime? to, int size = 20, int page = 1)
         {
             if (string.IsNullOrEmpty(address)) return BadRequest();
 
-            return await SendAndHandleResponseAsync(new AccountFinancialTransactionsQuery(address, from, to));
+            return await SendAndHandleResponseAsync(new AccountFinancialTransactionsQuery(address, from, to, size, page));
         }
     }
 }
