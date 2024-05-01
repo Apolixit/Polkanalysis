@@ -115,7 +115,7 @@ namespace Polkanalysis.Domain.Runtime
         {
             if (string.IsNullOrEmpty(palletName))
             {
-                //_logger.LogError($"Param {nameof(palletName)} is not set while requesting pallet information data");
+                _logger.LogError($"Param {nameof(palletName)} is not set while requesting pallet information data");
                 throw new ArgumentNullException($"{nameof(palletName)}");
             }
 

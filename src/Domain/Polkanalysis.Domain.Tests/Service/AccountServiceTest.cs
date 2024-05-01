@@ -22,16 +22,15 @@ namespace Polkanalysis.Domain.Tests.Service
     public class AccountServiceTest : DomainTestAbstract
     {
         private IAccountService _accountService;
-        private ISubstrateService _substrateRepository;
+        private ISubstrateService _substrateService;
 
         [SetUp]
         public void Setup()
         {
-            _substrateRepository = Substitute.For<ISubstrateService>();
-            _accountService = new AccountService(_substrateRepository, _substrateDbContext,  Substitute.For<ILogger<AccountService>>());
+            _substrateService = Substitute.For<ISubstrateService>();
 
             // Mock Properties
-            _substrateRepository.Rpc.System.PropertiesAsync(CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.Properties()
+            _substrateService.Rpc.System.PropertiesAsync(CancellationToken.None).Returns(new Substrate.NetApi.Model.Rpc.Properties()
             {
                 Ss58Format = 0,
                 TokenDecimals = 10,
@@ -39,7 +38,9 @@ namespace Polkanalysis.Domain.Tests.Service
             });
 
             // Always a valid Substrate address
-            _substrateRepository.IsValidAccountAddress(Arg.Is<string>("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")).Returns(true);
+            _substrateService.IsValidAccountAddress("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS").Returns(true);
+
+            _accountService = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>());
         }
 
         [Test, Ignore("Need to mock Query")]
@@ -56,7 +57,7 @@ namespace Polkanalysis.Domain.Tests.Service
             var account = new SubstrateAccount(address);
 
             #region Mock balances lock
-            _substrateRepository.Storage.Balances.LocksAsync(account, CancellationToken.None).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock>(
+            _substrateService.Storage.Balances.LocksAsync(account, CancellationToken.None).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock>(
             [
                 new Infrastructure.Blockchain.Contracts.Pallet.Balances.BalanceLock(
                 new Contracts.Core.Display.NameableSize8("democrac"),
@@ -77,13 +78,12 @@ namespace Polkanalysis.Domain.Tests.Service
             #endregion
 
             #region Mock reserves
-            _substrateRepository.Storage.Balances.ReservesAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.ReserveData>(
-                    new Infrastructure.Blockchain.Contracts.Pallet.Balances.ReserveData[]
-                    {
+            _substrateService.Storage.Balances.ReservesAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(new BaseVec<Infrastructure.Blockchain.Contracts.Pallet.Balances.ReserveData>(
+                    [
                         new Infrastructure.Blockchain.Contracts.Pallet.Balances.ReserveData(
                             new Contracts.Core.Display.FlexibleNameable().FromText("HelloIAmTheReserve"),
                             new U128(100))
-                    }
+                    ]
                 ));
             #endregion
 
@@ -95,7 +95,7 @@ namespace Polkanalysis.Domain.Tests.Service
                 new BaseTuple<U32, EnumJudgement>(new U32(1), enumJudgement)
             });
 
-            _substrateRepository.Storage.Identity.IdentityOfAsync(
+            _substrateService.Storage.Identity.IdentityOfAsync(
                 Arg.Is(new SubstrateAccount(address)), Arg.Any<CancellationToken>())
                 .Returns(new Infrastructure.Blockchain.Contracts.Pallet.Identity.Registration(
                     new Infrastructure.Blockchain.Contracts.Pallet.Identity.IdentityInfo().From(
@@ -114,10 +114,10 @@ namespace Polkanalysis.Domain.Tests.Service
                 ));
             #endregion
 
-            _substrateRepository.Storage.Identity.SubsOfAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
-            _substrateRepository.Storage.Identity.SuperOfAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
+            _substrateService.Storage.Identity.SubsOfAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
+            _substrateService.Storage.Identity.SuperOfAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
 
-            _substrateRepository.Storage.NominationPools.PoolMembersAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(new Infrastructure.Blockchain.Contracts.Pallet.NominationPools.PoolMember(
+            _substrateService.Storage.NominationPools.PoolMembersAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(new Infrastructure.Blockchain.Contracts.Pallet.NominationPools.PoolMember(
                 new U32(100),
                 new U128(1000),
                 new U128(1001),
@@ -127,7 +127,7 @@ namespace Polkanalysis.Domain.Tests.Service
                 })
                 ));
 
-            _substrateRepository.Storage.System.AccountAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(
+            _substrateService.Storage.System.AccountAsync(Arg.Is(account), Arg.Any<CancellationToken>()).Returns(
                 new AccountInfo(
                     new U32(11),
                     new U32(20),
@@ -140,7 +140,7 @@ namespace Polkanalysis.Domain.Tests.Service
                         new U128(80))));
 
 
-            _substrateRepository.Rpc.System.AccountNextIndexAsync(address, Arg.Any<CancellationToken>()).Returns((uint)10);
+            _substrateService.Rpc.System.AccountNextIndexAsync(address, Arg.Any<CancellationToken>()).Returns((uint)10);
 
             AccountDto res = await _accountService.GetAccountDetailAsync("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS", CancellationToken.None);
 
@@ -193,13 +193,13 @@ namespace Polkanalysis.Domain.Tests.Service
         {
             var account = new SubstrateAccount("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS");
 
-            _substrateRepository.Storage.Session.NextKeysAsync(Arg.Is(account), Arg.Any<CancellationToken>())
+            _substrateService.Storage.Session.NextKeysAsync(Arg.Is(account), Arg.Any<CancellationToken>())
                 .Returns(new Infrastructure.Blockchain.Contracts.Pallet.Session.SessionKeysPolka());
-            _substrateRepository.Storage.Staking.NominatorsAsync(Arg.Is(account), Arg.Any<CancellationToken>())
+            _substrateService.Storage.Staking.NominatorsAsync(Arg.Is(account), Arg.Any<CancellationToken>())
                 .Returns(new Infrastructure.Blockchain.Contracts.Pallet.Staking.Nominations());
-            _substrateRepository.Storage.Identity.IdentityOfAsync(Arg.Is(account), Arg.Any<CancellationToken>())
+            _substrateService.Storage.Identity.IdentityOfAsync(Arg.Is(account), Arg.Any<CancellationToken>())
                 .Returns(new Infrastructure.Blockchain.Contracts.Pallet.Identity.Registration());
-            _substrateRepository.Storage.NominationPools.PoolMembersAsync(Arg.Is(account), Arg.Any<CancellationToken>())
+            _substrateService.Storage.NominationPools.PoolMembersAsync(Arg.Is(account), Arg.Any<CancellationToken>())
                 .Returns(new Infrastructure.Blockchain.Contracts.Pallet.NominationPools.PoolMember());
 
             var accountType = await _accountService.GetAccountTypeAsync(account, CancellationToken.None);
@@ -216,10 +216,10 @@ namespace Polkanalysis.Domain.Tests.Service
         {
             var account = new SubstrateAccount("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS");
 
-            _substrateRepository.Storage.Session.NextKeysAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
-            _substrateRepository.Storage.Staking.NominatorsAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
-            _substrateRepository.Storage.Identity.IdentityOfAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
-            _substrateRepository.Storage.NominationPools.PoolMembersAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
+            _substrateService.Storage.Session.NextKeysAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
+            _substrateService.Storage.Staking.NominatorsAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
+            _substrateService.Storage.Identity.IdentityOfAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
+            _substrateService.Storage.NominationPools.PoolMembersAsync(Arg.Is(account), Arg.Any<CancellationToken>()).ReturnsNull();
 
             var accountTypeAddress = await _accountService.GetAccountTypeAsync("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS", CancellationToken.None);
             var accountType = await _accountService.GetAccountTypeAsync(account, CancellationToken.None);
@@ -239,7 +239,7 @@ namespace Polkanalysis.Domain.Tests.Service
                 new BaseTuple<U32, EnumJudgement>(new U32(1), enumJudgement)
             });
 
-            _substrateRepository.Storage.Identity.IdentityOfAsync(
+            _substrateService.Storage.Identity.IdentityOfAsync(
                 Arg.Is(new SubstrateAccount(address)), Arg.Any<CancellationToken>())
                 .Returns(new Infrastructure.Blockchain.Contracts.Pallet.Identity.Registration(
                     new Infrastructure.Blockchain.Contracts.Pallet.Identity.IdentityInfo().From(

@@ -23,4 +23,14 @@ namespace Polkanalysis.Domain.Contracts.Dto
             TotalPages = (int)Math.Ceiling((decimal)totalRecords / (decimal)pageSize);
         }
     }
+
+    public static class PagesResponseDtoExtension
+    {
+        public static PagedResponseDto<T> ToPagedResponse<T>(this IEnumerable<T> fullData, int pageNumber, int pageSize)
+        {
+            var filtered = fullData.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
+            return new PagedResponseDto<T>(filtered, pageNumber, pageSize, fullData.Count());
+        }
+    }
 }

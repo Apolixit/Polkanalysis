@@ -58,7 +58,7 @@ namespace Polkanalysis.Domain.Runtime
                 throw new InvalidOperationException($"{nameof(ev)} has not been instanciate properly, maybe due to invalid hex parameter", ex);
             }
 
-            _logger.LogInformation($"Event hex ({hex}) has been successfully converted to EventRecord");
+            //_logger.LogInformation($"Event hex ({hex}) has been successfully converted to EventRecord");
             return DecodeEvent(ev);
         }
 

@@ -9,7 +9,12 @@ namespace Polkanalysis.Domain.Contracts.Dto.Financial
 {
     public class GlobalFinanceDto
     {
-        public GlobalFinanceDto(List<TransactionDto> transactions, CurrencyDto volume, List<AmountPerDateRangeDto<double>> volumePerDay, List<AmountPerDateRangeDto<double>> averageTransactionAmountPerDay, DateTime? from, DateTime? to)
+        public GlobalFinanceDto(PagedResponseDto<TransactionDto> transactions,
+                                CurrencyDto volume,
+                                List<AmountPerDateRangeDto<double>> volumePerDay,
+                                List<AmountPerDateRangeDto<double>> averageTransactionAmountPerDay,
+                                DateTime? from,
+                                DateTime? to)
         {
             Transactions = transactions;
             Volume = volume;
@@ -19,7 +24,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Financial
             To = to;
         }
 
-        public List<TransactionDto> Transactions { get; set; }
+        public PagedResponseDto<TransactionDto> Transactions { get; set; }
         public CurrencyDto Volume { get; set; }
         public List<AmountPerDateRangeDto<double>> VolumePerDay { get; set; }
         public List<AmountPerDateRangeDto<double>> AverageTransactionAmountPerDay { get; set; }

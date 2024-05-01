@@ -24,9 +24,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Metadata
         [Test]
         public void GetPalletModule_WithNullName_ShouldFailed()
         {
-            Assert.Throws<ArgumentNullException>(() => _currentMetaData.GetPalletModule(Arg.Any<string>()));
+            Assert.Throws<ArgumentNullException>(() => _currentMetaData.GetPalletModule(string.Empty));
         }
-
-
     }
 }
