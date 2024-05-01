@@ -20,8 +20,8 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
         public const string MockAddress = "5He5uUCWMLXvfJmSWTcD2ZHDerBU4VH91z92SekRcctuGifV";
         public const string MockAddress2 = "5EerUgnr9WVAgHbynVD4YYDJKzkaCZP7Uz4METJJSk3Jg15x";
         
-        public const double FiveDots = 5_000_000_000_000;
-        public const double TenDots = 10_000_000_000_000;
+        public const double FiveDots = 50_000_000_000;
+        public const double TenDots = 100_000_000_000;
 
         [SetUp]
         public void SetupBase()
@@ -37,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
                 ()
             {
                 Ss58Format = 42,
-                TokenDecimals = 12,
+                TokenDecimals = 10,
                 TokenSymbol = "DOT"
             });
         }

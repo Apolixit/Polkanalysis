@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using OperationResult;
+using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Account
 {
-    public class AccountListHandler : Handler<AccountListHandler, IEnumerable<AccountLightDto>, AccountsQuery>
+    public class AccountListHandler : Handler<AccountListHandler, PagedResponseDto<AccountLightDto>, AccountsQuery>
     {
         private readonly IAccountService _accountRepository;
         public AccountListHandler(IAccountService accountRepository, ILogger<AccountListHandler> logger) : base(logger)
@@ -20,13 +21,16 @@ namespace Polkanalysis.Domain.UseCase.Account
             _accountRepository = accountRepository;
         }
 
-        public async override Task<Result<IEnumerable<AccountLightDto>, ErrorResult>> Handle(AccountsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<PagedResponseDto<AccountLightDto>, ErrorResult>> Handle(AccountsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
             var res = await _accountRepository.GetAccountsAsync(cancellationToken);
-            return Helpers.Ok(res);
+
+            var pagesResult = res.OrderByDescending(x => x.Balances.Total).ToPagedResponse(request.PageNumber, request.PageSize);
+
+            return Helpers.Ok(pagesResult);
         }
     }
 }

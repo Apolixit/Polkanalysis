@@ -8,12 +8,12 @@
 
     <div class="card">
         <div class="card-body">
-            <ComponentListView Elems="Accounts">
+            <ComponentListView Elems="Accounts.Data" Context="cardAccount">
                 <CardView>
-                    <Polkanalysis.Components.Substrate.Account.Views.AccountItemCard Account="context" />
+                    <Polkanalysis.Components.Substrate.Account.Views.AccountItemCard Account="cardAccount" />
                 </CardView>
                 <TableView>
-                    <Table Elems="Accounts" Context="tableAccount">
+                    <Table Elems="Accounts.Data" Context="tableAccount">
                         <ThContent>
                             <td scope="col">Address</td>
                             <td scope="col">Balance</td>
@@ -30,7 +30,7 @@
 </DataMediator>
 
 @code {
-    private Task<Result<IEnumerable<AccountLightDto>, ErrorResult>>? request;
+    private Task<Result<PagedResponseDto<AccountLightDto>, ErrorResult>>? request;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
     {
         new BreadcrumbDto("Accounts", "/accounts")

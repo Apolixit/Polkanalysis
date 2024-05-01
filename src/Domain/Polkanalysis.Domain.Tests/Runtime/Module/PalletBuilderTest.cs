@@ -68,7 +68,7 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
         public void GenerateDynamicNamespace_WithInvalidNamespace_ShouldFail()
         {
             Assert.That(_palletBuilder.GenerateDynamicNamespaceBase(new List<string>()), Is.EqualTo(string.Empty));
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.GenerateDynamicNamespaceBase(Arg.Any<IEnumerable<string>>()));
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.GenerateDynamicNamespaceBase(null!));
         }
 
         [Test]

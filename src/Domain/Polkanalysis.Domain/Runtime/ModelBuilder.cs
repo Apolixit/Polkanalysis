@@ -75,7 +75,7 @@ namespace Polkanalysis.Domain.Runtime
 
         public (uint mainId, uint subId) CreateTuppleIndex(string id)
         {
-            if (id == null) throw new ArgumentNullException($"{nameof(id)}");
+            if (id is null) throw new ArgumentNullException($"{nameof(id)}");
 
             var splitted = id.Split("-");
             if (splitted.Length != 2) 

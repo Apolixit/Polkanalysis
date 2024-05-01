@@ -50,11 +50,13 @@ namespace Polkanalysis.Domain.UseCase.Account
 
             var transactions = await _financialService.GetAccountTransactionsAsync(new SubstrateAccount(request.AccountAddress), request.From, request.To, cancellationToken);
 
-            var filteredTransactions = transactions.OrderByDescending(x => x.BlockNumber).Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize).ToList();
+            var pagesTransactions = transactions
+                .OrderByDescending(x => x.BlockNumber)
+                .ToPagedResponse(request.PageNumber, request.PageSize);
 
             var accountAddress = await _accountService.GetAccountAddressAsync(request.AccountAddress, cancellationToken);
-            var totalAmountReceived = filteredTransactions.Where(x  => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Received).Sum(x => x.Amount.Native);
-            var totalAmountSent = filteredTransactions.Where(x => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Send).Sum(x => x.Amount.Native);
+            var totalAmountReceived = pagesTransactions.Data.Where(x  => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Received).Sum(x => x.Amount.Native);
+            var totalAmountSent = pagesTransactions.Data.Where(x => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Send).Sum(x => x.Amount.Native);
 
             var result = new AccountFinancialTransactionsDto(
                 accountAddress,
@@ -62,8 +64,7 @@ namespace Polkanalysis.Domain.UseCase.Account
                 request.To,
                 new CurrencyDto(totalAmountReceived, null),
                 new CurrencyDto(totalAmountSent, null),
-                new PagedResponseDto<TransactionDto>(filteredTransactions, request.PageNumber, request.PageSize, transactions.Count())
-            );
+                pagesTransactions);
 
             return Helpers.Ok(result);
         }

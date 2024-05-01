@@ -43,7 +43,7 @@ namespace Polkanalysis.Domain.Tests.Dto
         [Test]
         public void CreateTuppleIndex_WithInvalidId_ShouldFailed()
         {
-            Assert.Throws<ArgumentNullException>(() => _modelBuilder.CreateTuppleIndex(Arg.Any<string>()));
+            Assert.Throws<ArgumentNullException>(() => _modelBuilder.CreateTuppleIndex(id: null!));
             Assert.Throws<FormatException>(() => _modelBuilder.CreateTuppleIndex("1--1"));
             Assert.Throws<FormatException>(() => _modelBuilder.CreateTuppleIndex(""));
             Assert.Throws<FormatException>(() => _modelBuilder.CreateTuppleIndex("invalid"));

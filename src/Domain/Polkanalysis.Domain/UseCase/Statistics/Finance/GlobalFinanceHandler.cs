@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
 using OperationResult;
+using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Financial;
 using Polkanalysis.Domain.Contracts.Primary.FInancial;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -38,23 +39,23 @@ namespace Polkanalysis.Domain.UseCase.Statistics.Finance
             }
 
             var transactions = await _financialService.GetTransactionsAsync(request.From, request.To, cancellationToken);
-            var volume = transactions.Sum(x => x.Amount.Native);
 
-            // Need to aggregage datetime from the transaction and his value
-            //var extendedTransactions = await transactions
-            //    .ExtendWith(x => _explorerService.GetDateTimeFromTimestampAsync(x.BlockNumber, cancellationToken))
-            //    .WaitAllAndGetResultAsync();
+            var pagedTransactions = transactions.OrderByDescending(x => x.BlockNumber).ToPagedResponse(request.PageNumber, request.PageSize);
 
-            var volumePerDay = transactions
+            var volume = pagedTransactions.Data.Sum(x => x.Amount.Native);
+
+            var volumePerDay = pagedTransactions.Data
                 .GroupBy(x => x.BlockDate)
+                .OrderBy(x => x.Key)
                 .Select(x => new { Date = x.Key, Volume = x.Sum(x => x.Amount.Native) });
 
-            var averageAmountPerDay = transactions
+            var averageAmountPerDay = pagedTransactions.Data
                 .GroupBy(x => x.BlockDate)
+                .OrderBy(x => x.Key)
                 .Select(x => new { Date = x.Key, Volume = x.Average(x => x.Amount.Native) });
 
             var dto = new GlobalFinanceDto(
-                transactions.ToList(),
+                pagedTransactions,
                 new Contracts.Dto.Balances.CurrencyDto(volume, null),
                 volumePerDay
                     .Select(x => new AmountPerDateRangeDto<double>(x.Volume, x.Date, x.Date)).ToList(),

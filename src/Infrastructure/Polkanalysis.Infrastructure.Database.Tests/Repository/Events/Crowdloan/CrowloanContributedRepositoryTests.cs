@@ -29,7 +29,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
         }
 
         [Test]
-        [TestCase(MockAddress, 10, FiveDots, 5)]
+        [TestCase(MockAddress, 10, 52_500_000_000, 5.25)]
         public async Task BuildModel_WhenValidCrowdloanContribution_ShouldBuildModelSuccessfullyAsync(string accountAddress, int crowdloanId, double amount, double expected)
         {
             var enumContribution = new Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent();
