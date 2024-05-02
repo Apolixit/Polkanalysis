@@ -58,7 +58,7 @@ jobs:
       run: |
         New-Item -Path .\.sonar\scanner -ItemType Directory
         dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-    
+
     - name: Install Dotnet coverage
       shell: powershell
       run: |
@@ -76,4 +76,11 @@ jobs:
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
     - name: Test Solution
-      run: dotnet test Polkanalysis.sln --verbosity normal
+      run: dotnet test Polkanalysis.sln --verbosity normal --logger "trx;LogFileName=test-results.trx"
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/windows@v2
+      if: always()
+      with:
+        files: |
+          test-results\**\*.trx
