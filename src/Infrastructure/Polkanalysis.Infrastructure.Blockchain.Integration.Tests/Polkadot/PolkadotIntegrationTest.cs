@@ -23,6 +23,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
                     );
         }
 
+        [SetUp]
+        protected void Setup()
+        {
+            // Just clean blockhash everytime
+            _substrateRepository.Storage.BlockHash = null;
+        }
+
         protected override ISubstrateEndpoint GetEndpoint()
         {
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();

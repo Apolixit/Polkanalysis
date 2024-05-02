@@ -16,19 +16,33 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         public async Task Account_ShouldWorkAsync()
         {
-            var res = await _substrateRepository.Storage.System.AccountAsync(new SubstrateAccount("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS"), CancellationToken.None);
+            var res = await _substrateRepository.At(18112436).Storage.System.AccountAsync(new SubstrateAccount("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS"), CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }
 
         [Test]
-        //[TestCase(10)]
+        [TestCase(10)]
         [TestCase(100)]
-        //[TestCase(1000)]
-        //[TestCase(10000)]
+        [TestCase(1000)]
+        [TestCase(10000)]
         public async Task GetAllAccounts_ShouldWorkAsync(int nb)
         {
             var query = await _substrateRepository.Storage.System.AccountsQueryAsync(CancellationToken.None);
+            var res = await query.Take(nb).ExecuteAsync(CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Count, Is.LessThanOrEqualTo(nb));
+
+            var addressAccount = res.Select(x => x.Item1.ToStringAddress());
+            Assert.That(addressAccount.Distinct().Count(), Is.EqualTo(res.Count));
+        }
+
+        [Test, Ignore("Todo debug")]
+        [TestCase(100)]
+        public async Task GetAllAccounts_FromSpecificHashShouldWorkAsync(int nb)
+        {
+            var query = await _substrateRepository.At("0x8AC682A247013A2EA8EB3623B4D2E7B2AEC2DF09B57E9F42D6A91AD9F2362F2C").Storage.System.AccountsQueryAsync(CancellationToken.None);
             var res = await query.Take(nb).ExecuteAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
