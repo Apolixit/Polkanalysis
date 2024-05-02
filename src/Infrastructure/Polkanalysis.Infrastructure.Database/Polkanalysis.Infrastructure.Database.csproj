@@ -25,6 +25,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+
+    <SonarQubeSetting Include="sonar.coverage.exclusions">
+      <Value>**/Migrations/**</Value>
+    </SonarQubeSetting>
   </ItemGroup>
 
 </Project>
