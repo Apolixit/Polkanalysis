@@ -367,3 +367,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/Applications/Polkanalysis.Api/appsettings.Development.json
+/src/Applications/Polkanalysis.Worker/appsettingsDevelopment.json
+/src/Applications/Polkanalysis.App/appsettings.Development.json
