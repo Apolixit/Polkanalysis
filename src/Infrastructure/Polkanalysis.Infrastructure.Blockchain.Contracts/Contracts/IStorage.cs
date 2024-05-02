@@ -24,7 +24,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts
 {
     public interface IStorage
     {
-        public string BlockHash { get; set; }
+        public string? BlockHash { get; set; }
         public IAuctionsStorage Auctions { get; }
         public IAuthorshipStorage Authorship { get; }
         public IAwesomeAvatarsStorage AwesomeAvatars { get; }

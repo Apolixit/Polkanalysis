@@ -304,6 +304,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             {
                 var storageKeys = await _client.State.GetKeysPagedAsync(storageId, pageLength, startKey, token);
 
+                string debug = $"[MainStorage] {nameof(GetAllStorageAsync)} StorageKeys : storageId = {Utils.Bytes2HexString(storageId)} | pageLength = {pageLength} | startKey = {(startKey is not null ? Utils.Bytes2HexString(startKey) : " - ")} {string.Join("\n", storageKeys.Select(x => x.ToString()))}";
+                _logger.LogDebug(debug);
+
                 if (storageKeys == null || !storageKeys.Any())
                     break;
 
@@ -351,24 +354,42 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             }
 
             var result = new List<(byte[], IType, IType)>();
+            var storageKeyStrings = storageKeys.Select(p => Utils.HexToByteArray(p.ToString())).ToList();
 
-            var storageChangeSets = await _client.State.GetQueryStorageAtAsync(
-                storageKeys.Select(p => Utils.HexToByteArray(p.ToString())).ToList(), BlockHash, token);
+            var debug = $"[MainStorage] {nameof(GetAllStoragePagedAsync)}\n\t module = {module}\n\t item = {item}\n\t keySource = {keySource}\n\t storageSource = {storageSource}\n\t storageId = {Utils.Bytes2HexString(storageId)}\n\t page = {page}\n\t BlockHash = {BlockHash}\n" +
+                $"{string.Join("\n", storageKeyStrings.Select(x => Utils.Bytes2HexString(x)))}";
+            _logger.LogDebug(debug);
+
+            var storageChangeSets = await _client.State.GetQueryStorageAtAsync(storageKeyStrings, BlockHash, token);
 
             if (storageChangeSets != null)
             {
+                var debug2 = $"{string.Join(", ", storageChangeSets.First().Changes.SelectMany(x => x))}";
+                _logger.LogDebug(debug2);
+
                 foreach (var storageChangeSet in storageChangeSets.First().Changes)
                 {
-                    var storageKeyString = storageChangeSet[0];
+                    try
+                    {
+                        var storageKeyString = storageChangeSet[0];
 
-                    var keyParam = DynamicInstance.CreateInstance<IType>(keySource);
-                    var paramTypeSize = keyParam.TypeSize > 0 ? keyParam.TypeSize : paramSize;
-                    keyParam.Create(storageKeyString[^(paramTypeSize * 2)..]);
+                        var keyParam = DynamicInstance.CreateInstance<IType>(keySource);
+                        var paramTypeSize = keyParam.TypeSize > 0 ? keyParam.TypeSize : paramSize;
+                        keyParam.Create(storageKeyString[^(paramTypeSize * 2)..]);
 
-                    var valueParam = DynamicInstance.CreateInstance<IType>(storageSource);
-                    valueParam.Create(storageChangeSet[1]);
+                        var valueParam = DynamicInstance.CreateInstance<IType>(storageSource);
+                        valueParam.Create(storageChangeSet[1]);
 
-                    result.Add((Utils.HexToByteArray(storageKeyString), keyParam, valueParam));
+                        result.Add((Utils.HexToByteArray(storageKeyString), keyParam, valueParam));
+                    } catch(Exception ex)
+                    {
+                        _logger.LogError(ex,
+                                         $"[{nameof(GetAllStoragePagedAsync)}] Error while processing storage change set. " +
+                                         $"Loop index = {storageChangeSets.First().Changes.ToList().IndexOf(storageChangeSet)} | " +
+                                         $"storageChangeSet[0] = {storageChangeSet[0]} | " +
+                                         $"storageChangeSet[1] = {storageChangeSet[1]}");
+                        throw;
+                    }
                 }
             }
 

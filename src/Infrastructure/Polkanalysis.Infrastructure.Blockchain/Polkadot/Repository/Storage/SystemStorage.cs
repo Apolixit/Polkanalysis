@@ -92,7 +92,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<LastRuntimeUpgradeInfo> LastRuntimeUpgradeAsync(CancellationToken token)
         {
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system.LastRuntimeUpgradeInfoBase, LastRuntimeUpgradeInfo>(
+            return Map<LastRuntimeUpgradeInfoBase, LastRuntimeUpgradeInfo>(
                 await _client.SystemStorage.LastRuntimeUpgradeAsync(token));
         }
 

@@ -48,7 +48,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         private ISystemStorage? _systemStorage = null;
         private ITimestampStorage? _timestampStorage = null;
 
-        public string BlockHash { get; set; }
+        public string? BlockHash { get; set; }
 
         public IAuctionsStorage Auctions
         {
