@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
 using OperationResult;
+using Polkanalysis.Domain.Contracts.Common;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Balances;
@@ -24,6 +25,7 @@ namespace Polkanalysis.Domain.UseCase.Account
         public AccountFinancialTransactionsValidator(ISubstrateService substrateService)
         {
             RuleFor(x => x.AccountAddress).Must(substrateService.IsValidAccountAddress);
+            RuleFor(x => x.RangeDate).SetValidator(new RangeDateValidator());
         }
     }
     public class AccountFinancialTransactionsHandler : Handler<AccountFinancialTransactionsHandler, AccountFinancialTransactionsDto, AccountFinancialTransactionsQuery>
@@ -48,20 +50,20 @@ namespace Polkanalysis.Domain.UseCase.Account
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            var transactions = await _financialService.GetAccountTransactionsAsync(new SubstrateAccount(request.AccountAddress), request.From, request.To, cancellationToken);
+            var transactions = await _financialService.GetAccountTransactionsAsync(new SubstrateAccount(request.AccountAddress), request.RangeDate.From, request.RangeDate.To, cancellationToken);
 
             var pagesTransactions = transactions
                 .OrderByDescending(x => x.BlockNumber)
-                .ToPagedResponse(request.PageNumber, request.PageSize);
+                .ToPagedResponse(request.Pagination.PageNumber, request.Pagination.PageSize);
 
             var accountAddress = await _accountService.GetAccountAddressAsync(request.AccountAddress, cancellationToken);
-            var totalAmountReceived = pagesTransactions.Data.Where(x  => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Received).Sum(x => x.Amount.Native);
-            var totalAmountSent = pagesTransactions.Data.Where(x => x.GetTypeTransaction(request.AccountAddress) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Send).Sum(x => x.Amount.Native);
+            var totalAmountReceived = pagesTransactions.Data.Where(x  => x.GetTypeTransaction(request.AccountAddress) == TransactionDto.TypeTransactionDto.Received).Sum(x => x.Amount.Native);
+            var totalAmountSent = pagesTransactions.Data.Where(x => x.GetTypeTransaction(request.AccountAddress) == TransactionDto.TypeTransactionDto.Send).Sum(x => x.Amount.Native);
 
             var result = new AccountFinancialTransactionsDto(
                 accountAddress,
-                request.From,
-                request.To,
+                request.RangeDate.From,
+                request.RangeDate.To,
                 new CurrencyDto(totalAmountReceived, null),
                 new CurrencyDto(totalAmountSent, null),
                 pagesTransactions);

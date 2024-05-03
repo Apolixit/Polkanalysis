@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
 {
-    internal class BalancesTransferRepositoryTests : EventsDatabaseTests
+    internal class BalancesTransferRepositoryTest : EventsDatabaseTests
     {
         private BalancesTransferRepository _balancesTransferRepository;
 

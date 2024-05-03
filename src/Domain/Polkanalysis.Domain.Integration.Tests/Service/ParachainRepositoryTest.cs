@@ -7,7 +7,7 @@ using Polkanalysis.Domain.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service
 {
-    [Timeout(RepositoryMaxTimeout)]
+    [CancelAfter(RepositoryMaxTimeout)]
     public class ParachainRepositoryTest : PolkadotIntegrationTest
     {
         private IParachainService _parachainService;

@@ -74,11 +74,11 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
         }
 
         [Test]
-        public async Task BlockDetailUseCaseReturnNullDto_ShouldFailedAsync()
+        public async Task AccountFinancialTransactions_WithValidUseCase_ShouldSucceedAsync()
         {
             var from = new DateTime(2024, 01, 01);
             var to = new DateTime(2024, 02, 01);
-            var result = await _useCase.Handle(
+            var result = await _useCase!.Handle(
                 new AccountFinancialTransactionsQuery(Alice.ToString(), from, to), CancellationToken.None);
 
             Assert.That(result.IsError, Is.False);
@@ -88,8 +88,24 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
             Assert.That(result.Value.Address.Name, Is.EqualTo("Alice"));
             Assert.That(result.Value.From, Is.EqualTo(from));
             Assert.That(result.Value.To, Is.EqualTo(to));
-            
+        }
 
+        [Test]
+        public void AccountFinancialTransactionValidator_ShouldSucceed()
+        {
+            _substrateService.IsValidAccountAddress(Arg.Is<string>(x => x == "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")).Returns(true);
+            _substrateService.IsValidAccountAddress(Arg.Is<string>(x => x == "toto")).Returns(false);
+
+            var validationResultSuccess = new AccountFinancialTransactionsValidator(_substrateService)
+                .Validate(new AccountFinancialTransactionsQuery("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS", null, null));
+            var validationResultFail = new AccountFinancialTransactionsValidator(_substrateService)
+                .Validate(new AccountFinancialTransactionsQuery("toto", null, null));
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(validationResultSuccess.IsValid, Is.EqualTo(true));
+                Assert.That(validationResultFail.IsValid, Is.EqualTo(false));
+            });
         }
     }
 }

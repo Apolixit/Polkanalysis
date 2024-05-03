@@ -33,14 +33,14 @@ namespace Polkanalysis.Domain.UseCase.Statistics.Finance
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            if (request.From is not null && request.To is not null && request.From.Value > request.To.Value)
+            if (request.RangeDate.From is not null && request.RangeDate.To is not null && request.RangeDate.From.Value > request.RangeDate.To.Value)
             {
-                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"{request.From} is greater than {request.To}");
+                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"{request.RangeDate.From} is greater than {request.RangeDate.To}");
             }
 
-            var transactions = await _financialService.GetTransactionsAsync(request.From, request.To, cancellationToken);
+            var transactions = await _financialService.GetTransactionsAsync(request.RangeDate.From, request.RangeDate.To, cancellationToken);
 
-            var pagedTransactions = transactions.OrderByDescending(x => x.BlockNumber).ToPagedResponse(request.PageNumber, request.PageSize);
+            var pagedTransactions = transactions.OrderByDescending(x => x.BlockNumber).ToPagedResponse(request.Pagination.PageNumber, request.Pagination.PageSize);
 
             var volume = pagedTransactions.Data.Sum(x => x.Amount.Native);
 
@@ -61,8 +61,8 @@ namespace Polkanalysis.Domain.UseCase.Statistics.Finance
                     .Select(x => new AmountPerDateRangeDto<double>(x.Volume, x.Date, x.Date)).ToList(),
                 averageAmountPerDay
                     .Select(x => new AmountPerDateRangeDto<double>(x.Volume, x.Date, x.Date)).ToList(),
-                request.From,
-                request.To);
+                request.RangeDate.From,
+                request.RangeDate.To);
 
             return Helpers.Ok(dto);
         }

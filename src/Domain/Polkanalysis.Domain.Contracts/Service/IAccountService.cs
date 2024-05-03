@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Domain.Contracts.Core;
+﻿using Polkanalysis.Domain.Contracts.Common;
+using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Balances;
 using Polkanalysis.Domain.Contracts.Dto.User;
 
@@ -19,7 +20,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<IEnumerable<AccountLightDto>> GetAccountsAsync(CancellationToken cancellationToken);
+        public Task<IEnumerable<AccountLightDto>> GetAccountsAsync(CancellationToken cancellationToken, Pagination pagination);
 
         /// <summary>
         /// Get the account address and the public key

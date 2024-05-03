@@ -8,7 +8,7 @@ using Polkanalysis.Domain.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service
 {
-    //[Timeout(RepositoryMaxTimeout)]
+    //[CancelAfter(RepositoryMaxTimeout)]
     public class StakingRepositoryTest : PolkadotIntegrationTest
     {
         private IStakingService _stakingRepository;

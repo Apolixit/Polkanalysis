@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Balances
 {
-    public class CurrencyDto
+    public class CurrencyDto : IComparable<CurrencyDto>
     {
         public CurrencyDto() { }
 
@@ -35,6 +35,12 @@ namespace Polkanalysis.Domain.Contracts.Dto.Balances
                 Native = a.Native + b.Native,
                 Usd = a.Usd + b.Usd
             };
+        }
+
+        public int CompareTo(CurrencyDto? other)
+        {
+            if (other is null) return 1;
+            return Native.CompareTo(other.Native);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
-    [Timeout(RepositoryMaxTimeout)]
+    [CancelAfter(RepositoryMaxTimeout)]
     public class ExplorerBlockTests : ExplorerRepositoryTest
     {
         [Test]

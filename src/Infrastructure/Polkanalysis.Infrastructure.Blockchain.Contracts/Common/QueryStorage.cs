@@ -48,7 +48,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
 
         public QueryStorage<TKey, TStorage> Skip(int skip)
         {
-            Guard.Against.NegativeOrZero(skip);
+            Guard.Against.Negative(skip);
 
             QueryFilterFunction.NbElementSkip = skip;
             return this;
