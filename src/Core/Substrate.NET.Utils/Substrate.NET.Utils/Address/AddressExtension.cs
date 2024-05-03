@@ -8,6 +8,9 @@ namespace Substrate.NET.Utils.Address
 {
     public static class AddressExtension
     {
-        
+        public static bool IsValidAccountAddress(string address)
+        {
+            return true; // TODO
+        }
     }
 }

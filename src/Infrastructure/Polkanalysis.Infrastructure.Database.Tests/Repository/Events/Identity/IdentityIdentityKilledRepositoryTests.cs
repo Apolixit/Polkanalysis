@@ -8,6 +8,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Identity
                 Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentityKilled,
                 new BaseTuple<SubstrateAccount, U128>(
                     new SubstrateAccount(accountAddress),
-                    new U128(new System.Numerics.BigInteger(amount))));
+                    new U128(new BigInteger(amount))));
 
             var model = await _identityIdentityKilledRepository.BuildModelAsync(
                 BuildEventModel("Identity", "Killed"),

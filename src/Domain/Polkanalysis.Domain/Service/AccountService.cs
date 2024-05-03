@@ -12,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Polkanalysis.Domain.Contracts.Common;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -48,17 +49,17 @@ namespace Polkanalysis.Domain.Service
                 throw new AddressException($"{address} is invalid");
         }
 
-        public async Task<IEnumerable<AccountLightDto>> GetAccountsAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<AccountLightDto>> GetAccountsAsync(CancellationToken cancellationToken, Pagination pagination)
         {
             var accountsQuery = await _substrateNodeRepository.Storage.System.AccountsQueryAsync(cancellationToken);
-            var result = await accountsQuery.Take(20).ExecuteAsync(cancellationToken);
+            var result = await accountsQuery.Skip((pagination.PageNumber - 1) * pagination.PageSize).Take(pagination.PageSize).ExecuteAsync(cancellationToken);
 
             var accountsDto = new List<AccountLightDto>();
             if (result == null) return accountsDto;
 
-            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
+            await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
-            foreach (var (account, accountInfo) in result)
+            foreach (var (account, _) in result)
             {
                 accountsDto.Add(new AccountLightDto()
                 {

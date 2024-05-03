@@ -18,11 +18,7 @@ namespace Polkanalysis.Api.Controllers
         [Description("Return blockchain accounts")]
         public async Task<ActionResult<PagedResponseDto<AccountLightDto>>> GetAccountsAsync(int size = 20, int page = 1)
         {
-            return await SendAndHandleResponseAsync(new AccountsQuery()
-            {
-                PageSize = size,
-                PageNumber = page
-            });
+            return await SendAndHandleResponseAsync(new AccountsQuery(size, page));
         }
 
         [HttpGet("{address}")]

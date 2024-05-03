@@ -370,3 +370,4 @@ FodyWeavers.xsd
 /src/Applications/Polkanalysis.Api/appsettings.Development.json
 /src/Applications/Polkanalysis.Worker/appsettingsDevelopment.json
 /src/Applications/Polkanalysis.App/appsettings.Development.json
+/src/Applications/Polkanalysis.Worker/appsettings.Development.json

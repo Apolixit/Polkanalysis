@@ -10,7 +10,7 @@ using Polkanalysis.Domain.Integration.Tests.Polkadot;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
-    [Timeout(RepositoryMaxTimeout)]
+    [CancelAfter(RepositoryMaxTimeout)]
     public abstract class ExplorerRepositoryTest : PolkadotIntegrationTest
     {
         protected IExplorerService _explorerRepository;

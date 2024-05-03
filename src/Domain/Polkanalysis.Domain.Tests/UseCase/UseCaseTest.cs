@@ -15,6 +15,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using MediatR;
 using OperationResult;
 using Polkanalysis.Domain.Tests.Abstract;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Tests.UseCase
 {
@@ -29,6 +30,13 @@ namespace Polkanalysis.Domain.Tests.UseCase
     {
         protected ILogger<TLogger>? _logger;
         protected Handler<TLogger, TDto, TRequest>? _useCase;
+        protected ISubstrateService _substrateService;
+
+        [SetUp]
+        public void SetupBase()
+        {
+            _substrateService = Substitute.For<ISubstrateService>();
+        }
 
         [Test]
         public async Task GenericUseCaseWithNullRequest_ShouldFailedAsync()

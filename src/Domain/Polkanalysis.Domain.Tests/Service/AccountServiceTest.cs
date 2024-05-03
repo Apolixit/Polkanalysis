@@ -46,7 +46,7 @@ namespace Polkanalysis.Domain.Tests.Service
         [Test, Ignore("Need to mock Query")]
         public async Task GetAccountsWithValidResponse_ShouldSucceedAsync()
         {
-            var res = await _accountService.GetAccountsAsync(CancellationToken.None);
+            var res = await _accountService.GetAccountsAsync(CancellationToken.None, Contracts.Common.Pagination.Default);
             Assert.Fail();
         }
 

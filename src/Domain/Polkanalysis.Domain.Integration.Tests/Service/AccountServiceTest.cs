@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service
 {
-    [Timeout(RepositoryMaxTimeout)]
+    [CancelAfter(RepositoryMaxTimeout)]
     public class AccountServiceTest : PolkadotIntegrationTest
     {
         private IAccountService _accountRepository;
@@ -37,10 +37,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
         }
 
         [Test]
-        [Timeout(30_000)]
+        [CancelAfter(30_000)]
         public async Task GetAllAccount_ShouldWorkAsync()
         {
-            var res = await _accountRepository.GetAccountsAsync(CancellationToken.None);
+            var res = await _accountRepository.GetAccountsAsync(CancellationToken.None, Contracts.Common.Pagination.Default);
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count(), Is.GreaterThan(0));

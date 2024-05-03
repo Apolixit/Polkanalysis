@@ -13,6 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NET.Utils.Address;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
@@ -161,10 +162,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             }
         }
 
-        public bool IsValidAccountAddress(string address)
-        {
-            return true; // TODO
-        }
+        public bool IsValidAccountAddress(string address) => AddressExtension.IsValidAccountAddress(address);
 
         public ITimeQueryable At(BlockNumber blockNumber)
         {

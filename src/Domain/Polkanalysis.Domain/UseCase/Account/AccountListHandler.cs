@@ -5,11 +5,6 @@ using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Account
 {
@@ -26,9 +21,9 @@ namespace Polkanalysis.Domain.UseCase.Account
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            var res = await _accountRepository.GetAccountsAsync(cancellationToken);
+            var res = await _accountRepository.GetAccountsAsync(cancellationToken, request.Pagination);
 
-            var pagesResult = res.OrderByDescending(x => x.Balances.Total).ToPagedResponse(request.PageNumber, request.PageSize);
+            var pagesResult = res.OrderByDescending(x => x.Balances.Total).ToPagedResponse(request.Pagination.PageNumber, request.Pagination.PageSize);
 
             return Helpers.Ok(pagesResult);
         }
