@@ -4,7 +4,7 @@ namespace Polkanalysis.Domain.Contracts.Common
 {
     public class Pagination
     {
-        public Pagination() { }
+        protected Pagination() { }
 
         public Pagination(int pageSize, int pageNumber)
         {

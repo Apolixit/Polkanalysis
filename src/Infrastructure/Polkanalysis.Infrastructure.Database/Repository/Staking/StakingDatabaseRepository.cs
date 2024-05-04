@@ -77,9 +77,9 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Staking
         public async Task<int> GetNominatorCountVotedForValidatorAsync(int eraId, SubstrateAccount validatorAccount, CancellationToken cancellationToken)
         {
             var stackersValidator = await GetEraValidatorAsync(eraId, validatorAccount, cancellationToken);
-            if (stackersValidator == null) return 0;
+            if (stackersValidator is null) return 0;
 
-            return stackersValidator.Value.Item2.Others.Value.Length;
+            return stackersValidator.Value.Item2.Others?.Value?.Length ?? 0;
         }
     }
 }

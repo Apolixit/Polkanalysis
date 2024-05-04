@@ -15,7 +15,13 @@ namespace Polkanalysis.Domain.Contracts.Primary.FInancial
 {
     public class GlobalFinanceQuery : IRequest<Result<GlobalFinanceDto, ErrorResult>>
     {
-        public GlobalFinanceQuery(DateTime? from, DateTime? to)
+        protected GlobalFinanceQuery()
+        {
+            RangeDate = RangeDate.Default;
+            Pagination = Pagination.Default;
+        }
+
+        public GlobalFinanceQuery(DateTime? from, DateTime? to) : this()
         {
             RangeDate = new RangeDate(from, to);
         }
@@ -25,7 +31,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.FInancial
             Pagination = new Pagination(pageSize, pageNumber);
         }
 
-        public RangeDate RangeDate { get; set; } = new RangeDate();
-        public Pagination Pagination { get; set; } = new Pagination();
+        public RangeDate RangeDate { get; set; }
+        public Pagination Pagination { get; set; }
     }
 }
