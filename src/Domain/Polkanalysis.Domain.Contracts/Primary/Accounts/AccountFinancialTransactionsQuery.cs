@@ -14,7 +14,14 @@ namespace Polkanalysis.Domain.Contracts.Primary.Accounts
 {
     public class AccountFinancialTransactionsQuery : IRequest<Result<AccountFinancialTransactionsDto, ErrorResult>>
     {
-        public AccountFinancialTransactionsQuery(string accountAddress, DateTime? from, DateTime? to)
+        protected AccountFinancialTransactionsQuery()
+        {
+            AccountAddress = string.Empty;
+            RangeDate = RangeDate.Default;
+            Pagination = Pagination.Default;
+        }
+
+        public AccountFinancialTransactionsQuery(string accountAddress, DateTime? from, DateTime? to) : this()
         {
             AccountAddress = accountAddress;
             RangeDate = new RangeDate(from, to);
@@ -26,7 +33,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.Accounts
         }
 
         public string AccountAddress { get; set; }
-        public RangeDate RangeDate { get; set; } = new RangeDate();
-        public Pagination Pagination { get; set; } = new Pagination();
+        public RangeDate RangeDate { get; set; }
+        public Pagination Pagination { get; set; }
     }
 }

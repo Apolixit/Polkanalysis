@@ -79,8 +79,10 @@ jobs:
       run: dotnet test Polkanalysis.sln --verbosity normal --logger "trx;LogFileName=test-results.trx"
 
     - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action/windows@v2
+      uses: dorny/test-reporter@v1
       if: always()
       with:
-        files: |
-          test-results.trx
+        name: Polkanalysis Tests
+        path: "**/test-results.trx"
+        reporter: dotnet-trx
+        fail-on-error: true

@@ -20,6 +20,9 @@ namespace Polkanalysis.Domain.UseCase.Price
 
         public async override Task<Result<TokenPriceDto, ErrorResult>> Handle(TokenPriceQuery request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
+
             //https://api.coingecko.com/api/v3/coins/polkadot/history?date=09-06-2023
             try
             {

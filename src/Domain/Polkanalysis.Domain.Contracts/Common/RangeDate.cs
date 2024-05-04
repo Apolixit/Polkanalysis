@@ -8,7 +8,7 @@ namespace Polkanalysis.Domain.Contracts.Common
 {
     public class RangeDate
     {
-        public RangeDate() { }
+        protected RangeDate() { }
 
         public RangeDate(DateTime? from, DateTime? to)
         {
@@ -18,5 +18,7 @@ namespace Polkanalysis.Domain.Contracts.Common
 
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }
+
+        public static RangeDate Default => new RangeDate();
     }
 }
