@@ -5,9 +5,11 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Configuration.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Common.Monitoring.Opentelemetry
 {
+    [ExcludeFromCodeCoverage]
     public static class OpentelemetryExtension
     {
         /// <summary>

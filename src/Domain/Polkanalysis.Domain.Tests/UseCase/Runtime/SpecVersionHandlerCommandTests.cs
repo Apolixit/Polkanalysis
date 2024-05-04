@@ -24,8 +24,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
     public class SpecVersionHandlerCommandTests
         : UseCaseTest<SpecVersionCommandHandler, bool, SpecVersionCommand>
     {
-        private SubstrateDbContext _substrateDbContext;
-        private ISubstrateService _substrateService;
         private IMetadataService _metadataService;
 
         [SetUp]
@@ -38,26 +36,16 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
                 .UseInMemoryDatabase("SubstrateTest")
             .Options;
 
-            _substrateService = Substitute.For<ISubstrateService>();
             _substrateService.BlockchainName.Returns("Polkadot");
 
             _substrateService.Rpc.Chain.GetBlockHashAsync(Arg.Any<BlockNumber>(), CancellationToken.None).Returns(new Hash("0xfc7ed4b4ca798d49e2824868026ddcaf05d7fdd3ebd79a28b5872084c07af210"));
             _substrateService.Rpc.State.GetMetaDataAsync(Arg.Any<byte[]>(), CancellationToken.None).Returns(PalletVersionHandlerCommandTests.MetadataV14_9280);
-
-            _substrateDbContext = new SubstrateDbContext(contextOption);
 
             _useCase = new SpecVersionCommandHandler(
                 _substrateDbContext, 
                 _substrateService,
                 _logger);
             //base.Setup();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _substrateDbContext.Database.EnsureDeleted();
-            _substrateDbContext.Dispose();
         }
 
         [Test]

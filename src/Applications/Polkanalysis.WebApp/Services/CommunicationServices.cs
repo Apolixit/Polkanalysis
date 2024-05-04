@@ -5,11 +5,13 @@ using Polkanalysis.Domain.UseCase.Explorer.Block;
 using FluentValidation;
 using MediatR;
 using Polkanalysis.Domain.UseCase;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.WebApp.Services
 {
     public static class CommunicationServices
     {
+        [ExcludeFromCodeCoverage]
         public static IServiceCollection AddMediatRAndPipelineBehaviors(this IServiceCollection services)
         {
             services.AddMediatR(cfg => {

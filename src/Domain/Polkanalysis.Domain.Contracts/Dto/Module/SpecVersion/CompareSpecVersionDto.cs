@@ -4,6 +4,12 @@ namespace Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion
 {
     public class CompareSpecVersionDto
     {
+        public CompareSpecVersionDto()
+        {
+            ModulesAdded = new List<string>();
+            ModulesRemoved = new List<string>();
+            ModulesChanged = new List<ChangedModuleDto>();
+        }
         public CompareSpecVersionDto(MetadataDiffV9 metadata)
         {
             ModulesAdded = metadata.AddedModules.Select(x => x.ModuleName).ToList();

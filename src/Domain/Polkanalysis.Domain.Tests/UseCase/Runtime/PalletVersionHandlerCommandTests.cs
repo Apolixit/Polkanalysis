@@ -15,7 +15,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
     public class PalletVersionHandlerCommandTests
         : UseCaseTest<PalletVersionCommandHandler, bool, PalletVersionCommand>
     {
-        private ISubstrateService _substrateService;
         private IMetadataService _metadataService;
         private Hash _blockStartPreviousHash;
         private Hash _blockStartHash;
@@ -38,7 +37,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _logger = Substitute.For<ILogger<PalletVersionCommandHandler>>();
             _metadataService = new MetadataService();
 
-            _substrateService = Substitute.For<ISubstrateService>();
             _substrateService.BlockchainName.Returns("Polkadot");
 
             _useCase = new PalletVersionCommandHandler(

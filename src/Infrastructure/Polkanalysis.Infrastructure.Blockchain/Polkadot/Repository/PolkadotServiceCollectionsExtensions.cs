@@ -3,11 +3,13 @@ using Ardalis.GuardClauses;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 {
     public static class PolkadotServiceCollectionsExtensions
     {
+        [ExcludeFromCodeCoverage]
         public static IServiceCollection AddPolkadotBlockchain(
             this IServiceCollection services,
             string blockchainName,

@@ -1,11 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polkanalysis.Infrastructure.Database;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Common.Monitoring.HealthCheck
 {
     public static class HealthCheckExtension
     {
+        [ExcludeFromCodeCoverage]
         public static IServiceCollection AddHealthChecks(this IServiceCollection services)
         {
             var healthCheckBuilder = services.AddHealthChecks();

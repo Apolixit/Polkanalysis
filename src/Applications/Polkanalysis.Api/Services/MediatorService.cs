@@ -3,11 +3,13 @@ using MediatR.Courier;
 using MediatR;
 using Polkanalysis.Domain.UseCase.Explorer.Block;
 using Polkanalysis.Domain.UseCase;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Api.Services
 {
     public static class MediatorService
     {
+        [ExcludeFromCodeCoverage]
         public static IServiceCollection AddMediatRAndPipelineBehaviors(this IServiceCollection services)
         {
             services.AddMediatR(cfg => {

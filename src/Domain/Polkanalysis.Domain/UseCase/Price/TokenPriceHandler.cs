@@ -71,19 +71,22 @@ namespace Polkanalysis.Domain.UseCase.Price
             RuleFor(c => c.TokenPrice.Date).NotNull();
         }
     }
-    public class TokenPriceCommandHandler : Handler<TokenPriceHandler, bool, TokenPriceCommand>
+    public class TokenPriceCommandHandler : Handler<TokenPriceCommandHandler, bool, TokenPriceCommand>
     {
         private readonly SubstrateDbContext _dbContext;
 
         public TokenPriceCommandHandler(
             SubstrateDbContext dbContext, 
-            ILogger<TokenPriceHandler> logger) : base(logger)
+            ILogger<TokenPriceCommandHandler> logger) : base(logger)
         {
             _dbContext = dbContext;
         }
 
         public async override Task<Result<bool, ErrorResult>> Handle(TokenPriceCommand command, CancellationToken cancellationToken)
         {
+            if (command == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");
+
             _dbContext.TokenPrices.Add(new TokenPriceModel()
             {
                 BlockchainName = command.BlockchainName,

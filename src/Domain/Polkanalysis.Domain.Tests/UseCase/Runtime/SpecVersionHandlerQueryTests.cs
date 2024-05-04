@@ -25,30 +25,11 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
     public class SpecVersionHandlerQueryTests :
         UseCaseTest<SpecVersionHandler, IEnumerable<SpecVersionDto>, SpecVersionsQuery>
     {
-        private SubstrateDbContext _substrateDbContext;
-        private ISubstrateService _substrateService;
-
         [SetUp]
         public void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionHandler>>();
-            _substrateService = Substitute.For<ISubstrateService>();
-
-            var contextOption = new DbContextOptionsBuilder<SubstrateDbContext>()
-                .UseInMemoryDatabase("SubstrateTest")
-            .Options;
-
-            _substrateDbContext = new SubstrateDbContext(contextOption);
-
             _useCase = new SpecVersionHandler(_substrateDbContext, _substrateService, _logger);
-            //base.Setup();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _substrateDbContext.Database.EnsureDeleted();
-            _substrateDbContext.Dispose();
         }
 
         private void insertRuntimeVersion(int i)

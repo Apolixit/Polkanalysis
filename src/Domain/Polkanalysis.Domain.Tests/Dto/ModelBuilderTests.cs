@@ -15,7 +15,6 @@ namespace Polkanalysis.Domain.Tests.Dto
         }
 
         [Test]
-        [TestCase()]
         public void DisplayElapsedTime_WithValidTime_ShouldWork()
         {
             Assert.That(_modelBuilder.DisplayElapsedTime(DateTime.Now.Subtract(TimeSpan.FromDays(1))), Is.EqualTo("1 day ago"));
