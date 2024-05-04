@@ -4,12 +4,14 @@ using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Configuration.Contracts.Information;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Configuration.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class SubstrateEndpointCollectionsExtensions
     {
         public static IServiceCollection AddEndpoint(this IServiceCollection services, bool registerAsSingleton = false)

@@ -3,12 +3,14 @@ using Polkanalysis.Domain.Adapter.Block;
 using Polkanalysis.Domain.Contracts.Service;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Service
 {
+    [ExcludeFromCodeCoverage]
     public static class ServiceCollectionsExtensions
     {
         public static IServiceCollection AddSubstrateService(this IServiceCollection services)

@@ -6,9 +6,11 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
 using Substrate.NET.Metadata.Service;
 using Polkanalysis.Domain.Contracts.Service;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Domain.Runtime
 {
+    [ExcludeFromCodeCoverage]
     public static class SubstrateLogicCollectionsExtensions
     {
         public static IServiceCollection AddSubstrateLogic(this IServiceCollection services)

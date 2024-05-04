@@ -11,12 +11,14 @@ using Polkanalysis.Infrastructure.Database.Repository.Events.System;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Database
 {
+    [ExcludeFromCodeCoverage]
     public static class DatabaseServiceCollectionsExtensions
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services)
