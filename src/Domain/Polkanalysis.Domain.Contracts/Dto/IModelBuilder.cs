@@ -63,15 +63,7 @@ namespace Polkanalysis.Domain.Contracts.Dto
         /// <param name="blockLightDto"></param>
         /// <param name="eventRecord"></param>
         /// <returns></returns>
-        public EventDto BuildEventDto(BlockLightDto blockLightDto, INode eventNode);
-
-        /// <summary>
-        /// Create a light event details
-        /// </summary>
-        /// <param name="blockLightDto"></param>
-        /// <param name="eventNode"></param>
-        /// <returns></returns>
-        public EventLightDto BuildEventLightDto(INode eventNode);
+        public EventDto BuildEventDto(BlockLightDto blockLightDto, IEventNode eventNode, uint eventIndex, uint? extrinsicIndex);
 
         /// <summary>
         /// Create a full extrinsic details

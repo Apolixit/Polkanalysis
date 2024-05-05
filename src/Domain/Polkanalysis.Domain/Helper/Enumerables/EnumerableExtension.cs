@@ -10,6 +10,7 @@ namespace Polkanalysis.Domain.Helper.Enumerables
     {
         /// <summary>
         /// Extends each item of the list with a new property given by a function
+        /// This is usually used to extend a list of objects with a new property with asynchronous call
         /// </summary>
         /// <typeparam name="T">Element type of the initial list</typeparam>
         /// <typeparam name="T1">Element type of the first extension method</typeparam>
