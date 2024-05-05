@@ -78,7 +78,7 @@ namespace Polkanalysis.Domain.Runtime
             if (id is null) throw new ArgumentNullException($"{nameof(id)}");
 
             var splitted = id.Split("-");
-            if (splitted.Length != 2) 
+            if (splitted.Length != 2)
                 throw new FormatException("Bad tupple identifier format");
 
             uint mainNumber = 0;
@@ -106,33 +106,18 @@ namespace Polkanalysis.Domain.Runtime
             };
         }
 
-        public EventDto BuildEventDto(BlockLightDto blockLightDto, INode eventNode)
+        public EventDto BuildEventDto(BlockLightDto blockLightDto, IEventNode eventNode, uint eventIndex, uint? extrinsicIndex)
         {
-            var enumEvent = eventNode.Find(typeof(EnumRuntimeEvent));
-            if (enumEvent == null || enumEvent.First().Children.Count == 0) throw new InvalidOperationException("Try to build event dto while node parameter is not a valid event.");
-
-            var pallet = enumEvent.First().Children.First();
             var eventDto = new EventDto()
             {
-                EventSummary = new EventLightDto()
-                {
-                    Block = blockLightDto,
-                    EventName = pallet.Children.First().HumanData.ToString(),
-                    PalletName = pallet.HumanData.ToString(),
-                },
+                EventSummary = new EventLightDto(
+                    blockLightDto,
+                    $"{blockLightDto.Number}-{eventIndex}",
+                    extrinsicIndex is not null ? $"{blockLightDto.Number}-{extrinsicIndex}" : string.Empty,
+                    eventNode.Method.ToString(),
+                    eventNode.Module.ToString(),
+                    eventNode.Documentation),
                 Decoded = eventNode,
-            };
-
-            return eventDto;
-        }
-
-        public EventLightDto BuildEventLightDto(INode eventNode)
-        {
-            var eventDto = new EventLightDto()
-            {
-                EventName = eventNode.HumanData.ToString(),
-                PalletName = eventNode.Children.First().HumanData.ToString(),
-                Description = string.Empty,
             };
 
             return eventDto;

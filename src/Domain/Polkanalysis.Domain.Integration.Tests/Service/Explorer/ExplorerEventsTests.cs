@@ -11,7 +11,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         /// </summary>
         /// <param name="blockId"></param>
         /// <returns></returns>
-        [Test, Ignore("Debug Event updates")]
+        [Test]
         [TestCase(14000001, 30)]
         [TestCase(13564726, 34)]
         [TestCase(14063202, 39)]
@@ -26,19 +26,21 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             Assert.That(eventInfoWithNumber.Count(), Is.EqualTo(nbEvent));
         }
 
-        [Test, Ignore("Debug Event updates")]
+        [Test]
         [TestCase(14033244)]
         public async Task GetEventsAssociatedByExtrinsic_ShouldWorkAsync(int blockId)
         {
             var extrinsics = await _explorerRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
+            var extrinsicList = extrinsics.ToList();
 
-            var events = await _explorerRepository.GetEventsLinkedToExtrinsicsAsync(extrinsics.ToList()[1], CancellationToken.None);
+            var events_0 = await _explorerRepository.GetEventsLinkedToExtrinsicsAsync(extrinsicList[0], CancellationToken.None);
+            var events_1 = await _explorerRepository.GetEventsLinkedToExtrinsicsAsync(extrinsicList[1], CancellationToken.None);
+            var events_2 = await _explorerRepository.GetEventsLinkedToExtrinsicsAsync(extrinsicList[2], CancellationToken.None);
 
-            Assert.That(events, Is.Not.Null);
-            Assert.That(events.Count(), Is.EqualTo(9));
+            Assert.That(events_0!.Count() + events_1!.Count() + events_2!.Count(), Is.EqualTo(38));
         }
 
-        [Test, Ignore("Debug Event updates")]
+        [Test]
         [TestCase(
             "0x6de17e76b2b5d40b51e9276406ffee4e37662366d5faa73babe3c3a359df5ebd",
             Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime.RuntimeEvent.Scheduler,
