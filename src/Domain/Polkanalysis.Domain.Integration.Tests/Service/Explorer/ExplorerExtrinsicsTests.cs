@@ -38,6 +38,40 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             Assert.That(res, Is.Not.Null);
         }
 
+        /// <summary>
+        /// Based on real data : https://polkadot.subscan.io/block/20626766
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetExtrinsicsAssociateToBlock_CheckEveryDetails_FromBlockNumber_ShouldWorkAsync()
+        {
+            var extrinsicInformations = await _explorerRepository.GetExtrinsicsAsync(20626766, CancellationToken.None);
 
+            Assert.That(extrinsicInformations, Is.Not.Null);
+            Assert.That(extrinsicInformations.Count(), Is.EqualTo(4));
+
+            var extrinsicsList = extrinsicInformations.ToList();
+            Assert.That(extrinsicsList.All(x => x.Block.Number == 20626766));
+
+            // The first is timestamp set
+            var first = extrinsicsList[0];
+            Assert.That(first.PalletName, Is.EqualTo("Timestamp"));
+            Assert.That(first.CallEventName, Is.EqualTo("set"));
+
+            // The second is parainherent enter
+            var second = extrinsicsList[1];
+            Assert.That(second.PalletName, Is.EqualTo("ParaInherent"));
+            Assert.That(second.CallEventName, Is.EqualTo("enter"));
+
+            // The third is proxy announce
+            var third = extrinsicsList[2];
+            Assert.That(third.PalletName, Is.EqualTo("Proxy"));
+            Assert.That(third.CallEventName, Is.EqualTo("announce"));
+
+            // The fourth is nomination pools bond extra
+            var fourth = extrinsicsList[3];
+            Assert.That(fourth.PalletName, Is.EqualTo("NominationPools"));
+            Assert.That(fourth.CallEventName, Is.EqualTo("bond_extra"));
+        }
     }
 }

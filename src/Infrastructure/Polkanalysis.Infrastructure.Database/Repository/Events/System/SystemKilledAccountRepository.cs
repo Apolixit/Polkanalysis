@@ -8,9 +8,11 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 {
+    [BindEvents(RuntimeEvent.System, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.Event.KilledAccount")]
     public class SystemKilledAccountRepository : EventDatabaseRepository<SystemKilledAccountModel>
     {
         public SystemKilledAccountRepository(

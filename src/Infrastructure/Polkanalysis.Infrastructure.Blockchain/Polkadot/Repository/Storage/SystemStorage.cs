@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system;
+using System;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -21,6 +22,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
+
+            //if(accountId32 is null)
+            //{
+            //    accountId32 = _mapper.MapWithVersion<SubstrateAccount, AccountId32Base>(9110, account);
+            //}
+            //var parameters = RequestGenerator.GetStorage("System", "Account", Substrate.NetApi.Model.Meta.Storage.Type.Map, [Substrate.NetApi.Model.Meta.Storage.Hasher.BlakeTwo128Concat], [accountId32]);
+
+            ////Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.frame_system.AccountInfo;
+            ////var res = await _client.GetStorageAsync<AccountInfo>(parameters, BlockHash, token);
+            //string text = await _client.InvokeAsync<string>("state_getStorage", new object[2] { parameters, BlockHash! }, token);
+            //var res = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9110.frame_system.AccountInfo();
+            //res.Create(text);
+
+            //var res2 = _mapper.Map<AccountInfoBase, AccountInfo>(res);
+            //return res2;
             return Map<AccountInfoBase, AccountInfo>(
                 await _client.SystemStorage.AccountAsync(accountId32, token));
         }

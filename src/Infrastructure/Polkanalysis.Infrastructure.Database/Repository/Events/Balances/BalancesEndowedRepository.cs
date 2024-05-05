@@ -10,9 +10,11 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
+    [BindEvents(RuntimeEvent.Balances, "Blockchain.Contracts.Pallet.Balances.Enums.Event.Endowed")]
     public class BalancesEndowedRepository : EventDatabaseRepository<BalancesEndowedModel>
     {
         public BalancesEndowedRepository(

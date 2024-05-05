@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using System.Reflection;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Microsoft.Extensions.Logging;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
@@ -12,11 +13,13 @@ namespace Polkanalysis.Domain.Runtime.Module
     {
         private readonly ISubstrateService _substrateRepository;
         private readonly ICurrentMetaData _currentMetaData;
+        private readonly ILogger<PalletBuilder> _logger;
 
-        public PalletBuilder(ISubstrateService substrateRepository, ICurrentMetaData currentMetaData)
+        public PalletBuilder(ISubstrateService substrateRepository, ICurrentMetaData currentMetaData, ILogger<PalletBuilder> logger)
         {
             _substrateRepository = substrateRepository;
             _currentMetaData = currentMetaData;
+            _logger = logger;
         }
 
         private enum TypeBuilder
@@ -49,7 +52,7 @@ namespace Polkanalysis.Domain.Runtime.Module
         /// <param name="dynamicCall"></param>
         /// <param name="dynamicEnum"></param>
         /// <returns></returns>
-        private IType BuildGeneric(string palletName, Method method, TypeBuilder typeBuilder)
+        private IType? BuildGeneric(string palletName, Method method, TypeBuilder typeBuilder)
         {
             var palletModule = _currentMetaData.GetPalletModule(palletName);
 
@@ -99,21 +102,29 @@ namespace Polkanalysis.Domain.Runtime.Module
             Enum? enumCall = (Enum?)Enum.ToObject(enumType, method.CallIndex);
             if (enumCall == null) throw new FormatException($"Dynamic create enum instance for {palletName} has failed");
 
-            callInstance.Create(Encode(enumCall, method.ParametersBytes));
-            return callInstance;
+            try
+            {
+                callInstance.Create(Encode(enumCall, method.ParametersBytes));
+                return callInstance;
+            } catch(Exception ex)
+            {
+                _logger.LogWarning(ex, "Unable to create instance of {palletName} - {enumCall} {typeBuilder} {method}", palletName, enumCall.ToString(), typeBuilder, method);
+            }
+
+            return null;
         }
 
-        public IType BuildCall(string palletName, Method method)
+        public IType? BuildCall(string palletName, Method method)
         {
             return BuildGeneric(palletName, method, TypeBuilder.Call);
         }
 
-        public IType BuildError(string palletName, Method method)
+        public IType? BuildError(string palletName, Method method)
         {
             return BuildGeneric(palletName, method, TypeBuilder.Error);
         }
 
-        public IType BuildEvent(string palletName, Method method)
+        public IType? BuildEvent(string palletName, Method method)
         {
             return BuildGeneric(palletName, method, TypeBuilder.Event);
         }

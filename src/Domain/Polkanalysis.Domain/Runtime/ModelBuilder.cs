@@ -138,13 +138,13 @@ namespace Polkanalysis.Domain.Runtime
             return eventDto;
         }
 
-        public ExtrinsicDto BuildExtrinsicDto(
-            Extrinsic extrinsic,
-            BlockLightDto blockLight,
-            INode extrinsicNode,
-            uint extrinsicIndex)
+        public ExtrinsicDto BuildExtrinsicDto(Extrinsic extrinsic,
+                                              BlockLightDto blockLight,
+                                              INode extrinsicNode,
+                                              uint extrinsicIndex,
+                                              string palletName,
+                                              string callEvent)
         {
-            // TODO: for extrinsic Hash, need extrinsic.Encode()
             var extrinsicDto = new ExtrinsicDto()
             {
                 Block = blockLight,
@@ -152,8 +152,8 @@ namespace Polkanalysis.Domain.Runtime
                 Decoded = extrinsicNode,
                 ExtrinsicId = $"{blockLight.Number}-{extrinsicIndex}",
                 Index = extrinsicIndex,
-                PalletCall = extrinsicNode.HumanData.ToString(),
-                PalletName = extrinsicNode.Children.First().HumanData.ToString(),
+                PalletName = palletName,
+                CallEventName = callEvent,
             };
 
             return extrinsicDto;

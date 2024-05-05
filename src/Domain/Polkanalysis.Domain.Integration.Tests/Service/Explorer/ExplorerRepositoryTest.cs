@@ -33,7 +33,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
                 _substrateService,
                 new PalletBuilder(
                     _substrateService,
-                    _currentMetaData),
+                    _currentMetaData, Substitute.For<ILogger<PalletBuilder>>()),
                 _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
             _explorerRepository = new ExplorerService(

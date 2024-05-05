@@ -12,8 +12,8 @@ namespace Polkanalysis.Domain.Contracts.Dto.Extrinsic
         public required BlockLightDto Block { get; set; }
         public IList<BlockLightDto>? Lifetime { get; set; }
         public required string Hash { get; set; }
+        public required string CallEventName { get; set; }
         public required string PalletName { get; set; }
-        public required string PalletCall { get; set; }
         public AccountDto? Caller { get; set; }
         public double EstimatedFees { get; set; }
         public double RealFees { get; set; }

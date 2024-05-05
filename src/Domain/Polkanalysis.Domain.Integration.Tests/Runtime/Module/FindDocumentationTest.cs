@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         {
             _logger = Substitute.For<ILogger<CurrentMetaData>>();
             _currentMetaData = new CurrentMetaData(_substrateService, _logger);
-            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData);
+            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());
         }
 
         [Test, Ignore("Todo debug algo")]
