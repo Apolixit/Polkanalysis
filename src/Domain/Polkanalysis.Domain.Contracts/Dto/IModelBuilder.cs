@@ -81,7 +81,7 @@ namespace Polkanalysis.Domain.Contracts.Dto
         /// <param name="extrinsicNode"></param>
         /// <param name="extrinsicIndex"></param>
         /// <returns></returns>
-        public ExtrinsicDto BuildExtrinsicDto(Substrate.NetApi.Model.Extrinsics.Extrinsic extrinsic, BlockLightDto blockLight, INode extrinsicNode, uint extrinsicIndex);
+        public ExtrinsicDto BuildExtrinsicDto(Substrate.NetApi.Model.Extrinsics.Extrinsic extrinsic, BlockLightDto blockLight, INode extrinsicNode, uint extrinsicIndex, string moduleName, string callEvent);
         public ExtrinsicLightDto BuildExtrinsicLightDto();
 
         public string BuildDocumentation(string[] doc);

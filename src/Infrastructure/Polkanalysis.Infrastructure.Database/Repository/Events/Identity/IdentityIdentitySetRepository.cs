@@ -8,9 +8,11 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 {
+    [BindEvents(RuntimeEvent.Identity, "Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentitySet")]
     public class IdentityIdentitySetRepository : EventDatabaseRepository<IdentityIdentitySetModel>
     {
         public IdentityIdentitySetRepository(

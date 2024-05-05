@@ -11,6 +11,7 @@ using Ardalis.GuardClauses;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using AutoMapper;
+using Substrate.NetApi.Model.Meta;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -111,15 +112,39 @@ namespace Polkanalysis.Domain.Runtime
             return DecodeExtrinsic(extrinsic);
         }
 
+        public (string callModule, string callEvent) GetCallFromExtrinsic(Extrinsic extrinsic)
+        {
+            string callModule = string.Empty;
+            string callEvent = string.Empty;
+            var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
+            callModule = pallet.Name;
+            var palletType = _metaData.GetPalletType(pallet.Calls.TypeId);
+
+            if(palletType is NodeTypeVariant nodeTypeVariant)
+            {
+                callEvent = nodeTypeVariant.Variants[extrinsic.Method.CallIndex].Name;
+                return (callModule, callEvent);
+            }
+            
+            throw new InvalidOperationException();
+        }
+
         public INode DecodeExtrinsic(Extrinsic extrinsic)
         {
             var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
-
             var extrinsicCall = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
+
+            if(extrinsicCall is not null)
+            {
+                var isEqual = Utils.Bytes2HexString(extrinsic.Method.Encode()) == Utils.Bytes2HexString(extrinsicCall.Encode());
+            }
+
             var palletNode = new GenericNode();
             palletNode.Name = pallet.Name;
             palletNode.AddHumanData(pallet.Name);
-            palletNode.AddChild(Decode(extrinsicCall));
+
+            if(extrinsicCall is not null)
+                palletNode.AddChild(Decode(extrinsicCall));
 
             return palletNode;
         }

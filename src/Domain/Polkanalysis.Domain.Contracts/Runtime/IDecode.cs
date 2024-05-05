@@ -57,5 +57,6 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// <param name="hex"></param>
         /// <returns></returns>
         INode DecodeLog(IEnumerable<EnumDigestItem> logs);
+        (string callModule, string callEvent) GetCallFromExtrinsic(Extrinsic extrinsic);
     }
 }

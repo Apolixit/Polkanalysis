@@ -4,7 +4,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events
 {
     public class EventElementFactory
     {
-        public EventElementFactory(IDatabaseInsert databaseInsert, RuntimeEvent runtimeEvent, Enum eventValue)
+        public EventElementFactory(IDatabaseInsert databaseInsert, RuntimeEvent runtimeEvent, string eventValue)
         {
             DatabaseInsert = databaseInsert;
             RuntimeEvent = runtimeEvent;
@@ -13,6 +13,6 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events
 
         public IDatabaseInsert DatabaseInsert { get; set; }
         public RuntimeEvent RuntimeEvent { get; set; }
-        public Enum EventValue { get; set; }
+        public string EventValue { get; set; }
     }
 }

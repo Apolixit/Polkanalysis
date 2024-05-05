@@ -12,7 +12,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="palletName"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IType BuildCall(string palletName, Method method);
+        IType? BuildCall(string palletName, Method method);
 
         /// <summary>
         /// Build a dynamic event in the pallet
@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="palletName"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IType BuildEvent(string palletName, Method method);
+        IType? BuildEvent(string palletName, Method method);
 
         /// <summary>
         /// Build a dynamic error to the given method in the pallet
@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="palletName"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IType BuildError(string palletName, Method method);
+        IType? BuildError(string palletName, Method method);
 
         /// <summary>
         /// Generate dynamic namespace base

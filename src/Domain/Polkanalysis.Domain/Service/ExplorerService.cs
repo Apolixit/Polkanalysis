@@ -403,26 +403,29 @@ namespace Polkanalysis.Domain.Service
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
             var extrinsicsDto = new List<ExtrinsicDto>();
-            // blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54)
-            foreach (var extrinsic in blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54))
+
+            foreach (var extrinsic in blockDetails.Block.Extrinsics)
             {
+                #if DEBUG
                 var encodedExtrinsic = extrinsic.Encode();
                 var hexExtrinsic = Utils.Bytes2HexString(encodedExtrinsic);
                 var extrinsicHash = new Hash(hexExtrinsic);
                 var extrinsicFromEncoded = new Extrinsic(hexExtrinsic, ChargeTransactionPayment.Default());
-                //var extrinsicFromOfficial = new Extrinsic("0x280403000b207eba5c8501", ChargeTransactionPayment.Default());
-                var isEqual = extrinsic.Equals(extrinsicFromEncoded);
-                //var isEqual2 = extrinsic.Equals(extrinsicFromOfficial);
+                var isEqual = extrinsic.ToString().ToLower().Equals(extrinsicFromEncoded.ToString().ToLower());
+                #endif
 
                 var blockLight = await GetBlockLightAsync(blockHash, cancellationToken);
                 var extrinsicNode = _substrateDecode.DecodeExtrinsic(extrinsic);
 
+                var (callModule, callEvent) = _substrateDecode.GetCallFromExtrinsic(extrinsic);
                 extrinsicsDto.Add(
                     _modelBuilder.BuildExtrinsicDto(
                         extrinsic,
                         blockLight,
                         extrinsicNode,
-                        (uint)blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic))
+                        (uint)blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic),
+                        callModule,
+                        callEvent)
                     );
             }
 

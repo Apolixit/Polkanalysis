@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
                 _substrateService,
                 new PalletBuilder(
                     _substrateService,
-                    _currentMetaData),
+                    _currentMetaData, Substitute.For<ILogger<PalletBuilder>>()),
                 _currentMetaData,
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }

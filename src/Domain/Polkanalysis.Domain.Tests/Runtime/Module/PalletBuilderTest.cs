@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using Microsoft.Extensions.Logging;
+using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
@@ -25,7 +26,7 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
             //_substrateRepository.Api.Returns(mockClient);
 
             _currentMetaData = Substitute.For<ICurrentMetaData>();
-            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData);
+            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());
         }
 
         [Test]

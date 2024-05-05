@@ -76,7 +76,10 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
                 enumTransfert,
                 CancellationToken.None);
 
+            var allCount = await _balancesTransferRepository.GetAllAsync(CancellationToken.None);
             Assert.That(_substrateDbContext.EventBalancesTransfer.Count(), Is.EqualTo(1));
+            Assert.That(allCount.Count(), Is.EqualTo(1));
+
             Assert.That(_substrateDbContext.EventBalancesTransfer.First().From, Is.EqualTo(from));
             Assert.That(_substrateDbContext.EventBalancesTransfer.First().To, Is.EqualTo(to));
             Assert.That(_substrateDbContext.EventBalancesTransfer.First().Amount, Is.EqualTo(expected));

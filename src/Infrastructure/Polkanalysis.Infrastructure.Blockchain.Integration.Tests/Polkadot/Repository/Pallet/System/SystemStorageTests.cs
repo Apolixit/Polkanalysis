@@ -14,9 +14,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
     public class SystemStorageTests : PolkadotIntegrationTest
     {
         [Test]
-        public async Task Account_ShouldWorkAsync()
+        [TestCase(1, "12H7nsDUrJUSCQQJrTKAFfyCWSactiSdjoVUixqcd9CZHTGt"), Ignore("Todo manage metadata prev v14")]
+        [TestCase(18112436, "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")]
+        public async Task Account_ShouldWorkAsync(int numBlock, string accountAddress)
         {
-            var res = await _substrateRepository.At(18112436).Storage.System.AccountAsync(new SubstrateAccount("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS"), CancellationToken.None);
+            var res = await _substrateRepository.At(numBlock).Storage.System.AccountAsync(
+                new SubstrateAccount(accountAddress),
+                CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }

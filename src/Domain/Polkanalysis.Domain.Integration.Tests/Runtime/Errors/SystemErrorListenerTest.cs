@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),
                 _substrateService,
-                new PalletBuilder(_substrateService, currentMetadata),
+                new PalletBuilder(_substrateService, currentMetadata, Substitute.For<ILogger<PalletBuilder>>()),
                 currentMetadata,
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
