@@ -37,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
         /// </summary>
         public IType? Core { get; set; }
         public bool HasBeenMapped
-            => Value != null;
+            => Value is not null;
 
         public override int TypeSize
         {

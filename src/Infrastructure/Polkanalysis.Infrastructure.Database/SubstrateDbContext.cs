@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Crowdloan;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
@@ -44,6 +45,12 @@ namespace Polkanalysis.Infrastructure.Database
 
         #region Crowdloan
         public DbSet<CrowloanContributedModel> EventCrowdloanContributed { get; set; }
+        public DbSet<CrowloanCreatedModel> EventCrowdloanCreated { get; set; }
+        #endregion
+
+        #region Auctions
+        public DbSet<AuctionStartedModel> EventAuctionStarted { get; set; }
+        public DbSet<AuctionClosedModel> EventAuctionClosed { get; set; }
         #endregion
 
         #region
@@ -92,6 +99,13 @@ namespace Polkanalysis.Infrastructure.Database
 
             modelBuilder.Entity<CrowloanContributedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.CrowdloanId, c.Amount });
+            modelBuilder.Entity<CrowloanCreatedModel>()
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.CrowdloanId });
+
+            modelBuilder.Entity<AuctionStartedModel>()
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AuctionIndex, c.LeasePeriod, c.Ending });
+            modelBuilder.Entity<AuctionClosedModel>()
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AuctionIndex });
 
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });
 
