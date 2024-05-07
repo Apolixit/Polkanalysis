@@ -618,7 +618,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 public BaseCom<T> Convert(T source, BaseCom<T> destination, ResolutionContext context)
                 {
                     destination = new BaseCom<T>();
-                    if (source == null) return destination;
 
                     CompactInteger compactNum = CompactIntegerMap(source);
 
@@ -634,7 +633,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 public BaseCom<U> Convert(T source, BaseCom<U> destination, ResolutionContext context)
                 {
                     destination = new BaseCom<U>();
-                    if (source == null) return destination;
 
                     var mapped = context.Mapper.Map<T, U>(source);
                     CompactInteger compactNum = CompactIntegerMap(mapped);

@@ -48,7 +48,7 @@ namespace Polkanalysis.Worker.Parameters
 
         private void EnsureParametersAreValid(ILogger<PerimeterService> logger)
         {
-            if (From != null && To != null && From.CompareTo(To) > 0)
+            if (From is not null && To is not null && From.CompareTo(To) > 0)
             {
                 logger.LogWarning($"From (={From}) is greater than To (={To}). Param are ignored");
 

@@ -144,15 +144,16 @@ namespace Polkanalysis.Domain.Runtime.Module
 
             //Let's use the new pattern matching !
             if (splittedNamespace is [
-                    string globalProjectName, 
-                    string projectName,
-                    "NetApiExt",
-                    "Generated", 
-                    string baseNamespace, 
+                    "Polkanalysis", 
+                    "Infrastructure",
+                    "Blockchain",
+                    "Contracts", 
+                    "Pallet", 
                     ..
                 ])
             {
                 arguments = splittedNamespace.Skip(5).ToList();
+                arguments[0] = $"pallet_{arguments[0].ToLowerInvariant()}";
 
                 var nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
                     .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))

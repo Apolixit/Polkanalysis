@@ -24,7 +24,7 @@ namespace Polkanalysis.Worker.Metrics
 
         public WorkerMetrics(IMeterFactory meterFactory, IConfiguration configuration)
         {
-            var meter = meterFactory.Create("Polkanalysis.Worker.Metrics" ?? throw new NullReferenceException("WorkerMeterName is not defined in appSettings.json"));
+            var meter = meterFactory.Create("Polkanalysis.Worker.Metrics");
 
             // Counter of the number of blocks analyzed by the worker
             CountBlockAnalyzed = meter.CreateCounter<int>(
