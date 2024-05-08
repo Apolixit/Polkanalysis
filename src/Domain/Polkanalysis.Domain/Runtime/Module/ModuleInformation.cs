@@ -18,13 +18,11 @@ namespace Polkanalysis.Domain.Runtime.Module
     public class ModuleInformation : IModuleInformationService
     {
         private readonly ICurrentMetaData _currentMetaData;
-        private readonly IModelBuilder _modelBuilder;
         private readonly ISubstrateService _substrateService;
 
-        public ModuleInformation(ICurrentMetaData currentMetaData, IModelBuilder modelBuilder, ISubstrateService substrateService)
+        public ModuleInformation(ICurrentMetaData currentMetaData, ISubstrateService substrateService)
         {
             _currentMetaData = currentMetaData;
-            _modelBuilder = modelBuilder;
             _substrateService = substrateService;
         }
 
@@ -56,7 +54,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                         var callDto = new ModuleCallsDto()
                         {
                             Name = moduleCall.Name,
-                            Documentation = _modelBuilder.BuildDocumentation(moduleCall.Docs),
+                            Documentation = ModelBuilder.BuildDocumentation(moduleCall.Docs),
                             Lookup = moduleCall.Index,
                             NbParameter = moduleCall.TypeFields != null ? moduleCall.TypeFields.Length : 0,
                             Arguments = moduleCall.TypeFields != null ? moduleCall.TypeFields.Select(_currentMetaData.BuildTypeField).ToList() : null,
@@ -100,7 +98,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                         var callDto = new ModuleEventsDto()
                         {
                             Name = moduleEvent.Name,
-                            Documentation = _modelBuilder.BuildDocumentation(moduleEvent.Docs),
+                            Documentation = ModelBuilder.BuildDocumentation(moduleEvent.Docs),
                             Lookup = moduleEvent.Index,
                             Arguments = moduleEvent.TypeFields != null ? moduleEvent.TypeFields.Select(tf => _currentMetaData.BuildTypeField(tf)).ToList() : null
                         };
@@ -136,7 +134,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                     {
                         Name = constant.Name,
                         Type = _currentMetaData.WriteType(constant.TypeId),
-                        Documentation = _modelBuilder.BuildDocumentation(constant.Docs),
+                        Documentation = ModelBuilder.BuildDocumentation(constant.Docs),
                         Value = Utils.Bytes2HexString(constant.Value)
                     };
 
@@ -168,7 +166,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                     var storage = new ModuleStorageDto()
                     {
                         Name = entry.Name,
-                        Documentation = _modelBuilder.BuildDocumentation(entry.Docs),
+                        Documentation = ModelBuilder.BuildDocumentation(entry.Docs),
                         StorageModifier = entry.Modifier switch
                         {
                             Storage.Modifier.Default => StorageModifier.Default,
@@ -220,7 +218,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                         modulesDto.Add(new ModuleErrorsDto()
                         {
                             Name = typeVariant.Name,
-                            Documentation = _modelBuilder.BuildDocumentation(typeVariant.Docs),
+                            Documentation = ModelBuilder.BuildDocumentation(typeVariant.Docs),
                         });
                     }
                 }

@@ -92,14 +92,14 @@ namespace Polkanalysis.Domain.Adapter.Block
                 return blockNumber1;
             }
 
-            var blockHash = await substrateService.Rpc.Chain.GetBlockAsync(_blockHash, CancellationToken.None);
+            var blockData = await substrateService.Rpc.Chain.GetBlockAsync(_blockHash, CancellationToken.None);
 
             var blockNumber = new BlockNumber();
             
-            if (blockHash == null)
-                throw new BlockException($"{nameof(blockNumber)} from given blockId (={blockHash}) is null");
+            if (blockData == null)
+                throw new BlockException($"{nameof(blockNumber)} from given blockId (={blockData}) is null");
 
-            blockNumber.Create((uint)blockHash.Block.Header.Number.Value);
+            blockNumber.Create((uint)blockData.Block.Header.Number.Value);
 
             return blockNumber;
         }

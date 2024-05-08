@@ -12,6 +12,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         /// <param name="blockId"></param>
         /// <returns></returns>
         [Test]
+        [TestCase(20681308, 53)]
         [TestCase(14000001, 30)]
         [TestCase(13564726, 34)]
         [TestCase(14063202, 39)]

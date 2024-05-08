@@ -25,6 +25,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using System.Threading;
 using Polkanalysis.Domain.Helper.Enumerables;
+using Polkanalysis.Domain.Runtime;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -32,26 +33,20 @@ namespace Polkanalysis.Domain.Service
     {
         private readonly ISubstrateService _substrateService;
         private readonly ISubstrateDecoding _substrateDecode;
-        private readonly IModelBuilder _modelBuilder;
         private readonly IAccountService _accountRepository;
         private readonly ILogger<ExplorerService> _logger;
         private BlockLightDto? _lastBlock;
-        //private BlockParameterLike _blockParameter;
 
         public ExplorerService(
             ISubstrateService substrateNodeRepository,
             ISubstrateDecoding substrateDecode,
-            IModelBuilder modelBuilder,
             IAccountService accountRepository,
             ILogger<ExplorerService> logger)
         {
             _substrateService = substrateNodeRepository;
             _substrateDecode = substrateDecode;
-            _modelBuilder = modelBuilder;
             _accountRepository = accountRepository;
             _logger = logger;
-
-            //_blockParameter = new BlockParameterLike(_substrateService);
         }
 
         public async Task<SubstrateAccount> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
@@ -205,7 +200,7 @@ namespace Polkanalysis.Domain.Service
                 NbExtrinsics = (uint)blockData.Block.Extrinsics.Length,
                 NbEvents = eventsCount.Value,
                 NbLogs = (uint)blockData.Block.Header.Digest.Logs.Count,
-                When = _modelBuilder.DisplayElapsedTime(blockDate),
+                When = ModelBuilder.DisplayElapsedTime(blockDate),
                 Validator = authorIdentity
             };
         }
@@ -275,7 +270,7 @@ namespace Polkanalysis.Domain.Service
 
             var blockDto = new BlockDto()
             {
-                Date = _modelBuilder.BuildDateDto(currentDate),
+                Date = ModelBuilder.BuildDateDto(currentDate),
                 ExtrinsicsRoot = blockDetails.Block.Header.ExtrinsicsRoot.Value,
                 ParentHash = blockDetails.Block.Header.ParentHash.Value,
                 StateRoot = blockDetails.Block.Header.StateRoot.Value,
@@ -368,9 +363,9 @@ namespace Polkanalysis.Domain.Service
         protected async Task<IEnumerable<EventDto>> GetEventsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
             var blockHash = await block.ToBlockHashAsync(_substrateService);
-            var (events, associatedBlock) = await WaiterHelper.WaitAndReturnAsync(
-                _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken), 
-                GetBlockLightAsync(blockHash, cancellationToken));
+            var (events, blockNumber) = await WaiterHelper.WaitAndReturnAsync(
+                _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken),
+                block.ToBlockNumberAsync(_substrateService));
 
             var eventsList = events.Value.ToList();
 
@@ -381,8 +376,8 @@ namespace Polkanalysis.Domain.Service
                 var eventNode = _substrateDecode.DecodeEvent(ev);
 
                 eventsDto.Add(
-                    _modelBuilder.BuildEventDto(
-                        associatedBlock,
+                    ModelBuilder.BuildEventDto(
+                        blockNumber,
                         eventNode,
                         (uint)eventsList.IndexOf(ev),
                         GetExtrinsicIndexFromEvent(ev))
@@ -403,7 +398,10 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<IEnumerable<ExtrinsicDto>> GetExtrinsicsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync(_substrateService);
+            var (blockHash, blockNumber) = await WaiterHelper.WaitAndReturnAsync(
+                block.ToBlockHashAsync(_substrateService), 
+                block.ToBlockNumberAsync(_substrateService));
+
             var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
 
             if (blockDetails is null)
@@ -421,14 +419,13 @@ namespace Polkanalysis.Domain.Service
                 var isEqual = extrinsic.ToString().ToLower().Equals(extrinsicFromEncoded.ToString().ToLower());
 #endif
 
-                var blockLight = await GetBlockLightAsync(blockHash, cancellationToken);
                 var extrinsicNode = _substrateDecode.DecodeExtrinsic(extrinsic);
 
                 var (callModule, callEvent) = _substrateDecode.GetCallFromExtrinsic(extrinsic);
                 extrinsicsDto.Add(
-                    _modelBuilder.BuildExtrinsicDto(
+                    ModelBuilder.BuildExtrinsicDto(
                         extrinsic,
-                        blockLight,
+                        blockNumber,
                         extrinsicNode,
                         (uint)blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic),
                         callModule,
@@ -444,7 +441,7 @@ namespace Polkanalysis.Domain.Service
         /// </summary>
         /// <param name="eventRecord"></param>
         /// <returns></returns>
-        public uint? GetExtrinsicIndexFromEvent(EventRecord eventRecord)
+        public static uint? GetExtrinsicIndexFromEvent(EventRecord eventRecord)
         {
             if (eventRecord.Phase.Value == Phase.ApplyExtrinsic)
             {
@@ -458,10 +455,12 @@ namespace Polkanalysis.Domain.Service
             ExtrinsicDto extrinsicDto,
             CancellationToken cancellationToken)
         {
+            var block = new BlockParameterLike(extrinsicDto.BlockNumber);
+
             var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(
-                extrinsicDto.Block.Hash, cancellationToken);
+                await block.ToBlockHashAsync(_substrateService), cancellationToken);
             if (blockDetails == null)
-                throw new BlockException($"{blockDetails} for block hash = {extrinsicDto.Block.Hash} is null");
+                throw new BlockException($"{blockDetails} for block number = {extrinsicDto.BlockNumber} is null");
 
             return await GetEventsLinkedToExtrinsicsAsync(extrinsicDto, blockDetails.Block.Extrinsics, cancellationToken);
         }
@@ -471,12 +470,10 @@ namespace Polkanalysis.Domain.Service
             IEnumerable<Extrinsic> extrinsics,
             CancellationToken cancellationToken)
         {
-            var blockLight = await GetBlockLightAsync(extrinsicDto.Block.Hash, cancellationToken);
+            var blockLight = await GetBlockLightAsync(extrinsicDto.BlockNumber, cancellationToken);
 
             // Return every events linked to this block
-            //BaseVec<EventRecord> events = await _substrateService.Api.Core.GetStorageAsync<BaseVec<EventRecord>>(
-            //    SystemStorage.EventsParams(), extrinsicDto.Block.Hash.Value, cancellationToken);
-            var events = (await _substrateService.At(extrinsicDto.Block.Hash).Storage.System.EventsAsync(cancellationToken)).Value.ToList();
+            var events = (await _substrateService.At(extrinsicDto.BlockNumber).Storage.System.EventsAsync(cancellationToken)).Value.ToList();
 
             // Doc here :
             // https://polkadot.js.org/docs/api/cookbook/blocks#how-do-i-map-extrinsics-to-their-events
@@ -494,8 +491,8 @@ namespace Polkanalysis.Domain.Service
             var eventsLinkedDto = new List<EventDto>();
             foreach (var eventLinked in eventLinkedToCurrentExtrinsic)
             {
-                var e = _modelBuilder.BuildEventDto(
-                    blockLight,
+                var e = ModelBuilder.BuildEventDto(
+                    extrinsicDto.BlockNumber,
                     _substrateDecode.DecodeEvent(eventLinked),
                     (uint)events.IndexOf(eventLinked),
                     extrinsicDto.Index);
@@ -543,14 +540,14 @@ namespace Polkanalysis.Domain.Service
 
         public async Task<EventDto> GetEventAsync(BlockParameterLike block, uint eventIndex, CancellationToken cancellationToken)
         {
-            var blockHash = await block.ToBlockHashAsync(_substrateService);
+            var (blockHash, blockNumber) = await WaiterHelper.WaitAndReturnAsync(block.ToBlockHashAsync(_substrateService), block.ToBlockNumberAsync(_substrateService));
             var events = (await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken)).Value.ToList();
 
             var selectedEvent = events[(int)eventIndex];
             var eventNode = _substrateDecode.DecodeEvent(selectedEvent);
 
-            return _modelBuilder.BuildEventDto(
-                    await GetBlockLightAsync(blockHash, cancellationToken),
+            return ModelBuilder.BuildEventDto(
+                    blockNumber,
                     eventNode,
                     eventIndex,
                     GetExtrinsicIndexFromEvent(selectedEvent));

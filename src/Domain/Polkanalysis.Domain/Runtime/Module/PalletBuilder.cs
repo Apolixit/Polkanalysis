@@ -154,6 +154,7 @@ namespace Polkanalysis.Domain.Runtime.Module
             {
                 arguments = splittedNamespace.Skip(5).ToList();
                 arguments[0] = $"pallet_{arguments[0].ToLowerInvariant()}";
+                arguments[1] = $"pallet";
 
                 var nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
                     .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))
@@ -203,6 +204,23 @@ namespace Polkanalysis.Domain.Runtime.Module
                 if(variantType == null || variantType.Docs == null) return null;
 
                 return string.Join("\n", variantType.Docs);
+            }
+            return null;
+        }
+
+        public string[]? FindProperty(Enum type)
+        {
+            var nodeType = FindNodeType(type.GetType());
+            if (nodeType == null) return null;
+
+            if (nodeType is NodeTypeVariant nodeTypeVariant)
+            {
+                var variantType = nodeTypeVariant.Variants
+                    .FirstOrDefault(x => x.Name == type.ToString());
+                if (variantType == null || variantType.Docs == null) return null;
+
+                if (variantType.TypeFields is null) return null;
+                return variantType.TypeFields.Select(x => x.Name).ToArray();
             }
             return null;
         }

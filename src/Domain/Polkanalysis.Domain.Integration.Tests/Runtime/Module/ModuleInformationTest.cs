@@ -20,23 +20,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         public void Setup()
         {
             _currentMetadata = new CurrentMetaData(_substrateService, Substitute.For<ILogger<CurrentMetaData>>());
-            _moduleRepository = new ModuleInformation(_currentMetadata, new ModelBuilder(), base._substrateService);
+            _moduleRepository = new ModuleInformation(_currentMetadata, _substrateService);
         }
 
-        /// <summary>
-        /// Got all current module to check if everything is ok
-        /// </summary>
-        //private static string[] PolkadotModules = new string[]
-        //{
-        //    "System", "Scheduler", "Preimage", "Babe", "Timestamp", "Indices", "Balances", "TransactionPayment", "Authorship", "Staking", "Offences", "Historical", "Session", "Grandpa", "ImOnline", "AuthorityDiscovery", "Democracy", "Council", "TechnicalCommittee", "PhragmenElection", "TechnicalMembership", "Treasury", "Claims", "Vesting", "Utility", "Identity", "Proxy", "Multisig", "Bounties", "ChildBounties", "Tips", "ElectionProviderMultiPhase", "VoterList", "NominationPools", "FastUnstake", "ParachainsOrigin", "Configuration", "ParasShared", "ParaInclusion", "ParaInherent", "ParaScheduler", "Paras", "Initializer", "Dmp", "Ump", "Hrmp", "ParaSessionInfo", "ParasDisputes", "Registrar", "Slots", "Auctions", "Crowdloan", "XcmPallet"
-        //};
-
-        private static string[] PolkadotModules =
-        [
-            "System", "Scheduler", "Preimage", "Babe", "Timestamp", "Indices", "Balances", "TransactionPayment", "Authorship", "Staking", "Offences", "Historical", "Session", "Grandpa", "AuthorityDiscovery", "Treasury", "Claims", "Vesting", "Utility", "Identity", "Proxy", "Multisig", "Bounties", "ChildBounties", "ElectionProviderMultiPhase", "VoterList", "NominationPools", "FastUnstake", "ParachainsOrigin", "Configuration", "ParasShared", "ParaInclusion", "ParaInherent", "ParaScheduler", "Paras", "Initializer", "Dmp", "Hrmp", "ParaSessionInfo", "ParasDisputes", "Registrar", "Slots", "Auctions", "Crowdloan", "XcmPallet"
-        ];
-
-        [Test, Timeout(2000)]
+        [Test, CancelAfter(2000)]
         public void Module_PalletBalances_ShouldWork()
         {
             var balanceModuleFromCurrentMetadata = _currentMetadata.GetCurrentMetadata().Modules.FirstOrDefault(x => x.Value.Name == "balances");

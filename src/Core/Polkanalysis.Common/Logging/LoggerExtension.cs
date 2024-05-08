@@ -7,12 +7,14 @@ using Serilog.Core;
 using Serilog.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Common.Logging
 {
+    [ExcludeFromCodeCoverage]
     public static class LoggerExtension
     {
         public static Logger BuildLogger(IConfiguration config)
@@ -21,20 +23,6 @@ namespace Polkanalysis.Common.Logging
                 .ReadFrom.Configuration(config)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning);
 
-            //var otelEndpoint = config["Monitoring:Opentelemetry:uri"];
-            //if(!string.IsNullOrEmpty(otelEndpoint))
-            //{
-            //    loggerConfig.WriteTo.OpenTelemetry(
-            //        endpoint: otelEndpoint, 
-            //        protocol: Serilog.Sinks.OpenTelemetry.OtlpProtocol.Grpc);
-            //}
-
-            //var loggerConfig = new LoggerConfiguration()
-            //    .ReadFrom.Configuration(config)
-            //    .WriteTo.Console()
-            //    .WriteTo.File("logs/logWorker.txt", rollingInterval: RollingInterval.Day)
-            //    .WriteTo.Seq("http://localhost:5341")
-            //    .WriteTo.OpenTelemetry("http://localhost:4317");
             return loggerConfig.CreateLogger();
         }
 
