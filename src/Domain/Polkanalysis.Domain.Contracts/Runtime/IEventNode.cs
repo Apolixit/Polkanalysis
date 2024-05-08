@@ -11,5 +11,6 @@ namespace Polkanalysis.Domain.Contracts.Runtime
     {
         public RuntimeEvent Module { get; }
         public Enum Method { get; }
+        public INode EventData { get; }
     }
 }

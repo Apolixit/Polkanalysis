@@ -18,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
 {
     public class EventsFactory : IEventsFactory
     {
-        public IEnumerable<EventElementFactory> Mapped { get; set; } = Enumerable.Empty<EventElementFactory>();
+        public IEnumerable<EventElementFactory> Mapped { get; set; }
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<IEventsFactory> _logger;
 
@@ -82,7 +82,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
 
             _logger.LogDebug("End scanning assembly {assemblyName} give {nb} results", BindingRepositoriesAssembly, versionned.Count);
 
-            if (!versionned.Any())
+            if (versionned.Count == 0)
                 throw new InvalidOperationException($"No class in {BindingRepositoriesAssembly} implement {nameof(BindEventsAttribute)} !?");
 
             return versionned;

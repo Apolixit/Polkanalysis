@@ -54,7 +54,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
 
             _explorerService = new ExplorerService(_substrateService,
                                                    Substitute.For<ISubstrateDecoding>(),
-                                                   Substitute.For<IModelBuilder>(),
                                                    Substitute.For<IAccountService>(),
                                                    Substitute.For<ILogger<ExplorerService>>());
 

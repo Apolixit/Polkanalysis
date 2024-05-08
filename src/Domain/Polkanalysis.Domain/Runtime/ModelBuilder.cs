@@ -7,19 +7,18 @@ using Polkanalysis.Domain.Contracts.Dto.Common;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Substrate.NetApi;
 
 namespace Polkanalysis.Domain.Runtime
 {
-    public class ModelBuilder : IModelBuilder
+    public static class ModelBuilder
     {
-        public DateDto BuildDateDto(DateTime currentDate)
+        /// <summary>
+        /// Build a date model from given date
+        /// </summary>
+        /// <param name="currentDate"></param>
+        /// <returns></returns>
+        public static DateDto BuildDateDto(DateTime currentDate)
         {
             return new DateDto()
             {
@@ -29,20 +28,36 @@ namespace Polkanalysis.Domain.Runtime
             };
         }
 
-        public string DisplayElapsedTime(DateTime t1)
+        /// <summary>
+        /// Display in human readable time elapsed
+        /// </summary>
+        /// <param name="timeSpan"></param>
+        /// <returns></returns>
+        public static string DisplayElapsedTime(DateTime t1)
         {
             return DisplayElapsedTime(t1, DateTime.Now);
         }
 
-        public string DisplayElapsedTime(DateTime t1, DateTime t2)
+        /// <summary>
+        /// Display in human readable time elapsed between the first one and the second (t1 must be lower than t2)
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <returns></returns>
+        public static string DisplayElapsedTime(DateTime t1, DateTime t2)
         {
             if (t1 > t2)
                 throw new InvalidOperationException($"{nameof(t1)} must be a time before than {nameof(t2)}");
 
-            return DisplayElapsedTime(t2 - t1);
+            return DisplayElapsedTime(t2.ToLocalTime() - t1.ToLocalTime());
         }
 
-        public string DisplayElapsedTime(TimeSpan timeSpan)
+        /// <summary>
+        /// Display in human readable time elapsed between the first one from now (t1 must be lower than now)
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <returns></returns>
+        public static string DisplayElapsedTime(TimeSpan timeSpan)
         {
             var roundDown = (double val) => (int)Math.Floor(val);
             var spelling = (int val, string word) =>
@@ -73,7 +88,13 @@ namespace Polkanalysis.Domain.Runtime
             return "few seconds ago";
         }
 
-        public (uint mainId, uint subId) CreateTuppleIndex(string id)
+        /// <summary>
+        /// Create a tupple id
+        /// For example, extrinsics and events are build with (BlockId - EventIndex)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static (uint mainId, uint subId) CreateTuppleIndex(string id)
         {
             if (id is null) throw new ArgumentNullException($"{nameof(id)}");
 
@@ -95,7 +116,14 @@ namespace Polkanalysis.Domain.Runtime
             return (mainNumber, secondaryIndex);
         }
 
-        public BlockLightDto BuildBlockLightDto(Hash blockHash, BlockData blockData, DateTime blockDate)
+        /// <summary>
+        /// Create a block summary
+        /// </summary>
+        /// <param name="blockHash"></param>
+        /// <param name="blockData"></param>
+        /// <param name="blockDate"></param>
+        /// <returns></returns>
+        public static BlockLightDto BuildBlockLightDto(Hash blockHash, BlockData blockData, DateTime blockDate)
         {
             return new BlockLightDto()
             {
@@ -106,58 +134,85 @@ namespace Polkanalysis.Domain.Runtime
             };
         }
 
-        public EventDto BuildEventDto(BlockLightDto blockLightDto, IEventNode eventNode, uint eventIndex, uint? extrinsicIndex)
+        /// <summary>
+        /// Create an full event details
+        /// </summary>
+        /// <param name="blockNumber"></param>
+        /// <param name="eventNode"></param>
+        /// <param name="eventIndex"></param>
+        /// <param name="extrinsicIndex"></param>
+        /// <returns></returns>
+        public static EventDto BuildEventDto(uint blockNumber, IEventNode eventNode, uint eventIndex, uint? extrinsicIndex)
         {
-            var eventDto = new EventDto()
-            {
-                EventSummary = new EventLightDto(
-                    blockLightDto,
-                    $"{blockLightDto.Number}-{eventIndex}",
-                    extrinsicIndex is not null ? $"{blockLightDto.Number}-{extrinsicIndex}" : string.Empty,
-                    eventNode.Method.ToString(),
-                    eventNode.Module.ToString(),
-                    eventNode.Documentation),
-                Decoded = eventNode,
-            };
+            var treeDto = buildTreeDto(eventNode.EventData.Children);
+
+            var eventDto = new EventDto(blockNumber,
+                $"{blockNumber}-{eventIndex}",
+                extrinsicIndex is not null ? $"{blockNumber}-{extrinsicIndex}" : string.Empty,
+                eventNode.Method.ToString(),
+                eventNode.Module.ToString(),
+                    eventNode.Documentation,
+                    treeDto);
 
             return eventDto;
         }
 
-        public ExtrinsicDto BuildExtrinsicDto(Extrinsic extrinsic,
-                                              BlockLightDto blockLight,
+        private static List<TreeDto> buildTreeDto(IList<INode> nodes)
+        {
+            return nodes.Select(x => new TreeDto(x.Name, x.HumanData?.ToString() ?? "", buildTreeDto(x.Children))).ToList();
+        }
+
+        /// <summary>
+        /// Create a full extrinsic details
+        /// </summary>
+        /// <param name="extrinsic"></param>
+        /// <param name="blockNumber"></param>
+        /// <param name="extrinsicNode"></param>
+        /// <param name="extrinsicIndex"></param>
+        /// <param name="moduleName"></param>
+        /// <param name="callEvent"></param>
+        /// <returns></returns>
+        public static ExtrinsicDto BuildExtrinsicDto(Extrinsic extrinsic,
+                                              uint blockNumber,
                                               INode extrinsicNode,
                                               uint extrinsicIndex,
-                                              string palletName,
+                                              string moduleName,
                                               string callEvent)
         {
             var extrinsicDto = new ExtrinsicDto()
             {
-                Block = blockLight,
+                BlockNumber = blockNumber,
                 Hash = Utils.Bytes2HexString(extrinsic.Encode()),
-                Decoded = extrinsicNode,
-                ExtrinsicId = $"{blockLight.Number}-{extrinsicIndex}",
+                ExtrinsicId = $"{blockNumber}-{extrinsicIndex}",
                 Index = extrinsicIndex,
-                PalletName = palletName,
+                PalletName = moduleName,
                 CallEventName = callEvent,
             };
 
             return extrinsicDto;
         }
 
-        public ExtrinsicLightDto BuildExtrinsicLightDto()
+        /// <summary>
+        /// Build a light dto object of an extrinsic
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static ExtrinsicLightDto BuildExtrinsicLightDto()
         {
             throw new NotImplementedException();
         }
 
-        public string BuildDocumentation(string[] doc)
+        /// <summary>
+        /// Build the documentation from a string array
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <returns></returns>
+        public static string BuildDocumentation(string[] doc)
         {
             if (doc == null)
                 return string.Empty;
-            //throw new ArgumentNullException($"{nameof(doc)}");
 
             return string.Join("\n", doc);
         }
-
-
     }
 }

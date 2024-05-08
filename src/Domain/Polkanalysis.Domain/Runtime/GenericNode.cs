@@ -38,8 +38,15 @@ namespace Polkanalysis.Domain.Runtime
 
         public bool IsLeaf => Children == null || Children.Count == 0;
 
-        public string Documentation { get; set; }
+        public string Documentation { get; set; } = string.Empty;
+        public string PropertyName { get; set; } = string.Empty;
         #endregion
+
+        public INode AddPropertyName(string propertyName)
+        {
+            PropertyName = propertyName;
+            return this;
+        }
 
         public INode AddData(IType data)
         {

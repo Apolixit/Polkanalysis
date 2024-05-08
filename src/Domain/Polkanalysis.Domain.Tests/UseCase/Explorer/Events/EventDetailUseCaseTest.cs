@@ -45,7 +45,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
         {
             var useCase = new EventDetailHandler(_explorerService, _logger);
 
-            _explorerService.GetEventAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(Substitute.For<EventDto>());
+            _explorerService.GetEventAsync(Arg.Is<uint>(x => x > 0), Arg.Is<uint>(x => x > 0), CancellationToken.None).Returns(new EventDto(1, "1", "2", "PalletName", "EventName", "Description", new List<Contracts.Dto.Common.TreeDto>()));
 
             var result = await useCase.Handle(new EventDetailQuery()
             {

@@ -12,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using AutoMapper;
 using Substrate.NetApi.Model.Meta;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -24,8 +25,8 @@ namespace Polkanalysis.Domain.Runtime
         private readonly ILogger<SubstrateDecoding> _logger;
 
         public SubstrateDecoding(
-            INodeMapping mapping, 
-            ISubstrateService substrateRepository, 
+            INodeMapping mapping,
+            ISubstrateService substrateRepository,
             IPalletBuilder palletBuilder,
             ICurrentMetaData metaData,
             ILogger<SubstrateDecoding> logger)
@@ -69,37 +70,25 @@ namespace Polkanalysis.Domain.Runtime
 
             VisitNode(eventNode, ev);
 
-            //if (!ev.Event.HasBeenMapped)
-            //{
-            //    DecodeEventNotMapped(eventNode, ev);
-            //} else
-            //{
-            //    VisitNode(eventNode, ev);
-            //}
-
             _logger.LogTrace("Node created from EventRecord");
             return eventNode;
         }
 
-        private void DecodeEventNotMapped(INode node, EventRecord ev)
+        public (string callModule, string callEvent) GetCallFromExtrinsic(Extrinsic extrinsic)
         {
-            var phaseNode = new EventNode();
-            phaseNode.AddName("Phase");
-            VisitNode(phaseNode, ev.Phase);
-            node.AddChild(phaseNode);
+            string callModule = string.Empty;
+            string callEvent = string.Empty;
+            var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
+            callModule = pallet.Name;
+            var palletType = _metaData.GetPalletType(pallet.Calls.TypeId);
 
-            var notMappedNode = new EventNode();
-            notMappedNode.AddName("Event");
+            if (palletType is NodeTypeVariant nodeTypeVariant)
+            {
+                callEvent = nodeTypeVariant.Variants[extrinsic.Method.CallIndex].Name;
+                return (callModule, callEvent);
+            }
 
-            var coreNode = new EventNode();
-            VisitNode(coreNode, ev.Event.Core!);
-            notMappedNode.AddChild(coreNode);
-            node.AddChild(notMappedNode);
-
-            var topicNode = new EventNode();
-            topicNode.AddName("Topics");
-            VisitNode(topicNode, ev.Topics);
-            node.AddChild(topicNode);
+            throw new InvalidOperationException();
         }
 
         public INode DecodeExtrinsic(string hex)
@@ -112,32 +101,18 @@ namespace Polkanalysis.Domain.Runtime
             return DecodeExtrinsic(extrinsic);
         }
 
-        public (string callModule, string callEvent) GetCallFromExtrinsic(Extrinsic extrinsic)
-        {
-            string callModule = string.Empty;
-            string callEvent = string.Empty;
-            var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
-            callModule = pallet.Name;
-            var palletType = _metaData.GetPalletType(pallet.Calls.TypeId);
-
-            if(palletType is NodeTypeVariant nodeTypeVariant)
-            {
-                callEvent = nodeTypeVariant.Variants[extrinsic.Method.CallIndex].Name;
-                return (callModule, callEvent);
-            }
-            
-            throw new InvalidOperationException();
-        }
-
         public INode DecodeExtrinsic(Extrinsic extrinsic)
         {
             var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
             var extrinsicCall = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
 
-            if(extrinsicCall is not null)
+            #if DEBUG
+            if (extrinsicCall is not null)
             {
                 var isEqual = Utils.Bytes2HexString(extrinsic.Method.Encode()) == Utils.Bytes2HexString(extrinsicCall.Encode());
             }
+            #endif
+
 
             var palletNode = new GenericNode();
             palletNode.Name = pallet.Name;
@@ -200,6 +175,7 @@ namespace Polkanalysis.Domain.Runtime
                 if (val == null) throw new ArgumentNullException($"The value element (enum) from {baseEnumValue.TypeName()} is null while visiting node");
 
                 var doc = _palletBuilder.FindDocumentation(val);
+                
                 var AddDataToNode = (INode node) =>
                 {
                     node
@@ -229,6 +205,16 @@ namespace Polkanalysis.Domain.Runtime
                 else
                 {
                     VisitNode(childNode, enumValue2);
+
+                    var props = _palletBuilder.FindProperty(val);
+                    if(props is not null && props.Length == childNode.Children.Count)
+                    {
+                        for(int i = 0; i < childNode.Children.Count; i++)
+                        {
+                            childNode.Children[i].AddName(props[i]);
+                        }
+                    }
+
                     node.AddChild(childNode);
                 }
             }

@@ -23,7 +23,6 @@ namespace Polkanalysis.Domain.Tests.Service.Block
             _explorerRepository = new ExplorerService(
                 _substrateService,
                 _substrateDecode,
-                Substitute.For<IModelBuilder>(),
                 Substitute.For<IAccountService>(),
                 Substitute.For<ILogger<ExplorerService>>());
 

@@ -15,12 +15,11 @@ namespace Polkanalysis.Domain.Runtime
         public RuntimeEvent Module {
             get
             {
-                if (_module == null)
+                if (_module is null)
                 {
                     var runtimeEvent = getRuntimeEvent();
                     
                     Guard.Against.Null(runtimeEvent, nameof(runtimeEvent));
-                    //_module = (RuntimeEvent)runtimeEvent.HumanData;
                     _module = Enum.Parse<RuntimeEvent>(runtimeEvent.Name);
                     Guard.Against.Null(_module, nameof(_module));
                 }
@@ -38,12 +37,9 @@ namespace Polkanalysis.Domain.Runtime
         {
             get
             {
-                if (_method == null)
+                if (_method is null)
                 {
-                    var runtimeEvent = getRuntimeEvent();
-                    Guard.Against.Null(runtimeEvent, nameof(runtimeEvent));
-
-                    var palletEvent = runtimeEvent.Children[0];
+                    var palletEvent = EventData;
 
                     Guard.Against.Null(palletEvent);
                     _method = (Enum?)palletEvent.HumanData;
@@ -70,6 +66,23 @@ namespace Polkanalysis.Domain.Runtime
             var runtimeEvent = globalEvent.Children[0];
 
             return runtimeEvent;
+        }
+
+        private INode? _eventData = null;
+        public INode EventData
+        {
+            get
+            {
+                if (_eventData is null)
+                {
+                    var runtimeEvent = getRuntimeEvent();
+                    Guard.Against.Null(runtimeEvent, nameof(runtimeEvent));
+
+                    return runtimeEvent.Children[0];
+                }
+
+                return _eventData;
+            }
         }
     }
 }
