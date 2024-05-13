@@ -15,17 +15,22 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 {
     [BindEvents(RuntimeEvent.Identity, "Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentityKilled")]
-    public class IdentityIdentityKilledRepository : EventDatabaseRepository<IdentityIdentityKilledModel>
+    public class IdentityIdentityKilledRepository : EventDatabaseRepository<IdentityIdentityKilledModel>, ISearchEvent
     {
         public IdentityIdentityKilledRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            IBlockchainMapping mapping,
-            ILogger<IdentityIdentityKilledRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<IdentityIdentityKilledRepository> logger) : base(context, substrateNodeRepository, logger)
         {
         }
 
+        public string SearchName { get => "Identity.IdentityKilled"; }
         protected override DbSet<IdentityIdentityKilledModel> dbTable => _context.EventIdentityIdentityKilled;
+
+        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
 
         internal override async Task<IdentityIdentityKilledModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {

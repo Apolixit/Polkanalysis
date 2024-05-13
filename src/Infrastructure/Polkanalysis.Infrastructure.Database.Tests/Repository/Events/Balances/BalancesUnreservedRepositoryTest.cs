@@ -24,8 +24,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
             _balancesUnreservedRepository = new BalancesUnreservedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<BalancesUnreservedRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_balancesUnreservedRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]

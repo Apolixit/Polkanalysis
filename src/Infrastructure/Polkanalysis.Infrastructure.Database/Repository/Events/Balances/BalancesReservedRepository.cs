@@ -15,17 +15,23 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
     [BindEvents(RuntimeEvent.Balances, "Blockchain.Contracts.Pallet.Balances.Enums.Event.Reserved")]
-    public class BalancesReservedRepository : EventDatabaseRepository<BalancesReservedModel>
+    public class BalancesReservedRepository : EventDatabaseRepository<BalancesReservedModel>, ISearchEvent
     {
         public BalancesReservedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            IBlockchainMapping mapping,
-            ILogger<BalancesReservedRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<BalancesReservedRepository> logger) : base(context, substrateNodeRepository, logger)
         {
         }
 
+        public string SearchName { get => "Balances.Reserved"; }
+
         protected override DbSet<BalancesReservedModel> dbTable => _context.EventBalancesReserved;
+
+        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
 
         internal override async Task<BalancesReservedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {

@@ -23,17 +23,23 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
 {
     [BindEvents(RuntimeEvent.Crowdloan, "Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.Event.Contributed")]
-    public class CrowloanContributedRepository : EventDatabaseRepository<CrowloanContributedModel>
+    public class CrowloanContributedRepository : EventDatabaseRepository<CrowloanContributedModel>, ISearchEvent
     {
         public CrowloanContributedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            IBlockchainMapping mapping,
-            ILogger<CrowloanContributedRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<CrowloanContributedRepository> logger) : base(context, substrateNodeRepository, logger)
         {
         }
 
+        public string SearchName { get => "Crowdloan.Contributed"; }
+
         protected override DbSet<CrowloanContributedModel> dbTable => _context.EventCrowdloanContributed;
+
+        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
 
         internal async override Task<CrowloanContributedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {

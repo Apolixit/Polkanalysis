@@ -2,6 +2,7 @@
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
 using Substrate.NetApi.Model.Types.Base;
@@ -24,8 +25,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
             _balancesTransferRepository = new BalancesTransferRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<BalancesTransferRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_balancesTransferRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]

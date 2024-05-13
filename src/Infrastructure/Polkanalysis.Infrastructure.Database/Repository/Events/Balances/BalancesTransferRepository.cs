@@ -7,25 +7,27 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
+    public record SearchCriteriaBalancesTransfert(DateTime? From, DateTime? To, string? FromAddress, string? ToAddress, double? minAmount) : SearchCriteria(From, To);
+
     [BindEvents(RuntimeEvent.Balances, "Blockchain.Contracts.Pallet.Balances.Enums.Event.Transfer")]
-    public class BalancesTransferRepository : EventDatabaseRepository<BalancesTransferModel>
+    public class BalancesTransferRepository : EventDatabaseRepository<BalancesTransferModel>, ISearchEvent
     {
         public BalancesTransferRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            IBlockchainMapping mapping,
-            ILogger<BalancesTransferRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<BalancesTransferRepository> logger) : base(context, substrateNodeRepository, logger)
         {
         }
 
         protected override DbSet<BalancesTransferModel> dbTable => _context.EventBalancesTransfer;
+
+        public string SearchName { get => "Balances.Transfer"; }
 
         /// <summary>
         /// Insert a new transfer in the database
@@ -55,6 +57,39 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 ((SubstrateAccount)convertedData.Value[0]).ToStringAddress(),
                 ((SubstrateAccount)convertedData.Value[1]).ToStringAddress(),
                 transferAmount);
+        }
+
+        public override async Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        {
+            var c = (SearchCriteriaBalancesTransfert)criteria;
+
+            if (c is null)
+                throw new InvalidOperationException($"Try to search {SearchName} event, but search criteria is not type of {nameof(SearchCriteriaBalancesTransfert)} but type {criteria.GetType().Name}");
+
+
+            var accountBalancesTransfer = _context.EventBalancesTransfer.AsQueryable();
+
+            if(!string.IsNullOrEmpty(c.FromAddress))
+                accountBalancesTransfer = accountBalancesTransfer.Where(x => x.From.ToLower() == c.FromAddress.ToLower());
+
+            if (!string.IsNullOrEmpty(c.ToAddress))
+                accountBalancesTransfer = accountBalancesTransfer.Where(x => x.To.ToLower() == c.ToAddress.ToLower());
+
+            if (c.From is not null)
+                accountBalancesTransfer = accountBalancesTransfer.Where(x => x.BlockDate >= c.From.Value);
+
+            if (c.To is not null)
+                accountBalancesTransfer = accountBalancesTransfer.Where(x => x.BlockDate <= c.To.Value);
+
+            if (c.minAmount is not null)
+                accountBalancesTransfer = accountBalancesTransfer.Where(x => x.Amount >= c.minAmount);
+
+            var dbResult = await accountBalancesTransfer.ToListAsync();
+
+            if (!dbResult.Any())
+                _logger.LogWarning("[{repositoryName}] No transactions found in the database with query {searchQuery}", nameof(BalancesTransferRepository), c);
+
+            return dbResult;
         }
     }
 }

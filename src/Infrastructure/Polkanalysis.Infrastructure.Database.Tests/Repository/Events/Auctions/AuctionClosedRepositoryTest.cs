@@ -23,8 +23,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
             _auctionClosedRepository = new AuctionClosedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<AuctionClosedRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_auctionClosedRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]

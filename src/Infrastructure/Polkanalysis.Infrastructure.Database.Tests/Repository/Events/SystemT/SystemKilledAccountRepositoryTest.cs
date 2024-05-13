@@ -2,6 +2,7 @@
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.System;
 using Substrate.NetApi.Model.Types.Base;
@@ -24,8 +25,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.SystemT
             _systemKilledAccountRepository = new SystemKilledAccountRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<SystemKilledAccountRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_systemKilledAccountRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]

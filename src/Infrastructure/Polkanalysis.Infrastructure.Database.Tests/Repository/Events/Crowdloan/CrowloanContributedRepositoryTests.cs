@@ -3,6 +3,7 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -24,8 +25,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
             _crowloanContributedRepository = new CrowloanContributedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<CrowloanContributedRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_crowloanContributedRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]

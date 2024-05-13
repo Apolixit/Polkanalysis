@@ -2,6 +2,7 @@
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.System;
 using Substrate.NetApi.Model.Types.Base;
@@ -24,8 +25,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.SystemT
             _systemNewAccountRepository = new SystemNewAccountRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<SystemNewAccountRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_systemNewAccountRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]
