@@ -2,6 +2,7 @@
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Identity;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -24,8 +25,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Identity
             _identityIdentityKilledRepository = new IdentityIdentityKilledRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<IdentityIdentityKilledRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_identityIdentityKilledRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]

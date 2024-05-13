@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Tests.Service
         private IFinancialService _financialService;
 
         [SetUp]
-        public void Sart()
+        public void Start()
         {
             _financialService = new FinancialService(Substitute.For<ISubstrateService>(),
                                                      _substrateDbContext,
@@ -55,13 +55,13 @@ namespace Polkanalysis.Domain.Tests.Service
             // Get all Bob transactions
             var result = (await _financialService.GetAccountTransactionsAsync(new Contracts.Core.SubstrateAccount(Bob.ToString()), from, to, CancellationToken.None)).ToList();
 
-            Assert.That(result.Count(), Is.EqualTo(nbTotalTransaction));
+            Assert.That(result.Count, Is.EqualTo(nbTotalTransaction));
 
             // Bob received money 3 times
-            Assert.That(result.Where(x => x.GetTypeTransaction(Bob.ToString()) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Received).Count(), Is.EqualTo(nbReceivedTransaction));
+            Assert.That(result.Count(x => x.GetTypeTransaction(Bob.ToString()) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Received), Is.EqualTo(nbReceivedTransaction));
 
             // Bob sent money 1 time
-            Assert.That(result.Where(x => x.GetTypeTransaction(Bob.ToString()) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Send).Count(), Is.EqualTo(nbSendTransaction));
+            Assert.That(result.Count(x => x.GetTypeTransaction(Bob.ToString()) == Contracts.Dto.Financial.TransactionDto.TypeTransactionDto.Send), Is.EqualTo(nbSendTransaction));
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace Polkanalysis.Domain.Tests.Service
             var result = (await _financialService.GetTransactionsAsync(from, to, CancellationToken.None)).ToList();
 
             // Assert
-            Assert.That(result.Count(), Is.EqualTo(nbTotalTransaction));
+            Assert.That(result.Count, Is.EqualTo(nbTotalTransaction));
         }
     }
 }

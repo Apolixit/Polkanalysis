@@ -5,31 +5,36 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Database.Repository
 {
-    public abstract class EventDatabaseRepository<TModel> : IDatabaseInsert, IDatabaseGet<TModel>
+    /// <summary>
+    /// Abstract class to define the desire behavior of Substrate events that are insert into the database and allowed to be query by applications
+    /// </summary>
+    /// <typeparam name="TModel">The EF model (<see cref="SubstrateDbContext"/></typeparam>)
+    /// <typeparam name="TSearchCriteria">The parameters allowed to query the event</typeparam>
+    public abstract class EventDatabaseRepository<TModel, TSearchCriteria> : IDatabaseInsert, IDatabaseGet<TModel>, ISearchEvent<TSearchCriteria>
         where TModel : EventModel
+        where TSearchCriteria : SearchCriteria, new()
     {
         protected readonly SubstrateDbContext _context;
         protected readonly ISubstrateService _substrateNodeRepository;
-        protected readonly ILogger<EventDatabaseRepository<TModel>> _logger;
-        protected readonly IBlockchainMapping _mapping;
+        protected readonly ILogger<EventDatabaseRepository<TModel, TSearchCriteria>> _logger;
 
         protected abstract DbSet<TModel> dbTable { get; }
+        public abstract string SearchName { get; }
 
         protected EventDatabaseRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            IBlockchainMapping mapping,
-            ILogger<EventDatabaseRepository<TModel>> logger)
+            ILogger<EventDatabaseRepository<TModel, TSearchCriteria>> logger)
         {
             _context = context;
             _substrateNodeRepository = substrateNodeRepository;
             _logger = logger;
-            _mapping = mapping;
         }
 
         /// <summary>
@@ -107,5 +112,53 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         {
             return await dbTable.ToListAsync();
         }
+
+        /// <summary>
+        /// The search query function defined in <see cref="ISearchEvent"/>
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<EventModel>> SearchAsync(TSearchCriteria criteria, CancellationToken token)
+        {
+            var model = dbTable.AsQueryable();
+
+            if (criteria.FromDate is not null)
+                model = model.Where(x => x.BlockDate >= criteria.FromDate.Value);
+
+            if (criteria.ToDate is not null)
+                model = model.Where(x => x.BlockDate <= criteria.ToDate.Value);
+
+            if (criteria.FromBlock is not null)
+                model = model.Where(x => x.BlockId >= criteria.FromBlock.Value);
+
+            if (criteria.ToBlock is not null)
+                model = model.Where(x => x.BlockId <= criteria.ToBlock.Value);
+
+            model = await SearchInnerAsync(criteria, model, token);
+            var dbResult = await model.ToListAsync();
+
+            if (!dbResult.Any())
+                _logger.LogWarning("[{repositoryName}] No transactions found in the database with query {searchQuery}", this.GetType().Name, criteria);
+
+            return dbResult;
+        }
+
+        /// <summary>
+        /// The custom event specific logic (to be defined by each child event)
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <param name="model"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        protected abstract Task<IQueryable<TModel>> SearchInnerAsync(TSearchCriteria criteria, IQueryable<TModel> model, CancellationToken token);
+
+        /// <summary>
+        /// The search query parameter defined in <see cref="ISearchEvent"/>
+        /// </summary>
+        /// <returns></returns>
+        public Type GetSearchCriterias() => typeof(TSearchCriteria);
+
+        
     }
 }

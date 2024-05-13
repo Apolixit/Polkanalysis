@@ -13,17 +13,23 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 {
     [BindEvents(RuntimeEvent.System, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.Event.KilledAccount")]
-    public class SystemKilledAccountRepository : EventDatabaseRepository<SystemKilledAccountModel>
+    public class SystemKilledAccountRepository : EventDatabaseRepository<SystemKilledAccountModel>, ISearchEvent
     {
         public SystemKilledAccountRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            IBlockchainMapping mapping,
-            ILogger<SystemKilledAccountRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<SystemKilledAccountRepository> logger) : base(context, substrateNodeRepository, logger)
         {
         }
 
+        public string SearchName { get => "System.KilledAccount"; }
+
         protected override DbSet<SystemKilledAccountModel> dbTable => _context.EventSystemKilledAccount;
+
+        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
 
         internal override async Task<SystemKilledAccountModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {

@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using NSubstitute;
+using Polkanalysis.Abstract.Tests;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Polkanalysis.Infrastructure.Database.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository
 {
-    public abstract class EventsDatabaseTests
+    public abstract class EventsDatabaseTests : GlobalAbstractTest
     {
         protected SubstrateDbContext _substrateDbContext = default!;
         protected ISubstrateService _substrateService = default!;

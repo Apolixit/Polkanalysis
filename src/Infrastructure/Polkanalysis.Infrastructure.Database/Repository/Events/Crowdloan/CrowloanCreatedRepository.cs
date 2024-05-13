@@ -17,17 +17,23 @@ using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
 {
-    public class CrowloanCreatedRepository : EventDatabaseRepository<CrowloanCreatedModel>
+    public class CrowloanCreatedRepository : EventDatabaseRepository<CrowloanCreatedModel>, ISearchEvent
     {
         public CrowloanCreatedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            IBlockchainMapping mapping,
-            ILogger<CrowloanCreatedRepository> logger) : base(context, substrateNodeRepository, mapping, logger)
+            ILogger<CrowloanCreatedRepository> logger) : base(context, substrateNodeRepository, logger)
         {
         }
 
+        public string SearchName { get => "Crowdloan.Created"; }
+
         protected override DbSet<CrowloanCreatedModel> dbTable => _context.EventCrowdloanCreated;
+
+        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
 
         internal async override Task<CrowloanCreatedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {

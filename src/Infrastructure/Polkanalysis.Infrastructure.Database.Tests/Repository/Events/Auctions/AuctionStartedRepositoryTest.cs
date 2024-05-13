@@ -23,8 +23,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
             _auctionStartedRepository = new AuctionStartedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<IBlockchainMapping>(),
                 Substitute.For<ILogger<AuctionStartedRepository>>());
+        }
+
+        [Test]
+        public void BasicInformationsAreProperlySet()
+        {
+            Assert.That(_auctionStartedRepository.SearchName, Is.Not.Empty);
         }
 
         [Test]
