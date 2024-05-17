@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
@@ -15,15 +16,21 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
 {
     internal class AuctionStartedRepositoryTest : EventsDatabaseTests
     {
-        private AuctionStartedRepository _auctionStartedRepository;
+        private AuctionsAuctionStartedRepository _auctionStartedRepository;
 
         [SetUp]
         public void Setup()
         {
-            _auctionStartedRepository = new AuctionStartedRepository(
+            _auctionStartedRepository = new AuctionsAuctionStartedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<ILogger<AuctionStartedRepository>>());
+                Substitute.For<ILogger<AuctionsAuctionStartedRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventAuctionsAuctionStarted.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "Auctions", "Started", 1, 1, 1));
+            _substrateDbContext.EventAuctionsAuctionStarted.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "Auctions", "Started", 2, 2, 2));
         }
 
         [Test]
@@ -54,6 +61,17 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
             Assert.That(model.AuctionIndex, Is.EqualTo(auctionIndex));
             Assert.That(model.LeasePeriod, Is.EqualTo(leasePeriod));
             Assert.That(model.Ending, Is.EqualTo(ending));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _auctionStartedRepository.SearchAsync(new SearchCriteriaAuctionsAuctionStarted()
+            {
+                AuctionIndex = NumberCriteria<uint>.GreaterThan(1)
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(1));
         }
     }
 }

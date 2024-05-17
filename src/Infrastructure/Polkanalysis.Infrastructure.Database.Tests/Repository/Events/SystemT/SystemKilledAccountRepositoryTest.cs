@@ -4,6 +4,7 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Repository.Events.System;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -26,6 +27,12 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.SystemT
                 _substrateDbContext,
                 _substrateService,
                 Substitute.For<ILogger<SystemKilledAccountRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventSystemKilledAccount.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString()));
+            _substrateDbContext.EventSystemKilledAccount.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Bob.ToString()));
         }
 
         [Test]
@@ -53,7 +60,18 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.SystemT
             Assert.That(model, Is.Not.Null);
             Assert.That(model.ModuleName, Is.EqualTo("System"));
             Assert.That(model.ModuleEvent, Is.EqualTo("KilledAccount"));
-            Assert.That(model.Account, Is.EqualTo(account));
+            Assert.That(model.AccountAddress, Is.EqualTo(account));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _systemKilledAccountRepository.SearchAsync(new()
+            {
+                AccountAddress = Alice.ToString(),
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(1));
         }
     }
 }

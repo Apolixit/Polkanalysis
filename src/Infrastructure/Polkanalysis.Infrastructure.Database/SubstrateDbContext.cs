@@ -44,13 +44,13 @@ namespace Polkanalysis.Infrastructure.Database
         #endregion
 
         #region Crowdloan
-        public DbSet<CrowloanContributedModel> EventCrowdloanContributed { get; set; }
-        public DbSet<CrowloanCreatedModel> EventCrowdloanCreated { get; set; }
+        public DbSet<CrowdloanContributedModel> EventCrowdloanContributed { get; set; }
+        public DbSet<CrowdloanCreatedModel> EventCrowdloanCreated { get; set; }
         #endregion
 
         #region Auctions
-        public DbSet<AuctionStartedModel> EventAuctionStarted { get; set; }
-        public DbSet<AuctionClosedModel> EventAuctionClosed { get; set; }
+        public DbSet<AuctionsAuctionStartedModel> EventAuctionsAuctionStarted { get; set; }
+        public DbSet<AuctionsAuctionClosedModel> EventAuctionsAuctionClosed { get; set; }
         #endregion
 
         #region
@@ -63,48 +63,48 @@ namespace Polkanalysis.Infrastructure.Database
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.RootAccount, c.Amount1, c.Amount2 });
 
             modelBuilder.Entity<BalancesDustLostModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.Amount });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress, c.Amount });
 
             modelBuilder.Entity<BalancesEndowedModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.Amount });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress, c.Amount });
 
             modelBuilder.Entity<BalancesReservedModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.ReservedAmount });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress, c.ReservedAmount });
 
             modelBuilder.Entity<BalancesSlashedModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.Amount });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddess, c.Amount });
 
             modelBuilder.Entity<BalancesTransferModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.From, c.To, c.Amount });
 
             modelBuilder.Entity<BalancesUnreservedModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.UnreservedAmount });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddess, c.UnreservedAmount });
 
 
             modelBuilder.Entity<IdentityIdentityClearedModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.Amount });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress, c.Amount });
 
             modelBuilder.Entity<IdentityIdentityKilledModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.Amount });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress, c.Amount });
 
             modelBuilder.Entity<IdentityIdentitySetModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress });
 
 
             modelBuilder.Entity<SystemKilledAccountModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress });
 
             modelBuilder.Entity<SystemNewAccountModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account });
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress });
 
-            modelBuilder.Entity<CrowloanContributedModel>()
-                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Account, c.CrowdloanId, c.Amount });
-            modelBuilder.Entity<CrowloanCreatedModel>()
+            modelBuilder.Entity<CrowdloanContributedModel>()
+                .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddess, c.CrowdloanId, c.Amount });
+            modelBuilder.Entity<CrowdloanCreatedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.CrowdloanId });
 
-            modelBuilder.Entity<AuctionStartedModel>()
+            modelBuilder.Entity<AuctionsAuctionStartedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AuctionIndex, c.LeasePeriod, c.Ending });
-            modelBuilder.Entity<AuctionClosedModel>()
+            modelBuilder.Entity<AuctionsAuctionClosedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AuctionIndex });
 
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });

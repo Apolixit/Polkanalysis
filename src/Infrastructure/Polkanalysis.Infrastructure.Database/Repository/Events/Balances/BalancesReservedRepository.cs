@@ -1,21 +1,28 @@
-﻿using Microsoft.Extensions.Logging;
-using Substrate.NetApi.Model.Types;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
+using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Substrate.NET.Utils;
-using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Contracts.Model;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
-    [BindEvents(RuntimeEvent.Balances, "Blockchain.Contracts.Pallet.Balances.Enums.Event.Reserved")]
-    public class BalancesReservedRepository : EventDatabaseRepository<BalancesReservedModel>, ISearchEvent
+    public class SearchCriteriaBalancesReserved : SearchCriteria
+    {
+        public string? AccountAddress { get; set; }
+        public NumberCriteria<double>? ReservedAmount { get; set; }
+    }
+
+    [BindEvents(RuntimeEvent.Balances, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Event.Reserved")]
+    public class BalancesReservedRepository : EventDatabaseRepository<BalancesReservedModel, SearchCriteriaBalancesReserved>
     {
         public BalancesReservedRepository(
             SubstrateDbContext context,
@@ -24,23 +31,26 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         {
         }
 
-        public string SearchName { get => "Balances.Reserved"; }
+        public override string SearchName => "Balances.Reserved";
 
         protected override DbSet<BalancesReservedModel> dbTable => _context.EventBalancesReserved;
 
-        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        protected override Task<IQueryable<BalancesReservedModel>> SearchInnerAsync(SearchCriteriaBalancesReserved criteria, IQueryable<BalancesReservedModel> model, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (criteria.AccountAddress is not null) model = model.Where(x => x.AccountAddress == criteria.AccountAddress);
+            if (criteria.ReservedAmount is not null) model = model.WhereCriteria(criteria.ReservedAmount, x => x.ReservedAmount);
+            return Task.FromResult(model);
         }
 
-        internal override async Task<BalancesReservedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal async override Task<BalancesReservedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
-                Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
+                Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
                 BaseTuple<SubstrateAccount, U128>>();
 
-            var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
-            var reservedAmount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
+            var accountAddress = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
+
+            var reservedAmount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals); ;
 
             return new BalancesReservedModel(
                 eventModel.BlockchainName,
@@ -49,8 +59,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 eventModel.EventId,
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
-                account,
-                reservedAmount);
+accountAddress,
+reservedAmount);
         }
     }
 }

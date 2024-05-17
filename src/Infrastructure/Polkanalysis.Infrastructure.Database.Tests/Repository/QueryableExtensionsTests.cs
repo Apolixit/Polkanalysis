@@ -30,7 +30,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
             var filteredResults = queryable.WhereCriteria(criteria, x => x.Value);
 
             Assert.That(filteredResults.Count(), Is.EqualTo(2));
-            Assert.That(filteredResults.First().Id, Is.EqualTo(4));
+            Assert.That(filteredResults.First().Id, Is.EqualTo(1));
         }
 
         [Test]

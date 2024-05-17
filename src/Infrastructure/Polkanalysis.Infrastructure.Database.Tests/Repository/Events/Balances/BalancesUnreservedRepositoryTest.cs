@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
@@ -25,6 +26,12 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
                 _substrateDbContext,
                 _substrateService,
                 Substitute.For<ILogger<BalancesUnreservedRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventBalancesUnreserved.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), 10));
+            _substrateDbContext.EventBalancesUnreserved.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), 20));
         }
 
         [Test]
@@ -54,8 +61,20 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
             Assert.That(model, Is.Not.Null);
             Assert.That(model.ModuleName, Is.EqualTo("Balances"));
             Assert.That(model.ModuleEvent, Is.EqualTo("Unreserved"));
-            Assert.That(model.Account, Is.EqualTo(account));
+            Assert.That(model.AccountAddess, Is.EqualTo(account));
             Assert.That(model.UnreservedAmount, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _balancesUnreservedRepository.SearchAsync(new()
+            {
+                AccountAddess = Alice.ToString(),
+                UnreservedAmount = NumberCriteria<double>.Equal(20)
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(1));
         }
     }
 }

@@ -42,7 +42,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository
                 TokenDecimals = 10,
                 TokenSymbol = "DOT"
             });
+
+            mockDatabase();
+
+            _substrateDbContext.SaveChanges();
         }
+
+        protected virtual void mockDatabase() { }
 
         public EventModel BuildEventModel(string moduleName, string moduleEvent)
         {

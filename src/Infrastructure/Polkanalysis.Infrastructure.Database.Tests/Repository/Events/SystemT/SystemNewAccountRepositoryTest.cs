@@ -28,6 +28,12 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.SystemT
                 Substitute.For<ILogger<SystemNewAccountRepository>>());
         }
 
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventSystemNewAccount.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString()));
+            _substrateDbContext.EventSystemNewAccount.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Bob.ToString()));
+        }
+
         [Test]
         public void BasicInformationsAreProperlySet()
         {
@@ -53,7 +59,18 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.SystemT
             Assert.That(model, Is.Not.Null);
             Assert.That(model.ModuleName, Is.EqualTo("System"));
             Assert.That(model.ModuleEvent, Is.EqualTo("NewAccount"));
-            Assert.That(model.Account, Is.EqualTo(account));
+            Assert.That(model.AccountAddress, Is.EqualTo(account));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _systemNewAccountRepository.SearchAsync(new()
+            {
+                AccountAddress = RandomAccount.ToString(),
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(0));
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
+using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -17,15 +19,21 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
 {
     public class CrowloanContributedRepositoryTests : EventsDatabaseTests
     {
-        private CrowloanContributedRepository _crowloanContributedRepository;
+        private CrowdloanContributedRepository _crowloanContributedRepository;
 
         [SetUp]
         public void Setup()
         {
-            _crowloanContributedRepository = new CrowloanContributedRepository(
+            _crowloanContributedRepository = new CrowdloanContributedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<ILogger<CrowloanContributedRepository>>());
+                Substitute.For<ILogger<CrowdloanContributedRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventCrowdloanContributed.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), 1, 10));
+            _substrateDbContext.EventCrowdloanContributed.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), 2, 20));
         }
 
         [Test]
@@ -54,9 +62,21 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
             Assert.That(model, Is.Not.Null);
             Assert.That(model.ModuleName, Is.EqualTo("Crowdloan"));
             Assert.That(model.ModuleEvent, Is.EqualTo("Contribution"));
-            Assert.That(model.Account, Is.EqualTo(MockAddress));
+            Assert.That(model.AccountAddess, Is.EqualTo(MockAddress));
             Assert.That(model.CrowdloanId, Is.EqualTo(crowdloanId));
             Assert.That(model.Amount, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _crowloanContributedRepository.SearchAsync(new()
+            {
+                AccountAddess = Alice.ToString(),
+                CrowdloanId = NumberCriteria<int>.Equal(1)
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(1));
         }
     }
 }
