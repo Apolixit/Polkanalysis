@@ -1,29 +1,29 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
-using Polkanalysis.Infrastructure.Database.Repository.Events.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Substrate.NetApi.Model.Types.Primitive;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
 {
     internal class AuctionClosedRepositoryTest : EventsDatabaseTests
     {
-        private AuctionClosedRepository _auctionClosedRepository;
+        private AuctionsAuctionClosedRepository _auctionClosedRepository;
 
         [SetUp]
         public void Setup()
         {
-            _auctionClosedRepository = new AuctionClosedRepository(
+            _auctionClosedRepository = new AuctionsAuctionClosedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<ILogger<AuctionClosedRepository>>());
+                Substitute.For<ILogger<AuctionsAuctionClosedRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventAuctionsAuctionClosed.Add(new Contracts.Model.Events.Auctions.AuctionsAuctionClosedModel("Polkadot", 1, new DateTime(2024, 01, 01), 1, "Auctions", "Closed", 1));
+            _substrateDbContext.EventAuctionsAuctionClosed.Add(new Contracts.Model.Events.Auctions.AuctionsAuctionClosedModel("Polkadot", 2, new DateTime(2024, 01, 01), 1, "Auctions", "Closed", 2));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
         public async Task BuildModel_WhenValidAuctionClosed_ShouldBuildModelSuccessfullyAsync(int auctionIndex)
         {
             var enumContribution = new Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.EnumEvent();
-            enumContribution.Create(Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.Event.AuctionClosed, new Id((uint)auctionIndex));
+            enumContribution.Create(Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Auctions.Enums.Event.AuctionClosed, new U32((uint)auctionIndex));
 
             var model = await _auctionClosedRepository.BuildModelAsync(
                 BuildEventModel("Auction", moduleEvent: "Closed"),
@@ -48,6 +48,17 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Auctions
             Assert.That(model.ModuleName, Is.EqualTo("Auction"));
             Assert.That(model.ModuleEvent, Is.EqualTo("Closed"));
             Assert.That(model.AuctionIndex, Is.EqualTo(auctionIndex));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _auctionClosedRepository.SearchAsync(new SearchCriteriaAuctionsAuctionClosed()
+            {
+                AuctionIndex = NumberCriteria<uint>.Equal(1)
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(1));
         }
     }
 }

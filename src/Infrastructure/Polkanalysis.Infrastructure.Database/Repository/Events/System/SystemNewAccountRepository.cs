@@ -1,19 +1,25 @@
-﻿using Microsoft.Extensions.Logging;
-using Substrate.NetApi.Model.Types;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
-using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System;
 using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
 {
-    [BindEvents(RuntimeEvent.System, "Blockchain.Contracts.Pallet.System.Enums.Event.NewAccount")]
-    public class SystemNewAccountRepository : EventDatabaseRepository<SystemNewAccountModel>, ISearchEvent
+    public class SearchCriteriaSystemNewAccount : SearchCriteria
+    {
+        public string? AccountAddress { get; set; }
+    }
+
+    [BindEvents(RuntimeEvent.System, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.Event.NewAccount")]
+    public class SystemNewAccountRepository : EventDatabaseRepository<SystemNewAccountModel, SearchCriteriaSystemNewAccount>
     {
         public SystemNewAccountRepository(
             SubstrateDbContext context,
@@ -22,22 +28,23 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
         {
         }
 
-        public string SearchName { get => "System.NewAccount"; }
+        public override string SearchName => "System.NewAccount";
 
         protected override DbSet<SystemNewAccountModel> dbTable => _context.EventSystemNewAccount;
 
-        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        protected override Task<IQueryable<SystemNewAccountModel>> SearchInnerAsync(SearchCriteriaSystemNewAccount criteria, IQueryable<SystemNewAccountModel> model, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (criteria.AccountAddress is not null) model = model.Where(x => x.AccountAddress == criteria.AccountAddress);
+            return Task.FromResult(model);
         }
 
-        internal override async Task<SystemNewAccountModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal async override Task<SystemNewAccountModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
-                Blockchain.Contracts.Pallet.System.Enums.EnumEvent,
+                Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums.EnumEvent,
                 SubstrateAccount>();
 
-            var account = convertedData.ToStringAddress();
+            var accountAddress = convertedData.As<SubstrateAccount>().ToStringAddress();
 
             return new SystemNewAccountModel(
                 eventModel.BlockchainName,
@@ -46,7 +53,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.System
                 eventModel.EventId,
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
-                account);
+accountAddress);
         }
     }
 }

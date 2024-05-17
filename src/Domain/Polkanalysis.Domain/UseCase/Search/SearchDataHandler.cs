@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.UseCase.Search
 {
-    public class SearchDataHandler : Handler<SearchDataHandler, bool, SavedEventsCommand>
-    {
-    }
+    //public class SearchDataHandler : Handler<SearchDataHandler, bool, SavedEventsCommand>
+    //{
+    //}
 }

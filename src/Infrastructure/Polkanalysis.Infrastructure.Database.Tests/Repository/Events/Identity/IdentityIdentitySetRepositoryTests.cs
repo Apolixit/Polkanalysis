@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
@@ -28,6 +29,12 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Identity
                 Substitute.For<ILogger<IdentityIdentitySetRepository>>());
         }
 
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventIdentityIdentitySet.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString()));
+            _substrateDbContext.EventIdentityIdentitySet.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Bob.ToString()));
+        }
+
         [Test]
         public void BasicInformationsAreProperlySet()
         {
@@ -51,7 +58,18 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Identity
             Assert.That(model, Is.Not.Null);
             Assert.That(model.ModuleName, Is.EqualTo("Identity"));
             Assert.That(model.ModuleEvent, Is.EqualTo("Set"));
-            Assert.That(model.Account, Is.EqualTo(MockAddress));
+            Assert.That(model.AccountAddress, Is.EqualTo(MockAddress));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _identityIdentitySetRepository.SearchAsync(new()
+            {
+                AccountAddress = Alice.ToString(),
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(1));
         }
     }
 }

@@ -1,66 +1,69 @@
-﻿using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
-using Polkanalysis.Infrastructure.Database.Contracts.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Substrate.NetApi.Model.Types;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Crowdloan;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using System.Runtime.CompilerServices;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
 {
-    [BindEvents(RuntimeEvent.Crowdloan, "Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.Event.Contributed")]
-    public class CrowloanContributedRepository : EventDatabaseRepository<CrowloanContributedModel>, ISearchEvent
+    public class SearchCriteriaCrowdloanContributed : SearchCriteria
     {
-        public CrowloanContributedRepository(
+        public string? AccountAddess { get; set; }
+        public NumberCriteria<int>? CrowdloanId { get; set; }
+        public NumberCriteria<double>? Amount { get; set; }
+    }
+
+    [BindEvents(RuntimeEvent.Crowdloan, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.Event.Contributed")]
+    public class CrowdloanContributedRepository : EventDatabaseRepository<CrowdloanContributedModel, SearchCriteriaCrowdloanContributed>
+    {
+        public CrowdloanContributedRepository(
             SubstrateDbContext context,
             ISubstrateService substrateNodeRepository,
-            ILogger<CrowloanContributedRepository> logger) : base(context, substrateNodeRepository, logger)
+            ILogger<CrowdloanContributedRepository> logger) : base(context, substrateNodeRepository, logger)
         {
         }
 
-        public string SearchName { get => "Crowdloan.Contributed"; }
+        public override string SearchName => "Crowdloan.Contributed";
 
-        protected override DbSet<CrowloanContributedModel> dbTable => _context.EventCrowdloanContributed;
+        protected override DbSet<CrowdloanContributedModel> dbTable => _context.EventCrowdloanContributed;
 
-        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        protected override Task<IQueryable<CrowdloanContributedModel>> SearchInnerAsync(SearchCriteriaCrowdloanContributed criteria, IQueryable<CrowdloanContributedModel> model, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (criteria.AccountAddess is not null) model = model.Where(x => x.AccountAddess == criteria.AccountAddess);
+            if (criteria.CrowdloanId is not null) model = model.WhereCriteria(criteria.CrowdloanId, x => x.CrowdloanId);
+            if (criteria.Amount is not null) model = model.WhereCriteria(criteria.Amount, x => x.Amount);
+            return Task.FromResult(model);
         }
 
-        internal async override Task<CrowloanContributedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal async override Task<CrowdloanContributedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
-                Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent,
+                Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent,
                 BaseTuple<SubstrateAccount, Id, U128>>();
 
-            var account = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
-            var crowloanId = (int)convertedData.Value[1].As<Id>().Value.Value;
-            var amount = convertedData.Value[2].As<U128>().Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
+            var accountAddess = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
+            var crowdloanId = (int)convertedData.Value[1].As<Id>().Value.Value;
+            var amount = ((U128)convertedData.Value[2]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
-            return new CrowloanContributedModel(
+            return new CrowdloanContributedModel(
                 eventModel.BlockchainName,
                 eventModel.BlockId,
                 eventModel.BlockDate,
                 eventModel.EventId,
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
-                account,
-                crowloanId,
-                amount);
+accountAddess,
+crowdloanId,
+amount);
         }
     }
 }

@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity
 {
     public class IdentityIdentitySetModel : EventModel
     {
         [SetsRequiredMembers]
-        public IdentityIdentitySetModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string account) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public IdentityIdentitySetModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string accountAddress) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
-            Account = account;
+            this.AccountAddress = accountAddress;
         }
 
-        public required string Account { get; set; }
+        public string AccountAddress { get; set; }
 
         public override string ToString()
         {
-            return $"{BlockchainName} | {BlockId} | {BlockDate} | {EventId} | {ModuleName} | {ModuleEvent} | {Account}";
+            return $"{BlockchainName} | {BlockId} | {BlockDate} | {EventId} | {ModuleName} | {ModuleEvent} | {AccountAddress}";
         }
     }
 }

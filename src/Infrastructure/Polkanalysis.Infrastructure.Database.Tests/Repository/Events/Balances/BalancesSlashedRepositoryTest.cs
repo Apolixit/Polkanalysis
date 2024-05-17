@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
@@ -26,6 +27,12 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
                 _substrateDbContext,
                 _substrateService,
                 Substitute.For<ILogger<BalancesSlashedRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventBalancesSlashed.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), 10));
+            _substrateDbContext.EventBalancesSlashed.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), 12));
         }
 
         [Test]
@@ -55,8 +62,20 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
             Assert.That(model, Is.Not.Null);
             Assert.That(model.ModuleName, Is.EqualTo("Balances"));
             Assert.That(model.ModuleEvent, Is.EqualTo("Slashed"));
-            Assert.That(model.Account, Is.EqualTo(account));
+            Assert.That(model.AccountAddess, Is.EqualTo(account));
             Assert.That(model.Amount, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _balancesSlashedRepository.SearchAsync(new()
+            {
+                AccountAddess = Alice.ToString(),
+                Amount = NumberCriteria<double>.Between(5, 15),
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(2));
         }
     }
 }

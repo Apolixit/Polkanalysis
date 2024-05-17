@@ -28,7 +28,7 @@ namespace Polkanalysis.Infrastructure.Database
             services.AddTransient<BalancesDustLostRepository>();
             services.AddTransient<BalancesEndowedRepository>();
             services.AddTransient<BalancesReservedRepository>();
-            services.AddTransient<BalancesSetRepository>();
+            services.AddTransient<BalancesBalanceSetRepository>();
             services.AddTransient<BalancesSlashedRepository>();
             services.AddTransient<BalancesTransferRepository>();
             services.AddTransient<BalancesUnreservedRepository>();
@@ -40,7 +40,7 @@ namespace Polkanalysis.Infrastructure.Database
             services.AddTransient<SystemKilledAccountRepository>();
             services.AddTransient<SystemNewAccountRepository>();
 
-            services.AddTransient<CrowloanContributedRepository>();
+            services.AddTransient<CrowdloanContributedRepository>();
 
             services.AddTransient<IStakingDatabaseRepository, StakingDatabaseRepository>();
 

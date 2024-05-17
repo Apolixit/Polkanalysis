@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
@@ -17,15 +18,21 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
 {
     public class BalancesSetRepositoryTest : EventsDatabaseTests
     {
-        private BalancesSetRepository _balancesSetRepository;
+        private BalancesBalanceSetRepository _balancesSetRepository;
 
         [SetUp]
         public void Setup()
         {
-            _balancesSetRepository = new BalancesSetRepository(
+            _balancesSetRepository = new BalancesBalanceSetRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<ILogger<BalancesSetRepository>>());
+                Substitute.For<ILogger<BalancesBalanceSetRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventBalancesBalanceSet.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "Auctions", "Started", Alice.ToString(), 10, 20));
+            _substrateDbContext.EventBalancesBalanceSet.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "Auctions", "Started", Alice.ToString(), 20, 40));
         }
 
         [Test]
@@ -59,6 +66,19 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
             Assert.That(model.RootAccount, Is.EqualTo(account));
             Assert.That(model.Amount1, Is.EqualTo(expected1));
             Assert.That(model.Amount2, Is.EqualTo(expected2));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _balancesSetRepository.SearchAsync(new()
+            {
+                RootAccount = Alice.ToString(),
+                Amount1 = NumberCriteria<double>.GreaterOrEqualThan(10),
+                Amount2 = NumberCriteria<double>.LowerStrict(30)
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(1));
         }
     }
 }

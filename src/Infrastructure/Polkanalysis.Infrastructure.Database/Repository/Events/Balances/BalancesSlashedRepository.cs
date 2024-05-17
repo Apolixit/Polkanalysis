@@ -1,21 +1,28 @@
-﻿using Microsoft.Extensions.Logging;
-using Substrate.NetApi.Model.Types;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
+using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Substrate.NET.Utils;
-using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Contracts.Model;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
-    [BindEvents(RuntimeEvent.Balances, "Blockchain.Contracts.Pallet.Balances.Enums.Event.Slashed")]
-    public class BalancesSlashedRepository : EventDatabaseRepository<BalancesSlashedModel>, ISearchEvent
+    public class SearchCriteriaBalancesSlashed : SearchCriteria
+    {
+        public string? AccountAddess { get; set; }
+        public NumberCriteria<double>? Amount { get; set; }
+    }
+
+    [BindEvents(RuntimeEvent.Balances, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Event.Slashed")]
+    public class BalancesSlashedRepository : EventDatabaseRepository<BalancesSlashedModel, SearchCriteriaBalancesSlashed>
     {
         public BalancesSlashedRepository(
             SubstrateDbContext context,
@@ -24,23 +31,26 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         {
         }
 
-        public string SearchName { get => "Balances.Slashed"; }
+        public override string SearchName => "Balances.Slashed";
 
         protected override DbSet<BalancesSlashedModel> dbTable => _context.EventBalancesSlashed;
 
-        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        protected override Task<IQueryable<BalancesSlashedModel>> SearchInnerAsync(SearchCriteriaBalancesSlashed criteria, IQueryable<BalancesSlashedModel> model, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (criteria.AccountAddess is not null) model = model.Where(x => x.AccountAddess == criteria.AccountAddess);
+            if (criteria.Amount is not null) model = model.WhereCriteria(criteria.Amount, x => x.Amount);
+            return Task.FromResult(model);
         }
 
-        internal override async Task<BalancesSlashedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal async override Task<BalancesSlashedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
-                Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
+                Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
                 BaseTuple<SubstrateAccount, U128>>();
 
-            var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
-            var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
+            var accountAddess = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
+
+            var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals); ;
 
             return new BalancesSlashedModel(
                 eventModel.BlockchainName,
@@ -49,8 +59,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 eventModel.EventId,
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
-                account,
-                amount);
+accountAddess,
+amount);
         }
     }
 }

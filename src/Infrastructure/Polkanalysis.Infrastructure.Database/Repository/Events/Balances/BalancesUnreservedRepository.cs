@@ -1,21 +1,28 @@
-﻿using Microsoft.Extensions.Logging;
-using Substrate.NetApi.Model.Types;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
+using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Substrate.NET.Utils;
-using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Contracts.Model;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
 {
-    [BindEvents(RuntimeEvent.Balances, "Blockchain.Contracts.Pallet.Balances.Enums.Event.Unreserved")]
-    public class BalancesUnreservedRepository : EventDatabaseRepository<BalancesUnreservedModel>, ISearchEvent
+    public class SearchCriteriaBalancesUnreserved : SearchCriteria
+    {
+        public string? AccountAddess { get; set; }
+        public NumberCriteria<double>? UnreservedAmount { get; set; }
+    }
+
+    [BindEvents(RuntimeEvent.Balances, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Event.Unreserved")]
+    public class BalancesUnreservedRepository : EventDatabaseRepository<BalancesUnreservedModel, SearchCriteriaBalancesUnreserved>
     {
         public BalancesUnreservedRepository(
             SubstrateDbContext context,
@@ -24,23 +31,26 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
         {
         }
 
-        public string SearchName { get => "Balances.Unreserved"; }
+        public override string SearchName => "Balances.Unreserved";
 
         protected override DbSet<BalancesUnreservedModel> dbTable => _context.EventBalancesUnreserved;
 
-        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        protected override Task<IQueryable<BalancesUnreservedModel>> SearchInnerAsync(SearchCriteriaBalancesUnreserved criteria, IQueryable<BalancesUnreservedModel> model, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (criteria.AccountAddess is not null) model = model.Where(x => x.AccountAddess == criteria.AccountAddess);
+            if (criteria.UnreservedAmount is not null) model = model.WhereCriteria(criteria.UnreservedAmount, x => x.UnreservedAmount);
+            return Task.FromResult(model);
         }
 
-        internal override async Task<BalancesUnreservedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal async override Task<BalancesUnreservedModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
-                Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
+                Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent,
                 BaseTuple<SubstrateAccount, U128>>();
 
-            var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
-            var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
+            var accountAddess = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
+
+            var unreservedAmount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
             return new BalancesUnreservedModel(
                 eventModel.BlockchainName,
@@ -49,8 +59,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Balances
                 eventModel.EventId,
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
-                account,
-                amount);
+accountAddess,
+unreservedAmount);
         }
     }
 }

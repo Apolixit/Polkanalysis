@@ -19,8 +19,8 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events
             var mapping = Substitute.For<IBlockchainMapping>();
 
             _serviceProvider = Substitute.For<IServiceProvider>();
-            _serviceProvider.GetService(typeof(BalancesDustLostRepository)).Returns(new BalancesDustLostRepository(_substrateDbContext, substrateNodeRepository, mapping, Substitute.For<ILogger<BalancesDustLostRepository>>()));
-            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, substrateNodeRepository, mapping, Substitute.For<ILogger<SystemKilledAccountRepository>>()));
+            _serviceProvider.GetService(typeof(BalancesDustLostRepository)).Returns(new BalancesDustLostRepository(_substrateDbContext, substrateNodeRepository, Substitute.For<ILogger<BalancesDustLostRepository>>()));
+            _serviceProvider.GetService(typeof(SystemKilledAccountRepository)).Returns(new SystemKilledAccountRepository(_substrateDbContext, substrateNodeRepository, Substitute.For<ILogger<SystemKilledAccountRepository>>()));
         }
         [Test]
         public void EventFactory_ShouldDetectAutomaticallyRepositories()

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
@@ -26,6 +27,13 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
                 _substrateDbContext,
                 _substrateService,
                 Substitute.For<ILogger<BalancesTransferRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventBalancesTransfer.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), Bob.ToString(), 10));
+            _substrateDbContext.EventBalancesTransfer.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Alice.ToString(), Bob.ToString(), 12));
+            _substrateDbContext.EventBalancesTransfer.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", Bob.ToString(), Alice.ToString(), 12));
         }
 
         [Test]
@@ -65,7 +73,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
         [TestCase(MockAddress, MockAddress2, TenDots, 10)]
         public async Task BalancesTransfert_ShouldInsertInDatabaseAsync(string from, string to, double amount, double expected)
         {
-            Assert.That(_substrateDbContext.EventBalancesTransfer.Count(), Is.EqualTo(0));
+            var initialCount = _substrateDbContext.EventBalancesTransfer.Count();
 
             var enumTransfert = new Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent();
             enumTransfert.Create(
@@ -83,19 +91,18 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
                 CancellationToken.None);
 
             var allCount = await _balancesTransferRepository.GetAllAsync(CancellationToken.None);
-            Assert.That(_substrateDbContext.EventBalancesTransfer.Count(), Is.EqualTo(1));
-            Assert.That(allCount.Count(), Is.EqualTo(1));
+            Assert.That(allCount.Count(), Is.EqualTo(initialCount + 1));
 
-            Assert.That(_substrateDbContext.EventBalancesTransfer.First().From, Is.EqualTo(from));
-            Assert.That(_substrateDbContext.EventBalancesTransfer.First().To, Is.EqualTo(to));
-            Assert.That(_substrateDbContext.EventBalancesTransfer.First().Amount, Is.EqualTo(expected));
+            Assert.That(_substrateDbContext.EventBalancesTransfer.Last().From, Is.EqualTo(from));
+            Assert.That(_substrateDbContext.EventBalancesTransfer.Last().To, Is.EqualTo(to));
+            Assert.That(_substrateDbContext.EventBalancesTransfer.Last().Amount, Is.EqualTo(expected));
         }
 
         [Test]
-        [TestCase(MockAddress, MockAddress2, TenDots, 10)]
-        public async Task BalancesTransfert_WhenAlreadyExists_ShouldNotInsertTwiceInDatabaseAsync(string from, string to, double amount, double expected)
+        [TestCase(MockAddress, MockAddress2, TenDots)]
+        public async Task BalancesTransfert_WhenAlreadyExists_ShouldNotInsertTwiceInDatabaseAsync(string from, string to, double amount)
         {
-            Assert.That(_substrateDbContext.EventBalancesTransfer.Count(), Is.EqualTo(0));
+            var initialCount = _substrateDbContext.EventBalancesTransfer.Count();
 
             var enumTransfert = new Blockchain.Contracts.Pallet.Balances.Enums.EnumEvent();
             enumTransfert.Create(
@@ -117,7 +124,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
                 enumTransfert,
                 CancellationToken.None);
 
-            Assert.That(_substrateDbContext.EventBalancesTransfer.Count(), Is.EqualTo(1));
+            Assert.That(_substrateDbContext.EventBalancesTransfer.Count(), Is.EqualTo(initialCount + 1));
         }
 
         [Test]
@@ -129,6 +136,19 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Balances
                 Assert.ThrowsAsync<ArgumentNullException>(async () => await _balancesTransferRepository.InsertAsync(BuildEventModel("Balances", "Transfert"), null!, CancellationToken.None));
             });
              
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _balancesTransferRepository.SearchAsync(new()
+            {
+                From = Alice.ToString(),
+                To = Bob.ToString(),
+                Amount = NumberCriteria<double>.Between(5, 15),
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(2));
         }
     }
 }

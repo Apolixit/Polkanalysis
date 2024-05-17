@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Common.Search;
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
@@ -9,15 +10,21 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
 {
     internal class CrowloanCreatedRepositoryTest : EventsDatabaseTests
     {
-        private CrowloanCreatedRepository _crowloanCreatedRepository;
+        private CrowdloanCreatedRepository _crowloanCreatedRepository;
 
         [SetUp]
         public void Setup()
         {
-            _crowloanCreatedRepository = new CrowloanCreatedRepository(
+            _crowloanCreatedRepository = new CrowdloanCreatedRepository(
                 _substrateDbContext,
                 _substrateService,
-                Substitute.For<ILogger<CrowloanCreatedRepository>>());
+                Substitute.For<ILogger<CrowdloanCreatedRepository>>());
+        }
+
+        protected override void mockDatabase()
+        {
+            _substrateDbContext.EventCrowdloanCreated.Add(new("Polkadot", 1, new DateTime(2024, 01, 01), 1, "", "", 1));
+            _substrateDbContext.EventCrowdloanCreated.Add(new("Polkadot", 2, new DateTime(2024, 01, 01), 1, "", "", 2));
         }
 
         [Test]
@@ -42,6 +49,17 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
             Assert.That(model.ModuleName, Is.EqualTo("Crowdloan"));
             Assert.That(model.ModuleEvent, Is.EqualTo("Created"));
             Assert.That(model.CrowdloanId, Is.EqualTo(crowdloanId));
+        }
+
+        [Test]
+        public async Task Search_WithValidParameter_ShouldSuceedAsync()
+        {
+            var res = await _crowloanCreatedRepository.SearchAsync(new()
+            {
+                CrowdloanId = NumberCriteria<int>.Equal(4),
+            }, CancellationToken.None);
+
+            Assert.That(res.Count(), Is.EqualTo(0));
         }
     }
 }

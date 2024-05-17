@@ -97,6 +97,7 @@ namespace Polkanalysis.Domain.Contracts.Common.Search
             return new NumberCriteria<T>()
             {
                 Value = value,
+                Value2 = value2,
                 Operator = Operator.Between,
             };
         }

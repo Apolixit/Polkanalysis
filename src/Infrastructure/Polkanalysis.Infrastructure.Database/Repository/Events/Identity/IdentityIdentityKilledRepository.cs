@@ -1,21 +1,28 @@
-﻿using Microsoft.Extensions.Logging;
-using Substrate.NetApi.Model.Types;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
+using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Common.Search;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Substrate.NET.Utils;
-using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Contracts.Model;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
 {
-    [BindEvents(RuntimeEvent.Identity, "Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentityKilled")]
-    public class IdentityIdentityKilledRepository : EventDatabaseRepository<IdentityIdentityKilledModel>, ISearchEvent
+    public class SearchCriteriaIdentityIdentityKilled : SearchCriteria
+    {
+        public string? AccountAddress { get; set; }
+        public NumberCriteria<double>? Amount { get; set; }
+    }
+
+    [BindEvents(RuntimeEvent.Identity, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.Event.IdentityKilled")]
+    public class IdentityIdentityKilledRepository : EventDatabaseRepository<IdentityIdentityKilledModel, SearchCriteriaIdentityIdentityKilled>
     {
         public IdentityIdentityKilledRepository(
             SubstrateDbContext context,
@@ -24,22 +31,26 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
         {
         }
 
-        public string SearchName { get => "Identity.IdentityKilled"; }
+        public override string SearchName => "Identity.IdentityKilled";
+
         protected override DbSet<IdentityIdentityKilledModel> dbTable => _context.EventIdentityIdentityKilled;
 
-        public override Task<IEnumerable<EventModel>> SearchAsync(SearchCriteria criteria, CancellationToken token)
+        protected override Task<IQueryable<IdentityIdentityKilledModel>> SearchInnerAsync(SearchCriteriaIdentityIdentityKilled criteria, IQueryable<IdentityIdentityKilledModel> model, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (criteria.AccountAddress is not null) model = model.Where(x => x.AccountAddress == criteria.AccountAddress);
+            if (criteria.Amount is not null) model = model.WhereCriteria(criteria.Amount, x => x.Amount);
+            return Task.FromResult(model);
         }
 
-        internal override async Task<IdentityIdentityKilledModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
+        internal async override Task<IdentityIdentityKilledModel> BuildModelAsync(EventModel eventModel, IType data, CancellationToken token)
         {
             var convertedData = data.CastToEnumValues<
-                Blockchain.Contracts.Pallet.Identity.Enums.EnumEvent,
+                Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums.EnumEvent,
                 BaseTuple<SubstrateAccount, U128>>();
 
-            var account = ((SubstrateAccount)convertedData.Value[0]).ToStringAddress();
-            var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
+            var accountAddress = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
+
+            var amount = ((U128)convertedData.Value[1]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals); ;
 
             return new IdentityIdentityKilledModel(
                 eventModel.BlockchainName,
@@ -48,8 +59,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Identity
                 eventModel.EventId,
                 eventModel.ModuleName,
                 eventModel.ModuleEvent,
-                account,
-                amount);
+accountAddress,
+amount);
         }
     }
 }
