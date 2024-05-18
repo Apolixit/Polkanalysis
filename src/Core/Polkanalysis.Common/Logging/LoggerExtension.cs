@@ -35,12 +35,5 @@ namespace Polkanalysis.Common.Logging
         {
             return new SerilogLoggerFactory(logger).CreateLogger(loggerName);
         }
-
-        //public static async Task<IHost> AddSerilog(this IHostBuilder builder, IConfigurationRoot config)
-        //{
-        //    builder.Use(buildLogger(config));
-        //}
-
-
     }
 }

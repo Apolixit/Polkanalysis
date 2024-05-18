@@ -10,16 +10,14 @@ using Serilog;
 using Polkanalysis.App.Components;
 using Serilog.Extensions.Logging;
 using Polkanalysis.Infrastructure.Database.Extensions;
+using Microsoft.FluentUI.AspNetCore.Components;
+using ApexCharts;
+using Polkanalysis.Common.Monitoring.Opentelemetry;
 
 
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+var (serilogLogger, microsoftLogger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.App");
 
-var configuration = new ConfigurationBuilder().AddJsonFile($"appsettings.{environment}.json").Build();
-var logger = new LoggerConfiguration().ReadFrom.Configuration(configuration)
-    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
-    .CreateLogger();
-
-logger.Information("Starting Polkanalysis Web application ...");
+serilogLogger.Information("Starting Polkanalysis Web application ...");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +26,7 @@ builder.Host.UseSerilog();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddFluentUIComponents();
 
 builder.Services.AddDbContext<SubstrateDbContext>(options =>
 {
@@ -44,6 +43,8 @@ builder.Services.AddSubstrateLogic();
 builder.Services.AddMediatRAndPipelineBehaviors();
 builder.Services.AddDatabase();
 
+builder.Services.AddOpentelemetry(microsoftLogger,"Polkanalysis.App");
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -58,7 +59,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-await app.ApplyMigrationAsync(new SerilogLoggerFactory(logger).CreateLogger("database"));
+await app.ApplyMigrationAsync(new SerilogLoggerFactory(serilogLogger).CreateLogger("database"));
 
 app.UseHttpsRedirection();
 
