@@ -16,6 +16,8 @@
     <PackageReference Include="MediatR.Courier" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.7.2" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.7.2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,6 +15,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.7.2" />
+    <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.7.2" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
@@ -23,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Polkanalysis.Common\Polkanalysis.Common.csproj" />
     <ProjectReference Include="..\..\Core\Polkanalysis.Configuration.Extensions\Polkanalysis.Configuration.Extensions.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />

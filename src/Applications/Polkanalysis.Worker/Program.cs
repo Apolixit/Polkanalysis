@@ -22,22 +22,14 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Polkanalysis.Worker.Metrics;
+using System;
 
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+var (serilogLogger, microsoftLogger, config) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.App");
 
-IConfiguration config = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .AddEnvironmentVariables()
-            .Build();
-
-var logger = Polkanalysis.Common.Logging.LoggerExtension.BuildLogger(config);
-
-Microsoft.Extensions.Logging.ILogger log = Polkanalysis.Common.Logging.LoggerExtension.CreateLogger(logger, "Polkanalys.Worker");
-
-log.LogInformation("Starting Polkanalysis Worker hosted service...");
+microsoftLogger.LogInformation("Starting Polkanalysis Worker hosted service...");
 
 var host = Host.CreateDefaultBuilder(args)
-.UseSerilog(logger)
+.UseSerilog(serilogLogger)
 .ConfigureServices((hostContext, services) =>
 {
     services
@@ -68,7 +60,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddDatabase();
     services.AddSubstrateLogic();
 
-    services.AddOpentelemetry(log, 
+    services.AddOpentelemetry(microsoftLogger, 
         "Polkanalysis.Worker", 
         new List<string>() { "Polkanalysis.Worker.Metrics" });
 
@@ -85,8 +77,8 @@ var host = Host.CreateDefaultBuilder(args)
 })
 .Build();
 
-await host.ApplyMigrationAsync(log);
-await host.ConnectNodeAsync("Polkanalysis.Worker", log);
+await host.ApplyMigrationAsync(microsoftLogger);
+await host.ConnectNodeAsync("Polkanalysis.Worker", microsoftLogger);
 
 await host.RunAsync();
 
