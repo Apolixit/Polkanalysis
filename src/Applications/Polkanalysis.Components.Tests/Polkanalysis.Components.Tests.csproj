@@ -14,9 +14,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="bunit" Version="1.27.17" />
-		<PackageReference Include="bunit.core" Version="1.27.17" />
-		<PackageReference Include="bunit.web" Version="1.27.17" />
+		<PackageReference Include="bunit" Version="1.28.9" />
+		<PackageReference Include="bunit.core" Version="1.28.9" />
+		<PackageReference Include="bunit.web" Version="1.28.9" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
 		<PackageReference Include="coverlet.collector" Version="6.0.2">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
