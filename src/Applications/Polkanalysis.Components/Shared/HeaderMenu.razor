@@ -1,101 +1,78 @@
-﻿@using Polkanalysis.Domain.Contracts.Dto.Informations;
+﻿@using Microsoft.FluentUI.AspNetCore.Components.DesignTokens
+@using Polkanalysis.Domain.Contracts.Dto.Informations;
 @using Polkanalysis.Domain.Contracts.Primary.Informations;
 @using Polkanalysis.Infrastructure.Blockchain.Contracts;
+
 @inject ISubstrateService _substrateService;
 @inject IMediator _mediator;
 
-<!--Start topbar header-->
-<header class="topbar-nav">
-    <nav class="navbar navbar-expand fixed-top">
-        <ul class="navbar-nav me-auto align-items-center">
-            <li class="nav-item">
-                <a class="nav-link toggle-menu" href="javascript:void();">
-                    <i class="icon-menu menu-icon"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <form class="search-bar">
-                    <input type="text" class="form-control" placeholder="Enter keywords">
-                    <a href="javascript:void();"><i class="icon-magnifier"></i></a>
-                </form>
-            </li>
-        </ul>
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom main-background">
+    <div class="d-flex col-md-2 mb-2 mb-md-0 justify-content-center">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+            <img src="_content/Polkanalysis.Components/assets/images/logo-icon.png" class="header-logo-icon" alt="logo icon">
+            <span Class="header-title fs-4">Polkanalysis</span>
+        </a>
+    </div>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li>
+            <FluentSearch @bind-Value=searchValue Placeholder="Search" />
+        </li>
+    </ul>
 
-        <ul class="navbar-nav align-items-center right-nav-link">
-            @*<li class="nav-item dropdown-lg">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-                    <i class="fa fa-envelope-open-o"></i>
-                </a>
-            </li>
-            <li class="nav-item dropdown-lg">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
-                    <i class="fa fa-bell-o"></i>
-                </a>
-            </li>*@
-            @if (CurrentConnectedBlockchain == null)
-            {
-                @*<Loader />*@
-            } else
-            {
-                <li class="nav-item blockchains">
-                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect"
-                       data-toggle="dropdown" href="javascript:void();" @onclick="(() => dropdownBlockchain = !dropdownBlockchain)">
-                        <img src="@CurrentConnectedBlockchain.BlockchainInformationDetail.LogoUrl" 
-                        class="img-fluid rounded-start" alt="Logo" width="30">
-                        <small>@CurrentConnectedBlockchain.BlockchainInformationDetail.Name</small>
-                    </a>
+    <div class="d-flex justify-content-end col-md-2 text-end me-2">
+        @if (CurrentMode == DesignThemeModes.Dark)
+        {
+            <FluentButton OnClick="(() => OnThemeChanged.InvokeAsync(DesignThemeModes.Light))">
+                <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.DayMode())" />
+            </FluentButton>
+        }
+        else
+        {
+            <FluentButton OnClick="(() => OnThemeChanged.InvokeAsync(DesignThemeModes.Dark))">
+                <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.DarkMode())" />
+            </FluentButton>
+        }
 
-                    @if (SupportedBlockchain.Count() > 0)
-                    {
-                        <ul class="dropdown-menu dropdown-menu-left @(dropdownBlockchain ? "show" : string.Empty)">
-                            @foreach (var current in SupportedBlockchain)
-                            {
-                                <li class="dropdown-item">
-                                    <img src="@CurrentConnectedBlockchain.BlockchainInformationDetail.LogoUrl"
-                                         class="img-fluid rounded-start" alt="Logo" width="30">
-                                    <small>@current.BlockchainInformationDetail.Name</small>
-                                </li>
-                            }
-                        </ul>
-                    }
+        @if (CurrentConnectedBlockchain == null)
+        {
+            <Loader />
+        }
+        else
+        {
+            <FluentButton id="blockchainPopover"
+                        Class="me-2"
+                          IconStart="@(Icon.FromImageUrl(CurrentConnectedBlockchain.BlockchainInformationDetail.LogoUrl))"
+                          Appearance="Appearance.Accent"
+                          @onclick="(() => dropdownBlockchain = !dropdownBlockchain)">
+                <small>@CurrentConnectedBlockchain.BlockchainInformationDetail.Name</small>
+            </FluentButton>
 
-                </li>
-            }
-            
-            @*<li class="nav-item">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                    <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-item user-details">
-                        <a href="javaScript:void();">
-                            <div class="media">
-                                <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
-                                <div class="media-body">
-                                    <h6 class="mt-2 user-title">Sarajhon Mccoy</h6>
-                                    <p class="user-subtitle">mccoy@example.com</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
-                </ul>
-            </li>*@
-        </ul>
-    </nav>
-</header>
-<!--End topbar header-->
+            <FluentPopover Style="width: 300px;" VerticalThreshold="170" AnchorId="blockchainPopover" @bind-Open="dropdownBlockchain">
+                <Header>Blockchains</Header>
+                <Body>
+                    <FluentStack Orientation="Orientation.Vertical">
+                        @foreach (var current in SupportedBlockchain)
+                        {
+                            <li class="dropdown-item">
+                                <FluentIcon Value="@(Icon.FromImageUrl(current.BlockchainInformationDetail.LogoUrl))" />
+                                <small>@current.BlockchainInformationDetail.Name</small>
+                            </li>
+                        }
+                    </FluentStack>
+                </Body>
+            </FluentPopover>
+        }
+    </div>
+    </header>
 
 @code {
+    [Parameter] public EventCallback<DesignThemeModes> OnThemeChanged { get; set; }
+    [Parameter] public DesignThemeModes CurrentMode { get; set; }
+
     public bool IsCurrentlyConnected { get; set; } = false;
     public string BlockchainName { get; set; } = string.Empty;
+
+    public string? searchValue { get; set; } = string.Empty;
 
     private BlockchainDetailsDto CurrentConnectedBlockchain;
     public IEnumerable<BlockchainDetailsDto> SupportedBlockchain = Enumerable.Empty<BlockchainDetailsDto>();

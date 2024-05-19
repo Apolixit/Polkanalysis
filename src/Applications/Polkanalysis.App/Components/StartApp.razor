@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
 
-    <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="Polkanalysis.App.styles.css" />
     <link href="_content/Microsoft.FluentUI.AspNetCore.Components/css/reboot.css" rel="stylesheet" />
 
@@ -24,16 +23,25 @@
     <!-- Icons CSS-->
     <link href="_content/Polkanalysis.Components/assets/css/icons.css" rel="stylesheet" type="text/css" />
     <!-- Sidebar CSS-->
-    <link href="_content/Polkanalysis.Components/assets/css/sidebar-menu.css" rel="stylesheet" />
+    @* <link href="_content/Polkanalysis.Components/assets/css/sidebar-menu.css" rel="stylesheet" /> *@
     <!-- Custom Style-->
-    <link href="_content/Polkanalysis.Components/assets/css/app-style.css" rel="stylesheet" />
+    @* <link href="_content/Polkanalysis.Components/assets/css/app-style.css" rel="stylesheet" /> *@
     
+    <script src="_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.lib.module.js" type="module" async></script>
+    <script app-name="Polkanalysis" src="./_content/Microsoft.FluentUI.AspNetCore.Components/js/initializersLoader.webview.js"></script>
+    <script src="_framework/blazor.webview.js"></script>
+
+    <script src="_content/Microsoft.FluentUI.AspNetCore.Components/js/loading-theme.js" type="text/javascript"></script>
+    <loading-theme storage-name="polkanalysisTheme"></loading-theme>
+
+    <link rel="stylesheet" href="app.css" />
+
     <title>Polkanalysis</title>
     <HeadOutlet />
 </head>
 
 <body class="bg-theme bg-theme-polkadot w-100 h-100">
-    <Routes />
+    <Routes @rendermode="InteractiveServer" />
 
     <!-- Bootstrap core JavaScript-->
     <script src="assets/js/jquery.min.js"></script>
@@ -50,8 +58,6 @@
     <script src="_content/Polkanalysis.Components/assets/js/app-script.js"></script>
     <!-- Chart js -->
     <script src="_content/Polkanalysis.Components/assets/plugins/Chart.js/Chart.min.js"></script>
-
-    <script src="_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.lib.module.js" type="module" async></script>
 
     <!-- Index js -->
     @* <script src="_content/Polkanalysis.Components/assets/js/index.js"></script>

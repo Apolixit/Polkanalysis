@@ -1,68 +1,67 @@
-﻿@using Microsoft.AspNetCore.Components.Routing
-<ul class="sidebar-menu do-nicescrol">
-    <li>
-        <NavLink href="/" Match="NavLinkMatch.All">
-            <i class="bi bi-house"></i> Home
-        </NavLink>
-    </li>
+﻿@using Microsoft.AspNetCore.Components.Routing;
 
-    <li class="sidebar-header">Explorer</li>
-    <li>
-        <NavLink href="blocks">
-            <i class="bi bi-hash"></i> Blocks
-        </NavLink>
-    </li>
-    <li>
-        <NavLink href="extrinsics">
-            <i class="bi bi-journal-album"></i> Extrinsics
-        </NavLink>
-    </li>
+<div class="navmenu">
+    <input type="checkbox" title="Menu expand/collapse toggle" id="navmenu-toggle" class="navmenu-icon" />
+    <label for="navmenu-toggle" class="navmenu-icon"><FluentIcon Value="@(new Icons.Regular.Size20.Navigation())" Color="Color.Fill" /></label>
+    <nav class="sitenav" aria-labelledby="main-menu" onclick="document.getElementById('navmenu-toggle').click();">
+        <FluentNavMenu Id="main-menu" Collapsible="true" Width="250" Title="Navigation menu" @bind-Expanded="expanded">
+            <FluentNavLink Href="/" Match="NavLinkMatch.All"
+                           Icon="@(new Icons.Regular.Size20.Home())">
+                Home
+            </FluentNavLink>
 
-    <li class="sidebar-header">Accounts</li>
-    <li>
-        <NavLink href="accounts">
-            <i class="bi bi-person-circle"></i> Members
-        </NavLink>
-    </li>
+            <FluentNavGroup Icon="@(new PolkanalysisIcons.PolkadotIcons.BlockExplorer())" Expanded="true">
+                <TitleTemplate><h5>Explorer</h5></TitleTemplate>
+                <ChildContent>
+                    <FluentNavLink Href="blocks"
+                                   Icon="@(new PolkanalysisIcons.PolkadotIcons.BlockNumber())">
+                        Blocks
+                    </FluentNavLink>
+                    <FluentNavLink Href="extrinsics"
+                                   Icon="@(new PolkanalysisIcons.PolkadotIcons.Extrinsic())">
+                        Extrinsics
+                    </FluentNavLink>
+                </ChildContent>
+            </FluentNavGroup>
 
-    <li class="sidebar-header">Runtime</li>
-    <li>
-        <NavLink href="modules">
-            <i class="bi bi-infinity"></i> Modules
-        </NavLink>
-    </li>
+            <FluentNavGroup Icon="@(new PolkanalysisIcons.PolkadotIcons.AccountPortability())" Expanded="true">
+                <TitleTemplate>
+                    <h5>Accounts</h5>
+                </TitleTemplate>
+                <ChildContent>
+                    <FluentNavLink Href="accounts" Icon="@(new Icons.Regular.Size24.People())">Members</FluentNavLink>
+                </ChildContent>
+            </FluentNavGroup>
 
-    <li class="sidebar-header">Staking</li>
-    <li>
-        <NavLink href="pools">
-            <i class="bi bi-stack"></i> Pools
-        </NavLink>
-    </li>
-    <li>
-        <NavLink href="validators">
-            <i class="bi bi-person-fill-check"></i> Validators
-        </NavLink>
-    </li>
-    <li>
-        <NavLink href="nominators">
-            <i class="bi bi-person-hearts"></i> Nominators
-        </NavLink>
-    </li>
+            <FluentNavGroup Icon="@(new PolkanalysisIcons.PolkadotIcons.Runtime())" Expanded="true">
+                <TitleTemplate><h5>Runtime</h5></TitleTemplate>
+                <ChildContent>
+                    <FluentNavLink Href="modules" Icon="@(new PolkanalysisIcons.PolkadotIcons.Modules())">Modules</FluentNavLink>
+                </ChildContent>
+            </FluentNavGroup>
 
-    <li class="sidebar-header">Parachains</li>
-    <li>
-        <NavLink href="parachains">
-            <i class="bi bi-link-45deg"></i> Parachain
-        </NavLink>
-    </li>
-    <li>
-        <NavLink href="crowdloans">
-            <i class="bi bi-coin"></i> Crowloans
-        </NavLink>
-    </li>
-</ul>
+            <FluentNavGroup Icon="@(new PolkanalysisIcons.PolkadotIcons.Staking())" Expanded="true">
+                <TitleTemplate><h5>Staking</h5></TitleTemplate>
+                <ChildContent>
+                    <FluentNavLink Href="pools" Icon="@(new PolkanalysisIcons.PolkadotIcons.Pools())">Pools</FluentNavLink>
+                    <FluentNavLink Href="validators" Icon="@(new PolkanalysisIcons.PolkadotIcons.Validators())">Validators</FluentNavLink>
+                    <FluentNavLink Href="nominators" Icon="@(new PolkanalysisIcons.PolkadotIcons.Nominators())">Nominators</FluentNavLink>
+                </ChildContent>
+            </FluentNavGroup>
 
+            <FluentNavGroup Icon="@(new PolkanalysisIcons.PolkadotIcons.Dex())" Expanded="true">
+                <TitleTemplate><h5>Parachains</h5></TitleTemplate>
+                <ChildContent>
+                    <FluentNavLink Href="parachains" Icon="@(new PolkanalysisIcons.PolkadotIcons.Parachains())">Parachain</FluentNavLink>
+                    <FluentNavLink Href="crowloans" Icon="@(new PolkanalysisIcons.PolkadotIcons.Crowdloans())">Crowloans</FluentNavLink>
+                </ChildContent>
+            </FluentNavGroup>
+        </FluentNavMenu>
+    </nav>
+</div>
+    
 
 @code {
-
+    private bool expanded = true;
 }
+

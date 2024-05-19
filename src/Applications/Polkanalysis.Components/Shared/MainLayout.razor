@@ -5,11 +5,12 @@
 @using Polkanalysis.Domain.Contracts.Primary.Notification;
 @using Polkanalysis.Domain.Contracts.Secondary;
 @using Polkanalysis.Infrastructure.Blockchain.Contracts;
+@using Microsoft.FluentUI.AspNetCore.Components.DesignTokens;
 
 @inherits LayoutComponentBase
 @inject ISubstrateService _substrateService;
 @inject IMediator _mediator;
-@inject ILogger<MainLayout> logger;
+@inject ILogger<MainLayout> _logger;
 @inject IWebsiteConfiguration _websiteConfiguration;
 
 @if (_websiteConfiguration.Maintenance.IsActivated)
@@ -20,30 +21,20 @@ else
 {
     @if (isCurrentlyConnected)
     {
-        <div id="wrapper">
-            <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-                <div class="brand-logo">
-                    <a href="index.html">
-                        <img src="_content/Polkanalysis.Components/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-                        <h5 class="logo-text">Polkanalysis</h5>
-                    </a>
-                </div>
-                <SideMenu></SideMenu>
-            </div>
-            <HeaderMenu></HeaderMenu>
-
-            <div class="clearfix"></div>
-
-            <div class="content-wrapper">
-                <div class="container-fluid">
-                    @Body
-                    <div class="overlay toggle-menu"></div>
-                </div>
-
-            </div>
-            <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+        <FluentDesignTheme @bind-Mode="@Mode" CustomColor="#E6007A" StorageName="polkanalysisTheme" />
+                       
+        <FluentLayout>
+            <HeaderMenu OnThemeChanged="onModeChanged" CurrentMode="@Mode"></HeaderMenu>
+            <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
+                <SideMenu />
+                <FluentBodyContent Class="body-content">
+                    <div class="content">
+                        @Body
+                    </div>
+                </FluentBodyContent>
+            </FluentStack>
             <Footer />
-        </div>
+        </FluentLayout>
     }
     else
     {
@@ -51,29 +42,60 @@ else
     }
 }
 
+<FluentToastProvider />
+<FluentDialogProvider />
+<FluentTooltipProvider />
+<FluentMessageBarProvider />
+
+
 @code {
     protected GlobalSettings? globalSettings { get; set; }
     protected bool isCurrentlyConnected = false;
     private bool _forceRerender;
 
+    public DesignThemeModes Mode { get; set; }
+
+    // [Inject] public NeutralBaseColor NeutralBaseColor { get; set; }
+    // [Inject] public AccentBaseColor AccentBaseColor { get; set; }
+    // [Inject] public FillColor FillColor { get; set; }
+
     protected override bool ShouldRender() => true;
 
     protected override void OnInitialized()
     {
+        _logger.LogInformation($"Is connected");
         globalSettings = new GlobalSettings()
-        {
-            DisplayType = GlobalSettings.ViewDisplayType.CardElement
-        };
+            {
+                DisplayType = GlobalSettings.ViewDisplayType.CardElement
+            };
 
         _substrateService.CheckBlockchainStateAsync((bool isConnected) =>
         {
             if (isCurrentlyConnected != isConnected)
             {
-                logger.LogInformation($"Is connected : {isConnected}");
+                Console.WriteLine($"Is connected : {isConnected}");
                 isCurrentlyConnected = isConnected;
 
                 InvokeAsync(() => StateHasChanged());
             }
         }, CancellationToken.None);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            // await AccentBaseClr.WithDefault("#DEDBEF".ToSwatch());
+            // await AccentBaseColor.WithDefault("#E6007A".ToSwatch()); // Polkadot
+            // await AccentBaseColor.WithDefault("#000000".ToSwatch()); // Kusama
+            // await AccentBaseColor.WithDefault("#f5736d".ToSwatch()); // Bajun
+
+            // await AccentFillRest.WithDefault("#185ABD".ToSwatch());
+        }
+    }
+
+    public void onModeChanged(DesignThemeModes mode)
+    {
+        Mode = mode;
     }
 }
