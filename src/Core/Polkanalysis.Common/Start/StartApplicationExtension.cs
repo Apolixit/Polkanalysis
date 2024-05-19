@@ -17,7 +17,7 @@ namespace Polkanalysis.Common.Start
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
             IConfiguration config = new ConfigurationBuilder()
-                        .AddJsonFile($"appsettings.{environment}.json")
+                        .AddJsonFile($"appsettings.json")
                         .AddEnvironmentVariables()
                         .Build();
 

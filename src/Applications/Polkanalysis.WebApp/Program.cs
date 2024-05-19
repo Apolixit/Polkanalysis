@@ -11,6 +11,7 @@ using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using Serilog;
 using Serilog.Extensions.Logging;
+using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Polkanalysis.WebApp
 {
@@ -31,6 +32,7 @@ namespace Polkanalysis.WebApp
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
+            builder.Services.AddFluentUIComponents();
 
             builder.Services.AddDbContext<SubstrateDbContext>(options =>
             {
@@ -58,8 +60,8 @@ namespace Polkanalysis.WebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             } else {
-                logger.Information("Waiting 20s to ensure database is created...");
-                Thread.Sleep(20_000);
+                //logger.Information("Waiting 20s to ensure database is created...");
+                //Thread.Sleep(20_000);
             }
 
             app.UseHttpsRedirection();

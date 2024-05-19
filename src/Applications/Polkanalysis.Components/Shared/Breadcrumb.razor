@@ -37,6 +37,19 @@
     </ol>
 </nav>*@
 
+<FluentBreadcrumb>
+    <FluentBreadcrumbItem Href="/">
+        Home
+    </FluentBreadcrumbItem>
+    @if (Elements.Any())
+    {
+        @foreach (var elem in Elements)
+        {
+            <FluentBreadcrumbItem Href="@(!string.IsNullOrEmpty(elem.Url) ? elem.Url : string.Empty)">Breadcrumb item 3</FluentBreadcrumbItem>
+        }
+    }
+</FluentBreadcrumb>
+@* 
 <div class="row my-3">
     <div class="col">
         <span>
@@ -62,7 +75,7 @@
             }
         }
     </div>
-</div>
+</div> *@
 
 @code {
     [Parameter]
