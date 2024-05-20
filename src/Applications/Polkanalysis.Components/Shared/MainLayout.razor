@@ -63,7 +63,6 @@ else
 
     protected override void OnInitialized()
     {
-        _logger.LogInformation($"Is connected");
         globalSettings = new GlobalSettings()
             {
                 DisplayType = GlobalSettings.ViewDisplayType.CardElement
@@ -73,7 +72,7 @@ else
         {
             if (isCurrentlyConnected != isConnected)
             {
-                Console.WriteLine($"Is connected : {isConnected}");
+                _logger.LogInformation($"Is connected : {isConnected}");
                 isCurrentlyConnected = isConnected;
 
                 InvokeAsync(() => StateHasChanged());

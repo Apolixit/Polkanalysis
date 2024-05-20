@@ -3,7 +3,7 @@
 @using Polkanalysis.Domain.Contracts.Primary.Accounts;
 @inject IMediator _mediator;
 
-<DataMediator Request="request" Context="Accounts">
+<DataCall MediatorReq="mediatorRequest" ApiReq="apiRequest" Context="Accounts">
     <Breadcrumb Elements="breadcrumbDtos" />
 
     <div class="card">
@@ -27,10 +27,11 @@
             </ComponentListView>
         </div>
     </div>
-</DataMediator>
+</DataCall>
 
 @code {
-    private Task<Result<PagedResponseDto<AccountLightDto>, ErrorResult>>? request;
+    private Task<Result<PagedResponseDto<AccountLightDto>, ErrorResult>>? mediatorRequest;
+    private ApiRequest<PagedResponseDto<AccountLightDto>>? apiRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
     {
         new BreadcrumbDto("Accounts", "/accounts")
@@ -38,6 +39,7 @@
 
     protected override void OnInitialized()
     {
-        request = _mediator.Send(new AccountsQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new AccountsQuery(), CancellationToken.None);
+        apiRequest = new ApiRequest<PagedResponseDto<AccountLightDto>>(ApiRoutes.GetAccountsAsync);
     }
 }

@@ -35,13 +35,13 @@ else
         else
         {
             <div>
-                Polkanalysis API is in trouble and does not respond :'( 
+                Polkanalysis API is in trouble and does not respond :'(
             </div>
         }
     }
     else
     {
-        @ChildContent(Response)
+        @ChildContent(Response!)
         ;
     }
 }
@@ -64,33 +64,28 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-        if (Request == null)
-        {
+        if (Request is null)
             throw new ArgumentNullException($"{nameof(Request)}");
-        }
 
-        if (Request != null)
+        try
         {
-            try
-            {
-                Request.Result = await apiService.GetHelperAsync<TRes>(Request.Url);
-                Response = Request.Result;
+            Request.Result = await apiService.GetHelperAsync<TRes>(Request.Url);
+            Response = Request.Result;
 
-                //Console.WriteLine($"{Request.Url} response received in Data component (response = {Response})");
-            }
-            catch (HttpRequestException)
-            {
-                displayErrorHttpTemplate = true;
-            }
-            catch(Exception)
-            {
-                displayErrorTemplate = true;
-            }
-            finally
-            {
-                querying = false;
-                StateHasChanged();
-            }
-        } 
+            //Console.WriteLine($"{Request.Url} response received in Data component (response = {Response})");
+        }
+        catch (HttpRequestException)
+        {
+            displayErrorHttpTemplate = true;
+        }
+        catch (Exception)
+        {
+            displayErrorTemplate = true;
+        }
+        finally
+        {
+            querying = false;
+            StateHasChanged();
+        }
     }
 }

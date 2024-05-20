@@ -7,7 +7,7 @@
 
 @inject IMediator _mediator;
 
-<DataMediator Request="request" Context="Validators">
+<DataCall MediatorReq="mediatorRequest" Context="Validators">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
     <div class="card">
@@ -33,10 +33,10 @@
             </ComponentListView>
         </div>
     </div>
-</DataMediator>
+</DataCall>
 
 @code {
-    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>? request;
+    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>? mediatorRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
         {
             new BreadcrumbDto("Validators", "/validators")
@@ -44,6 +44,6 @@
 
     protected override void OnInitialized()
     {
-        request = _mediator.Send(new ValidatorsQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new ValidatorsQuery(), CancellationToken.None);
     }
 }

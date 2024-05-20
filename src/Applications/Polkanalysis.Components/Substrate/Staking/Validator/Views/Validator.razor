@@ -15,7 +15,7 @@
     </div>
 </div>
 
-<DataMediator Request="request">
+<DataCall MediatorReq="mediatorRequest">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
     <div>Stash address : @context.StashAddress</div>
@@ -36,16 +36,16 @@
         </ul>
     }
     <div>Session Key: @context.SessionKey</div>
-</DataMediator>
+</DataCall>
 
 @code {
     [Parameter] public required string ValidatorAddress { get; set; }
-    private Task<Result<ValidatorDto, ErrorResult>> request;
+    private Task<Result<ValidatorDto, ErrorResult>> mediatorRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
     protected async override Task OnInitializedAsync()
     {
-        request = _mediator.Send(new ValidatorDetailQuery()
+        mediatorRequest = _mediator.Send(new ValidatorDetailQuery()
         {
             ValidatorAddress = ValidatorAddress
         }, CancellationToken.None);

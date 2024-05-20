@@ -3,7 +3,7 @@
 @using Polkanalysis.Domain.Contracts.Primary.Parachain;
 @inject IMediator _mediator;
 
-<DataMediator Request="request">
+<DataCall MediatorReq="mediatorRequest">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
     <div class="card">
@@ -11,16 +11,16 @@
             @context.ParachainId
         </div>
     </div>
-</DataMediator>
+</DataCall>
 
 @code {
     [Parameter] public int ParachainId { get; set; }
-    private Task<Result<ParachainDto, ErrorResult>>? request;
+    private Task<Result<ParachainDto, ErrorResult>>? mediatorRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
     protected override void OnInitialized()
     {
-        request = _mediator.Send(new ParachainDetailQuery()
+        mediatorRequest = _mediator.Send(new ParachainDetailQuery()
         {
             ParachainId = (uint)ParachainId
         }, CancellationToken.None);

@@ -4,7 +4,7 @@
 
 @inject IMediator _mediator;
 
-<DataMediator Request="request" Context="Nominators">
+<DataCall MediatorReq="mediatorRequest" Context="Nominators">
     <Breadcrumb Elements="breadcrumbDtos" />
 
     <div class="card">
@@ -31,10 +31,10 @@
             </ComponentListView>
         </div>
     </div>
-</DataMediator>
+</DataCall>
 
 @code {
-    private Task<Result<IEnumerable<NominatorLightDto>, ErrorResult>>? request;
+    private Task<Result<IEnumerable<NominatorLightDto>, ErrorResult>>? mediatorRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos = new List<BreadcrumbDto>()
         {
             new BreadcrumbDto("Nominators", "/nominators")
@@ -42,6 +42,6 @@
 
     protected override void OnInitialized()
     {
-        request = _mediator.Send(new NominatorsQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new NominatorsQuery(), CancellationToken.None);
     }
 }

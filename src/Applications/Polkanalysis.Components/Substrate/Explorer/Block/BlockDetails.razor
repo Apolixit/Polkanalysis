@@ -11,7 +11,7 @@
 @inject IApiService apiService;
 @inject IMediator _mediator;
 
-<DataMediator Request="request">
+<DataCall MediatorReq="mediatorRequest">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
     
     <div class="card">
@@ -74,14 +74,14 @@
             </table>
         </div>
     </div>
-</DataMediator>
+</DataCall>
 
 
 
 @code {
     [Parameter] public int? blockId { get; set; }
     [Parameter] public string? blockHash { get; set; }
-    private Task<Result<BlockDto, ErrorResult>>? request;
+    private Task<Result<BlockDto, ErrorResult>>? mediatorRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos = default!;
 
     protected override async Task OnInitializedAsync()
@@ -89,10 +89,10 @@
         //blockDetail = await apiService.GetHelperAsync<BlockDetailsQuery, BlockDto>("/api/polkadot/block", new BlockDetailsQuery((uint)blockId));
         if(blockId != null)
         {
-            request = _mediator.Send(new BlockDetailsQuery((uint)blockId), CancellationToken.None);
+            mediatorRequest = _mediator.Send(new BlockDetailsQuery((uint)blockId), CancellationToken.None);
         } else if(!string.IsNullOrEmpty(blockHash))
         {
-            request = _mediator.Send(new BlockDetailsQuery(blockHash), CancellationToken.None);
+            mediatorRequest = _mediator.Send(new BlockDetailsQuery(blockHash), CancellationToken.None);
         }
         //    StateHasChanged();
 

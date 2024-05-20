@@ -6,7 +6,7 @@
     <i class="bi bi-hash"></i> Parachain
 </div>
 <div class="card-body">
-    <DataMediator Request="request" Context="Parachain">
+    <DataCall MediatorReq="mediatorRequest" Context="Parachain">
         <div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-4">
             <Enumerable Elems="Parachain.Where(x=> !string.IsNullOrEmpty(x.Name)).OrderBy(x => x.ParachainId).Take(10)">
                 <ElemsContent>
@@ -14,15 +14,15 @@
                 </ElemsContent>
             </Enumerable>
         </div>
-    </DataMediator>
+    </DataCall>
 </div>
 
 
 @code {
-    private Task<Result<IEnumerable<ParachainLightDto>, ErrorResult>>? request;
+    private Task<Result<IEnumerable<ParachainLightDto>, ErrorResult>>? mediatorRequest;
 
     protected override void OnInitialized()
     {
-        request = _mediator.Send(new ParachainsQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new ParachainsQuery(), CancellationToken.None);
     }
 }
