@@ -1,0 +1,58 @@
+﻿@typeparam TRes
+
+@using Microsoft.Extensions.Configuration
+@using Polkanalysis.Components.Services.Http
+@inject IConfiguration _configuration;
+
+
+@if (backendCall == BackendCall.Api)
+{
+    <DataApi TRes="TRes" Request="ApiReq" Context="val">
+        @ChildContent(val)
+    </DataApi>
+}
+else
+{
+    <DataMediator Request="MediatorReq" TRes="TRes" Context="val">
+        @ChildContent(val)
+    </DataMediator>
+}
+
+@code {
+    [Parameter] public required ApiRequest<TRes>? ApiReq { get; set; }
+    [Parameter] public required Task<Result<TRes, ErrorResult>>? MediatorReq { get; set; }
+
+    [Parameter] public required RenderFragment<TRes> ChildContent { get; set; }
+
+    private BackendCall backendCall = BackendCall.Mediator;
+
+    protected override void OnInitialized()
+    {
+        // Check the backend call type into the configuration. If it is not set, the default value is Api
+        var callType = _configuration["BackendCall"];
+
+        var backendCall = callType switch
+        {
+            "Api" => BackendCall.Api,
+            "Mediator" => BackendCall.Mediator,
+            _ => BackendCall.Api
+        };
+
+        if (backendCall == BackendCall.Api)
+        {
+            if (ApiReq is null)
+                throw new InvalidOperationException($"DataCall component. Should request by Api, but Api request is null");
+        }
+        else if (backendCall == BackendCall.Mediator)
+        {
+            if (MediatorReq is null)
+                throw new InvalidOperationException($"DataCall component. Should request by Mediator, but Mediator request is null");
+        }
+    }
+
+    public enum BackendCall
+    {
+        Api,
+        Mediator
+    }
+}

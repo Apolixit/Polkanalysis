@@ -16,20 +16,20 @@
     </div>
 </div>
 
-<DataMediator Request="request">
+<DataCall MediatorReq="mediatorRequest">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
     <div>Reward pool : @context.RewardPool</div>
-</DataMediator>
+</DataCall>
 
 @code {
     [Parameter] public int PoolId { get; set; }
-    private Task<Result<PoolDto, ErrorResult>>? request;
+    private Task<Result<PoolDto, ErrorResult>>? mediatorRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
     protected async override Task OnInitializedAsync()
     {
-        request = _mediator.Send(new PoolDetailQuery()
+        mediatorRequest = _mediator.Send(new PoolDetailQuery()
             {
                 poolId = (uint)PoolId
             }, CancellationToken.None);

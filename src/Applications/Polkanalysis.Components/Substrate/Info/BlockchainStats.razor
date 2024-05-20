@@ -5,15 +5,11 @@
 @inject IApiService apiService;
 @inject IMediator _mediator;
 
-<div class="card-header">
-    <i class="bi bi-info-circle"></i>
-    Summary datas
-</div>
-<div class="card-body">
-    <DataMediator Request="request">
+<div class="row">
+    <DataCall MediatorReq="mediatorRequest" ApiReq="apiRequest">
         <div class="card-content">
             <div class="row row-group m-0">
-                <div class="col-12 col-lg-6 col-xl-3 border-light">
+                <div class="col-12 col-lg-6 col-xl-3">
                     <div class="card-body">
                         <h5 class="text-white mb-0">Transfers volume = @context.TransfersVolume <span class="float-right"><i class="fa fa-shopping-cart"></i></span></h5>
                         <div class="progress my-3" style="height:3px;">
@@ -51,24 +47,18 @@
                 </div>
             </div>
         </div>
-    </DataMediator>
+    </DataCall>
 </div>
 
 @code {
     public bool IsLoading = true;
     public double AmountTransfer;
-    //private ApiRequest<GlobalStatsDto> request;
-    private Task<Result<GlobalStatsDto, ErrorResult>>? request;
+    private ApiRequest<GlobalStatsDto>? apiRequest;
+    private Task<Result<GlobalStatsDto, ErrorResult>>? mediatorRequest;
 
-    protected async override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        // GlobalStatsQuery
-        //var res = await apiService.GetHelperAsync<GlobalStatsDto>("/api/polkadot/stats/sumup");
-        //request = new ApiRequest<GlobalStatsDto>("/api/polkadot/stats/sumup");
-        request = _mediator.Send(new GlobalStatsQuery(), CancellationToken.None);
-        //AmountTransfer = res.TransfersVolume;
-        //IsLoading = false;
-
-
+        apiRequest = new ApiRequest<GlobalStatsDto>(ApiRoutes.PolkadotStatsSumUp);
+        mediatorRequest = _mediator.Send(new GlobalStatsQuery(), CancellationToken.None);
     }
 }

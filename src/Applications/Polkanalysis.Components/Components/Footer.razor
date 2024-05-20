@@ -1,27 +1,21 @@
 ﻿@using Microsoft.FluentUI.AspNetCore.Components.DesignTokens;
 
-
-<div class="d-flex flex-row">
-    <div class="p-2"><FluentNavLink Href="contact">Contact</FluentNavLink></div>
-    <div class="p-2"><FluentNavLink Href="grants">Web3 Grants</FluentNavLink></div>
-    <div class="p-2"><FluentNavLink Href="fasq">FAQs</FluentNavLink></div>
-    <div class="p-2"><FluentNavLink Href="about">About</FluentNavLink></div>
-</div>
-
-<div class="d-flex flex-row-reverse">
-    <div class="p-2">
-        <a href="https://github.com/Apolixit/Polkanalysis" class="nav-link px-2" target="_blank">
-            <i class="bi bi-github"></i>
-        </a>
+<FluentFooter>
+    <div class="d-flex flex-row">
+        <div class="p-2"><FluentNavLink Href="https://github.com/SubstrateGaming">Substrate Gaming</FluentNavLink></div>
+        <div class="p-2"><FluentNavLink Href="contact">Contact</FluentNavLink></div>
+        <div class="p-2"><FluentNavLink Href="about">About</FluentNavLink></div>
     </div>
-    <div class="p-2">
-        <FluentNavLink Href="grants">
-            <a href="https://twitter.com/home" class="nav-link px-2" target="_blank">
-                <i class="bi bi-twitter"></i>
+
+    <div class="d-flex flex-row-reverse">
+        <div class="p-2">
+            <a href="https://github.com/Apolixit/Polkanalysis" class="nav-link px-2" target="_blank">
+                <FluentIcon Value="@(new PolkanalysisIcons.BootstrapIcon.Github())" />
             </a>
-        </FluentNavLink>
+        </div>
+        <div class="p-2 text-center w-100">
+            Copyright © @DateTime.Now.Year Polkanalysis
+        </div>
     </div>
-    <div class="p-2 text-center w-100">
-        Copyright © @DateTime.Now.Year Polkanalysis
-    </div>
-</div>
+
+</FluentFooter>

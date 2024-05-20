@@ -4,12 +4,9 @@
 @inject IMediator _mediator;
 
 <div class="card h-100">
-    <div class="card-header">
-        <i class="bi bi-coin"></i> Price Histo
-    </div>
     <div class="card-body">
         <div class="row">
-            <DataMediator Request="requestHistoricalPrice">
+            <DataCall MediatorReq="requestMediatorHistoricalPrice">
                 <ApexChart 
                     TItem="TokenPriceDto" 
                     Title="Chart Title"
@@ -25,17 +22,17 @@
                         XValue="@(e => e.Date)"
                         YValue="@(e => (decimal)Math.Round(e.Price, 2))" />
                 </ApexChart>
-            </DataMediator>
+            </DataCall>
         </div>
     </div>
 </div>
 
 @code {
-    private Task<Result<HistoricalPriceDto, ErrorResult>>? requestHistoricalPrice;
+    private Task<Result<HistoricalPriceDto, ErrorResult>>? requestMediatorHistoricalPrice;
 
     protected override void OnInitialized()
     {
-        requestHistoricalPrice = _mediator.Send(new HistoricalPriceQuery()
+        requestMediatorHistoricalPrice = _mediator.Send(new HistoricalPriceQuery()
         {
             From = DateTime.Now.AddMonths(-1),
             To = DateTime.Now

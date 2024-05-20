@@ -137,6 +137,24 @@ namespace Polkanalysis.Components.Components.CustomIcons
                 }
             }
 
+            public class RelayChain : Icon
+            {
+                private const string SVG_CONTENT = "<svg width=\"18\" height=\"18\" viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke=\"var(--accent-fill-rest)\"><path d=\"M14 26C20.6274 26 26 20.6274 26 14C26 7.37258 20.6274 2 14 2C7.37258 2 2 7.37258 2 14C2 20.6274 7.37258 26 14 26Z\"></path><path d=\"M14 18C16.2091 18 18 16.2091 18 14C18 11.7909 16.2091 10 14 10C11.7909 10 10 11.7909 10 14C10 16.2091 11.7909 18 14 18Z\"></path><path d=\"M14.0078 6.01711L13.9907 6\" stroke-miterlimit=\"10\"></path><path d=\"M14.0078 22L13.9907 21.9829\" stroke-miterlimit=\"10\"></path><path d=\"M21.9834 14.0086L22.0005 13.9915\" stroke-miterlimit=\"10\"></path><path d=\"M6 14.0086L6.01711 13.9915\" stroke-miterlimit=\"10\"></path><path d=\"M19.6507 8.36254V8.33691\" stroke-miterlimit=\"10\"></path><path d=\"M8.34877 19.6641V19.6385\" stroke-miterlimit=\"10\"></path><path d=\"M19.6379 19.6513H19.6636\" stroke-miterlimit=\"10\"></path><path d=\"M8.33597 8.34973H8.3616\" stroke-miterlimit=\"10\"></path></svg>";
+
+                public RelayChain() : base("RelayChain", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Whitepaper : Icon
+            {
+                private const string SVG_CONTENT = "<svg width=\"18\" height=\"18\" viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke=\"var(--accent-fill-rest)\"><path d=\"M5.00001 26.0005V2.00049H17L23.4615 8.46203V26.0005H5.00001Z\"></path><path d=\"M23 8.46201H17V2.50024\"></path></svg>";
+
+                public Whitepaper() : base("Whitepaper", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
             public class DayMode : Icon
             {
                 private const string SVG_CONTENT = "<svg width=\"18\" height=\"18\" viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke=\"var(--accent-fill-rest)\"><path d=\"M14.0528 19.1297C16.8142 19.1297 19.0528 16.8901 19.0528 14.1273C19.0528 11.3646 16.8142 9.12502 14.0528 9.12502C11.2914 9.12502 9.0528 11.3646 9.0528 14.1273C9.0528 16.8901 11.2914 19.1297 14.0528 19.1297Z\"></path><path d=\"M14.0527 26.125L14.0527 23.125\"></path><path d=\"M14.5381 5.125L14.5381 2.125\"></path><path d=\"M2.05273 14.125L5.05273 14.125\"></path><path d=\"M23.0527 14.125L26.0527 14.125\"></path><path d=\"M5.56722 22.6103L7.68854 20.489\"></path><path d=\"M20.9019 7.76112L23.0232 5.6398\"></path><path d=\"M6.05281 5.6397L8.17413 7.76102\"></path><path d=\"M20.4167 20.4889L22.538 22.6102\"></path></svg>";
@@ -158,6 +176,24 @@ namespace Polkanalysis.Components.Components.CustomIcons
 
         public static class BootstrapIcon
         {
+            public class Coin : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-coin\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z\"/>\r\n  <path d=\"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16\"/>\r\n  <path d=\"M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12\"/>\r\n</svg>";
+
+                public Coin() : base("Coin", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Chrome : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-browser-chrome\" viewBox=\"0 0 16 16\">\r\n  <path fill-rule=\"evenodd\" d=\"M16 8a8 8 0 0 1-7.022 7.94l1.902-7.098a3 3 0 0 0 .05-1.492A3 3 0 0 0 10.237 6h5.511A8 8 0 0 1 16 8M0 8a8 8 0 0 0 7.927 8l1.426-5.321a3 3 0 0 1-.723.255 3 3 0 0 1-1.743-.147 3 3 0 0 1-1.043-.7L.633 4.876A8 8 0 0 0 0 8m5.004-.167L1.108 3.936A8.003 8.003 0 0 1 15.418 5H8.066a3 3 0 0 0-1.252.243 2.99 2.99 0 0 0-1.81 2.59M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4\"/>\r\n</svg>";
+
+                public Chrome() : base("Chrome", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
             public class Github : Icon
             {
                 private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\r\n</svg>";
@@ -172,6 +208,33 @@ namespace Polkanalysis.Components.Components.CustomIcons
                 private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-twitter\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z\"/>\r\n</svg>";
 
                 public Twitter() : base("Twitter", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Discord : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-discord\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612\"/>\r\n</svg>";
+
+                public Discord() : base("Discord", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Medium : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-medium\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8m4.95 0c0 2.34-1.01 4.236-2.256 4.236S9.463 10.339 9.463 8c0-2.34 1.01-4.236 2.256-4.236S13.975 5.661 13.975 8M16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795\"/>\r\n</svg>";
+
+                public Medium() : base("Medium", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Telegram : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-telegram\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09\"/>\r\n</svg>";
+
+                public Telegram() : base("Telegram", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
                 {
                 }
             }

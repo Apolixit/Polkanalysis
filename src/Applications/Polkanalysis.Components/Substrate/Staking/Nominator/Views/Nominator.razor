@@ -16,7 +16,7 @@
 </div>
 
 
-<DataMediator Request="request">
+<DataCall MediatorReq="mediatorRequest">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
     <div class="row">
         <div class="card">
@@ -62,7 +62,7 @@
                 Validators voted
             </div>
             <div class="card-body">
-                <DataMediator Request="requestVotedValidator" Context="votedValidatorContext">
+                <DataCall MediatorReq="requestMediatorVotedValidator" Context="votedValidatorContext">
                     @if (votedValidatorContext != null && votedValidatorContext.Any())
                     {
                         <ul>
@@ -76,27 +76,27 @@
                     {
                         <div>No validators voted by this nominator</div>
                     }
-                </DataMediator>
+                </DataCall>
             </div>
         </div>
     </div>
-</DataMediator>
+</DataCall>
 
 @code {
     [Parameter] public required string NominatorAddress { get; set; }
-    private Task<Result<NominatorDto, ErrorResult>>? request;
-    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>? requestVotedValidator;
+    private Task<Result<NominatorDto, ErrorResult>>? mediatorRequest;
+    private Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>>? requestMediatorVotedValidator;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos;
 
     protected async override Task OnInitializedAsync()
     {
-        request = _mediator.Send(new NominatorDetailQuery()
+        mediatorRequest = _mediator.Send(new NominatorDetailQuery()
             {
                 NominatorAddress = NominatorAddress
             }, CancellationToken.None);
 
         // Get validators voted by this nominator account
-        requestVotedValidator = _mediator.Send(new ValidatorsQuery()
+        requestMediatorVotedValidator = _mediator.Send(new ValidatorsQuery()
             {
                 ElectedByNominator = NominatorAddress
             }, CancellationToken.None);

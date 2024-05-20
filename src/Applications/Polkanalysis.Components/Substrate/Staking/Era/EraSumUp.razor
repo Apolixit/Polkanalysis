@@ -2,7 +2,7 @@
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 @inject IMediator _mediator;
 
-<DataMediator Request="request" Context="currentEra">
+<DataCall MediatorReq="mediatorRequest" Context="currentEra">
     <div class="row">
         <div class="card">
             <div class="card-body">
@@ -16,13 +16,13 @@
         </div>
     </div>
     
-</DataMediator>
+</DataCall>
 
 @code {
-    private Task<Result<CurrentEraDto, ErrorResult>>? request;
+    private Task<Result<CurrentEraDto, ErrorResult>>? mediatorRequest;
 
     protected override void OnInitialized()
     {
-        request = _mediator.Send(new CurrentEraInformationQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new CurrentEraInformationQuery(), CancellationToken.None);
     }
 }

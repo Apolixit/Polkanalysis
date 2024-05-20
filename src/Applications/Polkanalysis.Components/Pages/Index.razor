@@ -1,16 +1,55 @@
 ﻿@page "/"
 
-
-<FluentCard>
-  <h2>Hello World!</h2>
-  <FluentButton Appearance="@Appearance.Accent">Click Me</FluentButton>
-</FluentCard>
-
 <!--Start Dashboard Content-->
+<FluentGrid AdaptiveRendering="true" Justify="JustifyContent.FlexStart">
+    <FluentGridItem xs="12" sm="6">
+        <FluentLabel Typo="Typography.PaneHeader">Polkadot</FluentLabel>
+        <div class="p-4">
+            <BlockchainIdentity />
+        </div>
+    </FluentGridItem>
+    <FluentGridItem xs="12" sm="6">
+        <FluentLabel Typo="Typography.H2">Summary datas</FluentLabel>
+        <div class="p-4">
+            <BlockchainStats />
+        </div>
+    </FluentGridItem>
+
+    <FluentGridItem xs="12" sm="6">
+        <FluentLabel Typo="Typography.H2">
+            <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.BlockNumber())" />
+            Latest block
+        </FluentLabel>
+        <div class="p-4">
+            <LatestBlock />
+        </div>
+    </FluentGridItem>
+    <FluentGridItem xs="12" sm="6">
+        <FluentLabel Typo="Typography.H2">
+            <FluentIcon Value="@(new PolkanalysisIcons.BootstrapIcon.Coin())" />
+            Price Histo
+        </FluentLabel>
+        <div class="p-4">
+            <Polkanalysis.Components.Substrate.Price.PriceHisto />
+        </div>
+    </FluentGridItem>
+
+    @* <FluentGridItem xs="12" sm="6">
+        <div class="card">
+            <StakingSummary />
+        </div>
+    </FluentGridItem>
+    <FluentGridItem xs="12" sm="6">
+        <div class="card">
+            <ParachainSummary />
+        </div>
+    </FluentGridItem> *@
+</FluentGrid>
+@* 
 <div class="row mb-3">
     <div class="col-sm-6 border-light">
         <div class="card h-100">
-            <BlockchainIdentity />
+            <StakingSummary />
         </div>
     </div>
     <div class="col-sm-6 h-100 border-light">
@@ -44,4 +83,4 @@
         </div>
 
     </div>
-</div>
+</div> *@

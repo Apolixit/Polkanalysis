@@ -14,16 +14,13 @@ using Microsoft.FluentUI.AspNetCore.Components;
 using ApexCharts;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 
-//var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-//var logger = new LoggerConfiguration().ReadFrom.Configuration(configuration)
-//    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
-//    .CreateLogger();
-
 var (serilogLogger, microsoftLogger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.App");
 
 serilogLogger.Information("Starting Polkanalysis Web application ...");
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpClient();
 
 builder.Host.UseSerilog();
 
@@ -39,7 +36,7 @@ builder.Services.AddDbContext<SubstrateDbContext>(options =>
 
 builder.Services.AddScoped<IApiService, ApiService>();
 
-builder.Services.AddHttpClient();
+
 builder.Services.AddPolkadotBlockchain("polkadot");
 builder.Services.AddEndpoint();
 builder.Services.AddSubstrateService();
@@ -47,7 +44,7 @@ builder.Services.AddSubstrateLogic();
 builder.Services.AddMediatRAndPipelineBehaviors();
 builder.Services.AddDatabase();
 
-//builder.Services.AddOpentelemetry(microsoftLogger,"Polkanalysis.App");
+builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.App");
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

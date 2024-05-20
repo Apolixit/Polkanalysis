@@ -9,7 +9,7 @@
     <i class="bi bi-hash"></i> Staking
 </div>
 <div class="card-body">
-    <DataMediator Request="request">
+    <DataCall MediatorReq="mediatorRequest">
         <Table Elems="context
                 .Where(x => !string.IsNullOrEmpty(x.Name))
                 .OrderByDescending(x => x.NbPoolMembers)
@@ -25,7 +25,7 @@
                 <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolItemTable Pool="tablePool" />
             </TbodyContent>
         </Table>
-    </DataMediator>
+    </DataCall>
     <div class="card-footer">
         <NavLink class="nav-link" href="/staking">
             <button class="btn btn-primary btn-sm">
@@ -37,10 +37,10 @@
 
 
 @code {
-    private Task<Result<IEnumerable<PoolLightDto>, ErrorResult>>? request;
+    private Task<Result<IEnumerable<PoolLightDto>, ErrorResult>>? mediatorRequest;
 
     protected async override Task OnInitializedAsync()
     {
-        request = _mediator.Send(new PoolsQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new PoolsQuery(), CancellationToken.None);
     }
 }

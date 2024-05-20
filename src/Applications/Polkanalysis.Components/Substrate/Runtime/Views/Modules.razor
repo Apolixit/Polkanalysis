@@ -9,7 +9,7 @@
 @inject IApiService apiService;
 @inject IMediator _mediator;
 
-<DataMediator Request="request">
+<DataCall MediatorReq="mediatorRequest">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
 
     <div class="panel mt-10">
@@ -137,18 +137,18 @@
             </tr>
         </TbodyContent>
     </Table>
-</DataMediator>
+</DataCall>
 
 @code {
     [Parameter] public required string ModuleName { get; set; }
     //private ApiRequest<ModuleDetailDto> request = default!;
-    private Task<Result<ModuleDetailDto, ErrorResult>> request;
+    private Task<Result<ModuleDetailDto, ErrorResult>> mediatorRequest;
     private IEnumerable<BreadcrumbDto> breadcrumbDtos = default!;
 
     protected override void OnInitialized()
     {
         //request = new ApiRequest<ModuleDetailDto>($"/api/polkadot/runtimemodule/{ModuleName.ToLower()}");
-        request = _mediator.Send(new RuntimeModuleDetailQuery(ModuleName.ToLower()), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new RuntimeModuleDetailQuery(ModuleName.ToLower()), CancellationToken.None);
 
         breadcrumbDtos = new List<BreadcrumbDto>()
         {
