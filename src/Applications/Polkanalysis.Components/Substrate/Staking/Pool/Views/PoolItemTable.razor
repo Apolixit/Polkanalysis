@@ -20,9 +20,6 @@
         @Pool.TotalBonded.ToString("N0")
     </td>
     <td>
-        <FluentButton Appearance="Appearance.Accent" OnClick="(() => GoToDetails(Pool.PoolId))">
-            <FluentIcon Value="@(new Icons.Regular.Size16.Eye())" />
-        </FluentButton>
         <button class="btn btn-primary btn-sm"
                 @onclick="(() => GoToDetails(Pool.PoolId))">
             <i class="bi bi-eye"></i>

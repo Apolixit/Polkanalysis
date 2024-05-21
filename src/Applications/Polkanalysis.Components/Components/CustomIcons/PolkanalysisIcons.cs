@@ -47,6 +47,15 @@ namespace Polkanalysis.Components.Components.CustomIcons
                 }
             }
 
+            public class Event : Icon
+            {
+                private const string SVG_CONTENT = "<svg viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke=\"var(--accent-fill-rest)\"><g><path d=\"M18.6289 26H2V3.88454H26V18.9448L18.6289 26Z\" stroke-miterlimit=\"10\"></path><path d=\"M9.42334 6.34171V2\" stroke-miterlimit=\"10\"></path><path d=\"M18.5764 6.34178V2.00008\" stroke-miterlimit=\"10\"></path><path d=\"M2.10101 11.2501H26\" stroke-miterlimit=\"10\"></path><path d=\"M18.4785 25.2163V18.4537H25.6592\" stroke-miterlimit=\"10\"></path></g></svg>";
+
+                public Event() : base("Event", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
             public class Runtime : Icon
             {
                 private const string SVG_CONTENT = "<svg width=\"18\" height=\"18\" viewBox=\"0 0 28 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke=\"var(--accent-fill-rest)\"><path d=\"M9.36649 24.4503C15.3574 26.7917 22.1118 23.8339 24.4529 17.8438C26.7939 11.8537 23.8351 5.09971 17.8442 2.75833C11.8533 0.416941 5.09886 3.3748 2.75781 9.36488C0.416752 15.355 3.37556 22.109 9.36649 24.4503Z\"></path><path d=\"M10.3107 13.9197L12.2736 10.8418M16.7663 13.5669L15.2206 10.8713M15.4945 16.4535L12.1033 16.4399\"></path><path d=\"M17.3645 18.9673C18.7605 19.5136 20.3365 18.8183 20.8845 17.4143C21.4325 16.0104 20.7451 14.4294 19.3491 13.8832C17.9531 13.3369 16.3771 14.0322 15.8291 15.4362C15.2811 16.8401 15.9685 18.4211 17.3645 18.9673Z\"></path><path d=\"M7.81566 19.0113C9.21166 19.5575 10.7876 18.8622 11.3356 17.4583C11.8837 16.0543 11.1962 14.4734 9.80024 13.9271C8.40424 13.3809 6.82829 14.0762 6.28026 15.4801C5.73223 16.8841 6.41965 18.465 7.81566 19.0113Z\"></path><path d=\"M12.7483 11.014C14.1443 11.5603 15.7203 10.865 16.2683 9.46104C16.8163 8.05709 16.1289 6.47614 14.7329 5.92989C13.3369 5.38364 11.761 6.07893 11.2129 7.48288C10.6649 8.88683 11.3523 10.4678 12.7483 11.014Z\"></path></svg>";
@@ -176,6 +185,24 @@ namespace Polkanalysis.Components.Components.CustomIcons
 
         public static class BootstrapIcon
         {
+            public class CardText : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-card-text\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z\"/>\r\n  <path d=\"M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5\"/>\r\n</svg>";
+
+                public CardText() : base("CardText", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Table : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-table\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z\"/>\r\n</svg>";
+
+                public Table() : base("Table", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
             public class Coin : Icon
             {
                 private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-coin\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z\"/>\r\n  <path d=\"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16\"/>\r\n  <path d=\"M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12\"/>\r\n</svg>";
@@ -244,6 +271,42 @@ namespace Polkanalysis.Components.Components.CustomIcons
                 private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-people-fill\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5\"/>\r\n</svg>";
 
                 public Members() : base("Members", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Hourglass : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-hourglass\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2h-7z\"/>\r\n</svg>";
+
+                public Hourglass() : base("Hourglass", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class HourglassBottom : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-hourglass-bottom\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702s.18.149.5.149.5-.15.5-.15v-.7c0-.701.478-1.236 1.011-1.492A3.5 3.5 0 0 0 11.5 3V2h-7z\"/>\r\n</svg>";
+
+                public HourglassBottom() : base("HourglassBottom", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class HourglassTop : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-hourglass-top\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z\"/>\r\n</svg>";
+
+                public HourglassTop() : base("HourglassTop", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
+                {
+                }
+            }
+
+            public class Book : Icon
+            {
+                private const string SVG_CONTENT = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"bi bi-book\" viewBox=\"0 0 16 16\">\r\n  <path d=\"M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783\"/>\r\n</svg>";
+
+                public Book() : base("Book", IconVariant.Regular, IconSize.Custom, SVG_CONTENT)
                 {
                 }
             }

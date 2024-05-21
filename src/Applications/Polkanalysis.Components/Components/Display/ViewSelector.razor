@@ -1,12 +1,14 @@
 ﻿@using static Polkanalysis.Components.Shared.GlobalSettings;
 <div class="d-flex flex-row justify-content-end mb-3">
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-light p-1 btn-card-element" @onclick="(() => OnViewChanged(ViewDisplayType.CardElement))">
-            <i class="bi bi-card-text"></i>
-        </button>
-        <button type="button" class="btn btn-light p-1 btn-table-element" @onclick="(() => OnViewChanged(ViewDisplayType.TableRaw))">
-            <i class="bi bi-table"></i>
-        </button>
+        <FluentButton 
+            Appearance="Appearance.Accent" 
+            IconStart="@(new PolkanalysisIcons.BootstrapIcon.CardText())"
+                      @onclick="(() => OnViewChanged(ViewDisplayType.CardElement))" />
+        <FluentButton 
+            Appearance="Appearance.Accent" 
+            IconStart="@(new PolkanalysisIcons.BootstrapIcon.Table())"
+                      @onclick="(() => OnViewChanged(ViewDisplayType.TableRaw))" />
     </div>
 </div>
 

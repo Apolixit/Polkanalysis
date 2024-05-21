@@ -101,7 +101,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Abstract.Tests", "src\Core\Polkanalysis.Abstract.Tests\Polkanalysis.Abstract.Tests.csproj", "{667DD5A6-9F0C-4049-9C6E-BAABDB7C3941}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polkanalysis.Api.Service", "src\Applications\Polkanalysis.Api.Service\Polkanalysis.Api.Service.csproj", "{4C9408BE-8B70-4E51-A777-0D1A4D934902}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Api.Service", "src\Applications\Polkanalysis.Api.Service\Polkanalysis.Api.Service.csproj", "{4C9408BE-8B70-4E51-A777-0D1A4D934902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

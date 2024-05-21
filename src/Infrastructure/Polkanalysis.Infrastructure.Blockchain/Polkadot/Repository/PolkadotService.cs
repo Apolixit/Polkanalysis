@@ -149,7 +149,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
                         }
                         catch (System.Exception ex)
                         {
-                            // TODO
+                            _logger.LogError(ex, "Error while trying to connect to Polkadot");
                         }
                     }
 

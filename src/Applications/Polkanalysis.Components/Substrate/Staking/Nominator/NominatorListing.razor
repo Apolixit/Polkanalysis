@@ -1,6 +1,7 @@
 ﻿@page "/nominators/"
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
+@using Polkanalysis.Components.Substrate.Staking.Nominator.Views;
 
 @inject IMediator _mediator;
 
@@ -11,22 +12,10 @@
         <div class="card-body">
             <ComponentListView Elems="Nominators">
                 <CardView>
-                    <Polkanalysis.Components.Substrate.Staking.Nominator.Views.NominatorItemCard Nominator="context" />
+                    <NominatorItemCard Nominator="context" />
                 </CardView>
                 <TableView>
-                    <Table Elems="Nominators" Context="tableNominator">
-                        <ThContent>
-                            <td scope="col">Stash account</td>
-                            <td scope="col">Controller account</td>
-                            <td scope="col">Reward account</td>
-                            <td scope="col">Amount bonded</td>
-                            <td scope="col">Status</td>
-                            <td scope="col"></td>
-                        </ThContent>
-                        <TbodyContent>
-                            <Polkanalysis.Components.Substrate.Staking.Nominator.Views.NominatorItemTable Nominator="tableNominator" />
-                        </TbodyContent>
-                    </Table>
+                    <NominatorTable Nominators="Nominators"></NominatorTable>
                 </TableView>
             </ComponentListView>
         </div>

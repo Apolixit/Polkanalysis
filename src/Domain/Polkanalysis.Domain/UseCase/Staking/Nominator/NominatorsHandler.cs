@@ -38,7 +38,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Nominator
             {
                 result = await _stakingRepository.GetNominatorsAsync(cancellationToken);
             }
-
             return Helpers.Ok(result);
         }
     }

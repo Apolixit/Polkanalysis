@@ -18,7 +18,7 @@
     <FluentGridItem xs="12" sm="6">
         <FluentLabel Typo="Typography.H2">
             <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.BlockNumber())" />
-            Latest block
+            Latest blocks
         </FluentLabel>
         <div class="p-4">
             <LatestBlock />
@@ -34,16 +34,24 @@
         </div>
     </FluentGridItem>
 
-    @* <FluentGridItem xs="12" sm="6">
-        <div class="card">
+    <FluentGridItem xs="12" sm="6">
+        <FluentLabel Typo="Typography.H2">
+            <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.Staking())" />
+            Staking
+        </FluentLabel>
+        <div class="p-4">
             <StakingSummary />
         </div>
     </FluentGridItem>
     <FluentGridItem xs="12" sm="6">
-        <div class="card">
+        <FluentLabel Typo="Typography.H2">
+            <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.Parachains())" />
+            Parachains
+        </FluentLabel>
+        <div class="p-4">
             <ParachainSummary />
         </div>
-    </FluentGridItem> *@
+    </FluentGridItem>
 </FluentGrid>
 @* 
 <div class="row mb-3">
