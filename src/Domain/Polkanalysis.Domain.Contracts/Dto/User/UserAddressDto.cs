@@ -18,5 +18,10 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
             }
         }
         public string PublicKey { get; set; } = string.Empty;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -13,6 +13,7 @@ using Polkanalysis.Infrastructure.Database.Extensions;
 using Microsoft.FluentUI.AspNetCore.Components;
 using ApexCharts;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
+using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
 
 var (serilogLogger, microsoftLogger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.App");
 
@@ -35,7 +36,7 @@ builder.Services.AddDbContext<SubstrateDbContext>(options =>
 });
 
 builder.Services.AddScoped<IApiService, ApiService>();
-
+builder.Services.AddScoped<ITooltipService, TooltipService>();
 
 builder.Services.AddPolkadotBlockchain("polkadot");
 builder.Services.AddEndpoint();

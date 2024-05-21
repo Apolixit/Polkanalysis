@@ -1,0 +1,62 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool
+@inject NavigationManager _navigationManager;
+
+<FluentDataGrid Items="@Pools!.AsQueryable().Where(x => x.Name.Contains(poolNameFilter, StringComparison.CurrentCultureIgnoreCase))"
+                ResizableColumns=true
+                Pagination="@pagination"
+                TGridItem="PoolLightDto"
+                Style="height: 405px; overflow:auto;"
+                ShowHover="true">
+    <PropertyColumn Property="@(c => c.PoolId)" Title="Id" Sortable="true" Align="Align.Start" Width="10%" />
+    <PropertyColumn Property="@(c => c.Name)" InitialSortDirection=SortDirection.Descending Sortable="true" IsDefaultSortColumn=true Width="40%">
+        <ColumnOptions>
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=poolNameFilter @oninput="HandleNameFilter" AfterBindValue="HandleClear" Placeholder="Pool name..." />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.NbPoolMembers)" Title="Members" Sortable="true" Align="Align.Start" Width="15%" />
+    <PropertyColumn Property="@(c => c.Commission)" Title="Commission" Sortable="true" Align="Align.Center" Width="15%" />
+    <PropertyColumn Property="@(c => c.TotalBonded)" Title="Total bounded" Format="N2" Sortable="true" Align="Align.End" Width="20%" />
+    <TemplateColumn>
+        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.PoolId))">
+            Details
+        </FluentButton>
+    </TemplateColumn>
+</FluentDataGrid>
+
+<FluentPaginator State="@pagination">
+    <SummaryTemplate>
+        There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
+
+@code {
+    [Parameter] public IEnumerable<PoolLightDto>? Pools { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    string poolNameFilter = string.Empty;
+
+    private void HandleNameFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            poolNameFilter = value;
+        }
+    }
+
+    private void HandleClear()
+    {
+        if (string.IsNullOrWhiteSpace(poolNameFilter))
+        {
+            poolNameFilter = string.Empty;
+        }
+    }
+
+    protected void GoToDetails(uint poolId)
+    {
+        _navigationManager.NavigateTo($"pool/{poolId}");
+    }
+}

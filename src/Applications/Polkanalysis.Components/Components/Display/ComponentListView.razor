@@ -30,8 +30,8 @@
 
 @code {
     //[CascadingParameter] public required GlobalSettings globalSettings { get; set; }
-    [Parameter] public RenderFragment<T> CardView { get; set; }
-    [Parameter] public RenderFragment<IEnumerable<T>> TableView { get; set; }
+    [Parameter] public RenderFragment<T> CardView { get; set; } = default!;
+    [Parameter] public RenderFragment<IEnumerable<T>> TableView { get; set; } = default!;
 
     [Parameter] public IEnumerable<T> Elems { get; set; } = Enumerable.Empty<T>();
 

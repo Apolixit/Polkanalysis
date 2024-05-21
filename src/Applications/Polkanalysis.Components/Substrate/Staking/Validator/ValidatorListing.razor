@@ -4,6 +4,7 @@
 @using Polkanalysis.Components.Dto;
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Validators;
+@using Polkanalysis.Components.Substrate.Staking.Validator.Views;
 
 @inject IMediator _mediator;
 
@@ -14,21 +15,10 @@
         <div class="card-body">
             <ComponentListView Elems="Validators">
                 <CardView>
-                    <Polkanalysis.Components.Substrate.Staking.Validator.Views.ValidatorItemCard Validator="context" />
+                    <ValidatorItemCard Validator="context" />
                 </CardView>
                 <TableView>
-                    <Table Elems="Validators" Context="tableValidator">
-                        <ThContent>
-                            <td scope="col">Stash address</td>
-                            <td scope="col">Self bonded</td>
-                            <td scope="col">Total bonded</td>
-                            <td scope="col">Nb nominators vote</td>
-                            <td scope="col"></td>
-                        </ThContent>
-                        <TbodyContent>
-                            <Polkanalysis.Components.Substrate.Staking.Validator.Views.ValidatorItemTable Validator="tableValidator" />
-                        </TbodyContent>
-                    </Table>
+                    <ValidatorTable Validators="Validators" />
                 </TableView>
             </ComponentListView>
         </div>

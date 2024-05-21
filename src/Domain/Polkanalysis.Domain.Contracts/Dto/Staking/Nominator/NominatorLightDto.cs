@@ -13,6 +13,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Nominator
         public UserAddressDto? ControllerAccount { get; set; }
         public UserAddressDto? RewardAccount { get; set; }
         public double Bonded { get; set; }
+        public int NbMembers { get; set; }
         public GlobalStatusDto.AliveStatusDto Status { get; set; }
     }
 }

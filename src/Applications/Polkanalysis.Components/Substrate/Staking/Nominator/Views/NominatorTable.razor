@@ -1,0 +1,82 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator
+@inject NavigationManager _navigationManager;
+
+<FluentDataGrid Items="@Nominators!.AsQueryable().Where(x => x.StashAccount.Name.Contains(nominatorStashNameFilter, StringComparison.CurrentCultureIgnoreCase))"
+                ResizableColumns=true
+                Pagination="@pagination"
+                TGridItem="NominatorLightDto"
+                ShowHover="true">
+    <PropertyColumn Property="@(c => c.StashAccount)" Title="Stash" Sortable="true" Align="Align.Start">
+        <ColumnOptions>
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=nominatorStashNameFilter @oninput="HandleNameFilter" AfterBindValue="HandleClear" Placeholder="Pool name..." />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <TemplateColumn Title="Rank" Align="Align.Center">
+        @if (context.ControllerAccount is not null)
+        {
+            <text>@context.ControllerAccount.Name</text>
+        }
+        else
+        {
+            <text> - </text>
+        }
+
+    </TemplateColumn>
+    <TemplateColumn Title="Rewards" Align="Align.Center">
+        @if (context.RewardAccount is not null)
+        {
+            <text>@context.RewardAccount.Name</text>
+        }
+        else
+        {
+            <text> - </text>
+        }
+
+    </TemplateColumn>
+    <PropertyColumn Property="@(c => c.Bonded)" Title="Bonded" Sortable="true" Format="N2" Align="Align.Center" />
+    <PropertyColumn Property="@(c => c.Status)" Title="Active" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.NbMembers)" Title="Members" Sortable="true" Align="Align.End" />
+    <TemplateColumn>
+        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.StashAccount.Address))">
+            Details
+        </FluentButton>
+    </TemplateColumn>
+</FluentDataGrid>
+
+<FluentPaginator State="@pagination">
+    <SummaryTemplate>
+        There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
+
+@code {
+    [Parameter] public IEnumerable<NominatorLightDto>? Nominators { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    string nominatorStashNameFilter = string.Empty;
+
+    private void HandleNameFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            nominatorStashNameFilter = value;
+        }
+    }
+
+    private void HandleClear()
+    {
+        if (string.IsNullOrWhiteSpace(nominatorStashNameFilter))
+        {
+            nominatorStashNameFilter = string.Empty;
+        }
+    }
+
+    protected void GoToDetails(string nominatorAddress)
+    {
+        _navigationManager.NavigateTo($"nominator/{nominatorAddress}");
+    }
+}

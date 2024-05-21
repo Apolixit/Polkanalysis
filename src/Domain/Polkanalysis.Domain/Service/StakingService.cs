@@ -398,16 +398,21 @@ namespace Polkanalysis.Domain.Service
             var nominatorsDto = new List<NominatorLightDto>();
             if (nominatorsResult.Count == 0) return nominatorsDto;
 
+            var nominatorsExtended = await nominatorsResult
+                .ExtendWith(x => _accountRepository.GetAccountAddressAsync(x.Item1, cancellationToken))
+                .WaitAllAndGetResultAsync();
+
             var stashAccount = await Task.WhenAll(nominatorsResult.Select(x =>
             {
                 return _accountRepository.GetAccountAddressAsync(x.Item1, cancellationToken);
             }));
 
-            foreach (var (nominatorAccount, nomination, stashAccountIdentity) in nominatorsResult.Zip(stashAccount).Select(x => Tuple.Create(x.First.Item1, x.First.Item2, x.Second)))
+            foreach(var ((nominatorAccount, nomination), stashAccountIdentity) in nominatorsExtended)
             {
                 var nominatorLight = new NominatorLightDto();
                 nominatorLight.StashAccount = stashAccountIdentity;
                 nominatorLight.Bonded = 0;
+                nominatorLight.NbMembers = nomination.Targets.Value.Length;
                 nominatorLight.Status = nomination.Suppressed.Value ? AliveStatusDto.Inactive : AliveStatusDto.Active;
                 nominatorsDto.Add(nominatorLight);
             }

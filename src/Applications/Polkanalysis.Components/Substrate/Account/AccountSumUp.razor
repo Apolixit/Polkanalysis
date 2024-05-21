@@ -1,7 +1,33 @@
 ﻿@using Polkanalysis.Components.Services;
 @using Polkanalysis.Domain.Contracts.Dto.User;
 
-<Popover>
+<FluentButton id="@popoverId()" Appearance="Appearance.Lightweight" IconStart="@(new PolkanalysisIcons.PolkadotIcons.Validators())" @onclick="() => isVisible = !isVisible">
+    @if (Limit is null)
+    {
+        <FluentLabel Typo="Typography.Body">@User.Name</FluentLabel>
+    }
+    else
+    {
+        <FluentLabel Typo="Typography.Body">@User.Name.Shorten(Limit.Value)</FluentLabel>
+    }
+</FluentButton>
+
+<FluentPopover VerticalThreshold="170" AnchorId="@popoverId()" @bind-Open="isVisible">
+    <Header>@User.Name</Header>
+    <Body>
+        @if(User.Name != User.SubstrateAddress)
+        {
+            <FluentLabel Typo="Typography.Body">(@User.SubstrateAddress)</FluentLabel>
+        })
+    </Body>
+    <Footer>
+        <div class="text-end">
+            <a href="/account/@User.Address">Details</a>
+        </div>
+        </Footer>
+</FluentPopover>
+
+@* <Popover>
     <TogglePopoverContent>
         <a href="/account/@User.Address" class="btn btn-sm btn-light"
                 data-bs-toggle="popover" data-bs-placement="right">
@@ -18,8 +44,12 @@
         @User.Name
     </PopoverContent>
 </Popover>
-
+ *@
 @code {
     [Parameter] public required UserAddressDto User { get; set; }
     [Parameter] public int? Limit { get; set; } = null;
+
+    private bool isVisible;
+
+    private string popoverId() => $"popover-{User.SubstrateAddress}";
 }

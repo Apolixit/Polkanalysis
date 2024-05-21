@@ -5,41 +5,27 @@
 
 @inject IMediator _mediator;
 
-<div class="card-header">
-    <i class="bi bi-hash"></i> Staking
-</div>
-<div class="card-body">
-    <DataCall MediatorReq="mediatorRequest">
-        <Table Elems="context
-                .Where(x => !string.IsNullOrEmpty(x.Name))
-                .OrderByDescending(x => x.NbPoolMembers)
-                .Take(10)" Context="tablePool">
-            <ThContent>
-                <td scope="col">Pool name</td>
-                <td scope="col">Nb members</td>
-                <td scope="col">Commission</td>
-                <td scope="col">Total bonded</td>
-                <td scope="col"></td>
-            </ThContent>
-            <TbodyContent>
-                <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolItemTable Pool="tablePool" />
-            </TbodyContent>
-        </Table>
+<div>
+    <DataCall MediatorReq="mediatorRequest" Context="poolLightContext">
+        <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolTable Pools="poolLightContext" />
     </DataCall>
-    <div class="card-footer">
-        <NavLink class="nav-link" href="/staking">
-            <button class="btn btn-primary btn-sm">
+    <div class="mt-2">
+        <FluentNavLink Href="/staking">
+            <FluentButton Appearance="Appearance.Accent">
                 See all staking
-            </button>
-        </NavLink>
+            </FluentButton>
+        </FluentNavLink>
     </div>
 </div>
 
 
 @code {
     private Task<Result<IEnumerable<PoolLightDto>, ErrorResult>>? mediatorRequest;
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
 
-    protected async override Task OnInitializedAsync()
+    string nameFilter = string.Empty;
+
+    protected override void OnInitialized()
     {
         mediatorRequest = _mediator.Send(new PoolsQuery(), CancellationToken.None);
     }

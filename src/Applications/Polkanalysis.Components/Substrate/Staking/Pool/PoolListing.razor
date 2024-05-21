@@ -1,6 +1,7 @@
 ﻿@page "/pools"
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 @using Polkanalysis.Domain.Contracts.Primary.Staking.Pools;
+@using Polkanalysis.Components.Substrate.Staking.Pool.Views;
 
 @inject IMediator _mediator;
 
@@ -11,21 +12,10 @@
         <div class="card-body">
             <ComponentListView Elems="Pools">
                 <CardView>
-                    <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolItemCard Pool="context" />
+                    <PoolItemCard Pool="context" />
                 </CardView>
                 <TableView>
-                    <Table Elems="Pools" Context="tablePool">
-                        <ThContent>
-                            <td scope="col">Pool name</td>
-                            <td scope="col">Nb members</td>
-                            <td scope="col">Commission</td>
-                            <td scope="col">Total bonded</td>
-                            <td scope="col"></td>
-                        </ThContent>
-                        <TbodyContent>
-                            <Polkanalysis.Components.Substrate.Staking.Pool.Views.PoolItemTable Pool="tablePool" />
-                        </TbodyContent>
-                    </Table>
+                    <PoolTable Pools="Pools" />
                 </TableView>
             </ComponentListView>
         </div>

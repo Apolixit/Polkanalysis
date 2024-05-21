@@ -17,32 +17,80 @@
     };
 
     <div class="col">
-        <div class="card card-hoverable h-100 border @cssBorder" @onclick="(() => GoToBlockDetails(block.Number))" style="cursor:pointer;">
+        <div class="card card-hoverable h-100 border @cssBorder">
             <div class="card-body">
-                <div>
-                    <i class="@cssColor @cssIcon float-start"></i>
-
-                    <h5 class="card-title text-end">
-                        <i class="bi bi-hash"></i>
-                        @block.Number
-                    </h5>
-                    
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                        @if (block.Status == GlobalStatusDto.BlockStatusDto.Finalized)
+                        {
+                            <FluentIcon id="@BlockStatusTooltipId(block.Number)" Value="@(new PolkanalysisIcons.BootstrapIcon.HourglassBottom())" Color="Color.Success" />
+                        }
+                        else if (block.Status == GlobalStatusDto.BlockStatusDto.Broadcasted)
+                        {
+                            <FluentIcon id="@BlockStatusTooltipId(block.Number)" Value="@(new PolkanalysisIcons.BootstrapIcon.HourglassTop())" Color="Color.Warning" />
+                        }
+                        else
+                        {
+                            <FluentIcon id="@BlockStatusTooltipId(block.Number)" Value="@(new PolkanalysisIcons.BootstrapIcon.Hourglass())" Color="Color.Error" />
+                        }
+                    </div>
+                    <div class="col-sm-8">
+                        <FluentLabel Typo="Typography.H5" class="text-end mb-2">
+                            @block.Number
+                            <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.BlockNumber())" />
+                        </FluentLabel>
+                    </div>
                 </div>
-
-                <p class="card-text text-end mb-1">
-                    <span class="mr-1"><i class="bi bi-journal-album"></i> @block.NbExtrinsics</span>
-                    <span class="mr-1"><i class="bi bi-calendar2-event ms-1"></i> @block.NbEvents</span>
-                    <span><i class="bi bi-book-half ms-1"></i> @block.NbLogs</span>
-                </p>
-                <p class="card-text mb-1">
-                    <AccountSumUp User="@block.Validator" Limit="20" />
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <span class="mr-2">
+                            <FluentBadge>
+                                <small>
+                                    <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.Extrinsic())" /> @block.NbExtrinsics extrinsics
+                                </small>
+                            </FluentBadge>
+                        </span>
+                        <span class="mr-2">
+                            <FluentBadge>
+                                <small>
+                                    <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.Event())" /> @block.NbEvents events
+                                </small>
+                            </FluentBadge>
+                        </span>
+                        <span>
+                            <FluentBadge>
+                                <small>
+                                    <FluentIcon Value="@(new PolkanalysisIcons.BootstrapIcon.Book())" /> @block.NbLogs logs
+                                </small>
+                            </FluentBadge>
+                        </span>
+                    </div>
+                </div>
+                <p class="card-text mb-1 d-flex justify-content-center">
+                    <AccountSumUp User="@block.Validator" Limit="15" />
                 </p>
             </div>
             <div class="card-footer">
-                <small class="text-end">@block.When</small>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <small><FluentIcon Value="@(new Icons.Regular.Size12.Calendar())" /> @block.When</small>
+                    </div>
+                    <div class="col-sm-4 text-end">
+                        @* <FluentButton Appearance="Appearance.Stealth" OnClick="@(() => GoToBlockDetails(block.Number))">
+                            <FluentIcon Value="@(new Icons.Regular.Size16.Eye())"></FluentIcon>
+                        </FluentButton> *@
+                        <FluentAnchor Appearance="@Appearance.Hypertext"
+                                      Href="@($"block/{block.Number}")"
+                                      Target="_blank">Details</FluentAnchor>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <FluentTooltip Anchor="@BlockStatusTooltipId(block.Number)">
+        Current block status is @block.Status.ToString()
+    </FluentTooltip>
 }
 
 
@@ -90,4 +138,6 @@
     {
         _navigationManager.NavigateTo($"block/{blockId}");
     }
+
+    protected string BlockStatusTooltipId(ulong blockId) => $"block-status-{blockId}";
 }

@@ -23,11 +23,18 @@ namespace Polkanalysis.Domain.UseCase
         {
             _logger.LogDebug("Starting request : {@RequestName}, {@DateTimeUtc}", typeof(TReq).Name, DateTime.UtcNow);
 
-            var response = await next();
+            try 
+            {
+                var response = await next();
 
-            _logger.LogDebug("Completed request : {@RequestName}, {@DateTimeUtc}", typeof(TReq).Name, DateTime.UtcNow);
-
-            return response;
+                _logger.LogDebug("Completed request : {@RequestName}, {@DateTimeUtc}", typeof(TReq).Name, DateTime.UtcNow);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occured during request : {@RequestName}, {@DateTimeUtc}", typeof(TReq).Name, DateTime.UtcNow);
+                throw;
+            }
         }
     }
 }
