@@ -43,7 +43,7 @@ namespace Polkanalysis.WebApp
 
             builder.Services.AddHttpClient();
             builder.Services.AddPolkadotBlockchain("polkadot");
-            builder.Services.AddEndpoint();
+            builder.Services.AddEndpoint(builder.Configuration);
             builder.Services.AddSubstrateService();
             builder.Services.AddDatabase();
             builder.Services.AddSubstrateLogic();

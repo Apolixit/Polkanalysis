@@ -98,6 +98,7 @@ namespace Polkanalysis.Api.Controllers
         [Description("Get nominators for current era")]
         public async Task<ActionResult<IEnumerable<NominatorLightDto>>> GetNominatorsAsync()
         {
+            _logger.LogInformation("Hey API !");
             return await SendAndHandleResponseAsync(new NominatorsQuery());
         }
 

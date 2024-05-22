@@ -21,19 +21,14 @@ namespace Polkanalysis.Api
     {
         public async static Task Main(string[] args)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            var logger = new LoggerConfiguration().ReadFrom.Configuration(configuration)
-                .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
-                .CreateLogger();
-
-            Microsoft.Extensions.Logging.ILogger log = new SerilogLoggerFactory(logger).CreateLogger("Polkanalys.Api");
+            var (serilogLogger, microsoftLogger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api");
 
             try
             {
-                logger.Information("Starting Polkanalysis API ...");
+                serilogLogger.Information("Starting Polkanalysis API ...");
 
                 var builder = WebApplication.CreateBuilder(args);
-                builder.Host.UseSerilog(logger);
+                builder.Host.UseSerilog(serilogLogger);
                 // Add services to the container.
 
                 builder.Services.AddControllers().AddJsonOptions(x =>
@@ -58,7 +53,7 @@ namespace Polkanalysis.Api
                 // For the API, we register Polkadot as singleton
                 builder.Services.AddPolkadotBlockchain("polkadot", registerAsSingleton: true);
                 builder.Services.AddHttpClient();
-                builder.Services.AddEndpoint(registerAsSingleton: true);
+                builder.Services.AddEndpoint(builder.Configuration, registerAsSingleton: true);
                 builder.Services.AddSubstrateService();
                 builder.Services.AddDatabase();
                 builder.Services.AddSubstrateLogic();
@@ -75,7 +70,7 @@ namespace Polkanalysis.Api
                                       });
                 });
 
-                builder.Services.AddOpentelemetry(log, "Polkanalysis.API");
+                builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.API");
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit
@@ -143,24 +138,24 @@ namespace Polkanalysis.Api
                 app.UseRateLimiter();
                 app.MapDefaultControllerRoute().RequireRateLimiting(ApiRateLimitOptions.TokenBucketPolicy);
 
-                await app.ApplyMigrationAsync(new SerilogLoggerFactory(logger).CreateLogger("database"));
+                await app.ApplyMigrationAsync(new SerilogLoggerFactory(serilogLogger).CreateLogger("database"));
 
                 var substrateService = app.Services.GetRequiredService<ISubstrateService>();
                 await substrateService.ConnectAsync();
                 if (substrateService.IsConnected())
                 {
-                    logger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");
+                    serilogLogger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");
                 }
                 else
                 {
-                    logger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
+                    serilogLogger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
                 }
 
                 await app.RunAsync();
             }
             catch (Exception ex)
             {
-                logger.Fatal(ex, "Host terminated unexpectedly !");
+                serilogLogger.Fatal(ex, "Host terminated unexpectedly !");
             }
             finally
             {

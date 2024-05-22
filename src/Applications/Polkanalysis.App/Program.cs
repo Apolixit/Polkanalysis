@@ -39,7 +39,7 @@ builder.Services.AddScoped<IApiService, ApiService>();
 builder.Services.AddScoped<ITooltipService, TooltipService>();
 
 builder.Services.AddPolkadotBlockchain("polkadot");
-builder.Services.AddEndpoint();
+builder.Services.AddEndpoint(builder.Configuration);
 builder.Services.AddSubstrateService();
 builder.Services.AddSubstrateLogic();
 builder.Services.AddMediatRAndPipelineBehaviors();

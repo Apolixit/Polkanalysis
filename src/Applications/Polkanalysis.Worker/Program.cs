@@ -33,10 +33,10 @@ var host = Host.CreateDefaultBuilder(args)
 .ConfigureServices((hostContext, services) =>
 {
     services
-    .AddHostedService<EventsWorker>()
+    //.AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
-    //.AddHostedService<StakingWorker>()
-    .AddHostedService<VersionWorker>()
+    .AddHostedService<StakingWorker>()
+    //.AddHostedService<VersionWorker>()
     .AddSingleton(config)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {
@@ -54,7 +54,7 @@ var host = Host.CreateDefaultBuilder(args)
     .AddTransient<PerimeterService>()
     .AddSingleton<WorkerMetrics>();
 
-    services.AddEndpoint(true);
+    services.AddEndpoint(hostContext.Configuration, true);
     services.AddSubstrateService();
     services.AddPolkadotBlockchain("polkadot", true);
     services.AddDatabase();

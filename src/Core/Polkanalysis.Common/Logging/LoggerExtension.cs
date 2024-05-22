@@ -23,6 +23,8 @@ namespace Polkanalysis.Common.Logging
                 .ReadFrom.Configuration(config)
                 .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning);
 
+            loggerConfig.WriteTo.OpenTelemetry();
+
             return loggerConfig.CreateLogger();
         }
 
