@@ -50,11 +50,11 @@ namespace Polkanalysis.Worker.Tasks
 
         public async Task RunAsync(CancellationToken stoppingToken)
         {
-            _eraPerimeter = _perimeterService.GetEraPerimeter(GetLastEraId);
-            if (_eraPerimeter.IsSet)
-            {
-                await RequestEraAsync(stoppingToken);
-            }
+            //_eraPerimeter = _perimeterService.GetEraPerimeter(GetLastEraId);
+            //if (_eraPerimeter.IsSet)
+            //{
+            //    await RequestEraAsync(stoppingToken);
+            //}
 
             // Subscribe to new Era
             await SubscribeErasAndSaveAsync(stoppingToken);

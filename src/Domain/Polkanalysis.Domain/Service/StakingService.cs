@@ -392,7 +392,7 @@ namespace Polkanalysis.Domain.Service
         public async Task<IEnumerable<NominatorLightDto>> GetNominatorsAsync(CancellationToken cancellationToken)
         {
             var nominatorsQuery = await _substrateService.Storage.Staking.NominatorsQueryAsync(cancellationToken);
-            var nominatorsResult = await nominatorsQuery.Take(100).ExecuteAsync(cancellationToken);
+            var nominatorsResult = await nominatorsQuery.Take(1000).ExecuteAsync(cancellationToken);
             Guard.Against.Null(nominatorsResult, nameof(nominatorsResult));
 
             var nominatorsDto = new List<NominatorLightDto>();
