@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto;
@@ -22,13 +23,13 @@ namespace Polkanalysis.Domain.UseCase.Statistics.Finance
         private readonly IFinancialService _financialService;
         private readonly IExplorerService _explorerService;
 
-        public GlobalFinanceHandler(IFinancialService financialService, ILogger<GlobalFinanceHandler> logger, IExplorerService explorerService) : base(logger)
+        public GlobalFinanceHandler(IFinancialService financialService, ILogger<GlobalFinanceHandler> logger, IExplorerService explorerService, IDistributedCache cache) : base(logger, cache)
         {
             _financialService = financialService;
             _explorerService = explorerService;
         }
 
-        public async override Task<Result<GlobalFinanceDto, ErrorResult>> Handle(GlobalFinanceQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<GlobalFinanceDto, ErrorResult>> HandleInnerAsync(GlobalFinanceQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

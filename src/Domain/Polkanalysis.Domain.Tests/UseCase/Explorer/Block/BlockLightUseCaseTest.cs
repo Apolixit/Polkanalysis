@@ -13,6 +13,7 @@ using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Service;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
@@ -25,7 +26,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService = Substitute.For<IExplorerService>();
             _logger = Substitute.For<ILogger<BlockLightHandler>>();
-            _useCase = new BlockLightHandler(_explorerService, _logger);
+            _useCase = new BlockLightHandler(_explorerService, _logger, Substitute.For<IDistributedCache>());
         }
 
         [Test]
@@ -33,7 +34,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService.GetBlockLightAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
-            var result = await _useCase.Handle(new BlockLightQuery(1), CancellationToken.None);
+            var result = await _useCase.HandleInnerAsync(new BlockLightQuery(1), CancellationToken.None);
 
             Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
@@ -46,7 +47,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService.GetBlockLightAsync(1, CancellationToken.None).Returns(Substitute.For<BlockLightDto>());
 
-            var result = await _useCase.Handle(new BlockLightQuery(1), CancellationToken.None);
+            var result = await _useCase.HandleInnerAsync(new BlockLightQuery(1), CancellationToken.None);
 
             Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);
@@ -57,7 +58,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService.GetBlockLightAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockLightDto>());
 
-            var result = await _useCase.Handle(new BlockLightQuery("0x00"), CancellationToken.None);
+            var result = await _useCase.HandleInnerAsync(new BlockLightQuery("0x00"), CancellationToken.None);
 
             Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Logs;
@@ -21,12 +22,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Logs
 
         public LogsHandler(
             IExplorerService explorerRepository,
-            ILogger<LogsHandler> logger) : base(logger)
+            ILogger<LogsHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<IEnumerable<LogDto>, ErrorResult>> Handle(LogsQuery request, CancellationToken cancellationToken)
+        public override async Task<Result<IEnumerable<LogDto>, ErrorResult>> HandleInnerAsync(LogsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

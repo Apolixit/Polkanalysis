@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Event;
@@ -19,12 +20,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
 
         public EventsHandler(
             IExplorerService explorerRepository,
-            ILogger<EventsHandler> logger) : base(logger)
+            ILogger<EventsHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
-        public async override Task<Result<IEnumerable<EventDto>, ErrorResult>> Handle(EventsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<EventDto>, ErrorResult>> HandleInnerAsync(EventsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

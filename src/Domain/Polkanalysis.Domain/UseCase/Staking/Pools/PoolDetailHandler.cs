@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -11,12 +12,12 @@ namespace Polkanalysis.Domain.UseCase.Staking.Pools
     {
         private readonly IStakingService _stakingRepository;
 
-        public PoolDetailHandler(IStakingService roleMemberRepository, ILogger<PoolDetailHandler> logger) : base(logger)
+        public PoolDetailHandler(IStakingService roleMemberRepository, ILogger<PoolDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _stakingRepository = roleMemberRepository;
         }
 
-        public async override Task<Result<PoolDto, ErrorResult>> Handle(PoolDetailQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<PoolDto, ErrorResult>> HandleInnerAsync(PoolDetailQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

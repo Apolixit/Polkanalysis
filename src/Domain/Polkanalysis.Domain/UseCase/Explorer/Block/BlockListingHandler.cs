@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
@@ -16,12 +17,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
     {
         private readonly IExplorerService _explorerRepository;
 
-        public BlockListingHandler(IExplorerService explorerRepository, ILogger<BlockListingHandler> logger) : base(logger)
+        public BlockListingHandler(IExplorerService explorerRepository, ILogger<BlockListingHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
-        public async override Task<Result<IEnumerable<BlockLightDto>, ErrorResult>> Handle(BlocksQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<BlockLightDto>, ErrorResult>> HandleInnerAsync(BlocksQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

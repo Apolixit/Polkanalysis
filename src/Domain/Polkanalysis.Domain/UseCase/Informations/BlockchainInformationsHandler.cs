@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Informations;
 using Polkanalysis.Domain.Contracts.Dto.User;
@@ -21,12 +22,12 @@ namespace Polkanalysis.Domain.UseCase.Informations
         private readonly IParachainService _parachainRepository;
         public BlockchainInformationsHandler(
             IParachainService parachainRepository,
-            ILogger<BlockchainInformationsHandler> logger) : base(logger)
+            ILogger<BlockchainInformationsHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _parachainRepository = parachainRepository;
         }
 
-        public async override Task<Result<BlockchainDetailsDto, ErrorResult>> Handle(BlockchainDetailsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<BlockchainDetailsDto, ErrorResult>> HandleInnerAsync(BlockchainDetailsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

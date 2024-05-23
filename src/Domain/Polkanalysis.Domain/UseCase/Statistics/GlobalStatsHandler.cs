@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Primary.Statistics;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Statistics
 {
@@ -40,12 +41,12 @@ namespace Polkanalysis.Domain.UseCase.Statistics
 
         public GlobalStatsHandler(
             ILogger<GlobalStatsHandler> logger,
-            BalancesTransferRepository balancesTransferRepository) : base(logger)
+            BalancesTransferRepository balancesTransferRepository, IDistributedCache cache) : base(logger, cache)
         {
             _balancesTransferRepository = balancesTransferRepository;
         }
 
-        public async override Task<Result<GlobalStatsDto, ErrorResult>> Handle(GlobalStatsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<GlobalStatsDto, ErrorResult>> HandleInnerAsync(GlobalStatsQuery request, CancellationToken cancellationToken)
         {
             var res = await _balancesTransferRepository.GetAllAsync(cancellationToken);
 

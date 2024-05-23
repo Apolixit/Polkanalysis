@@ -14,6 +14,7 @@ using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
 using Substrate.NET.Metadata.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
@@ -28,13 +29,13 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
         public SpecVersionHandler(
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
-            ILogger<SpecVersionHandler> logger) : base(logger)
+            ILogger<SpecVersionHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;
         }
 
-        public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> Handle(SpecVersionsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> HandleInnerAsync(SpecVersionsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
@@ -79,13 +80,14 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
         public SpecVersionCommandHandler(
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
-            ILogger<SpecVersionCommandHandler> logger) : base(logger)
+            ILogger<SpecVersionCommandHandler> logger,
+            IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;
         }
 
-        public async override Task<Result<bool, ErrorResult>> Handle(SpecVersionCommand request, CancellationToken cancellationToken)
+        public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SpecVersionCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

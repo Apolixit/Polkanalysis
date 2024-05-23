@@ -1,23 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
-using Polkanalysis.Domain.Contracts.Secondary;
-using Polkanalysis.Domain.Contracts.Service;
-using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.UseCase.Runtime.SpecVersion;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
 using Substrate.NET.Metadata.Service;
 using Substrate.NetApi.Model.Types.Base;
-using Substrate.NetApi.Model.Types.Primitive;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 {
@@ -44,14 +33,14 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _useCase = new SpecVersionCommandHandler(
                 _substrateDbContext, 
                 _substrateService,
-                _logger);
+                _logger, Substitute.For<IDistributedCache>());
             //base.Setup();
         }
 
         [Test]
         public async Task SpecVersionHandlerCommand_InsertNewSpecVersion_ShouldSuceedAsync()
         {
-            var res = await _useCase!.Handle(new SpecVersionCommand()
+            var res = await _useCase!.HandleInnerAsync(new SpecVersionCommand()
             {
                 SpecVersion = 1_000,
                 BlockStart = 10000

@@ -4,6 +4,7 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
 using Polkanalysis.Domain.Contracts.Service;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Events
 {
@@ -14,12 +15,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
 
         public EventDetailHandler(
             IExplorerService explorerRepository,
-            ILogger<EventDetailHandler> logger) : base(logger)
+            ILogger<EventDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<EventDto, ErrorResult>> Handle(EventDetailQuery command, CancellationToken cancellationToken)
+        public override async Task<Result<EventDto, ErrorResult>> HandleInnerAsync(EventDetailQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

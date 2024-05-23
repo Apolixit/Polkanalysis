@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Price;
@@ -13,12 +14,12 @@ namespace Polkanalysis.Domain.UseCase.Price
     public class TokenPriceHandler : Handler<TokenPriceHandler, TokenPriceDto, TokenPriceQuery>
     {
         private readonly HttpClient _httpClient;
-        public TokenPriceHandler(HttpClient httpClient, ILogger<TokenPriceHandler> logger) : base(logger)
+        public TokenPriceHandler(HttpClient httpClient, ILogger<TokenPriceHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _httpClient = httpClient;
         }
 
-        public async override Task<Result<TokenPriceDto, ErrorResult>> Handle(TokenPriceQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<TokenPriceDto, ErrorResult>> HandleInnerAsync(TokenPriceQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
@@ -80,12 +81,13 @@ namespace Polkanalysis.Domain.UseCase.Price
 
         public TokenPriceCommandHandler(
             SubstrateDbContext dbContext, 
-            ILogger<TokenPriceCommandHandler> logger) : base(logger)
+            ILogger<TokenPriceCommandHandler> logger,
+            IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
         }
 
-        public async override Task<Result<bool, ErrorResult>> Handle(TokenPriceCommand command, CancellationToken cancellationToken)
+        public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(TokenPriceCommand command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

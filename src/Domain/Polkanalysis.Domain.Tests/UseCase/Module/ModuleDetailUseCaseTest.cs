@@ -6,6 +6,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.UseCase.Runtime;
 using Polkanalysis.Domain.Contracts.Service;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Module
 {
@@ -20,7 +21,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
             _logger = Substitute.For<ILogger<RuntimeModuleDetailHandler>>();
             _moduleRepository = Substitute.For<IModuleInformationService>();
 
-            _useCase = new RuntimeModuleDetailHandler(_logger, _moduleRepository);
+            _useCase = new RuntimeModuleDetailHandler(_logger, _moduleRepository, Substitute.For<IDistributedCache>());
             //base.Setup();
         }
 
@@ -32,7 +33,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         public async Task ModuleDetailUseCaseWithValidModuleName_ShouldSucceedAsync()
         {
             _moduleRepository.GetModuleDetail(Arg.Is("System")).Returns(Substitute.For<ModuleDetailDto>());
-            var result = await _useCase.Handle(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
+            var result = await _useCase.HandleInnerAsync(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
 
             Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);
@@ -45,7 +46,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         
         public async Task ModuleDetailUseCaseWithEmptyModuleName_ShouldFailedAsync()
         {
-            var result = await _useCase.Handle(new RuntimeModuleDetailQuery(string.Empty), CancellationToken.None);
+            var result = await _useCase.HandleInnerAsync(new RuntimeModuleDetailQuery(string.Empty), CancellationToken.None);
 
             Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
@@ -62,7 +63,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         {
             _moduleRepository.GetModuleDetail(Arg.Any<string>()).ReturnsNull();
 
-            var result = await _useCase.Handle(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
+            var result = await _useCase.HandleInnerAsync(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
 
             Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);

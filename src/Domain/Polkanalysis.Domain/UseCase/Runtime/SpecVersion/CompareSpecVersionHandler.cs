@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -27,14 +28,14 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
             IMetadataService metadataService,
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
-            ILogger<CompareSpecVersionHandler> logger) : base(logger)
+            ILogger<CompareSpecVersionHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _metadataService = metadataService;
             _dbContext = dbContext;
             _substrateService = substrateService;
         }
 
-        public async override Task<Result<CompareSpecVersionDto, ErrorResult>> Handle(CompareSpecVersionsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<CompareSpecVersionDto, ErrorResult>> HandleInnerAsync(CompareSpecVersionsQuery request, CancellationToken cancellationToken)
         {
             var metadataSource = string.Empty;
             var metadataTarget = string.Empty;
