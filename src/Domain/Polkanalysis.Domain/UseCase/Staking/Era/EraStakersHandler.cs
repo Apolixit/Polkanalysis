@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Staking.Era
 {
@@ -22,13 +23,13 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
         public EraStakersCommandHandler(
             IStakingDatabaseRepository stakingDatabaseRepository,
             ISubstrateService substrateService,
-            ILogger<EraStakersCommandHandler> logger) : base(logger)
+            ILogger<EraStakersCommandHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _stakingDatabaseRepository = stakingDatabaseRepository;
             _substrateService = substrateService;
         }
 
-        public async override Task<Result<bool, ErrorResult>> Handle(EraStakersCommand request, CancellationToken cancellationToken)
+        public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(EraStakersCommand request, CancellationToken cancellationToken)
         {
             var eraId = new U32(request.EraId);
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -16,13 +17,13 @@ namespace Polkanalysis.Domain.UseCase.Runtime
         public RuntimeModulesHandler(
             ILogger<RuntimeModulesHandler> logger,
             ISubstrateService substrateRepository,
-            IModuleInformationService moduleRepository) : base(logger)
+            IModuleInformationService moduleRepository, IDistributedCache cache) : base(logger, cache)
         {
             _moduleService = moduleRepository;
             _substrateService = substrateRepository;
         }
 
-        public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> Handle(RuntimeModulesQuery request, CancellationToken cancellationToken)
+        public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> HandleInnerAsync(RuntimeModulesQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

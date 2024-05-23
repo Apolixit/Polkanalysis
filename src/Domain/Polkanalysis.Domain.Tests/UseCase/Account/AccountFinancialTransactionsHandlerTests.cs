@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
@@ -46,7 +47,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
 
             _logger = Substitute.For<ILogger<AccountFinancialTransactionsHandler>>();
 
-            _useCase = new AccountFinancialTransactionsHandler( _logger, _financialService, _accountService);
+            _useCase = new AccountFinancialTransactionsHandler( _logger, _financialService, _accountService, Substitute.For<IDistributedCache>());
             //base.Setup();
         }
 
@@ -78,7 +79,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
         {
             var from = new DateTime(2024, 01, 01);
             var to = new DateTime(2024, 02, 01);
-            var result = await _useCase!.Handle(
+            var result = await _useCase!.HandleInnerAsync(
                 new AccountFinancialTransactionsQuery(Alice.ToString(), from, to), CancellationToken.None);
 
             Assert.That(result.IsError, Is.False);

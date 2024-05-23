@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -10,12 +11,12 @@ namespace Polkanalysis.Domain.UseCase.Staking.Nominator
     public class NominatorDetailHandler : Handler<NominatorDetailHandler, NominatorDto, NominatorDetailQuery>
     {
         private readonly IStakingService _stakingService;
-        public NominatorDetailHandler(IStakingService roleMemberRepository, ILogger<NominatorDetailHandler> logger) : base(logger)
+        public NominatorDetailHandler(IStakingService roleMemberRepository, ILogger<NominatorDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _stakingService = roleMemberRepository;
         }
 
-        public override async Task<Result<NominatorDto, ErrorResult>> Handle(NominatorDetailQuery request, CancellationToken cancellationToken)
+        public override async Task<Result<NominatorDto, ErrorResult>> HandleInnerAsync(NominatorDetailQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

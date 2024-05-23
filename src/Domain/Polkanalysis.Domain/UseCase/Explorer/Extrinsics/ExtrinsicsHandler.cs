@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic;
@@ -19,12 +20,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 
         public ExtrinsicsHandler(
             IExplorerService explorerRepository,
-            ILogger<ExtrinsicsHandler> logger) : base(logger)
+            ILogger<ExtrinsicsHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
-        public async override Task<Result<IEnumerable<ExtrinsicDto>, ErrorResult>> Handle(ExtrinsicsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<ExtrinsicDto>, ErrorResult>> HandleInnerAsync(ExtrinsicsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

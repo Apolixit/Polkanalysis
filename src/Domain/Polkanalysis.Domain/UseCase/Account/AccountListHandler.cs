@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.User;
@@ -11,12 +12,12 @@ namespace Polkanalysis.Domain.UseCase.Account
     public class AccountListHandler : Handler<AccountListHandler, PagedResponseDto<AccountLightDto>, AccountsQuery>
     {
         private readonly IAccountService _accountRepository;
-        public AccountListHandler(IAccountService accountRepository, ILogger<AccountListHandler> logger) : base(logger)
+        public AccountListHandler(IAccountService accountRepository, ILogger<AccountListHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _accountRepository = accountRepository;
         }
 
-        public async override Task<Result<PagedResponseDto<AccountLightDto>, ErrorResult>> Handle(AccountsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<PagedResponseDto<AccountLightDto>, ErrorResult>> HandleInnerAsync(AccountsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
@@ -35,13 +36,13 @@ namespace Polkanalysis.Domain.UseCase.Monitored.Events
         private readonly ISubstrateService _polkadotRepository;
         private readonly IEventsFactory _eventsFactory;
 
-        public SavedEventsHandler(ISubstrateService polkadotRepository, IEventsFactory eventsFactory, ILogger<SavedEventsHandler> logger) : base(logger)
+        public SavedEventsHandler(ISubstrateService polkadotRepository, IEventsFactory eventsFactory, ILogger<SavedEventsHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _polkadotRepository = polkadotRepository;
             _eventsFactory = eventsFactory;
         }
 
-        public async override Task<Result<bool, ErrorResult>> Handle(SavedEventsCommand request, CancellationToken cancellationToken)
+        public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedEventsCommand request, CancellationToken cancellationToken)
         {
             // Is this event has to be insert in database ?
             if (!_eventsFactory.Has(request.EventNode.Module, request.EventNode.Method))

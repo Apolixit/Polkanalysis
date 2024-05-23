@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto;
@@ -57,7 +58,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
                                                    Substitute.For<IAccountService>(),
                                                    Substitute.For<ILogger<ExplorerService>>());
 
-            _useCase = new GlobalFinanceHandler(_financialService, _logger, _explorerService);
+            _useCase = new GlobalFinanceHandler(_financialService, _logger, _explorerService, Substitute.For<IDistributedCache>());
         }
 
         private void PopulateDatabase()
@@ -88,7 +89,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
         {
             var from = new DateTime(2024, 01, 01);
             var to = new DateTime(2024, 02, 01);
-            var result = await _useCase!.Handle(
+            var result = await _useCase!.HandleInnerAsync(
                 new GlobalFinanceQuery(from, to), CancellationToken.None);
 
             Assert.That(result.IsError, Is.False);

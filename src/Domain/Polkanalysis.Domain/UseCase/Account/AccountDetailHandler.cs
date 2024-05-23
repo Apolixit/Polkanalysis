@@ -6,6 +6,7 @@ using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Service;
 using FluentValidation;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Account
 {
@@ -19,12 +20,12 @@ namespace Polkanalysis.Domain.UseCase.Account
     public class AccountDetailHandler : Handler<AccountDetailHandler, AccountDto, AccountDetailQuery>
     {
         private readonly IAccountService _accountRepository;
-        public AccountDetailHandler(IAccountService accountRepository, ILogger<AccountDetailHandler> logger) : base(logger)
+        public AccountDetailHandler(IAccountService accountRepository, ILogger<AccountDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _accountRepository = accountRepository;
         }
 
-        public async override Task<Result<AccountDto, ErrorResult>> Handle(AccountDetailQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<AccountDto, ErrorResult>> HandleInnerAsync(AccountDetailQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

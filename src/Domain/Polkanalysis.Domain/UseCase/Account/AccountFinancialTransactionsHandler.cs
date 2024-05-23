@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Common;
@@ -33,7 +34,7 @@ namespace Polkanalysis.Domain.UseCase.Account
         private readonly IFinancialService _financialService;
         private readonly IAccountService _accountService;
 
-        public AccountFinancialTransactionsHandler(ILogger<AccountFinancialTransactionsHandler> logger, IFinancialService financialService, IAccountService accountService) : base(logger)
+        public AccountFinancialTransactionsHandler(ILogger<AccountFinancialTransactionsHandler> logger, IFinancialService financialService, IAccountService accountService, IDistributedCache cache) : base(logger, cache)
         {
             _financialService = financialService;
             _accountService = accountService;
@@ -45,7 +46,7 @@ namespace Polkanalysis.Domain.UseCase.Account
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async override Task<Result<AccountFinancialTransactionsDto, ErrorResult>> Handle(AccountFinancialTransactionsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<AccountFinancialTransactionsDto, ErrorResult>> HandleInnerAsync(AccountFinancialTransactionsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

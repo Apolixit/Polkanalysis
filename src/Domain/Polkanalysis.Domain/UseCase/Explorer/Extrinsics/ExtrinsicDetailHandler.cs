@@ -4,6 +4,7 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic;
 using Polkanalysis.Domain.Contracts.Service;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 {
@@ -13,12 +14,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 
         public ExtrinsicDetailsHandler(
             IExplorerService explorerRepository,
-            ILogger<ExtrinsicDetailsHandler> logger) : base(logger)
+            ILogger<ExtrinsicDetailsHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
-        public override async Task<Result<ExtrinsicDto, ErrorResult>> Handle(ExtrinsicDetailQuery command, CancellationToken cancellationToken)
+        public override async Task<Result<ExtrinsicDto, ErrorResult>> HandleInnerAsync(ExtrinsicDetailQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

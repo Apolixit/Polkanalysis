@@ -12,6 +12,7 @@ using Polkanalysis.Domain.Contracts.Primary.Result;
 using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Service;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
@@ -22,12 +23,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
     {
         private readonly IExplorerService _blockRepository;
 
-        public BlockLightHandler(IExplorerService blockRepository, ILogger<BlockLightHandler> logger) : base(logger)
+        public BlockLightHandler(IExplorerService blockRepository, ILogger<BlockLightHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _blockRepository = blockRepository;
         }
 
-        public override async Task<Result<BlockLightDto, ErrorResult>> Handle(BlockLightQuery command, CancellationToken cancellationToken)
+        public override async Task<Result<BlockLightDto, ErrorResult>> HandleInnerAsync(BlockLightQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

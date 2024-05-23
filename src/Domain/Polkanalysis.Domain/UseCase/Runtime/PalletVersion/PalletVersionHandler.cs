@@ -27,6 +27,7 @@ using Substrate.NET.Metadata.Compare.Base;
 using Substrate.NetApi.Model.Types.Base;
 using Ardalis.GuardClauses;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
 {
@@ -37,12 +38,12 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
     {
         private readonly SubstrateDbContext _dbContext;
 
-        public PalletVersionHandler(SubstrateDbContext dbContext, ILogger<PalletVersionHandler> logger) : base(logger)
+        public PalletVersionHandler(SubstrateDbContext dbContext, ILogger<PalletVersionHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
         }
 
-        public async override Task<Result<IEnumerable<PalletVersionDto>, ErrorResult>> Handle(PalletVersionsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<PalletVersionDto>, ErrorResult>> HandleInnerAsync(PalletVersionsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
@@ -73,14 +74,15 @@ namespace Polkanalysis.Domain.UseCase.Runtime.PalletVersion
             SubstrateDbContext dbContext,
             IMetadataService metadataService,
             ISubstrateService substrateService,
-            ILogger<PalletVersionCommandHandler> logger) : base(logger)
+            ILogger<PalletVersionCommandHandler> logger,
+            IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
             _substrateService = substrateService;
             _metadataService = metadataService;
         }
 
-        public async override Task<Result<bool, ErrorResult>> Handle(PalletVersionCommand request, CancellationToken cancellationToken)
+        public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(PalletVersionCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

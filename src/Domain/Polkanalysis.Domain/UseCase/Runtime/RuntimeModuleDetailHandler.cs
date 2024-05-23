@@ -4,6 +4,7 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule;
 using Polkanalysis.Domain.Contracts.Service;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Runtime
 {
@@ -12,12 +13,12 @@ namespace Polkanalysis.Domain.UseCase.Runtime
         private readonly IModuleInformationService _moduleService;
         public RuntimeModuleDetailHandler(
             ILogger<RuntimeModuleDetailHandler> logger, 
-            IModuleInformationService moduleRepository) : base(logger)
+            IModuleInformationService moduleRepository, IDistributedCache cache) : base(logger, cache)
         {
             _moduleService = moduleRepository;
         }
 
-        public override async Task<Result<ModuleDetailDto, ErrorResult>> Handle(RuntimeModuleDetailQuery command, CancellationToken cancellationToken)
+        public override async Task<Result<ModuleDetailDto, ErrorResult>> HandleInnerAsync(RuntimeModuleDetailQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
 using Polkanalysis.Domain.Contracts.Primary.Parachain;
@@ -12,12 +13,12 @@ namespace Polkanalysis.Domain.UseCase.Parachain
         private readonly IParachainService _parachainRepository;
         public ParachainDetailHandler(
             IParachainService parachainRepository, 
-            ILogger<ParachainDetailHandler> logger) : base(logger)
+            ILogger<ParachainDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _parachainRepository = parachainRepository;
         }
 
-        public override async Task<Result<ParachainDto, ErrorResult>> Handle(ParachainDetailQuery request, CancellationToken cancellationToken)
+        public override async Task<Result<ParachainDto, ErrorResult>> HandleInnerAsync(ParachainDetailQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

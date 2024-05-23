@@ -79,7 +79,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Staking
             var stackersValidator = await GetEraValidatorAsync(eraId, validatorAccount, cancellationToken);
             if (stackersValidator is null) return 0;
 
-            return stackersValidator.Value.Item2.Others?.Value?.Length ?? 0;
+            return (int)stackersValidator.Value.Item2.NominatorCount.Value;
         }
     }
 }

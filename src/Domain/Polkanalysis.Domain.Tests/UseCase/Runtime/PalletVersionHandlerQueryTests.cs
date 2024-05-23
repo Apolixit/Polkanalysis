@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.UseCase.Runtime.PalletVersion;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 {
@@ -32,7 +33,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 
             _substrateDbContext = new SubstrateDbContext(contextOption);
 
-            _useCase = new PalletVersionHandler(_substrateDbContext, _logger);
+            _useCase = new PalletVersionHandler(_substrateDbContext, _logger, Substitute.For<IDistributedCache>());
             //base.Setup();
         }
 
@@ -68,7 +69,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 
             Assert.That(_substrateDbContext.PalletVersionModels.Count(), Is.EqualTo(3));
 
-            var res = await _useCase!.Handle(new PalletVersionsQuery()
+            var res = await _useCase!.HandleInnerAsync(new PalletVersionsQuery()
             {
                 PalletName = palletName
             }, CancellationToken.None);

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Era;
@@ -12,12 +13,12 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
     {
         private readonly IStakingService _stakingRepository;
 
-        public ErasHandler(IStakingService stakingRepository, ILogger<ErasHandler> logger) : base(logger)
+        public ErasHandler(IStakingService stakingRepository, ILogger<ErasHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _stakingRepository = stakingRepository;
         }
 
-        public async override Task<Result<IEnumerable<EraLightDto>, ErrorResult>> Handle(ErasQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<EraLightDto>, ErrorResult>> HandleInnerAsync(ErasQuery request, CancellationToken cancellationToken)
         {
                 if (request == null)
                     return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

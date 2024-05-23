@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Parachain.Auction;
 using Polkanalysis.Domain.Contracts.Primary.Parachain.Auction;
@@ -17,12 +18,12 @@ namespace Polkanalysis.Domain.UseCase.Parachain.Auction
         private readonly IParachainService _parachainRepository;
         public AuctionListHandler(
             IParachainService parachainRepository,
-            ILogger<AuctionListHandler> logger) : base(logger)
+            ILogger<AuctionListHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _parachainRepository = parachainRepository;
         }
 
-        public async override Task<Result<IEnumerable<AuctionLightDto>, ErrorResult>> Handle(AuctionsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<AuctionLightDto>, ErrorResult>> HandleInnerAsync(AuctionsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

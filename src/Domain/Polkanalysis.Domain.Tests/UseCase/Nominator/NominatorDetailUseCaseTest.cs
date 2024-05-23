@@ -12,6 +12,7 @@ using Polkanalysis.Domain.Contracts.Primary.Staking.Nominators;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.UseCase.Staking.Nominator;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Nominator
 {
@@ -25,7 +26,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Nominator
             _logger = Substitute.For<ILogger<NominatorDetailHandler>>();
             _roleMemberRepository = Substitute.For<IStakingService>();
 
-            _useCase = new NominatorDetailHandler(_roleMemberRepository, _logger);
+            _useCase = new NominatorDetailHandler(_roleMemberRepository, _logger, Substitute.For<IDistributedCache>());
             //base.Setup();
         }
     }

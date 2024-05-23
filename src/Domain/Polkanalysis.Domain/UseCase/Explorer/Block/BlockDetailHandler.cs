@@ -13,6 +13,7 @@ using Serilog.Core;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
 using Polkanalysis.Domain.Contracts.Service;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
@@ -20,12 +21,12 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
     {
         private readonly IExplorerService _explorerRepository;
 
-        public BlockDetailHandler(IExplorerService explorerRepository, ILogger<BlockDetailHandler> logger) : base(logger)
+        public BlockDetailHandler(IExplorerService explorerRepository, ILogger<BlockDetailHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _explorerRepository = explorerRepository;
         }
 
-        public async override Task<Result<BlockDto, ErrorResult>> Handle(BlockDetailsQuery command, CancellationToken cancellationToken)
+        public async override Task<Result<BlockDto, ErrorResult>> HandleInnerAsync(BlockDetailsQuery command, CancellationToken cancellationToken)
         {
             if (command == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(command)} is not set");

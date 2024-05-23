@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Price;
 using Polkanalysis.Domain.Contracts.Primary.Price;
@@ -12,12 +13,12 @@ namespace Polkanalysis.Domain.UseCase.Price
     {
         private readonly SubstrateDbContext _dbContext;
 
-        public HistoricalPriceHandler(SubstrateDbContext dbContext, ILogger<HistoricalPriceHandler> logger) : base(logger)
+        public HistoricalPriceHandler(SubstrateDbContext dbContext, ILogger<HistoricalPriceHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _dbContext = dbContext;
         }
 
-        public async override Task<Result<HistoricalPriceDto, ErrorResult>> Handle(HistoricalPriceQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<HistoricalPriceDto, ErrorResult>> HandleInnerAsync(HistoricalPriceQuery request, CancellationToken cancellationToken)
         {
             IEnumerable<TokenPriceModel> prices = _dbContext.TokenPrices;
 

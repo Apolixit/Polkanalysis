@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Stats;
@@ -16,13 +17,13 @@ namespace Polkanalysis.Domain.UseCase.Statistics
         private readonly ISubstrateService _substrateService;
         private readonly IConfiguration _configuration;
 
-        public BlockchainInformationHandler(ISubstrateService substrateRepository, IConfiguration configuration, ILogger<BlockchainInformationHandler> logger) : base(logger)
+        public BlockchainInformationHandler(ISubstrateService substrateRepository, IConfiguration configuration, ILogger<BlockchainInformationHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _substrateService = substrateRepository;
             _configuration = configuration;
         }
 
-        public async override Task<Result<BlockchainInformationDto, ErrorResult>> Handle(BlockchainInformationQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<BlockchainInformationDto, ErrorResult>> HandleInnerAsync(BlockchainInformationQuery request, CancellationToken cancellationToken)
         {
             if (_configuration == null)
                 throw new InvalidOperationException($"{nameof(_configuration)} is not set");

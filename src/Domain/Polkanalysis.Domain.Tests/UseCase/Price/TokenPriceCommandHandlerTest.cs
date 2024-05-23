@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Price;
 using Polkanalysis.Domain.Contracts.Primary.Price;
@@ -13,7 +14,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
         public void Setup()
         {
             _logger = Substitute.For<ILogger<TokenPriceCommandHandler>>();
-            _useCase = new TokenPriceCommandHandler(_substrateDbContext, _logger);
+            _useCase = new TokenPriceCommandHandler(_substrateDbContext, _logger, Substitute.For<IDistributedCache>());
         }
 
         [Test]
@@ -67,7 +68,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
             // I do this, because in abstract class I already insert some data into Price table
             var initialEntriesCount = _substrateDbContext.TokenPrices.Count();
 
-            await _useCase!.Handle(command, CancellationToken.None);
+            await _useCase!.HandleInnerAsync(command, CancellationToken.None);
 
             Assert.That(_substrateDbContext.TokenPrices.Count(), Is.EqualTo(initialEntriesCount + 1));
 

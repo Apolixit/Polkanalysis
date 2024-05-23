@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
@@ -29,7 +30,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         public void Setup()
         {
             _logger = Substitute.For<ILogger<SpecVersionHandler>>();
-            _useCase = new SpecVersionHandler(_substrateDbContext, _substrateService, _logger);
+            _useCase = new SpecVersionHandler(_substrateDbContext, _substrateService, _logger, Substitute.For<IDistributedCache>());
         }
 
         private void insertRuntimeVersion(int i)
@@ -66,7 +67,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 
             Assert.That(_substrateDbContext.SpecVersionModels.Count(), Is.EqualTo(3));
 
-            var res = await _useCase!.Handle(new SpecVersionsQuery(), CancellationToken.None);
+            var res = await _useCase!.HandleInnerAsync(new SpecVersionsQuery(), CancellationToken.None);
             Assert.That(res.IsSuccess, Is.True);
 
             var lastRecord = res.Value.Last();

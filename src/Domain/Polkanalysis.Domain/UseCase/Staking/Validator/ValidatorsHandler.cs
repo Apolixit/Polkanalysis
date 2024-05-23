@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -11,12 +12,12 @@ namespace Polkanalysis.Domain.UseCase.Staking.Validator
     {
         private readonly IStakingService _stakingService;
 
-        public ValidatorsHandler(IStakingService stakingService, ILogger<ValidatorsHandler> logger) : base(logger)
+        public ValidatorsHandler(IStakingService stakingService, ILogger<ValidatorsHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
             _stakingService = stakingService;
         }
 
-        public async override Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>> Handle(ValidatorsQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>> HandleInnerAsync(ValidatorsQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

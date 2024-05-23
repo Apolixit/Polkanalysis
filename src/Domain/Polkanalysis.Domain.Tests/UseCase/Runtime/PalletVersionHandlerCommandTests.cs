@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.PalletVersion;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.UseCase.Runtime.PalletVersion;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Infrastructure.Database;
 using Substrate.NET.Metadata.Service;
 using Substrate.NetApi.Model.Types.Base;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 {
@@ -40,7 +36,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             _substrateService.BlockchainName.Returns("Polkadot");
 
             _useCase = new PalletVersionCommandHandler(
-                _substrateDbContext, _metadataService, _substrateService, _logger);
+                _substrateDbContext, _metadataService, _substrateService, _logger, Substitute.For<IDistributedCache>());
 
             // Default behavior (to avoid repeat it for each test)
             uint blockStart = 10_000;
@@ -78,7 +74,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
             changedPallets.ForEach(x => insertPalletVersionIndatabase(x, 1));
             await _substrateDbContext.SaveChangesAsync();
             
-            var res = await _useCase!.Handle(new PalletVersionCommand()
+            var res = await _useCase!.HandleInnerAsync(new PalletVersionCommand()
             {
                 BlockStart = 10_000
             }, CancellationToken.None);
@@ -102,7 +98,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         [Test]
         public void SpecVersionHandlerCommand_WhenPreviousPalletVersionIsNotPresentInDatabase_ShouldFail()
         {
-            Assert.ThrowsAsync<InvalidOperationException>(async () => await _useCase!.Handle(new PalletVersionCommand()
+            Assert.ThrowsAsync<InvalidOperationException>(async () => await _useCase!.HandleInnerAsync(new PalletVersionCommand()
             {
                 BlockStart = 10_000
             }, CancellationToken.None));
@@ -114,7 +110,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
         {
             _substrateService.Rpc.State.GetMetaDataAsync(Arg.Is<byte[]>(x => x == _blockStartPreviousHash.Bytes), CancellationToken.None).Returns(MetadataV13_9090);
 
-            var res = await _useCase!.Handle(new PalletVersionCommand()
+            var res = await _useCase!.HandleInnerAsync(new PalletVersionCommand()
             {
                 BlockStart = 10_000
             }, CancellationToken.None);

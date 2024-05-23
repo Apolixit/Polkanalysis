@@ -8,7 +8,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         public BaseCom<U128> Total { get; set; }
         public BaseCom<U128> Own { get; set; }
         public BaseVec<IndividualExposure>? Others { get; set; }
-        public U32? NominatorCount { get; set; }
+        public U32 NominatorCount { get; set; }
         public U32? PageCount { get; set; }
 
         public Exposure() { }
@@ -16,6 +16,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         public Exposure(BaseCom<U128> total, BaseCom<U128> own, BaseVec<IndividualExposure> others)
         {
             Create(total, own, others);
+
+            NominatorCount = new U32((uint)others.Value.Length);
         }
 
         public Exposure(BaseCom<U128> total, BaseCom<U128> own, U32 nominatorCount, U32 pageCount)

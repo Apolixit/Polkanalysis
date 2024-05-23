@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Dto.Parachain;
 using Polkanalysis.Domain.Contracts.Dto.Price;
@@ -23,7 +24,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
         public void Start()
         {
             _logger = Substitute.For<ILogger<TokenPriceHandler>>();
-            _useCase = new TokenPriceHandler(null!, _logger);
+            _useCase = new TokenPriceHandler(null!, _logger, Substitute.For<IDistributedCache>());
         }
 
         //[TearDown]
@@ -40,10 +41,10 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
                 .When("https://api.coingecko.com/api/v3/coins/*")
                 .Respond("application/json", "{\"market_data\":{\"current_price\":{\"usd\":10}}}");
 
-            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!);
+            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!, Substitute.For<IDistributedCache>());
 
             var timeNow = DateTime.Now.ToUniversalTime();
-            var result = await _useCase!.Handle(
+            var result = await _useCase!.HandleInnerAsync(
                 new TokenPriceQuery() { 
                     CoinId = "polkadot", 
                     Date = timeNow 
@@ -59,9 +60,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Price
         {
             var mockHttp = new MockHttpMessageHandler();
             mockHttp.When("https://api.coingecko.com/api/v3/coins/*").RespondMatchSummary(System.Net.HttpStatusCode.NotFound);
-            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!);
+            _useCase = new TokenPriceHandler(mockHttp.ToHttpClient(), _logger!, Substitute.For<IDistributedCache>());
 
-            var result = await _useCase!.Handle(new TokenPriceQuery()
+            var result = await _useCase!.HandleInnerAsync(new TokenPriceQuery()
             {
                 CoinId = "polkadot",
                 Date = new DateTime(2024, 1, 1)

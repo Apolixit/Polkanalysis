@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common;
 using Polkanalysis.Domain.Contracts.Dto;
@@ -24,7 +25,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
         {
             _accountRepository = Substitute.For<IAccountService>();
             _logger = Substitute.For<ILogger<AccountListHandler>>();
-            _useCase = new AccountListHandler(_accountRepository, _logger);
+            _useCase = new AccountListHandler(_accountRepository, _logger, Substitute.For<IDistributedCache>());
         }
 
         [Test]
@@ -57,7 +58,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
 
             _accountRepository.GetAccountsAsync(CancellationToken.None,Arg.Any<Pagination>()).Returns(accounts);
 
-            var result = await _useCase!.Handle(new AccountsQuery(2, 1) { }, CancellationToken.None);
+            var result = await _useCase!.HandleInnerAsync(new AccountsQuery(2, 1) { }, CancellationToken.None);
 
             Assert.That(result.IsSuccess, Is.EqualTo(true));
             Assert.That(result.Value.Data.Count(), Is.EqualTo(2));

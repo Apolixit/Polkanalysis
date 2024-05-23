@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -16,12 +17,12 @@ namespace Polkanalysis.Domain.UseCase.Runtime
     {
         private readonly IModuleInformationService _moduleService;
 
-        public RuntimeVersionHandler(ILogger<RuntimeModulesHandler> logger, IModuleInformationService moduleService) : base(logger)
+        public RuntimeVersionHandler(ILogger<RuntimeModulesHandler> logger, IModuleInformationService moduleService, IDistributedCache cache) : base(logger, cache)
         {
             _moduleService = moduleService;
         }
 
-        public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> Handle(RuntimeVersionQuery request, CancellationToken cancellationToken)
+        public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> HandleInnerAsync(RuntimeVersionQuery request, CancellationToken cancellationToken)
         {
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");

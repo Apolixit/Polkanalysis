@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using static Polkanalysis.Domain.Contracts.Primary.Result.ErrorResult;
+using Polkanalysis.Domain.Contracts.Common;
+using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
+using Microsoft.Extensions.Caching.Distributed;
+using System.Text.Json;
 
 namespace Polkanalysis.Domain.UseCase
 {
@@ -26,10 +30,12 @@ namespace Polkanalysis.Domain.UseCase
         where TRequest : IRequest<Result<TDto, ErrorResult>>
     {
         protected readonly ILogger<TLogger> _logger;
+        protected readonly IDistributedCache _cache;
 
-        protected Handler(ILogger<TLogger> logger)
+        protected Handler(ILogger<TLogger> logger, IDistributedCache cache)
         {
             _logger = logger;
+            _cache = cache;
         }
 
         protected ErrorTag<ErrorResult> UseCaseError(ErrorType errorType, string reason)
@@ -46,6 +52,41 @@ namespace Polkanalysis.Domain.UseCase
             return Helpers.Error(errorResult);
         }
 
-        public abstract Task<Result<TDto, ErrorResult>> Handle(TRequest request, CancellationToken cancellationToken);
+        public async Task<Result<TDto, ErrorResult>> Handle(TRequest request, CancellationToken cancellationToken)
+        {
+            // Log the cache key if the request is cached
+            if(request is ICached cachedRequest)
+            {
+                var cacheKey = cachedRequest.GenerateCacheKey();
+
+                var cachedData = await _cache.GetStringAsync(cacheKey, cancellationToken);
+                if (cachedData is not null)
+                {
+                    _logger.LogInformation($"Cache hit for key: {cacheKey}");
+                    var cachedResult = JsonSerializer.Deserialize<TDto>(cachedData);
+                    return Helpers.Ok(cachedResult!);
+                }
+
+                _logger.LogInformation($"Cache miss for key: {cacheKey}");
+
+                var result = await HandleInnerAsync(request, cancellationToken);
+
+                if (result.IsSuccess)
+                {
+                    // Serialize the result and store it in the cache
+                    var cacheOptions = new DistributedCacheEntryOptions
+                    {
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(cachedRequest.CacheDurationInMinutes)
+                    };
+                    await _cache.SetStringAsync(cacheKey, JsonSerializer.Serialize(result.Value), cacheOptions, cancellationToken);
+                }
+
+                return result;
+            }
+
+            return await HandleInnerAsync(request, cancellationToken);
+        }
+
+        public abstract Task<Result<TDto, ErrorResult>> HandleInnerAsync(TRequest request, CancellationToken cancellationToken);
     }
 }
