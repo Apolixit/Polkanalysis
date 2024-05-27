@@ -1,13 +1,13 @@
-﻿@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool
+﻿@using Polkanalysis.Domain.Contracts.Common.Search
+@using Polkanalysis.Domain.Contracts.Dto.Staking.Pool
 @inject NavigationManager _navigationManager;
 
-<FluentDataGrid Items="@Pools!.AsQueryable().Where(x => x.Name.Contains(poolNameFilter, StringComparison.CurrentCultureIgnoreCase))"
+<FluentDataGrid Items="FilteredPools()"
                 ResizableColumns=true
                 Pagination="@pagination"
                 TGridItem="PoolLightDto"
-                Style="height: 405px; overflow:auto;"
                 ShowHover="true">
-    <PropertyColumn Property="@(c => c.PoolId)" Title="Id" Sortable="true" Align="Align.Start" Width="10%" />
+    <PropertyColumn Property="@(c => c.PoolId)" Title="Id" Sortable="true" Align="Align.Start" Width="5%" />
     <PropertyColumn Property="@(c => c.Name)" InitialSortDirection=SortDirection.Descending Sortable="true" IsDefaultSortColumn=true Width="40%">
         <ColumnOptions>
             <div class="search-box">
@@ -15,12 +15,22 @@
             </div>
         </ColumnOptions>
     </PropertyColumn>
-    <PropertyColumn Property="@(c => c.NbPoolMembers)" Title="Members" Sortable="true" Align="Align.Start" Width="15%" />
-    <PropertyColumn Property="@(c => c.Commission)" Title="Commission" Sortable="true" Align="Align.Center" Width="15%" />
-    <PropertyColumn Property="@(c => c.TotalBonded)" Title="Total bounded" Format="N2" Sortable="true" Align="Align.End" Width="20%" />
-    <TemplateColumn>
+    <PropertyColumn Property="@(c => c.NbPoolMembers)" Title="Members" Sortable="true" Align="Align.Start" Width="12%">
+        <ColumnOptions>
+            <FluentSelect TOption="FilterOperator" Label="Operator"
+                          Items="@filterOperator"
+                          OptionValue="@(p => p.Operator.ToString())"
+                          OptionText="@(p => p.Name)"
+                          @bind-SelectedOption="@selectFilterOperator" />
+            <div class="search-box">
+                <FluentNumberField Autofocus=true @bind-Value=nbPoolMemberFilter @oninput="@(e => nbPoolMemberFilter = int.TryParse(e.Value?.ToString(), out int tmp) ? (int?)tmp : null)" AfterBindValue="HandleClear" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Commission)" Title="Commission" Sortable="true" Align="Align.Center" Width="12%" />
+    <PropertyColumn Property="@(c => c.TotalBonded)" Title="Total bounded" Format="N2" Sortable="true" Align="Align.End" Width="15%" />
+    <TemplateColumn Title="Details">
         <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.PoolId))">
-            Details
         </FluentButton>
     </TemplateColumn>
 </FluentDataGrid>
@@ -37,7 +47,30 @@
 @code {
     [Parameter] public IEnumerable<PoolLightDto>? Pools { get; set; }
     PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
     string poolNameFilter = string.Empty;
+    int? nbPoolMemberFilter = null;
+
+    FilterOperator? selectFilterOperator { get; set; }
+    private List<FilterOperator> filterOperator = new()
+        {
+            new FilterOperator
+            {
+                Name = "=",
+                Operator = Operator.Equal
+            },
+            new FilterOperator
+            {
+                Name = "<=",
+                Operator = Operator.LowerOrEqual
+            }
+        };
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        selectFilterOperator = filterOperator.First();
+    }
 
     private void HandleNameFilter(ChangeEventArgs args)
     {
@@ -58,5 +91,31 @@
     protected void GoToDetails(uint poolId)
     {
         _navigationManager.NavigateTo($"pool/{poolId}");
+    }
+
+    public class FilterOperator
+    {
+        public Operator Operator { get; set; }
+        public string Name { get; set; }
+    }
+
+    public IQueryable<PoolLightDto> FilteredPools()
+    {
+        IQueryable<PoolLightDto> queryablePools = Pools!.AsQueryable();
+        if (!string.IsNullOrWhiteSpace(poolNameFilter))
+        {
+            queryablePools = queryablePools.Where(x => x.Name.Contains(poolNameFilter, StringComparison.CurrentCultureIgnoreCase));
+        }
+        if (selectFilterOperator is not null && nbPoolMemberFilter is not null)
+        {
+            queryablePools = selectFilterOperator.Operator switch
+            {
+                Operator.Equal => queryablePools.Where(x => x.NbPoolMembers == nbPoolMemberFilter),
+                Operator.LowerOrEqual => queryablePools.Where(x => x.NbPoolMembers <= nbPoolMemberFilter),
+                _ => queryablePools
+            };
+        }
+
+        return queryablePools;
     }
 }

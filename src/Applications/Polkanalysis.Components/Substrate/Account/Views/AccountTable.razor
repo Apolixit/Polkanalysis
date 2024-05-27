@@ -1,0 +1,53 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.User
+@inject NavigationManager _navigationManager;
+
+<FluentDataGrid Items="@Accounts!.AsQueryable().Where(x => x.Address.Name.Contains(accountNameFilter, StringComparison.CurrentCultureIgnoreCase))"
+                ResizableColumns=true
+                Pagination="@pagination"
+                TGridItem="AccountLightDto"
+                ShowHover="true">
+    <PropertyColumn Property="@(c => c.Address.Name)" Title="Name" Sortable="true" Align="Align.Start">
+        <ColumnOptions>
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=accountNameFilter @oninput="HandleNameFilter" AfterBindValue="HandleClear" Placeholder="Address or name..." />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Balances.Transferable)" Title="Transferable" Sortable="true" Align="Align.Center" />
+    <PropertyColumn Property="@(c => c.Balances.NonTransferable)" Title="Non transferable" Sortable="true" Align="Align.Center" />
+    <PropertyColumn Property="@(c => c.Balances.Pool)" Title="Pool" Sortable="true" Align="Align.End" />
+    <TemplateColumn>
+        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.Address.Address))">
+            Details
+        </FluentButton>
+    </TemplateColumn>
+</FluentDataGrid>
+
+<FluentPaginator State="@pagination">
+    <SummaryTemplate>
+        There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
+
+@code {
+    [Parameter] public IEnumerable<AccountLightDto>? Accounts { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    string accountNameFilter = string.Empty;
+
+    private void HandleNameFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            accountNameFilter = value;
+        }
+    }
+
+    protected void GoToDetails(string accountAddress)
+    {
+        _navigationManager.NavigateTo($"account/{accountAddress}");
+    }
+}

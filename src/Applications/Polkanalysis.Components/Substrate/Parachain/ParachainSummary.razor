@@ -2,18 +2,9 @@
 @using Polkanalysis.Domain.Contracts.Primary.Parachain;
 @inject IMediator _mediator;
 
-<div class="card-header">
-    <i class="bi bi-hash"></i> Parachain
-</div>
 <div class="card-body">
     <DataCall MediatorReq="mediatorRequest" Context="Parachain">
-        <div class="row row-cols-2 row-cols-md-4 row-cols-sm-3 g-4">
-            <Enumerable Elems="Parachain.Where(x=> !string.IsNullOrEmpty(x.Name)).OrderBy(x => x.ParachainId).Take(10)">
-                <ElemsContent>
-                    <Polkanalysis.Components.Substrate.Parachain.Views.ParachainItemCard Parachain="context" />
-                </ElemsContent>
-            </Enumerable>
-        </div>
+        <Polkanalysis.Components.Substrate.Parachain.Views.ParachainTable Parachain="Parachain" />
     </DataCall>
 </div>
 

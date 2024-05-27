@@ -14,18 +14,7 @@
                     <Polkanalysis.Components.Substrate.Parachain.Views.ParachainItemCard Parachain="context" />
                 </CardView>
                 <TableView>
-                    <Table Elems="Parachains" Context="tableParachains">
-                        <ThContent>
-                            <td scope="col">Id</td>
-                            <td scope="col">Name</td>
-                            <td scope="col">Validator count</td>
-                            <td scope="col">Crowdloan Id</td>
-                            <td scope="col"></td>
-                        </ThContent>
-                        <TbodyContent>
-                            <Polkanalysis.Components.Substrate.Parachain.Views.ParachainItemTable Parachain="tableParachains" />
-                        </TbodyContent>
-                    </Table>
+                    <Polkanalysis.Components.Substrate.Parachain.Views.ParachainTable Parachain="context" />
                 </TableView>
             </ComponentListView>
         </div>

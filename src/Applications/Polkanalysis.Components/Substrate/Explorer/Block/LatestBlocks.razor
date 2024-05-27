@@ -1,0 +1,30 @@
+﻿@using Polkanalysis.Components.Substrate.Explorer.Block.Views
+@using Polkanalysis.Domain.Contracts.Dto.Block
+@using Polkanalysis.Domain.Contracts.Primary.Explorer.Block
+@inject IMediator _mediator;
+
+<DataCall MediatorReq="mediatorRequest" Context="Blocks">
+    <div class="card">
+        <div class="card-body">
+            <Enumerable Elems="Blocks">
+                <EmptyContent>
+                    <div class="text-center">No data yet</div>
+                </EmptyContent>
+                <ElemsContent>
+                    <div class="col">
+                        <BlockItemCard Block="context" />
+                    </div>
+                </ElemsContent>
+            </Enumerable>
+        </div>
+    </div>
+</DataCall>
+
+@code {
+    private Task<Result<IEnumerable<BlockLightDto>, ErrorResult>>? mediatorRequest;
+
+    protected async override Task OnInitializedAsync()
+    {
+        mediatorRequest = _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = 10 }, CancellationToken.None);
+    }
+}

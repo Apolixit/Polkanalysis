@@ -13,31 +13,29 @@ using Polkanalysis.Domain.UseCase;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Infrastructure.Database;
-using Polkanalysis.Worker.Parameters.Context;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Tasks;
-using Serilog.Extensions.Logging;
 using Polkanalysis.Infrastructure.Database.Extensions;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Polkanalysis.Worker.Metrics;
-using System;
 
-var (serilogLogger, microsoftLogger, config) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.App");
-
-microsoftLogger.LogInformation("Starting Polkanalysis Worker hosted service...");
+Microsoft.Extensions.Logging.ILogger? logger = null;
 
 var host = Host.CreateDefaultBuilder(args)
-.UseSerilog(serilogLogger)
+.UseSerilog()
 .ConfigureServices((hostContext, services) =>
 {
+    logger = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
+
+    logger.LogInformation("Starting Polkanalysis Worker hosted service...");
+
     services
     //.AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
     .AddHostedService<StakingWorker>()
     //.AddHostedService<VersionWorker>()
-    .AddSingleton(config)
+    .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {
         options.UseNpgsql(
@@ -60,7 +58,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddDatabase();
     services.AddSubstrateLogic();
 
-    services.AddOpentelemetry(microsoftLogger, 
+    services.AddOpentelemetry(logger, 
         "Polkanalysis.Worker", 
         new List<string>() { "Polkanalysis.Worker.Metrics" });
 
@@ -77,8 +75,8 @@ var host = Host.CreateDefaultBuilder(args)
 })
 .Build();
 
-await host.ApplyMigrationAsync(microsoftLogger);
-await host.ConnectNodeAsync("Polkanalysis.Worker", microsoftLogger);
+await host.ApplyMigrationAsync(logger!);
+await host.ConnectNodeAsync("Polkanalysis.Worker", logger!);
 
 await host.RunAsync();
 
