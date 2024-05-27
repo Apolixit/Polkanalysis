@@ -14,16 +14,15 @@ using Microsoft.FluentUI.AspNetCore.Components;
 using ApexCharts;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
-
-var (serilogLogger, microsoftLogger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.App");
-
-serilogLogger.Information("Starting Polkanalysis Web application ...");
+using static Azure.Core.HttpHeader;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
-
 builder.Host.UseSerilog();
+
+var logger = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.App", builder.Configuration);
+logger.LogInformation("Starting Polkanalysis Web application");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -45,7 +44,7 @@ builder.Services.AddSubstrateLogic();
 builder.Services.AddMediatRAndPipelineBehaviors();
 builder.Services.AddDatabase();
 
-builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.App");
+builder.Services.AddOpentelemetry(logger, "Polkanalysis.App");
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -61,7 +60,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-await app.ApplyMigrationAsync(new SerilogLoggerFactory(serilogLogger).CreateLogger("database"));
+await app.ApplyMigrationAsync(logger);
 
 app.UseHttpsRedirection();
 

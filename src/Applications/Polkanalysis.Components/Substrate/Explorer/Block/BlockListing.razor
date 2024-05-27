@@ -1,143 +1,32 @@
-﻿@using Polkanalysis.Domain.Contracts.Dto.Block;
-@using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;
+﻿@page "/blocks"
+
+@using Polkanalysis.Domain.Contracts.Dto.Block;
+@using Polkanalysis.Domain.Contracts.Primary.Explorer.Block
 @using Polkanalysis.Domain.Contracts.Secondary.Repository;
-@using Polkanalysis.Domain.Contracts.Service;
+@using Polkanalysis.Components.Substrate.Explorer.Block.Views;
 
-@inject IExplorerService _explorerService;
 @inject IMediator _mediator;
-@inject NavigationManager _navigationManager;
 
-@foreach (var block in Blocks)
-{
-    var (cssBorder, cssColor, cssIcon) = block.Status switch
-    {
-        GlobalStatusDto.BlockStatusDto.Finalized => ("border-success", "text-success", "bi bi-hourglass-bottom"),
-        GlobalStatusDto.BlockStatusDto.Broadcasted => ("border-warning", "text-warning", "bi bi-hourglass-top"),
-        _ => ("border-error", "text-error", "bi bi-hourglass")
-    };
-
-    <div class="col">
-        <div class="card card-hoverable h-100 border @cssBorder">
-            <div class="card-body">
-                <div class="row mb-2">
-                    <div class="col-sm-4">
-                        @if (block.Status == GlobalStatusDto.BlockStatusDto.Finalized)
-                        {
-                            <FluentIcon id="@BlockStatusTooltipId(block.Number)" Value="@(new PolkanalysisIcons.BootstrapIcon.HourglassBottom())" Color="Color.Success" />
-                        }
-                        else if (block.Status == GlobalStatusDto.BlockStatusDto.Broadcasted)
-                        {
-                            <FluentIcon id="@BlockStatusTooltipId(block.Number)" Value="@(new PolkanalysisIcons.BootstrapIcon.HourglassTop())" Color="Color.Warning" />
-                        }
-                        else
-                        {
-                            <FluentIcon id="@BlockStatusTooltipId(block.Number)" Value="@(new PolkanalysisIcons.BootstrapIcon.Hourglass())" Color="Color.Error" />
-                        }
-                    </div>
-                    <div class="col-sm-8">
-                        <FluentLabel Typo="Typography.H5" class="text-end mb-2">
-                            @block.Number
-                            <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.BlockNumber())" />
-                        </FluentLabel>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-12">
-                        <span class="mr-2">
-                            <FluentBadge>
-                                <small>
-                                    <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.Extrinsic())" /> @block.NbExtrinsics extrinsics
-                                </small>
-                            </FluentBadge>
-                        </span>
-                        <span class="mr-2">
-                            <FluentBadge>
-                                <small>
-                                    <FluentIcon Value="@(new PolkanalysisIcons.PolkadotIcons.Event())" /> @block.NbEvents events
-                                </small>
-                            </FluentBadge>
-                        </span>
-                        <span>
-                            <FluentBadge>
-                                <small>
-                                    <FluentIcon Value="@(new PolkanalysisIcons.BootstrapIcon.Book())" /> @block.NbLogs logs
-                                </small>
-                            </FluentBadge>
-                        </span>
-                    </div>
-                </div>
-                <p class="card-text mb-1 d-flex justify-content-center">
-                    <AccountSumUp User="@block.Validator" Limit="15" />
-                </p>
-            </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <small><FluentIcon Value="@(new Icons.Regular.Size12.Calendar())" /> @block.When</small>
-                    </div>
-                    <div class="col-sm-4 text-end">
-                        @* <FluentButton Appearance="Appearance.Stealth" OnClick="@(() => GoToBlockDetails(block.Number))">
-                            <FluentIcon Value="@(new Icons.Regular.Size16.Eye())"></FluentIcon>
-                        </FluentButton> *@
-                        <FluentAnchor Appearance="@Appearance.Hypertext"
-                                      Href="@($"block/{block.Number}")"
-                                      Target="_blank">Details</FluentAnchor>
-                    </div>
-                </div>
-            </div>
+<DataCall MediatorReq="mediatorRequest" Context="Blocks">
+    <div class="card">
+        <div class="card-body">
+            <ComponentListView Elems="Blocks">
+                <CardView>
+                    <BlockItemCard Block="context" />
+                </CardView>
+                <TableView>
+                    <BlockTable Blocks="context" />
+                </TableView>
+            </ComponentListView>
         </div>
     </div>
-
-    <FluentTooltip Anchor="@BlockStatusTooltipId(block.Number)">
-        Current block status is @block.Status.ToString()
-    </FluentTooltip>
-}
-
-
-@*<Table Elems="Blocks" Context="block">
-    <TbodyContent>
-        <tr @onclick="(() => GoToBlockDetails(block.Number))">
-            <td>
-                <PolkadotIcons IconName="Block Number.svg" />
-                @block.Number
-            </td>
-            <td>
-                @block.When
-            </td>
-            <td>
-                @block.Status
-            </td>
-        </tr>
-    </TbodyContent>
-</Table>*@
+</DataCall>
 
 @code {
-    [Parameter] public int NbBlockMax { get; set; } = 10;
-    [Parameter] public int NbPreviousBlockToFetch { get; set; } = 10;
-    [Parameter] public List<BlockLightDto> Blocks { get; set; } = new List<BlockLightDto>();
+    private Task<Result<IEnumerable<BlockLightDto>, ErrorResult>>? mediatorRequest;
 
     protected async override Task OnInitializedAsync()
     {
-        //var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
-        //Blocks.AddRange(blocks.Value);
-
-        var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
-        Blocks.Clear();
-        Blocks.AddRange(blocks.Value.OrderByDescending(x => x.Number));
-        //await _blockRepository.SubscribeNewBlocksAsync(async (_) =>
-        //{
-        //    var blocks = await _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = NbBlockMax }, CancellationToken.None);
-        //    Blocks.Clear();
-        //    Blocks.AddRange(blocks.Value.OrderByDescending(x => x.Number));
-
-        //    InvokeAsync(() => StateHasChanged());
-        //}, CancellationToken.None);
+        mediatorRequest = _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = 10000 }, CancellationToken.None);
     }
-
-    protected void GoToBlockDetails(ulong blockId)
-    {
-        _navigationManager.NavigateTo($"block/{blockId}");
-    }
-
-    protected string BlockStatusTooltipId(ulong blockId) => $"block-status-{blockId}";
 }

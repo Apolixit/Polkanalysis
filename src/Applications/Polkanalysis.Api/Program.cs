@@ -21,14 +21,14 @@ namespace Polkanalysis.Api
     {
         public async static Task Main(string[] args)
         {
-            var (serilogLogger, microsoftLogger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api");
-
             try
             {
-                serilogLogger.Information("Starting Polkanalysis API ...");
-
                 var builder = WebApplication.CreateBuilder(args);
-                builder.Host.UseSerilog(serilogLogger);
+                builder.Host.UseSerilog();
+                var logger = Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api", builder.Configuration);
+
+                logger.LogInformation("Starting Polkanalysis API");
+
                 // Add services to the container.
 
                 builder.Services.AddControllers().AddJsonOptions(x =>
@@ -70,7 +70,7 @@ namespace Polkanalysis.Api
                                       });
                 });
 
-                builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.API");
+                builder.Services.AddOpentelemetry(logger, "Polkanalysis.API");
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit
@@ -138,24 +138,24 @@ namespace Polkanalysis.Api
                 app.UseRateLimiter();
                 app.MapDefaultControllerRoute().RequireRateLimiting(ApiRateLimitOptions.TokenBucketPolicy);
 
-                await app.ApplyMigrationAsync(new SerilogLoggerFactory(serilogLogger).CreateLogger("database"));
+                await app.ApplyMigrationAsync(logger);
 
                 var substrateService = app.Services.GetRequiredService<ISubstrateService>();
                 await substrateService.ConnectAsync();
                 if (substrateService.IsConnected())
                 {
-                    serilogLogger.Information($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");
+                    logger.LogInformation($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");
                 }
                 else
                 {
-                    serilogLogger.Error($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
+                    logger.LogError($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
                 }
 
                 await app.RunAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                serilogLogger.Fatal(ex, "Host terminated unexpectedly !");
+                
             }
             finally
             {

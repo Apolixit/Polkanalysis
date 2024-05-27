@@ -1,0 +1,99 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Block
+@inject NavigationManager _navigationManager;
+
+<FluentDataGrid Items="@FilteredBlocks()"
+                ResizableColumns=true
+                Pagination="@pagination"
+                TGridItem="BlockLightDto"
+                ShowHover="true">
+    <PropertyColumn Property="@(c => c.Number)" Title="Num" Sortable="true" Align="Align.Start">
+        <ColumnOptions>
+            <div class="search-box">
+                <FluentNumberField 
+                    Autofocus=true 
+                    @bind-Value=blockNumFilter
+                                   @oninput="@(e => blockNumFilter = int.TryParse(e.Value?.ToString(), out int tmp) ? (int?)tmp : null)"
+                                   AfterBindValue="HandleClear" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Hash)" Title="Transferable" Sortable="true" Align="Align.Center">
+        <ColumnOptions>
+            <div class="search-box">
+                <FluentSearch 
+                    type="search" 
+                    Autofocus=true 
+                    @bind-Value=blockHashFilter
+                              @oninput="@(e => blockHashFilter = e?.ToString() ?? "")"
+                              AfterBindValue="HandleClear" 
+                    Placeholder="Block hash" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Validator.Name)" Title="Validator" Sortable="true" Align="Align.Center">
+        <ColumnOptions>
+            <div class="search-box">
+                <FluentSearch type="search"
+                              Autofocus=true
+                              @bind-Value=blockValidatorFilter
+                              @oninput="@(e => blockValidatorFilter = e?.ToString() ?? "")"
+                              AfterBindValue="HandleClear"
+                              Placeholder="Validator name" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.NbEvents)" Title="Events" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.NbExtrinsics)" Title="Extrinsics" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.NbLogs)" Title="Logs" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.When)" Title="When" Sortable="true" Align="Align.End" />
+    <TemplateColumn>
+        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToBlockDetails(context.Number))">
+        </FluentButton>
+    </TemplateColumn>
+</FluentDataGrid>
+
+<FluentPaginator State="@pagination">
+    <SummaryTemplate>
+        There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
+
+@code {
+    [Parameter] public IEnumerable<BlockLightDto>? Blocks { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    int? blockNumFilter = null;
+    string blockHashFilter = string.Empty;
+    string blockValidatorFilter = string.Empty;
+
+    private void HandleHashFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            blockHashFilter = value;
+        }
+    }
+
+    protected void GoToBlockDetails(ulong blockId)
+    {
+        _navigationManager.NavigateTo($"block/{blockId}");
+    }
+
+    public IQueryable<BlockLightDto> FilteredBlocks()
+    {
+        IQueryable<BlockLightDto> queryable = Blocks!.AsQueryable();
+        if (!string.IsNullOrWhiteSpace(blockHashFilter))
+        {
+            queryable = queryable.Where(x => x.Hash.Value.Contains(blockHashFilter, StringComparison.CurrentCultureIgnoreCase));
+        }
+        if (!string.IsNullOrWhiteSpace(blockValidatorFilter))
+        {
+            queryable = queryable.Where(x => x.Hash.Value.Contains(blockValidatorFilter, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        return queryable;
+    }
+}
