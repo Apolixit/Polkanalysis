@@ -1,0 +1,15 @@
+﻿@inject NavigationManager _navigationManager;
+
+<FluentButton 
+    IconStart="new Icons.Regular.Size16.Eye()" 
+    Appearance="Appearance.Accent"
+              OnClick="(() => GoTo())">
+</FluentButton>
+@code {
+    [Parameter] public string Url { get; set; }
+
+    protected void GoTo()
+    {
+        _navigationManager.NavigateTo(Url);
+    }
+}

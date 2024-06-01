@@ -7,9 +7,6 @@
 @inject IMediator _mediator;
 @inject NavigationManager _navigationManager;
 
-
-
-
 <div class="col">
     <div class="card card-hoverable h-100 border @CssBorder()">
         <div class="card-body">
@@ -72,7 +69,10 @@
                 <div class="col-sm-4 text-end">
                     <FluentAnchor Appearance="@Appearance.Hypertext"
                                   Href="@($"block/{Block.Number}")"
-                                  Target="_blank">Details</FluentAnchor>
+                                  Target="_blank">
+                        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent">
+                        </FluentButton>
+                    </FluentAnchor>
                 </div>
             </div>
         </div>

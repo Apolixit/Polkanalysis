@@ -13,7 +13,8 @@
                     <Polkanalysis.Components.Substrate.Account.Views.AccountItemCard Account="cardAccount" />
                 </CardView>
                 <TableView>
-                    <Table Elems="Accounts.Data" Context="tableAccount">
+                    <Polkanalysis.Components.Substrate.Account.Views.AccountTable Accounts="cardAccount" />
+                    @* <Table Elems="Accounts.Data" Context="tableAccount">
                         <ThContent>
                             <td scope="col">Address</td>
                             <td scope="col">Balance</td>
@@ -22,7 +23,7 @@
                         <TbodyContent>
                             <Polkanalysis.Components.Substrate.Account.Views.AccountItemTable Account="tableAccount" />
                         </TbodyContent>
-                    </Table>
+                    </Table> *@
                 </TableView>
             </ComponentListView>
         </div>
@@ -39,7 +40,7 @@
 
     protected override void OnInitialized()
     {
-        mediatorRequest = _mediator.Send(new AccountsQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new AccountsQuery() { Pagination = new Domain.Contracts.Common.Pagination(1, 100)}, CancellationToken.None);
         apiRequest = new ApiRequest<PagedResponseDto<AccountLightDto>>(ApiRoutes.GetAccountsAsync);
     }
 }

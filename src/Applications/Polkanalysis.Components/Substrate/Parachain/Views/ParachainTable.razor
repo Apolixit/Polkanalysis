@@ -17,13 +17,12 @@
     <PropertyColumn Property="@(c => c.ValidatorCount)" Title="Validators" Sortable="true" Align="Align.End" />
     <PropertyColumn Property="@(c => c.CrowdloanId)" Title="Crowdloan" Sortable="true" Align="Align.End" />
     <TemplateColumn>
-        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.ParachainId))">
-            Details
-        </FluentButton>
+        <GoToDetails Url="@GoToDetails(context.ParachainId)" />
     </TemplateColumn>
 </FluentDataGrid>
 
-<FluentPaginator State="@pagination">
+<TablePaginator Pagination="pagination" />
+@* <FluentPaginator State="@pagination">
     <SummaryTemplate>
         There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
     </SummaryTemplate>
@@ -31,7 +30,7 @@
         This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
     </PaginationTextTemplate>
 </FluentPaginator>
-
+ *@
 @code {
     [Parameter] public IEnumerable<ParachainLightDto>? Parachain { get; set; }
     PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
@@ -46,8 +45,8 @@
         }
     }
 
-    protected void GoToDetails(uint parachainId)
+    protected string GoToDetails(uint parachainId)
     {
-        _navigationManager.NavigateTo($"parachain/{parachainId}");
+        return $"parachain/{parachainId}";
     }
 }
