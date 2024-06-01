@@ -1,0 +1,12 @@
+﻿<FluentPaginator State="@Pagination">
+    <SummaryTemplate>
+        There are <strong>@(Pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(Pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(Pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
+
+@code {
+    [Parameter] public PaginationState Pagination { get; set; } = new PaginationState { ItemsPerPage = 10 };
+}

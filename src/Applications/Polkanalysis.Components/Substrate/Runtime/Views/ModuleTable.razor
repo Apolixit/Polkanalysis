@@ -1,0 +1,71 @@
+﻿@using Polkanalysis.Domain.Contracts.Dto.Module
+@inject NavigationManager _navigationManager;
+
+<FluentDataGrid Items="@Modules!.AsQueryable().Where(x => x.Information.PalletName.Contains(moduleNameFilter, StringComparison.CurrentCultureIgnoreCase))"
+                ResizableColumns=true
+                Pagination="@pagination"
+                TGridItem="ModuleDetailDto"
+                ShowHover="true">
+    <TemplateColumn Title="Name" Sortable="true" Align="Align.Start">
+        <ChildContent>
+            @context.Information.PalletName
+            @if(context.Information.Documentation != null)
+            {
+                <FluentIcon Id="@tooltipId(context.Information.PalletName)" Icon="Icons.Regular.Size24.Info" />
+                <FluentTooltip Anchor="@tooltipId(context.Information.PalletName)">
+                    @context.Information.Documentation
+                </FluentTooltip>
+            }
+        </ChildContent>
+        <ColumnOptions>
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=moduleNameFilter @oninput="HandleNameFilter" AfterBindValue="HandleClear" 
+                Placeholder="Name..." />
+            </div>
+        </ColumnOptions>
+    </TemplateColumn>
+    <PropertyColumn Property="@(c => c.Calls.Count())" Title="Calls" Sortable="true" Align="Align.Center" />
+    <PropertyColumn Property="@(c => c.Events.Count())" Title="Events" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.Storage.Count())" Title="Storage" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.Constants.Count())" Title="Constants" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.Errors.Count())" Title="Errors" Sortable="true" Align="Align.End" />
+    <TemplateColumn>
+        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.Information.PalletName))">
+            Details
+        </FluentButton>
+    </TemplateColumn>
+</FluentDataGrid>
+
+<FluentPaginator State="@pagination">
+    <SummaryTemplate>
+        There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
+
+@code {
+    [Parameter] public IEnumerable<ModuleDetailDto>? Modules { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    string moduleNameFilter = string.Empty;
+
+    private void HandleNameFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            moduleNameFilter = value;
+        }
+    }
+
+    protected void GoToDetails(string moduleName)
+    {
+        _navigationManager.NavigateTo($"module/{moduleName}");
+    }
+
+    protected string tooltipId(string palletName)
+    {
+        return $"documentation-{palletName}";
+    }
+}

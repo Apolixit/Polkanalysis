@@ -6,16 +6,16 @@
 <DataCall MediatorReq="mediatorRequest" Context="Blocks">
     <div class="card">
         <div class="card-body">
-            <Enumerable Elems="Blocks">
-                <EmptyContent>
-                    <div class="text-center">No data yet</div>
-                </EmptyContent>
-                <ElemsContent>
-                    <div class="col">
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-col-lg-4 g-3">
+                <Enumerable Elems="Blocks">
+                    <EmptyContent>
+                        <div class="text-center">No data yet</div>
+                    </EmptyContent>
+                    <ElemsContent>
                         <BlockItemCard Block="context" />
-                    </div>
-                </ElemsContent>
-            </Enumerable>
+                    </ElemsContent>
+                </Enumerable>
+            </div>
         </div>
     </div>
 </DataCall>

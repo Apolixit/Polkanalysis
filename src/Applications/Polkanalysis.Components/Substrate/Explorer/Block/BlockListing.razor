@@ -27,6 +27,6 @@
 
     protected async override Task OnInitializedAsync()
     {
-        mediatorRequest = _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = 10000 }, CancellationToken.None);
+        mediatorRequest = _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = 100 }, CancellationToken.None);
     }
 }
