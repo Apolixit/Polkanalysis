@@ -1,4 +1,83 @@
-﻿<h3>CrowdloanListing</h3>
+﻿@page "/crowdloans"
+@inject IMessageService MessageService
+@inject IDialogService DialogService
+
+<FluentStack HorizontalGap="10">
+    <FluentButton>Button</FluentButton>
+    <FluentButton Appearance="Appearance.Accent">Accent</FluentButton>
+    <FluentButton Appearance="Appearance.Lightweight">Lightweight</FluentButton>
+    <FluentButton Appearance="Appearance.Outline">Outline</FluentButton>
+    <FluentButton Appearance="Appearance.Stealth">Stealth</FluentButton>
+    <FluentButton BackgroundColor="var(--highlight-bg)" Color="var(--info)">Colored</FluentButton>
+    @* <FluentButton Loading="@loading" OnClick="@StartLoadingAsync" Appearance="Appearance.Accent">Loading</FluentButton> *@
+</FluentStack>
+
+<FluentCard >
+    <p>Just some content in a card (with a button that does not do anything).</p>
+
+    <FluentButton Appearance="Appearance.Accent">Hello</FluentButton>
+    <p>No Width or Height has been specified.</p>
+</FluentCard>
+
+<FluentLabel Typo="Typography.Body"> Example 'Body' label </FluentLabel>
+<FluentLabel Typo="Typography.Subject"> Example 'Subject' label </FluentLabel>
+<FluentLabel Typo="Typography.Header"> Example 'Header' label </FluentLabel>
+<FluentLabel Typo="Typography.PaneHeader"> Example 'PaneHeader' label </FluentLabel>
+<FluentLabel Typo="Typography.EmailHeader"> Example 'EmailHeader' label </FluentLabel>
+<FluentLabel Typo="Typography.PageTitle"> Example 'PageTitle' label </FluentLabel>
+<FluentLabel Typo="Typography.HeroTitle"> Example 'HeroTitle' label </FluentLabel>
+<FluentLabel Typo="Typography.H1"> Example 'H1' label </FluentLabel>
+<FluentLabel Typo="Typography.H2"> Example 'H2' label </FluentLabel>
+<FluentLabel Typo="Typography.H3"> Example 'H3' label </FluentLabel>
+<FluentLabel Typo="Typography.H4"> Example 'H4' label </FluentLabel>
+<FluentLabel Typo="Typography.H5"> Example 'H5' label </FluentLabel>
+<FluentLabel Typo="Typography.H6"> Example 'H6' label </FluentLabel>
+
+<FluentPersona Name="Anonymous"
+               Status="PresenceStatus.Offline"
+               StatusSize="PresenceBadgeSize.Small"
+               StatusTitle="Anonymous user is offline"
+               Image="@(new Icons.Regular.Size48.Person().ToDataUri(size: "25px", color: "white"))"
+               ImageSize="50px">
+               <b>Bill Gates</b><br/>
+    Co-chair of the Gates Foundation
+</FluentPersona>
+<FluentPersona Name="Anonymous"
+               Status="PresenceStatus.Offline"
+               StatusSize="PresenceBadgeSize.Small"
+               StatusTitle="Anonymous user is offline"
+               Image="@(new Icons.Regular.Size48.Person().ToDataUri(size: "25px", color: "white"))"
+               ImageSize="50px">
+               <b>Bill Gates</b><br/>
+    Co-chair of the Gates Foundation
+</FluentPersona>
+
+
+<FluentStack Orientation="@Orientation.Vertical" VerticalGap="8">
+    <FluentMessageBar Title="Descriptive title">
+        Message providing information to the user with actionable insights.
+    </FluentMessageBar>
+
+    <FluentMessageBar Title="Descriptive title" Intent="@MessageIntent.Success">
+        Message providing information to the user with actionable insights.
+    </FluentMessageBar>
+
+    <FluentMessageBar Title="Descriptive title" Intent="@MessageIntent.Warning">
+        Message providing information to the user with actionable insights.
+    </FluentMessageBar>
+
+    <FluentMessageBar Title="Descriptive title" Intent="@MessageIntent.Error">
+        Message providing information to the user with actionable insights.
+    </FluentMessageBar>
+    
+    <FluentMessageBar Title="Descriptive title" Intent="@MessageIntent.Custom" Icon="@(new Icons.Filled.Size20.LeafTwo())" IconColor="Color.Neutral">
+        Message providing information to the user with actionable insights.
+    </FluentMessageBar>
+
+    <FluentMessageBar Title="Descriptive title" Intent="@MessageIntent.Error" AllowDismiss="false">
+        Message that is not dismissible.
+    </FluentMessageBar>
+</FluentStack>
 
 @code {
 

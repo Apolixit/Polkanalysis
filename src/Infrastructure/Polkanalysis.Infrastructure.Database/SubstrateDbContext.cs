@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Blocks;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Crowdloan;
@@ -14,6 +15,9 @@ namespace Polkanalysis.Infrastructure.Database
     {
         public SubstrateDbContext(DbContextOptions options) : base(options) { }
 
+        #region Blocks
+        public DbSet<BlockInformationModel> BlockInformation { get; set; }
+        #endregion
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
         public DbSet<BalancesDustLostModel> EventBalancesDustLost  { get; set; }
@@ -59,6 +63,9 @@ namespace Polkanalysis.Infrastructure.Database
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BlockInformationModel>()
+                .HasKey(c => c.BlockNumber);
+
             modelBuilder.Entity<BalancesBalanceSetModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.RootAccount, c.Amount1, c.Amount2 });
 
