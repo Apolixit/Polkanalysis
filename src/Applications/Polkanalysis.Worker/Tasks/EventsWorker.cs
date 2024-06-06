@@ -14,6 +14,7 @@ using Polkanalysis.Worker.Metrics;
 using Substrate.NetApi;
 using MediatR;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
+using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -185,6 +186,9 @@ namespace Polkanalysis.Worker.Tasks
 
             try
             {
+                // Save block information into database
+                await _mediator.Send(new SavedBlocksCommand(blockNumber));
+
                 // Get events associated at each block
                 var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
 

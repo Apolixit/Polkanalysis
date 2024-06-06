@@ -9,7 +9,7 @@ using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
 
-namespace Polkanalysis.Domain.UseCase.Monitored.Events
+namespace Polkanalysis.Domain.UseCase.Monitored
 {
     public class SavedEventsCommandValidator : AbstractValidator<SavedEventsCommand>
     {
