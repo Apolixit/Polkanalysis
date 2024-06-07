@@ -19,21 +19,35 @@ using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Infrastructure.Blockchain.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Polkanalysis.Worker.Metrics;
+using Serilog.Extensions.Logging;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
 
+
+//IConfiguration config = new ConfigurationBuilder()
+//            .AddJsonFile("appsettings.json")
+//            .AddEnvironmentVariables()
+//            .Build();
+
+//var logger = new LoggerConfiguration().ReadFrom.Configuration(config)
+//    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning)
+//    .CreateLogger();
+
+//logger.Information("Starting Polkanalysis Worker hosted service...");
+
 var host = Host.CreateDefaultBuilder(args)
-.UseSerilog()
+.UseSerilog((hostingContext, service, loggerConfiguration) =>
+    loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration).MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Warning))
 .ConfigureServices((hostContext, services) =>
 {
-    logger = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
+    (logger, _) = Polkanalysis.Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalysis.Worker", hostContext.Configuration);
 
     logger.LogInformation("Starting Polkanalysis Worker hosted service...");
 
     services
-    //.AddHostedService<EventsWorker>()
+    .AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
-    .AddHostedService<StakingWorker>()
+    //.AddHostedService<StakingWorker>()
     //.AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
@@ -42,13 +56,6 @@ var host = Host.CreateDefaultBuilder(args)
             hostContext.Configuration.GetConnectionString("SubstrateDb")
         );
     }, ServiceLifetime.Transient)
-    .AddLogging(l =>
-    {
-        l.ClearProviders();
-        l.AddConsole();
-        l.SetMinimumLevel(LogLevel.Information);
-        l.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
-    })
     .AddTransient<PerimeterService>()
     .AddSingleton<WorkerMetrics>();
 
@@ -58,13 +65,14 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddDatabase();
     services.AddSubstrateLogic();
 
-    services.AddOpentelemetry(logger, 
-        "Polkanalysis.Worker", 
+    services.AddOpentelemetry(logger!,
+        "Polkanalysis.Worker",
         new List<string>() { "Polkanalysis.Worker.Metrics" });
 
     services.AddHttpClient();
 
-    services.AddMediatR(cfg => {
+    services.AddMediatR(cfg =>
+    {
         cfg.RegisterServicesFromAssembly(typeof(BlockLightHandler).Assembly);
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
     });

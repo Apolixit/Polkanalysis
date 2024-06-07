@@ -12,11 +12,11 @@ namespace Polkanalysis.Common.Start
         /// </summary>
         /// <param name="loggerName"></param>
         /// <returns></returns>
-        public static Microsoft.Extensions.Logging.ILogger InitLoggerAndConfig(string loggerName, IConfiguration config)
+        public static (Microsoft.Extensions.Logging.ILogger microsoftLogger, Serilog.Core.Logger Logger) InitLoggerAndConfig(string loggerName, IConfiguration config)
         {
-            var serilogLogger = LoggerExtension.BuildLogger(config);
+            var serilogLogger = LoggerExtension.BuildSerilogLogger(config);
             Microsoft.Extensions.Logging.ILogger microsoftLogger = LoggerExtension.CreateLogger(serilogLogger, loggerName);
-            return microsoftLogger;
+            return (microsoftLogger, serilogLogger);
         }
     }
 }

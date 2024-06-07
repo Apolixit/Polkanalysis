@@ -186,8 +186,8 @@ namespace Polkanalysis.Worker.Tasks
 
             try
             {
-                // Save block information into database
-                await _mediator.Send(new SavedBlocksCommand(blockNumber));
+                await MonitorBlockAsync(blockNumber.Value, stoppingToken);
+                await SaveBlockInformationAsync(blockNumber);
 
                 // Get events associated at each block
                 var events = await _polkadotRepository.At(blockHash).Storage.System.EventsAsync(stoppingToken);
@@ -199,8 +199,8 @@ namespace Polkanalysis.Worker.Tasks
                 else
                 {
                     _logger.LogInformation("[{workerName}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(EventsWorker), blockNumber, events.Value.Length);
-                    
-                    var ratio = PushEventAnalyzedRatio(events);
+
+                    var ratio = PushEventAnalyzedByBlockRatio(events);
 
                     for (int i = 0; i < events.Value.Length; i++)
                     {
@@ -237,16 +237,10 @@ namespace Polkanalysis.Worker.Tasks
 
         }
 
-        /// <summary>
-        /// Get the ratio of events that has been analyzed compare to the total number of events
-        /// </summary>
-        /// <param name="events"></param>
-        private double PushEventAnalyzedRatio(BaseVec<EventRecord> events)
+        private async Task SaveBlockInformationAsync(BlockNumber blockNumber)
         {
-            var ratio = (double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count();
-            _workerMetrics.RecordEventAnalyzed(ratio);
-
-            return ratio;
+            // Save block information into database
+            await _mediator.Send(new SavedBlocksCommand(blockNumber));
         }
 
         private async Task InsertDatabaseAsync(
@@ -266,5 +260,35 @@ namespace Polkanalysis.Worker.Tasks
                 _logger.LogError("[{workerName}] {errorReason}", nameof(EventsWorker), res.Error.Description);
             }
         }
+
+        #region Metrics
+        /// <summary>
+        /// Increase the number of blocks that has been analyzed
+        /// Get the number of blocks that has been analyzed based on the total number of blocks.
+        /// Information is pushed every 100 blocks
+        /// </summary>
+        /// <param name="events"></param>
+        private async Task MonitorBlockAsync(uint blockNumber, CancellationToken token)
+        {
+            _workerMetrics.IncreaseBlockCount();
+            if (blockNumber % 100 == 0)
+            {
+                var lastBlock = await _polkadotRepository.Rpc.Chain.GetHeaderAsync(token);
+                _workerMetrics.RatioBlockAnalyzed(((double)blockNumber / (double)lastBlock.Number.Value) * 100);
+            }
+        }
+
+        /// <summary>
+        /// Get the ratio of events that has been analyzed compare to the total number of events
+        /// </summary>
+        /// <param name="events"></param>
+        private double PushEventAnalyzedByBlockRatio(BaseVec<EventRecord> events)
+        {
+            var ratio = (double)events.Value.Where(x => x.Event.HasBeenMapped).Count() / (double)events.Value.Count();
+            _workerMetrics.RecordEventAnalyzed(ratio);
+
+            return ratio;
+        }
+        #endregion
     }
 }

@@ -58,7 +58,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Block number {request.BlockNumber} has no validator");
             if (_db.BlockInformation.Any(x => x.BlockNumber == request.BlockNumber))
             {
-                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"{request.BlockNumber} is not inserted into {nameof(_db.BlockInformation)} because it already exists");
+                _logger.LogDebug($"Block number {request.BlockNumber} is not inserted into {nameof(_db.BlockInformation)} because it already exists");
+                return Helpers.Ok(true);
             }
 
             _db.BlockInformation.Add(new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
@@ -78,6 +79,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             {
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Db rows are inconsistent. Should be 1 row inserted, but is {nbRows}");
             }
+
+            _logger.LogInformation($"Block number {request.BlockNumber} has been inserted into {nameof(_db.BlockInformation)}");
 
             return Helpers.Ok(true);
         }
