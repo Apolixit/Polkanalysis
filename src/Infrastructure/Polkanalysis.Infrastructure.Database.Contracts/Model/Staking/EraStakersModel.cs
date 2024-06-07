@@ -35,7 +35,9 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
             ValidatorAddress = validatorAccount.ToPolkadotAddress();
             OwnStake = exposure.Own.Value.Value;
             TotalStake = exposure.Total.Value.Value;
-            EraNominatorsVote = exposure.Others.Value.Select(x => new EraStakersNominatorsModel(x, this)).ToList();
+
+            if(exposure.Others is not null)
+                EraNominatorsVote = exposure.Others.Value.Select(x => new EraStakersNominatorsModel(x, this)).ToList();
         }
 
         public (BaseTuple<U32, SubstrateAccount>, Exposure) ToCore()

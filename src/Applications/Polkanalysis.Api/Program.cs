@@ -24,10 +24,12 @@ namespace Polkanalysis.Api
             try
             {
                 var builder = WebApplication.CreateBuilder(args);
-                builder.Host.UseSerilog();
-                var logger = Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api", builder.Configuration);
+                
+                var (microsftLogger, serilogLogger) = Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api", builder.Configuration);
 
-                logger.LogInformation("Starting Polkanalysis API");
+                builder.Host.UseSerilog(serilogLogger);
+
+                microsftLogger.LogInformation("Starting Polkanalysis API");
 
                 // Add services to the container.
 
@@ -70,7 +72,7 @@ namespace Polkanalysis.Api
                                       });
                 });
 
-                builder.Services.AddOpentelemetry(logger, "Polkanalysis.API");
+                builder.Services.AddOpentelemetry(microsftLogger, "Polkanalysis.API");
 
                 #region API Rate limiter
                 // Doc : https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit
@@ -138,17 +140,17 @@ namespace Polkanalysis.Api
                 app.UseRateLimiter();
                 app.MapDefaultControllerRoute().RequireRateLimiting(ApiRateLimitOptions.TokenBucketPolicy);
 
-                await app.ApplyMigrationAsync(logger);
+                await app.ApplyMigrationAsync(microsftLogger);
 
                 var substrateService = app.Services.GetRequiredService<ISubstrateService>();
                 await substrateService.ConnectAsync();
                 if (substrateService.IsConnected())
                 {
-                    logger.LogInformation($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");
+                    microsftLogger.LogInformation($"Polkanalysis.API is now connected to {substrateService.BlockchainName} and ready to serve.");
                 }
                 else
                 {
-                    logger.LogError($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
+                    microsftLogger.LogError($"Polkanalysis.API is unable to connected to {substrateService.BlockchainName} !");
                 }
 
                 await app.RunAsync();

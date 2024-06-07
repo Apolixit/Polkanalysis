@@ -72,7 +72,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
                     {
                         _stakingDatabaseRepository.InsertEraStakers(eraId, v);
 
-                        _logger.LogInformation("The tuple (Era {eraId}, ValidatorAddress = {validatorAccount}) linked to {count} nominators successfully inserted in database", eraId.Value, validatorAccount.ToPolkadotAddress(), exposure.Others.Value.Length);
+                        _logger.LogInformation("The tuple (Era {eraId}, ValidatorAddress = {validatorAccount}) linked to {count} nominators successfully inserted in database", eraId.Value, validatorAccount.ToPolkadotAddress(), exposure.Others?.Value?.Length);
                     }
                 }
             }
