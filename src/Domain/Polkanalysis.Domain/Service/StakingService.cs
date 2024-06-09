@@ -569,7 +569,7 @@ namespace Polkanalysis.Domain.Service
                 //var rewardPool = await _substrateService.Storage.NominationPools.RewardPoolsAsync(poolId, cancellationToken);
                 var poolLight = new PoolLightDto();
                 poolLight.PoolId = poolId.Value;
-                poolLight.Name = poolMetadata == null ? string.Empty : poolMetadata.Value.ToHuman(); ;
+                poolLight.Name = poolMetadata == null ? string.Empty : poolMetadata.Value.ToHuman();
                 poolLight.NbPoolMembers = bondedPool.MemberCounter.Value;
                 poolLight.Commission = 0;
                 poolLight.Status = bondedPool.State.Value switch

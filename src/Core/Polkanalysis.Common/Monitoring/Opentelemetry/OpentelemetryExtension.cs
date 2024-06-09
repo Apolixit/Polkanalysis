@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -41,6 +42,11 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
 
             var otel = services.AddOpenTelemetry().ConfigureResource(ressource => ressource.AddService(ressourceBuilderServiceName));
 
+            if(!string.IsNullOrEmpty(otlpEndpoint))
+            {
+                otel.UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri(otlpEndpoint));
+            }
+
             otel.WithMetrics(metrics =>
             {
                 metrics.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(ressourceBuilderServiceName));
@@ -67,13 +73,13 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
 
                 //});
 
-                if (!string.IsNullOrEmpty(otlpEndpoint))
-                {
-                    metrics.AddOtlpExporter(otlpOptions =>
-                    {
-                        otlpOptions.Endpoint = new Uri(otlpEndpoint);
-                    });
-                }
+                //if (!string.IsNullOrEmpty(otlpEndpoint))
+                //{
+                //    metrics.AddOtlpExporter(otlpOptions =>
+                //    {
+                //        otlpOptions.Endpoint = new Uri(otlpEndpoint);
+                //    });
+                //}
 
                 //.AddPrometheusExporter(); // OpenTelemetry.Exporter.Prometheus.AspNetCore
             });
@@ -98,13 +104,13 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
                 //    otlpOptions.Endpoint = new Uri("http://localhost:4317");
                 //    });
 
-                if (!string.IsNullOrEmpty(otlpEndpoint))
-                {
-                    tracing.AddOtlpExporter(otlpOptions =>
-                    {
-                        otlpOptions.Endpoint = new Uri(otlpEndpoint);
-                    });
-                }
+                //if (!string.IsNullOrEmpty(otlpEndpoint))
+                //{
+                //    tracing.AddOtlpExporter(otlpOptions =>
+                //    {
+                //        otlpOptions.Endpoint = new Uri(otlpEndpoint);
+                //    });
+                //}
 
                 tracing.AddConsoleExporter();
             });

@@ -19,4 +19,8 @@
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\Events\NominationPools\" />
+  </ItemGroup>
+
 </Project>
