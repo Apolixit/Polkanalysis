@@ -1,11 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Domain.Contracts.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums
@@ -35,6 +30,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         PoolSlashed = 9,
 
         UnbondingPoolSlashed = 10,
+
+        PoolCommissionUpdated = 11,
+        PoolMaxCommissionUpdated = 12,
+        PoolCommissionChangeRateUpdated = 13,
+        PoolCommissionClaimPermissionUpdated = 14,
+        PoolCommissionClaimed = 15,
+        MinBalanceDeficitAdjusted = 16,
+        MinBalanceExcessAdjusted = 17
     }
 
     /// <summary>
@@ -52,7 +55,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         BaseTuple<U32, SubstrateAccount>,
         BaseTuple<BaseOpt<SubstrateAccount>, BaseOpt<SubstrateAccount>, BaseOpt<SubstrateAccount>>,
         BaseTuple<U32, U128>,
-        BaseTuple<U32, U32, U128>>
+        BaseTuple<U32, U32, U128>,
+        BaseTuple<U32, BaseOpt<BaseTuple<Perbill, SubstrateAccount>>>, 
+        BaseTuple<U32, Perbill>, 
+        BaseTuple<U32, CommissionChangeRate>, 
+        BaseTuple<U32, BaseOpt<EnumCommissionClaimPermission>>, 
+        BaseTuple<U32, U128>, 
+        BaseTuple<U32, U128>, 
+        BaseTuple<U32, U128>>
     {
     }
 }
