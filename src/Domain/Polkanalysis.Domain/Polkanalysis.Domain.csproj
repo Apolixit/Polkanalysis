@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Algolia.Search" Version="6.17.0" />
     <PackageReference Include="Ardalis.GuardClauses" Version="4.5.0" />
     <PackageReference Include="CSharp.OperationResult" Version="0.1.6" />
     <PackageReference Include="MediatR" Version="12.2.0" />

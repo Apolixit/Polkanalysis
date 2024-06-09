@@ -31,4 +31,8 @@
     </SonarQubeSetting>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\Events\NominationPools\" />
+  </ItemGroup>
+
 </Project>
