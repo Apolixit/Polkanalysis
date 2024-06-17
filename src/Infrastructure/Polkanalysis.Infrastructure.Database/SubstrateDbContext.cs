@@ -21,7 +21,7 @@ namespace Polkanalysis.Infrastructure.Database
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
         public DbSet<BalancesDustLostModel> EventBalancesDustLost  { get; set; }
-    public DbSet<BalancesEndowedModel> EventBalancesEndowed { get; set; }
+        public DbSet<BalancesEndowedModel> EventBalancesEndowed { get; set; }
         public DbSet<BalancesReservedModel> EventBalancesReserved { get; set; }
         public DbSet<BalancesSlashedModel> EventBalancesSlashed { get; set; }
         public DbSet<BalancesTransferModel> EventBalancesTransfer { get; set; }
