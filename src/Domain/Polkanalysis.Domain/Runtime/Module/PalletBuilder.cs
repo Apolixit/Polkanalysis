@@ -6,6 +6,7 @@ using Polkanalysis.Domain.Contracts.Runtime.Module;
 using System.Reflection;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Logging;
+using System.Text.RegularExpressions;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
@@ -31,7 +32,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         public string GenerateDynamicNamespaceBase(IEnumerable<string> nodeTypePath)
         {
-            if(nodeTypePath == null)
+            if (nodeTypePath == null)
                 throw new ArgumentNullException($"{nameof(nodeTypePath)} is null");
 
             return string.Join(".", nodeTypePath.Take(nodeTypePath.Count() - 1));
@@ -106,7 +107,8 @@ namespace Polkanalysis.Domain.Runtime.Module
             {
                 callInstance.Create(Encode(enumCall, method.ParametersBytes));
                 return callInstance;
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Unable to create instance of {palletName} - {enumCall} {typeBuilder} {method}", palletName, enumCall.ToString(), typeBuilder, method);
             }
@@ -129,6 +131,19 @@ namespace Polkanalysis.Domain.Runtime.Module
             return BuildGeneric(palletName, method, TypeBuilder.Event);
         }
 
+        private string ParseComplexPalletName(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            var regex = new Regex("([a-z0-9])([A-Z])");
+            var kebabCase = regex.Replace(input, "$1_$2").ToLower();
+
+            return kebabCase;
+        }
+
         /// <summary>
         /// Try to find documentation of the associated type
         /// </summary>
@@ -144,16 +159,19 @@ namespace Polkanalysis.Domain.Runtime.Module
 
             //Let's use the new pattern matching !
             if (splittedNamespace is [
-                    "Polkanalysis", 
+                    "Polkanalysis",
                     "Infrastructure",
                     "Blockchain",
-                    "Contracts", 
-                    "Pallet", 
+                    "Contracts",
+                    "Pallet",
                     ..
                 ])
             {
                 arguments = splittedNamespace.Skip(5).ToList();
-                arguments[0] = $"pallet_{arguments[0].ToLowerInvariant()}";
+
+                var palletName = ParseComplexPalletName(arguments[0]);
+
+                arguments[0] = $"pallet_{palletName.ToLowerInvariant()}";
                 arguments[1] = $"pallet";
 
                 var nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
@@ -162,7 +180,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
                 return nodeType;
             }
-            
+
             return null;
         }
 
@@ -173,7 +191,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         public string? FindDocumentation(NodeType nodeType)
         {
-            if(nodeType.Docs == null) return null;
+            if (nodeType.Docs == null) return null;
             return string.Join("\n", nodeType.Docs);
         }
         public string? FindDocumentation(Type type)
@@ -195,21 +213,23 @@ namespace Polkanalysis.Domain.Runtime.Module
         public string? FindDocumentation(Enum type)
         {
             var nodeType = FindNodeType(type.GetType());
-            if(nodeType == null) return null;
+            if (nodeType == null) return null;
 
-            if(nodeType is NodeTypeVariant nodeTypeVariant)
+            if (nodeType is NodeTypeVariant nodeTypeVariant)
             {
                 var variantType = nodeTypeVariant.Variants
                     .FirstOrDefault(x => x.Name == type.ToString());
-                if(variantType == null || variantType.Docs == null) return null;
+                if (variantType == null || variantType.Docs == null) return null;
 
                 return string.Join("\n", variantType.Docs);
             }
             return null;
         }
 
-        public string[]? FindProperty(Enum type)
+        public VariantProperty[]? FindProperty(Enum type)
         {
+            var properties = new List<VariantProperty>();
+
             var nodeType = FindNodeType(type.GetType());
             if (nodeType == null) return null;
 
@@ -220,7 +240,33 @@ namespace Polkanalysis.Domain.Runtime.Module
                 if (variantType == null || variantType.Docs == null) return null;
 
                 if (variantType.TypeFields is null) return null;
-                return variantType.TypeFields.Select(x => x.Name).ToArray();
+
+                foreach (var field in variantType.TypeFields)
+                {
+                    var typeId = _substrateRepository.RuntimeMetadata.NodeMetadata.Types[field.TypeId];
+
+                    if (field.TypeName == "T::AccountId")
+                    {
+                        properties.Add(new VariantProperty(field.Name, field.TypeName, VariantProperty.ParamType.AccountId));
+                        continue;
+                    }
+                    if (typeId is NodeTypePrimitive primitive)
+                    {
+                        properties.Add(new VariantProperty(field.Name, primitive.Primitive.ToString(), VariantProperty.ParamType.Primitive));
+                    }
+                    if (typeId is NodeTypeComposite composite)
+                    {
+                        //Todo: check composite.TypeFields
+                        //properties.Add(new VariantProperty(field.Name, composite.TypeParams[0].Name, VariantProperty.ParamType.Composite));
+                    }
+                    if (typeId is NodeTypeVariant variant)
+                    {
+                        bool isSimpleEnum = variant.Variants.All(x => x.TypeFields is null);
+                        properties.Add(new VariantProperty(field.Name, field.TypeName, isSimpleEnum ? VariantProperty.ParamType.EnumSimple : VariantProperty.ParamType.EnumComplex));
+                    }
+                }
+
+                return properties.ToArray(); //variantType.TypeFields.Select(x => x.Name).ToArray();
             }
             return null;
         }

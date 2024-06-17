@@ -211,7 +211,7 @@ namespace Polkanalysis.Domain.Runtime
                     {
                         for(int i = 0; i < childNode.Children.Count; i++)
                         {
-                            childNode.Children[i].AddName(props[i]);
+                            childNode.Children[i].AddName(props[i].Name);
                         }
                     }
 
