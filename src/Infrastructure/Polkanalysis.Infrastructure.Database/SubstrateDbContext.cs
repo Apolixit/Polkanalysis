@@ -23,7 +23,7 @@ namespace Polkanalysis.Infrastructure.Database
 
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
-        public DbSet<BalancesDustLostModel> EventBalancesDustLost  { get; set; }
+        public DbSet<BalancesDustLostModel> EventBalancesDustLost { get; set; }
         public DbSet<BalancesEndowedModel> EventBalancesEndowed { get; set; }
         public DbSet<BalancesReservedModel> EventBalancesReserved { get; set; }
         public DbSet<BalancesSlashedModel> EventBalancesSlashed { get; set; }
@@ -63,6 +63,14 @@ namespace Polkanalysis.Infrastructure.Database
         #region Nominations Pool
         public DbSet<NominationPoolsCreatedModel> EventNominationPoolsCreated { get; set; }
         public DbSet<NominationPoolsBondedModel> EventNominationPoolsBonded { get; set; }
+        public DbSet<NominationPoolsPaidOutModel> EventNominationPoolsPaidOut { get; set; }
+        public DbSet<NominationPoolsUnbondedModel> EventNominationPoolsUnbonded { get; set; }
+        public DbSet<NominationPoolsWithdrawnModel> EventNominationPoolsWithdrawn { get; set; }
+        public DbSet<NominationPoolsDestroyedModel> EventNominationPoolsDestroyed { get; set; }
+        public DbSet<NominationPoolsMemberRemovedModel> EventNominationPoolsMemberRemoved { get; set; }
+        public DbSet<NominationPoolsPoolCommissionClaimedModel> EventNominationPoolsPoolCommissionClaimed { get; set; }
+        public DbSet<NominationPoolsMinBalanceDeficitAdjustedModel> EventNominationPoolsMinBalanceDeficitAdjusted { get; set; }
+        public DbSet<NominationPoolsMinBalanceExcessAdjustedModel> EventNominationPoolsMinBalanceExcessAdjusted { get; set; }
         #endregion
 
         #region
@@ -73,6 +81,8 @@ namespace Polkanalysis.Infrastructure.Database
         {
             modelBuilder.Entity<BlockInformationModel>()
                 .HasKey(c => c.BlockNumber);
+
+            #region Balances
 
             modelBuilder.Entity<BalancesBalanceSetModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.RootAccount, c.Amount1, c.Amount2 });
@@ -94,8 +104,9 @@ namespace Polkanalysis.Infrastructure.Database
 
             modelBuilder.Entity<BalancesUnreservedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddess, c.UnreservedAmount });
+            #endregion
 
-
+            #region Identity
             modelBuilder.Entity<IdentityIdentityClearedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress, c.Amount });
 
@@ -104,27 +115,88 @@ namespace Polkanalysis.Infrastructure.Database
 
             modelBuilder.Entity<IdentityIdentitySetModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress });
+            #endregion
 
-
+            #region System
             modelBuilder.Entity<SystemKilledAccountModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress });
 
             modelBuilder.Entity<SystemNewAccountModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddress });
+            #endregion
 
+            #region Crowdloan
             modelBuilder.Entity<CrowdloanContributedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AccountAddess, c.CrowdloanId, c.Amount });
             modelBuilder.Entity<CrowdloanCreatedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.CrowdloanId });
+            #endregion
 
+            #region Auctions
             modelBuilder.Entity<AuctionsAuctionStartedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AuctionIndex, c.LeasePeriod, c.Ending });
             modelBuilder.Entity<AuctionsAuctionClosedModel>()
                 .HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.AuctionIndex });
+            #endregion
 
+            #region Nominations Pool
             modelBuilder.Entity<NominationPoolsCreatedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Depositor, c.Pool_id });
             modelBuilder.Entity<NominationPoolsBondedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Member, c.Pool_id, c.Bonded, c.Joined });
-
+            modelBuilder.Entity<NominationPoolsPaidOutModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Member, c.Pool_id, c.Payout });
+            modelBuilder.Entity<NominationPoolsUnbondedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Member, c.Pool_id, c.Balance, c.Points, c.Era });
+            modelBuilder.Entity<NominationPoolsWithdrawnModel>().HasKey(c => new
+            {
+                c.BlockchainName,
+                c.BlockId,
+                c.EventId,
+                c.ModuleName,
+                c.ModuleEvent,
+                c.Member,
+                c.Pool_id,
+                c.Balance,
+                c.Points
+            });
+            modelBuilder.Entity<NominationPoolsDestroyedModel>().HasKey(c => new
+            {
+                c.BlockchainName,
+                c.BlockId,
+                c.EventId,
+                c.ModuleName,
+                c.ModuleEvent,
+                c.Pool_id
+            });
+            modelBuilder.Entity<NominationPoolsMemberRemovedModel>().HasKey(c => new
+            {
+                c.BlockchainName,
+                c.BlockId,
+                c.EventId,
+                c.ModuleName,
+                c.ModuleEvent,
+                c.Pool_id,
+                c.Member
+            });
+            modelBuilder.Entity<NominationPoolsPoolCommissionClaimedModel>().HasKey(c => new
+            {
+                c.BlockchainName,
+                c.BlockId,
+                c.EventId,
+                c.ModuleName,
+                c.ModuleEvent,
+                c.Pool_id,
+                c.Commission
+            });
+            modelBuilder.Entity<NominationPoolsMinBalanceDeficitAdjustedModel>().HasKey(c => new
+            {
+                c.BlockchainName,
+                c.BlockId,
+                c.EventId,
+                c.ModuleName,
+                c.ModuleEvent,
+                c.Pool_id,
+                c.Amount
+            });
+            modelBuilder.Entity<NominationPoolsMinBalanceExcessAdjustedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Pool_id, c.Amount });
+            #endregion
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });
 
             modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.EraStakersId, c.BlockchainName, c.EraId, c.ValidatorAddress });
@@ -143,8 +215,8 @@ namespace Polkanalysis.Infrastructure.Database
             });
             modelBuilder.Entity<EraStakersNominatorsModel>().HasKey("EraStakersId", "NominatorAddress");
 
-            modelBuilder.Entity<SpecVersionModel>().HasKey(c => new { c.BlockchainName, c.SpecVersion});
-            modelBuilder.Entity<PalletVersionModel>().HasKey(c => new { c.BlockchainName, c.PalletName, c.PalletVersion});
+            modelBuilder.Entity<SpecVersionModel>().HasKey(c => new { c.BlockchainName, c.SpecVersion });
+            modelBuilder.Entity<PalletVersionModel>().HasKey(c => new { c.BlockchainName, c.PalletName, c.PalletVersion });
         }
     }
 }
