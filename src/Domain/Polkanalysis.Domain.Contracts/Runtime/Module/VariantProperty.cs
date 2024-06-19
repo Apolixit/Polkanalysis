@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Runtime.Module
 {
-    public class VariantProperty
+    public class TypeProperty
     {
-        public VariantProperty(string name, string param, ParamType typeParam)
+        public TypeProperty(string name, string param, ParamType typeParam)
         {
             Name = name;
             Param = param;
@@ -19,6 +19,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         public string Name { get; set; }
         public string Param { get; set; }
         public ParamType TypeParam { get; set; }
+        public List<TypeProperty> SubProperties { get; set; } = new List<TypeProperty>();
 
         public enum ParamType
         {

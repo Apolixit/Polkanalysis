@@ -80,6 +80,6 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <returns></returns>
         public string? FindDocumentation(Enum type);
 
-        VariantProperty[]? FindProperty(Enum type);
+        TypeProperty[]? FindProperty(Enum type);
     }
 }

@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using NUnit.Framework;
-using static Polkanalysis.Domain.Contracts.Runtime.Module.VariantProperty;
+using static Polkanalysis.Domain.Contracts.Runtime.Module.TypeProperty;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
@@ -59,24 +59,38 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             Assert.That(property[1].TypeParam, Is.EqualTo(ParamType.EnumSimple));
         }
 
-        [Test, Ignore("Todo: continue")]
+        [Test]
         public void FindProperty_WhenValidEvent_PoolCommissionUpdated_ShouldReturnProperties()
         {
             var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.PoolCommissionUpdated);
             //BaseTuple<U32, BaseOpt<BaseTuple<Perbill, SubstrateAccount>>>
             Assert.That(property, Is.Not.Null);
-            Assert.That(property[0].Name, Is.EqualTo("depositor"));
-            Assert.That(property[1].Name, Is.EqualTo("pool_id"));
+            Assert.That(property[0].Name, Is.EqualTo("pool_id"));
+            Assert.That(property[1].Name, Is.EqualTo("current"));
         }
 
-        [Test, Ignore("Todo: continue")]
+        [Test]
         public void FindProperty_WhenValidEvent_PoolCommissionChangeRateUpdated_ShouldReturnProperties()
         {
             var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.PoolCommissionChangeRateUpdated);
             //BaseTuple<U32, CommissionChangeRate>
             Assert.That(property, Is.Not.Null);
-            Assert.That(property[0].Name, Is.EqualTo("depositor"));
-            Assert.That(property[1].Name, Is.EqualTo("pool_id"));
+            Assert.That(property[0].Name, Is.EqualTo("pool_id"));
+            Assert.That(property[1].Name, Is.EqualTo("change_rate"));
+            Assert.That(property[1].SubProperties[0].Name, Is.EqualTo("max_increase"));
+            Assert.That(property[1].SubProperties[1].Name, Is.EqualTo("min_delay"));
+        }
+
+        [Test]
+        public void FindProperty_WhenCombineProperties_ShouldReturnProperties()
+        {
+            var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.Event.ValidatorPrefsSet);
+            Assert.That(property, Is.Not.Null);
+            Assert.That(property[0].Name, Is.EqualTo("stash"));
+            Assert.That(property[1].Name, Is.EqualTo("prefs"));
+            Assert.That(property[1].SubProperties.Count, Is.GreaterThan(0));
+            Assert.That(property[1].SubProperties[0].Name, Is.EqualTo("commission"));
+            Assert.That(property[1].SubProperties[1].Name, Is.EqualTo("blocked"));
         }
     }
 }
