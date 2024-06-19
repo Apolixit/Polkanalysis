@@ -14,14 +14,17 @@ public abstract class SearchCriteria
     public uint? ToBlock { get; set; }
 }
 
-public interface ISearchEvent<T>
-    where T : SearchCriteria
+public interface INameableEvent
 {
     /// <summary>
     /// The search name to identify the event (and maybe display it on frontend)
     /// </summary>
     public string SearchName { get; }
+}
 
+public interface ISearchEvent<T> : INameableEvent
+    where T : SearchCriteria
+{
     /// <summary>
     /// The search query parameter
     /// </summary>

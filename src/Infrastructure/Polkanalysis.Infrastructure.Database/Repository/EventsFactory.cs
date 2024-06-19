@@ -18,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
 {
     public class EventsFactory : IEventsFactory
     {
-        public IEnumerable<EventElementFactory> Mapped { get; set; }
+        public IEnumerable<EventElementFactory> Mapped { get; private set; }
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<IEventsFactory> _logger;
 
@@ -75,7 +75,8 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                         }
 
                         var repoService = (IDatabaseInsert)optionalRepo!;
-                        versionned.Add(new EventElementFactory(repoService, bindEvent.RuntimeEvent, bindEvent.EventValue));
+                        var eventName = (INameableEvent)optionalRepo!;
+                        versionned.Add(new EventElementFactory(repoService, bindEvent.RuntimeEvent, bindEvent.EventValue, eventName.SearchName));
                     }
                 }
             }

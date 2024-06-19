@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Blocks;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Crowdloan;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.NominationPools;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Staking;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Price;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Staking;
@@ -20,6 +22,13 @@ namespace Polkanalysis.Infrastructure.Database
         #region Blocks
         public DbSet<BlockInformationModel> BlockInformation { get; set; }
         #endregion
+
+        #region Historical data price
+        public DbSet<TokenPriceModel> TokenPrices { get; set; }
+        #endregion
+
+        #region Events
+        public DbSet<EventManagerModel> EventManagerModel { get; set; }
 
         #region Balances
         public DbSet<BalancesBalanceSetModel> EventBalancesBalanceSet { get; set; }
@@ -40,10 +49,6 @@ namespace Polkanalysis.Infrastructure.Database
         #region System
         public DbSet<SystemKilledAccountModel> EventSystemKilledAccount { get; set; }
         public DbSet<SystemNewAccountModel> EventSystemNewAccount { get; set; }
-        #endregion
-
-        #region Historical data price
-        public DbSet<TokenPriceModel> TokenPrices { get; set; }
         #endregion
 
         #region Staking
@@ -73,14 +78,23 @@ namespace Polkanalysis.Infrastructure.Database
         public DbSet<NominationPoolsMinBalanceExcessAdjustedModel> EventNominationPoolsMinBalanceExcessAdjusted { get; set; }
         #endregion
 
-        #region
+        #region Staking
+        public DbSet<StakingEraPaidModel> EventStakingEraPaid { get; set; }
+        #endregion
+        #endregion
+
+        #region Version
         public DbSet<SpecVersionModel> SpecVersionModels { get; set; }
         public DbSet<PalletVersionModel> PalletVersionModels { get; set; }
         #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BlockInformationModel>()
                 .HasKey(c => c.BlockNumber);
+
+            modelBuilder.Entity<EventManagerModel>()
+                .HasKey(c => new { c.BlockchainName, c.ModuleName, c.ModuleEvent });
 
             #region Balances
 
@@ -197,6 +211,11 @@ namespace Polkanalysis.Infrastructure.Database
             });
             modelBuilder.Entity<NominationPoolsMinBalanceExcessAdjustedModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Pool_id, c.Amount });
             #endregion
+
+            #region Staking
+            modelBuilder.Entity<StakingEraPaidModel>().HasKey(c => new { c.BlockchainName, c.BlockId, c.EventId, c.ModuleName, c.ModuleEvent, c.Era_index, c.Validator_payout, c.Remainder });
+            #endregion
+
             modelBuilder.Entity<TokenPriceModel>().HasKey(c => new { c.BlockchainName, c.Date });
 
             modelBuilder.Entity<EraStakersModel>().HasKey(c => new { c.EraStakersId, c.BlockchainName, c.EraId, c.ValidatorAddress });

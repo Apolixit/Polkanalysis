@@ -174,9 +174,19 @@ namespace Polkanalysis.Domain.Runtime.Module
                 arguments[0] = $"pallet_{palletName.ToLowerInvariant()}";
                 arguments[1] = $"pallet";
 
-                var nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
+                NodeType? nodeType = null;
+                nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
                     .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))
                     .FirstOrDefault().Value;
+
+                if (nodeType is null)
+                {
+                    arguments.Insert(1, "pallet"); // Sorry ...
+
+                    nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
+                    .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))
+                    .FirstOrDefault().Value;
+                }
 
                 return nodeType;
             }
@@ -226,9 +236,9 @@ namespace Polkanalysis.Domain.Runtime.Module
             return null;
         }
 
-        public VariantProperty[]? FindProperty(Enum type)
+        public TypeProperty[]? FindProperty(Enum type)
         {
-            var properties = new List<VariantProperty>();
+            var properties = new List<TypeProperty>();
 
             var nodeType = FindNodeType(type.GetType());
             if (nodeType == null) return null;
@@ -239,36 +249,54 @@ namespace Polkanalysis.Domain.Runtime.Module
                     .FirstOrDefault(x => x.Name == type.ToString());
                 if (variantType == null || variantType.Docs == null) return null;
 
-                if (variantType.TypeFields is null) return null;
+                if (variantType.TypeFields is null) return new List<TypeProperty>().ToArray();
 
                 foreach (var field in variantType.TypeFields)
                 {
                     var typeId = _substrateRepository.RuntimeMetadata.NodeMetadata.Types[field.TypeId];
-
-                    if (field.TypeName == "T::AccountId")
-                    {
-                        properties.Add(new VariantProperty(field.Name, field.TypeName, VariantProperty.ParamType.AccountId));
-                        continue;
-                    }
-                    if (typeId is NodeTypePrimitive primitive)
-                    {
-                        properties.Add(new VariantProperty(field.Name, primitive.Primitive.ToString(), VariantProperty.ParamType.Primitive));
-                    }
-                    if (typeId is NodeTypeComposite composite)
-                    {
-                        //Todo: check composite.TypeFields
-                        //properties.Add(new VariantProperty(field.Name, composite.TypeParams[0].Name, VariantProperty.ParamType.Composite));
-                    }
-                    if (typeId is NodeTypeVariant variant)
-                    {
-                        bool isSimpleEnum = variant.Variants.All(x => x.TypeFields is null);
-                        properties.Add(new VariantProperty(field.Name, field.TypeName, isSimpleEnum ? VariantProperty.ParamType.EnumSimple : VariantProperty.ParamType.EnumComplex));
-                    }
+                    ExtractProperty(properties, field.Name, field.TypeName, typeId);
                 }
 
-                return properties.ToArray(); //variantType.TypeFields.Select(x => x.Name).ToArray();
+                return properties.ToArray();
             }
             return null;
+
+            void ExtractProperty(List<TypeProperty> properties, string name, string typeName, NodeType typeId)
+            {
+                if (typeId is NodeTypePrimitive primitive)
+                {
+                    properties.Add(new TypeProperty(name, primitive.Primitive.ToString(), TypeProperty.ParamType.Primitive));
+                }
+                if (typeId is NodeTypeCompact compact)
+                {
+                    ExtractProperty(properties, name, typeName, _substrateRepository.RuntimeMetadata.NodeMetadata.Types[compact.TypeId]);
+                }
+                if (typeId is NodeTypeComposite composite)
+                {
+                    if (composite.TypeFields != null)
+                    {
+                        var fieldType = TypeProperty.ParamType.Composite;
+                        if (typeName == "T::AccountId") fieldType = TypeProperty.ParamType.AccountId;
+
+                            var prop = new TypeProperty(name, typeName, fieldType);
+                        foreach (var compositeField in composite.TypeFields)
+                        {
+                            ExtractProperty(prop.SubProperties, compositeField.Name, compositeField.TypeName, _substrateRepository.RuntimeMetadata.NodeMetadata.Types[compositeField.TypeId]);
+                        }
+                        properties.Add(prop);
+                    }
+                }
+                if (typeId is NodeTypeVariant variant)
+                {
+                    bool isSimpleEnum = variant.Variants.All(x => x.TypeFields is null);
+                    properties.Add(new TypeProperty(name, typeName, isSimpleEnum ? TypeProperty.ParamType.EnumSimple : TypeProperty.ParamType.EnumComplex));
+                }
+
+                if (typeId is NodeTypeArray array)
+                {
+                    ExtractProperty(properties, name, typeName, _substrateRepository.RuntimeMetadata.NodeMetadata.Types[array.TypeId]);
+                }
+            }
         }
     }
 }

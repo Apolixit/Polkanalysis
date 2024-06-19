@@ -25,6 +25,7 @@ namespace Polkanalysis.Infrastructure.Database
         {
             services.AddTransient<IEventsFactory, EventsFactory>();
 
+            // Todo Romain : scan all repositories here
             services.AddTransient<BalancesDustLostRepository>();
             services.AddTransient<BalancesEndowedRepository>();
             services.AddTransient<BalancesReservedRepository>();
