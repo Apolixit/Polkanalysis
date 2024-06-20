@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,27 +26,31 @@ namespace Polkanalysis.Infrastructure.Database
         {
             services.AddTransient<IEventsFactory, EventsFactory>();
 
-            // Todo Romain : scan all repositories here
-            services.AddTransient<BalancesDustLostRepository>();
-            services.AddTransient<BalancesEndowedRepository>();
-            services.AddTransient<BalancesReservedRepository>();
-            services.AddTransient<BalancesBalanceSetRepository>();
-            services.AddTransient<BalancesSlashedRepository>();
-            services.AddTransient<BalancesTransferRepository>();
-            services.AddTransient<BalancesUnreservedRepository>();
-
-            services.AddTransient<IdentityIdentityClearedRepository>();
-            services.AddTransient<IdentityIdentityKilledRepository>();
-            services.AddTransient<IdentityIdentitySetRepository>();
-
-            services.AddTransient<SystemKilledAccountRepository>();
-            services.AddTransient<SystemNewAccountRepository>();
-
-            services.AddTransient<CrowdloanContributedRepository>();
+            AddEventDatabaseRepositories(services, typeof(DatabaseServiceCollectionsExtensions).Assembly);
 
             services.AddTransient<IStakingDatabaseRepository, StakingDatabaseRepository>();
 
             return services;
+        }
+
+        public static void AddEventDatabaseRepositories(this IServiceCollection services, Assembly assemblyToScan)
+        {
+            var types = assemblyToScan.GetTypes();
+
+            foreach (var type in types)
+            {
+                var baseType = type.BaseType;
+
+                if (baseType == null || !baseType.IsGenericType)
+                    continue;
+
+                var genericTypeDefinition = baseType.GetGenericTypeDefinition();
+
+                if (genericTypeDefinition == typeof(EventDatabaseRepository<,>))
+                {
+                    services.AddTransient(type);
+                }
+            }
         }
     }
 }

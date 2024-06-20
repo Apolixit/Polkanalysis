@@ -101,8 +101,10 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         public EventElementFactory? TryFind(RuntimeEvent runtimeEvent, Enum eventValue)
         {
             return Mapped.FirstOrDefault(x =>
-            x.RuntimeEvent.Equals(runtimeEvent) &&
-            x.EventValue.ToString().Equals(eventValue.ToString()));
+            x.EventName.Equals($"{runtimeEvent}.{eventValue}"));
+            //return Mapped.FirstOrDefault(x =>
+            //x.RuntimeEvent.Equals(runtimeEvent) &&
+            //x.EventValue.ToString().Equals(eventValue.ToString()));
         }
         public bool Has(RuntimeEvent runtimeEvent, Enum eventValue)
         {
