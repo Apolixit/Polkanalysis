@@ -59,19 +59,19 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 (int)request.BlockNumber.Value,
                 request.CurrentDate,
                 request.EventIndex,
-                request.EventNode.Module.ToString(),
-                request.EventNode.Method.ToString());
+                request.GetModuleName(),
+                request.GetEventName());
 
             var subEvent = (BaseEnumType)request.Ev.Event.Value!;
 
             await _eventsFactory.ExecuteInsertAsync(
-                request.EventNode.Module,
-                request.EventNode.Method,
+                request.GetRuntimeEvent(),
+                request.GetRuntimeMethod(),
                 databaseModel,
                 subEvent.GetValue2(),
                 cancellationToken);
 
-            LogEventManager((int)request.BlockNumber.Value,
+            LogEventManager(null,
                             (int)request.BlockNumber.Value,
                             eventFound.GetModule().moduleName,
                             eventFound.GetModule().moduleEvent);
@@ -113,7 +113,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             if (lastOccurence is not null)
                 model.LastOccurenceScannedBlockId = lastOccurence.Value;
 
-            if(_dbContext.EventManagerModel.Any(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent))
+            if(!_dbContext.EventManagerModel.Any(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent))
                 _dbContext.EventManagerModel.Add(model);
             else
                 _dbContext.EventManagerModel.Update(model);

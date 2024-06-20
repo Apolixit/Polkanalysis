@@ -2,6 +2,7 @@
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Substrate.NetApi.Model.Types.Base;
 
@@ -23,5 +24,25 @@ namespace Polkanalysis.Domain.Contracts.Primary.Monitored.Events
         public int EventIndex { get; set; }
         public EventRecord Ev { get; set; }
         public IEventNode EventNode { get; set;}
+
+        public virtual string GetModuleName()
+        {
+            return EventNode.Module.ToString();
+        }
+
+        public virtual RuntimeEvent GetRuntimeEvent()
+        {
+            return EventNode.Module;
+        }
+
+        public virtual string GetEventName()
+        {
+            return EventNode.Method.ToString();
+        }
+
+        public virtual Enum GetRuntimeMethod()
+        {
+            return EventNode.Method;
+        }
     }
 }
