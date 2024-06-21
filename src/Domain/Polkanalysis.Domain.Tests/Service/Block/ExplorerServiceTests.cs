@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Tests.Service.Block
 {
     public abstract class ExplorerServiceTests
     {
-        protected IExplorerService _explorerRepository;
+        protected IExplorerService _explorerService;
         protected ISubstrateService _substrateService;
         protected ISubstrateDecoding _substrateDecode;
 
@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Tests.Service.Block
             _substrateService = Substitute.For<ISubstrateService>();
             _substrateDecode = Substitute.For<ISubstrateDecoding>();
 
-            _explorerRepository = new ExplorerService(
+            _explorerService = new ExplorerService(
                 _substrateService,
                 _substrateDecode,
                 Substitute.For<IAccountService>(),

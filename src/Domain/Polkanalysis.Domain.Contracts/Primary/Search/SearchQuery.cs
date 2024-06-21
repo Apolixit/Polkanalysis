@@ -12,5 +12,11 @@ namespace Polkanalysis.Domain.Contracts.Primary.Search
 {
     public class SearchQuery : IRequest<Result<IEnumerable<SearchResultDto>, ErrorResult>>
     {
+        public SearchQuery(string query)
+        {
+            Query = query;
+        }
+
+        public string Query { get; set; }
     }
 }

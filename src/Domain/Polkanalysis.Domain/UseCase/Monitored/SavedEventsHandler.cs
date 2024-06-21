@@ -47,6 +47,9 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedEventsCommand request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
+
             // Is this event has to be insert in database ?
             var eventFound = _eventsFactory.TryFind(request.EventNode.Module, request.EventNode.Method);
             if (eventFound is null)
@@ -71,7 +74,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 subEvent.GetValue2(),
                 cancellationToken);
 
-            LogEventManager(null,
+            LogEventManager((int)request.BlockNumber.Value,
                             (int)request.BlockNumber.Value,
                             eventFound.GetModule().moduleName,
                             eventFound.GetModule().moduleEvent);
