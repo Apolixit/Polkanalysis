@@ -21,15 +21,15 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Service
 {
-    internal class SearchService
+    public class SearchService : ISearchService
     {
         private readonly ISubstrateService _substrateService;
         private readonly IExplorerService _explorerService;
         private readonly SubstrateDbContext _db;
         private readonly ISearchClient _searchClient;
-        private readonly ILogger<AccountService> _logger;
+        private readonly ILogger<SearchService> _logger;
 
-        public SearchService(ISubstrateService _substrateService, SubstrateDbContext db, IExplorerService explorerService, ISearchClient searchClient, ILogger<AccountService> logger)
+        public SearchService(ISubstrateService _substrateService, SubstrateDbContext db, IExplorerService explorerService, ISearchClient searchClient, ILogger<SearchService> logger)
         {
             this._substrateService = _substrateService;
             _db = db;
@@ -38,12 +38,7 @@ namespace Polkanalysis.Domain.Service
             _logger = logger;
         }
 
-        public enum SearchType
-        {
-            BlockHash,
-            BlockNumber,
-            Account,
-        }
+        
 
         /// <summary>
         /// Try to define what kind of query it is
@@ -54,23 +49,26 @@ namespace Polkanalysis.Domain.Service
         public async Task<IEnumerable<SearchType>> TryDefineSearchTypeAsync(string query, CancellationToken token)
         {
             Guard.Against.NullOrEmpty(query, nameof(query));
-            
+
             var searchTypes = new List<SearchType>();
 
             uint queryBlock;
             if (uint.TryParse(query, out queryBlock))
             {
-                var lastBlock = await _substrateService.Rpc.Chain.GetBlockAsync(token);
+                //var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(queryBlock), token);
+                //var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(blockHash, token);
+                var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(token);
 
-                if(lastBlock.Block.Header.Number.Value >= queryBlock)
+                if (blockHeader.Number.Value >= queryBlock)
                     searchTypes.Add(SearchType.BlockNumber);
             }
-            
+
             if (SubstrateCheck.CheckHash(query))
             {
                 searchTypes.Add(SearchType.BlockHash);
             }
-            else if (AddressExtension.IsValidAccountAddress(query))
+            
+            if (AddressExtension.IsValidAccountAddress(query) || AddressExtension.IsValidPublicKey(query))
             {
                 searchTypes.Add(SearchType.Account);
             }
@@ -78,7 +76,7 @@ namespace Polkanalysis.Domain.Service
             return searchTypes;
         }
 
-        public async Task<IEnumerable<SearchResultDto>> Search(string query, CancellationToken token)
+        public async Task<IEnumerable<SearchResultDto>> SearchAsync(string query, CancellationToken token)
         {
             var searchResult = new List<SearchResultDto>();
             var searchTypes = await TryDefineSearchTypeAsync(query, token);
@@ -127,7 +125,7 @@ namespace Polkanalysis.Domain.Service
             var destroyed = await _db.EventSystemKilledAccount.FirstOrDefaultAsync(x => x.AccountAddress.ToLower() == query.ToLower(), token);
 
             string description = $"Account {query} exists on {_substrateService.BlockchainName}";
-            if(destroyed is not null)
+            if (destroyed is not null)
                 description += $" but has been destroyed on block {destroyed.BlockDate}";
 
             return new SearchResultDto()
@@ -148,7 +146,7 @@ namespace Polkanalysis.Domain.Service
         private async Task<SearchResultDto?> SearchBlockByHashAsync(string hash, CancellationToken token)
         {
             var res = _db.BlockInformation.FirstOrDefault(x => x.BlockHash.ToLower() == hash.ToLower());
-            if(res is null)
+            if (res is null)
                 return null;
 
             return new SearchResultDto()
@@ -169,7 +167,7 @@ namespace Polkanalysis.Domain.Service
         private async Task<SearchResultDto?> SearchBlockByNumberAsync(uint blockNum, CancellationToken token)
         {
             var res = _db.BlockInformation.FirstOrDefault(x => x.BlockNumber == blockNum);
-            
+
             if (res is null)
                 return null;
 

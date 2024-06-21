@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,27 @@ namespace Substrate.NET.Utils.Address
     {
         public static bool IsValidAccountAddress(string address)
         {
-            return true; // TODO
+            try
+            {
+                _ = NetApi.Utils.GetPublicKeyFrom(address);
+                return true;
+            } catch(Exception _)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsValidPublicKey(string publicKey)
+        {
+            try
+            {
+                var account = new AccountId(publicKey);
+                return account.Bytes.Length > 0;
+            }
+            catch (Exception _)
+            {
+                return false;
+            }
         }
     }
 }

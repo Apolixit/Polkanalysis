@@ -50,8 +50,15 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _substrateDbContext);
         }
 
-        [Test]
-        public async Task SavedEventHandler_WithValidData_ShouldSucceedAsync()
+        private static IEventNode buildKilledAccountNode()
+        {
+            var eventNode = Substitute.For<IEventNode>();
+            eventNode.Module.Returns(RuntimeEvent.System);
+            eventNode.Method.Returns(Event.KilledAccount);
+            return eventNode;
+        }
+
+        private EventRecord buildKilledAccountEvent()
         {
             var firstEvent = new EventRecord();
             var phase = new EnumPhase();
@@ -66,16 +73,46 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             runtimeEvent.Create(RuntimeEvent.System, killedAccountEvent);
 
             firstEvent.Create(phase, new Infrastructure.Blockchain.Contracts.Core.Maybe<EnumRuntimeEvent>(runtimeEvent), topics);
-            
+            return firstEvent;
+        }
+
+        private static IEventNode buildNewAccountNode()
+        {
             var eventNode = Substitute.For<IEventNode>();
             eventNode.Module.Returns(RuntimeEvent.System);
-            eventNode.Method.Returns(Event.KilledAccount);
+            eventNode.Method.Returns(Event.NewAccount);
+            return eventNode;
+        }
+
+        private EventRecord buildNewAccountEvent()
+        {
+            var firstEvent = new EventRecord();
+            var phase = new EnumPhase();
+            phase.Create(Phase.ApplyExtrinsic, new U32(0));
+            var topics = new BaseVec<Hash>();
+            topics.Create(new byte[] { 0 });
+
+            var runtimeEvent = new EnumRuntimeEvent();
+            var killedAccountEvent = new EnumEvent();
+
+            killedAccountEvent.Create(Event.NewAccount, new SubstrateAccount(Alice.ToString()));
+            runtimeEvent.Create(RuntimeEvent.System, killedAccountEvent);
+
+            firstEvent.Create(phase, new Infrastructure.Blockchain.Contracts.Core.Maybe<EnumRuntimeEvent>(runtimeEvent), topics);
+            return firstEvent;
+        }
+
+        [Test]
+        public async Task SavedEventHandler_WithValidData_ShouldSucceedAsync()
+        {
+            EventRecord killedAccountEvent = buildKilledAccountEvent();
+            IEventNode killedAccountNode = buildKilledAccountNode();
 
             var command = new SavedEventsCommand(new BlockNumber(1),
                                                  new DateTime(2024, 01, 01),
                                                  1,
-                                                 firstEvent,
-                                                 eventNode);
+                                                 killedAccountEvent,
+                                                 killedAccountNode);
 
             Assert.That(_substrateDbContext.EventSystemKilledAccount.Count(), Is.EqualTo(0));
             Assert.That(_substrateDbContext.EventManagerModel.Count(), Is.EqualTo(0));
@@ -86,6 +123,27 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 
             Assert.That(_substrateDbContext.EventSystemKilledAccount.Count(), Is.EqualTo(1));
             Assert.That(_substrateDbContext.EventManagerModel.Count(), Is.EqualTo(1));
+
+            var dbEvent = _substrateDbContext.EventManagerModel.Single(x => x.ModuleEvent == "KilledAccount");
+            Assert.That(dbEvent.LastScanBlockId, Is.EqualTo(1));
+            Assert.That(dbEvent.LastOccurenceScannedBlockId, Is.EqualTo(1));
+        }
+
+        [Test]
+        public async Task SavedEventHandler_WhenNotSubscribedEvent_ShouldFailedAsync()
+        {
+            EventRecord newAccountEvent = buildNewAccountEvent();
+            IEventNode newAccountNode = buildNewAccountNode();
+
+            var command = new SavedEventsCommand(new BlockNumber(1),
+                                                 new DateTime(2024, 01, 01),
+                                                 1,
+                                                 newAccountEvent,
+                                                 newAccountNode);
+
+            var result = await _useCase!.Handle(command, CancellationToken.None);
+
+            Assert.That(result.IsError, Is.True);
         }
     }
 }

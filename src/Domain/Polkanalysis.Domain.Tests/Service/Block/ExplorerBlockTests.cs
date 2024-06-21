@@ -16,9 +16,9 @@ namespace Polkanalysis.Domain.Tests.Service.Block
         [Test]
         public void InvalidBlockHash_ShouldThrowError()
         {
-            Assert.ThrowsAsync<BlockException>(async () => await _explorerRepository.GetBlockDetailsAsync("invalidBlockHash", CancellationToken.None));
-            Assert.ThrowsAsync<BlockException>(async () => await _explorerRepository.GetEventsAsync("invalidBlockHash", CancellationToken.None));
-            Assert.ThrowsAsync<BlockException>(async () => await _explorerRepository.GetExtrinsicsAsync("invalidBlockHash", CancellationToken.None));
+            Assert.ThrowsAsync<BlockException>(async () => await _explorerService.GetBlockDetailsAsync("invalidBlockHash", CancellationToken.None));
+            Assert.ThrowsAsync<BlockException>(async () => await _explorerService.GetEventsAsync("invalidBlockHash", CancellationToken.None));
+            Assert.ThrowsAsync<BlockException>(async () => await _explorerService.GetExtrinsicsAsync("invalidBlockHash", CancellationToken.None));
         }
     }
 }
