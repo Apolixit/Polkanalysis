@@ -54,8 +54,11 @@ namespace Polkanalysis.Domain.UseCase
 
         public async Task<Result<TDto, ErrorResult>> Handle(TRequest request, CancellationToken cancellationToken)
         {
+            if (request == null)
+                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
+
             // Log the cache key if the request is cached
-            if(request is ICached cachedRequest)
+            if (request is ICached cachedRequest)
             {
                 var cacheKey = cachedRequest.GenerateCacheKey();
 

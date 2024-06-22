@@ -27,9 +27,6 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Events
 
         public async override Task<Result<IEnumerable<EventDto>, ErrorResult>> HandleInnerAsync(EventsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _explorerRepository.GetEventsAsync(request.BlockId, cancellationToken);
 
             return Helpers.Ok(result);

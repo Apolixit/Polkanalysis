@@ -24,9 +24,6 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
 
         public async override Task<Result<IEnumerable<BlockLightDto>, ErrorResult>> HandleInnerAsync(BlocksQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             if(request.NbLastBlocksToFetch == default)
             {
                 request.NbLastBlocksToFetch = 100;

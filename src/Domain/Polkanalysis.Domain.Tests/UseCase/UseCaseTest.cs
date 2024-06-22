@@ -41,7 +41,7 @@ namespace Polkanalysis.Domain.Tests.UseCase
         [Test]
         public async Task GenericUseCaseWithNullRequest_ShouldFailedAsync()
         {
-            var result = await _useCase!.HandleInnerAsync(default!, CancellationToken.None);
+            var result = await _useCase!.Handle(default!, CancellationToken.None);
 
             Assert.That(result.IsError, Is.True);
             //Assert.That(result.Value, Is.Null);

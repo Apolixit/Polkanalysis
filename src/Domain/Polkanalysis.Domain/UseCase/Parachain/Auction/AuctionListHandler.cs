@@ -25,9 +25,6 @@ namespace Polkanalysis.Domain.UseCase.Parachain.Auction
 
         public async override Task<Result<IEnumerable<AuctionLightDto>, ErrorResult>> HandleInnerAsync(AuctionsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _parachainRepository.GetAuctionsAsync(cancellationToken);
 
             return Helpers.Ok(result);

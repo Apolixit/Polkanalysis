@@ -25,9 +25,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Validator
 
         public async override Task<Result<IEnumerable<RewardDto>, ErrorResult>> HandleInnerAsync(RewardsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = Enumerable.Empty<RewardDto>();
             if (request.ValidatorAddress != null)
             {

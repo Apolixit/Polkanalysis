@@ -24,9 +24,6 @@ namespace Polkanalysis.Domain.UseCase.Runtime
 
         public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> HandleInnerAsync(RuntimeVersionQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _moduleService.GetRuntimeVersionsAsync(cancellationToken);
 
             return Helpers.Ok(result);
