@@ -29,9 +29,6 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Logs
 
         public override async Task<Result<IEnumerable<LogDto>, ErrorResult>> HandleInnerAsync(LogsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _explorerRepository.GetLogsAsync(request.BlockNumber, cancellationToken);
 
             return Helpers.Ok(result);

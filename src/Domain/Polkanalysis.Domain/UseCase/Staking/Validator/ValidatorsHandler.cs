@@ -19,9 +19,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Validator
 
         public async override Task<Result<IEnumerable<ValidatorLightDto>, ErrorResult>> HandleInnerAsync(ValidatorsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             if (!string.IsNullOrEmpty(request.ElectedByNominator))
             {
                 return Helpers.Ok(await _stakingService.GetValidatorsElectedByNominatorAsync(request.ElectedByNominator, cancellationToken));

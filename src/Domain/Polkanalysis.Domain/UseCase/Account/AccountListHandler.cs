@@ -19,9 +19,6 @@ namespace Polkanalysis.Domain.UseCase.Account
 
         public async override Task<Result<PagedResponseDto<AccountLightDto>, ErrorResult>> HandleInnerAsync(AccountsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var res = await _accountRepository.GetAccountsAsync(cancellationToken, request.Pagination);
 
             var pagesResult = res.OrderByDescending(x => x.Balances.Total).ToPagedResponse(request.Pagination.PageNumber, request.Pagination.PageSize);

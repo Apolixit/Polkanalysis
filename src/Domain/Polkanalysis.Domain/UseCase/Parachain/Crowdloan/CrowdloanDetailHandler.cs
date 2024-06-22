@@ -25,9 +25,6 @@ namespace Polkanalysis.Domain.UseCase.Parachain.Crowdloan
 
         public async override Task<Result<CrowdloanDto, ErrorResult>> HandleInnerAsync(CrowdloanDetailQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _parachainRepository.GetCrowdloanDetailAsync(request.CrowndloanId, cancellationToken);
 
             return Helpers.Ok(result);

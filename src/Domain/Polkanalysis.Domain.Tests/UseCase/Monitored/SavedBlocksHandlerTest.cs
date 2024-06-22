@@ -74,13 +74,17 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         }
 
         [Test]
-        public async Task SavedBlocksHandler_WithDuplicateData_ShouldFailAsync()
+        public async Task SavedBlocksHandler_WithDuplicateData_ShouldSucceedButNotInsertTwiceAsync()
         {
+            Assert.That(_substrateDbContext.BlockInformation.SingleOrDefault(x => x.BlockHash == "0x1234567890"), Is.Null);
             var command = new SavedBlocksCommand(1);
 
             await _useCase!.Handle(command, CancellationToken.None);
+            Assert.That(_substrateDbContext.BlockInformation.SingleOrDefault(x => x.BlockHash == "0x1234567890"), Is.Not.Null);
+
             var result = await _useCase!.Handle(command, CancellationToken.None);
-            Assert.That(result.IsError, Is.True);
+            Assert.That(result.IsSuccess, Is.True);
+            Assert.That(_substrateDbContext.BlockInformation.SingleOrDefault(x => x.BlockHash == "0x1234567890"), Is.Not.Null);
         }
     }
 }

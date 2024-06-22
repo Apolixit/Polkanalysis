@@ -48,9 +48,6 @@ namespace Polkanalysis.Domain.UseCase.Account
         /// <returns></returns>
         public async override Task<Result<AccountFinancialTransactionsDto, ErrorResult>> HandleInnerAsync(AccountFinancialTransactionsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var transactions = await _financialService.GetAccountTransactionsAsync(new SubstrateAccount(request.AccountAddress), request.RangeDate.From, request.RangeDate.To, cancellationToken);
 
             var pagesTransactions = transactions

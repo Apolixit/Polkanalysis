@@ -22,9 +22,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Nominator
 
         public async override Task<Result<IEnumerable<NominatorLightDto>, ErrorResult>> HandleInnerAsync(NominatorsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = Enumerable.Empty<NominatorLightDto>();
 
             if (request.ValidatorAddress != null)
@@ -36,15 +33,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Nominator
                 result = await _stakingRepository.GetNominatorsAsync(cancellationToken);
             }
             return Helpers.Ok(result);
-        }
-
-        private string GenerateCacheKey(NominatorsQuery request)
-        {
-            if (request.ValidatorAddress != null)
-            {
-                return $"Nominators_{request.ValidatorAddress}";
-            }
-            return "Nominators_All";
         }
     }
 }

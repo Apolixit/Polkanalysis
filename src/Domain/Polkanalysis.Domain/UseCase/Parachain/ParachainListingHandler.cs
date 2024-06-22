@@ -20,9 +20,6 @@ namespace Polkanalysis.Domain.UseCase.Parachain
 
         public async override Task<Result<IEnumerable<ParachainLightDto>, ErrorResult>> HandleInnerAsync(ParachainsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _parachainRepository.GetParachainsAsync(cancellationToken);
             return Helpers.Ok(result);
         }

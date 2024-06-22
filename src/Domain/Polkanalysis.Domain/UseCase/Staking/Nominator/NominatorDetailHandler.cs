@@ -18,9 +18,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Nominator
 
         public override async Task<Result<NominatorDto, ErrorResult>> HandleInnerAsync(NominatorDetailQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _stakingService.GetNominatorDetailAsync(request.NominatorAddress, cancellationToken);
 
             return Helpers.Ok(result);

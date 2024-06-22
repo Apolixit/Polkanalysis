@@ -37,9 +37,6 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 
         public async override Task<Result<IEnumerable<SpecVersionDto>, ErrorResult>> HandleInnerAsync(SpecVersionsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             IQueryable<SpecVersionModel> dbRes = _dbContext.SpecVersionModels;
 
             if (!string.IsNullOrEmpty(request.BlockchainName))
@@ -89,9 +86,6 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SpecVersionCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var startBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(request.BlockStart), cancellationToken);
             var metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(startBlockHash.Bytes, cancellationToken);
 

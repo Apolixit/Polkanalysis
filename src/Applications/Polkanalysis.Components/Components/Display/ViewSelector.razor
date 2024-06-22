@@ -3,10 +3,12 @@
     <div class="btn-group" role="group">
         <FluentButton 
             Appearance="Appearance.Accent" 
+            Class="btn-card-element"
             IconStart="@(new PolkanalysisIcons.BootstrapIcon.CardText())"
                       @onclick="(() => OnViewChanged(ViewDisplayType.CardElement))" />
         <FluentButton 
-            Appearance="Appearance.Accent" 
+            Appearance="Appearance.Accent"
+                      Class="btn-table-element"
             IconStart="@(new PolkanalysisIcons.BootstrapIcon.Table())"
                       @onclick="(() => OnViewChanged(ViewDisplayType.TableRaw))" />
     </div>

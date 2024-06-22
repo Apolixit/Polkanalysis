@@ -25,9 +25,6 @@ namespace Polkanalysis.Domain.UseCase.Runtime
 
         public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> HandleInnerAsync(RuntimeModulesQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             List<Task<ModuleDetailDto>> modulesTask = new();
             foreach ( var module in _substrateService.RuntimeMetadata.NodeMetadata.Modules) {
                 modulesTask.Add(Task.Run(() => _moduleService.GetModuleDetail(module.Value.Name)));

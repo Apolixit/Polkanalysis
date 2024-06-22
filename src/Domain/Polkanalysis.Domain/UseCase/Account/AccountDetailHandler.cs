@@ -27,9 +27,6 @@ namespace Polkanalysis.Domain.UseCase.Account
 
         public async override Task<Result<AccountDto, ErrorResult>> HandleInnerAsync(AccountDetailQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var res = await _accountRepository.GetAccountDetailAsync(request.AccountAddress, cancellationToken);
             return Helpers.Ok(res);
         }

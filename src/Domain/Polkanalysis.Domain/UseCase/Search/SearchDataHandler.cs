@@ -34,9 +34,6 @@ namespace Polkanalysis.Domain.UseCase.Search
 
         public override async Task<Result<IEnumerable<SearchResultDto>, ErrorResult>> HandleInnerAsync(SearchQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var res = await _searchService.SearchAsync(request.Query, cancellationToken);
 
             return Helpers.Ok(res);

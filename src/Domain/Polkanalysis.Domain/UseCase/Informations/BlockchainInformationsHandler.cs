@@ -29,9 +29,6 @@ namespace Polkanalysis.Domain.UseCase.Informations
 
         public async override Task<Result<BlockchainDetailsDto, ErrorResult>> HandleInnerAsync(BlockchainDetailsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _parachainRepository.GetCurrentBlockchainDetailProjectAsync(cancellationToken);
             
             return Helpers.Ok(result);

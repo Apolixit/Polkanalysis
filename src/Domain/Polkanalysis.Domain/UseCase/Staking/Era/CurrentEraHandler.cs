@@ -19,9 +19,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
 
         public async override Task<Result<CurrentEraDto, ErrorResult>> HandleInnerAsync(CurrentEraInformationQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             return await _stakingRepository.CurrentEraInformationAsync(cancellationToken);
         }
     }

@@ -19,9 +19,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Pools
 
         public async override Task<Result<IEnumerable<PoolLightDto>, ErrorResult>> HandleInnerAsync(PoolsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _stakingRepository.GetPoolsAsync(cancellationToken);
 
             return Helpers.Ok(result);

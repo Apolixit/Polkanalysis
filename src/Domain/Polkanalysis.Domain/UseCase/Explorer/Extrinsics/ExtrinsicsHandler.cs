@@ -27,9 +27,6 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Extrinsics
 
         public async override Task<Result<IEnumerable<ExtrinsicDto>, ErrorResult>> HandleInnerAsync(ExtrinsicsQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var result = await _explorerRepository.GetExtrinsicsAsync(request.BlockNumber, cancellationToken);
 
             return Helpers.Ok(result);
