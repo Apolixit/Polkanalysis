@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances
     public class BalancesSlashedModel : EventModel
     {
         [SetsRequiredMembers]
-        public BalancesSlashedModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string accountAddess, double amount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public BalancesSlashedModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, string accountAddess, double amount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.AccountAddess = accountAddess;
             this.Amount = amount;

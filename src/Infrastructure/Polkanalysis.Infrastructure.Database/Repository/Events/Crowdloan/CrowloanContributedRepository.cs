@@ -14,11 +14,11 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Polkanalysis.Infrastructure.Database.Tests")]
 namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
-{
+{   
     public class SearchCriteriaCrowdloanContributed : SearchCriteria
     {
         public string? AccountAddess { get; set; }
-        public NumberCriteria<int>? CrowdloanId { get; set; }
+        public NumberCriteria<uint>? CrowdloanId { get; set; }
         public NumberCriteria<double>? Amount { get; set; }
     }
 
@@ -51,7 +51,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
                 BaseTuple<SubstrateAccount, Id, U128>>();
 
             var accountAddess = convertedData.Value[0].As<SubstrateAccount>().ToStringAddress();
-            var crowdloanId = (int)convertedData.Value[1].As<Id>().Value.Value;
+            var crowdloanId = convertedData.Value[1].As<Id>().Value.Value;
             var amount = ((U128)convertedData.Value[2]).Value.ToDouble((await GetChainInfoAsync(token)).TokenDecimals);
 
             return new CrowdloanContributedModel(

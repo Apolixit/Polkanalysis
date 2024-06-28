@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances
     public class BalancesUnreservedModel : EventModel
     {
         [SetsRequiredMembers]
-        public BalancesUnreservedModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string accountAddess, double unreservedAmount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public BalancesUnreservedModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, string accountAddess, double unreservedAmount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.AccountAddess = accountAddess;
             this.UnreservedAmount = unreservedAmount;

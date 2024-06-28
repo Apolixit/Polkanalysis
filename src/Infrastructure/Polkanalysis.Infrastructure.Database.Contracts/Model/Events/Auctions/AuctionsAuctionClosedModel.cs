@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions
     public class AuctionsAuctionClosedModel : EventModel
     {
         [SetsRequiredMembers]
-        public AuctionsAuctionClosedModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, uint auctionIndex) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public AuctionsAuctionClosedModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, uint auctionIndex) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.AuctionIndex = auctionIndex;
         }

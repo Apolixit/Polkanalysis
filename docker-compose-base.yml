@@ -1,0 +1,53 @@
+version: '3.4'
+
+networks:
+  polkanalysis_network:
+    driver: bridge
+
+volumes:
+  polkanalysis_data:
+    driver: local
+
+services:
+  db:
+    container_name: Polkanalysis_Database
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+    expose:
+    - "5433" # Publishes 5433 to other containers but NOT to host machine
+    ports:
+    - "5433:5433"
+    command: -p 5433
+    volumes:
+      - polkanalysis_data:/var/lib/postgresql/data
+    networks:
+      - polkanalysis_network
+
+  cache:
+    container_name: Polkanalysis_Redis
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    # command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - polkanalysis_data:/data
+
+  aspire-dashboard:
+    stdin_open: true
+    tty: true
+    ports:
+        - 18888:18888
+        - 4317:18889
+    container_name: Polkanalysis_Aspire_Dashboard
+    environment:
+        - DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT=1000
+        - DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT=1000
+        - DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT=1000
+    image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.4
+    networks:
+      - polkanalysis_network
+

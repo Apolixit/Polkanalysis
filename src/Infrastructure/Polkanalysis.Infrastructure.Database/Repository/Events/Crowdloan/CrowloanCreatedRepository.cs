@@ -15,7 +15,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
 {
     public class SearchCriteriaCrowdloanCreated : SearchCriteria
     {
-        public NumberCriteria<int>? CrowdloanId { get; set; }
+        public NumberCriteria<uint>? CrowdloanId { get; set; }
     }
 
     [BindEvents(RuntimeEvent.Crowdloan, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.Event.Created")]
@@ -44,7 +44,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan
                 Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent,
                 Id>();
 
-            var crowdloanId = (int)convertedData.Value.Value;
+            var crowdloanId = convertedData.Value.Value;
 
             return new CrowdloanCreatedModel(
                 eventModel.BlockchainName,

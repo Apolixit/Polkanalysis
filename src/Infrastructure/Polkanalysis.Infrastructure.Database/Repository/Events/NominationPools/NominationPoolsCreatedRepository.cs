@@ -17,7 +17,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository.Events.NominationPools
     public class SearchCriteriaNominationPoolsCreated : SearchCriteria
     {
         public string? Depositor { get; set; }
-public NumberCriteria<uint>? Pool_id { get; set; }
+        public NumberCriteria<uint>? Pool_id { get; set; }
     }
 
     [BindEvents(RuntimeEvent.NominationPools, "Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.Created")]

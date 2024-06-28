@@ -1,0 +1,43 @@
+﻿@typeparam TFilter where TFilter : IComparable<TFilter>
+
+@using Polkanalysis.Domain.Contracts.Common.Search
+<FluentSelect Items=@optionsSelector
+              Label="@Label"
+              TOption="Option<Operator>"
+              Multiple="false"
+              OptionText="@(i => i.Text.ToString())"
+              OptionValue="@(i => i.Value.ToString())"
+              OptionDisabled="@(i => i.Disabled)"
+              Disabled="@IsDisabled"
+              SelectedOptionChanged="OnSelectedOptionsChanged" />
+
+@code {
+    [Parameter] public string Label { get; set; } = string.Empty;
+    [Parameter] public bool IsDisabled { get; set; } = false;
+    [Parameter] public NumberCriteria<TFilter>? Value { get; set; }
+    public Option<Operator>? SelectedOperator;
+    protected bool displaySecondField { get; set; } = false;
+
+    public virtual void OnSelectedOptionsChanged(Option<Operator> option)
+    {
+        SelectedOperator = option;
+        displaySecondField = option.Value == Operator.Between;
+    }
+
+    public void SetDisable(bool isDisabled)
+    {
+        IsDisabled = isDisabled;
+        StateHasChanged();
+    }
+
+    protected static List<Option<Operator>> optionsSelector = new()
+    {
+        { new Option<Operator> { Value = Operator.LowerStrict, Text = Operator.LowerStrict } },
+        { new Option<Operator> { Value = Operator.LowerOrEqual, Text = Operator.LowerOrEqual } },
+        { new Option<Operator> { Value = Operator.Equal, Text = Operator.Equal, Selected = true } },
+        { new Option<Operator> { Value = Operator.GreaterOrEqual, Text = Operator.GreaterOrEqual } },
+        { new Option<Operator> { Value = Operator.GreaterStrict, Text = Operator.GreaterStrict } },
+        { new Option<Operator> { Value = Operator.Between, Text = Operator.Between } },
+
+    };
+}

@@ -26,15 +26,15 @@ namespace Polkanalysis.Domain.Service
         private readonly ISubstrateService _substrateService;
         private readonly IExplorerService _explorerService;
         private readonly SubstrateDbContext _db;
-        private readonly ISearchClient _searchClient;
+        //private readonly ISearchClient _searchClient;
         private readonly ILogger<SearchService> _logger;
 
-        public SearchService(ISubstrateService _substrateService, SubstrateDbContext db, IExplorerService explorerService, ISearchClient searchClient, ILogger<SearchService> logger)
+        public SearchService(ISubstrateService _substrateService, SubstrateDbContext db, IExplorerService explorerService,/* ISearchClient searchClient,*/ ILogger<SearchService> logger)
         {
             this._substrateService = _substrateService;
             _db = db;
             _explorerService = explorerService;
-            _searchClient = searchClient;
+            //_searchClient = searchClient;
             _logger = logger;
         }
 

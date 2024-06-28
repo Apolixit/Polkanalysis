@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Tests.Service
             _searchService = new SearchService(_substrateService,
                                                _substrateDbContext,
                                                Substitute.For<IExplorerService>(),
-                                               Substitute.For<ISearchClient>(),
+                                               //Substitute.For<ISearchClient>(),
                                                Substitute.For<ILogger<SearchService>>());
 
             var mockHash = new Hash("0x4dd66ad0f33bfc8160508219bcb208aac75d3b13ae8fbea11c0d61aa9b0cfaf3");

@@ -4,6 +4,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
@@ -74,9 +75,22 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                             continue;
                         }
 
+                        var repoType = optionalRepo.GetType();
+                        //var repo = (EventDatabaseRepository<,>)optionalRepo;
+
                         var repoService = (IDatabaseInsert)optionalRepo!;
                         var eventName = (INameableEvent)optionalRepo!;
-                        versionned.Add(new EventElementFactory(repoService, bindEvent.RuntimeEvent, bindEvent.EventValue, eventName.SearchName));
+                        var namableEvent = (INameableEvent)optionalRepo!;
+                        var searchEventType = GetSearchType(optionalRepo!, namableEvent.SearchCriterias);
+                        var modelEvent = GetEventModelType(repoType!);
+                        versionned.Add(new EventElementFactory(optionalRepo,
+                                                                repoService,
+                                                               bindEvent.RuntimeEvent,
+                                                               bindEvent.EventValue,
+                                                               eventName.SearchName,
+                                                               namableEvent.SearchCriterias,
+                                                               searchEventType,
+                                                               modelEvent));
                     }
                 }
             }
@@ -87,6 +101,89 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                 throw new InvalidOperationException($"No class in {BindingRepositoriesAssembly} implement {nameof(BindEventsAttribute)} !?");
 
             return versionned;
+        }
+
+        private static Type GetEventModelType(Type type)
+        {
+            // Obtenir le type de base générique de la classe
+            var baseType = type.BaseType;
+
+            if (baseType == null || !baseType.IsGenericType)
+            {
+                throw new InvalidOperationException("The provided type does not have a generic base type.");
+            }
+
+            // Obtenir les arguments génériques du type de base
+            var genericArguments = baseType.GetGenericArguments();
+
+            if (genericArguments.Length < 1)
+            {
+                throw new InvalidOperationException("The generic base type does not have the expected number of generic arguments.");
+            }
+
+            // Récupérer le premier argument générique (TModel)
+            var modelGenericTypeArgument = genericArguments[0];
+
+            // Vérifier que le type hérite de EventModel
+            if (!typeof(EventModel).IsAssignableFrom(modelGenericTypeArgument))
+            {
+                throw new InvalidOperationException($"The type {modelGenericTypeArgument} does not inherit from EventModel.");
+            }
+
+            return modelGenericTypeArgument;
+
+            // Créer une instance du type générique
+            //var instance = Activator.CreateInstance(firstGenericTypeArgument) as EventModel;
+
+            //if (instance == null)
+            //{
+            //    throw new InvalidOperationException($"Failed to create an instance of {firstGenericTypeArgument}.");
+            //}
+
+            //return instance;
+        }
+
+        private static Type GetSearchType(object instance, Type criteriaType)
+        {
+            // Obtenir les types d'interfaces que l'instance implémente
+            var interfaces = instance.GetType().GetInterfaces();
+
+            // Trouver l'interface ISearchEvent<T> que l'instance implémente
+            var searchEventType = interfaces.FirstOrDefault(i =>
+                i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISearchEvent<>));
+
+            if (searchEventType is null)
+            {
+                throw new InvalidOperationException("The provided instance does not implement ISearchEvent<T>.");
+            }
+
+            // Obtenir le type de critère générique T
+            var genericArgument = searchEventType.GetGenericArguments()[0];
+
+            if (!genericArgument.IsAssignableFrom(criteriaType))
+            {
+                throw new InvalidOperationException($"The criteria type {criteriaType} is not compatible with {genericArgument}.");
+            }
+
+            return searchEventType;
+        }
+
+        public async Task<IEnumerable<EventModel>> InvokeSearchAsync(
+            EventElementFactory eventElementFactory, SearchCriteria criteria, CancellationToken token)
+        {
+            // Obtenir la méthode SearchAsync de l'interface
+            var searchMethod = eventElementFactory.SearchEventType.GetMethod("SearchAsync");
+
+            if (searchMethod is null)
+            {
+                throw new InvalidOperationException("The SearchAsync method could not be found.");
+            }
+
+            // Appeler la méthode SearchAsync de manière dynamique
+            var task = (Task<IEnumerable<EventModel>>)searchMethod.Invoke(eventElementFactory.Repository, new object[] { criteria, token });
+
+            // Attendre et retourner le résultat
+            return await task;
         }
 
         public async Task ExecuteInsertAsync(RuntimeEvent runtimeEvent, Enum eventValue, EventModel eventModel, IType details, CancellationToken token)
@@ -109,6 +206,38 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         public bool Has(RuntimeEvent runtimeEvent, Enum eventValue)
         {
             return TryFind(runtimeEvent, eventValue) != null;
+        }
+
+        public IEnumerable<(string name, string filter)> GetSearchCriteriasParameters(Type searchCriteria)
+        {
+            if(!searchCriteria.IsSubclassOf(typeof(SearchCriteria)))
+                throw new InvalidOperationException("Unable to get search criteria from a class that does not inherit from SearchCriteria");
+
+            foreach (var prop in searchCriteria.GetProperties())
+            {
+                yield return (prop.Name, extractPropertyName(prop));
+            }
+        }
+
+        private string extractPropertyName(PropertyInfo prop)
+        {
+            if(prop.PropertyType.Name.StartsWith("NumberCriteria"))
+            {
+                var genericTypeName = prop.PropertyType.GetGenericArguments().First().Name switch
+                {
+                    "UInt32" => "uint",
+                    "Double" => "double",
+                    _ => prop.PropertyType.GetGenericArguments().First().Name
+                };
+
+                return $"{prop.PropertyType.Name.Remove(prop.PropertyType.Name.Length - 2)}<{genericTypeName}>";
+            }
+
+            if (prop.PropertyType.Name.StartsWith("Nullable"))
+            {
+                return $"{prop.PropertyType.GetGenericArguments().First()}";
+            }
+            return prop.PropertyType.Name;
         }
     }
 }

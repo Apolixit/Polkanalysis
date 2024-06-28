@@ -1,0 +1,8 @@
+﻿Text    
+<FluentTextField @bind-Value=textField Label="@Label" Placeholder="Account address" Disabled="@IsDisabled" />
+
+@code {
+    [Parameter] public string Label { get; set; } = string.Empty;
+    [Parameter] public bool IsDisabled { get; set; } = false;
+    public string? textField;
+}

@@ -43,4 +43,10 @@
     <Folder Include="wwwroot\assets\images\blockchain\phala\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\assets\js\bootstrap.min.js">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

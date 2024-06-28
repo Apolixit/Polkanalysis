@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nomination
     public class NominationPoolsPoolCommissionClaimedModel : EventModel
     {
         [SetsRequiredMembers]
-        public NominationPoolsPoolCommissionClaimedModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, uint pool_id, double commission) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public NominationPoolsPoolCommissionClaimedModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, uint pool_id, double commission) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.Pool_id = pool_id;
             this.Commission = commission;

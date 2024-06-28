@@ -25,7 +25,6 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                     return x <= blockNum.Number.Value;
                 });
 
-            RuleFor(x => x.EventIndex).GreaterThanOrEqualTo(0);
             RuleFor(x => x.EventNode).NotEmpty();
             RuleFor(x => x.CurrentDate).LessThanOrEqualTo(DateTime.Now);
             RuleFor(x => x.Ev).NotNull();
@@ -56,7 +55,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
             var databaseModel = new EventModel(
                 _polkadotRepository.BlockchainName,
-                (int)request.BlockNumber.Value,
+                request.BlockNumber.Value,
                 request.CurrentDate,
                 request.EventIndex,
                 request.GetModuleName(),

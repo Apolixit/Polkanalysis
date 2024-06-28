@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances
     public class BalancesBalanceSetModel : EventModel
     {
         [SetsRequiredMembers]
-        public BalancesBalanceSetModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string rootAccount, double amount1, double amount2) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public BalancesBalanceSetModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, string rootAccount, double amount1, double amount2) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.RootAccount = rootAccount;
             this.Amount1 = amount1;

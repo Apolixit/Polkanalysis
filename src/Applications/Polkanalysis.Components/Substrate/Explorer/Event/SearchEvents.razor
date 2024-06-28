@@ -1,0 +1,282 @@
+﻿@page "/events"
+
+@using Microsoft.Extensions.Logging
+@using Polkanalysis.Components.Components.Search
+@using Polkanalysis.Domain.Contracts.Common.Search
+@using Polkanalysis.Infrastructure.Database.Contracts.Model.Events
+@inject IEventsFactory eventFactory;
+@inject ILogger<SearchEvents> logger;
+@inject IMediator mediator;
+
+<FluentLabel Typo="Typography.H1" Class="mb-4">
+    Search events
+</FluentLabel>
+
+<FluentStack Orientation="Orientation.Horizontal"
+             HorizontalAlignment="HorizontalAlignment.Center"
+             VerticalAlignment="VerticalAlignment.Center"
+             VerticalGap="20"
+             HorizontalGap="40">
+
+    <FluentAutocomplete TOption="string"
+                        AutoComplete="off"
+                        Autofocus="true"
+                        Label="Modules"
+                        Width="250px"
+                        OnOptionsSearch="@OnSearchModule"
+                        MaximumSelectedOptions="1"
+                        OptionText="@(item => item)"
+                        SelectedOptionsChanged="OnSelectedModuleOptionsChanged"
+                        SelectedOptions="@SelectedModule" />
+
+
+    <FluentAutocomplete TOption="string"
+                        AutoComplete="off"
+                        Autofocus="true"
+                        Label="Events"
+                        Width="250px"
+                        OnOptionsSearch="@OnSearchEvent"
+                        MaximumSelectedOptions="1"
+                        OptionText="@(item => item)"
+                        SelectedOptionsChanged="OnSelectedEventOptionsChanged"
+                        SelectedOptions="@SelectedEvent" />
+
+
+</FluentStack>
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-evenly">
+            <div>
+                <FluentLabel Typo="Typography.H4" Alignment="HorizontalAlignment.Center" Class="my-2">Standard filters</FluentLabel>
+                <div class="row">
+                    <div class="col text-center">
+                        <FluentRadioGroup Name="numbers" ValueChanged="OnBlockFilterTypeChangedAsync" TValue="BlockSearchFilter">
+                            <FluentRadio Value="@BlockSearchFilter.BlockNumber">Block number</FluentRadio>
+                            <FluentRadio Value="@BlockSearchFilter.BlockDate">Block date</FluentRadio>
+                        </FluentRadioGroup>
+                    </div>
+                </div>
+                @if (displayBlockNumberFilter)
+                {
+                    <div class="row">
+                        <div class="col">
+                            <NumberCriteriaFilter Label="Block number" Value="NumberBlockFilter" />
+                        </div>
+                    </div>
+                }
+                @if (displayBlockDateFilter)
+                {
+                    <div class="row">
+                        <div class="col">
+                            <DateCriteriaFilter Label="Block date" Value="DateBlockFilter" />
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (filtersComponents.Count > 0)
+            {
+                <div>
+                    <FluentLabel Typo="Typography.H4">Context filters</FluentLabel>
+                    @foreach (var component in filtersComponents)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <FluentStack Orientation="Orientation.Horizontal"
+                                             HorizontalAlignment="HorizontalAlignment.Left"
+                                             VerticalAlignment="VerticalAlignment.Top"
+                                             VerticalGap="10">
+                                    <DynamicComponent Type="component.ComponentType" Parameters="component.Parameters" />
+                                </FluentStack>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<FluentStack Orientation="Orientation.Horizontal"
+             HorizontalAlignment="HorizontalAlignment.Center"
+             VerticalAlignment="VerticalAlignment.Center"
+             Class="mt-4">
+    <FluentButton Type="ButtonType.Button" IconStart="new Icons.Regular.Size12.Search()" OnClick="OnSearch">
+        Search
+    </FluentButton>
+    <FluentButton Type="ButtonType.Reset" IconStart="new Icons.Regular.Size12.Dismiss()" OnClick="OnResetFilters">
+        Reset filters
+    </FluentButton>
+</FluentStack>
+
+
+@code {
+    private List<EventElementFactory> subscribedEvents = new List<EventElementFactory>();
+    public IEnumerable<string> ModulesName { get; private set; } = Enumerable.Empty<string>();
+    public IEnumerable<string> EventsName { get; private set; } = Enumerable.Empty<string>();
+
+    private BlockSearchFilter blockSearchFilter { get; set; }
+    private bool displayEvents => SelectedModule.Any();
+    IEnumerable<string> SelectedModule = Array.Empty<string>();
+    IEnumerable<string> SelectedEvent = Array.Empty<string>();
+    public Type? SelectedEventType = null;
+
+    private bool displayBlockNumberFilter => blockSearchFilter == BlockSearchFilter.BlockNumber;
+    public NumberCriteria<uint>? NumberBlockFilter { get; set; } = new NumberCriteria<uint>() { Operator = Operator.GreaterOrEqual, Value = 1 };
+    private bool displayBlockDateFilter => blockSearchFilter == BlockSearchFilter.BlockDate;
+    public NumberCriteria<DateTime>? DateBlockFilter { get; set; }
+
+
+    private List<ComponentParameter> filtersComponents = new List<ComponentParameter>();
+
+    private readonly Dictionary<string, ComponentParameter> declaredComponents = new()
+        {
+            ["NumberCriteria<uint>"] = new ComponentParameter()
+            {
+                ComponentType = typeof(NumberCriteriaFilter),
+                Name = "NumberFilter",
+                Parameters = new Dictionary<string, object>
+                {
+                    [nameof(NumberCriteriaFilter.Label)] = "",
+                    // [nameof(NumberCriteriaFilter.Value)] = new NumberCriteria<uint>(),
+                }
+            },
+            ["String"] = new ComponentParameter()
+            {
+                ComponentType = typeof(TextCriteriaFilter),
+                Name = "TextFilter",
+                Parameters = new Dictionary<string, object>
+                {
+                    [nameof(NumberCriteriaFilter.Label)] = "",
+                    // [nameof(NumberCriteriaFilter.Value)] = new NumberCriteria<uint>(),
+                }
+            },
+            ["NumberCriteria<DateTime>"] = new ComponentParameter()
+            {
+                ComponentType = typeof(DateCriteriaFilter),
+                Name = "DateFilter",
+                Parameters = new Dictionary<string, object>
+                {
+                    [nameof(NumberCriteriaFilter.Label)] = "",
+                    // [nameof(NumberCriteriaFilter.Value)] = new NumberCriteria<uint>(),
+                }
+            },
+        };
+
+    protected override void OnInitialized()
+    {
+        subscribedEvents = eventFactory.Mapped.ToList();
+
+        ModulesName = subscribedEvents.Select(x => x.GetModule().moduleName);
+        EventsName = subscribedEvents.Select(x => x.GetModule().moduleEvent);
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // By default block number is selected
+            await OnBlockFilterTypeChangedAsync(BlockSearchFilter.BlockNumber);
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void OnSearchModule(OptionsSearchEventArgs<string> e)
+    {
+        e.Items = ModulesName.Where(i => i.StartsWith(e.Text, StringComparison.OrdinalIgnoreCase)).Distinct();
+    }
+
+    private void OnSearchEvent(OptionsSearchEventArgs<string> e)
+    {
+        var filterEvents = subscribedEvents.AsQueryable();
+
+        if (SelectedModule.Any())
+        {
+            filterEvents = filterEvents.Where(x => x.GetModule().moduleName == SelectedModule.First());
+        }
+
+        EventsName = filterEvents.Select(x => x.GetModule().moduleEvent);
+        e.Items = EventsName.Where(i => i.StartsWith(e.Text, StringComparison.OrdinalIgnoreCase)).Distinct();
+    }
+
+    private void OnSelectedModuleOptionsChanged(IEnumerable<string> option)
+    {
+        SelectedModule = option;
+    }
+
+    private void OnSelectedEventOptionsChanged(IEnumerable<string> option)
+    {
+        SelectedEvent = option;
+
+        if (!SelectedEvent.Any())
+        {
+            SelectedEventType = null;
+            filtersComponents = new List<ComponentParameter>();
+            return;
+        }
+
+        SelectedEventType = subscribedEvents
+        .Where(x => x.GetModule().moduleName == SelectedModule.First() && x.GetModule().moduleEvent == option.First())
+        .Select(x => x.SearchCriteriaType).FirstOrDefault();
+
+        if (SelectedEventType is not null)
+        {
+            var res = eventFactory.GetSearchCriteriasParameters(SelectedEventType).ToList();
+
+            foreach (var item in res.Where(x => x.name != nameof(SearchCriteria.BlockDate) && x.name != nameof(SearchCriteria.BlockNumber)))
+            {
+                var foundComponent = declaredComponents[item.filter];
+                foundComponent.Parameters["Label"] = item.name;
+                filtersComponents.Add(new ComponentParameter()
+                    {
+                        ComponentType = foundComponent.ComponentType,
+                        Name = foundComponent.Name,
+                        Parameters = foundComponent.Parameters
+                    });
+            }
+        }
+    }
+
+    private async Task OnBlockFilterTypeChangedAsync(BlockSearchFilter value)
+    {
+        blockSearchFilter = value;
+        // blockNumberCriteriaFilter!.SetDisable(value != BlockSearchFilter.BlockNumber);
+        // dateBlockFilter!.SetDisable(value != BlockSearchFilter.BlockDate);
+
+        await InvokeAsync(() => StateHasChanged());
+    }
+
+    private void OnSearch(MouseEventArgs e)
+    {
+        // if (blockSearchFilter == BlockSearchFilter.BlockNumber)
+
+        var res = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery()
+            {
+                SelectedModules = SelectedModule,
+                SelectedEvents = SelectedEvent,
+                NumberBlockFilter = NumberBlockFilter,
+                DateBlockFilter = DateBlockFilter
+            });
+
+        logger.LogInformation("Search events");
+    }
+
+    private void OnResetFilters(MouseEventArgs e)
+    {
+        logger.LogInformation("Reset filters");
+    }
+
+    public class ComponentParameter
+    {
+        public required Type ComponentType { get; init; }
+        public required string Name { get; init; }
+        public required Dictionary<string, object> Parameters { get; init; }
+    }
+
+    public enum BlockSearchFilter
+    {
+        BlockNumber,
+        BlockDate
+    }
+}

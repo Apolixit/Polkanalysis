@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nomination
     public class NominationPoolsMemberRemovedModel : EventModel
     {
         [SetsRequiredMembers]
-        public NominationPoolsMemberRemovedModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, uint pool_id, string member) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public NominationPoolsMemberRemovedModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, uint pool_id, string member) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.Pool_id = pool_id;
             this.Member = member;

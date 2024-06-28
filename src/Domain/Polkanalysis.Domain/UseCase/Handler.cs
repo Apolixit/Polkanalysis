@@ -57,7 +57,7 @@ namespace Polkanalysis.Domain.UseCase
             if (request == null)
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
-            // Log the cache key if the request is cached
+            // Log the cache key if the request is cache
             if (request is ICached cachedRequest)
             {
                 var cacheKey = cachedRequest.GenerateCacheKey();

@@ -21,12 +21,13 @@ namespace Polkanalysis.Api
     {
         public async static Task Main(string[] args)
         {
+            Microsoft.Extensions.Logging.ILogger microsoftLogger = default!;
             try
             {
                 var builder = WebApplication.CreateBuilder(args);
                 
                 var (microsftLogger, serilogLogger) = Common.Start.StartApplicationExtension.InitLoggerAndConfig("Polkanalys.Api", builder.Configuration);
-
+                microsoftLogger = microsftLogger;
                 builder.Host.UseSerilog(serilogLogger);
 
                 microsftLogger.LogInformation("Starting Polkanalysis API");
@@ -155,9 +156,9 @@ namespace Polkanalysis.Api
 
                 await app.RunAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                microsoftLogger.LogError($"{ex.Message}");
             }
             finally
             {
