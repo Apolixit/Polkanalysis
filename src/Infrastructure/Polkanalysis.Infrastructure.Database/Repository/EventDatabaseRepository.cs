@@ -123,17 +123,19 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         {
             var model = dbTable.AsQueryable();
 
-            if (criteria.FromDate is not null)
-                model = model.Where(x => x.BlockDate >= criteria.FromDate.Value);
+            //if (criteria.CrowdloanId is not null) model = model.WhereCriteria(criteria.CrowdloanId, x => x.CrowdloanId);
+            if (criteria.BlockDate is not null) model = model.WhereCriteria(criteria.BlockDate, x => x.BlockDate);
 
-            if (criteria.ToDate is not null)
-                model = model.Where(x => x.BlockDate <= criteria.ToDate.Value);
+            if(criteria.BlockNumber is not null) model = model.WhereCriteria(criteria.BlockNumber, x => x.BlockId);
 
-            if (criteria.FromBlock is not null)
-                model = model.Where(x => x.BlockId >= criteria.FromBlock.Value);
+            //if (criteria.ToDate is not null)
+            //    model = model.Where(x => x.BlockDate <= criteria.ToDate.Value);
 
-            if (criteria.ToBlock is not null)
-                model = model.Where(x => x.BlockId <= criteria.ToBlock.Value);
+            //if (criteria.FromBlock is not null)
+            //    model = model.Where(x => x.BlockId >= criteria.FromBlock.Value);
+
+            //if (criteria.ToBlock is not null)
+            //    model = model.Where(x => x.BlockId <= criteria.ToBlock.Value);
 
             model = await SearchInnerAsync(criteria, model, token);
             var dbResult = await model.ToListAsync();
@@ -157,8 +159,6 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         /// The search query parameter defined in <see cref="ISearchEvent"/>
         /// </summary>
         /// <returns></returns>
-        public Type GetSearchCriterias() => typeof(TSearchCriteria);
-
-        
+        public Type SearchCriterias => typeof(TSearchCriteria);
     }
 }

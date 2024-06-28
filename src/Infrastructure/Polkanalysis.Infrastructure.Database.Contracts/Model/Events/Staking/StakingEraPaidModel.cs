@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Staking
     public class StakingEraPaidModel : EventModel
     {
         [SetsRequiredMembers]
-        public StakingEraPaidModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, uint era_index, double validator_payout, double remainder) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public StakingEraPaidModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, uint era_index, double validator_payout, double remainder) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.Era_index = era_index;
             this.Validator_payout = validator_payout;

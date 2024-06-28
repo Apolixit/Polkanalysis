@@ -162,7 +162,7 @@ namespace Polkanalysis.Worker.Tasks
                         }
                         _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database !", nameof(EventsWorker), eventNode.Module, eventNode.Method);
 
-                        await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
+                        await InsertDatabaseAsync(blockNumber, currentDate, (uint)i, ev, eventNode);
                     }
                 }
             }
@@ -220,7 +220,7 @@ namespace Polkanalysis.Worker.Tasks
                             }
                             _logger.LogInformation("[{workerName}][{module}][{method}] is linked to database. Ratio = {ratio}", nameof(EventsWorker), eventNode.Module, eventNode.Method, ratio);
 
-                            await InsertDatabaseAsync(blockNumber, currentDate, i, ev, eventNode);
+                            await InsertDatabaseAsync(blockNumber, currentDate, (uint)i, ev, eventNode);
                         }
                         catch (Exception ex)
                         {
@@ -246,7 +246,7 @@ namespace Polkanalysis.Worker.Tasks
         private async Task InsertDatabaseAsync(
             BlockNumber blockNumber,
             DateTime currentDate,
-            int eventIndex,
+            uint eventIndex,
             EventRecord ev,
             IEventNode eventNode)
         {

@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity
     public class IdentityIdentitySetModel : EventModel
     {
         [SetsRequiredMembers]
-        public IdentityIdentitySetModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string accountAddress) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public IdentityIdentitySetModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, string accountAddress) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.AccountAddress = accountAddress;
         }

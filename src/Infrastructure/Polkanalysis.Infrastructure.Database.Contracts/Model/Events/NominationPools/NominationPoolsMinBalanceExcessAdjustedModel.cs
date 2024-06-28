@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Nomination
     public class NominationPoolsMinBalanceExcessAdjustedModel : EventModel
     {
         [SetsRequiredMembers]
-        public NominationPoolsMinBalanceExcessAdjustedModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, uint pool_id, double amount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public NominationPoolsMinBalanceExcessAdjustedModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, uint pool_id, double amount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.Pool_id = pool_id;
             this.Amount = amount;

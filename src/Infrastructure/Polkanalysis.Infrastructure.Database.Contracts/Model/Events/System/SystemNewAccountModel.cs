@@ -5,7 +5,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.System
     public class SystemNewAccountModel : EventModel
     {
         [SetsRequiredMembers]
-        public SystemNewAccountModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string accountAddress) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public SystemNewAccountModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, string accountAddress) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.AccountAddress = accountAddress;
         }

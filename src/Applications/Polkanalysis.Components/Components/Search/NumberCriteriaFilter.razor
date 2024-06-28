@@ -1,0 +1,40 @@
+﻿@inherits CriteriaFilter<uint>
+@using Polkanalysis.Domain.Contracts.Common.Search
+
+<div class="row g-3 align-items-left">
+    <div class="col-auto">
+        @{
+            base.BuildRenderTree(__builder);
+        }
+        @* <FluentSelect Items=@optionsSelector
+                      TOption="Option<Operator>"
+                      Multiple="false"
+                      OptionText="@(i => i.Text.ToString())"
+                      OptionValue="@(i => i.Value.ToString())"
+                      OptionDisabled="@(i => i.Disabled)"
+                      Disabled="@IsDisabled"
+                      SelectedOptionChanged="OnSelectedOptionsChanged" /> *@
+    </div>
+    <div class="col-auto">
+        <FluentNumberField TValue="@(int)" ValueChanged="OnValueChanged" Disabled="@IsDisabled" Label="" />
+    </div>
+    <div class="col-auto">
+        @if (displaySecondField)
+        {
+            <FluentNumberField TValue="@(int)" ValueChanged="OnValue2Changed" Disabled="@IsDisabled" Label="" />
+        }
+    </div>
+</div>
+@code {
+    public void OnValueChanged(int value)
+    {
+        Value = new NumberCriteria<uint> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value = (uint)value };
+    }
+
+    public void OnValue2Changed(int value)
+    {
+        Value = new NumberCriteria<uint> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value2 = (uint)value };
+    }
+
+
+}

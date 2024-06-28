@@ -10,7 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.Monitored.Events
 {
     public class SavedEventsCommand : IRequest<Result<bool, ErrorResult>>
     {
-        public SavedEventsCommand(BlockNumber blockNumber, DateTime currentDate, int eventIndex, EventRecord ev, IEventNode eventNode)
+        public SavedEventsCommand(BlockNumber blockNumber, DateTime currentDate, uint eventIndex, EventRecord ev, IEventNode eventNode)
         {
             this.BlockNumber = blockNumber;
             this.CurrentDate = currentDate;
@@ -21,7 +21,7 @@ namespace Polkanalysis.Domain.Contracts.Primary.Monitored.Events
 
         public BlockNumber BlockNumber { get; set; }
         public DateTime CurrentDate { get; set; }
-        public int EventIndex { get; set; }
+        public uint EventIndex { get; set; }
         public EventRecord Ev { get; set; }
         public IEventNode EventNode { get; set;}
 

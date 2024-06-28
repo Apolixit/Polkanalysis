@@ -20,6 +20,7 @@ namespace Polkanalysis.Domain.Service
             services.AddTransient<IParachainService, ParachainService>();
             services.AddTransient<IStakingService, StakingService>();
             services.AddTransient<IFinancialService, FinancialService>();
+            services.AddTransient<ISearchService, SearchService>();
 
             return services;
         }

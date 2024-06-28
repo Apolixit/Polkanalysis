@@ -5,12 +5,12 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Crowdloan
     public class CrowdloanCreatedModel : EventModel
     {
         [SetsRequiredMembers]
-        public CrowdloanCreatedModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, int crowdloanId) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public CrowdloanCreatedModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, uint crowdloanId) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             this.CrowdloanId = crowdloanId;
         }
 
-        public int CrowdloanId { get; set; }
+        public uint CrowdloanId { get; set; }
 
         public override string ToString()
         {

@@ -34,8 +34,8 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
         }
 
         [Test]
-        [TestCase(10)]
-        public async Task BuildModel_WhenValidCrowdloanCreation_ShouldBuildModelSuccessfullyAsync(int crowdloanId)
+        [TestCase(10u)]
+        public async Task BuildModel_WhenValidCrowdloanCreation_ShouldBuildModelSuccessfullyAsync(uint crowdloanId)
         {
             var enumContribution = new Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.EnumEvent();
             enumContribution.Create(Blockchain.Contracts.Pallet.PolkadotRuntimeCommon.Crowdloan.Enums.Event.Created, new Id((uint)crowdloanId));
@@ -56,7 +56,7 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events.Crowdloan
         {
             var res = await _crowloanCreatedRepository.SearchAsync(new()
             {
-                CrowdloanId = NumberCriteria<int>.Equal(4),
+                CrowdloanId = NumberCriteria<uint>.Equal(4),
             }, CancellationToken.None);
 
             Assert.That(res.Count(), Is.EqualTo(0));

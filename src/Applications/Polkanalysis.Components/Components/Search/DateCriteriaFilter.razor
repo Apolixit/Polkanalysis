@@ -1,0 +1,29 @@
+﻿@inherits CriteriaFilter<DateTime>
+@using Polkanalysis.Domain.Contracts.Common.Search
+
+<div class="row g-3 align-items-left">
+    <div class="col-auto">
+        @{
+            base.BuildRenderTree(__builder);
+        }
+    </div>
+    <div class="col-auto">
+        <FluentDatePicker @bind-Value="@DateStart" Disabled="@IsDisabled" />
+        <FluentTimePicker @bind-Value="@TimeStart" Disabled="@IsDisabled" />
+    </div>
+    <div class="col-auto">
+        @if (displaySecondField)
+        {
+            <FluentDatePicker @bind-Value="@DateEnd" Disabled="@IsDisabled" />
+            <FluentTimePicker @bind-Value="@TimeEnd" Disabled="@IsDisabled" />
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public DateTime? DateStart { get; set; } = null;
+    [Parameter] public DateTime? TimeStart { get; set; } = null;
+
+    [Parameter] public DateTime? DateEnd { get; set; } = null;
+    [Parameter] public DateTime? TimeEnd { get; set; } = null;
+}

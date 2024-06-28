@@ -4,6 +4,7 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.RuntimeModule.SpecVersion;
+using Polkanalysis.Domain.Helper;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
 using Substrate.NET.Metadata.Base;
@@ -46,26 +47,31 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
                 var specVersionTarget = _dbContext.SpecVersionModels.SingleOrDefault(x => x.SpecVersion == request.SpecVersionTarget);
 
                 if(specVersionSource is null || specVersionTarget is null)
-                    return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"No spec version is inserted in database for tuple ({request.SpecVersionSource}, {request.SpecVersionTarget})");
+                    return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"No spec version is inserted in database for tuple ({request.SpecVersionSource}, {request.SpecVersionTarget}). Please use '/versions/{{blockStartHash}}/{{blockEndHash}}' to get data from Substrate");
 
                 metadataSource = specVersionSource.Metadata;
                 metadataTarget = specVersionTarget.Metadata;
 
-            } else if(request.BlockNumberSource is not null)
+            } else if(request.BlockNumberSource is not null && request.BlockNumberTarget is not null)
             {
-                var sourceBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumberSource.Value), cancellationToken);
-                var targetBlockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumberTarget.Value), cancellationToken);
+                var sourceBlockHashTask = _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumberSource.Value), cancellationToken);
+                var targetBlockHashTask = _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumberTarget.Value), cancellationToken);
 
+                var (sourceBlockHash, targetBlockHash) = await WaiterHelper.WaitAndReturnAsync(sourceBlockHashTask, targetBlockHashTask);
                 if(string.IsNullOrEmpty(sourceBlockHash?.Value) || string.IsNullOrEmpty(targetBlockHash?.Value))
                     return UseCaseError(ErrorResult.ErrorType.EmptyModel, $"Block hash are invalid");
 
-                metadataSource = await _substrateService.Rpc.State.GetMetaDataAsync(sourceBlockHash.Bytes, cancellationToken);
-                metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(targetBlockHash.Bytes, cancellationToken);
+                var metadataSourceTask = _substrateService.Rpc.State.GetMetaDataAsync(sourceBlockHash.Bytes, cancellationToken);
+                var metadataTargetTask = _substrateService.Rpc.State.GetMetaDataAsync(targetBlockHash.Bytes, cancellationToken);
+
+                (metadataSource, metadataTarget) = await WaiterHelper.WaitAndReturnAsync(metadataSourceTask, metadataTargetTask);
 
             } else if(request.BlockHashSource is not null)
             {
-                metadataSource = await _substrateService.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray(request.BlockHashSource), cancellationToken);
-                metadataTarget = await _substrateService.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray(request.BlockHashTarget), cancellationToken);
+                var metadataSourceTask = _substrateService.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray(request.BlockHashSource), cancellationToken);
+                var metadataTargetTask = _substrateService.Rpc.State.GetMetaDataAsync(Utils.HexToByteArray(request.BlockHashTarget), cancellationToken);
+
+                (metadataSource, metadataTarget) = await WaiterHelper.WaitAndReturnAsync(metadataSourceTask, metadataTargetTask);
             } else
             {
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set properly");

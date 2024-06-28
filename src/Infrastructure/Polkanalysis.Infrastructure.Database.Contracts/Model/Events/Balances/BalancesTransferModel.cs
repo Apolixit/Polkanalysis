@@ -8,7 +8,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances
     public class BalancesTransferModel : EventModel
     {
         [SetsRequiredMembers]
-        public BalancesTransferModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent, string from, string to, double amount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
+        public BalancesTransferModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent, string from, string to, double amount) : base(blockchainName, blockId, blockDate, eventId, moduleName, moduleEvent)
         {
             From = from;
             To = to;

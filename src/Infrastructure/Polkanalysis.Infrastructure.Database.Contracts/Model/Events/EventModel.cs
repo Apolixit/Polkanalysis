@@ -12,7 +12,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events
         /// <summary>
         /// Block number associated to this event
         /// </summary>
-        public required int BlockId { get; set; }
+        public required uint BlockId { get; set; }
 
         /// <summary>
         /// Block date time (calculated from block id)
@@ -22,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events
         /// <summary>
         /// Event index in current block
         /// </summary>
-        public required int EventId { get; set; }
+        public required uint EventId { get; set; }
 
         /// <summary>
         /// Pallet name (Balances, System ...)
@@ -35,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Events
         public required string ModuleEvent { get; set; }
 
         [SetsRequiredMembers]
-        public EventModel(string blockchainName, int blockId, DateTime blockDate, int eventId, string moduleName, string moduleEvent)
+        public EventModel(string blockchainName, uint blockId, DateTime blockDate, uint eventId, string moduleName, string moduleEvent)
         {
             BlockchainName = blockchainName;
             BlockId = blockId;
