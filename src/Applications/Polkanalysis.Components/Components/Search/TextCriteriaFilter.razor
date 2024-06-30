@@ -1,8 +1,25 @@
-﻿Text    
-<FluentTextField @bind-Value=textField Label="@Label" Placeholder="Account address" Disabled="@IsDisabled" />
+﻿<FluentTextField @bind-Value=Value Label="@Label" Disabled="@IsDisabled" @oninput="HandleTextFilter" Autofocus="true" />
 
 @code {
     [Parameter] public string Label { get; set; } = string.Empty;
     [Parameter] public bool IsDisabled { get; set; } = false;
-    public string? textField;
+    [Parameter] public string? Value { get; set; }
+    [Parameter] public bool Autofocus { get; set; } = false;
+
+    [Parameter]
+    public EventCallback<string?> ValueChanged { get; set; }
+
+    private void HandleTextFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            Value = value;
+        }
+        else
+        {
+            Value = null;
+        }
+
+        ValueChanged.InvokeAsync(Value);
+    }
 }

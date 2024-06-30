@@ -23,6 +23,8 @@ using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
 using Polkanalysis.Domain.Helper.Enumerables;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -31,18 +33,21 @@ namespace Polkanalysis.Domain.Service
         private readonly ISubstrateService _substrateService;
         private readonly IAccountService _accountRepository;
         private readonly IStakingDatabaseRepository _stakingDatabaseRepository;
+        private readonly SubstrateDbContext _dbContext;
         private readonly ILogger<StakingService> _logger;
 
         public StakingService(
             ISubstrateService substrateService,
             IAccountService accountRepository,
             IStakingDatabaseRepository stakingDatabaseRepository,
-            ILogger<StakingService> logger)
+            ILogger<StakingService> logger,
+            SubstrateDbContext dbContext)
         {
             _substrateService = substrateService;
             _accountRepository = accountRepository;
             _stakingDatabaseRepository = stakingDatabaseRepository;
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         private void CheckAddress(string address)
@@ -581,7 +586,16 @@ namespace Polkanalysis.Domain.Service
                 };
                 poolLight.TotalBonded = bondedPool.Points.Value.ToDouble(chainInfo.TokenDecimals);
                 poolLight.RewardPool = 0;
-                //poolLight.RewardPool = rewardPool.LastRecordedTotalPayouts.Value.ToDouble(chainInfo.TokenDecimals);
+
+                // Get context data from the database
+                var poolCreation = _dbContext.EventNominationPoolsCreated.FirstOrDefault(x => x.Pool_id == poolId);
+                if (poolCreation is null)
+                    _logger.LogWarning($"Pool {poolId} does not have creation event register in the database");
+                else
+                {
+                    poolLight.Depositor = await _accountRepository.GetAccountAddressAsync(poolCreation.Depositor, cancellationToken);
+                    poolLight.CreationDate = poolCreation.BlockDate;
+                }
 
                 poolsDto.Add(poolLight);
             }

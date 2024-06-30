@@ -18,7 +18,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
             }
         }
         public string PublicKey { get; set; } = string.Empty;
-
+        public static UserAddressDto Empty = new UserAddressDto() { Name = " - ", Address = " - " };
         public override string ToString()
         {
             return Name;

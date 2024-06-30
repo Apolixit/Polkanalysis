@@ -1,5 +1,7 @@
 ﻿@using Polkanalysis.Domain.Contracts.Common.Search
 @using Polkanalysis.Domain.Contracts.Dto.Staking.Pool
+@using Polkanalysis.Infrastructure.Database.Repository
+@using static Polkanalysis.Components.Shared.GlobalSettings
 @inject NavigationManager _navigationManager;
 
 <FluentDataGrid Items="FilteredPools()"
@@ -7,28 +9,60 @@
                 Pagination="@pagination"
                 TGridItem="PoolLightDto"
                 ShowHover="true">
-    <PropertyColumn Property="@(c => c.PoolId)" Title="Id" Sortable="true" Align="Align.Start" Width="5%" />
-    <PropertyColumn Property="@(c => c.Name)" InitialSortDirection=SortDirection.Descending Sortable="true" IsDefaultSortColumn=true Width="40%">
+    <PropertyColumn Property="@(c => c.PoolId)" Title="Id" Sortable="true" Align="Align.Start" />
+    <PropertyColumn Property="@(c => c.Name)" InitialSortDirection=SortDirection.Descending Sortable="true" IsDefaultSortColumn=true >
         <ColumnOptions>
             <div class="search-box">
-                <FluentSearch type="search" Autofocus=true @bind-Value=poolNameFilter @oninput="HandleNameFilter" AfterBindValue="HandleClear" Placeholder="Pool name..." />
+                <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="poolNameFilter" />
+                @* <FluentSearch type="search" Autofocus=true @bind-Value=poolNameFilter @oninput="HandleNameFilter" Placeholder="Pool name..." /> *@
             </div>
         </ColumnOptions>
     </PropertyColumn>
-    <PropertyColumn Property="@(c => c.NbPoolMembers)" Title="Members" Sortable="true" Align="Align.Start" Width="12%">
+    <PropertyColumn Property="@(c => c.NbPoolMembers)" Title="Members" Sortable="true" Align="Align.Start" >
         <ColumnOptions>
-            <FluentSelect TOption="FilterOperator" Label="Operator"
-                          Items="@filterOperator"
-                          OptionValue="@(p => p.Operator.ToString())"
-                          OptionText="@(p => p.Name)"
-                          @bind-SelectedOption="@selectFilterOperator" />
             <div class="search-box">
-                <FluentNumberField Autofocus=true @bind-Value=nbPoolMemberFilter @oninput="@(e => nbPoolMemberFilter = int.TryParse(e.Value?.ToString(), out int tmp) ? (int?)tmp : null)" AfterBindValue="HandleClear" />
+                <Polkanalysis.Components.Components.Search.NumberCriteriaFilterUint 
+                    @bind-Value="NbPoolMembersCriteria"
+                />
             </div>
         </ColumnOptions>
     </PropertyColumn>
-    <PropertyColumn Property="@(c => c.Commission)" Title="Commission" Sortable="true" Align="Align.Center" Width="12%" />
-    <PropertyColumn Property="@(c => c.TotalBonded)" Title="Total bounded" Format="N2" Sortable="true" Align="Align.End" Width="15%" />
+    
+    @if(TableDisplay != TableDisplayType.Compact)
+    {
+        <PropertyColumn Property="@(c => c.Commission)" Title="Commission" Sortable="true" Align="Align.Center">
+            <ColumnOptions>
+                <div class="search-box">
+                    <Polkanalysis.Components.Components.Search.NumberCriteriaFilterDouble @bind-Value="CommissionCriteria" />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
+        <PropertyColumn Property="@(c => c.TotalBonded)" Title="Total bounded" Format="N2" Sortable="true" Align="Align.End">
+            <ColumnOptions>
+                <div class="search-box">
+                    <Polkanalysis.Components.Components.Search.NumberCriteriaFilterDouble @bind-Value="TotalBoundedCriteria" />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn> 
+    }
+
+    @if(TableDisplay == TableDisplayType.Full)
+    {
+        <PropertyColumn Property="@(c => c.CreationDate)" Title="Creation date" Sortable="true" Align="Align.End">
+            <ColumnOptions>
+                <div class="search-box">
+                    <Polkanalysis.Components.Components.Search.DateCriteriaFilter @bind-Value="CreationDateCriteria" />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
+        <PropertyColumn Property="@(c => c.Depositor.Name)" Title="Creator" Sortable="true" Align="Align.End">
+            <ColumnOptions>
+                <div class="search-box">
+                    <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="depositorNameFilter" />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
+    }
     <TemplateColumn Title="Details">
         <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.PoolId))">
         </FluentButton>
@@ -46,30 +80,21 @@
 
 @code {
     [Parameter] public IEnumerable<PoolLightDto>? Pools { get; set; }
-    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+    [Parameter] public TableDisplayType TableDisplay { get; set; } = TableDisplayType.Normal;
+
+    PaginationState pagination = new PaginationState { ItemsPerPage = Constants.DefaultPageSize };
 
     string poolNameFilter = string.Empty;
-    int? nbPoolMemberFilter = null;
+    string depositorNameFilter = string.Empty;
 
-    FilterOperator? selectFilterOperator { get; set; }
-    private List<FilterOperator> filterOperator = new()
-        {
-            new FilterOperator
-            {
-                Name = "=",
-                Operator = Operator.Equal
-            },
-            new FilterOperator
-            {
-                Name = "<=",
-                Operator = Operator.LowerOrEqual
-            }
-        };
+    public NumberCriteria<uint>? NbPoolMembersCriteria = null;
+    public NumberCriteria<double>? CommissionCriteria = null;
+    public NumberCriteria<double>? TotalBoundedCriteria = null;
+    public NumberCriteria<DateTime>? CreationDateCriteria = null;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        selectFilterOperator = filterOperator.First();
     }
 
     private void HandleNameFilter(ChangeEventArgs args)
@@ -93,29 +118,27 @@
         _navigationManager.NavigateTo($"pool/{poolId}");
     }
 
-    public class FilterOperator
-    {
-        public Operator Operator { get; set; }
-        public string Name { get; set; }
-    }
-
     public IQueryable<PoolLightDto> FilteredPools()
     {
         IQueryable<PoolLightDto> queryablePools = Pools!.AsQueryable();
-        if (!string.IsNullOrWhiteSpace(poolNameFilter))
-        {
-            queryablePools = queryablePools.Where(x => x.Name.Contains(poolNameFilter, StringComparison.CurrentCultureIgnoreCase));
-        }
-        if (selectFilterOperator is not null && nbPoolMemberFilter is not null)
-        {
-            queryablePools = selectFilterOperator.Operator switch
-            {
-                Operator.Equal => queryablePools.Where(x => x.NbPoolMembers == nbPoolMemberFilter),
-                Operator.LowerOrEqual => queryablePools.Where(x => x.NbPoolMembers <= nbPoolMemberFilter),
-                _ => queryablePools
-            };
-        }
 
+        if (!string.IsNullOrWhiteSpace(poolNameFilter))
+            queryablePools = queryablePools.Where(x => x.Name.Contains(poolNameFilter, StringComparison.CurrentCultureIgnoreCase));
+
+        if (!string.IsNullOrWhiteSpace(depositorNameFilter))
+            queryablePools = queryablePools.Where(x => x.Depositor != null && x.Depositor.Name.Contains(depositorNameFilter, StringComparison.CurrentCultureIgnoreCase));
+
+        if (NbPoolMembersCriteria is not null)
+            queryablePools = queryablePools.WhereCriteria(NbPoolMembersCriteria, x => x.NbPoolMembers);
+
+        if (CommissionCriteria is not null)
+            queryablePools = queryablePools.WhereCriteria(CommissionCriteria, x => x.Commission);
+
+        if (TotalBoundedCriteria is not null)
+            queryablePools = queryablePools.WhereCriteria(TotalBoundedCriteria, x => x.TotalBonded);
+
+        // if (CreationDateCriteria is not null)
+        //     queryablePools = queryablePools.WhereCriteria(CreationDateCriteria, x => x.CreationDate);
         return queryablePools;
     }
 }

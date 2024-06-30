@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Polkanalysis.Domain.Contracts.Dto.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
         public NominationPoolStatusDto Status { get; set; }
         public double TotalBonded { get; set; }
         public double RewardPool { get; set; }
+        public DateTime? CreationDate { get; set; }
+        public UserAddressDto Depositor { get; set; } = UserAddressDto.Empty;
     }
 }

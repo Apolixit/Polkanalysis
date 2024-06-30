@@ -9,19 +9,36 @@
               OptionValue="@(i => i.Value.ToString())"
               OptionDisabled="@(i => i.Disabled)"
               Disabled="@IsDisabled"
-              SelectedOptionChanged="OnSelectedOptionsChanged" />
+              SelectedOption="SelectedOperator"
+              SelectedOptionChanged="OnSelectedOptionsChanged"
+              @ref="Select" />
 
 @code {
     [Parameter] public string Label { get; set; } = string.Empty;
     [Parameter] public bool IsDisabled { get; set; } = false;
     [Parameter] public NumberCriteria<TFilter>? Value { get; set; }
-    public Option<Operator>? SelectedOperator;
+    public Option<Operator> SelectedOperator { get; set; } = default!;
+    protected FluentSelect<Option<Operator>>? Select { get; set; }
     protected bool displaySecondField { get; set; } = false;
 
-    public virtual void OnSelectedOptionsChanged(Option<Operator> option)
+    [Parameter]
+    public EventCallback<NumberCriteria<TFilter>?> ValueChanged { get; set; }
+
+    protected override void OnInitialized()
     {
-        SelectedOperator = option;
-        displaySecondField = option.Value == Operator.Between;
+        SelectedOperator = optionsSelector.First(x => x.Value == Operator.Equal);
+    }
+
+    public void OnInputChanged(ChangeEventArgs e, Action<TFilter?> action)
+    {
+        if(e.Value is TFilter value)
+        {
+            action(value);
+        }
+        else
+        {
+            action(default);
+        }
     }
 
     public void SetDisable(bool isDisabled)
@@ -30,14 +47,59 @@
         StateHasChanged();
     }
 
+    protected virtual void OnSelectedOptionsChanged(Option<Operator> option)
+    {
+        SelectedOperator = option;
+        displaySecondField = option.Value == Operator.Between;
+
+        if(Value is null)
+        {
+            Value = new NumberCriteria<TFilter> { Operator = option.Value };
+        }
+        else
+        {
+            Value.Operator = option.Value;
+        }
+    }
+
+    protected virtual void OnInternalValueChanged(TFilter? value)
+    {
+        if (value is null) Value = null;
+        else Value = new NumberCriteria<TFilter> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value = value };
+
+        ValueChanged.InvokeAsync(Value);
+    }
+
+    protected virtual void OnInternalValue2Changed(TFilter? value)
+    {
+        if (value is null) Value = null;
+        else Value = new NumberCriteria<TFilter> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value2 = value };
+
+        ValueChanged.InvokeAsync(Value);
+    }
+
     protected static List<Option<Operator>> optionsSelector = new()
     {
-        { new Option<Operator> { Value = Operator.LowerStrict, Text = Operator.LowerStrict } },
-        { new Option<Operator> { Value = Operator.LowerOrEqual, Text = Operator.LowerOrEqual } },
-        { new Option<Operator> { Value = Operator.Equal, Text = Operator.Equal, Selected = true } },
-        { new Option<Operator> { Value = Operator.GreaterOrEqual, Text = Operator.GreaterOrEqual } },
-        { new Option<Operator> { Value = Operator.GreaterStrict, Text = Operator.GreaterStrict } },
-        { new Option<Operator> { Value = Operator.Between, Text = Operator.Between } },
+        { new Option<Operator> { Value = Operator.LowerStrict, Text = "<" } },
+        { new Option<Operator> { Value = Operator.LowerOrEqual, Text = "<=" } },
+        { new Option<Operator> { Value = Operator.Equal, Text = "=", Selected = true } },
+        { new Option<Operator> { Value = Operator.GreaterOrEqual, Text = ">=" } },
+        { new Option<Operator> { Value = Operator.GreaterStrict, Text = ">" } },
+        { new Option<Operator> { Value = Operator.Between, Text = "[..]" } },
 
     };
+
+    public class Option<TType>
+    {
+        public TType? Value { get; set; }
+
+        public string Text { get; set; } = string.Empty;
+
+        public (Icon Value, Color? Color, string? Slot)? Icon { get; set; }
+
+        public bool Disabled { get; set; } = false;
+
+        public bool Selected { get; set; } = false;
+    }
+
 }

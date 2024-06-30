@@ -3,6 +3,7 @@
 @using Microsoft.Extensions.Logging
 @using Polkanalysis.Components.Components.Search
 @using Polkanalysis.Domain.Contracts.Common.Search
+@using Polkanalysis.Domain.Contracts.Dto.Search
 @using Polkanalysis.Infrastructure.Database.Contracts.Model.Events
 @inject IEventsFactory eventFactory;
 @inject ILogger<SearchEvents> logger;
@@ -44,7 +45,8 @@
 
 </FluentStack>
 
-<div class="card">
+@* Filters *@
+<div class="card my-4 visually-hidden">
     <div class="card-body">
         <div class="d-flex justify-content-evenly">
             <div>
@@ -61,7 +63,7 @@
                 {
                     <div class="row">
                         <div class="col">
-                            <NumberCriteriaFilter Label="Block number" Value="NumberBlockFilter" />
+                            <NumberCriteriaFilterUint @bind-Value="NumberBlockFilter" Label="Block number" />
                         </div>
                     </div>
                 }
@@ -77,20 +79,22 @@
             @if (filtersComponents.Count > 0)
             {
                 <div>
-                    <FluentLabel Typo="Typography.H4">Context filters</FluentLabel>
-                    @foreach (var component in filtersComponents)
-                    {
-                        <div class="row">
-                            <div class="col">
-                                <FluentStack Orientation="Orientation.Horizontal"
-                                             HorizontalAlignment="HorizontalAlignment.Left"
-                                             VerticalAlignment="VerticalAlignment.Top"
-                                             VerticalGap="10">
+                    <FluentStack Orientation="Orientation.Horizontal"
+                                 HorizontalAlignment="HorizontalAlignment.Left"
+                                 VerticalAlignment="VerticalAlignment.Top"
+                                 VerticalGap="10">
+                        <FluentLabel Typo="Typography.H4">Context filters</FluentLabel>
+                        @foreach (var component in filtersComponents)
+                        {
+                            <div class="row">
+                                <div class="col">
+
                                     <DynamicComponent Type="component.ComponentType" Parameters="component.Parameters" />
-                                </FluentStack>
+
+                                </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </FluentStack>
                 </div>
             }
         </div>
@@ -101,7 +105,7 @@
              HorizontalAlignment="HorizontalAlignment.Center"
              VerticalAlignment="VerticalAlignment.Center"
              Class="mt-4">
-    <FluentButton Type="ButtonType.Button" IconStart="new Icons.Regular.Size12.Search()" OnClick="OnSearch">
+    <FluentButton Type="ButtonType.Button" IconStart="new Icons.Regular.Size12.Search()" OnClick="OnSearchAsync">
         Search
     </FluentButton>
     <FluentButton Type="ButtonType.Reset" IconStart="new Icons.Regular.Size12.Dismiss()" OnClick="OnResetFilters">
@@ -109,8 +113,18 @@
     </FluentButton>
 </FluentStack>
 
+<div class="events-result mt-5">
+    @if (eventSearchMediatorRequest is not null)
+    {
+        <DataCall MediatorReq="eventSearchMediatorRequest" Context="Events">
+            <EventsTable Events="Events"></EventsTable>
+        </DataCall>
+    }
+</div>
 
 @code {
+    private Task<Result<IQueryable<EventsResultDto>, ErrorResult>>? eventSearchMediatorRequest;
+
     private List<EventElementFactory> subscribedEvents = new List<EventElementFactory>();
     public IEnumerable<string> ModulesName { get; private set; } = Enumerable.Empty<string>();
     public IEnumerable<string> EventsName { get; private set; } = Enumerable.Empty<string>();
@@ -133,12 +147,20 @@
         {
             ["NumberCriteria<uint>"] = new ComponentParameter()
             {
-                ComponentType = typeof(NumberCriteriaFilter),
-                Name = "NumberFilter",
+                ComponentType = typeof(NumberCriteriaFilterUint),
+                Name = "NumberFilterUint",
                 Parameters = new Dictionary<string, object>
                 {
-                    [nameof(NumberCriteriaFilter.Label)] = "",
-                    // [nameof(NumberCriteriaFilter.Value)] = new NumberCriteria<uint>(),
+                    [nameof(NumberCriteriaFilterUint.Label)] = "",
+                }
+            },
+            ["NumberCriteria<double>"] = new ComponentParameter()
+            {
+                ComponentType = typeof(NumberCriteriaFilterDouble),
+                Name = "NumberFilterDouble",
+                Parameters = new Dictionary<string, object>
+                {
+                    [nameof(NumberCriteriaFilterDouble.Label)] = "",
                 }
             },
             ["String"] = new ComponentParameter()
@@ -147,8 +169,7 @@
                 Name = "TextFilter",
                 Parameters = new Dictionary<string, object>
                 {
-                    [nameof(NumberCriteriaFilter.Label)] = "",
-                    // [nameof(NumberCriteriaFilter.Value)] = new NumberCriteria<uint>(),
+                    [nameof(TextCriteriaFilter.Label)] = "",
                 }
             },
             ["NumberCriteria<DateTime>"] = new ComponentParameter()
@@ -157,8 +178,7 @@
                 Name = "DateFilter",
                 Parameters = new Dictionary<string, object>
                 {
-                    [nameof(NumberCriteriaFilter.Label)] = "",
-                    // [nameof(NumberCriteriaFilter.Value)] = new NumberCriteria<uint>(),
+                    [nameof(DateCriteriaFilter.Label)] = "",
                 }
             },
         };
@@ -169,6 +189,9 @@
 
         ModulesName = subscribedEvents.Select(x => x.GetModule().moduleName);
         EventsName = subscribedEvents.Select(x => x.GetModule().moduleEvent);
+
+        // Display all events by default
+        eventSearchMediatorRequest = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery());
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
@@ -216,9 +239,14 @@
             return;
         }
 
-        SelectedEventType = subscribedEvents
-        .Where(x => x.GetModule().moduleName == SelectedModule.First() && x.GetModule().moduleEvent == option.First())
-        .Select(x => x.SearchCriteriaType).FirstOrDefault();
+        subscribedEvents = subscribedEvents.Where(x => x.GetModule().moduleEvent == option.First()).ToList();
+
+        if (SelectedModule.Any())
+        {
+            subscribedEvents = subscribedEvents.Where(x => x.GetModule().moduleName == SelectedModule.First()).ToList();
+        }
+
+        SelectedEventType = subscribedEvents.Select(x => x.SearchCriteriaType).FirstOrDefault();
 
         if (SelectedEventType is not null)
         {
@@ -227,13 +255,11 @@
             foreach (var item in res.Where(x => x.name != nameof(SearchCriteria.BlockDate) && x.name != nameof(SearchCriteria.BlockNumber)))
             {
                 var foundComponent = declaredComponents[item.filter];
-                foundComponent.Parameters["Label"] = item.name;
-                filtersComponents.Add(new ComponentParameter()
-                    {
-                        ComponentType = foundComponent.ComponentType,
-                        Name = foundComponent.Name,
-                        Parameters = foundComponent.Parameters
-                    });
+
+                var cloneComponent = foundComponent.Clone();
+                cloneComponent.Parameters["Label"] = item.name;
+
+                filtersComponents.Add(cloneComponent);
             }
         }
     }
@@ -247,11 +273,9 @@
         await InvokeAsync(() => StateHasChanged());
     }
 
-    private void OnSearch(MouseEventArgs e)
+    private async Task OnSearchAsync(MouseEventArgs e)
     {
-        // if (blockSearchFilter == BlockSearchFilter.BlockNumber)
-
-        var res = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery()
+        eventSearchMediatorRequest = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery()
             {
                 SelectedModules = SelectedModule,
                 SelectedEvents = SelectedEvent,
@@ -272,6 +296,16 @@
         public required Type ComponentType { get; init; }
         public required string Name { get; init; }
         public required Dictionary<string, object> Parameters { get; init; }
+
+        public ComponentParameter Clone()
+        {
+            return new ComponentParameter()
+                {
+                    ComponentType = ComponentType,
+                    Name = Name,
+                    Parameters = new Dictionary<string, object>(Parameters)
+                };
+        }
     }
 
     public enum BlockSearchFilter

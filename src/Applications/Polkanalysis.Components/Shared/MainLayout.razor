@@ -65,7 +65,7 @@ else
     {
         globalSettings = new GlobalSettings()
             {
-                DisplayType = GlobalSettings.ViewDisplayType.CardElement
+                ViewDisplay = GlobalSettings.ViewDisplayType.CardElement
             };
 
         _substrateService.CheckBlockchainStateAsync((bool isConnected) =>
