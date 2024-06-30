@@ -1,4 +1,5 @@
-﻿@inherits CriteriaFilter<uint>
+﻿@inherits CriteriaFilter<double>
+
 @using Polkanalysis.Domain.Contracts.Common.Search
 
 <div class="row g-3 align-items-left">
@@ -16,25 +17,15 @@
                       SelectedOptionChanged="OnSelectedOptionsChanged" /> *@
     </div>
     <div class="col-auto">
-        <FluentNumberField TValue="@(int)" ValueChanged="OnValueChanged" Disabled="@IsDisabled" Label="" />
+        <FluentNumberField TValue="@(double)" ValueChanged="OnInternalValueChanged" Disabled="@IsDisabled" />
     </div>
     <div class="col-auto">
         @if (displaySecondField)
         {
-            <FluentNumberField TValue="@(int)" ValueChanged="OnValue2Changed" Disabled="@IsDisabled" Label="" />
+            <FluentNumberField TValue="@(double)" ValueChanged="OnInternalValue2Changed" Disabled="@IsDisabled"  />
         }
     </div>
 </div>
 @code {
-    public void OnValueChanged(int value)
-    {
-        Value = new NumberCriteria<uint> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value = (uint)value };
-    }
-
-    public void OnValue2Changed(int value)
-    {
-        Value = new NumberCriteria<uint> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value2 = (uint)value };
-    }
-
 
 }

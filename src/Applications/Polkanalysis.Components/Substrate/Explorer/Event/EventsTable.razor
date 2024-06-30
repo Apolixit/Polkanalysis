@@ -1,5 +1,109 @@
-﻿@inject NavigationManager _navigationManager;
+﻿@using Polkanalysis.Domain.Contracts.Common.Search
+@using Polkanalysis.Domain.Contracts.Dto.Search
+@using Polkanalysis.Infrastructure.Database.Repository
+@inject NavigationManager _navigationManager;
 
+@* Virtualize="true"
+                    ItemSize="45"
+                    Style="height:100%;" *@
+<FluentDataGrid Items="@FilteredEvents()"
+                Pagination="@pagination"
+                ResizableColumns=true
+                TGridItem="EventsResultDto"
+                ShowHover="true"
+                GenerateHeader="GenerateHeaderOption.Sticky">
+    <ChildContent>
+        <PropertyColumn Property="@(c => c.BlockId)" Title="Block num" Sortable="true" Align="Align.Start" InitialSortDirection="SortDirection.Descending" IsDefaultSortColumn=true>
+            <ColumnOptions>
+                <div class="search-box">
+                    <Polkanalysis.Components.Components.Search.NumberCriteriaFilterUint @bind-Value="BlockNumberCriteria" />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
+        <PropertyColumn Property="@(c => c.BlockDate)" Title="Date" Sortable="true" Align="Align.Start">
+            <ColumnOptions>
+                <div class="search-box">
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
+        <PropertyColumn Property="@(c => c.PalletName)" Title="Pallet" Sortable="true" Align="Align.Start">
+            <ColumnOptions>
+                <div class="search-box">
+                    <FluentSearch type="search" Autofocus=true @bind-Value=palletNameFilter @oninput="HandlePalletNameFilter" Placeholder="Pool name..." />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
+        <PropertyColumn Property="@(c => c.EventName)" Title="Event" Sortable="true" Align="Align.Start">
+            <ColumnOptions>
+                <div class="search-box">
+                    <FluentSearch type="search" Autofocus=true @bind-Value=eventNameFilter @oninput="HandleEventNameFilter" Placeholder="Pool name..." />
+                </div>
+            </ColumnOptions>
+        </PropertyColumn>
+        <TemplateColumn>
+            <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.BlockId))"></FluentButton>
+        </TemplateColumn>
+    </ChildContent>
+    <EmptyContent>
+        <FluentIcon Value="@(new Icons.Filled.Size24.Crown())" Color="@Color.Accent" />&nbsp; Nothing to see here. Carry on!
+    </EmptyContent>
+    <LoadingContent>
+        <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
+            <Loader />
+        </FluentStack>
+    </LoadingContent>
+</FluentDataGrid>
+
+<FluentPaginator State="@pagination">
+    <SummaryTemplate>
+        There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
 @code {
+    [Parameter] public IQueryable<EventsResultDto>? Events { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 50 };
+
+    public NumberCriteria<uint>? BlockNumberCriteria = null;
+    string palletNameFilter = string.Empty;
+    string eventNameFilter = string.Empty;
+
+    private void HandlePalletNameFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            palletNameFilter = value;
+        }
+    }
+
+    private void HandleEventNameFilter(ChangeEventArgs args)
+    {
+        if (args.Value is string value)
+        {
+            eventNameFilter = value;
+        }
+    }
+
+    public IQueryable<EventsResultDto> FilteredEvents()
+    {
+        IQueryable<EventsResultDto> queryableEvents = Events!.AsQueryable();
+        if (!string.IsNullOrWhiteSpace(palletNameFilter))
+            queryableEvents = queryableEvents.Where(x => x.PalletName.Contains(palletNameFilter, StringComparison.CurrentCultureIgnoreCase));
+
+        if (!string.IsNullOrWhiteSpace(eventNameFilter))
+            queryableEvents = queryableEvents.Where(x => x.EventName.Contains(eventNameFilter, StringComparison.CurrentCultureIgnoreCase));
+
+        if (BlockNumberCriteria is not null)
+            queryableEvents = queryableEvents.WhereCriteria(BlockNumberCriteria, x => x.BlockId);
+
+        return queryableEvents;
+    }
+
+    protected void GoToDetails(uint blockId)
+    {
+        _navigationManager.NavigateTo($"block/{blockId}");
+    }
 
 }

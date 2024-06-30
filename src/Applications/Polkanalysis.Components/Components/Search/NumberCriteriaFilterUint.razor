@@ -1,0 +1,48 @@
+﻿@inherits CriteriaFilter<uint>
+@using Polkanalysis.Domain.Contracts.Common.Search
+
+<div class="row g-3 align-items-left">
+    <div class="col-auto">
+        @{
+            base.BuildRenderTree(__builder);
+        }
+    </div>
+    <div class="col-auto">
+        <FluentNumberField TValue="@(int)" @oninput="(e => OnInputChanged(e, OnValueIntChanged))" Disabled="@IsDisabled" />
+    </div>
+    <div class="col-auto">
+        @if (displaySecondField)
+        {
+            <FluentNumberField TValue="@(int)" @oninput="(e => OnValueIntChanged(e.Value is not null ? int.Parse(e.Value.ToString()!) : null))" Disabled="@IsDisabled" />
+        }
+    </div>
+</div>
+@code {
+    public void OnInputChanged(ChangeEventArgs e, Action<int?> action)
+    {
+        if (e.Value is not null && !string.IsNullOrEmpty(e.Value.ToString()))
+        {
+            action(int.Parse(e.Value.ToString()!));
+        }
+        else
+        {
+            action(null);
+        }
+    }
+
+    public void OnValueIntChanged(int? value)
+    {
+        if (value is null) Value = null;
+        else Value = new NumberCriteria<uint> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value = (uint)value };
+
+        ValueChanged.InvokeAsync(Value);
+    }
+
+    public void OnValueInt2Changed(int? value)
+    {
+        if (value is null) Value = null;
+        else Value = new NumberCriteria<uint> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value2 = (uint)value };
+
+        ValueChanged.InvokeAsync(Value);
+    }
+}
