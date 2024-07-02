@@ -1,4 +1,5 @@
-﻿@using Polkanalysis.Domain.Contracts.Common.Search
+﻿@using Polkanalysis.Components.Components.Search
+@using Polkanalysis.Domain.Contracts.Common.Search
 @using Polkanalysis.Domain.Contracts.Dto.Search
 @using Polkanalysis.Infrastructure.Database.Repository
 @inject NavigationManager _navigationManager;
@@ -40,6 +41,18 @@
                 </div>
             </ColumnOptions>
         </PropertyColumn>
+
+        @foreach (var component in contextComponents)
+        {
+            <PropertyColumn Property="@(c => c.ContextParameters.Single(x => x.Name == component.ComponentLabel).Value)" Title="@component.ComponentLabel" Sortable="true">
+                <ColumnOptions>
+                    <div class="search-box">
+                        <DynamicComponent Type="component.ComponentType" Parameters="component.Parameters" />
+                    </div>
+                </ColumnOptions>
+            </PropertyColumn>
+        }
+
         <TemplateColumn>
             <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToDetails(context.BlockId))"></FluentButton>
         </TemplateColumn>
@@ -66,9 +79,32 @@
     [Parameter] public IQueryable<EventsResultDto>? Events { get; set; }
     PaginationState pagination = new PaginationState { ItemsPerPage = 50 };
 
+    private List<ComponentParameter> contextComponents { get; set; } = new List<ComponentParameter>();
+
     public NumberCriteria<uint>? BlockNumberCriteria = null;
     string palletNameFilter = string.Empty;
     string eventNameFilter = string.Empty;
+
+    List<object> contextFilters = new List<object>();
+
+    protected string? DisplayContextParameter(ComponentParameter component, List<ContextParametersDto> contextParameters)
+    {
+        var r = contextParameters.Single(x => x.Name == component.ComponentLabel).Value;
+        return r?.ToString();
+    }
+
+    protected override void OnInitialized()
+    {
+        // contextItems = Events?.FirstOrDefault()?.ContextParameters?.Select(x => x.Name)?.ToList() ?? new List<string>();
+        contextComponents = Events?.FirstOrDefault()?.ContextParameters?
+        .Select(x =>
+        {
+            var foundedComponent = Constants.DeclaredComponents[x.FilterType].Clone();
+            foundedComponent.ComponentLabel = x.Name;
+            foundedComponent.Parameters["Label"] = x.Name;
+            return foundedComponent;
+        })?.ToList() ?? new List<ComponentParameter>();
+    }
 
     private void HandlePalletNameFilter(ChangeEventArgs args)
     {

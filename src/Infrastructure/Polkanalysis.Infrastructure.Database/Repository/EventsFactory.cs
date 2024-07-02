@@ -171,7 +171,7 @@ namespace Polkanalysis.Infrastructure.Database.Repository
         public async Task<IEnumerable<EventModel>> InvokeSearchAsync(
             EventElementFactory eventElementFactory, SearchCriteria criteria, CancellationToken token)
         {
-            // Obtenir la méthode SearchAsync de l'interface
+            // Get SearchAsync method from interface
             var searchMethod = eventElementFactory.SearchEventType.GetMethod("SearchAsync");
 
             if (searchMethod is null)
@@ -179,10 +179,10 @@ namespace Polkanalysis.Infrastructure.Database.Repository
                 throw new InvalidOperationException("The SearchAsync method could not be found.");
             }
 
-            // Appeler la méthode SearchAsync de manière dynamique
-            var task = (Task<IEnumerable<EventModel>>)searchMethod.Invoke(eventElementFactory.Repository, new object[] { criteria, token });
+            // Call SearchAsync method dynamically
+            var task = (Task<IEnumerable<EventModel>>)searchMethod.Invoke(eventElementFactory.Repository, [criteria, token]);
 
-            // Attendre et retourner le résultat
+            // Wait and return the result
             return await task;
         }
 
@@ -215,11 +215,11 @@ namespace Polkanalysis.Infrastructure.Database.Repository
 
             foreach (var prop in searchCriteria.GetProperties())
             {
-                yield return (prop.Name, extractPropertyName(prop));
+                yield return (prop.Name, ExtractPropertyName(prop));
             }
         }
 
-        private string extractPropertyName(PropertyInfo prop)
+        public string ExtractPropertyName(PropertyInfo prop)
         {
             if(prop.PropertyType.Name.StartsWith("NumberCriteria"))
             {

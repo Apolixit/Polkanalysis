@@ -31,7 +31,7 @@ namespace Polkanalysis.Api.Controllers
             if (result.IsError)
             {
                 _logger.LogError("{caller} endpoint called and returned the following error : {errorMessage}", callerName, result.Error?.Description);
-                return BadRequest(result.Error.Description);
+                return BadRequest(result.Error?.Description);
             }
 
             return Ok(result.Value);
