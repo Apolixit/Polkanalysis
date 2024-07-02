@@ -13,6 +13,14 @@ namespace Polkanalysis.Domain.Contracts.Dto.Search
         public uint EventId { get; set; }
         public required string PalletName { get; set; }
         public required string EventName { get; set; }
+        public List<ContextParametersDto> ContextParameters { get; set; } = new List<ContextParametersDto>();
 
+    }
+
+    public class ContextParametersDto
+    {
+        public required string Name { get; set; }
+        public required string FilterType { get; set; }
+        public required object? Value { get; set; }
     }
 }

@@ -4,11 +4,13 @@ using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
+using Polkanalysis.Domain.Tests.Abstract;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Database;
 
 namespace Polkanalysis.Domain.Tests.Service
 {
-    public class StakingServiceTest
+    public class StakingServiceTest : DomainTestAbstract
     {
         protected IExplorerService _explorerRepository;
         protected ISubstrateService _substrateRepository;
@@ -25,7 +27,8 @@ namespace Polkanalysis.Domain.Tests.Service
                 _substrateRepository,
                 Substitute.For<IAccountService>(),
                 Substitute.For<IStakingDatabaseRepository>(),
-                Substitute.For<ILogger<StakingService>>());
+                Substitute.For<ILogger<StakingService>>(),
+                _substrateDbContext);
         }
 
         [Test]

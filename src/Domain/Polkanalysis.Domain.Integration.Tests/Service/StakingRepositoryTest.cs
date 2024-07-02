@@ -21,7 +21,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
                 _substrateService,
                 new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>()),
                 Substitute.For<IStakingDatabaseRepository>(),
-                logger);
+                logger,
+                _substrateDbContext);
         }
 
         [Test]

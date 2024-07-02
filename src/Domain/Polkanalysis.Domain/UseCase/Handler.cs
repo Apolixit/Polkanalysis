@@ -65,12 +65,12 @@ namespace Polkanalysis.Domain.UseCase
                 var cachedData = await _cache.GetStringAsync(cacheKey, cancellationToken);
                 if (cachedData is not null)
                 {
-                    _logger.LogInformation($"Cache hit for key: {cacheKey}");
+                    _logger.LogDebug($"Cache hit for key: {cacheKey}");
                     var cachedResult = JsonSerializer.Deserialize<TDto>(cachedData);
                     return Helpers.Ok(cachedResult!);
                 }
 
-                _logger.LogInformation($"Cache miss for key: {cacheKey}");
+                _logger.LogDebug($"Cache miss for key: {cacheKey}");
 
                 var result = await HandleInnerAsync(request, cancellationToken);
 

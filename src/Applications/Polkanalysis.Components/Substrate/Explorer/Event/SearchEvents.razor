@@ -105,7 +105,7 @@
              HorizontalAlignment="HorizontalAlignment.Center"
              VerticalAlignment="VerticalAlignment.Center"
              Class="mt-4">
-    <FluentButton Type="ButtonType.Button" IconStart="new Icons.Regular.Size12.Search()" OnClick="OnSearchAsync">
+    <FluentButton Type="ButtonType.Button" IconStart="new Icons.Regular.Size12.Search()" OnClick="OnSearch">
         Search
     </FluentButton>
     <FluentButton Type="ButtonType.Reset" IconStart="new Icons.Regular.Size12.Dismiss()" OnClick="OnResetFilters">
@@ -116,7 +116,7 @@
 <div class="events-result mt-5">
     @if (eventSearchMediatorRequest is not null)
     {
-        <DataCall MediatorReq="eventSearchMediatorRequest" Context="Events">
+        <DataCall MediatorReq="eventSearchMediatorRequest" Context="Events" @ref="dataCall">
             <EventsTable Events="Events"></EventsTable>
         </DataCall>
     }
@@ -124,6 +124,7 @@
 
 @code {
     private Task<Result<IQueryable<EventsResultDto>, ErrorResult>>? eventSearchMediatorRequest;
+    protected DataCall<IQueryable<EventsResultDto>>? dataCall;
 
     private List<EventElementFactory> subscribedEvents = new List<EventElementFactory>();
     public IEnumerable<string> ModulesName { get; private set; } = Enumerable.Empty<string>();
@@ -143,45 +144,7 @@
 
     private List<ComponentParameter> filtersComponents = new List<ComponentParameter>();
 
-    private readonly Dictionary<string, ComponentParameter> declaredComponents = new()
-        {
-            ["NumberCriteria<uint>"] = new ComponentParameter()
-            {
-                ComponentType = typeof(NumberCriteriaFilterUint),
-                Name = "NumberFilterUint",
-                Parameters = new Dictionary<string, object>
-                {
-                    [nameof(NumberCriteriaFilterUint.Label)] = "",
-                }
-            },
-            ["NumberCriteria<double>"] = new ComponentParameter()
-            {
-                ComponentType = typeof(NumberCriteriaFilterDouble),
-                Name = "NumberFilterDouble",
-                Parameters = new Dictionary<string, object>
-                {
-                    [nameof(NumberCriteriaFilterDouble.Label)] = "",
-                }
-            },
-            ["String"] = new ComponentParameter()
-            {
-                ComponentType = typeof(TextCriteriaFilter),
-                Name = "TextFilter",
-                Parameters = new Dictionary<string, object>
-                {
-                    [nameof(TextCriteriaFilter.Label)] = "",
-                }
-            },
-            ["NumberCriteria<DateTime>"] = new ComponentParameter()
-            {
-                ComponentType = typeof(DateCriteriaFilter),
-                Name = "DateFilter",
-                Parameters = new Dictionary<string, object>
-                {
-                    [nameof(DateCriteriaFilter.Label)] = "",
-                }
-            },
-        };
+    
 
     protected override void OnInitialized()
     {
@@ -191,7 +154,11 @@
         EventsName = subscribedEvents.Select(x => x.GetModule().moduleEvent);
 
         // Display all events by default
-        eventSearchMediatorRequest = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery());
+        eventSearchMediatorRequest = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery()
+        {
+            SelectedModules = new List<string>() { "Balances" },
+            SelectedEvents = new List<string>() { "Transfer" }
+        });
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
@@ -254,7 +221,7 @@
 
             foreach (var item in res.Where(x => x.name != nameof(SearchCriteria.BlockDate) && x.name != nameof(SearchCriteria.BlockNumber)))
             {
-                var foundComponent = declaredComponents[item.filter];
+                var foundComponent = Constants.DeclaredComponents[item.filter];
 
                 var cloneComponent = foundComponent.Clone();
                 cloneComponent.Parameters["Label"] = item.name;
@@ -267,14 +234,15 @@
     private async Task OnBlockFilterTypeChangedAsync(BlockSearchFilter value)
     {
         blockSearchFilter = value;
-        // blockNumberCriteriaFilter!.SetDisable(value != BlockSearchFilter.BlockNumber);
-        // dateBlockFilter!.SetDisable(value != BlockSearchFilter.BlockDate);
 
         await InvokeAsync(() => StateHasChanged());
     }
 
-    private async Task OnSearchAsync(MouseEventArgs e)
+    private async Task OnSearch(MouseEventArgs e)
     {
+        eventSearchMediatorRequest = null;
+        await InvokeAsync(() => StateHasChanged());
+
         eventSearchMediatorRequest = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery()
             {
                 SelectedModules = SelectedModule,
@@ -283,29 +251,12 @@
                 DateBlockFilter = DateBlockFilter
             });
 
-        logger.LogInformation("Search events");
+        await InvokeAsync(() => StateHasChanged());
     }
 
     private void OnResetFilters(MouseEventArgs e)
     {
         logger.LogInformation("Reset filters");
-    }
-
-    public class ComponentParameter
-    {
-        public required Type ComponentType { get; init; }
-        public required string Name { get; init; }
-        public required Dictionary<string, object> Parameters { get; init; }
-
-        public ComponentParameter Clone()
-        {
-            return new ComponentParameter()
-                {
-                    ComponentType = ComponentType,
-                    Name = Name,
-                    Parameters = new Dictionary<string, object>(Parameters)
-                };
-        }
     }
 
     public enum BlockSearchFilter

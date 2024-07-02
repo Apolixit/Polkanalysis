@@ -55,7 +55,7 @@ namespace Polkanalysis.Domain.UseCase.Search
 
             // First we got all the mapped events
             var mapped = _eventFactory.Mapped;
-            
+
             // Apply modules filters if needed
             if (request.SelectedModules.Any())
             {
@@ -69,7 +69,7 @@ namespace Polkanalysis.Domain.UseCase.Search
             }
 
             // For each event we instanciate the associated SearchCriteria instance and search for the event in the associated table
-            foreach(var eventElem in mapped)
+            foreach (var eventElem in mapped)
             {
                 // Instanciate search criteria and apply filters
                 var criteriaInstance = eventElem.SearchCriteriaType.Instanciate<SearchCriteria>();
@@ -86,23 +86,68 @@ namespace Polkanalysis.Domain.UseCase.Search
                 // Invoke search method
                 var searchRes = await _eventFactory.InvokeSearchAsync(eventElem, criteriaInstance, cancellationToken);
 
-                // Map the result to the DTO
-                if(searchRes is not null)
-                {
-                    var localResult = searchRes.Select(x => new EventsResultDto() {
-                        BlockDate = x.BlockDate,
-                        BlockId = x.BlockId,
-                        EventId = x.EventId,
-                        EventName = x.ModuleEvent,
-                        PalletName = x.ModuleName,
-                    }).AsQueryable();
+                // If we have only one event to display, we can add the custom event property
+                var contextNameParameters = new List<string>();
 
-                    result = result.Concat(localResult);
+                if (request.SelectedEvents.Count() == 1)
+                {
+                    var customProperties = ((System.Reflection.TypeInfo)eventElem.EventModelType).DeclaredProperties;
+                    foreach (var prop in customProperties)
+                    {
+                        contextNameParameters.Add(prop.Name);
+                    }
+                }
+
+                // Map the result to the DTO
+                if (searchRes is not null)
+                {
+                    var events = new List<EventsResultDto>();
+                    foreach (var res in searchRes)
+                    {
+                        var localResult = new EventsResultDto()
+                        {
+                            BlockDate = res.BlockDate,
+                            BlockId = res.BlockId,
+                            EventId = res.EventId,
+                            EventName = res.ModuleEvent,
+                            PalletName = res.ModuleName,
+                        };
+
+                        ExtractContextParameters(eventElem, contextNameParameters, res, localResult);
+
+                        events.Add(localResult);
+                    }
+
+                    result = result.Concat(events.AsQueryable());
                 }
             }
-            
+
 
             return Helpers.Ok(result);
+        }
+
+        /// <summary>
+        /// Extracts the context parameters from an <see cref="EventModel"/> and populates the corresponding properties in an <see cref="EventsResultDto"/>.
+        /// </summary>
+        /// <param name="eef">The factory event</param>
+        /// <param name="contextNameParameters">The list of context parameter names.</param>
+        /// <param name="res">The <see cref="EventModel"/> instance.</param>
+        /// <param name="localResult">The <see cref="EventsResultDto"/> instance to populate.</param>
+        private void ExtractContextParameters(EventElementFactory eef, List<string> contextNameParameters, EventModel res, EventsResultDto localResult)
+        {
+            if (!contextNameParameters.Any()) return;
+            foreach (var param in contextNameParameters)
+            {
+                var prop = res.GetType().GetProperty(param);
+                if (prop is null) continue;
+
+                localResult.ContextParameters.Add(new ContextParametersDto()
+                {
+                    Name = param,
+                    FilterType = _eventFactory.ExtractPropertyName(eef.SearchCriteriaType.GetProperty(param)!),
+                    Value = prop.GetValue(res)
+                });
+            }
         }
     }
 }

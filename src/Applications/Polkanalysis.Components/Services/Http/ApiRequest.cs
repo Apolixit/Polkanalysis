@@ -17,6 +17,13 @@ namespace Polkanalysis.Components.Services.Http
         {
             Url = url;
         }
+
+        //var url = NavManager.GetUriWithQueryParameters("https://api.fda.gov/food/enforcement.json", new Dictionary<string, object?>
+        //            {
+        //        { "skip", req.StartIndex },
+        //        { "limit", req.Count },
+        //            });
+
     }
 
     public class ApiRequest<Req, Res> : ApiRequest<Res>
