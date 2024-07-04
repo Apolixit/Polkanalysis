@@ -14,7 +14,6 @@
         <ColumnOptions>
             <div class="search-box">
                 <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="poolNameFilter" />
-                @* <FluentSearch type="search" Autofocus=true @bind-Value=poolNameFilter @oninput="HandleNameFilter" Placeholder="Pool name..." /> *@
             </div>
         </ColumnOptions>
     </PropertyColumn>
@@ -84,8 +83,8 @@
 
     PaginationState pagination = new PaginationState { ItemsPerPage = Constants.DefaultPageSize };
 
-    string poolNameFilter = string.Empty;
-    string depositorNameFilter = string.Empty;
+    NumberCriteria<string> poolNameFilter = new NumberCriteria<string>();
+    NumberCriteria<string> depositorNameFilter = new NumberCriteria<string>();
 
     public NumberCriteria<uint>? NbPoolMembersCriteria = null;
     public NumberCriteria<double>? CommissionCriteria = null;
@@ -97,22 +96,6 @@
         base.OnInitialized();
     }
 
-    private void HandleNameFilter(ChangeEventArgs args)
-    {
-        if (args.Value is string value)
-        {
-            poolNameFilter = value;
-        }
-    }
-
-    private void HandleClear()
-    {
-        if (string.IsNullOrWhiteSpace(poolNameFilter))
-        {
-            poolNameFilter = string.Empty;
-        }
-    }
-
     protected void GoToDetails(uint poolId)
     {
         _navigationManager.NavigateTo($"pool/{poolId}");
@@ -122,11 +105,11 @@
     {
         IQueryable<PoolLightDto> queryablePools = Pools!.AsQueryable();
 
-        if (!string.IsNullOrWhiteSpace(poolNameFilter))
-            queryablePools = queryablePools.Where(x => x.Name.Contains(poolNameFilter, StringComparison.CurrentCultureIgnoreCase));
+        if (!string.IsNullOrWhiteSpace(poolNameFilter.Value))
+            queryablePools = queryablePools.Where(x => x.Name.Contains(poolNameFilter.Value, StringComparison.CurrentCultureIgnoreCase));
 
-        if (!string.IsNullOrWhiteSpace(depositorNameFilter))
-            queryablePools = queryablePools.Where(x => x.Depositor != null && x.Depositor.Name.Contains(depositorNameFilter, StringComparison.CurrentCultureIgnoreCase));
+        if (!string.IsNullOrWhiteSpace(depositorNameFilter.Value))
+            queryablePools = queryablePools.Where(x => x.Depositor != null && x.Depositor.Name.Contains(depositorNameFilter.Value, StringComparison.CurrentCultureIgnoreCase));
 
         if (NbPoolMembersCriteria is not null)
             queryablePools = queryablePools.WhereCriteria(NbPoolMembersCriteria, x => x.NbPoolMembers);

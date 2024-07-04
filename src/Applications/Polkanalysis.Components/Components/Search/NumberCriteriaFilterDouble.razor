@@ -17,12 +17,12 @@
                       SelectedOptionChanged="OnSelectedOptionsChanged" /> *@
     </div>
     <div class="col-auto">
-        <FluentNumberField TValue="@(double)" ValueChanged="OnInternalValueChanged" Disabled="@IsDisabled" />
+        <FluentNumberField TValue="@(double)" @oninput="(e => OnInputChanged(e, OnInternalValueChanged))" Disabled="@IsDisabled" />
     </div>
     <div class="col-auto">
         @if (displaySecondField)
         {
-            <FluentNumberField TValue="@(double)" ValueChanged="OnInternalValue2Changed" Disabled="@IsDisabled"  />
+            <FluentNumberField TValue="@(double)" @oninput="(e => OnInputChanged(e, OnInternalValue2Changed))" Disabled="@IsDisabled" />
         }
     </div>
 </div>

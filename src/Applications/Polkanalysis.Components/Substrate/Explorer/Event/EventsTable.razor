@@ -134,6 +134,12 @@
         if (BlockNumberCriteria is not null)
             queryableEvents = queryableEvents.WhereCriteria(BlockNumberCriteria, x => x.BlockId);
 
+
+        if (contextFilters.Count > 0)
+        {
+            // Todo
+        }
+
         return queryableEvents;
     }
 
