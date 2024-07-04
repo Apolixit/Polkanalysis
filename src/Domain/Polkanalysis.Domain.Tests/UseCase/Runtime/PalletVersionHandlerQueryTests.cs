@@ -20,8 +20,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
     public class PalletVersionHandlerQueryTests :
         UseCaseTest<PalletVersionHandler, IEnumerable<PalletVersionDto>, PalletVersionsQuery>
     {
-        private SubstrateDbContext _substrateDbContext;
-
         [SetUp]
         public void Setup()
         {
@@ -35,13 +33,6 @@ namespace Polkanalysis.Domain.Tests.UseCase.Runtime
 
             _useCase = new PalletVersionHandler(_substrateDbContext, _logger, Substitute.For<IDistributedCache>());
             //base.Setup();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _substrateDbContext.Database.EnsureDeleted();
-            _substrateDbContext.Dispose();
         }
 
         private void insertPalletVersion(int i, string palletName)

@@ -1,25 +1,8 @@
-﻿<FluentTextField @bind-Value=Value Label="@Label" Disabled="@IsDisabled" @oninput="HandleTextFilter" Autofocus="true" />
+﻿@inherits CriteriaFilter<string>
+@using Polkanalysis.Domain.Contracts.Common.Search
+
+<FluentTextField @oninput="(e => OnInputChanged(e, OnInternalValueChanged))" Label="@Label" Disabled="@IsDisabled" Autofocus="true" />
 
 @code {
-    [Parameter] public string Label { get; set; } = string.Empty;
-    [Parameter] public bool IsDisabled { get; set; } = false;
-    [Parameter] public string? Value { get; set; }
     [Parameter] public bool Autofocus { get; set; } = false;
-
-    [Parameter]
-    public EventCallback<string?> ValueChanged { get; set; }
-
-    private void HandleTextFilter(ChangeEventArgs args)
-    {
-        if (args.Value is string value)
-        {
-            Value = value;
-        }
-        else
-        {
-            Value = null;
-        }
-
-        ValueChanged.InvokeAsync(Value);
-    }
 }

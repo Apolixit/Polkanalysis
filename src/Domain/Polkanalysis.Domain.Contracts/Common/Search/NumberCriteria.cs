@@ -14,6 +14,11 @@ namespace Polkanalysis.Domain.Contracts.Common.Search
         public T? Value2 { get; set; }
         public Operator Operator { get; set; }
 
+        public NumberCriteria()
+        {
+            Operator = Operator.Equal;
+        }
+
         /// <summary>
         /// Instanciate a lower than criteria
         /// </summary>
