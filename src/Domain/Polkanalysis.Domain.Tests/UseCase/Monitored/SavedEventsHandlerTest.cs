@@ -103,6 +103,26 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         }
 
         [Test]
+        public async Task SavedEventsCommandValidator_WithInvalidData_ShouldFailedAsync()
+        {
+            _substrateService.Rpc.Chain.GetHeaderAsync(CancellationToken.None)
+                .Returns(new Substrate.NetApi.Model.Rpc.Header() { Number = new U64(100) });
+
+            var command = new SavedEventsCommand(new BlockNumber(300),
+                                                 DateTime.Now.AddDays(1),
+                                                 1,
+                                                 null!,
+                                                 null!);
+
+            var validator = new SavedEventsCommandValidator(_substrateService);
+
+            var result = await validator.ValidateAsync(command);
+
+            Assert.That(result.IsValid, Is.False);
+            Assert.That(result.Errors.Count, Is.EqualTo(4));
+        }
+
+        [Test]
         public async Task SavedEventHandler_WithValidData_ShouldSucceedAsync()
         {
             EventRecord killedAccountEvent = buildKilledAccountEvent();

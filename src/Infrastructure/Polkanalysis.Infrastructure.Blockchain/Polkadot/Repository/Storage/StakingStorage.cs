@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Ardalis.GuardClauses;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking;
 using Substrate.NetApi.Model.Types;
+using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 {
@@ -78,6 +79,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.StakingStorage.ErasRewardPointsAsync(key, token));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key">Era Id / Validator account</param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public async Task<Exposure> ErasStakersAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token)
         {
             var version = await GetVersionAsync(token);
@@ -91,7 +98,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             else
             {
                 // https://github.com/polkadot-js/apps/issues/10004
-                return await ErasStakersOverviewAsync(key, token);
+                var eraStakerOverview = await ErasStakersOverviewAsync(key, token);
+
+                for(uint i = 0; i < eraStakerOverview.PageCount!.Value; i++)
+                {
+                    var page = await ErasStakersPagedAsync(new BaseTuple<U32, SubstrateAccount, U32>(
+                        key.Value[0].As<U32>(), 
+                        key.Value[1].As<SubstrateAccount>(), 
+                        new U32(i)), token);
+
+                    if(eraStakerOverview.Others is null)
+                        eraStakerOverview.Others = page.Others;
+                    else
+                        eraStakerOverview.Others.Value.Concat(page.Others.Value);
+                }
+
+                return eraStakerOverview;
             }
         }
 
@@ -108,6 +130,23 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
             return Map<IType, Exposure>(
                 await _client.StakingStorage.ErasStakersOverviewAsync(input, token));
+        }
+
+        /// <summary>
+        /// Get nominators who vote for a validator in a specific era
+        /// Since version 1002000 (previously, check "others" property from <see cref="Exposure" />)
+        /// Works with <see cref="ErasStakersOverviewAsync" /> for Nominators pagination
+        /// </summary>
+        /// <param name="key">Era Id / Validator account / Page number</param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task<ExposurePage> ErasStakersPagedAsync(BaseTuple<U32, SubstrateAccount, U32> key, CancellationToken token)
+        {
+            var version = await GetVersionAsync(token);
+            var input = _mapper.Map(version, key, _client.StakingStorage.ErasStakersPagedInputType(version));
+
+            return Map<IType, ExposurePage>(
+                await _client.StakingStorage.ErasStakersPagedAsync(input, token));
         }
 
         public async Task<QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token)

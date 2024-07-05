@@ -24,12 +24,10 @@ namespace Polkanalysis.Domain.UseCase.Search
     public class SearchHandler : Handler<SearchHandler, IEnumerable<SearchResultDto>, SearchQuery>
     {
         private readonly ISearchService _searchService;
-        private readonly SubstrateDbContext _context;
 
-        public SearchHandler(ILogger<SearchHandler> logger, IDistributedCache cache, ISearchService searchService, SubstrateDbContext context) : base(logger, cache)
+        public SearchHandler(ILogger<SearchHandler> logger, IDistributedCache cache, ISearchService searchService) : base(logger, cache)
         {
             _searchService = searchService;
-            _context = context;
         }
 
         public override async Task<Result<IEnumerable<SearchResultDto>, ErrorResult>> HandleInnerAsync(SearchQuery request, CancellationToken cancellationToken)

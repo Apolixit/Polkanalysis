@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Substrate.NetApi;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using System.Threading;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.System
 {
@@ -54,6 +56,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
 
             var addressAccount = res.Select(x => x.Item1.ToStringAddress());
             Assert.That(addressAccount.Distinct().Count(), Is.EqualTo(res.Count));
+        }
+
+        [Test]
+        public async Task Number_ShouldWorkAsync()
+        {
+            var blockNum = await _substrateRepository.Storage.System.NumberAsync(CancellationToken.None);
+            Assert.That(blockNum, Is.Not.Null);
+            Assert.That(blockNum.Value, Is.GreaterThan(0));
         }
 
         [Test]

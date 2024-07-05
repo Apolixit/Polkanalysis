@@ -44,7 +44,7 @@ namespace Polkanalysis.Common.Monitoring.Opentelemetry
 
             if(!string.IsNullOrEmpty(otlpEndpoint))
             {
-                otel.UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.HttpProtobuf, new Uri(otlpEndpoint));
+                otel.UseOtlpExporter(OpenTelemetry.Exporter.OtlpExportProtocol.Grpc, new Uri(otlpEndpoint));
             }
 
             otel.WithMetrics(metrics =>

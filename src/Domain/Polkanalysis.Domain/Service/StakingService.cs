@@ -149,7 +149,7 @@ namespace Polkanalysis.Domain.Service
                 }
                 else
                 {
-                    nominatorsCount = validatorDatabase.Item2.Others.Value.Length;
+                    nominatorsCount = validatorDatabase.Item2.Others!.Value.Length;
                 }
 
                 validatorsDto.Add(new ValidatorLightDto()
@@ -331,7 +331,7 @@ namespace Polkanalysis.Domain.Service
                 Task<UserAddressDto>? userAddressTask)> nominatorsAccountTask = new List<(Task<Nominations>, Task<SubstrateAccount>, Task<UserAddressDto>, Task<UserAddressDto>, double, Task<UserAddressDto>?)>();
 
             // I need to get nominator account result to fetch identity
-            var nominatorsAndBoundedAccount = nominators.Others.Value.Select(x =>
+            var nominatorsAndBoundedAccount = nominators.Others!.Value.Select(x =>
             {
                 return new { IndividualExposure = x, BoundedAccount = _substrateService.Storage.Staking.BondedAsync(x.Who, cancellationToken) };
             });

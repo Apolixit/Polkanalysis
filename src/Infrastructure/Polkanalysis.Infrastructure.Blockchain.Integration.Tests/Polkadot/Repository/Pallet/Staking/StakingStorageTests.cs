@@ -220,12 +220,32 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
+        public async Task ErasStakersOverview_ShouldWorkAsync()
+        {
+            var (era, staker) = await GetValidatorFromThisEraAsync();
+
+            var res = await _substrateRepository.Storage.Staking.ErasStakersOverviewAsync(new BaseTuple<U32, SubstrateAccount>(era, staker), CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        public async Task ErasStakersPaged_ShouldWorkAsync()
+        {
+            var (era, staker) = await GetValidatorFromThisEraAsync();
+
+            var res = await _substrateRepository.Storage.Staking.ErasStakersPagedAsync(new BaseTuple<U32, SubstrateAccount ,U32>(era, staker, new U32(0)), CancellationToken.None);
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Others.Value.Length, Is.GreaterThan(1));
+        }
+
+        [Test]
         public async Task ErasStakersAll_ShouldWorkAsync()
         {
             var currentEra = await _substrateRepository.Storage.Staking.CurrentEraAsync(CancellationToken.None);
             var nbValidators = await _substrateRepository.Storage.Staking.ValidatorCountAsync(CancellationToken.None);
             var query = await _substrateRepository.Storage.Staking.ErasStakersQueryAsync(currentEra.Value, CancellationToken.None);
             var res = await query.ExecuteAsync(CancellationToken.None);
+
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count, Is.EqualTo(nbValidators.Value));
         }

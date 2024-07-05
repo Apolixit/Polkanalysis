@@ -1551,6 +1551,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_arithmetic.per_things.PercentBase, Percent>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.EraRewardPointsBase, EraRewardPoints>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ExposureBase, Exposure>();
+
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_staking.ExposurePageBase, ExposurePage>();
+                CreateMap< Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_staking.IndividualExposureBase, IndividualExposure>();
+
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_staking.PagedExposureMetadataBase, Exposure>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.IndividualExposureBase, IndividualExposure>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking.ValidatorPrefsBase, ValidatorPrefs>().IncludeAllDerived();
