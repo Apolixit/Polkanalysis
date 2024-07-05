@@ -26,7 +26,6 @@ namespace Polkanalysis.Domain.Service
         private readonly ISubstrateService _substrateService;
         private readonly IExplorerService _explorerService;
         private readonly SubstrateDbContext _db;
-        //private readonly ISearchClient _searchClient;
         private readonly ILogger<SearchService> _logger;
 
         public SearchService(ISubstrateService _substrateService, SubstrateDbContext db, IExplorerService explorerService,/* ISearchClient searchClient,*/ ILogger<SearchService> logger)
@@ -34,7 +33,6 @@ namespace Polkanalysis.Domain.Service
             this._substrateService = _substrateService;
             _db = db;
             _explorerService = explorerService;
-            //_searchClient = searchClient;
             _logger = logger;
         }
 
@@ -55,8 +53,6 @@ namespace Polkanalysis.Domain.Service
             uint queryBlock;
             if (uint.TryParse(query, out queryBlock))
             {
-                //var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(queryBlock), token);
-                //var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(blockHash, token);
                 var blockHeader = await _substrateService.Rpc.Chain.GetHeaderAsync(token);
 
                 if (blockHeader.Number.Value >= queryBlock)
@@ -100,8 +96,6 @@ namespace Polkanalysis.Domain.Service
                     searchResult.Add(account);
             }
 
-            //await PoolSearchIndexorAsync(query, token);
-
             return searchResult;
         }
 
@@ -115,26 +109,39 @@ namespace Polkanalysis.Domain.Service
         private async Task<SearchResultDto?> SearchAccountAsync(string query, CancellationToken token)
         {
             var account = new SubstrateAccount(query);
-            var res = _substrateService.Storage.System.AccountAsync(account, token);
+            var res = await _substrateService.Storage.System.AccountAsync(account, token);
             //var res = await _db.EventSystemNewAccount.FirstOrDefaultAsync(x => x.AccountAddress.ToLower() == query.ToLower(), token);
 
-            if (res is null)
-                return null;
+            string description = "";
+            if (res is not null)
+            {
+                description = $"Account {query} exists on {_substrateService.BlockchainName}";
+
+                return new SearchResultDto()
+                {
+                    ResultType = SearchResultDto.SearchResultType.SubstrateAddress,
+                    When = DateTime.Now,
+                    Url = $"account/{query}",
+                    Description = description
+                };
+            }
 
             // Is the account destroyed ?
-            var destroyed = await _db.EventSystemKilledAccount.FirstOrDefaultAsync(x => x.AccountAddress.ToLower() == query.ToLower(), token);
+            var destroyed = await _db.EventSystemKilledAccount.FirstOrDefaultAsync(x => x.AccountAddress.Equals(query, StringComparison.CurrentCultureIgnoreCase), token);
 
-            string description = $"Account {query} exists on {_substrateService.BlockchainName}";
             if (destroyed is not null)
-                description += $" but has been destroyed on block {destroyed.BlockDate}";
-
-            return new SearchResultDto()
             {
-                ResultType = SearchResultDto.SearchResultType.SubstrateAddress,
-                When = DateTime.Now,
-                Url = $"account/{query}",
-                Description = description
-            };
+                description += $" Account has been destroyed on block {destroyed.BlockDate}";
+                return new SearchResultDto()
+                {
+                    ResultType = SearchResultDto.SearchResultType.SubstrateAddress,
+                    When = DateTime.Now,
+                    Url = $"account/{query}",
+                    Description = description
+                };
+            }
+
+            return null;
         }
 
         /// <summary>

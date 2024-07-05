@@ -33,6 +33,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
             Assert.That(validators, Is.Not.Null);
             Assert.That(validators.Count(), Is.GreaterThan(2));
         }
+
         [Test]
         public async Task GetValidatorDetail_ShouldWorkAsync()
         {
@@ -43,6 +44,26 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
 
             var validatorDetail = await _stakingRepository.GetValidatorDetailAsync(validators.Value.First().ToStringAddress(), CancellationToken.None);
             Assert.That(validatorDetail, Is.Not.Null);
+        }
+
+        [Test, Ignore("Todo implementation")]
+        [TestCase("168ADXbadY5FkE2txZkzeqhVqmDkivh41Vgn3bZ4yepv8n9x")]
+        public async Task GetValidatorsElectedByNominatorAsync_ShouldWorkAsync(string nominatorAddress)
+        {
+            var validators = await _stakingRepository.GetValidatorsElectedByNominatorAsync(nominatorAddress, CancellationToken.None);
+
+            Assert.That(validators, Is.Not.Null);
+            //Assert.That(validators.Count(), Is.GreaterThan(2));
+        }
+
+        [Test, Ignore("Todo implementation")]
+        [TestCase("5C4i2nwtkzX3ANCq1dsgLcbW8bCfKJJHVHBzk776JAbqoRRw")]
+        public async Task GetRewardsBoundedToValidatorAsync_ShouldWorkAsync(string validatorAddress)
+        {
+            var rewards = await _stakingRepository.GetRewardsBoundedToValidatorAsync(validatorAddress, CancellationToken.None);
+
+            Assert.That(rewards, Is.Not.Null);
+            Assert.That(rewards.Count(), Is.GreaterThan(2));
         }
 
         [Test]
@@ -67,9 +88,9 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
 
         [Test]
         [TestCase("168ADXbadY5FkE2txZkzeqhVqmDkivh41Vgn3bZ4yepv8n9x")]
-        public async Task ValidNominator_GetDetails_ShouldWorkAsync(string validatorAddress)
+        public async Task ValidNominator_GetDetails_ShouldWorkAsync(string nominatorAddress)
         {
-            var res = await _stakingRepository.GetNominatorDetailAsync(validatorAddress, CancellationToken.None);
+            var res = await _stakingRepository.GetNominatorDetailAsync(nominatorAddress, CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
         }

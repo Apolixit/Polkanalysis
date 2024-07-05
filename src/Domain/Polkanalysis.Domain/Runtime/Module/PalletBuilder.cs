@@ -138,7 +138,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                 return input;
             }
 
-            var regex = new Regex("([a-z0-9])([A-Z])");
+            var regex = new Regex("([a-z0-9])([A-Z])", RegexOptions.None, TimeSpan.FromMilliseconds(100));
             var kebabCase = regex.Replace(input, "$1_$2").ToLower();
 
             return kebabCase;
@@ -176,16 +176,14 @@ namespace Polkanalysis.Domain.Runtime.Module
 
                 NodeType? nodeType = null;
                 nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
-                    .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))
-                    .FirstOrDefault().Value;
+                    .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
 
                 if (nodeType is null)
                 {
                     arguments.Insert(1, "pallet"); // Sorry ...
 
                     nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
-                    .Where(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments))
-                    .FirstOrDefault().Value;
+                    .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
                 }
 
                 return nodeType;
