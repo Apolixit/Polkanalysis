@@ -110,7 +110,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                     if(eraStakerOverview.Others is null)
                         eraStakerOverview.Others = page.Others;
                     else
-                        eraStakerOverview.Others.Value.Concat(page.Others.Value);
+                        eraStakerOverview.Others = new BaseVec<IndividualExposure>(eraStakerOverview.Others.Value.Concat(page.Others.Value).ToArray());
                 }
 
                 return eraStakerOverview;
