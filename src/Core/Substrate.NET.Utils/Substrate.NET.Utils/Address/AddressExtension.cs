@@ -16,7 +16,7 @@ namespace Substrate.NET.Utils.Address
             {
                 _ = NetApi.Utils.GetPublicKeyFrom(address);
                 return true;
-            } catch(Exception _)
+            } catch(Exception)
             {
                 return false;
             }
@@ -29,7 +29,7 @@ namespace Substrate.NET.Utils.Address
                 var account = new AccountId(publicKey);
                 return account.Bytes.Length > 0;
             }
-            catch (Exception _)
+            catch (Exception)
             {
                 return false;
             }

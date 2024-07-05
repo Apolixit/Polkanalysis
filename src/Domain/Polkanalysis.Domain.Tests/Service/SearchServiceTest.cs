@@ -1,10 +1,12 @@
 ﻿using Algolia.Search.Clients;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Tests.Abstract;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Database;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using System;
@@ -12,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Polkanalysis.Domain.Contracts.Dto.Search.SearchResultDto;
 
 namespace Polkanalysis.Domain.Tests.Service
 {
@@ -20,10 +23,12 @@ namespace Polkanalysis.Domain.Tests.Service
         private ISearchService _searchService;
         private ISubstrateService _substrateService;
 
-        public SearchServiceTest()
+        [SetUp]
+        public void Setup()
         {
             _substrateService = Substitute.For<ISubstrateService>();
 
+            mockDb();
             _searchService = new SearchService(_substrateService,
                                                _substrateDbContext,
                                                Substitute.For<IExplorerService>(),
@@ -41,6 +46,37 @@ namespace Polkanalysis.Domain.Tests.Service
             {
                 Number = new Substrate.NetApi.Model.Types.Primitive.U64(21318591)
             });
+
+
+        }
+
+        private void mockDb()
+        {
+            _substrateDbContext.BlockInformation.AddRange(
+                [
+                new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
+                {
+                    BlockNumber = 10,
+                    BlockHash = "0x4dd66ad0f33bfc8160508219bcb208aac75d3b13ae8fbea11c0d61aa9b0cfaf3",
+                    ValidatorAddress = Alice.ToString(),
+                    BlockchainName = "Polkadot",
+                    EventsCount = 1,
+                    ExtrinsicsCount = 1,
+                    LogsCount = 1
+                },
+                new Infrastructure.Database.Contracts.Model.Blocks.BlockInformationModel()
+                {
+                    BlockNumber = 20,
+                    BlockHash = "0x4dd66ad0f33bfc8160508219bcb208aac75d3b13ae8fbea11c0d61aa9b0cfaf4",
+                    ValidatorAddress = Bob.ToString(),
+                    BlockchainName = "Polkadot",
+                    EventsCount = 1,
+                    ExtrinsicsCount = 1,
+                    LogsCount = 1
+                }
+                ]
+            );
+            _substrateDbContext.SaveChanges();
         }
 
         [Test]
@@ -93,6 +129,42 @@ namespace Polkanalysis.Domain.Tests.Service
             Assert.That(searchType.Count(), Is.EqualTo(2));
             Assert.That(searchType.Any(x => x == SearchType.BlockHash), Is.True);
             Assert.That(searchType.Any(x => x == SearchType.Account), Is.True);
+        }
+
+        [Test]
+        public async Task SearchAsync_WithValidBlockNumber_ShouldSucceedAsync()
+        {
+            var searchResult = await _searchService.SearchAsync("10", CancellationToken.None);
+
+            Assert.That(searchResult, Is.Not.Null);
+
+            var searchResultList = searchResult.ToList();
+            Assert.That(searchResultList.Count, Is.EqualTo(1));
+            Assert.That(searchResultList[0].ResultType, Is.EqualTo(SearchResultType.BlockNumber));
+        }
+
+        [Test]
+        public async Task SearchAsync_WithValidBlockHash_ShouldSucceedAsync()
+        {
+            var searchResult = await _searchService.SearchAsync("0x4dd66ad0f33bfc8160508219bcb208aac75d3b13ae8fbea11c0d61aa9b0cfaf4", CancellationToken.None);
+
+            var searchResultList = searchResult.ToList();
+            Assert.That(searchResultList.Count, Is.EqualTo(1));
+            Assert.That(searchResultList[0].ResultType, Is.EqualTo(SearchResultType.BlockHash));
+        }
+
+        [Test]
+        public async Task SearchAsync_WithValidAccount_ShouldSucceedAsync()
+        {
+            _substrateService.Storage.System.AccountAsync(new SubstrateAccount(Alice.ToString()), CancellationToken.None).Returns(new Infrastructure.Blockchain.Contracts.Pallet.System.AccountInfo()
+            {
+            });
+
+            var searchResult = await _searchService.SearchAsync(Alice.ToString(), CancellationToken.None);
+
+            var searchResultList = searchResult.ToList();
+            Assert.That(searchResultList.Count, Is.EqualTo(1));
+            Assert.That(searchResultList[0].ResultType, Is.EqualTo(expected: SearchResultType.SubstrateAddress));
         }
     }
 }

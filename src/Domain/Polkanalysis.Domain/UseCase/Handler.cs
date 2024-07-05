@@ -16,6 +16,7 @@ using Polkanalysis.Domain.Contracts.Common;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Polkanalysis.Domain.UseCase
 {
@@ -54,7 +55,7 @@ namespace Polkanalysis.Domain.UseCase
 
         public async Task<Result<TDto, ErrorResult>> Handle(TRequest request, CancellationToken cancellationToken)
         {
-            if (request == null)
+            if (EqualityComparer<TRequest>.Default.Equals(request, default))
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
 
             // Log the cache key if the request is cache
