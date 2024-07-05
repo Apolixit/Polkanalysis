@@ -46,10 +46,10 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
                 _logger.LogInformation("Era {eraId} - Request for all EraStackers give {count} result", eraId.Value, result.Count);
 
                 // Let's insert each record in database
-                foreach ((BaseTuple<U32, SubstrateAccount>, Exposure) v in result)
+                foreach ((BaseTuple<U32, SubstrateAccount>, Exposure) tupleEraIdValidatorExposure in result)
                 {
-                    var validatorAccount = (SubstrateAccount)v.Item1.Value[1];
-                    var exposure = v.Item2;
+                    var validatorAccount = (SubstrateAccount)tupleEraIdValidatorExposure.Item1.Value[1];
+                    var exposure = tupleEraIdValidatorExposure.Item2;
 
                     var alreadyExist = await _stakingDatabaseRepository.GetEraValidatorAsync((int)eraId.Value, validatorAccount, cancellationToken) != null;
                     bool canBeInserted = true;
@@ -70,9 +70,13 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
 
                     if(canBeInserted)
                     {
-                        _stakingDatabaseRepository.InsertEraStakers(eraId, v);
+                        
+                        // Let's link the nominators to the validator
+                        exposure = await _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(eraId, validatorAccount), cancellationToken);
 
-                        _logger.LogInformation("The tuple (Era {eraId}, ValidatorAddress = {validatorAccount}) linked to {count} nominators successfully inserted in database", eraId.Value, validatorAccount.ToPolkadotAddress(), exposure.Others?.Value?.Length);
+                        _stakingDatabaseRepository.InsertEraStakers(eraId, tupleEraIdValidatorExposure);
+
+                        _logger.LogInformation("The tuple (Era {eraId}, ValidatorAddress = {validatorAccount}) linked to {count} nominators successfully inserted in database", eraId.Value, validatorAccount.ToPolkadotAddress(), exposure.Others!.Value!.Length);
                     }
                 }
             }

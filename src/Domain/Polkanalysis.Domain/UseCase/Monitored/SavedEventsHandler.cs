@@ -53,6 +53,16 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"{request.EventNode.Module} | {request.EventNode.Method} is not linked to the database");
             }
 
+            // Is this event already in database ?
+            var alreadyInserted = _dbContext.EventManagerModel.FirstOrDefault(x =>
+                x.BlockchainName == _polkadotRepository.BlockchainName &&
+                x.ModuleName == request.GetModuleName() &&
+                x.ModuleEvent == request.GetEventName());
+            if(alreadyInserted is not null && alreadyInserted.LastOccurenceScannedBlockId >= request.BlockNumber.Value)
+            {
+                return Helpers.Ok(true);
+            }
+
             var databaseModel = new EventModel(
                 _polkadotRepository.BlockchainName,
                 request.BlockNumber.Value,
@@ -78,7 +88,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             // Every 1000 blocks, insert events into EventManager table to keep track of analyzed events
             if (request.BlockNumber.Value % 1000 == 0)
             {
-                _logger.LogInformation($"Block number % 1000. Insert events into EventManager table.");
+                _logger.LogInformation("Block number {blockNum} % 1000. Insert events into EventManager table.", request.BlockNumber.Value);
                 foreach (var mapped in _eventsFactory.Mapped)
                 {
                     LogEventManager(null,
@@ -88,7 +98,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 }
             }
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
 
             return Helpers.Ok(true);
         }

@@ -15,7 +15,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test
+      POSTGRES_PASSWORD: admin
     expose:
     - "5433" # Publishes 5433 to other containers but NOT to host machine
     ports:

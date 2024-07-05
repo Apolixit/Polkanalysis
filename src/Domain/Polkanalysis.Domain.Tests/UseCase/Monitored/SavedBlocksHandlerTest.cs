@@ -13,6 +13,7 @@ using Polkanalysis.Domain.UseCase.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Primitive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,21 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _explorerService,
                                               _logger,
                                               Substitute.For<IDistributedCache>());
+        }
+
+        [Test]
+        public async Task SavedBlocksCommandValidator_WithInvalidData_ShouldFailedAsync()
+        {
+            _substrateService.Rpc.Chain.GetHeaderAsync(CancellationToken.None)
+                .Returns(new Substrate.NetApi.Model.Rpc.Header() { Number = new U64(100) });
+
+            var command = new SavedBlocksCommand(200);
+
+            var validator = new SavedBlocksCommandValidator(_substrateService);
+
+            var result = await validator.ValidateAsync(command);
+
+            Assert.That(result.IsValid, Is.False);
         }
 
         [Test]

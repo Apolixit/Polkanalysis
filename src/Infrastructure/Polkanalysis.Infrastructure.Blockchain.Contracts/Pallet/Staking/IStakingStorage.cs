@@ -400,6 +400,23 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking
         /// <param name="token"></param>
         /// <returns></returns>
         public Task<Percent> ChillThresholdAsync(CancellationToken token);
+
+        /// <summary>
+        /// Since version 1002000, the storage function has changed to ErasStakersOverview (https://github.com/polkadot-js/apps/issues/10004)
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         Task<Exposure> ErasStakersOverviewAsync(BaseTuple<U32, SubstrateAccount> key, CancellationToken token);
+
+        /// <summary>
+        /// Get nominators who vote for a validator in a specific era
+        /// Since version 1002000 (previously, check "others" property from <see cref="Exposure" />)
+        /// Works with <see cref="ErasStakersOverviewAsync" /> for Nominators pagination
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        Task<ExposurePage> ErasStakersPagedAsync(BaseTuple<U32, SubstrateAccount, U32> key, CancellationToken token);
     }
 }

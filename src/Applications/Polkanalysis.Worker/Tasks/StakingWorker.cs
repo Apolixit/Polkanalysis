@@ -50,11 +50,11 @@ namespace Polkanalysis.Worker.Tasks
 
         public async Task RunAsync(CancellationToken stoppingToken)
         {
-            //_eraPerimeter = _perimeterService.GetEraPerimeter(GetLastEraId);
-            //if (_eraPerimeter.IsSet)
-            //{
-            //    await RequestEraAsync(stoppingToken);
-            //}
+            _eraPerimeter = _perimeterService.GetEraPerimeter(GetLastEraId);
+            if (_eraPerimeter.IsSet)
+            {
+                await RequestEraAsync(stoppingToken);
+            }
 
             // Subscribe to new Era
             await SubscribeErasAndSaveAsync(stoppingToken);
@@ -95,7 +95,7 @@ namespace Polkanalysis.Worker.Tasks
 
                 if(res.IsSuccess)
                 {
-                    _logger.LogInformation("[{workerName}] [EraStakersCommand] Era {eraId} successfully inserted in database", nameof(StakingWorker), i);
+                    _logger.LogInformation("[{workerName}] [EraStakersCommand] Era {eraId} stakers successfully inserted in database", nameof(StakingWorker), i);
                 }
                 else
                 {
