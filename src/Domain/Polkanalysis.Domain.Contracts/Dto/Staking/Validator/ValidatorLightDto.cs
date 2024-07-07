@@ -9,7 +9,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Validator
 {
     public class ValidatorLightDto
     {
-        public required UserAddressDto StashAddress { get; set; }
+        public required UserIdentityDto StashAddress { get; set; }
         public required double SelfBonded { get; set; }
         public required double TotalBonded { get; set; }
         public required double Commission { get; set; }

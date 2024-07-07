@@ -10,13 +10,15 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
 {
     public class BlockLightDto
     {
-        public required ulong Number { get; set; }
+        public required uint Number { get; set; }
         public required Hash Hash { get; set; }
+        public required DateTime BlockDate { get; set; }
         public required string When { get; set; }
         public required GlobalStatusDto.BlockStatusDto Status { get; set; }
         public uint NbExtrinsics { get; set; } = 0;
         public uint NbEvents { get; set; } = 0;
         public uint NbLogs { get; set; } = 0;
-        public UserAddressDto? Validator { get; set; }
+        public string? ValidatorAddress { get; set; }
+        public UserIdentityDto? ValidatorIdentity { get; set; }
     }
 }

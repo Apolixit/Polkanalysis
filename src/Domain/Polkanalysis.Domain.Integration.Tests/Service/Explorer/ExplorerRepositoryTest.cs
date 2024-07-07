@@ -7,6 +7,7 @@ using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
@@ -26,7 +27,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             _currentMetaData = new CurrentMetaData(
                 _substrateService, Substitute.For<ILogger<CurrentMetaData>>());
 
-            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>());
+            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
 
             _substrateDecoding = new SubstrateDecoding(
                 new EventNodeMapping(),

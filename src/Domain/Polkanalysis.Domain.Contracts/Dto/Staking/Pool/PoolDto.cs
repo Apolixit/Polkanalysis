@@ -16,12 +16,12 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
     {
         public required string Name { get; set; }
         public required PoolGlobalSettingsDto PoolGlobalSettings { get; set; }
-        public required UserAddressDto StashAccount { get; set; }
-        public required UserAddressDto RewardAccount { get; set; }
-        public required UserAddressDto CreatorAccount { get; set; }
-        public required UserAddressDto RootAccount { get; set; }
-        public required UserAddressDto? TogglerAccount { get; set; }
-        public required UserAddressDto NominatorAccount { get; set; }
+        public required UserIdentityDto StashAccount { get; set; }
+        public required UserIdentityDto RewardAccount { get; set; }
+        public required UserIdentityDto CreatorAccount { get; set; }
+        public required UserIdentityDto RootAccount { get; set; }
+        public required UserIdentityDto? TogglerAccount { get; set; }
+        public required UserIdentityDto NominatorAccount { get; set; }
         public required double RewardPool { get; set; }
         public required double TotalBonded { get; set; }
         public uint MemberCount { get; set; }

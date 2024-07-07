@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         public string? ParentHash { get; set; }
         public required string StateRoot { get; set; }
         public required string ExtrinsicsRoot { get; set; }
-        public UserAddressDto? Validator { get; set; }
+        public UserIdentityDto? Validator { get; set; }
         public uint SpecVersion { get; set; }
 
         /// <summary>

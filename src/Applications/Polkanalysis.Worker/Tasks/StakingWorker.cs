@@ -99,7 +99,7 @@ namespace Polkanalysis.Worker.Tasks
                 }
                 else
                 {
-                    _logger.LogError("[{workerName}] [EraStakersCommand] Era {eraId} fail to insert", nameof(StakingWorker), i);
+                    _logger.LogWarning("[{workerName}] [EraStakersCommand] Era {eraId} fail to insert", nameof(StakingWorker), i);
                 }
             }
         }

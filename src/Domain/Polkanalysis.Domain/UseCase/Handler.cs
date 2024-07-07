@@ -39,6 +39,15 @@ namespace Polkanalysis.Domain.UseCase
             _cache = cache;
         }
 
+        protected ErrorTag<ErrorResult> UseCaseError(ErrorType errorType, string reason, ErrorCriticity criticity)
+        {
+            return UseCaseError(new ErrorResult()
+            {
+                Status = errorType,
+                Description = reason,
+                Criticity = criticity
+            });
+        }
         protected ErrorTag<ErrorResult> UseCaseError(ErrorType errorType, string reason)
         {
             return UseCaseError(new ErrorResult() {

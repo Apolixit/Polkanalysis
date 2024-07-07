@@ -18,6 +18,6 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
         public double TotalBonded { get; set; }
         public double RewardPool { get; set; }
         public DateTime? CreationDate { get; set; }
-        public UserAddressDto Depositor { get; set; } = UserAddressDto.Empty;
+        public UserIdentityDto Depositor { get; set; } = UserIdentityDto.Empty;
     }
 }

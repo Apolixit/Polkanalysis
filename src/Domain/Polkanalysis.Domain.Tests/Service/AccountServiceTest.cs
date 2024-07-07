@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Core;
@@ -40,7 +41,7 @@ namespace Polkanalysis.Domain.Tests.Service
             // Always a valid Substrate address
             _substrateService.IsValidAccountAddress("16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS").Returns(true);
 
-            _accountService = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>());
+            _accountService = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
         }
 
         [Test, Ignore("Need to mock Query")]
@@ -257,7 +258,7 @@ namespace Polkanalysis.Domain.Tests.Service
                     judgements
                 ));
 
-            var aliceDto = await _accountService.GetAccountAddressAsync(address, CancellationToken.None);
+            var aliceDto = await _accountService.GetAccountIdentityAsync(address, CancellationToken.None);
 
             Assert.That(aliceDto.Address, Is.EqualTo(address));
             Assert.That(aliceDto.PublicKey, Is.EqualTo(Utils.Bytes2HexString(Utils.GetPublicKeyFrom(address))));
@@ -269,8 +270,8 @@ namespace Polkanalysis.Domain.Tests.Service
         {
             Assert.Multiple(() =>
             {
-                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountAddressAsync((string)null!, CancellationToken.None));
-                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountAddressAsync(string.Empty, CancellationToken.None));
+                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountIdentityAsync((string)null!, CancellationToken.None));
+                Assert.ThrowsAsync<ArgumentNullException>(async () => await _accountService.GetAccountIdentityAsync(string.Empty, CancellationToken.None));
                 //Assert.ThrowsAsync<AddressException>(async () => await _accountService.GetAccountIdentityAsync("InvalidAddressHash", CancellationToken.None));
             });
         }
