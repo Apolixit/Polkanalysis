@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using NSubstitute;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service
 {
@@ -16,7 +17,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
         [SetUp]
         public void Setup()
         {
-            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>());
+            _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
         }
 
         [Test]
@@ -44,6 +45,16 @@ namespace Polkanalysis.Domain.Integration.Tests.Service
 
             Assert.That(res, Is.Not.Null);
             Assert.That(res.Count(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        [TestCase("11VR4pF6c7kfBhfmuwwjWY3FodeYBKWx7ix2rsRCU2q6hqJ")]
+        public async Task GetIdentityFromAccount_ShouldSuceedAsync(string accountAddress)
+        {
+            var res = await _accountRepository.GetAccountIdentityAsync(accountAddress, CancellationToken.None);
+            
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.Name, Is.Not.EqualTo(res.Address));
         }
     }
 }

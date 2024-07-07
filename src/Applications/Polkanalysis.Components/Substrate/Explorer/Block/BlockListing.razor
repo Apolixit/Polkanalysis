@@ -10,23 +10,24 @@
 <DataCall MediatorReq="mediatorRequest" Context="Blocks">
     <div class="card">
         <div class="card-body">
-            <ComponentListView Elems="Blocks">
+            <BlockTable Blocks="Blocks" />
+            @* <ComponentListView Elems="Blocks">
                 <CardView>
                     <BlockItemCard Block="context" />
                 </CardView>
                 <TableView>
                     <BlockTable Blocks="context" />
                 </TableView>
-            </ComponentListView>
+            </ComponentListView> *@
         </div>
     </div>
 </DataCall>
 
 @code {
-    private Task<Result<IEnumerable<BlockLightDto>, ErrorResult>>? mediatorRequest;
+    private Task<Result<IQueryable<BlockLightDto>, ErrorResult>>? mediatorRequest;
 
-    protected async override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        mediatorRequest = _mediator.Send(new BlocksQuery() { NbLastBlocksToFetch = 100 }, CancellationToken.None);
+        mediatorRequest = _mediator.Send(new BlockSearchQuery(), CancellationToken.None);
     }
 }

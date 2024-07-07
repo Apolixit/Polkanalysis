@@ -128,7 +128,8 @@ namespace Polkanalysis.Domain.Runtime
             return new BlockLightDto()
             {
                 Hash = blockHash,
-                Number = blockData.Block.Header.Number.Value,
+                Number = (uint)blockData.Block.Header.Number.Value,
+                BlockDate = blockDate,
                 Status = GlobalStatusDto.BlockStatusDto.Broadcasted,
                 When = DisplayElapsedTime(blockDate)
             };

@@ -12,9 +12,28 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Caching.Distributed;
+using FluentValidation;
+using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
+using System.Threading;
 
 namespace Polkanalysis.Domain.UseCase.Staking.Era
 {
+    public class EraStakersCommandValidator : AbstractValidator<EraStakersCommand>
+    {
+        public EraStakersCommandValidator(ISubstrateService substrateService)
+        {
+            RuleFor(x => x.EraId)
+                .GreaterThan((uint)0)
+                .MustAsync(async (x, token) =>
+                {
+                    // Just check if the current era is not > 76 era old, otherwise it is ok
+                    var currentEra = await substrateService.Storage.Staking.CurrentEraAsync(token);
+
+                    return currentEra > x + 76;
+                });
+        }
+    }
+
     public class EraStakersCommandHandler : Handler<EraStakersCommandHandler, bool, EraStakersCommand>
     {
         private readonly ISubstrateService _substrateService;
@@ -38,8 +57,11 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
 
             if (result == null || !result.Any())
             {
-                _logger.LogError($"Era {eraId.Value} - Request for all EraStackers failed and give no answer");
-                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"No data");
+                // Just check if the current era is not > 100 era old, otherwise it is ok
+                var currentEra = await _substrateService.Storage.Staking.CurrentEraAsync(cancellationToken);
+
+                _logger.LogWarning($"Era {eraId} - Request for all EraStackers failed and give no answer", eraId.Value);
+                return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Era {eraId.Value} - Request for all EraStackers failed and give no answer");
             }
             else
             {

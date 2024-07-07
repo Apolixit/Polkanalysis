@@ -54,7 +54,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         {
             var blockInfo = await _explorerService.GetBlockLightAsync(request.BlockNumber, cancellationToken);
 
-            if (blockInfo.Validator is null)
+            if (blockInfo.ValidatorAddress is null)
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Block number {request.BlockNumber} has no validator");
             if (_db.BlockInformation.Any(x => x.BlockNumber == request.BlockNumber))
             {
@@ -66,11 +66,12 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             {
                 BlockchainName = _substrateService.BlockchainName,
                 BlockHash = blockInfo.Hash.Value,
+                BlockDate = await _explorerService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken),
                 BlockNumber = request.BlockNumber,
                 EventsCount = blockInfo.NbEvents,
                 ExtrinsicsCount = blockInfo.NbExtrinsics,
                 LogsCount = blockInfo.NbLogs,
-                ValidatorAddress = blockInfo.Validator.SubstrateAddress
+                ValidatorAddress = blockInfo.ValidatorAddress
             });
 
             var nbRows = await _db.SaveChangesAsync();

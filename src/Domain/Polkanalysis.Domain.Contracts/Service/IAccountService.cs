@@ -28,7 +28,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="account"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<UserAddressDto> GetAccountAddressAsync(SubstrateAccount account, CancellationToken cancellationToken);
+        public Task<UserIdentityDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get the account address and the public key
@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="accountAddress"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<UserAddressDto> GetAccountAddressAsync(string accountAddress, CancellationToken cancellationToken);
+        public Task<UserIdentityDto> GetAccountIdentityAsync(string accountAddress, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get the account type, what is it, a Nominator, a validator, a pool member, a system account etc.

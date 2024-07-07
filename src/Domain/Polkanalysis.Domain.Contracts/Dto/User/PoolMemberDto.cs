@@ -9,7 +9,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
 {
     public class PoolMemberDto
     {
-        public required UserAddressDto Account { get; set; }
+        public required UserIdentityDto Account { get; set; }
         public required double Bonded { get; set; }
         public double Claimable { get; set; } = 0;
     }

@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Dto.User
 {
-    public class UserAddressDto
+    public class UserIdentityDto
     {
         public required string Name { get; set; }
         public required string Address { get; set; }
+        public UserIdentityTypeDto IdentityType { get; set; } = UserIdentityTypeDto.Anonymous;
         public string SubstrateAddress { 
             get
             {
@@ -18,10 +19,18 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
             }
         }
         public string PublicKey { get; set; } = string.Empty;
-        public static UserAddressDto Empty = new UserAddressDto() { Name = " - ", Address = " - " };
+        public static UserIdentityDto Empty = new UserIdentityDto() { Name = " - ", Address = " - ", IdentityType = UserIdentityTypeDto.Anonymous };
         public override string ToString()
         {
             return Name;
         }
+    }
+
+    public enum UserIdentityTypeDto
+    {
+        Anonymous,
+        IdentitySet,
+        SuperOf,
+        SubOf
     }
 }

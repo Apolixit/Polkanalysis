@@ -1,55 +1,61 @@
-﻿@using Polkanalysis.Domain.Contracts.Dto.Block
+﻿@using Polkanalysis.Domain.Contracts.Common.Search
+@using Polkanalysis.Domain.Contracts.Dto.Block
+@using Polkanalysis.Infrastructure.Database.Repository
 @inject NavigationManager _navigationManager;
 
 <FluentDataGrid Items="@FilteredBlocks()"
                 ResizableColumns=true
                 Pagination="@pagination"
                 TGridItem="BlockLightDto"
-                ShowHover="true">
+                ShowHover="true"
+                GridTemplateColumns="auto 25% 25% auto auto auto auto">
     <PropertyColumn Property="@(c => c.Number)" Title="Num" Sortable="true" Align="Align.Start">
         <ColumnOptions>
             <div class="search-box">
-                <FluentNumberField 
-                    Autofocus=true 
-                    @bind-Value=blockNumFilter
-                                   @oninput="@(e => blockNumFilter = int.TryParse(e.Value?.ToString(), out int tmp) ? (int?)tmp : null)"
-                                   AfterBindValue="HandleClear" />
+                <Polkanalysis.Components.Components.Search.NumberCriteriaFilterUint @bind-Value="BlockNumberCriteria" />
             </div>
         </ColumnOptions>
     </PropertyColumn>
-    <PropertyColumn Property="@(c => c.Hash)" Title="Transferable" Sortable="true" Align="Align.Center">
+    <PropertyColumn Property="@(c => c.Hash)" Title="Hash" Sortable="true" Align="Align.Center" Style="text-overflow:ellipsis; overflow:hidden; word-wrap:break-word;">
         <ColumnOptions>
             <div class="search-box">
-                <FluentSearch 
-                    type="search" 
-                    Autofocus=true 
-                    @bind-Value=blockHashFilter
-                              @oninput="@(e => blockHashFilter = e?.ToString() ?? "")"
-                              AfterBindValue="HandleClear" 
-                    Placeholder="Block hash" />
+                <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="BlockHashCriteria" />
             </div>
         </ColumnOptions>
     </PropertyColumn>
-    <PropertyColumn Property="@(c => c.Validator.Name)" Title="Validator" Sortable="true" Align="Align.Center">
+    <PropertyColumn Property="@(c => c.ValidatorAddress)" Title="Validator" Sortable="true" Align="Align.Center" Style="text-overflow:ellipsis;">
         <ColumnOptions>
             <div class="search-box">
-                <FluentSearch type="search"
-                              Autofocus=true
-                              @bind-Value=blockValidatorFilter
-                              @oninput="@(e => blockValidatorFilter = e?.ToString() ?? "")"
-                              AfterBindValue="HandleClear"
-                              Placeholder="Validator name" />
+                <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="BlockValidatorCriteria" />
             </div>
         </ColumnOptions>
     </PropertyColumn>
-    <PropertyColumn Property="@(c => c.NbEvents)" Title="Events" Sortable="true" Align="Align.End" />
-    <PropertyColumn Property="@(c => c.NbExtrinsics)" Title="Extrinsics" Sortable="true" Align="Align.End" />
-    <PropertyColumn Property="@(c => c.NbLogs)" Title="Logs" Sortable="true" Align="Align.End" />
+    <PropertyColumn Property="@(c => c.NbEvents)" Title="Events" Sortable="true" Align="Align.End">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.NumberCriteriaFilterUint @bind-Value="BlockNbEventsCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.NbExtrinsics)" Title="Extrinsics" Sortable="true" Align="Align.End">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.NumberCriteriaFilterUint @bind-Value="BlockNbExtrinsicsCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.NbLogs)" Title="Logs" Sortable="true" Align="Align.End">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.NumberCriteriaFilterUint @bind-Value="BlockNbLogsCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
     <PropertyColumn Property="@(c => c.When)" Title="When" Sortable="true" Align="Align.End" />
     <TemplateColumn>
         <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToBlockDetails(context.Number))">
         </FluentButton>
-    </TemplateColumn>
+    </TemplateColumn> 
 </FluentDataGrid>
 
 <FluentPaginator State="@pagination">
@@ -62,20 +68,16 @@
 </FluentPaginator>
 
 @code {
-    [Parameter] public IEnumerable<BlockLightDto>? Blocks { get; set; }
+    [Parameter] public IQueryable<BlockLightDto>? Blocks { get; set; }
     PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
 
-    int? blockNumFilter = null;
-    string blockHashFilter = string.Empty;
-    string blockValidatorFilter = string.Empty;
+    public NumberCriteria<uint>? BlockNumberCriteria = null;
+    public NumberCriteria<uint>? BlockNbEventsCriteria = null;
+    public NumberCriteria<uint>? BlockNbExtrinsicsCriteria = null;
+    public NumberCriteria<uint>? BlockNbLogsCriteria = null;
 
-    private void HandleHashFilter(ChangeEventArgs args)
-    {
-        if (args.Value is string value)
-        {
-            blockHashFilter = value;
-        }
-    }
+    public NumberCriteria<string>? BlockHashCriteria = null;
+    public NumberCriteria<string>? BlockValidatorCriteria = null;
 
     protected void GoToBlockDetails(ulong blockId)
     {
@@ -85,14 +87,24 @@
     public IQueryable<BlockLightDto> FilteredBlocks()
     {
         IQueryable<BlockLightDto> queryable = Blocks!.AsQueryable();
-        if (!string.IsNullOrWhiteSpace(blockHashFilter))
-        {
-            queryable = queryable.Where(x => x.Hash.Value.Contains(blockHashFilter, StringComparison.CurrentCultureIgnoreCase));
-        }
-        if (!string.IsNullOrWhiteSpace(blockValidatorFilter))
-        {
-            queryable = queryable.Where(x => x.Hash.Value.Contains(blockValidatorFilter, StringComparison.CurrentCultureIgnoreCase));
-        }
+
+        if (BlockNumberCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockNumberCriteria, x => x.Number);
+
+        if (BlockHashCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockHashCriteria, x => x.Hash.Value);
+
+        if (BlockValidatorCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockValidatorCriteria, x => x.ValidatorAddress!);
+
+        if (BlockNbEventsCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockNbEventsCriteria, x => x.NbEvents);
+
+        if (BlockNbExtrinsicsCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockNbExtrinsicsCriteria, x => x.NbExtrinsics);
+
+        if (BlockNbLogsCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockNbLogsCriteria, x => x.NbLogs);
 
         return queryable;
     }

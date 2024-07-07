@@ -39,8 +39,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
             _financialService = new FinancialService(Substitute.For<ISubstrateService>(), _substrateDbContext, Substitute.For<ILogger<FinancialService>>());
             _accountService = Substitute.For<IAccountService>();
 
-            _accountService.GetAccountAddressAsync(Alice.ToString(), CancellationToken.None)
-                .Returns(new UserAddressDto() { 
+            _accountService.GetAccountIdentityAsync(Alice.ToString(), CancellationToken.None)
+                .Returns(new UserIdentityDto() { 
                     Address = Alice.ToString(), 
                     Name = "Alice", 
                     PublicKey = Utils.Bytes2HexString(Alice.Bytes) });

@@ -11,6 +11,9 @@ using Polkanalysis.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Contracts.Common;
+using Microsoft.Extensions.Caching.Distributed;
+using System.Text.Json;
+using Polkanalysis.Domain.Internal;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -19,9 +22,10 @@ namespace Polkanalysis.Domain.Service
         private readonly ISubstrateService _substrateNodeRepository;
         private readonly SubstrateDbContext _db;
         private readonly ILogger<AccountService> _logger;
+        protected readonly IDistributedCache _cache;
 
         public AccountService(
-            ISubstrateService substrateNodeRepository, SubstrateDbContext db, ILogger<AccountService> logger)
+            ISubstrateService substrateNodeRepository, SubstrateDbContext db, ILogger<AccountService> logger, IDistributedCache cache)
         {
             _substrateNodeRepository = substrateNodeRepository;
 
@@ -30,6 +34,7 @@ namespace Polkanalysis.Domain.Service
 
             _db = db;
             _logger = logger;
+            _cache = cache;
         }
 
         public IEnumerable<IPalletStorage?> RequiredStorage => new List<IPalletStorage?>() {
@@ -61,7 +66,7 @@ namespace Polkanalysis.Domain.Service
             {
                 accountsDto.Add(new AccountLightDto()
                 {
-                    Address = await GetAccountAddressAsync(account, cancellationToken),
+                    Address = await GetAccountIdentityAsync(account, cancellationToken),
                     Balances = await GetBalancesAsync(account, cancellationToken)
                 });
             }
@@ -98,7 +103,7 @@ namespace Polkanalysis.Domain.Service
             var nonTransferable = new List<(CurrencyDto, string)>();
             if (locks != null && locks.Value.Any())
             {
-                foreach(var lockBalance in locks.Value)
+                foreach (var lockBalance in locks.Value)
                 {
                     string reason = lockBalance.Id.Display();
                     switch (lockBalance.Id.Display())
@@ -107,7 +112,7 @@ namespace Polkanalysis.Domain.Service
                         case "democrac": reason = "Democracy"; break;
                         default:
                             _logger.LogWarning("[{serviceName}] Balances.Locks.Id = {lockBalancesId} is not handled correctly", nameof(AccountService), lockBalance.Id.Display());
-                            reason = lockBalance.Id.Display(); 
+                            reason = lockBalance.Id.Display();
                             break;
                     }
 
@@ -116,8 +121,8 @@ namespace Polkanalysis.Domain.Service
             }
 
             // Nb of token in the pool
-            CurrencyDto pool = poolMember is null ? 
-                CurrencyDto.Empty : 
+            CurrencyDto pool = poolMember is null ?
+                CurrencyDto.Empty :
                 new CurrencyDto(poolMember.Points.Value.ToDouble(chainInfo.TokenDecimals), lastUsdValue?.Price);
 
             var balances = new BalancesDto()
@@ -153,7 +158,7 @@ namespace Polkanalysis.Domain.Service
 
             var accountNextindex = await _substrateNodeRepository.Rpc.System.AccountNextIndexAsync(account.ToStringAddress((short)chainInfo.Ss58Format)
                 , token);
-            
+
             var userInformation = new UserInformationsDto();
             if (identity != null && identity.Info != null)
             {
@@ -178,7 +183,7 @@ namespace Polkanalysis.Domain.Service
             var accountDto = new AccountDto()
             {
                 InformationsDto = userInformation,
-                Address = await GetAccountAddressAsync(account, token),
+                Address = await GetAccountIdentityAsync(account, token),
                 AccountIndex = accountNextindex,
                 Nonce = accountInfo.Nonce.Value,
                 Balances = await GetBalancesAsync(account, token),
@@ -188,21 +193,57 @@ namespace Polkanalysis.Domain.Service
             return accountDto;
         }
 
-        public Task<UserAddressDto> GetAccountAddressAsync
+        public Task<UserIdentityDto> GetAccountIdentityAsync
             (string accountAddress, CancellationToken cancellationToken)
         {
             EnsureAddressIsValid(accountAddress);
-            return GetAccountAddressAsync(new SubstrateAccount(accountAddress), cancellationToken);
+            return GetAccountIdentityAsync(new SubstrateAccount(accountAddress), cancellationToken);
         }
 
-        public async Task<UserAddressDto> GetAccountAddressAsync(SubstrateAccount account, CancellationToken cancellationToken)
+        public async Task<UserIdentityDto> GetAccountIdentityAsync(SubstrateAccount account, CancellationToken cancellationToken)
         {
-            var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
-            var identity = await _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, cancellationToken);
+            return await CacheManager.HandleFromCacheAsync(
+                _cache,
+                $"AccountIdentity_{account.ToStringAddress()}",
+                () =>
+                {
+                    return GetAccountIdentityInnerAsync(account, UserIdentityTypeDto.Anonymous, cancellationToken);
+                },
+            (res) => { return res is not null; },
+            30,
+            _logger,
+            cancellationToken);
+        }
+
+        private async Task<UserIdentityDto> GetAccountIdentityInnerAsync(SubstrateAccount account, UserIdentityTypeDto type, CancellationToken cancellationToken)
+        {
+            var (chainInfo, identity, identitySuper) = await Helper.WaiterHelper.WaitAndReturnAsync(
+                _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken),
+                _substrateNodeRepository.Storage.Identity.IdentityOfAsync(account, cancellationToken),
+                _substrateNodeRepository.Storage.Identity.SuperOfAsync(account, cancellationToken)
+            );
+
             var blockchainAddress = account.ToStringAddress((short)chainInfo.Ss58Format);
 
             // Default = it's the basic address
             string name = blockchainAddress;
+
+            if (identitySuper != null)
+            {
+                type = UserIdentityTypeDto.SubOf;
+                var parentAccount = identitySuper.Value[0].As<SubstrateAccount>();
+                var identityOfSuper = await _substrateNodeRepository.Storage.Identity.IdentityOfAsync(parentAccount, cancellationToken);
+
+                // It cannot be null, otherwise it mean that substrate tells us that this account is a sub account but no parent
+                // identity has been set. Should never happened, but let's log just in case of
+                if (identityOfSuper is null) 
+                {
+                    _logger.LogError("[{serviceName}] {subAccountAddress} should be SubOf {superAccountAddress} but parent account is not set.", nameof(AccountService), account.ToPolkadotAddress(), parentAccount.ToPolkadotAddress());
+                }
+
+                name = identityOfSuper!.Info.Display.ToHuman();
+            }
+
             if (identity != null && identity.Info != null)
             {
                 var identityDisplay = identity.Info.Display.ToHuman();
@@ -211,13 +252,16 @@ namespace Polkanalysis.Domain.Service
                 {
                     name = identityDisplay;
                 }
+
+                type = type == UserIdentityTypeDto.Anonymous ? UserIdentityTypeDto.IdentitySet : type;
             }
 
-            var userAddressDto = new UserAddressDto()
+            var userAddressDto = new UserIdentityDto()
             {
                 Name = name,
                 Address = blockchainAddress,
-                PublicKey = Utils.Bytes2HexString(Utils.GetPublicKeyFrom(account.ToStringAddress()))
+                PublicKey = Utils.Bytes2HexString(Utils.GetPublicKeyFrom(account.ToStringAddress())),
+                IdentityType = type
             };
 
             return userAddressDto;

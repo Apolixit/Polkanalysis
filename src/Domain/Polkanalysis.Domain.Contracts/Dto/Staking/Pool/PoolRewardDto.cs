@@ -11,8 +11,8 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
     public class PoolRewardDto
     {
         public required IEnumerable<EventDto> RewardEvents { get; set; }
-        public required UserAddressDto ValidatorStashAccount { get; set; }
-        public required UserAddressDto RewardAccount { get; set; }
+        public required UserIdentityDto ValidatorStashAccount { get; set; }
+        public required UserIdentityDto RewardAccount { get; set; }
         public required uint EraId { get; set; }
         public double RewardAmount { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
@@ -46,33 +47,36 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedEventsCommand request, CancellationToken cancellationToken)
         {
-            // Is this event has to be insert in database ?
             var eventFound = _eventsFactory.TryFind(request.EventNode.Module, request.EventNode.Method);
             if (eventFound is null)
             {
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"{request.EventNode.Module} | {request.EventNode.Method} is not linked to the database");
             }
 
-            // Is this event already in database ?
-            var alreadyInserted = _dbContext.EventManagerModel.FirstOrDefault(x =>
-                x.BlockchainName == _polkadotRepository.BlockchainName &&
-                x.ModuleName == request.GetModuleName() &&
-                x.ModuleEvent == request.GetEventName());
-            if(alreadyInserted is not null && alreadyInserted.LastOccurenceScannedBlockId >= request.BlockNumber.Value)
+            var moduleName = request.GetModuleName();
+            var eventName = request.GetEventName();
+            var blockchainName = _polkadotRepository.BlockchainName;
+
+            var alreadyInserted = await _dbContext.EventManagerModel
+                .FirstOrDefaultAsync(x =>
+                    x.BlockchainName == blockchainName &&
+                    x.ModuleName == moduleName &&
+                    x.ModuleEvent == eventName, cancellationToken);
+
+            if(alreadyInserted != null && alreadyInserted.LastOccurenceScannedBlockId >= request.BlockNumber.Value)
             {
                 return Helpers.Ok(true);
             }
 
             var databaseModel = new EventModel(
-                _polkadotRepository.BlockchainName,
+                blockchainName,
                 request.BlockNumber.Value,
                 request.CurrentDate,
                 request.EventIndex,
-                request.GetModuleName(),
-                request.GetEventName());
+                moduleName,
+                eventName);
 
             var subEvent = (BaseEnumType)request.Ev.Event.Value!;
-
             await _eventsFactory.ExecuteInsertAsync(
                 request.GetRuntimeEvent(),
                 request.GetRuntimeMethod(),
@@ -82,50 +86,62 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
             LogEventManager((int)request.BlockNumber.Value,
                             (int)request.BlockNumber.Value,
-                            eventFound.GetModule().moduleName,
-                            eventFound.GetModule().moduleEvent);
+                            moduleName,
+                            eventName);
 
-            // Every 1000 blocks, insert events into EventManager table to keep track of analyzed events
+            //if (alreadyInserted == null)
+            //{
+            //    alreadyInserted = new EventManagerModel
+            //    {
+            //        BlockchainName = blockchainName,
+            //        ModuleName = moduleName,
+            //        ModuleEvent = eventName,
+            //        LastOccurenceScannedBlockId = (int)request.BlockNumber.Value
+            //    };
+            //    _dbContext.EventManagerModel.Add(alreadyInserted);
+            //}
+            //else
+            //{
+            //    alreadyInserted.LastOccurenceScannedBlockId = (int)request.BlockNumber.Value;
+            //}
+
             if (request.BlockNumber.Value % 1000 == 0)
             {
                 _logger.LogInformation("Block number {blockNum} % 1000. Insert events into EventManager table.", request.BlockNumber.Value);
                 foreach (var mapped in _eventsFactory.Mapped)
                 {
-                    LogEventManager(null,
-                            (int)request.BlockNumber.Value,
-                            mapped.GetModule().moduleName,
-                            mapped.GetModule().moduleEvent);
+                    LogEventManager(null, (int)request.BlockNumber.Value, mapped.GetModule().moduleName, mapped.GetModule().moduleEvent);
                 }
             }
 
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return Helpers.Ok(true);
         }
 
-        /// <summary>
-        /// Log the event into the EventManager table to keep track of scanned events
-        /// </summary>
-        /// <param name="lastOccurence"></param>
-        /// <param name="lastScan"></param>
-        /// <param name="moduleName"></param>
-        /// <param name="moduleEvent"></param>
         private void LogEventManager(int? lastOccurence, int lastScan, string moduleName, string moduleEvent)
         {
-            var model = new EventManagerModel()
+            var model = new EventManagerModel
             {
                 BlockchainName = _polkadotRepository.BlockchainName,
                 LastScanBlockId = lastScan,
                 ModuleName = moduleName,
                 ModuleEvent = moduleEvent,
+                LastOccurenceScannedBlockId = lastOccurence ?? 0 // Assuming default value for LastOccurenceScannedBlockId is 0
             };
-            if (lastOccurence is not null)
-                model.LastOccurenceScannedBlockId = lastOccurence.Value;
 
-            if(!_dbContext.EventManagerModel.Any(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent))
+            var existingModel = _dbContext.EventManagerModel
+                .FirstOrDefault(x => x.BlockchainName == model.BlockchainName && x.ModuleName == model.ModuleName && x.ModuleEvent == model.ModuleEvent);
+
+            if (existingModel == null)
+            {
                 _dbContext.EventManagerModel.Add(model);
+            }
             else
-                _dbContext.EventManagerModel.Update(model);
+            {
+                existingModel.LastScanBlockId = model.LastScanBlockId;
+                existingModel.LastOccurenceScannedBlockId = model.LastOccurenceScannedBlockId;
+            }
         }
     }
 }

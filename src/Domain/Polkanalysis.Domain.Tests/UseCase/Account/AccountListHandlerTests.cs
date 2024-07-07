@@ -35,21 +35,21 @@ namespace Polkanalysis.Domain.Tests.UseCase.Account
             {
                 new AccountLightDto()
                 {
-                    Address = new UserAddressDto() { Name = "Alice", Address = Alice.ToString() },
+                    Address = new UserIdentityDto() { Name = "Alice", Address = Alice.ToString() },
                     Balances = new Contracts.Dto.Balances.BalancesDto()
                     {
                     }
                 },
                 new AccountLightDto()
                 {
-                    Address = new UserAddressDto() { Name = "Bob", Address = Bob.ToString() },
+                    Address = new UserIdentityDto() { Name = "Bob", Address = Bob.ToString() },
                     Balances = new Contracts.Dto.Balances.BalancesDto()
                     {
                     }
                 },
                 new AccountLightDto()
                 {
-                    Address = new UserAddressDto() { Name = "RandomAccount", Address = RandomAccount.ToString() },
+                    Address = new UserIdentityDto() { Name = "RandomAccount", Address = RandomAccount.ToString() },
                     Balances = new Contracts.Dto.Balances.BalancesDto()
                     {
                     }
