@@ -1,42 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 @using Polkanalysis.Components.Dto;
 
-@*<nav>
-    <ol class="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
-        <li class="breadcrumb-item">
-            <NavLink class="link-body-emphasis" href="/">
-                <i class="bi bi-house"></i>
-                <span class="visually-hidden">Home</span>
-            </NavLink>
-        </li>
-        @if (Elements.Any())
-        {
-            @if (Elements.Count() > 1)
-            {
-                @foreach (var elem in Elements.Take(Elements.Count() - 1))
-                {
-                    <li class="breadcrumb-item">
-                        @if (!string.IsNullOrEmpty(elem.Url))
-                        {
-                            <NavLink class="link-body-emphasis fw-semibold text-decoration-none" href="@elem.Url">
-                                @elem.Name
-                            </NavLink>
-                        }
-                        else
-                        {
-                            <text>@elem.Name</text>
-                        }
-                    </li>
-                }
-            }
-
-            <li class="breadcrumb-item active">
-                @Elements.Last().Name
-            </li>
-        }
-    </ol>
-</nav>*@
-
 <FluentBreadcrumb>
     <FluentBreadcrumbItem Href="/">
         Home
@@ -49,33 +13,6 @@
         }
     }
 </FluentBreadcrumb>
-@* 
-<div class="row my-3">
-    <div class="col">
-        <span>
-            <NavLink href="/">
-                <i class="bi bi-house"></i> Home
-            </NavLink>
-        </span>
-        @if (Elements.Any())
-        {
-            @foreach (var elem in Elements)
-            {
-                <span> / </span>
-                if (!string.IsNullOrEmpty(elem.Url))
-                {
-                    <NavLink href="@elem.Url">
-                        @elem.Name
-                    </NavLink>
-                }
-                else
-                {
-                    <text>@elem.Name</text>
-                }
-            }
-        }
-    </div>
-</div> *@
 
 @code {
     [Parameter]

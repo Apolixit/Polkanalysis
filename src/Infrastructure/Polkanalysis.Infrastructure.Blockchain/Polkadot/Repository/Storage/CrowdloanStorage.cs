@@ -32,7 +32,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.CrowdloanStorage.FundsAsync(input!, token));
         }
 
-        public async Task<QueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token)
+        public async Task<IQueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.CrowdloanStorage.FundsInputType(version);

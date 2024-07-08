@@ -88,7 +88,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<QueryStorage<SubstrateAccount, PoolMember>> PoolMembersQueryAsync(CancellationToken token);
+        public Task<IQueryStorage<SubstrateAccount, PoolMember>> PoolMembersQueryAsync(CancellationToken token);
 
         /// <summary>
         ///  Storage for bonded pools.
@@ -104,7 +104,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPool
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<QueryStorage<U32, BondedPoolInner>> BondedPoolsQueryAsync(CancellationToken token);
+        public Task<IQueryStorage<U32, BondedPoolInner>> BondedPoolsQueryAsync(CancellationToken token);
 
         /// <summary>
         ///  Reward pools. This is where there rewards for each pool accumulate. When a members payout

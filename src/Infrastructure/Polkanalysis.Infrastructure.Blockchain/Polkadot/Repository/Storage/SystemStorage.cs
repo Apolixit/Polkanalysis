@@ -41,7 +41,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.SystemStorage.AccountAsync(accountId32, token));
         }
 
-        public async Task<QueryStorage<SubstrateAccount, AccountInfo>> AccountsQueryAsync(CancellationToken token)
+        public async Task<IQueryStorage<SubstrateAccount, AccountInfo>> AccountsQueryAsync(CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var sourceKeyType = AccountId32Base.TypeByVersion(version);

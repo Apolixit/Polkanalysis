@@ -23,7 +23,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.NominationPoolsStorage.BondedPoolsAsync(poolId, token));
         }
 
-        public async Task<QueryStorage<U32, BondedPoolInner>> BondedPoolsQueryAsync(CancellationToken token)
+        public async Task<IQueryStorage<U32, BondedPoolInner>> BondedPoolsQueryAsync(CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.NominationPoolsStorage.BondedPoolsInputType(version);
@@ -105,7 +105,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.NominationPoolsStorage.PoolMembersAsync(accountId32, token));
         }
 
-        public async Task<QueryStorage<SubstrateAccount, PoolMember>> PoolMembersQueryAsync(CancellationToken token)
+        public async Task<IQueryStorage<SubstrateAccount, PoolMember>> PoolMembersQueryAsync(CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.NominationPoolsStorage.PoolMembersInputType(version);

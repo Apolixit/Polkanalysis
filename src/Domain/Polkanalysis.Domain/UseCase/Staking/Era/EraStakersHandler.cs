@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
                     // Just check if the current era is not > 76 era old, otherwise it is ok
                     var currentEra = await substrateService.Storage.Staking.CurrentEraAsync(token);
 
-                    return currentEra > x + 76;
+                    return currentEra <= x + 76;
                 });
         }
     }
@@ -57,10 +57,7 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
 
             if (result == null || !result.Any())
             {
-                // Just check if the current era is not > 100 era old, otherwise it is ok
-                var currentEra = await _substrateService.Storage.Staking.CurrentEraAsync(cancellationToken);
-
-                _logger.LogWarning($"Era {eraId} - Request for all EraStackers failed and give no answer", eraId.Value);
+                _logger.LogWarning("Era {eraId} - Request for all EraStackers failed and give no answer", eraId.Value);
                 return UseCaseError(ErrorResult.ErrorType.BusinessError, $"Era {eraId.Value} - Request for all EraStackers failed and give no answer");
             }
             else
@@ -92,7 +89,6 @@ namespace Polkanalysis.Domain.UseCase.Staking.Era
 
                     if(canBeInserted)
                     {
-                        
                         // Let's link the nominators to the validator
                         exposure = await _substrateService.Storage.Staking.ErasStakersAsync(new BaseTuple<U32, SubstrateAccount>(eraId, validatorAccount), cancellationToken);
 

@@ -37,15 +37,19 @@ namespace Polkanalysis.Domain.Internal
             if (!string.IsNullOrEmpty(cachedData))
             {
                 logger.LogDebug($"Cache hit for key: {cacheKey}");
-                var cachedResult = JsonSerializer.Deserialize<TResult>(cachedData);
 
-                if (cachedResult is null)
+                try
+                {
+                    var cachedResult = JsonSerializer.Deserialize<TResult>(cachedData);
+                    
+                    if(cachedResult is not null)
+                    {
+                        return cachedResult;
+                    }
+                }
+                catch(JsonException)
                 {
                     logger.LogError($"Failed to deserialize cached data for key: {cacheKey}");
-                }
-                else
-                {
-                    return cachedResult;
                 }
             }
             logger.LogDebug($"Cache miss for key: {cacheKey}");

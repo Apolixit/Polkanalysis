@@ -3,7 +3,25 @@ using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
 {
-    public class QueryStorage<TKey, TStorage>
+    /// <summary>
+    /// Represents a query storage which is basically querying the full storage of an element of a blockchain node.
+    /// </summary>
+    /// <typeparam name="TKey">The type of the key.</typeparam>
+    /// <typeparam name="TStorage">The type of the storage.</typeparam>
+    public interface IQueryStorage<TKey, TStorage>
+        where TKey : IType, new()
+        where TStorage : IType, new()
+    {
+        QueryStorageFunction QueryStorageFunction { get; set; }
+        QueryFilterFunction QueryFilterFunction { get; set; }
+        Func<QueryStorageFunction, QueryFilterFunction, CancellationToken, Task<List<(TKey, TStorage)>>> StorageFunctionAsync { get; set; }
+        Task<List<(TKey, TStorage)>> ExecuteAsync(CancellationToken cancellationToken);
+        IQueryStorage<TKey, TStorage> Take(int take);
+        IQueryStorage<TKey, TStorage> Skip(int skip);
+        IQueryStorage<TKey, TStorage> ResetFilters();
+    }
+
+    public class QueryStorage<TKey, TStorage> : IQueryStorage<TKey, TStorage>
         where TKey : IType, new()
         where TStorage : IType, new()
     {
@@ -38,7 +56,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
             return await StorageFunctionAsync(QueryStorageFunction, QueryFilterFunction, cancellationToken);
         }
 
-        public QueryStorage<TKey, TStorage> Take(int take)
+        public IQueryStorage<TKey, TStorage> Take(int take)
         {
             Guard.Against.NegativeOrZero(take);
 
@@ -46,7 +64,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
             return this;
         }
 
-        public QueryStorage<TKey, TStorage> Skip(int skip)
+        public IQueryStorage<TKey, TStorage> Skip(int skip)
         {
             Guard.Against.Negative(skip);
 
@@ -54,7 +72,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Common
             return this;
         }
 
-        public QueryStorage<TKey, TStorage> ResetFilters()
+        public IQueryStorage<TKey, TStorage> ResetFilters()
         {
             QueryFilterFunction.NbElementSkip = null;
             QueryFilterFunction.NbElementTake = null;
