@@ -14,21 +14,26 @@ namespace Polkanalysis.Domain.Tests.Internal
 {
     public class CacheManagerTests
     {
-        [Test]
-        public async Task HandleFromCacheAsync_CacheHit_ReturnsCachedDataAsync()
+        private IDistributedCache _cache;
+
+        [SetUp]
+        public void Setup()
         {
-            // Arrange
-            var cache = Substitute.For<IDistributedCache>();
+            _cache = Substitute.For<IDistributedCache>();
+        }
+
+        [Test]
+        public async Task HandleFromCacheAsync_WhenCacheHit_ReturnsCachedDataAsync()
+        {
             var logger = Substitute.For<ILogger>();
             var cancellationToken = new CancellationToken();
             var cacheKey = "test-key";
             var cachedData = JsonSerializer.Serialize("cached result");
 
-            cache.GetAsync(cacheKey, cancellationToken).Returns(cachedData.ToByteArray());
+            _cache.GetAsync(cacheKey, cancellationToken).Returns(Encoding.ASCII.GetBytes(cachedData));
 
-            // Act
             var result = await CacheManager.HandleFromCacheAsync<string>(
-                cache,
+                _cache,
                 cacheKey,
                 () => Task.FromResult("non-cached result"),
                 _ => true,
@@ -36,25 +41,21 @@ namespace Polkanalysis.Domain.Tests.Internal
                 logger,
                 cancellationToken);
 
-            // Assert
-            Assert.That("cached result", Is.EqualTo(result));
+            Assert.That(result, Is.EqualTo("cached result"));
         }
 
         [Test]
-        public async Task HandleFromCacheAsync_CacheMiss_ExecutesNonCachedFuncAndCachesResultAsync()
+        public async Task HandleFromCacheAsync_WhenCacheMiss_ExecutesNonCachedFuncAndCachesResultAsync()
         {
-            // Arrange
-            var cache = Substitute.For<IDistributedCache>();
             var logger = Substitute.For<ILogger>();
             var cancellationToken = new CancellationToken();
             var cacheKey = "test-key";
             var nonCachedResult = "non-cached result";
 
-            cache.GetAsync(cacheKey, cancellationToken).Returns((byte[])null!);
+            _cache.GetAsync(cacheKey, cancellationToken).Returns((byte[])null!);
 
-            // Act
-            var result = await CacheManager.HandleFromCacheAsync<string>(
-                cache,
+            var result = await CacheManager.HandleFromCacheAsync(
+                _cache,
                 cacheKey,
                 () => Task.FromResult(nonCachedResult),
                 _ => true,
@@ -62,25 +63,21 @@ namespace Polkanalysis.Domain.Tests.Internal
                 logger,
                 cancellationToken);
 
-            // Assert
             Assert.That(nonCachedResult, Is.EqualTo(result));
         }
 
         [Test]
-        public async Task HandleFromCacheAsync_InvalidCachedData_ExecutesNonCachedFuncAsync()
+        public async Task HandleFromCacheAsync_InvalidJsonCachedData_ExecutesNonCachedFuncAsync()
         {
-            // Arrange
-            var cache = Substitute.For<IDistributedCache>();
             var logger = Substitute.For<ILogger>();
             var cancellationToken = new CancellationToken();
             var cacheKey = "test-key";
-            var invalidCachedData = "invalid data";
+            var invalidJsonCachedData = "invalid data";
 
-            cache.GetAsync(cacheKey, cancellationToken).Returns(invalidCachedData.ToByteArray());
+            _cache.GetAsync(cacheKey, cancellationToken).Returns(Encoding.ASCII.GetBytes(invalidJsonCachedData));
 
-            // Act
-            var result = await CacheManager.HandleFromCacheAsync<string>(
-                cache,
+            var result = await CacheManager.HandleFromCacheAsync(
+                _cache,
                 cacheKey,
                 () => Task.FromResult("non-cached result"),
                 _ => true,
@@ -88,25 +85,21 @@ namespace Polkanalysis.Domain.Tests.Internal
                 logger,
                 cancellationToken);
 
-            // Assert
-            Assert.That("non-cached result", Is.EqualTo(result));
+            Assert.That(result, Is.EqualTo("non-cached result"));
         }
 
         [Test]
-        public async Task HandleFromCacheAsync_NonCachedFuncResultInvalid_DoesNotCacheResultAsync()
+        public async Task HandleFromCacheAsync_WithInvalidCacheData_ExecutesNonCachedFuncAsync()
         {
-            // Arrange
-            var cache = Substitute.For<IDistributedCache>();
             var logger = Substitute.For<ILogger>();
             var cancellationToken = new CancellationToken();
             var cacheKey = "test-key";
             var nonCachedResult = "non-cached result";
 
-            cache.GetAsync(cacheKey, cancellationToken).Returns((byte[])null!);
+            _cache.GetAsync(cacheKey, cancellationToken).Returns((byte[])null!);
 
-            // Act
-            var result = await CacheManager.HandleFromCacheAsync<string>(
-                cache,
+            var result = await CacheManager.HandleFromCacheAsync(
+                _cache,
                 cacheKey,
                 () => Task.FromResult(nonCachedResult),
                 _ => false,
@@ -114,7 +107,6 @@ namespace Polkanalysis.Domain.Tests.Internal
                 logger,
                 cancellationToken);
 
-            // Assert
             Assert.That(nonCachedResult, Is.EqualTo(result));
         }
     }

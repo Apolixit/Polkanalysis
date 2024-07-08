@@ -149,7 +149,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.StakingStorage.ErasStakersPagedAsync(input, token));
         }
 
-        public async Task<QueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token)
+        public async Task<IQueryStorage<BaseTuple<U32, SubstrateAccount>, Exposure>> ErasStakersQueryAsync(uint eraId, CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.StakingStorage.ErasStakersInputType(version);
@@ -262,7 +262,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
                 await _client.StakingStorage.NominatorsAsync(accountId32, token));
         }
 
-        public async Task<QueryStorage<SubstrateAccount, Nominations>> NominatorsQueryAsync(CancellationToken token)
+        public async Task<IQueryStorage<SubstrateAccount, Nominations>> NominatorsQueryAsync(CancellationToken token)
         {
             var version = await GetVersionAsync(token);
             var sourceKeyType = _client.StakingStorage.NominatorsInputType(version);

@@ -26,7 +26,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public Task<QueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token);
+        public Task<IQueryStorage<Id, FundInfo>> FundsQueryAsync(CancellationToken token);
 
         /// <summary>
         ///  The funds that have had additional contributions during the last block. This is used
