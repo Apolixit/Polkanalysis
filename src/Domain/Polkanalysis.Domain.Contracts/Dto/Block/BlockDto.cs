@@ -16,6 +16,13 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         /// Block number from the beginning
         /// </summary>
         public required ulong Number { get; set; }
+        public ulong PreviousBlock
+        {
+            get
+            {
+                return Math.Max(Number - 1, 1);
+            }
+        }
 
         public required DateDto Date { get; set; }
 
@@ -29,7 +36,9 @@ namespace Polkanalysis.Domain.Contracts.Dto.Block
         public required string StateRoot { get; set; }
         public required string ExtrinsicsRoot { get; set; }
         public UserIdentityDto? Validator { get; set; }
+        public int NbBlockValidatedByThisNominatorLastMonth { get; set; } = 0;
         public uint SpecVersion { get; set; }
+        public uint MetadataVersion { get; set; }
 
         /// <summary>
         /// Number of extrinsic linked to this block

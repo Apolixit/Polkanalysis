@@ -1,0 +1,27 @@
+﻿@if(Expanded)
+{
+    <FluentBadge Appearance="Appearance.Neutral" OnClick="() => Expanded = !Expanded">
+        <FluentIcon Value="@(new Icons.Regular.Size20.SubtractCircle())" Class="mr-2" />
+        @Value
+    </FluentBadge>
+}
+else
+{
+    <FluentBadge Appearance="Appearance.Neutral" OnClick="() => Expanded = !Expanded">
+        <FluentIcon Value="@(new Icons.Regular.Size20.AddCircle())" Class="mr-2" />
+        @Value.Substring(0, 6) ... @Value.Substring(Value.Length - 6)
+    </FluentBadge>
+}
+
+@code {
+    [Parameter] public string Value { get; set; } = default!;
+    [Parameter] public bool Expanded { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        if (Value is null)
+        {
+            throw new InvalidOperationException("Value should not be null");
+        }
+    }
+}

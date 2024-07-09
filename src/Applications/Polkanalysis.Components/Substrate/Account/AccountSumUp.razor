@@ -27,24 +27,6 @@
         </Footer>
 </FluentPopover>
 
-@* <Popover>
-    <TogglePopoverContent>
-        <a href="/account/@User.Address" class="btn btn-sm btn-light"
-                data-bs-toggle="popover" data-bs-placement="right">
-            @if(Limit is null)
-            {
-                @User.Name
-            } else
-            {
-                @User.Name.Shorten(Limit.Value)
-            }
-        </a>
-    </TogglePopoverContent>
-    <PopoverContent>
-        @User.Name
-    </PopoverContent>
-</Popover>
- *@
 @code {
     [Parameter] public required UserIdentityDto User { get; set; }
     [Parameter] public int? Limit { get; set; } = null;

@@ -10,70 +10,191 @@
 
 @inject IApiService apiService;
 @inject IMediator _mediator;
+@inject NavigationManager _navigationManager;
 
 <DataCall MediatorReq="mediatorRequest">
     <Polkanalysis.Components.Shared.Breadcrumb Elements="breadcrumbDtos" />
-    
-    <div class="card">
-        <div class="card-header">
-            Details block n°@blockId
-            <div class="card-action">
-                <div class="dropdown">
-                    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-                        <i class="icon-options"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javascript:void();">Export PDF</a>
-                        <a class="dropdown-item" href="javascript:void();">Export Excel</a>
+
+    <FluentLabel Typo="Typography.H1" Class="mb-4">
+        Block num @context.Number
+    </FluentLabel>
+    <FluentLabel Typo="Typography.H5" Class="mb-4">
+        @context.Date.Date.ToLongDateString()
+    </FluentLabel>
+
+    <div class="row">
+        <div class="col">
+            <FluentLabel Typo="Typography.H3" Class="mb-4">
+                Basic infos
+            </FluentLabel>
+            <div class="d-flex flex-column">
+                <div class="row">
+                    <div class="col">
+                        <i class="bi bi-hash"></i> Block Number
+                    </div>
+                    <div class="col">
+                        @context.Number
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="bi bi-hash"></i> Block hash
+                    </div>
+                    <div class="col">
+                        <Hash Value="@context.Hash" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="bi bi-hash"></i> Block date
+                    </div>
+                    <div class="col">
+                        @context.Date.Date.ToLongDateString()
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <i class="bi bi-hash"></i> Prev. block / Hash
+                    </div>
+                    <div class="col">
+                        <div @onclick="() => GoToBlock((int)context.PreviousBlock)">@context.PreviousBlock</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table align-items-center">
-                <tbody>
-                    <tr>
-                        <td>
-                            <i class="bi bi-hash"></i> Block hash
-                        </td>
-                        <td>@context.Hash</td>
-                    </tr>
-                    <tr>
-                        <td><i class="bi bi-hourglass-split"></i> Timestamp</td>
-                        <td>@context.Date.Date</td>
-                    </tr>
-                    <tr>
-                        <td><i class="bi bi-clock"></i> Block time</td>
-                        <td>@context.Date.Date</td>
-                    </tr>
-                    <tr>
-                        <td><i class="bi bi-battery-full"></i> Status</td>
-                        <td>@context.Status</td>
-                    </tr>
-                    <tr>
-                        <td><i class="bi bi-box-arrow-up"></i> Parent hash</td>
-                        <td>@context.ParentHash</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fa-solid fa-signal-bars"></i> State root</td>
-                        <td>@context.StateRoot</td>
-                    </tr>
-                    <tr>
-                        <td><i class="bi bi-houses"></i> Extrinsic root</td>
-                        <td>@context.ExtrinsicsRoot</td>
-                    </tr>
-                    <tr>
-                        <td><i class="bi bi-person-fill-check"></i> Validator</td>
-                        <td>@context.Validator</td>
-                    </tr>
-                    <tr>
-                        <td><i class="bi bi-file-diff"></i> Spec version</td>
-                        <td>@context.SpecVersion</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col">
+            <FluentLabel Typo="Typography.H3" Class="mb-4">
+                Details
+            </FluentLabel>
+            <div class="row">
+                <div class="col">
+                    <i class="bi bi-hash"></i> Validator
+                </div>
+                <div class="col">
+                    <AccountSumUp User="@context.Validator" />
+                    <small><i>(also validated @context.NbBlockValidatedByThisNominatorLastMonth blocks last month)</i></small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <i class="bi bi-hash"></i> Context
+                </div>
+                <div class="col">
+                    <p>@context.NbExtrinsics extrinsics</p>
+                    <p>@context.NbEvents events</p>
+                    <p>@context.NbLogs logs</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <FluentLabel Typo="Typography.H3" Class="mb-4">
+                Metadata
+            </FluentLabel>
+
+            <div class="row">
+                <div class="col">
+                    <i class="bi bi-hash"></i> Metadata version
+                </div>
+                <div class="col">
+                    @context.MetadataVersion
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <i class="bi bi-hash"></i> Spec version
+                </div>
+                <div class="col">
+                    @context.SpecVersion
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <FluentLabel Typo="Typography.H3" Class="mb-4">
+                Root
+            </FluentLabel>
+            <div class="row">
+                <div class="col">
+                    <i class="bi bi-hash"></i> State root
+                </div>
+                <div class="col">
+                    <Hash Value="@context.StateRoot" />
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <i class="bi bi-hash"></i> Extrinsic root
+                </div>
+                <div class="col">
+                    <Hash Value="@context.ExtrinsicsRoot" />
+                </div>
+            </div>
         </div>
     </div>
+
+
+
+
+    @* <div class="card">
+    <div class="card-header">
+    Details block n°@blockId
+    <div class="card-action">
+    <div class="dropdown">
+    <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+    <i class="icon-options"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+    <a class="dropdown-item" href="javascript:void();">Export PDF</a>
+    <a class="dropdown-item" href="javascript:void();">Export Excel</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="table-responsive">
+    <table class="table align-items-center">
+    <tbody>
+    <tr>
+    <td>
+    <i class="bi bi-hash"></i> Block hash
+    </td>
+    <td>@context.Hash</td>
+    </tr>
+    <tr>
+    <td><i class="bi bi-hourglass-split"></i> Timestamp</td>
+    <td>@context.Date.Date</td>
+    </tr>
+    <tr>
+    <td><i class="bi bi-clock"></i> Block time</td>
+    <td>@context.Date.Date</td>
+    </tr>
+    <tr>
+    <td><i class="bi bi-battery-full"></i> Status</td>
+    <td>@context.Status</td>
+    </tr>
+    <tr>
+    <td><i class="bi bi-box-arrow-up"></i> Parent hash</td>
+    <td>@context.ParentHash</td>
+    </tr>
+    <tr>
+    <td><i class="fa-solid fa-signal-bars"></i> State root</td>
+    <td>@context.StateRoot</td>
+    </tr>
+    <tr>
+    <td><i class="bi bi-houses"></i> Extrinsic root</td>
+    <td>@context.ExtrinsicsRoot</td>
+    </tr>
+    <tr>
+    <td><i class="bi bi-person-fill-check"></i> Validator</td>
+    <td>@context.Validator</td>
+    </tr>
+    <tr>
+    <td><i class="bi bi-file-diff"></i> Spec version</td>
+    <td>@context.SpecVersion</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div> *@
 </DataCall>
 
 
@@ -87,10 +208,11 @@
     protected override async Task OnInitializedAsync()
     {
         //blockDetail = await apiService.GetHelperAsync<BlockDetailsQuery, BlockDto>("/api/polkadot/block", new BlockDetailsQuery((uint)blockId));
-        if(blockId != null)
+        if (blockId != null)
         {
             mediatorRequest = _mediator.Send(new BlockDetailsQuery((uint)blockId), CancellationToken.None);
-        } else if(!string.IsNullOrEmpty(blockHash))
+        }
+        else if (!string.IsNullOrEmpty(blockHash))
         {
             mediatorRequest = _mediator.Send(new BlockDetailsQuery(blockHash), CancellationToken.None);
         }
@@ -100,5 +222,10 @@
             new BreadcrumbDto("Blocks", "/blocks"),
             new BreadcrumbDto("Block detail", $"/block/{(blockId != null ? blockId : blockHash)}")
         };
+    }
+
+    protected void GoToBlock(int blockId)
+    {
+        _navigationManager.NavigateTo($"block/{blockId}");
     }
 }

@@ -16,13 +16,23 @@
             </div>
         </ColumnOptions>
     </PropertyColumn>
-    <PropertyColumn Property="@(c => c.Hash)" Title="Hash" Sortable="true" Align="Align.Center" Style="text-overflow:ellipsis; overflow:hidden; word-wrap:break-word;">
+    <TemplateColumn Title="Hash" Sortable="true" Align="Align.Center">
+        <ChildContent>
+            <Hash Value="@context.Hash.Value" />
+        </ChildContent>
         <ColumnOptions>
             <div class="search-box">
                 <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="BlockHashCriteria" />
             </div>
         </ColumnOptions>
-    </PropertyColumn>
+    </TemplateColumn>
+    @* <PropertyColumn Property="@(c => c.Hash)" >
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="BlockHashCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn> *@
     <PropertyColumn Property="@(c => c.ValidatorAddress)" Title="Validator" Sortable="true" Align="Align.Center" Style="text-overflow:ellipsis;">
         <ColumnOptions>
             <div class="search-box">
