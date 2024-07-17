@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
-    public class BlockSearchHandlerTests : UseCaseTest<BlockSearchHandler, IQueryable<BlockLightDto>, BlockSearchQuery>
+    public class SearchBlockHandlerTests : UseCaseTest<SearchBlockHandler, IQueryable<BlockLightDto>, BlockSearchQuery>
     {
         private IExplorerService _explorerService = default!;
         private IAccountService _accountService = default!;
@@ -24,9 +24,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService = Substitute.For<IExplorerService>();
             _accountService = Substitute.For<IAccountService>();
-            var logger = Substitute.For<ILogger<BlockSearchHandler>>();
+            var logger = Substitute.For<ILogger<SearchBlockHandler>>();
 
-            _useCase = new BlockSearchHandler(_substrateDbContext, logger, Substitute.For<IDistributedCache>(), _explorerService, _accountService);
+            _useCase = new SearchBlockHandler(_substrateDbContext, logger, Substitute.For<IDistributedCache>(), _explorerService, _accountService);
         }
 
         [Test]

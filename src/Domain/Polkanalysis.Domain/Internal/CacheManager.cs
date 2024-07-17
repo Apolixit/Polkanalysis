@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.Internal
 
             if (!string.IsNullOrEmpty(cachedData))
             {
-                logger.LogDebug($"Cache hit for key: {cacheKey}");
+                logger.LogDebug("Cache hit for key: {cacheKey}", cacheKey);
 
                 try
                 {
@@ -49,10 +49,10 @@ namespace Polkanalysis.Domain.Internal
                 }
                 catch(JsonException)
                 {
-                    logger.LogError($"Failed to deserialize cached data for key: {cacheKey}");
+                    logger.LogError("Failed to deserialize cached data for key: {cacheKey}", cacheKey);
                 }
             }
-            logger.LogDebug($"Cache miss for key: {cacheKey}");
+            logger.LogDebug("Cache miss for key: {cacheKey}", cacheKey);
 
             var result = await nonCachedFunc();
 

@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).ReturnsNull();
 
-            var result = await _useCase.HandleInnerAsync(new BlockDetailsQuery(1), CancellationToken.None);
+            var result = await _useCase!.HandleInnerAsync(new BlockDetailsQuery(1), CancellationToken.None);
 
             Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
@@ -49,7 +49,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService.GetBlockDetailsAsync(Arg.Any<uint>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
-            var result = await _useCase.HandleInnerAsync(new BlockDetailsQuery(1), CancellationToken.None);
+            var result = await _useCase!.HandleInnerAsync(new BlockDetailsQuery(1), CancellationToken.None);
 
             Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);
@@ -60,7 +60,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
         {
             _explorerService.GetBlockDetailsAsync(Arg.Any<string>(), CancellationToken.None).Returns(Substitute.For<BlockDto>());
 
-            var result = await _useCase.HandleInnerAsync(new BlockDetailsQuery("0x00"), CancellationToken.None);
+            var result = await _useCase!.HandleInnerAsync(new BlockDetailsQuery("0x00"), CancellationToken.None);
 
             Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);

@@ -8,6 +8,8 @@ using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Microsoft.Extensions.Caching.Distributed;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
@@ -18,12 +20,18 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         protected ICurrentMetaData _currentMetaData;
         protected ISubstrateDecoding _substrateDecoding;
         protected IAccountService _accountRepository;
+        protected IPalletBuilder _palletBuilder;
 
         // https://polkadot.subscan.io/block/10219793
         //  Block with extrinsic failed
         [SetUp]
         public void Setup()
         {
+            _palletBuilder = new PalletBuilder(
+                _substrateService,
+                _currentMetaData,
+                Substitute.For<ILogger<PalletBuilder>>());
+
             _currentMetaData = new CurrentMetaData(
                 _substrateService, Substitute.For<ILogger<CurrentMetaData>>());
 

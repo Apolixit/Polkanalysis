@@ -71,7 +71,8 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 EventsCount = blockInfo.NbEvents,
                 ExtrinsicsCount = blockInfo.NbExtrinsics,
                 LogsCount = blockInfo.NbLogs,
-                ValidatorAddress = blockInfo.ValidatorAddress
+                ValidatorAddress = blockInfo.ValidatorAddress,
+                Justification = blockInfo.Justification
             });
 
             var nbRows = await _db.SaveChangesAsync();

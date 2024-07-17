@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using Substrate.NetApi.Model.Rpc;
+using System.Threading;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
@@ -6,6 +8,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
     public class ExplorerBlockTests : ExplorerRepositoryTest
     {
         [Test]
+        [TestCase(21604404)]
         [TestCase(14012677)]
         [TestCase(13198574)]
         [TestCase(13210791)]
@@ -17,6 +20,39 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             var blockInfo = await _explorerRepository.GetBlockDetailsAsync((uint)blockId, CancellationToken.None);
             Assert.That(blockInfo, Is.Not.Null);
 
+        }
+
+        [Test]
+        [TestCase(21604404, 2)]
+        public async Task GetExtrinsicStatus_WithError_ShouldBuildValidDtoAsync(int blockId, int extrinsicId)
+        {
+            var events = await _substrateService.At(blockId).Storage.System.EventsAsync(CancellationToken.None);
+            var extrinsicStatus = _explorerRepository.GetExtrinsicsStatus(events, extrinsicId);
+
+            Assert.That(extrinsicStatus.Status, Is.EqualTo(Contracts.Dto.Extrinsic.ExtrinsicStatusDto.ExtrinsicStatus.Failed));
+        }
+
+        [Test]
+        [TestCase(21604404, 2)]
+        public async Task GetExtrinsicsLifetimeAsync_ShouldSucceedAsync(int blockId, int extrinsicId)
+        {
+            var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber((uint)blockId), CancellationToken.None);
+            var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, CancellationToken.None);
+
+            var res = _explorerRepository.GetExtrinsicsLifetime((uint)blockId, blockDetails.Block.Extrinsics[extrinsicId]);
+
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        [TestCase(21604404, 2)]
+        public async Task GetExtrinsicsFeesAsync_ShouldSucceedAsync(int blockId, int extrinsicId)
+        {
+            var events = await _substrateService.At(blockId).Storage.System.EventsAsync(CancellationToken.None);
+            var fees = await _explorerRepository.GetExtrinsicsFeesAsync(events, extrinsicId, CancellationToken.None);
+
+            Assert.That(fees, Is.Not.Null);
+            Assert.That(fees, Is.GreaterThan(0));
         }
 
         [Test]

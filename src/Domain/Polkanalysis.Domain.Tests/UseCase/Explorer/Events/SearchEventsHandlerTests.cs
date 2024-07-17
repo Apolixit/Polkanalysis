@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Tests.UseCase.Search
+namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Events
 {
     public class SearchEventsHandlerTests : UseCaseTest<SearchEventsHandler, IQueryable<EventsResultDto>, SearchEventsQuery>
     {
@@ -148,7 +148,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Search
 
             var firstParam = listRes[0].ContextParameters[0];
             Assert.That(firstParam, Is.Not.Null);
-            
+
             Assert.That(firstParam.Name.ToString(), Is.EqualTo("AccountAddress"));
             Assert.That(firstParam.Value!.ToString(), Is.EqualTo(Alice.ToString()));
         }
