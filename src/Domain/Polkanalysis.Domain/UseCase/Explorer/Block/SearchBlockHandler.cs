@@ -11,13 +11,13 @@ using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
-    public class BlockSearchHandler : Handler<BlockSearchHandler, IQueryable<BlockLightDto>, BlockSearchQuery>
+    public class SearchBlockHandler : Handler<SearchBlockHandler, IQueryable<BlockLightDto>, BlockSearchQuery>
     {
         private readonly SubstrateDbContext _db;
         private readonly IExplorerService _explorerService;
         private readonly IAccountService _accountService;
 
-        public BlockSearchHandler(SubstrateDbContext db, ILogger<BlockSearchHandler> logger, IDistributedCache cache, IExplorerService explorerService, IAccountService accountService) : base(logger, cache)
+        public SearchBlockHandler(SubstrateDbContext db, ILogger<SearchBlockHandler> logger, IDistributedCache cache, IExplorerService explorerService, IAccountService accountService) : base(logger, cache)
         {
             _db = db;
             _explorerService = explorerService;

@@ -26,6 +26,12 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using System.Threading;
 using Polkanalysis.Domain.Helper.Enumerables;
 using Polkanalysis.Domain.Runtime;
+using Newtonsoft.Json.Linq;
+using Substrate.NetApi.Model.Types;
+using Polkanalysis.Domain.Contracts.Core.Random;
+using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Domain.Contracts.Core.Error;
+using Polkanalysis.Domain.Contracts.Runtime.Module;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -203,7 +209,8 @@ namespace Polkanalysis.Domain.Service
                 When = ModelBuilder.DisplayElapsedTime(blockDate),
                 BlockDate = blockDate,
                 ValidatorIdentity = authorIdentity,
-                ValidatorAddress = authorIdentity.Address
+                ValidatorAddress = authorIdentity.Address,
+                Justification = blockData.Justification.ToString()
             };
         }
 
@@ -224,15 +231,17 @@ namespace Polkanalysis.Domain.Service
             var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
             var blockExecutionPhaseTask = _substrateService.At(blockHash).Storage.System.ExecutionPhaseAsync(cancellationToken);
             var specVersionTask = _substrateService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, cancellationToken);
-
-            var (currentDate, eventsCount, blockExecutionPhase, specVersion, blockDetails) = await WaiterHelper.WaitAndReturnAsync(currentDateTask, eventsCountTask, blockExecutionPhaseTask, specVersionTask, blockDetailsTask);
+            var eventsTask = _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
+            
+            var (currentDate, eventsCount, blockExecutionPhase, specVersion, blockDetails, blockEvents) = await WaiterHelper.WaitAndReturnAsync(currentDateTask, eventsCountTask, blockExecutionPhaseTask, specVersionTask, blockDetailsTask, eventsTask);
 
             if (blockDetails == null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
-            var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
+            var extrinsicsList = blockDetails.Block.Extrinsics.ToList();
+            //var filteredExtrinsic = blockDetails.Block.Extrinsics.Where(e => e.Method.ModuleIndex != 54);
             //var filteredExtrinsic = blockDetails.Block.Extrinsics;
-            foreach (var extrinsic in filteredExtrinsic)
+            foreach (var extrinsic in extrinsicsList)
             {
                 var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
             }
@@ -287,6 +296,131 @@ namespace Polkanalysis.Domain.Service
             };
 
             return blockDto;
+        }
+
+        public LifetimeDto? GetExtrinsicsLifetime(uint blockNumber, Extrinsic extrinsic)
+        {
+            var result = new LifetimeDto();
+            result.IsImmortal = extrinsic.Era.IsImmortal;
+            
+            if(!result.IsImmortal)
+            {
+                result.FromBlock = (uint)extrinsic.Era.EraStart(blockNumber);
+                result.ToBlock = (uint)extrinsic.Era.EraStart(blockNumber) + (uint)extrinsic.Era.Period;
+
+                return result;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Return the fees paid for this extrinsic
+        /// </summary>
+        /// <param name="events"></param>
+        /// <param name="extrinsicIndex"></param>
+        /// <returns></returns>
+        public async Task<double?> GetExtrinsicsFeesAsync(EventRecord[] events, int extrinsicIndex, CancellationToken cancellationToken)
+        {
+            IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = getEventsLinkedToExtrinsic(events, extrinsicIndex);
+
+            foreach (var feedPaidEvent in eventLinkedToCurrentExtrinsic)
+            {
+                if (feedPaidEvent.Event.Value is null) continue;
+
+                if (feedPaidEvent.Event.Value!.Value == RuntimeEvent.TransactionPayment)
+                {
+                    var systemEventValue = feedPaidEvent.Event.Value!.Value2.GetValue<Infrastructure.Blockchain.Contracts.Pallet.TransactionPayment.Enums.Event>();
+
+                    if (systemEventValue == Infrastructure.Blockchain.Contracts.Pallet.TransactionPayment.Enums.Event.TransactionFeePaid)
+                    {
+                        var feeBig = feedPaidEvent.Event.Value!.Value2.GetValue2().As<BaseTuple<SubstrateAccount, U128, U128>>().Value[1].As<U128>();
+                        var chainInfo = await _substrateService.Rpc.System.PropertiesAsync(cancellationToken);
+
+                        return feeBig.ToDouble(chainInfo.TokenDecimals);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Return the status of an extrinsic
+        /// </summary>
+        /// <param name="events"></param>
+        /// <param name="extrinsicIndex"></param>
+        /// <returns></returns>
+        public ExtrinsicStatusDto GetExtrinsicsStatus(EventRecord[] events, int extrinsicIndex)
+        {
+            IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = getEventsLinkedToExtrinsic(events, extrinsicIndex);
+
+            foreach (var systemEvent in eventLinkedToCurrentExtrinsic)
+            {
+                if (systemEvent.Event.Value is null) continue;
+
+                var decode = _substrateDecode.DecodeEvent(systemEvent);
+                if (systemEvent.Event.Value!.Value == RuntimeEvent.System)
+                {
+                    var systemEventValue = systemEvent.Event.Value!.Value2.GetValue<Event>();
+
+                    if (systemEventValue == Event.ExtrinsicSuccess)
+                        return ExtrinsicStatusDto.Success();
+
+                    if (systemEventValue == Event.ExtrinsicFailed)
+                    {
+                        var enumError = systemEvent.Event.Value!.Value2.GetValue2().As<BaseTuple<EnumDispatchError, DispatchInfo>>().Value[0].As<EnumDispatchError>();
+                        var documentation = MessageFromDispatchError(enumError);
+                        return ExtrinsicStatusDto.Error(documentation);
+                    }
+                }
+            }
+
+            return ExtrinsicStatusDto.System();
+        }
+
+        /// <summary>
+        /// Return events associated to the given extrinsic
+        /// </summary>
+        /// <param name="events">All the events from the block</param>
+        /// <param name="extrinsicIndex">The extrinsic index position</param>
+        /// <returns></returns>
+        private static IEnumerable<EventRecord> getEventsLinkedToExtrinsic(EventRecord[] events, int extrinsicIndex)
+        {
+            return events.Where(e =>
+            {
+                if (e.Phase.Value == Phase.ApplyExtrinsic)
+                {
+                    var applyExtrinsicIndex = ((U32)e.Phase.Value2).Value;
+                    return applyExtrinsicIndex == extrinsicIndex;
+                }
+
+                return false;
+            });
+        }
+
+        private string MessageFromDispatchError(EnumDispatchError dispatchError)
+        {
+            switch (dispatchError.Value)
+            {
+                case DispatchError.Module:
+                    var moduleError = (ModuleError)dispatchError.Value2;
+                    return $"{dispatchError.Value};{(RuntimeEvent)moduleError.Index.Value};{moduleError.Index.Value};{Utils.Bytes2HexString(moduleError.Error.ToBytes())}";
+
+                case DispatchError.Token:
+                    var enumTokenError = (EnumTokenError)dispatchError.Value2;
+                    return $"{dispatchError.Value};{enumTokenError.Value}";
+
+                case DispatchError.Arithmetic:
+                    var enumArithmeticError = (EnumArithmeticError)dispatchError.Value2;
+                    return $"{dispatchError.Value};{enumArithmeticError.Value}";
+
+                case DispatchError.Transactional:
+                    var enumTransactionalError = (EnumTransactionalError)dispatchError.Value2;
+                    return $"{dispatchError.Value};{enumTransactionalError.Value}";
+
+                default:
+                    return dispatchError.Value.ToString();
+            }
         }
 
         public async Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken)

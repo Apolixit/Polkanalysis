@@ -50,5 +50,10 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Blocks
         /// The number of logs in the block
         /// </summary>
         public required uint LogsCount { get; set; }
+
+        /// <summary>
+        /// Block message
+        /// </summary>
+        public string? Justification { get; set; }
     }
 }

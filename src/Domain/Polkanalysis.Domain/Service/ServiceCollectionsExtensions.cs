@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Polkanalysis.Domain.Adapter.Block;
+using Polkanalysis.Domain.Contracts.Metrics;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Domain.Metrics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -22,6 +24,7 @@ namespace Polkanalysis.Domain.Service
             services.AddTransient<IFinancialService, FinancialService>();
             services.AddTransient<ISearchService, SearchService>();
 
+            services.AddSingleton<IDomainMetrics, DomainMetrics>();
             return services;
         }
     }
