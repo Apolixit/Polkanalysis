@@ -11,7 +11,7 @@ using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.UseCase.Explorer.Block
 {
-    public class SearchBlockHandler : Handler<SearchBlockHandler, IQueryable<BlockLightDto>, BlockSearchQuery>
+    public class SearchBlockHandler : Handler<SearchBlockHandler, IQueryable<BlockLightDto>, SearchBlocksQuery>
     {
         private readonly SubstrateDbContext _db;
         private readonly IExplorerService _explorerService;
@@ -24,11 +24,8 @@ namespace Polkanalysis.Domain.UseCase.Explorer.Block
             _accountService = accountService;
         }
 
-        public override async Task<Result<IQueryable<BlockLightDto>, ErrorResult>> HandleInnerAsync(BlockSearchQuery request, CancellationToken cancellationToken)
+        public override async Task<Result<IQueryable<BlockLightDto>, ErrorResult>> HandleInnerAsync(SearchBlocksQuery request, CancellationToken cancellationToken)
         {
-            if (request == null)
-                return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"{nameof(request)} is not set");
-
             var res = _db.BlockInformation.Select(x => new BlockLightDto()
             {
                 Number = x.BlockNumber,

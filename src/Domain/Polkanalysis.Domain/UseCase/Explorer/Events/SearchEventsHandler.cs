@@ -4,7 +4,6 @@ using OperationResult;
 using Polkanalysis.Domain.Contracts.Dto.Search;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.Result;
-using Polkanalysis.Domain.Contracts.Primary.Search;
 using Polkanalysis.Domain.UseCase.Monitored;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
@@ -16,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using Substrate.NET.Utils;
+using Polkanalysis.Domain.Contracts.Primary.Explorer.Event;
 
 namespace Polkanalysis.Domain.UseCase.Search
 {

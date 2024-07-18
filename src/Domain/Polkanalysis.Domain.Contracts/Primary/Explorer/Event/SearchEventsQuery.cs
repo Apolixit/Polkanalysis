@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Primary.Search
+namespace Polkanalysis.Domain.Contracts.Primary.Explorer.Event
 {
     public class SearchEventsQuery : IRequest<Result<IQueryable<EventsResultDto>, ErrorResult>>
     {

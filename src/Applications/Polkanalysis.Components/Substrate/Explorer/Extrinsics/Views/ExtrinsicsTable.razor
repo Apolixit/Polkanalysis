@@ -1,0 +1,109 @@
+﻿@using Polkanalysis.Domain.Contracts.Common.Search
+@using Polkanalysis.Domain.Contracts.Dto.Extrinsic
+@using Polkanalysis.Infrastructure.Database.Repository
+@inject NavigationManager _navigationManager;
+<h3>ExtrinsicsTable</h3>
+
+<FluentDataGrid Items="@FilteredExtrinsics()"
+                ResizableColumns=true
+                Pagination="@pagination"
+                TGridItem="ExtrinsicLightDto"
+                ShowHover="true">
+    <PropertyColumn Property="@(c => c.BlockNumber)" Title="Block" Sortable="true" Align="Align.Start">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.NumberCriteriaFilterUint @bind-Value="BlockNumberCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.BlockDate)" Title="Block" Sortable="true" Align="Align.Start">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.DateCriteriaFilter @bind-Value="BlockDateCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Status)" Title="Status" Sortable="true" Align="Align.Start">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="StatusCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Method)" Title="Method" Sortable="true" Align="Align.Center">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="MethodCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Event)" Title="Event" Sortable="true" Align="Align.Center">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.TextCriteriaFilter @bind-Value="EventCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(c => c.Fees)" Title="Fees" Sortable="true">
+        <ColumnOptions>
+            <div class="search-box">
+                <Polkanalysis.Components.Components.Search.NumberCriteriaFilterDouble @bind-Value="FeesCriteria" />
+            </div>
+        </ColumnOptions>
+    </PropertyColumn>
+    <TemplateColumn>
+        <FluentButton IconStart="new Icons.Regular.Size16.Eye()" Appearance="Appearance.Accent" OnClick="(() => GoToBlockDetails(context.ExtrinsicId))">
+        </FluentButton>
+    </TemplateColumn> 
+</FluentDataGrid>
+
+<FluentPaginator State="@pagination">
+    <SummaryTemplate>
+        There are <strong>@(pagination.TotalItemCount ?? 0)</strong> rows
+    </SummaryTemplate>
+    <PaginationTextTemplate>
+        This is page <strong>@(pagination.CurrentPageIndex + 1)</strong> out of a total of <strong>@(pagination.LastPageIndex + 1)</strong> pages
+    </PaginationTextTemplate>
+</FluentPaginator>
+
+@code {
+    [Parameter] public IQueryable<ExtrinsicLightDto>? Extrinsics { get; set; }
+    PaginationState pagination = new PaginationState { ItemsPerPage = 10 };
+
+    public NumberCriteria<uint>? BlockNumberCriteria = null;
+    public NumberCriteria<DateTime>? BlockDateCriteria = null;
+    public NumberCriteria<string>? MethodCriteria = null;
+    public NumberCriteria<string>? EventCriteria = null;
+    public NumberCriteria<string>? StatusCriteria = null;
+    public NumberCriteria<double>? FeesCriteria = null;
+
+    protected void GoToBlockDetails(string extrinsicId)
+    {
+        _navigationManager.NavigateTo($"extrinsic/{extrinsicId}");
+    }
+
+    public IQueryable<ExtrinsicLightDto> FilteredExtrinsics()
+    {
+        IQueryable<ExtrinsicLightDto> queryable = Extrinsics!.AsQueryable();
+
+        if (BlockNumberCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockNumberCriteria, x => x.BlockNumber);
+
+        if (BlockDateCriteria is not null)
+            queryable = queryable.WhereCriteria(BlockDateCriteria, x => x.BlockDate);
+
+        if (MethodCriteria is not null)
+            queryable = queryable.WhereCriteria(MethodCriteria, x => x.Method);
+
+        if (EventCriteria is not null)
+            queryable = queryable.WhereCriteria(EventCriteria, x => x.Event);
+
+        if (StatusCriteria is not null)
+            queryable = queryable.WhereCriteria(StatusCriteria, x => x.Status);
+
+        if (FeesCriteria is not null)
+            queryable = queryable.Where(x => x.Fees != null).WhereCriteria(FeesCriteria, x => x.Fees!.Value);
+
+        return queryable;        
+    }
+}

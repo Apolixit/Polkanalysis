@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
+using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
 using Polkanalysis.Domain.Contracts.Primary.Result;
@@ -10,6 +11,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Helper;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Staking;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Rpc;
 using System;
@@ -57,9 +59,10 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         {
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber(request.BlockNumber), cancellationToken);
 
-            var (blockData, blockEvents) = await WaiterHelper.WaitAndReturnAsync(
+            var (blockData, blockEvents, blockDate) = await WaiterHelper.WaitAndReturnAsync(
                 _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken),
-                _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken)
+                _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken),
+                _explorerService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken)
             );
 
             var filteredExtrinsic = blockData.Block.Extrinsics.ToList();
@@ -74,30 +77,36 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                     extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
                     var status = _explorerService.GetExtrinsicsStatus(blockEvents, (int)extrinsicIndex);
                     var fees = await _explorerService.GetExtrinsicsFeesAsync(blockEvents, (int)extrinsicIndex, cancellationToken);
+                    var lifetime = _explorerService.GetExtrinsicsLifetime(request.BlockNumber, extrinsic);
+                    
+                    EraLifetimeModel? lifetimeEntry = HandleLifetimeEntry(lifetime);
 
                     _db.ExtrinsicsInformation.Add(new Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel()
                     {
                         BlockchainName = _substrateService.BlockchainName,
                         BlockNumber = request.BlockNumber,
+                        ExtrinsicIndex = extrinsicIndex,
+                        Lifetime = lifetimeEntry,
                         Method = extrinsicDecode.Name,
                         Event = extrinsicDecode.Children[0].Name,
                         TransactionVersion = extrinsic.TransactionVersion,
-                        Account = extrinsic.Account is not null ? extrinsic.Account.ToString() : null,
+                        AccountAddress = extrinsic.Account is not null ? extrinsic.Account.ToString() : null,
                         IsSigned = extrinsic.Signed,
                         Signature = extrinsic.Signature is not null ? Utils.Bytes2HexString(extrinsic.Signature) : null,
                         Charge = null,
                         Status = status.Status.ToString(),
                         StatusMessage = status.Message,
-                        Fees = fees
+                        Fees = fees,
+                        BlockDate = blockDate
                     });
 
                     await _db.SaveChangesAsync(cancellationToken);
 
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     _logger.LogWarning(ex, "[{handler}] Unable to decode extrinsic (index {extrinsicIndex}) from block {blockNumber}", nameof(SavedExtrinsicsHandler), extrinsicIndex, request.BlockNumber);
 
-                    var blockDate = await _explorerService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
                     _db.SubstrateErrors.Add(new Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel()
                     {
                         BlockchainName = _substrateService.BlockchainName,
@@ -115,6 +124,29 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             }
 
             return Helpers.Ok(true);
+        }
+
+        private EraLifetimeModel? HandleLifetimeEntry(LifetimeDto? lifetime)
+        {
+            EraLifetimeModel? lifetimeEntry = null;
+
+            if (lifetime is not null)
+            {
+                lifetimeEntry = _db.EraLifetime.FirstOrDefault(x => x.IsImmortal == lifetime.IsImmortal && x.StartBlock == lifetime.FromBlock && x.EndBlock == lifetime.ToBlock);
+                if (lifetimeEntry is null)
+                {
+                    lifetimeEntry = new Infrastructure.Database.Contracts.Model.Staking.EraLifetimeModel()
+                    {
+                        BlockchainName = _substrateService.BlockchainName,
+                        IsImmortal = lifetime.IsImmortal,
+                        StartBlock = lifetime.FromBlock,
+                        EndBlock = lifetime.ToBlock
+                    };
+                    _db.EraLifetime.Add(lifetimeEntry);
+                }
+            }
+
+            return lifetimeEntry;
         }
     }
 }

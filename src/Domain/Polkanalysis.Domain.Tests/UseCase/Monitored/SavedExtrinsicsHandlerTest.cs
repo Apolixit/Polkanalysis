@@ -10,6 +10,7 @@ using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.UseCase.Monitored;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
@@ -114,6 +115,12 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 
             _explorerService.GetExtrinsicsStatus(Arg.Any<EventRecord[]>(), Arg.Any<int>()).Returns(Contracts.Dto.Extrinsic.ExtrinsicStatusDto.Success());
             _explorerService.GetExtrinsicsFeesAsync(Arg.Any<EventRecord[]>(), Arg.Any<int>(), CancellationToken.None).ReturnsNull();
+            _explorerService.GetExtrinsicsLifetime(Arg.Any<uint>(), mockExtrinsic).Returns(new Contracts.Dto.Extrinsic.LifetimeDto()
+            {
+                IsImmortal = false,
+                FromBlock = 1,
+                ToBlock = 10
+            });
 
             return mockExtrinsic;
         }

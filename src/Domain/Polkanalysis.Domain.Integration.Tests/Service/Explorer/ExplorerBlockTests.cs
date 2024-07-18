@@ -41,7 +41,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 
             var res = _explorerRepository.GetExtrinsicsLifetime((uint)blockId, blockDetails.Block.Extrinsics[extrinsicId]);
 
-            Assert.That(res, Is.Not.Null);
+            Assert.That(res.IsImmortal, Is.False);
         }
 
         [Test]

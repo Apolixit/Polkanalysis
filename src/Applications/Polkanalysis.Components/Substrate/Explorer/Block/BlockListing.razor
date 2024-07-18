@@ -28,6 +28,6 @@
 
     protected override void OnInitialized()
     {
-        mediatorRequest = _mediator.Send(new BlockSearchQuery(), CancellationToken.None);
+        mediatorRequest = _mediator.Send(new SearchBlocksQuery(), CancellationToken.None);
     }
 }

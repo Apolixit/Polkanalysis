@@ -3,6 +3,7 @@ using System;
 using System.Numerics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Polkanalysis.Infrastructure.Database;
@@ -12,9 +13,11 @@ using Polkanalysis.Infrastructure.Database;
 namespace Polkanalysis.Infrastructure.Common.Migrations
 {
     [DbContext(typeof(SubstrateDbContext))]
-    partial class SubstrateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240718204825_ExtrinsicsInformation")]
+    partial class ExtrinsicsInformation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
