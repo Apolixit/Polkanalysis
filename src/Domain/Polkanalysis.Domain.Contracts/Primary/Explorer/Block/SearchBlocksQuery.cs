@@ -10,5 +10,5 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Explorer.Block
 {
-    public class BlockSearchQuery() : IRequest<Result<IQueryable<BlockLightDto>, ErrorResult>> { }
+    public class SearchBlocksQuery() : IRequest<Result<IQueryable<BlockLightDto>, ErrorResult>> { }
 }

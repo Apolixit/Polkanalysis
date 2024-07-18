@@ -22,6 +22,7 @@ namespace Polkanalysis.Infrastructure.Database
         public SubstrateDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<ExtrinsicsInformationModel> ExtrinsicsInformation { get; set; }
+        public DbSet<EraLifetimeModel> EraLifetime { get; set; }
         public DbSet<SubstrateErrorModel> SubstrateErrors { get; set; }
 
         #region Blocks
@@ -96,6 +97,9 @@ namespace Polkanalysis.Infrastructure.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ExtrinsicsInformationModel>()
+                .HasKey(c => c.Id);
+
+            modelBuilder.Entity<EraLifetimeModel>()
                 .HasKey(c => c.Id);
             
             modelBuilder.Entity<SubstrateErrorModel>()

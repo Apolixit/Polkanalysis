@@ -149,13 +149,13 @@ namespace Polkanalysis.Worker.Tasks
 
         private async Task SaveExtrinsicInformationAsync(BlockNumber blockNumber, CancellationToken token)
         {
-            // Save block information into database
+            // Save extrinsic information into database
             await _mediator.Send(new SavedExtrinsicsCommand(blockNumber), token);
         }
 
         private async Task SaveEventsInformationAsync(BlockNumber blockNumber, CancellationToken token)
         {
-            // Save block information into database
+            // Save event information into database
             var eventRes = await _mediator.Send(new SavedEventsCommand(blockNumber), token);
             if (eventRes.IsError)
             {

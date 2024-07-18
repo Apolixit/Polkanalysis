@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
 {
-    public class SearchBlockHandlerTests : UseCaseTest<SearchBlockHandler, IQueryable<BlockLightDto>, BlockSearchQuery>
+    public class SearchBlockHandlerTests : UseCaseTest<SearchBlockHandler, IQueryable<BlockLightDto>, SearchBlocksQuery>
     {
         private IExplorerService _explorerService = default!;
         private IAccountService _accountService = default!;
@@ -44,7 +44,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Explorer.Block
             );
             await _substrateDbContext.SaveChangesAsync();
 
-            var res = await _useCase!.Handle(new BlockSearchQuery(), CancellationToken.None);
+            var res = await _useCase!.Handle(new SearchBlocksQuery(), CancellationToken.None);
 
             Assert.That(res.IsSuccess, Is.True);
 

@@ -58,7 +58,6 @@ namespace Polkanalysis.Domain.UseCase
 
         protected ErrorTag<ErrorResult> UseCaseError(ErrorResult errorResult)
         {
-            _logger.LogError(errorResult.Description);
             return Helpers.Error(errorResult);
         }
 

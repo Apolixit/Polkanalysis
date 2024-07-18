@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Polkanalysis.Infrastructure.Database.Contracts.Model.Staking;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,9 +13,12 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics
         [Key]
         public uint Id { get; set; }
         public required uint BlockNumber { get; set; }
+        public required uint ExtrinsicIndex { get; set; }
+        public required DateTime BlockDate { get; set; }
+        public required EraLifetimeModel? Lifetime { get; set; }
         public required string Method { get; set; }
         public required string Event { get; set; }
-        public string? Account { get; set; }
+        public string? AccountAddress { get; set; }
         public double? Charge { get; set; }
         public bool IsSigned { get; set; }
         public string? Signature { get; set; }

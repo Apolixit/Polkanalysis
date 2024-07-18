@@ -1,0 +1,26 @@
+﻿@page "/extrinsics"
+@using Microsoft.Extensions.Logging
+@using Polkanalysis.Domain.Contracts.Dto.Extrinsic
+@using Polkanalysis.Domain.Contracts.Primary.Explorer.Extrinsic
+
+@inject ILogger<SearchExtrinsics> _logger;
+@inject IMediator _mediator;
+
+<FluentLabel Typo="Typography.H1" Class="mb-4">
+    Search extrinsics
+</FluentLabel>
+
+<div class="extrinsics-result mt-5">
+    <DataCall MediatorReq="mediatorRequest" Context="Extrinsics">
+        <Polkanalysis.Components.Substrate.Explorer.Extrinsics.Views.ExtrinsicsTable Extrinsics="Extrinsics"></Polkanalysis.Components.Substrate.Explorer.Extrinsics.Views.ExtrinsicsTable>
+    </DataCall>
+</div>
+
+@code {
+    private Task<Result<IQueryable<ExtrinsicLightDto>, ErrorResult>>? mediatorRequest;
+
+    protected override void OnInitialized()
+    {
+        mediatorRequest = _mediator.Send(new SearchExtrinsicsQuery(), CancellationToken.None);
+    }
+}

@@ -210,7 +210,7 @@ namespace Polkanalysis.Domain.Service
                 BlockDate = blockDate,
                 ValidatorIdentity = authorIdentity,
                 ValidatorAddress = authorIdentity.Address,
-                Justification = blockData.Justification.ToString()
+                Justification = blockData.Justification?.ToString()
             };
         }
 
@@ -300,6 +300,8 @@ namespace Polkanalysis.Domain.Service
 
         public LifetimeDto? GetExtrinsicsLifetime(uint blockNumber, Extrinsic extrinsic)
         {
+            if(extrinsic.Era is null) return null;
+
             var result = new LifetimeDto();
             result.IsImmortal = extrinsic.Era.IsImmortal;
             

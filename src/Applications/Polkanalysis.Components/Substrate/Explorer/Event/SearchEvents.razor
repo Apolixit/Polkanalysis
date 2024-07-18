@@ -154,7 +154,7 @@
         EventsName = subscribedEvents.Select(x => x.GetModule().moduleEvent);
 
         // Display all events by default
-        eventSearchMediatorRequest = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery()
+        eventSearchMediatorRequest = mediator.Send(new Polkanalysis.Domain.Contracts.Primary.Explorer.Event.SearchEventsQuery()
         {
             SelectedModules = new List<string>() { "Balances" },
             SelectedEvents = new List<string>() { "Transfer" }
@@ -243,7 +243,7 @@
         eventSearchMediatorRequest = null;
         await InvokeAsync(() => StateHasChanged());
 
-        eventSearchMediatorRequest = mediator.Send(new Domain.Contracts.Primary.Search.SearchEventsQuery()
+        eventSearchMediatorRequest = mediator.Send(new Polkanalysis.Domain.Contracts.Primary.Explorer.Event.SearchEventsQuery()
             {
                 SelectedModules = SelectedModule,
                 SelectedEvents = SelectedEvent,
