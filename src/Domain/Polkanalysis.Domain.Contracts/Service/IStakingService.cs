@@ -101,7 +101,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="stashAccount"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<UserAddressDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken);
+        public Task<UserIdentityDto?> PayeeAccountAsync(SubstrateAccount stashAccount, CancellationToken cancellationToken);
 
         #region Era
         public Task<CurrentEraDto> CurrentEraInformationAsync(CancellationToken cancellationToken);

@@ -31,6 +31,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("BlockNumber"));
 
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("BlockHash")
                         .IsRequired()
                         .HasColumnType("text");
@@ -45,6 +48,9 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.Property<long>("ExtrinsicsCount")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Justification")
+                        .HasColumnType("text");
+
                     b.Property<long>("LogsCount")
                         .HasColumnType("bigint");
 
@@ -55,6 +61,39 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.HasKey("BlockNumber");
 
                     b.ToTable("BlockInformation");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("BlockNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BlockchainName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("ElementId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TypeError")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubstrateErrors");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Auctions.AuctionsAuctionClosedModel", b =>
@@ -423,7 +462,7 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
 
                     b.HasKey("BlockchainName", "ModuleName", "ModuleEvent");
 
-                    b.ToTable("EventManagerModel");
+                    b.ToTable("EventManager");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Identity.IdentityIdentityClearedModel", b =>
@@ -937,6 +976,71 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.ToTable("EventSystemNewAccount");
                 });
 
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("AccountAddress")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("BlockDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("BlockNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BlockchainName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double?>("Charge")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Event")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("ExtrinsicIndex")
+                        .HasColumnType("bigint");
+
+                    b.Property<double?>("Fees")
+                        .HasColumnType("double precision");
+
+                    b.Property<bool>("IsSigned")
+                        .HasColumnType("boolean");
+
+                    b.Property<long?>("LifetimeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Method")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Signature")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("StatusMessage")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TransactionVersion")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LifetimeId");
+
+                    b.ToTable("ExtrinsicsInformation");
+                });
+
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Price.TokenPriceModel", b =>
                 {
                     b.Property<string>("BlockchainName")
@@ -951,6 +1055,32 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.HasKey("BlockchainName", "Date");
 
                     b.ToTable("TokenPrices");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraLifetimeModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("BlockchainName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long?>("EndBlock")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsImmortal")
+                        .HasColumnType("boolean");
+
+                    b.Property<long?>("StartBlock")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EraLifetime");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraStakersModel", b =>
@@ -1046,6 +1176,15 @@ namespace Polkanalysis.Infrastructure.Common.Migrations
                     b.HasKey("BlockchainName", "SpecVersion");
 
                     b.ToTable("SpecVersionModels");
+                });
+
+            modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel", b =>
+                {
+                    b.HasOne("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraLifetimeModel", "Lifetime")
+                        .WithMany()
+                        .HasForeignKey("LifetimeId");
+
+                    b.Navigation("Lifetime");
                 });
 
             modelBuilder.Entity("Polkanalysis.Infrastructure.Database.Contracts.Model.Staking.EraStakersNominatorsModel", b =>

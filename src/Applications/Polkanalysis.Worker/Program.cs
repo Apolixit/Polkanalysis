@@ -19,7 +19,7 @@ using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Infrastructure.Blockchain.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Polkanalysis.Worker.Metrics;
-using Serilog.Extensions.Logging;
+using FluentValidation;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
 
@@ -47,8 +47,8 @@ var host = Host.CreateDefaultBuilder(args)
     services
     .AddHostedService<EventsWorker>()
     //.AddHostedService<PriceWorker>()
-    .AddHostedService<StakingWorker>()
-    .AddHostedService<VersionWorker>()
+    //.AddHostedService<StakingWorker>()
+    //.AddHostedService<VersionWorker>()
     .AddSingleton(hostContext.Configuration)
     .AddDbContextFactory<SubstrateDbContext>(options =>
     {
@@ -77,7 +77,7 @@ var host = Host.CreateDefaultBuilder(args)
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
     });
     services.AddCourier(typeof(SubscribeNewBlocksHandler).Assembly, typeof(Program).Assembly);
-
+    services.AddValidatorsFromAssembly(typeof(BlockLightHandler).Assembly, ServiceLifetime.Transient);
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
     services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 })

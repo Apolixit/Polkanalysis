@@ -25,7 +25,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain.Crowdloan
         /// <summary>
         /// Crownloan creator
         /// </summary>
-        public required UserAddressDto Depositor { get; set; }
+        public required UserIdentityDto Depositor { get; set; }
 
         public required uint FundIndex { get; set; }
         public string HeadData { get; set; } = string.Empty;

@@ -44,6 +44,8 @@ builder.Services.AddSubstrateLogic();
 builder.Services.AddMediatRAndPipelineBehaviors();
 builder.Services.AddDatabase();
 
+builder.Services.AddDataGridEntityFrameworkAdapter();
+
 builder.Services.AddOpentelemetry(microsoftLogger, "Polkanalysis.App");
 
 // Add services to the container.

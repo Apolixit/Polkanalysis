@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Price
 {
-    public class TokenPriceModel
-    {/// <summary>
-     /// Current blockchain name (Polkadot, Kusama, Bajun ...)
-     /// </summary>
-        public required string BlockchainName { get; set; }
-
+    public class TokenPriceModel : BlockchainModel
+    {
         /// <summary>
         /// Price date
         /// </summary>

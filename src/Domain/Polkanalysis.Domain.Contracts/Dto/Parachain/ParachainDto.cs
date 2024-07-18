@@ -12,8 +12,8 @@ namespace Polkanalysis.Domain.Contracts.Dto.Parachain
     {
         public uint ParachainId { get; set; }
         public BlockchainProject? BlockchainInformationDetail { get; set; }
-        public UserAddressDto OwnerAccount { get; set; }
-        public UserAddressDto FundAccount { get; set; }
+        public UserIdentityDto OwnerAccount { get; set; }
+        public UserIdentityDto FundAccount { get; set; }
         public int ValidatorCount { get; set; }
         public object SlotType { get; set; }
         public string RegisterStatus { get; set; }

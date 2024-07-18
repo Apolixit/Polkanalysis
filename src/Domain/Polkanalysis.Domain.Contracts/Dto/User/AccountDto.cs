@@ -5,7 +5,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.User
     public class AccountDto
     {
         public required UserInformationsDto InformationsDto { get; set; } = new UserInformationsDto();
-        public UserAddressDto Address { get; set; }
+        public UserIdentityDto Address { get; set; }
         public required BalancesDto Balances { get; set; }
         public uint AccountIndex { get; set; }
         public required uint Nonce { get; set; }

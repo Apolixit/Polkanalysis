@@ -22,6 +22,11 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Blocks
         public required uint BlockNumber { get; set; }
 
         /// <summary>
+        /// The block date
+        /// </summary>
+        public required DateTime BlockDate { get; set; }
+
+        /// <summary>
         /// The block hash
         /// </summary>
         public required string BlockHash { get; set; }
@@ -45,5 +50,10 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Blocks
         /// The number of logs in the block
         /// </summary>
         public required uint LogsCount { get; set; }
+
+        /// <summary>
+        /// Block message
+        /// </summary>
+        public string? Justification { get; set; }
     }
 }

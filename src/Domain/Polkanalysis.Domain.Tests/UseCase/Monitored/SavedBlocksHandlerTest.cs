@@ -33,21 +33,23 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _explorerService = Substitute.For<IExplorerService>();
             _explorerService.GetBlockLightAsync(Arg.Any<uint>(), Arg.Any<CancellationToken>()).Returns(
                 new Contracts.Dto.Block.BlockLightDto()
-            {
-                Hash = new Hash("0x1234567890"),
-                Number = 1,
-                Status = Contracts.Dto.GlobalStatusDto.BlockStatusDto.Finalized,
-                When = DateTime.Now.ToString(),
-                NbEvents = 1,
-                NbExtrinsics = 1,
-                NbLogs = 1,
-                Validator = new UserAddressDto()
                 {
-                    Name = "Alice",
-                    Address = Alice.ToString(),
-                    PublicKey = Utils.Bytes2HexString(Alice.Bytes)
-                }
-            });
+                    Hash = new Hash("0x1234567890"),
+                    Number = 1,
+                    Status = Contracts.Dto.GlobalStatusDto.BlockStatusDto.Finalized,
+                    BlockDate = DateTime.Now,
+                    When = DateTime.Now.ToString(),
+                    NbEvents = 1,
+                    NbExtrinsics = 1,
+                    NbLogs = 1,
+                    ValidatorIdentity = new UserIdentityDto()
+                    {
+                        Name = "Alice",
+                        Address = Alice.ToString(),
+                        PublicKey = Utils.Bytes2HexString(Alice.Bytes)
+                    },
+                    ValidatorAddress = Alice.ToString()
+                });
 
             _substrateService.BlockchainName.Returns("Polkadot");
 

@@ -19,8 +19,6 @@ namespace Polkanalysis.Worker.Metrics
     {
         private Counter<int> CountBlockAnalyzed { get; set; }
         private Counter<double> RatioOfBlockAnalyzed { get; set; }
-        private Counter<int> CountEventsAnalyzed { get; set; }
-        private Histogram<double> RatioOfEventsAnalyzedPerBlockHistogram { get; set; }
         private Histogram<int> TimeDurationOfEventsAnalyzedPerBlockHistogram { get; set; }
 
         public WorkerMetrics(IMeterFactory meterFactory, IConfiguration configuration)
@@ -33,24 +31,12 @@ namespace Polkanalysis.Worker.Metrics
                 "block",
                 "Counter of the number of blocks analyzed by the worker");
 
-            // Counter of the number of blocks analyzed by the worker
-            CountEventsAnalyzed = meter.CreateCounter<int>(
-                "count.substrate.events.analyzed",
-                "block",
-                "Counter of the number of Substrate events inserted in the database");
-
             // Histogram of the ratio of Substrate succesfully parsed events analyzed by the worker
             RatioOfBlockAnalyzed = meter.CreateCounter<double>(
                 "count.substrate.block.ratio.analyzed",
                 "block",
                 "Ratio of block analyzed");
 
-
-            // Histogram of the ratio of Substrate succesfully parsed events analyzed by the worker
-            RatioOfEventsAnalyzedPerBlockHistogram = meter.CreateHistogram<double>(
-                "ratio_events_analyzed_per_block",
-                "block",
-                "Histogram of Substrate events analyzed by the worker");
 
             TimeDurationOfEventsAnalyzedPerBlockHistogram = meter.CreateHistogram<int>(
                 "time_duration_events_analyzed_per_block",
@@ -59,9 +45,8 @@ namespace Polkanalysis.Worker.Metrics
         }
 
         public void IncreaseBlockCount() => CountBlockAnalyzed.Add(1);
-        public void IncreaseAnalyzedEventsCount() => CountEventsAnalyzed.Add(1);
+        
         public void RatioBlockAnalyzed(double value) => RatioOfBlockAnalyzed.Add(value);
-        public void RecordEventAnalyzed(double value) => RatioOfEventsAnalyzedPerBlockHistogram.Record(value);
-        public void RecordEventAnalyzed(int value) => TimeDurationOfEventsAnalyzedPerBlockHistogram.Record(value);
+        
     }
 }

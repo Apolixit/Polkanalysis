@@ -11,7 +11,7 @@ namespace Polkanalysis.Domain.Contracts.Dto.Staking.Pool
     public class PoolPayoutDto
     {
         public required EventLightDto Event { get; set; }
-        public required UserAddressDto RewardAccount { get; set; }
+        public required UserIdentityDto RewardAccount { get; set; }
         public double RewardAmount { get; set; } = 0;
     }
 }
