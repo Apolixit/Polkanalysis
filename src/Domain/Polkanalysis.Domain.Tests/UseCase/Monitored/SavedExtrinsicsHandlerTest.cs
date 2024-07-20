@@ -129,7 +129,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         public async Task SavedBlocksHandler_WithValidData_ShouldSucceedAsync()
         {
             var mockExtrinsic = standardExtrinsicMock();
-            _substrateDecoding.DecodeExtrinsic(mockExtrinsic).Returns(new GenericNode()
+            _substrateDecoding.DecodeExtrinsicAsync(mockExtrinsic, Arg.Any<Hash>(), CancellationToken.None).Returns(new GenericNode()
             {
                 Name = "Timestamp",
                 Children = new List<INode>([ new GenericNode()
@@ -153,7 +153,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         public async Task SavedBlocksHandler_WithDecodedError_ShouldLogAndFailAsync()
         {
             var mockExtrinsic = standardExtrinsicMock();
-            _substrateDecoding.DecodeExtrinsic(mockExtrinsic).Throws<Exception>();
+            _substrateDecoding.DecodeExtrinsicAsync(mockExtrinsic, Arg.Any<Hash>(), CancellationToken.None).ThrowsAsync<Exception>();
 
             var command = new SavedExtrinsicsCommand(1);
 

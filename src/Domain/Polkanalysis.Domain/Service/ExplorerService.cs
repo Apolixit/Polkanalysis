@@ -243,7 +243,7 @@ namespace Polkanalysis.Domain.Service
             //var filteredExtrinsic = blockDetails.Block.Extrinsics;
             foreach (var extrinsic in extrinsicsList)
             {
-                var extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
+                var extrinsicDecode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
             }
 
             var status = blockExecutionPhase is null ? GlobalStatusDto.BlockStatusDto.Finalized : blockExecutionPhase.Value switch
@@ -557,7 +557,7 @@ namespace Polkanalysis.Domain.Service
                 var isEqual = extrinsic.ToString().ToLower().Equals(extrinsicFromEncoded.ToString().ToLower());
 #endif
 
-                var extrinsicNode = _substrateDecode.DecodeExtrinsic(extrinsic);
+                var extrinsicNode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
 
                 var (callModule, callEvent) = _substrateDecode.GetCallFromExtrinsic(extrinsic);
                 extrinsicsDto.Add(

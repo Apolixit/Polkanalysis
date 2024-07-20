@@ -27,6 +27,11 @@
     protected override void OnInitialized()
     {
         SelectedOperator = optionsSelector.First(x => x.Value == Operator.Equal);
+
+        if (Value is null)
+        {
+            Value = new NumberCriteria<TFilter> { Operator = SelectedOperator.Value };
+        }
     }
 
     public void OnInputChanged(ChangeEventArgs e, Action<TFilter?> action)
@@ -62,6 +67,18 @@
         }
     }
 
+    protected virtual void ResetFilters()
+    {
+        SelectedOperator = optionsSelector.First(x => x.Value == Operator.Equal);
+
+        Value!.Value = default!;
+        Value!.Value2 = default!;
+        Value.Operator = SelectedOperator.Value;
+
+        displaySecondField = false;
+        ValueChanged.InvokeAsync(Value);
+    }
+
     protected virtual void OnInternalValueChanged(TFilter? value)
     {
         if (value is null) Value = null;
@@ -76,6 +93,22 @@
         else Value = new NumberCriteria<TFilter> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value2 = value };
 
         ValueChanged.InvokeAsync(Value);
+    }
+
+    protected virtual void HandleClear()
+    {
+        if (Value is null || string.IsNullOrEmpty(Value.Value.ToString()))
+        {
+            Value!.Value = default!;
+        }
+    }
+
+    protected virtual void HandleClear2()
+    {
+        if (Value is null || string.IsNullOrEmpty(Value.Value2!.ToString()))
+        {
+            Value!.Value2 = default;
+        }
     }
 
     protected static List<Option<Operator>> optionsSelector = new()

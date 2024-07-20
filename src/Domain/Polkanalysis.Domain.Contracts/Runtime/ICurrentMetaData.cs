@@ -1,6 +1,7 @@
 ﻿using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.Contracts.Runtime
 {
@@ -12,6 +13,8 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// </summary>
         /// <returns></returns>
         public INodeMetadataV14 GetCurrentMetadata();
+
+        public Task<NodeMetadataV14> GetMetadataAsync(Hash blockHash);
 
         /// <summary>
         /// Get current MetaData pallet module from pallet name

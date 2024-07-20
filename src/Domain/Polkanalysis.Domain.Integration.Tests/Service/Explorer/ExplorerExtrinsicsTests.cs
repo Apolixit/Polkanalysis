@@ -30,11 +30,11 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         /// </summary>
         /// <param name="extrinsicHash"></param>
         [Test]
-        [TestCase("0x280403000b207eba5c8501")]
-        public void GetExtrinsic_ShouldWork(string extrinsicHash)
+        [TestCase("0x280403000b207eba5c8501", "0xe95401c4b25965e5c528909513e71f7017d9dbfeb02e6b41d70997f2ab872829")]
+        public async Task GetExtrinsic_ShouldWorkAsync(string extrinsicHash, string blockHash)
         {
             var extrinsic = new Extrinsic(extrinsicHash, ChargeTransactionPayment.Default());
-            var res = _substrateDecoding.DecodeExtrinsic(extrinsic);
+            var res = await _substrateDecoding.DecodeExtrinsicAsync(extrinsic, new Substrate.NetApi.Model.Types.Base.Hash(blockHash), CancellationToken.None);
             Assert.That(res, Is.Not.Null);
         }
 

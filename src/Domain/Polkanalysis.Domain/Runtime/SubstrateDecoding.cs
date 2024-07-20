@@ -13,6 +13,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using AutoMapper;
 using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Service;
+using Substrate.NetApi.Model.Rpc;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -91,19 +92,21 @@ namespace Polkanalysis.Domain.Runtime
             throw new InvalidOperationException();
         }
 
-        public INode DecodeExtrinsic(string hex)
+        public async Task<INode> DecodeExtrinsicAsync(string hex, Hash blockHash, CancellationToken cancellationToken)
         {
             if(string.IsNullOrWhiteSpace(hex)) throw new ArgumentNullException($"{nameof(hex)}");
 
             var extrinsic = new Extrinsic(hex, ChargeTransactionPayment.Default());
 
             _logger.LogInformation($"Extrinsic {hex} has been converted to a valid extrinsic");
-            return DecodeExtrinsic(extrinsic);
+            return await DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
         }
 
-        public INode DecodeExtrinsic(Extrinsic extrinsic)
+        public async Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken)
         {
-            var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
+            var metadata = await _metaData.GetMetadataAsync(blockHash);
+            var pallet = metadata.Modules[extrinsic.Method.ModuleIndex];
+
             var extrinsicCall = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
 
             #if DEBUG

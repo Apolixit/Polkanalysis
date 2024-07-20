@@ -8,7 +8,10 @@
         }
     </div>
     <div class="col-auto">
-        <FluentNumberField TValue="@(int)" @oninput="(e => OnInputChanged(e, OnValueIntChanged))" Disabled="@IsDisabled" />
+        <FluentNumberField 
+            TValue="@(int)" 
+            @oninput="(e => OnInputChanged(e, OnValueIntChanged))" 
+            Disabled="@IsDisabled" />
     </div>
     <div class="col-auto">
         @if (displaySecondField)

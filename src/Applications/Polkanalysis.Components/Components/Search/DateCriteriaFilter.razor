@@ -8,14 +8,22 @@
         }
     </div>
     <div class="col-auto">
-        <FluentDatePicker @bind-Value="@DateStart" Disabled="@IsDisabled" />
-        <FluentTimePicker @bind-Value="@TimeStart" Disabled="@IsDisabled" />
+        <FluentDatePicker 
+            Autofocus="true"
+            @bind-Value="@DateStart"
+                          @bind-Value:after="HandleClearDateStart"
+                          @onchange="(e => HandleDateStartChanged(e.Value))"
+                          Disabled="@IsDisabled" />
+        <FluentTimePicker 
+            @bind-Value="@TimeStart"
+                          @bind-Value:after="HandleClearTimeStart"
+            Disabled="@IsDisabled" />
     </div>
     <div class="col-auto">
         @if (displaySecondField)
         {
-            <FluentDatePicker @bind-Value="@DateEnd" Disabled="@IsDisabled" />
-            <FluentTimePicker @bind-Value="@TimeEnd" Disabled="@IsDisabled" />
+            <FluentDatePicker @bind-Value="@DateEnd" Disabled="@IsDisabled" @bind-Value:after="HandleClearDateEnd" />
+            <FluentTimePicker @bind-Value="@TimeEnd" Disabled="@IsDisabled" @bind-Value:after="HandleClearTimeEnd" />
         }
     </div>
 </div>
@@ -26,4 +34,75 @@
 
     [Parameter] public DateTime? DateEnd { get; set; } = null;
     [Parameter] public DateTime? TimeEnd { get; set; } = null;
+
+    protected void HandleDateStartChanged(object? value)
+    {
+        if (value is null)
+        {
+            Value = null;
+            return;
+        }
+
+        if (value is DateTime valueDT)
+        {
+            if (TimeStart.HasValue)
+            {
+                valueDT.AddSeconds(TimeStart.Value.TimeOfDay.TotalSeconds);
+            }
+            else Value = new NumberCriteria<DateTime> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value = valueDT };
+
+            ValueChanged.InvokeAsync(Value);
+        }
+    }
+
+    protected void HandleDateEndChanged(DateTime? value)
+    {
+        if (value is null)
+        {
+            Value = null;
+            return;
+        }
+
+        if(value is DateTime valueDT) {
+            if (TimeEnd.HasValue)
+            {
+                valueDT.AddSeconds(TimeEnd.Value.TimeOfDay.TotalSeconds);
+            }
+            else Value = new NumberCriteria<DateTime> { Operator = SelectedOperator?.Value ?? Operator.Equal, Value2 = valueDT };
+
+            ValueChanged.InvokeAsync(Value);
+        }
+    }
+
+    protected void HandleClearDateStart()
+    {
+        if (DateStart is null || DateStart.Value.Equals(default))
+        {
+            DateStart = null;
+        }
+    }
+
+    protected void HandleClearDateEnd()
+    {
+        if (DateEnd is null || DateEnd.Value.Equals(default))
+        {
+            DateEnd = null;
+        }
+    }
+
+    protected void HandleClearTimeStart()
+    {
+        if (TimeStart is null || TimeStart.Value.Equals(default))
+        {
+            TimeStart = null;
+        }
+    }
+
+    protected void HandleClearTimeEnd()
+    {
+        if (TimeEnd is null || TimeEnd.Value.Equals(default))
+        {
+            TimeEnd = null;
+        }
+    }
 }

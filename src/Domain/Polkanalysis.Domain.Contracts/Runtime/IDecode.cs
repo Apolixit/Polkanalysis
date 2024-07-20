@@ -1,6 +1,7 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.Contracts.Runtime
 {
@@ -35,14 +36,14 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        INode DecodeExtrinsic(string hex);
+        Task<INode> DecodeExtrinsicAsync(string hex, Hash blockHash, CancellationToken cancellationToken);
 
         /// <summary>
         /// Build a tree from an extrinsic
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        INode DecodeExtrinsic(Extrinsic extrinsic);
+        Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken);
 
         /// <summary>
         /// Build a tree from logs strings (hexadecimal)
