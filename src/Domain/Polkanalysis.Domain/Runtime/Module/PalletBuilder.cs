@@ -7,6 +7,7 @@ using System.Reflection;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
@@ -68,10 +69,12 @@ namespace Polkanalysis.Domain.Runtime.Module
             string dynamicEnum = string.Empty;
             string namespaceBase = string.Empty;
 
+            var metaDataTest = _currentMetaData.GetMetadataAsync(new Hash("0x3398425fd67309e6eab9a0b11a7c9f554f641a8004fc5c4214407b948515cfd7")).Result;
+
             switch (typeBuilder)
             {
                 case TypeBuilder.Call:
-                    currentType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types[palletModule.Calls.TypeId];
+                    currentType = metaDataTest.Types[palletModule.Calls.TypeId];
                     namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
                     dynamicCall = $"{namespaceBase}.EnumCall";
                     dynamicEnum = $"{namespaceBase}.Call";

@@ -1,7 +1,15 @@
 ﻿@inherits CriteriaFilter<string>
 @using Polkanalysis.Domain.Contracts.Common.Search
 
-<FluentTextField @oninput="(e => OnInputChanged(e, OnInternalValueChanged))" Label="@Label" Disabled="@IsDisabled" Autofocus="true" />
+<FluentSearch 
+    @bind-Value="Value!.Value"
+    @bind-Value:after="HandleClear"
+    @oninput="(e => OnInputChanged(e, OnInternalValueChanged))" 
+    Label="@Label" 
+    Disabled="@IsDisabled" 
+    Autofocus="true" />
+
+<FluentButton IconStart="new Icons.Regular.Size16.Delete()" Appearance="Appearance.Accent" OnClick="ResetFilters">Reset filters</FluentButton>
 
 @code {
     [Parameter] public bool Autofocus { get; set; } = false;

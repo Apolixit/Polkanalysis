@@ -4,6 +4,8 @@ using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
+using Substrate.NetApi.Model.Types.Base;
+using Substrate.NetApi.Model.Types.Metadata;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -111,6 +113,16 @@ namespace Polkanalysis.Domain.Runtime
             return _substrateNodeRepository.RuntimeMetadata.NodeMetadata;
         }
 
+        public async Task<NodeMetadataV14> GetMetadataAsync(Hash blockHash)
+        {
+            var metadataString = await _substrateNodeRepository.Rpc.State.GetMetaDataAsync(blockHash, CancellationToken.None);
+            var mdv14 = new RuntimeMetadata();
+            mdv14.Create(metadataString);
+            var metaData  = new MetaData(mdv14);
+
+            return metaData.NodeMetadata;
+        }
+
         public PalletModule GetPalletModule(string palletName)
         {
             if (string.IsNullOrEmpty(palletName))
@@ -119,7 +131,8 @@ namespace Polkanalysis.Domain.Runtime
                 throw new ArgumentNullException($"{nameof(palletName)}");
             }
 
-            var pallet = GetCurrentMetadata().Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
+            //var pallet = GetCurrentMetadata().Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
+            var pallet = GetMetadataAsync(new Hash("0x3398425fd67309e6eab9a0b11a7c9f554f641a8004fc5c4214407b948515cfd7")).Result.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
             if(pallet == null)
             {
                 _logger.LogError($"{palletName} does not exists in current metadata");

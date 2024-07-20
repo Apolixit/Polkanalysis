@@ -74,7 +74,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
                 try
                 {
-                    extrinsicDecode = _substrateDecode.DecodeExtrinsic(extrinsic);
+                    extrinsicDecode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
                     var status = _explorerService.GetExtrinsicsStatus(blockEvents, (int)extrinsicIndex);
                     var fees = await _explorerService.GetExtrinsicsFeesAsync(blockEvents, (int)extrinsicIndex, cancellationToken);
                     var lifetime = _explorerService.GetExtrinsicsLifetime(request.BlockNumber, extrinsic);
