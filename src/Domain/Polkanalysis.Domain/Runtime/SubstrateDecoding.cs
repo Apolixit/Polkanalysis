@@ -75,11 +75,11 @@ namespace Polkanalysis.Domain.Runtime
             return eventNode;
         }
 
-        public (string callModule, string callEvent) GetCallFromExtrinsic(Extrinsic extrinsic)
+        public async Task<(string callModule, string callEvent)> GetCallFromExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken)
         {
             string callModule = string.Empty;
             string callEvent = string.Empty;
-            var pallet = _metaData.GetCurrentMetadata().Modules[extrinsic.Method.ModuleIndex];
+            var pallet = (await _metaData.GetMetadataAsync(blockHash, cancellationToken)).Modules[extrinsic.Method.ModuleIndex];
             callModule = pallet.Name;
             var palletType = _metaData.GetPalletType(pallet.Calls.TypeId);
 
