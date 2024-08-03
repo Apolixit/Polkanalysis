@@ -14,7 +14,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// <returns></returns>
         public INodeMetadataV14 GetCurrentMetadata();
 
-        public Task<NodeMetadataV14> GetMetadataAsync(Hash blockHash);
+        public Task<NodeMetadataV14> GetMetadataAsync(Hash blockHash, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get current MetaData pallet module from pallet name
@@ -82,12 +82,5 @@ namespace Polkanalysis.Domain.Contracts.Runtime
         /// <param name="nodeType"></param>
         /// <returns></returns>
         public string WriteNodeArray(NodeTypeArray nodeType);
-
-        /// <summary>
-        /// Build a "to Rust struct" implementation of given type
-        /// </summary>
-        /// <param name="typeId"></param>
-        /// <returns></returns>
-        public string BuildType(uint typeId);
     }
 }

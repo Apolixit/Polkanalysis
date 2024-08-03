@@ -92,10 +92,6 @@ namespace Polkanalysis.Domain.Runtime
             return $"{WriteType(nodeType.TypeId)}[{nodeType.Length}]";
         }
         #endregion
-        public string BuildType(uint typeId)
-        {
-            throw new NotImplementedException();
-        }
 
         public TypeFieldDto BuildTypeField(NodeTypeField node)
         {
@@ -113,14 +109,28 @@ namespace Polkanalysis.Domain.Runtime
             return _substrateNodeRepository.RuntimeMetadata.NodeMetadata;
         }
 
-        public async Task<NodeMetadataV14> GetMetadataAsync(Hash blockHash)
+        public async Task<NodeMetadataV14> GetMetadataAsync(Hash blockHash, CancellationToken cancellationToken)
         {
-            var metadataString = await _substrateNodeRepository.Rpc.State.GetMetaDataAsync(blockHash, CancellationToken.None);
+            var metadataString = await _substrateNodeRepository.Rpc.State.GetMetaDataAsync(blockHash, cancellationToken);
             var mdv14 = new RuntimeMetadata();
             mdv14.Create(metadataString);
             var metaData  = new MetaData(mdv14);
 
             return metaData.NodeMetadata;
+        }
+
+        public async Task<PalletModule> GetPalletModuleAsync(Hash blockHash, byte moduleIndex, CancellationToken cancellationToken)
+        {
+            var metadata = await GetMetadataAsync(blockHash, cancellationToken);
+            var pallet = metadata.Modules[moduleIndex];
+
+            if (pallet == null)
+            {
+                _logger.LogError($"Pallet with index {moduleIndex} not found in metadata");
+                throw new KeyNotFoundException($"Pallet with index {moduleIndex} not found in metadata");
+            }
+
+            return pallet;
         }
 
         public PalletModule GetPalletModule(string palletName)
