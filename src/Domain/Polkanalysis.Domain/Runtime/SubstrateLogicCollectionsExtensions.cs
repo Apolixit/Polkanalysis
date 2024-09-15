@@ -18,9 +18,8 @@ namespace Polkanalysis.Domain.Runtime
             services.AddTransient<ISubstrateDecoding, SubstrateDecoding>();
             services.AddTransient<IPalletBuilder, PalletBuilder>();
             services.AddTransient<INodeMapping, EventNodeMapping>();
-            services.AddTransient<ICurrentMetaData, CurrentMetaData>();
+            services.AddTransient<Contracts.Service.IMetadataService, MetadataService>();
             services.AddTransient<IModuleInformationService, ModuleInformation>();
-            services.AddTransient<IMetadataService, MetadataService>();
 
             return services;
         }

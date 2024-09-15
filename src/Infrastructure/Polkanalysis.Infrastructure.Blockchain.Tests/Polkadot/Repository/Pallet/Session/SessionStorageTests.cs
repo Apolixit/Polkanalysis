@@ -10,7 +10,7 @@ using RuntimeExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkado
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Session
 {
-    public class SessionStorageTests : PolkadotRepositoryMock
+    public class SessionStorageTests : PolkadotMock
     {
         [Test]
         public async Task Validators_ShouldWorkAsync()

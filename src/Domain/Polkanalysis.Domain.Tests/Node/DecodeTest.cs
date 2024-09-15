@@ -7,6 +7,7 @@ using NSubstitute;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.SubstrateDecode.Test.Node
 {
@@ -21,7 +22,7 @@ namespace Polkanalysis.SubstrateDecode.Test.Node
                 new EventNodeMapping(),
                 Substitute.For<ISubstrateService>(),
                 Substitute.For<IPalletBuilder>(),
-                Substitute.For<ICurrentMetaData>(),
+                Substitute.For<IMetadataService>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 

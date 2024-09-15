@@ -2,7 +2,6 @@
 using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Module;
-using Polkanalysis.Domain.Contracts.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +16,10 @@ namespace Polkanalysis.Domain.Runtime.Module
 {
     public class ModuleInformation : IModuleInformationService
     {
-        private readonly ICurrentMetaData _currentMetaData;
+        private readonly IMetadataService _currentMetaData;
         private readonly ISubstrateService _substrateService;
 
-        public ModuleInformation(ICurrentMetaData currentMetaData, ISubstrateService substrateService)
+        public ModuleInformation(IMetadataService currentMetaData, ISubstrateService substrateService)
         {
             _currentMetaData = currentMetaData;
             _substrateService = substrateService;
@@ -28,7 +27,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         #region Calls
         public List<ModuleCallsDto> GetModuleCalls(string palletName)
-            => GetModuleCalls(_currentMetaData.GetPalletModule(palletName));
+            => GetModuleCalls(_currentMetaData.GetPalletModuleByNameAsync(_substrateService.Rpc.Chain.GetBlockHashAsync().Result, palletName, CancellationToken.None).Result);
 
         public List<ModuleCallsDto> GetModuleCalls(PalletModule palletModule)
         {
@@ -72,7 +71,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         #region Events
         public List<ModuleEventsDto> GetModuleEvents(string palletName)
-                => GetModuleEvents(_currentMetaData.GetPalletModule(palletName));
+                => GetModuleEvents(_currentMetaData.GetPalletModuleByNameAsync(_substrateService.Rpc.Chain.GetBlockHashAsync().Result, palletName, CancellationToken.None).Result);
 
         public List<ModuleEventsDto> GetModuleEvents(PalletModule palletModule)
         {
@@ -116,7 +115,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         #region Constants
         public List<ModuleConstantsDto> GetModuleConstants(string palletName)
-                => GetModuleConstants(_currentMetaData.GetPalletModule(palletName));
+                => GetModuleConstants(_currentMetaData.GetPalletModuleByNameAsync(_substrateService.Rpc.Chain.GetBlockHashAsync().Result, palletName, CancellationToken.None).Result);
 
         public List<ModuleConstantsDto> GetModuleConstants(PalletModule palletModule)
         {
@@ -151,7 +150,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         #region Storage
         public List<ModuleStorageDto> GetModuleStorage(string palletName)
-                => GetModuleStorage(_currentMetaData.GetPalletModule(palletName));
+                => GetModuleStorage(_currentMetaData.GetPalletModuleByNameAsync(_substrateService.Rpc.Chain.GetBlockHashAsync().Result, palletName, CancellationToken.None).Result);
 
         public List<ModuleStorageDto> GetModuleStorage(PalletModule palletModule)
         {
@@ -192,7 +191,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         #region Errors
         public List<ModuleErrorsDto> GetModuleErrors(string palletName)
-                => GetModuleErrors(_currentMetaData.GetPalletModule(palletName));
+                => GetModuleErrors(_currentMetaData.GetPalletModuleByNameAsync(_substrateService.Rpc.Chain.GetBlockHashAsync().Result, palletName, CancellationToken.None).Result);
 
         public List<ModuleErrorsDto> GetModuleErrors(PalletModule palletModule)
         {
@@ -232,7 +231,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         #region Details
         public ModuleDetailDto GetModuleDetail(string palletName)
-            => GetModuleDetail(_currentMetaData.GetPalletModule(palletName));
+            => GetModuleDetail(_currentMetaData.GetPalletModuleByNameAsync(_substrateService.Rpc.Chain.GetBlockHashAsync().Result, palletName, CancellationToken.None).Result);
 
         public ModuleDetailDto GetModuleDetail(PalletModule palletModule)
         {

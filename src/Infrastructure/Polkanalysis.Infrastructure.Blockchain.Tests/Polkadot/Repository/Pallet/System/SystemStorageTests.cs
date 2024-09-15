@@ -18,7 +18,7 @@ using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.System
 {
-    public class SystemStorageTests : PolkadotRepositoryMock
+    public class SystemStorageTests : PolkadotMock
     {
         [Test]
         public async Task Account_ShouldWorkAsync()

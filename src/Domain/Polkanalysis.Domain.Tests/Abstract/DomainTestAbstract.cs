@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Abstract.Tests;
 using Polkanalysis.Infrastructure.Database;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.Tests.Abstract
 {
     public abstract class DomainTestAbstract : GlobalAbstractTest
     {
         protected SubstrateDbContext _substrateDbContext;
+
+        protected static Hash MockHash = new Hash("0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a90");
 
         [SetUp]
         protected void DomainTestAbstractSetup()

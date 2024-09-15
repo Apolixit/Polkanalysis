@@ -10,7 +10,7 @@ using StakingExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Staking
 {
-    public class StakingStorageTests : PolkadotRepositoryMock
+    public class StakingStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U32TestCase))]

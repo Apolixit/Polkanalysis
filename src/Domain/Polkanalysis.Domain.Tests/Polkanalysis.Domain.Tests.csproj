@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <Folder Include="Runtime\Block\" />
+    <Folder Include="Runtime\Metadata\" />
   </ItemGroup>
 
   <ItemGroup>

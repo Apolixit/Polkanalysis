@@ -103,6 +103,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Abstract.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Polkanalysis.Api.Service", "src\Applications\Polkanalysis.Api.Service\Polkanalysis.Api.Service.csproj", "{4C9408BE-8B70-4E51-A777-0D1A4D934902}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Substrate.NET.Metadata", "..\Apolixit_Forks\Substrate.NET.Metadata.Sandbox\Substrate.NET.Metadata\Substrate.NET.Metadata.csproj", "{E933E7B9-F9AF-4738-AE71-9895C44FA836}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +235,10 @@ Global
 		{4C9408BE-8B70-4E51-A777-0D1A4D934902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C9408BE-8B70-4E51-A777-0D1A4D934902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C9408BE-8B70-4E51-A777-0D1A4D934902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E933E7B9-F9AF-4738-AE71-9895C44FA836}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E933E7B9-F9AF-4738-AE71-9895C44FA836}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E933E7B9-F9AF-4738-AE71-9895C44FA836}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E933E7B9-F9AF-4738-AE71-9895C44FA836}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -273,6 +279,7 @@ Global
 		{81F9AC86-D103-4A5B-BCA6-8C4759A4B1E7} = {F54F8885-056B-4991-8E99-518851FC9CCF}
 		{667DD5A6-9F0C-4049-9C6E-BAABDB7C3941} = {F54F8885-056B-4991-8E99-518851FC9CCF}
 		{4C9408BE-8B70-4E51-A777-0D1A4D934902} = {CB427406-E3C9-402D-9C25-F35C450D7D2C}
+		{E933E7B9-F9AF-4738-AE71-9895C44FA836} = {F8743F78-109F-4E69-BA71-02047B4BB2D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31C4F337-85EF-42F2-9358-F402619BBAE7}

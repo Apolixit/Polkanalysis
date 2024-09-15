@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Timestamp
 {
-    public class TimestampStorageTests : PolkadotRepositoryMock
+    public class TimestampStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U64TestCase))]

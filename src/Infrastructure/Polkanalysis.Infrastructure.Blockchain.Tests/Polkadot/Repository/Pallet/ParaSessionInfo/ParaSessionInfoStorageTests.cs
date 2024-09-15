@@ -9,7 +9,7 @@ using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParaSessionInfo
 {
-    public class ParaSessionInfoStorageTests : PolkadotRepositoryMock
+    public class ParaSessionInfoStorageTests : PolkadotMock
     {
         [Test]
         public async Task AssignmentKeysUnsafe_ShouldWorkAsync()

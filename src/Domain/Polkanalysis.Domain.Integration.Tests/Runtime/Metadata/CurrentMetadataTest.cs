@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Runtime;
+using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Runtime;
 
@@ -9,20 +9,21 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Metadata
 {
     public class CurrentMetadataTest : PolkadotIntegrationTest
     {
-        private ICurrentMetaData _currentMetaData;
+        private IMetadataService _currentMetaData;
 
         [SetUp]
         public void Setup()
         {
-            _currentMetaData = new CurrentMetaData(
-                _substrateService,
-                Substitute.For<ILogger<CurrentMetaData>>());
+            _currentMetaData = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
         }
 
         [Test]
         public void GetPalletModule_WithInvalidName_ShouldFailed()
         {
-            Assert.Throws<InvalidOperationException>(() => _currentMetaData.GetPalletModule("NotFoundModuleName"));
+            Assert.ThrowsAsync<InvalidOperationException>(() => _currentMetaData.GetPalletModuleByNameAsync("NotFoundModuleName", CancellationToken.None));
         }
 
         [Test]

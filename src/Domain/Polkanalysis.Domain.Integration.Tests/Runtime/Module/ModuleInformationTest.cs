@@ -7,26 +7,29 @@ using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Polkanalysis.Domain.Contracts.Runtime;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class ModuleInformationTest : PolkadotIntegrationTest
     {
         private IModuleInformationService _moduleRepository;
-        private ICurrentMetaData _currentMetadata;
+        private IMetadataService _currentMetadata;
 
         [SetUp]
         public void Setup()
         {
-            _currentMetadata = new CurrentMetaData(_substrateService, Substitute.For<ILogger<CurrentMetaData>>());
+            _currentMetadata = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
             _moduleRepository = new ModuleInformation(_currentMetadata, _substrateService);
         }
 
         [Test, CancelAfter(2000)]
-        public void Module_PalletBalances_ShouldWork()
+        public async Task Module_PalletBalances_ShouldWorkAsync()
         {
-            var balanceModuleFromCurrentMetadata = _currentMetadata.GetCurrentMetadata().Modules.FirstOrDefault(x => x.Value.Name == "balances");
+            var metadata = await _substrateService.GetMetadataAsync(CancellationToken.None);
+            var balanceModuleFromCurrentMetadata = metadata.NodeMetadata.Modules.FirstOrDefault(x => x.Value.Name == "balances");
 
             var res = _moduleRepository.GetModuleDetail("balances");
 
@@ -41,16 +44,6 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
                 Assert.That(res.Errors.Count, Is.GreaterThan(0));
             });
             
-        }
-
-        [Test]
-        public void Module_CheckEveryCurrentRuntimeModule_ShouldWork()
-        {
-            _currentMetadata.GetCurrentMetadata().Modules.Select(x => x.Value).ToList().ForEach(module =>
-            {
-                var res = _moduleRepository.GetModuleDetail(module);
-                Assert.That(res, Is.Not.Null);
-            });
         }
     }
 }

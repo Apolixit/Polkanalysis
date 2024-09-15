@@ -13,7 +13,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         public SubstrateClient AjunaClient { get; }
         public string BlockchainName { get; }
         public Hash GenesisHash { get; }
-        public IMetadata RuntimeMetadata { get; }
+        //public IMetadata RuntimeMetadata { get; }
         public RuntimeVersion RuntimeVersion { get; }
 
         public ITimeQueryable At(U32 blockNumber);

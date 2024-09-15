@@ -9,6 +9,7 @@ using PolkadotRuntime = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.
 using ScheduleEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Scheduler.Enums;
 using SystemEvent = Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Event
 {
@@ -26,7 +27,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
                 new EventNodeMapping(),
                 Substitute.For<ISubstrateService>(),
                 Substitute.For<IPalletBuilder>(),
-                Substitute.For<ICurrentMetaData>(),
+                Substitute.For<IMetadataService>(),
                 _logger);
         }
 

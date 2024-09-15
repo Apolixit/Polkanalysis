@@ -1,24 +1,28 @@
-﻿using Polkanalysis.Domain.Contracts.Runtime;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class FindDocumentationTest : PolkadotIntegrationTest
     {
         private readonly IPalletBuilder _palletBuilder;
-        private readonly ICurrentMetaData _currentMetaData;
-        private readonly ILogger<CurrentMetaData> _logger;
+        private readonly IMetadataService _currentMetaData;
+        private readonly ILogger<MetadataService> _logger;
 
         public FindDocumentationTest()
         {
-            _logger = Substitute.For<ILogger<CurrentMetaData>>();
-            _currentMetaData = new CurrentMetaData(_substrateService, _logger);
+            _logger = Substitute.For<ILogger<MetadataService>>();
+            _currentMetaData = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
+
             _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());
         }
 

@@ -15,7 +15,7 @@ using Substrate.NetApi.Model.Types;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.NominationPools
 {
-    public class NominationPoolsStorageTests : PolkadotRepositoryMock
+    public class NominationPoolsStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U128TestCase))]

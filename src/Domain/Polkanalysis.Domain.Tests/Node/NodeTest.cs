@@ -1,5 +1,4 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
@@ -8,6 +7,7 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.Node
 {
@@ -91,7 +91,7 @@ namespace Polkanalysis.Domain.Tests.Node
                 new EventNodeMapping(),
                 Substitute.For<ISubstrateService>(),
                 Substitute.For<IPalletBuilder>(),
-                Substitute.For<ICurrentMetaData>(),
+                Substitute.For<IMetadataService>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
 
             //var enumTimestamp = new EnumRuntimeEvent();
@@ -136,7 +136,7 @@ namespace Polkanalysis.Domain.Tests.Node
                 new EventNodeMapping(),
                 Substitute.For<ISubstrateService>(),
                 Substitute.For<IPalletBuilder>(),
-                Substitute.For<ICurrentMetaData>(),
+                Substitute.For<IMetadataService>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
 
             var accountInfo = new AccountInfo();

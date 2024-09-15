@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Tests.Runtime.Extrinsic
 {
@@ -27,7 +28,7 @@ namespace Polkanalysis.Domain.Tests.Runtime.Extrinsic
                 new EventNodeMapping(),
                 Substitute.For<ISubstrateService>(),
                 Substitute.For<IPalletBuilder>(),
-                Substitute.For<ICurrentMetaData>(),
+                Substitute.For<IMetadataService>(),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
     }

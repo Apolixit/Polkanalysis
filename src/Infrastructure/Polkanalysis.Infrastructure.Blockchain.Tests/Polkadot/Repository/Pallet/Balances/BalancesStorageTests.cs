@@ -11,7 +11,7 @@ using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Balances
 {
-    public class BalancesStorageTests : PolkadotRepositoryMock
+    public class BalancesStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U128TestCase))]

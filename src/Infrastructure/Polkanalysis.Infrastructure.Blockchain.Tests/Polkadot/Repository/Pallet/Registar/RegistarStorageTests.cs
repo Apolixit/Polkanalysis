@@ -5,7 +5,7 @@ using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Registar
 {
-    public class RegistarStorageTests : PolkadotRepositoryMock
+    public class RegistarStorageTests : PolkadotMock
     {
         [Test]
         public async Task NextFreeParaId_ShouldWorkAsync()

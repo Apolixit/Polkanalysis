@@ -10,7 +10,7 @@ using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParasStorage
 {
-    public class ParaStorageTests : PolkadotRepositoryMock
+    public class ParaStorageTests : PolkadotMock
     {
         [Test]
         [Ignore("TODO find test")]

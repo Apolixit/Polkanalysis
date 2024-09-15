@@ -16,7 +16,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.System
 {
-    public class SystemEventsTest : PolkadotRepositoryMock
+    public class SystemEventsTest : PolkadotMock
     {
         private IBlockchainMapping _blockchainMapping;
 

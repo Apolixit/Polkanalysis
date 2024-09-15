@@ -10,10 +10,8 @@ using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Ardalis.GuardClauses;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
-using AutoMapper;
 using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Service;
-using Substrate.NetApi.Model.Rpc;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -22,14 +20,14 @@ namespace Polkanalysis.Domain.Runtime
         private readonly INodeMapping _mapping;
         private readonly ISubstrateService _substrateRepository;
         private readonly IPalletBuilder _palletBuilder;
-        private readonly ICurrentMetaData _metaData;
+        private readonly IMetadataService _metaData;
         private readonly ILogger<SubstrateDecoding> _logger;
 
         public SubstrateDecoding(
             INodeMapping mapping,
             ISubstrateService substrateRepository,
             IPalletBuilder palletBuilder,
-            ICurrentMetaData metaData,
+            IMetadataService metaData,
             ILogger<SubstrateDecoding> logger)
         {
             _mapping = mapping;
@@ -79,7 +77,9 @@ namespace Polkanalysis.Domain.Runtime
         {
             string callModule = string.Empty;
             string callEvent = string.Empty;
-            var pallet = (await _metaData.GetMetadataAsync(blockHash, cancellationToken)).Modules[extrinsic.Method.ModuleIndex];
+
+            var metadata = await _substrateRepository.At(blockHash).GetMetadataAsync(cancellationToken);
+            var pallet = metadata.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
             callModule = pallet.Name;
             var palletType = _metaData.GetPalletType(pallet.Calls.TypeId);
 
@@ -104,10 +104,10 @@ namespace Polkanalysis.Domain.Runtime
 
         public async Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken)
         {
-            var metadata = await _metaData.GetMetadataAsync(blockHash);
-            var pallet = metadata.Modules[extrinsic.Method.ModuleIndex];
+            var metadata = await _substrateRepository.At(blockHash).GetMetadataAsync(cancellationToken);
+            var pallet = metadata.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
 
-            var extrinsicCall = _palletBuilder.BuildCall(pallet.Name, extrinsic.Method);
+            var extrinsicCall = _palletBuilder.BuildCall(blockHash, pallet.Name, extrinsic.Method);
 
             #if DEBUG
             if (extrinsicCall is not null)
@@ -115,7 +115,6 @@ namespace Polkanalysis.Domain.Runtime
                 var isEqual = Utils.Bytes2HexString(extrinsic.Method.Encode()) == Utils.Bytes2HexString(extrinsicCall.Encode());
             }
             #endif
-
 
             var palletNode = new GenericNode();
             palletNode.Name = pallet.Name;
@@ -333,6 +332,11 @@ namespace Polkanalysis.Domain.Runtime
                 }
             }
             
+        }
+
+        public (string callModule, string callEvent) GetCallFromExtrinsic(Extrinsic extrinsic)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
