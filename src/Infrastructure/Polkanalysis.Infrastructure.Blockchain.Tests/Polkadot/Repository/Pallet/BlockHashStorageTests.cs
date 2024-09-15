@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
     /// Test if the block hash is correctly passed to each storage
     /// So we return null for storage call without blockhash and a simple value with
     /// </summary>
-    public class BlockHashStorageTests : PolkadotRepositoryMock
+    public class BlockHashStorageTests : PolkadotMock
     {
         private const string BlockHash = "IAmABlockHash";
 

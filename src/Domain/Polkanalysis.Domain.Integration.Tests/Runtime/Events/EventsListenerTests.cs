@@ -10,20 +10,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Events
 {
     internal class EventsListenerTests : PolkadotIntegrationTest
     {
         private ISubstrateDecoding _substrateDecode;
-        private ICurrentMetaData _currentMetaData;
+        private IMetadataService _currentMetaData;
 
         [SetUp]
         public void Setup()
         {
-            _currentMetaData = new CurrentMetaData(
-                _substrateService,
-                Substitute.For<ILogger<CurrentMetaData>>());
+            _currentMetaData = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
 
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),

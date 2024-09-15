@@ -18,7 +18,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {
-    public class PolkadotMappingTests : PolkadotRepositoryMock
+    public class PolkadotMappingTests : PolkadotMock
     {
 
         [Test, Ignore("TODO constructor check")]

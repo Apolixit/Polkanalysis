@@ -16,7 +16,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
     public class SystemStorageTests : PolkadotIntegrationTest
     {
         [Test]
-        //[TestCase(1, "12H7nsDUrJUSCQQJrTKAFfyCWSactiSdjoVUixqcd9CZHTGt"), Ignore("Todo manage metadata prev v14")]
+        [TestCase(1, "12H7nsDUrJUSCQQJrTKAFfyCWSactiSdjoVUixqcd9CZHTGt")]
         [TestCase(18112436, "16aP3oTaD7oQ6qmxU6fDAi7NWUB7knqH6UsWbwjnAhvRSxzS")]
         public async Task Account_ShouldWorkAsync(int numBlock, string accountAddress)
         {

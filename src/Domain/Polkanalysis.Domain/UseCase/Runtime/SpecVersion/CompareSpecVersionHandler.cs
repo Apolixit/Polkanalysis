@@ -21,17 +21,14 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
 {
     public class CompareSpecVersionHandler : Handler<CompareSpecVersionHandler, CompareSpecVersionDto, CompareSpecVersionsQuery>
     {
-        private readonly IMetadataService _metadataService;
         private readonly ISubstrateService _substrateService;
         private readonly SubstrateDbContext _dbContext;
 
         public CompareSpecVersionHandler(
-            IMetadataService metadataService,
             SubstrateDbContext dbContext,
             ISubstrateService substrateService,
             ILogger<CompareSpecVersionHandler> logger, IDistributedCache cache) : base(logger, cache)
         {
-            _metadataService = metadataService;
             _dbContext = dbContext;
             _substrateService = substrateService;
         }
@@ -80,16 +77,16 @@ namespace Polkanalysis.Domain.UseCase.Runtime.SpecVersion
             if(string.IsNullOrEmpty(metadataSource) || string.IsNullOrEmpty(metadataTarget))
                 return UseCaseError(ErrorResult.ErrorType.EmptyParam, $"An error happened when trying to fetch metadata hex");
 
-            var checkVersion = _metadataService.EnsureMetadataVersion(metadataSource, metadataTarget);
+            var checkVersion = MetadataUtils.EnsureMetadataVersion(metadataSource, metadataTarget);
 
             var dto = checkVersion switch
             {
-                MetadataVersion.V9 => new CompareSpecVersionDto(_metadataService.MetadataCompareV9(new MetadataV9(metadataSource), new MetadataV9(metadataTarget))),
-                MetadataVersion.V10 => new CompareSpecVersionDto(_metadataService.MetadataCompareV10(new MetadataV10(metadataSource), new MetadataV10(metadataTarget))),
-                MetadataVersion.V11 => new CompareSpecVersionDto(_metadataService.MetadataCompareV11(new MetadataV11(metadataSource), new MetadataV11(metadataTarget))),
-                MetadataVersion.V12 => new CompareSpecVersionDto(_metadataService.MetadataCompareV12(new MetadataV12(metadataSource), new MetadataV12(metadataTarget))),
-                MetadataVersion.V13 => new CompareSpecVersionDto(_metadataService.MetadataCompareV13(new MetadataV13(metadataSource), new MetadataV13(metadataTarget))),
-                MetadataVersion.V14 => new CompareSpecVersionDto(_metadataService.MetadataCompareV14(new MetadataV14(metadataSource), new MetadataV14(metadataTarget))),
+                MetadataVersion.V9 => new CompareSpecVersionDto(MetadataUtils.MetadataCompareV9(new MetadataV9(metadataSource), new MetadataV9(metadataTarget))),
+                MetadataVersion.V10 => new CompareSpecVersionDto(MetadataUtils.MetadataCompareV10(new MetadataV10(metadataSource), new MetadataV10(metadataTarget))),
+                MetadataVersion.V11 => new CompareSpecVersionDto(MetadataUtils.MetadataCompareV11(new MetadataV11(metadataSource), new MetadataV11(metadataTarget))),
+                MetadataVersion.V12 => new CompareSpecVersionDto(MetadataUtils.MetadataCompareV12(new MetadataV12(metadataSource), new MetadataV12(metadataTarget))),
+                MetadataVersion.V13 => new CompareSpecVersionDto(MetadataUtils.MetadataCompareV13(new MetadataV13(metadataSource), new MetadataV13(metadataTarget))),
+                MetadataVersion.V14 => new CompareSpecVersionDto(MetadataUtils.MetadataCompareV14(new MetadataV14(metadataSource), new MetadataV14(metadataTarget))),
                 _ => throw new InvalidOperationException("MetadataV15 comparison is not yet supported ! Stay tuned.")
             };
 

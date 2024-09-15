@@ -10,7 +10,7 @@ using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Identity
 {
-    public class IdentityStorageTests : PolkadotRepositoryMock
+    public class IdentityStorageTests : PolkadotMock
     {
         [Test]
         public async Task IdentityOf_ShouldWorkAsync()

@@ -2,7 +2,6 @@
 using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,27 +9,32 @@ using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class PalletBuilderTest : PolkadotIntegrationTest
     {
         private readonly IPalletBuilder _palletBuilder;
-        private readonly ICurrentMetaData _currentMetaData;
-        private readonly ILogger<CurrentMetaData> _logger;
+        private readonly IMetadataService _currentMetaData;
+        private readonly ILogger<MetadataService> _logger;
 
         public PalletBuilderTest()
         {
-            _logger = Substitute.For<ILogger<CurrentMetaData>>();
-            _currentMetaData = new CurrentMetaData(_substrateService, _logger);
+            _logger = Substitute.For<ILogger<MetadataService>>();
+            _currentMetaData = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
+
             _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());
         }
 
         [Test]
-        [TestCase("0x0B3CA561D98401")]
-        public void BuildCall_PalletTimestampSetTime_ShouldSucceed(string hex)
+        [TestCase("0x5ff1293f4dfbdeb3bd405af3f908846c4d8689d2c78ffbbc3bb8f1008caa62e0", "0x0B3CA561D98401")]
+        public void BuildCall_PalletTimestampSetTime_ShouldSucceed(string blockHash, string hex)
         {
-            var callBuilded = _palletBuilder.BuildCall("Timestamp", new Method(3, 0, Utils.HexToByteArray(hex)));
+            var callBuilded = _palletBuilder.BuildCall(new Hash(blockHash), "Timestamp", new Method(3, 0, Utils.HexToByteArray(hex)));
             Assert.That(callBuilded, Is.Not.Null);
 
             var timestampSet = new Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.EnumCall();

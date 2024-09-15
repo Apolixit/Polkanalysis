@@ -22,7 +22,7 @@ namespace Polkanalysis.Domain.Tests.Service.Block
             _substrateDecoding = new SubstrateDecoding(Substitute.For<INodeMapping>(),
                                                        _substrateService,
                                                        Substitute.For<IPalletBuilder>(),
-                                                       Substitute.For<ICurrentMetaData>(),
+                                                       Substitute.For<IMetadataService>(),
                                                        Substitute.For<ILogger<SubstrateDecoding>>());
 
             _explorerService = new ExplorerService(_substrateService,

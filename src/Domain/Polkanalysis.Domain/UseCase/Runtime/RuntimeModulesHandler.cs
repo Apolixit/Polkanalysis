@@ -25,8 +25,10 @@ namespace Polkanalysis.Domain.UseCase.Runtime
 
         public override async Task<Result<IEnumerable<ModuleDetailDto>, ErrorResult>> HandleInnerAsync(RuntimeModulesQuery request, CancellationToken cancellationToken)
         {
+            var metadata = await _substrateService.GetMetadataAsync(cancellationToken);
+
             List<Task<ModuleDetailDto>> modulesTask = new();
-            foreach ( var module in _substrateService.RuntimeMetadata.NodeMetadata.Modules) {
+            foreach ( var module in metadata.NodeMetadata.Modules) {
                 modulesTask.Add(Task.Run(() => _moduleService.GetModuleDetail(module.Value.Name)));
             }
 

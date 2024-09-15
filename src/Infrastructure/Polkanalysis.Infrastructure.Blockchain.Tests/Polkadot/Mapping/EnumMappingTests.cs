@@ -13,7 +13,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_arithmetic.fixed_
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {
-    public class EnumMappingTests : PolkadotRepositoryMock
+    public class EnumMappingTests : PolkadotMock
     {
         #region Mock
 

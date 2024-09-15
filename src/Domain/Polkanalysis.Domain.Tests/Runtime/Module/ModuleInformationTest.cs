@@ -1,5 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Runtime;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -17,13 +16,13 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Tests.Repository
     public class ModuleInformationTest
     {
         private IModuleInformationService _moduleRepository;
-        private ICurrentMetaData _currentMetaData;
+        private IMetadataService _currentMetaData;
         private ISubstrateService _substrateService;
 
         [SetUp]
         public void Setup()
         {
-            _currentMetaData = Substitute.For<ICurrentMetaData>();
+            _currentMetaData = Substitute.For<IMetadataService>();
             _substrateService = Substitute.For<ISubstrateService>();
             _moduleRepository = new ModuleInformation(_currentMetaData, _substrateService);
         }

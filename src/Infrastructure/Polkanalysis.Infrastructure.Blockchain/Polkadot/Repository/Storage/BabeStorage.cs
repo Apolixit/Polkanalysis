@@ -66,7 +66,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<BabeEpochConfiguration> NextEpochConfigAsync(CancellationToken token)
         {
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase, BabeEpochConfiguration>(await _client.BabeStorage.NextEpochConfigAsync(token));
+            var res = await _client.BabeStorage.NextEpochConfigAsync(token);
+            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase, BabeEpochConfiguration>(res);
         }
 
         public async Task<Hexa> NextRandomnessAsync(CancellationToken token)

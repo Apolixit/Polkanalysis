@@ -15,7 +15,7 @@ using Substrate.NET.Utils;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Babe
 {
-    public class BabeStorageTests : PolkadotRepositoryMock
+    public class BabeStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U64TestCase))]

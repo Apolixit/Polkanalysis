@@ -13,7 +13,7 @@ using IdExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_par
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Auctions
 {
-    public class AuctionsStorageTests : PolkadotRepositoryMock
+    public class AuctionsStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U32TestCase))]

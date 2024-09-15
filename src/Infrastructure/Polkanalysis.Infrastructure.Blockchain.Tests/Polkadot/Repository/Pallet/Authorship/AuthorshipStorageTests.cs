@@ -8,7 +8,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Authorship
 {
-    public class AuthorshipStorageTests : PolkadotRepositoryMock
+    public class AuthorshipStorageTests : PolkadotMock
     {
         [Test]
         public async Task Uncles_ShouldWorkAsync()

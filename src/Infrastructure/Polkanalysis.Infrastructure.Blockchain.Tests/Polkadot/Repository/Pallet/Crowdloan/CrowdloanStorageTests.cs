@@ -12,7 +12,7 @@ using CrowdloanExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polka
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Crowdloan
 {
-    public class CrowdloanStorageTests : PolkadotRepositoryMock
+    public class CrowdloanStorageTests : PolkadotMock
     {
         [Test]
         [TestCaseSource(nameof(U32TestCase))]

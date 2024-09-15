@@ -5,6 +5,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 {
@@ -14,7 +15,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 
         public SystemErrorListenerTest()
         {
-            var currentMetadata = new CurrentMetaData(_substrateService, Substitute.For<ILogger<CurrentMetaData>>());
+            var currentMetadata = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
 
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),

@@ -1,6 +1,7 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types;
+using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.Contracts.Runtime.Module
 {
@@ -12,7 +13,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="palletName"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IType? BuildCall(string palletName, Method method);
+        IType? BuildCall(Hash blockHash, string palletName, Method method);
 
         /// <summary>
         /// Build a dynamic event in the pallet
@@ -20,7 +21,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="palletName"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IType? BuildEvent(string palletName, Method method);
+        IType? BuildEvent(Hash blockHash, string palletName, Method method);
 
         /// <summary>
         /// Build a dynamic error to the given method in the pallet
@@ -28,7 +29,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="palletName"></param>
         /// <param name="method"></param>
         /// <returns></returns>
-        IType? BuildError(string palletName, Method method);
+        IType? BuildError(Hash blockHash, string palletName, Method method);
 
         /// <summary>
         /// Generate dynamic namespace base
@@ -42,35 +43,35 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public NodeType? FindNodeType(Type type);
+        public NodeType? FindNodeType(Type type, Hash? blockHash = null);
 
         /// <summary>
         /// Try to find the associated NodeType in current Metadata for the given Ajuna IType
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public NodeType? FindNodeType(IType type);
+        public NodeType? FindNodeType(IType type, Hash? blockHash = null);
 
         /// <summary>
         /// Return documentation associated to node type
         /// </summary>
         /// <param name="nodeType"></param>
         /// <returns></returns>
-        public string? FindDocumentation(NodeType nodeType);
+        public string? FindDocumentation(NodeType nodeType, Hash? blockHash = null);
 
         /// <summary>
         /// Try to find the documentation in current Metadata for the given generic type
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public string? FindDocumentation(Type type);
+        public string? FindDocumentation(Type type, Hash? blockHash = null);
 
         /// <summary>
         /// Try to find the documentation in current Metadata for the given Ajuna IType
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public string? FindDocumentation(IType type);
+        public string? FindDocumentation(IType type, Hash? blockHash = null);
 
         /// <summary>
         /// Try to find the documentation in current Metadata for the given enum
@@ -78,8 +79,8 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <typeparam name="T"></typeparam>
         /// <param name="type"></param>
         /// <returns></returns>
-        public string? FindDocumentation(Enum type);
+        public string? FindDocumentation(Enum type, Hash? blockHash = null);
 
-        TypeProperty[]? FindProperty(Enum type);
+        TypeProperty[]? FindProperty(Enum type, Hash? blockHash = null);
     }
 }

@@ -1,23 +1,23 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
 using System.Reflection;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using Substrate.NetApi.Model.Types.Base;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
     public class PalletBuilder : IPalletBuilder
     {
         private readonly ISubstrateService _substrateRepository;
-        private readonly ICurrentMetaData _currentMetaData;
+        private readonly IMetadataService _currentMetaData;
         private readonly ILogger<PalletBuilder> _logger;
 
-        public PalletBuilder(ISubstrateService substrateRepository, ICurrentMetaData currentMetaData, ILogger<PalletBuilder> logger)
+        public PalletBuilder(ISubstrateService substrateRepository, IMetadataService currentMetaData, ILogger<PalletBuilder> logger)
         {
             _substrateRepository = substrateRepository;
             _currentMetaData = currentMetaData;
@@ -54,9 +54,9 @@ namespace Polkanalysis.Domain.Runtime.Module
         /// <param name="dynamicCall"></param>
         /// <param name="dynamicEnum"></param>
         /// <returns></returns>
-        private IType? BuildGeneric(string palletName, Method method, TypeBuilder typeBuilder)
+        private IType? BuildGeneric(Hash blockHash, string palletName, Method method, TypeBuilder typeBuilder)
         {
-            var palletModule = _currentMetaData.GetPalletModule(palletName);
+            var palletModule = _currentMetaData.GetPalletModuleByNameAsync(blockHash, palletName, CancellationToken.None).Result;
 
             if (palletModule == null)
                 throw new ArgumentException($"{nameof(palletModule)} has not been found in current Metadata");
@@ -69,24 +69,25 @@ namespace Polkanalysis.Domain.Runtime.Module
             string dynamicEnum = string.Empty;
             string namespaceBase = string.Empty;
 
-            var metaDataTest = _currentMetaData.GetMetadataAsync(new Hash("0x3398425fd67309e6eab9a0b11a7c9f554f641a8004fc5c4214407b948515cfd7")).Result;
+            //var metaDataTest = _currentMetaData.GetMetadataAsync(new Hash("0x3398425fd67309e6eab9a0b11a7c9f554f641a8004fc5c4214407b948515cfd7")).Result;
+            var metadata = _substrateRepository.At(blockHash).GetMetadataAsync(CancellationToken.None).Result;
 
             switch (typeBuilder)
             {
                 case TypeBuilder.Call:
-                    currentType = metaDataTest.Types[palletModule.Calls.TypeId];
+                    currentType = metadata.NodeMetadata.Types[palletModule.Calls.TypeId];
                     namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
                     dynamicCall = $"{namespaceBase}.EnumCall";
                     dynamicEnum = $"{namespaceBase}.Call";
                     break;
                 case TypeBuilder.Error:
-                    currentType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types[palletModule.Errors.TypeId];
+                    currentType = metadata.NodeMetadata.Types[palletModule.Errors.TypeId];
                     namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
                     dynamicCall = $"{namespaceBase}.EnumError";
                     dynamicEnum = $"{namespaceBase}.Error";
                     break;
                 case TypeBuilder.Event:
-                    currentType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types[palletModule.Events.TypeId];
+                    currentType = metadata.NodeMetadata.Types[palletModule.Events.TypeId];
                     namespaceBase = GenerateDynamicNamespaceBase(currentType.Path);
                     dynamicCall = $"{namespaceBase}.EnumEvent";
                     dynamicEnum = $"{namespaceBase}.Event";
@@ -119,19 +120,19 @@ namespace Polkanalysis.Domain.Runtime.Module
             return null;
         }
 
-        public IType? BuildCall(string palletName, Method method)
+        public IType? BuildCall(Hash blockHash, string palletName, Method method)
         {
-            return BuildGeneric(palletName, method, TypeBuilder.Call);
+            return BuildGeneric(blockHash, palletName, method, TypeBuilder.Call);
         }
 
-        public IType? BuildError(string palletName, Method method)
+        public IType? BuildError(Hash blockHash, string palletName, Method method)
         {
-            return BuildGeneric(palletName, method, TypeBuilder.Error);
+            return BuildGeneric(blockHash, palletName, method, TypeBuilder.Error);
         }
 
-        public IType? BuildEvent(string palletName, Method method)
+        public IType? BuildEvent(Hash blockHash, string palletName, Method method)
         {
-            return BuildGeneric(palletName, method, TypeBuilder.Event);
+            return BuildGeneric(blockHash, palletName, method, TypeBuilder.Event);
         }
 
         private string ParseComplexPalletName(string input)
@@ -152,7 +153,7 @@ namespace Polkanalysis.Domain.Runtime.Module
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public NodeType? FindNodeType(Type type)
+        public NodeType? FindNodeType(Type type, Hash? blockHash = null)
         {
             if (type.FullName == null)
                 throw new ArgumentException($"{nameof(type.FullName)} is null (type = {type.Name})");
@@ -177,15 +178,19 @@ namespace Polkanalysis.Domain.Runtime.Module
                 arguments[0] = $"pallet_{palletName.ToLowerInvariant()}";
                 arguments[1] = $"pallet";
 
+                var metadata = blockHash == null ? 
+                    _substrateRepository.GetMetadataAsync(CancellationToken.None).Result :  
+                    _substrateRepository.At(blockHash).GetMetadataAsync(CancellationToken.None).Result;
+
                 NodeType? nodeType = null;
-                nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
+                nodeType = metadata.NodeMetadata.Types
                     .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
 
                 if (nodeType is null)
                 {
                     arguments.Insert(1, "pallet"); // Sorry ...
 
-                    nodeType = _substrateRepository.RuntimeMetadata.NodeMetadata.Types
+                    nodeType = metadata.NodeMetadata.Types
                     .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
                 }
 
@@ -195,35 +200,35 @@ namespace Polkanalysis.Domain.Runtime.Module
             return null;
         }
 
-        public NodeType? FindNodeType(IType type)
+        public NodeType? FindNodeType(IType type, Hash? blockHash = null)
         {
-            return FindNodeType(type.GetType());
+            return FindNodeType(type.GetType(), blockHash);
         }
 
-        public string? FindDocumentation(NodeType nodeType)
+        public string? FindDocumentation(NodeType nodeType, Hash? blockHash = null)
         {
             if (nodeType.Docs == null) return null;
             return string.Join("\n", nodeType.Docs);
         }
-        public string? FindDocumentation(Type type)
+        public string? FindDocumentation(Type type, Hash? blockHash = null)
         {
-            var nodeType = FindNodeType(type);
+            var nodeType = FindNodeType(type, blockHash);
             if (nodeType == null) return null;
 
-            return FindDocumentation(nodeType);
+            return FindDocumentation(nodeType, blockHash);
         }
 
-        public string? FindDocumentation(IType type)
+        public string? FindDocumentation(IType type, Hash? blockHash = null)
         {
-            var nodeType = FindNodeType(type);
+            var nodeType = FindNodeType(type, blockHash);
             if (nodeType == null) return null;
 
-            return FindDocumentation(nodeType);
+            return FindDocumentation(nodeType, blockHash);
         }
 
-        public string? FindDocumentation(Enum type)
+        public string? FindDocumentation(Enum type, Hash? blockHash = null)
         {
-            var nodeType = FindNodeType(type.GetType());
+            var nodeType = FindNodeType(type.GetType(), blockHash);
             if (nodeType == null) return null;
 
             if (nodeType is NodeTypeVariant nodeTypeVariant)
@@ -237,11 +242,12 @@ namespace Polkanalysis.Domain.Runtime.Module
             return null;
         }
 
-        public TypeProperty[]? FindProperty(Enum type)
+        public TypeProperty[]? FindProperty(Enum type, Hash? blockHash = null)
         {
+            var metadata = _substrateRepository.At(blockHash).GetMetadataAsync(CancellationToken.None).Result;
             var properties = new List<TypeProperty>();
 
-            var nodeType = FindNodeType(type.GetType());
+            var nodeType = FindNodeType(type.GetType(), blockHash);
             if (nodeType == null) return null;
 
             if (nodeType is NodeTypeVariant nodeTypeVariant)
@@ -254,7 +260,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
                 foreach (var field in variantType.TypeFields)
                 {
-                    var typeId = _substrateRepository.RuntimeMetadata.NodeMetadata.Types[field.TypeId];
+                    var typeId = metadata.NodeMetadata.Types[field.TypeId];
                     ExtractProperty(properties, field.Name, field.TypeName, typeId);
                 }
 
@@ -270,7 +276,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                 }
                 if (typeId is NodeTypeCompact compact)
                 {
-                    ExtractProperty(properties, name, typeName, _substrateRepository.RuntimeMetadata.NodeMetadata.Types[compact.TypeId]);
+                    ExtractProperty(properties, name, typeName, metadata.NodeMetadata.Types[compact.TypeId]);
                 }
                 if (typeId is NodeTypeComposite composite)
                 {
@@ -282,7 +288,7 @@ namespace Polkanalysis.Domain.Runtime.Module
                             var prop = new TypeProperty(name, typeName, fieldType);
                         foreach (var compositeField in composite.TypeFields)
                         {
-                            ExtractProperty(prop.SubProperties, compositeField.Name, compositeField.TypeName, _substrateRepository.RuntimeMetadata.NodeMetadata.Types[compositeField.TypeId]);
+                            ExtractProperty(prop.SubProperties, compositeField.Name, compositeField.TypeName, metadata.NodeMetadata.Types[compositeField.TypeId]);
                         }
                         properties.Add(prop);
                     }
@@ -295,7 +301,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
                 if (typeId is NodeTypeArray array)
                 {
-                    ExtractProperty(properties, name, typeName, _substrateRepository.RuntimeMetadata.NodeMetadata.Types[array.TypeId]);
+                    ExtractProperty(properties, name, typeName, metadata.NodeMetadata.Types[array.TypeId]);
                 }
             }
         }

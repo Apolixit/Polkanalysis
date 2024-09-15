@@ -17,7 +17,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
     public abstract class ExplorerRepositoryTest : PolkadotIntegrationTest
     {
         protected IExplorerService _explorerRepository;
-        protected ICurrentMetaData _currentMetaData;
+        protected IMetadataService _currentMetaData;
         protected ISubstrateDecoding _substrateDecoding;
         protected IAccountService _accountRepository;
         protected IPalletBuilder _palletBuilder;
@@ -32,8 +32,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
                 _currentMetaData,
                 Substitute.For<ILogger<PalletBuilder>>());
 
-            _currentMetaData = new CurrentMetaData(
-                _substrateService, Substitute.For<ILogger<CurrentMetaData>>());
+            _currentMetaData = new MetadataService(_substrateService,
+                                                      _substrateDbContext,
+                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ILogger<MetadataService>>());
 
             _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Events
 {
-    public class EventRecordsTest : PolkadotRepositoryMock
+    public class EventRecordsTest : PolkadotMock
     {
         [Test]
         [Ignore("Todo debug versionning")]

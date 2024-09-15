@@ -6,20 +6,23 @@ using NSubstitute;
 using NUnit.Framework;
 using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
+using Polkanalysis.Domain.Contracts.Service;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
 {
     public class ExtrinsicBalancesTests : PolkadotIntegrationTest
     {
         private ISubstrateDecoding _substrateDecode;
-        private ICurrentMetaData _currentMetaData;
+        private IMetadataService _currentMetaData;
 
         [SetUp]
         public void Setup()
         {
-            _currentMetaData = new CurrentMetaData(
+            _currentMetaData = new MetadataService(
                 _substrateService,
-                Substitute.For<ILogger<CurrentMetaData>>());
+                _substrateDbContext,
+                Substitute.For<IExplorerService>(),
+                Substitute.For<ILogger<MetadataService>>());
 
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),
