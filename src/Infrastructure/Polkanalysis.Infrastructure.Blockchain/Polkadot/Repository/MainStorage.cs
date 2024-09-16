@@ -94,6 +94,15 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
             return mapped;
         }
 
+        /// <summary>
+        /// Maps the source object to the destination object with the specified version.
+        /// </summary>
+        /// <typeparam name="TSource">The type of the source object.</typeparam>
+        /// <typeparam name="TDestination">The type of the destination object.</typeparam>
+        /// <param name="source">The source object to map.</param>
+        /// <param name="token">The cancellation token.</param>
+        /// <param name="callerName">The name of the calling member.</param>
+        /// <returns>The mapped destination object.</returns>
         protected async Task<TDestination?> MapWithVersionAsync<TSource, TDestination>(TSource source, CancellationToken token, [CallerMemberName] string callerName = "")
             where TSource : IType
             where TDestination : IType

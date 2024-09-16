@@ -67,7 +67,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
         public async Task<BabeEpochConfiguration> NextEpochConfigAsync(CancellationToken token)
         {
             var res = await _client.BabeStorage.NextEpochConfigAsync(token);
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_babe.BabeEpochConfigurationBase, BabeEpochConfiguration>(res);
+            return Map<IType, BabeEpochConfiguration>(res);
         }
 
         public async Task<Hexa> NextRandomnessAsync(CancellationToken token)
@@ -102,12 +102,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
 
         public async Task<Slot> CurrentSlotAsync(CancellationToken token)
         {
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase, Slot>(await _client.BabeStorage.CurrentSlotAsync(token));
+            // Can be SlotBase or U64
+            return Map<IType, Slot>(await _client.BabeStorage.CurrentSlotAsync(token));
         }
 
         public async Task<Slot> GenesisSlotAsync(CancellationToken token)
         {
-            return Map<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_consensus_slots.SlotBase, Slot>(await _client.BabeStorage.GenesisSlotAsync(token));
+            // Can be SlotBase or U64
+            return Map<IType, Slot>(await _client.BabeStorage.GenesisSlotAsync(token));
         }
     }
 }
