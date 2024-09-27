@@ -42,16 +42,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository.Storage
             //    (accountId32, BalancesStorageExt.AccountParams, token);
         }
 
-        public async Task<IdAmount> FreezesAsync(SubstrateAccount key, CancellationToken token)
+        public async Task<BaseVec<IdAmount>> FreezesAsync(SubstrateAccount key, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(key, token);
-            return Map<IType, IdAmount>(await _client.BalancesStorage.FreezesAsync(accountId32, token));
+            return Map<IType, BaseVec<IdAmount>>(await _client.BalancesStorage.FreezesAsync(accountId32, token));
         }
 
-        public async Task<IdAmount> HoldsAsync(SubstrateAccount key, CancellationToken token)
+        public async Task<BaseVec<IdAmount>> HoldsAsync(SubstrateAccount key, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(key, token);
-            return Map<IType, IdAmount>(await _client.BalancesStorage.HoldsAsync(accountId32, token));
+            return Map<IType, BaseVec<IdAmount>>(await _client.BalancesStorage.HoldsAsync(accountId32, token));
         }
 
         public async Task<U128> InactiveIssuanceAsync(CancellationToken token)

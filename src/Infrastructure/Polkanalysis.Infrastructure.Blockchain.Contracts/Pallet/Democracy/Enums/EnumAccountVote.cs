@@ -16,6 +16,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enum
         Standard = 0,
 
         Split = 1,
+
+        SplitAbstain = 2
     }
 
     /// <summary>
@@ -23,7 +25,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enum
     /// </summary>
     public sealed class EnumAccountVote : BaseEnumExt<AccountVote,
         BaseTuple<Vote, U128>,
-        BaseTuple<U128, U128>>
+        BaseTuple<U128, U128>,
+        BaseTuple<U128, U128, U128>>
     {
     }
 }

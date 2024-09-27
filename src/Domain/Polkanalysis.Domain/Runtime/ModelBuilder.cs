@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Domain.Contracts.Runtime;
 using Substrate.NetApi;
+using Polkanalysis.Domain.Contracts.Dto.User;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -173,25 +174,28 @@ namespace Polkanalysis.Domain.Runtime
         /// <param name="moduleName"></param>
         /// <param name="callEvent"></param>
         /// <returns></returns>
-        public static ExtrinsicDto BuildExtrinsicDto(Extrinsic extrinsic,
-                                              uint blockNumber,
-                                              INode extrinsicNode,
-                                              uint extrinsicIndex,
-                                              string moduleName,
-                                              string callEvent)
-        {
-            var extrinsicDto = new ExtrinsicDto()
-            {
-                BlockNumber = blockNumber,
-                Hash = Utils.Bytes2HexString(extrinsic.Encode()),
-                ExtrinsicId = $"{blockNumber}-{extrinsicIndex}",
-                Index = extrinsicIndex,
-                PalletName = moduleName,
-                CallEventName = callEvent,
-            };
+        //public static ExtrinsicDto BuildExtrinsicDto(Extrinsic extrinsic,
+        //                                      uint blockNumber,
+        //                                      INode extrinsicNode,
+        //                                      uint extrinsicIndex,
+        //                                      string moduleName,
+        //                                      string callEvent,
+        //                                      AccountDto? caller)
+        //{
+        //    var extrinsicDto = new ExtrinsicDto()
+        //    {
+        //        BlockNumber = blockNumber,
+        //        Hash = Utils.Bytes2HexString(extrinsic.Encode()),
+        //        ExtrinsicId = $"{blockNumber}-{extrinsicIndex}",
+        //        Index = extrinsicIndex,
+        //        PalletName = moduleName,
+        //        CallEventName = callEvent,
+        //        Caller = caller,
+        //        EstimatedFees = 0,
+        //    };
 
-            return extrinsicDto;
-        }
+        //    return extrinsicDto;
+        //}
 
         /// <summary>
         /// Build a light dto object of an extrinsic

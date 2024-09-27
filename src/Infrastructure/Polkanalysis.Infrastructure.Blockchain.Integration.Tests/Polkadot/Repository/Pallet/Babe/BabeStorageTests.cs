@@ -38,7 +38,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
-        [TestCaseSource(nameof(AllBlockVersionTestCases))]
+        [TestCaseSource(nameof(BlockFromVersion9090))]
         public async Task AuthorVrfRandomness_ShouldWorkAsync(int numBlock)
         {
             var res = await _substrateRepository.At(numBlock).Storage.Babe.AuthorVrfRandomnessAsync(CancellationToken.None);

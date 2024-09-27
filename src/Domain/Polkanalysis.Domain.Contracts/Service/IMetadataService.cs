@@ -36,6 +36,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <returns></returns>
         public Task<PalletModule> GetPalletModuleByNameAsync(Hash blockHash, string palletName, CancellationToken cancellationToken);
         public Task<PalletModule> GetPalletModuleByNameAsync(string palletName, CancellationToken cancellationToken);
+        public PalletModule GetPalletModuleByName(MetaData metadata, string palletName, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get current MetaData node type from type id

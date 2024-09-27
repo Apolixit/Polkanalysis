@@ -38,8 +38,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Events
         }
 
         [Test]
-        [TestCase(14032650, 52)]
         [TestCase(14032893, 39)]
+        [TestCase(14032650, 52)]
         [TestCase(14032915, 32)]
         [TestCase(14033270, 32)]
         public async Task RealDebuggingEvents_ShouldSucceedAsync(int blockNum, int index)

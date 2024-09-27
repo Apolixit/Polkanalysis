@@ -12,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Substrate.NetApi.Model.Meta;
 using Polkanalysis.Domain.Contracts.Service;
+using System.Threading;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -37,18 +38,22 @@ namespace Polkanalysis.Domain.Runtime
             _logger = logger;
         }
 
-        public INode Decode(IType elem)
+        public INode Decode(IType elem, Hash? blockHash = null)
         {
+            blockHash = blockHash ?? _substrateRepository.Rpc.Chain.GetBlockHashAsync().Result;
+
             GenericNode node = new GenericNode();
-            VisitNode(node, elem);
+            VisitNode(node, elem, blockHash);
 
             return node;
         }
 
-        public IEventNode DecodeEvent(string hex)
+        public IEventNode DecodeEvent(string hex, Hash? blockHash = null)
         {
             if (string.IsNullOrEmpty(hex))
                 throw new ArgumentNullException($"{nameof(hex)}");
+
+            blockHash = blockHash ?? _substrateRepository.Rpc.Chain.GetBlockHashAsync().Result;
 
             var ev = new EventRecord();
             try
@@ -63,11 +68,13 @@ namespace Polkanalysis.Domain.Runtime
             return DecodeEvent(ev);
         }
 
-        public IEventNode DecodeEvent(EventRecord ev)
+        public IEventNode DecodeEvent(EventRecord ev, Hash? blockHash = null)
         {
+            blockHash = blockHash ?? _substrateRepository.Rpc.Chain.GetBlockHashAsync().Result;
+
             var eventNode = new EventNode();
 
-            VisitNode(eventNode, ev);
+            VisitNode(eventNode, ev, blockHash);
 
             _logger.LogTrace("Node created from EventRecord");
             return eventNode;
@@ -105,28 +112,34 @@ namespace Polkanalysis.Domain.Runtime
         public async Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken)
         {
             var metadata = await _substrateRepository.At(blockHash).GetMetadataAsync(cancellationToken);
+            return DecodeExtrinsic(extrinsic, metadata);
+        }
+
+        public INode DecodeExtrinsic(Extrinsic extrinsic, MetaData metadata)
+        {
             var pallet = metadata.NodeMetadata.Modules[extrinsic.Method.ModuleIndex];
 
-            var extrinsicCall = _palletBuilder.BuildCall(blockHash, pallet.Name, extrinsic.Method);
+            var extrinsicCall = _palletBuilder.BuildCall(metadata, pallet.Name, extrinsic.Method);
 
-            #if DEBUG
+#if DEBUG
             if (extrinsicCall is not null)
             {
-                var isEqual = Utils.Bytes2HexString(extrinsic.Method.Encode()) == Utils.Bytes2HexString(extrinsicCall.Encode());
+                var isEqual = Utils.Bytes2HexString(extrinsic.Method.Encode().Skip(1).ToArray()) == Utils.Bytes2HexString(extrinsicCall.Encode());
             }
-            #endif
+#endif
 
             var palletNode = new GenericNode();
             palletNode.Name = pallet.Name;
             palletNode.AddHumanData(pallet.Name);
 
-            if(extrinsicCall is not null)
+            if (extrinsicCall is not null)
                 palletNode.AddChild(Decode(extrinsicCall));
 
             return palletNode;
         }
+        
 
-        public INode DecodeLog(IEnumerable<string> logs)
+        public INode DecodeLog(IEnumerable<string> logs, Hash? blockHash = null)
         {
             if (logs == null)
                 throw new ArgumentNullException($"{nameof(logs)}");
@@ -137,10 +150,10 @@ namespace Polkanalysis.Domain.Runtime
                 buildLogs.Create(log);
 
                 return buildLogs;
-            }));
+            }), blockHash);
         }
 
-        public INode DecodeLog(IEnumerable<EnumDigestItem> logs)
+        public INode DecodeLog(IEnumerable<EnumDigestItem> logs, Hash? blockHash = null)
         {
             if (logs == null)
                 throw new ArgumentNullException($"{nameof(logs)}");
@@ -148,17 +161,17 @@ namespace Polkanalysis.Domain.Runtime
             GenericNode node = new GenericNode();
             foreach (var log in logs)
             {
-                node.AddChild(VisitNode(log));
+                node.AddChild(VisitNode(log, blockHash));
             }
 
             return node;
         }
 
         #region Internal visit tree
-        private INode VisitNode(IType value)
+        private INode VisitNode(IType value, Hash blockHash)
         {
             GenericNode node = new GenericNode();
-            VisitNode(node, value);
+            VisitNode(node, value, blockHash);
             return node;
         }
 
@@ -168,16 +181,19 @@ namespace Polkanalysis.Domain.Runtime
         /// <param name="node"></param>
         /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        private void VisitNode(INode node, IType value)
+        private void VisitNode(INode node, IType value, Hash blockHash)
         {
-            if (value is BaseEnumType baseEnumValue)
-            {
-                var val = baseEnumValue.GetEnumValue();
+            Guard.Against.Null(blockHash);
 
-                if (val == null) throw new ArgumentNullException($"The value element (enum) from {baseEnumValue.TypeName()} is null while visiting node");
+            //if (value is BaseEnumType baseEnumValue)
+            if (IsEnumRust(value))
+            {
+                var val = value.GetEnumValue();
+
+                if (val == null) throw new ArgumentNullException($"The value element (enum) from {value.TypeName()} is null while visiting node");
 
                 var doc = _palletBuilder.FindDocumentation(val);
-                
+
                 var AddDataToNode = (INode node) =>
                 {
                     node
@@ -193,25 +209,25 @@ namespace Polkanalysis.Domain.Runtime
 
                 var childNode = AddDataToNode(new GenericNode());
 
-                var enumValue2 = baseEnumValue.GetValue2();
+                var enumValue2 = value.GetValue2();
                 //if (enumValue2.GetBytes() == null)
                 if (enumValue2 is null)
                     return;
-                    //throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
+                //throw new ArgumentNullException($"{baseEnumValue}.GetValue2() is null");
 
                 if (node.IsEmpty)
                 {
                     node = AddDataToNode(node);
-                    VisitNode(node, enumValue2);
+                    VisitNode(node, enumValue2, blockHash);
                 }
                 else
                 {
-                    VisitNode(childNode, enumValue2);
+                    VisitNode(childNode, enumValue2, blockHash);
 
                     var props = _palletBuilder.FindProperty(val);
-                    if(props is not null && props.Length == childNode.Children.Count)
+                    if (props is not null && props.Length == childNode.Children.Count)
                     {
-                        for(int i = 0; i < childNode.Children.Count; i++)
+                        for (int i = 0; i < childNode.Children.Count; i++)
                         {
                             childNode.Children[i].AddName(props[i].Name);
                         }
@@ -222,8 +238,18 @@ namespace Polkanalysis.Domain.Runtime
             }
             else
             {
-                VisitNodePrimitive(node, value);
+                VisitNodePrimitive(node, value, blockHash);
             }
+        }
+
+        /// <summary>
+        /// Check if the current value is an enum with associated data
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static bool IsEnumRust(IType value)
+        {
+            return value.GetType().BaseType is not null && value.GetType().BaseType!.Name.StartsWith("BaseEnumRust");
         }
 
         /// <summary>
@@ -231,14 +257,14 @@ namespace Polkanalysis.Domain.Runtime
         /// </summary>
         /// <param name="node"></param>
         /// <param name="value"></param>
-        private void VisitNodePrimitive(INode node, IType value)
+        private void VisitNodePrimitive(INode node, IType value, Hash blockHash)
         {
             if (value is BaseVoid) return;
 
             var mapper = _mapping.Search(value.GetType());
             if (!mapper.IsIdentified && value.GetType().IsGenericType)
             {
-                VisitNodeGeneric(node, value);
+                VisitNodeGeneric(node, value, blockHash);
             }
             else if (!mapper.IsIdentified)
             {
@@ -253,7 +279,7 @@ namespace Polkanalysis.Domain.Runtime
                                                 .AddName(property.Name);
                         node.AddChild(childNode);
 
-                        VisitNode(childNode, prpType);
+                        VisitNode(childNode, prpType, blockHash);
                     }
                 }
             }
@@ -281,7 +307,7 @@ namespace Polkanalysis.Domain.Runtime
             }
         }
 
-        private void VisitNodeGeneric(INode node, IType value)
+        private void VisitNodeGeneric(INode node, IType value, Hash blockHash)
         {
             // We try to get Value or Core
             var data = value.GetValue("Value") ?? value.GetValue("Core");
@@ -303,11 +329,11 @@ namespace Polkanalysis.Domain.Runtime
                         var childNode = new GenericNode().AddData(currentValue);
                         node.AddChild(childNode);
 
-                        VisitNode(childNode, currentValue);
+                        VisitNode(childNode, currentValue, blockHash);
                     }
                     else
                     {
-                        VisitNode(node, currentValue);
+                        VisitNode(node, currentValue, blockHash);
                     }
                 }
             } else
@@ -323,21 +349,22 @@ namespace Polkanalysis.Domain.Runtime
                         var childNode = new GenericNode().AddData(currentValue);
                         node.AddChild(childNode);
 
-                        VisitNode(childNode, currentValue);
+                        VisitNode(childNode, currentValue, blockHash);
                     }
                     else
                     {
-                        VisitNode(node, currentValue);
+                        VisitNode(node, currentValue, blockHash);
                     }
                 }
             }
             
         }
 
-        public (string callModule, string callEvent) GetCallFromExtrinsic(Extrinsic extrinsic)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<(string callModule, string callEvent)> GetCallFromExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken token)
+        //{
+        //    var metadata = await _substrateRepository.At(blockHash).GetMetadataAsync(token);
+        //    return (metadata.NodeMetadata.Modules[extrinsic.Method.ModuleIndex], metadata.NodeMetadata.Modules[extrinsic.Method.ModuleIndex]);
+        //}
         #endregion
     }
 }
