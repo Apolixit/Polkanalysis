@@ -106,7 +106,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository
 
         public async Task<MetaData> GetMetadataAsync(CancellationToken cancellationToken)
         {
-            var metadataHex = await Rpc.State.GetMetaDataAsync(new Hash(Storage.BlockHash), cancellationToken);
+            var metadataHex = Storage.BlockHash is not null ? 
+                await Rpc.State.GetMetaDataAsync(new Hash(Storage.BlockHash), cancellationToken) :
+                await Rpc.State.GetMetaDataAsync(cancellationToken);
 
             if (metadataHex is null)
                 throw new InvalidOperationException($"Unable to fetch metadata from blockHash = {Storage.BlockHash}");

@@ -32,6 +32,9 @@ using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
 using Polkanalysis.Domain.Contracts.Core.Error;
 using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums;
+using Polkanalysis.Domain.Contracts.Dto.User;
+using Algolia.Search.Models.Common;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -545,6 +548,8 @@ namespace Polkanalysis.Domain.Service
             if (blockDetails is null)
                 throw new BlockException($"{blockDetails} for block hash = {blockHash.Value} is null");
 
+            var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken);
+
             var extrinsicsDto = new List<ExtrinsicDto>();
 
             foreach (var extrinsic in blockDetails.Block.Extrinsics)
@@ -556,19 +561,34 @@ namespace Polkanalysis.Domain.Service
                 var extrinsicFromEncoded = new Extrinsic(hexExtrinsic, ChargeTransactionPayment.Default());
                 var isEqual = extrinsic.ToString().ToLower().Equals(extrinsicFromEncoded.ToString().ToLower());
 #endif
-
                 var extrinsicNode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
 
-                var (callModule, callEvent) = _substrateDecode.GetCallFromExtrinsic(extrinsic);
+                //var (callModule, callEvent) = _substrateDecode.GetCallFromExtrinsic(extrinsic, blockHash);
+                var extrinsicIndex = (uint)blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic);
+                AccountDto? caller = null;
+                if(extrinsic.Account is not null)
+                    caller = await _accountRepository.GetAccountDetailAsync(extrinsic.Account.Value, cancellationToken);
+
+                var lifetime = GetExtrinsicsLifetime(blockNumber, extrinsic);
+                var fees = await GetExtrinsicsFeesAsync(events, (int)extrinsicIndex, cancellationToken);
+                var status = GetExtrinsicsStatus(events, (int)extrinsicIndex);
+
                 extrinsicsDto.Add(
-                    ModelBuilder.BuildExtrinsicDto(
-                        extrinsic,
-                        blockNumber,
-                        extrinsicNode,
-                        (uint)blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic),
-                        callModule,
-                        callEvent)
-                    );
+                    new ExtrinsicDto()
+                    {
+                        BlockNumber = blockNumber,
+                        Hash = Utils.Bytes2HexString(extrinsic.Encode()),
+                        ExtrinsicId = $"{blockNumber}-{extrinsicIndex}",
+                        Index = extrinsicIndex,
+                        PalletName = extrinsicNode.Name,
+                        CallEventName = extrinsicNode.Children[0].Name,
+                        Caller = caller,
+                        EstimatedFees = fees,
+                        Lifetime = lifetime,
+                        Nonce = extrinsic.Nonce,
+                        RealFees = fees,
+                        Status = status
+                    });
             }
 
             return extrinsicsDto;

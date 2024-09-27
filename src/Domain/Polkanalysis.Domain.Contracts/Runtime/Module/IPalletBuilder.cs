@@ -14,6 +14,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="method"></param>
         /// <returns></returns>
         IType? BuildCall(Hash blockHash, string palletName, Method method);
+        IType? BuildCall(MetaData metadata, string palletName, Method method);
 
         /// <summary>
         /// Build a dynamic event in the pallet
@@ -22,6 +23,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="method"></param>
         /// <returns></returns>
         IType? BuildEvent(Hash blockHash, string palletName, Method method);
+        IType? BuildEvent(MetaData metadata, string palletName, Method method);
 
         /// <summary>
         /// Build a dynamic error to the given method in the pallet
@@ -30,6 +32,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="method"></param>
         /// <returns></returns>
         IType? BuildError(Hash blockHash, string palletName, Method method);
+        IType? BuildError(MetaData metadata, string palletName, Method method);
 
         /// <summary>
         /// Generate dynamic namespace base
@@ -51,13 +54,14 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="type"></param>
         /// <returns></returns>
         public NodeType? FindNodeType(IType type, Hash? blockHash = null);
+        public NodeType? FindNodeType(IType type, MetaData metadata);
 
         /// <summary>
         /// Return documentation associated to node type
         /// </summary>
         /// <param name="nodeType"></param>
         /// <returns></returns>
-        public string? FindDocumentation(NodeType nodeType, Hash? blockHash = null);
+        public string? FindDocumentation(NodeType nodeType);
 
         /// <summary>
         /// Try to find the documentation in current Metadata for the given generic type
@@ -65,6 +69,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="type"></param>
         /// <returns></returns>
         public string? FindDocumentation(Type type, Hash? blockHash = null);
+        public string? FindDocumentation(Type type, MetaData metadata);
 
         /// <summary>
         /// Try to find the documentation in current Metadata for the given Ajuna IType
@@ -72,6 +77,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime.Module
         /// <param name="type"></param>
         /// <returns></returns>
         public string? FindDocumentation(IType type, Hash? blockHash = null);
+        public string? FindDocumentation(IType type, MetaData metadata);
 
         /// <summary>
         /// Try to find the documentation in current Metadata for the given enum

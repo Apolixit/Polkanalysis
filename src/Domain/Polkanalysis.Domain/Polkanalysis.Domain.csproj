@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -19,11 +19,10 @@
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="MediatR.Courier" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
-    <PackageReference Include="Substrate.NET.Metadata" Version="0.1.4" />
+    <PackageReference Include="Substrate.NET.Metadata" Version="0.1.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Apolixit_Forks\Substrate.NET.Metadata.Sandbox\Substrate.NET.Metadata\Substrate.NET.Metadata.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />
     <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />

@@ -13,6 +13,7 @@ using Substrate.NET.Metadata.Service;
 using System.Threading;
 using Polkanalysis.Infrastructure.Database;
 using System.Diagnostics.CodeAnalysis;
+using Ardalis.GuardClauses;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -115,11 +116,6 @@ namespace Polkanalysis.Domain.Runtime
             return dto;
         }
 
-        public virtual MetaData GetCurrentMetadata()
-        {
-            return _substrateService.GetMetadataAsync(CancellationToken.None).Result;
-        }
-
         /// <summary>
         /// Fetch the metadata from the node and return it as a Metadata object
         /// </summary>
@@ -174,7 +170,7 @@ namespace Polkanalysis.Domain.Runtime
         public NodeType GetPalletType(uint typeId)
         {
             NodeType? nodeType = null;
-            GetCurrentMetadata().NodeMetadata.Types.TryGetValue(typeId, out nodeType);
+            _substrateService.GetMetadataAsync(CancellationToken.None).Result.NodeMetadata.Types.TryGetValue(typeId, out nodeType);
 
             if (nodeType == null)
             {
@@ -214,17 +210,9 @@ namespace Polkanalysis.Domain.Runtime
             return await GetPalletModuleByNameAsync(await _substrateService.Rpc.Chain.GetBlockHashAsync(cancellationToken), palletName, cancellationToken);
         }
 
-        public async Task<PalletModule> GetPalletModuleByNameAsync(Hash blockHash, string palletName, CancellationToken cancellationToken)
+        public PalletModule GetPalletModuleByName(MetaData metadata, string palletName, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(palletName))
-            {
-                _logger.LogError($"Param {nameof(palletName)} is not set while requesting pallet information data");
-                throw new ArgumentNullException($"{nameof(palletName)}");
-            }
-
-            var metadata = await _substrateService.At(blockHash).GetMetadataAsync(cancellationToken);
             var pallet = metadata.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
-            //var pallet = GetMetadataAsync(new Hash("0x3398425fd67309e6eab9a0b11a7c9f554f641a8004fc5c4214407b948515cfd7")).Result.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
             if (pallet == null)
             {
                 _logger.LogError($"{palletName} does not exists in current metadata");
@@ -232,6 +220,14 @@ namespace Polkanalysis.Domain.Runtime
             }
 
             return pallet;
+        }
+
+        public async Task<PalletModule> GetPalletModuleByNameAsync(Hash blockHash, string palletName, CancellationToken cancellationToken)
+        {
+            Guard.Against.NullOrEmpty(palletName, nameof(palletName));
+            var metadata = await _substrateService.At(blockHash).GetMetadataAsync(cancellationToken);
+            
+            return GetPalletModuleByName(metadata, palletName, cancellationToken);
         }
     }
 }

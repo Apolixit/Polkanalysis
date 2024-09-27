@@ -7,22 +7,22 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
     public class ExplorerExtrinsicsTests : ExplorerRepositoryTest
     {
         [Test]
-        [TestCase(20172644, "0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
-        [TestCase(13564726, "0x787cc6071e318539a9c35624bc7966ab046051c7205917fd89d96c3f97500898")]
-        [TestCase(11062877, "0xe64c10be69da2b309d88c1d5f18a1d5e9b6766a6e3003fb1f5932d1701f59fd0")]
+        [TestCase(22708837)]
+        [TestCase(20172644)]
+        [TestCase(13564726)]
+        [TestCase(11062877)]
         public async Task GetExtrinsicsAssociateToBlock_WithValidBlockNumber_ShouldWorkAsync(
-            int blockId,
-            string _blockHash)
+            int blockId)
         {
             var extrinsicInfoWithNumber = await _explorerRepository.GetExtrinsicsAsync((uint)blockId, CancellationToken.None);
 
             Assert.That(extrinsicInfoWithNumber, Is.Not.Null);
 
             // One of these extrinsics should have Timestamp.Set defined
-            //Assert.That(
-            //    extrinsicInfoWithNumber.Any(x =>
-            //    x.Decoded.Has("Timestamp")),
-            //    Is.True);
+            Assert.That(
+                extrinsicInfoWithNumber.Any(x =>
+                x.CallEventName == "Timestamp"),
+                Is.True);
         }
 
         /// <summary>
@@ -72,6 +72,37 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             var fourth = extrinsicsList[3];
             Assert.That(fourth.PalletName, Is.EqualTo("NominationPools"));
             Assert.That(fourth.CallEventName, Is.EqualTo("bond_extra"));
+        }
+
+        /// <summary>
+        /// Based on real data : https://polkadot.subscan.io/block/22666089
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetExtrinsicsAssociateToBlock_CheckEveryDetails_FromBlockNumber_22666089_ShouldWorkAsync()
+        {
+            var extrinsicInformations = await _explorerRepository.GetExtrinsicsAsync(22666089, CancellationToken.None);
+
+            Assert.That(extrinsicInformations, Is.Not.Null);
+            Assert.That(extrinsicInformations.Count(), Is.EqualTo(4));
+
+            var extrinsicsList = extrinsicInformations.ToList();
+            Assert.That(extrinsicsList.All(x => x.BlockNumber == 22666089));
+
+            // The first is timestamp set
+            var first = extrinsicsList[0];
+            Assert.That(first.PalletName, Is.EqualTo("Timestamp"));
+            Assert.That(first.CallEventName, Is.EqualTo("set"));
+
+            // The second is parainherent enter
+            var second = extrinsicsList[1];
+            Assert.That(second.PalletName, Is.EqualTo("ParaInherent"));
+            Assert.That(second.CallEventName, Is.EqualTo("enter"));
+
+            var third = extrinsicsList[2];
+            Assert.That(third.PalletName, Is.EqualTo("Staking"));
+            Assert.That(third.CallEventName, Is.EqualTo("unbond"));
+
         }
     }
 }

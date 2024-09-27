@@ -75,7 +75,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         [Test]
         public void FindProperty_WhenValidEvent_PoolCommissionChangeRateUpdated_ShouldReturnProperties()
         {
-            var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.PoolCommissionChangeRateUpdated);
+            var property = _palletBuilder.FindProperty(Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.PoolCommissionChangeRateUpdated);
             //BaseTuple<U32, CommissionChangeRate>
             Assert.That(property, Is.Not.Null);
             Assert.That(property[0].Name, Is.EqualTo("pool_id"));
@@ -87,7 +87,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         [Test]
         public void FindProperty_WhenCombineProperties_ShouldReturnProperties()
         {
-            var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.Event.ValidatorPrefsSet);
+            var property = _palletBuilder.FindProperty(Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums.Event.ValidatorPrefsSet);
             Assert.That(property, Is.Not.Null);
             Assert.That(property[0].Name, Is.EqualTo("stash"));
             Assert.That(property[1].Name, Is.EqualTo("prefs"));
