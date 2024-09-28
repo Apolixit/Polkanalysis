@@ -1,6 +1,6 @@
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Core.Signature;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotPrimitive.v2.Enum
 {

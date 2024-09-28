@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Scan.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,7 +23,7 @@ namespace Polkanalysis.Architecture.Tests
             Trace.Listeners.Add(new ConsoleTraceListener());
         }
 
-        [Test, Ignore("No needed anymore")]
+        [Test]
         public void EveryBlockchainEvents_ShouldBeMappedFromExtProject_WithAllEnumValueThatEverExisted()
         {
             // Let's get all events from blockchain ext
@@ -61,6 +61,17 @@ namespace Polkanalysis.Architecture.Tests
             _blockchainMapping = new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>());
 
             //_blockchainMapping.MapEnum()
+            Assert.Fail();
+        }
+
+        public void EveryBlockchainEventsImplemented_ShouldHaveAllEnumValueThatEverExisted()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void EveryDomainEventBlockchain_ShouldHaveDomainMappingAttribute()
+        {
             Assert.Fail();
         }
     }

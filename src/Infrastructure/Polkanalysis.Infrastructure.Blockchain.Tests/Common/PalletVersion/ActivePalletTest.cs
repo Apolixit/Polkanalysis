@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning;
+using Polkanalysis.Infrastructure.Blockchain.Scan.Versionning;
 using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Common.PalletVersion

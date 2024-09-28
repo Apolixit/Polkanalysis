@@ -1,16 +1,12 @@
 using Polkanalysis.Components.Services.Http;
 using Polkanalysis.Configuration.Extensions;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.WebApp.Services;
 using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
-using ApexCharts;
-using Polkanalysis.Domain.Contracts.Secondary.Repository;
-using Polkanalysis.Infrastructure.Database.Repository.Staking;
 using Serilog;
-using Serilog.Extensions.Logging;
 using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace Polkanalysis.WebApp

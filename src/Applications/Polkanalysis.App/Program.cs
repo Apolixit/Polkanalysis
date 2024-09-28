@@ -1,6 +1,6 @@
 using Polkanalysis.Components.Services.Http;
 using Polkanalysis.Configuration.Extensions;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.WebApp.Services;
 using Microsoft.EntityFrameworkCore;

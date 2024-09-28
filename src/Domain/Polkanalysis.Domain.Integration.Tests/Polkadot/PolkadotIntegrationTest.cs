@@ -1,11 +1,11 @@
 ﻿using Polkanalysis.Configuration.Contracts;
 using NSubstitute;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Polkanalysis.Infrastructure.Database;
 using NUnit.Framework;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 {
@@ -17,7 +17,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
         {
             _substrateService = new PolkadotService(
                     _substrateEndpoint,
-                    new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
+                    new PolkadotMapping(Substitute.For<ILogger>()),
                     Substitute.For<ILogger<PolkadotService>>()
                     );
         }
