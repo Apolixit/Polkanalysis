@@ -11,7 +11,7 @@ using MediatR.Courier;
 using MediatR;
 using Polkanalysis.Domain.UseCase;
 using Polkanalysis.Domain.Service;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Worker.Parameters;
 using Polkanalysis.Worker.Tasks;

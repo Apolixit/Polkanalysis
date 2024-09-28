@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3.Enums;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums

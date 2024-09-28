@@ -1,7 +1,7 @@
 ﻿using Polkanalysis.Api.Controllers;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.UseCase.Account;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.WebApp;
 using Polkanalysis.Worker.Tasks;

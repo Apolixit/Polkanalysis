@@ -1,18 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Versionning;
 using Polkanalysis.Infrastructure.Database.Contracts.Model;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
-using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
-using Polkanalysis.Infrastructure.Database.Repository.Events.Identity;
-using Polkanalysis.Infrastructure.Database.Repository.Events.System;
 using Substrate.NetApi.Model.Types;
-using Substrate.NetApi.Model.Types.Base;
-using System;
 using System.Reflection;
 
 namespace Polkanalysis.Infrastructure.Database.Repository

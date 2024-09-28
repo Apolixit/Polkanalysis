@@ -1,19 +1,17 @@
 
 using Microsoft.EntityFrameworkCore;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Runtime;
 using Serilog;
 using Polkanalysis.Configuration.Extensions;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
 using Polkanalysis.Api.Services;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Text.Json.Serialization;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
-using Serilog.Extensions.Logging;
 using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 
 namespace Polkanalysis.Api
 {

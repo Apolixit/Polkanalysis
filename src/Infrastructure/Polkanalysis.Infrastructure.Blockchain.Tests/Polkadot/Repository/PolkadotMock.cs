@@ -8,7 +8,7 @@ using Polkanalysis.Configuration.Contracts;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using System.Text;
 using Substrate.NET.Utils;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Repository;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Modules;
 using Substrate.NetApi.Modules.Contracts;

@@ -33,7 +33,8 @@
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Contracts\Polkanalysis.Infrastructure.Blockchain.Contracts.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Internal\Polkanalysis.Infrastructure.Blockchain.Internal.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.PeopleChain\Polkanalysis.Infrastructure.Blockchain.PeopleChain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain.Polkadot\Polkanalysis.Infrastructure.Blockchain.Polkadot.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Database.Contracts\Polkanalysis.Infrastructure.Database.Contracts.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Database\Polkanalysis.Infrastructure.Database.csproj" />

@@ -1,7 +1,7 @@
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Origin.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Internal.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime

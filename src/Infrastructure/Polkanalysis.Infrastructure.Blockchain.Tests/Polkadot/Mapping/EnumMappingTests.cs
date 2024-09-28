@@ -4,12 +4,10 @@ using Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
-using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
-using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9200.sp_arithmetic.fixed_point;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {
