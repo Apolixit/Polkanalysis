@@ -8,12 +8,16 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NetApi.Model.Types;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class IdentityStorage : PolkadotAbstractStorage, IIdentityStorage
     {
-        public IdentityStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        private readonly PeopleChainService _peopleChainService;
+        public IdentityStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger, PeopleChainService peopleChainService) : base(client, mapper, logger) {
+            _peopleChainService = peopleChainService;
+        }
 
         public async Task<Registration?> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {
@@ -25,10 +29,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
             {
                 res = Map<IType, Registration>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
             }
-            else
+            else if(version < 1002006)
             {
                 var res2 = Map<IType, BaseTuple<Registration, BaseOpt<BaseVec<U8>>>>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
                 res = res2?.Value[0]?.As<Registration>();
+            } else
+            {
+                // Version >= 1002006, now PeopleChain is the reference to get identity storage
+                return BlockHash is null ? 
+                    await _peopleChainService.Storage.Identity.IdentityOfAsync(account, token) :
+                    await _peopleChainService.At(BlockHash).Storage.Identity.IdentityOfAsync(account, token);
             }
 
             return res;

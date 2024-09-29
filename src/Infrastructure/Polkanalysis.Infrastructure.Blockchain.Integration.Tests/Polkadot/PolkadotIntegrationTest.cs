@@ -4,6 +4,9 @@ using NUnit.Framework;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot;
+using Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
@@ -11,11 +14,18 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
     {
         protected PolkadotIntegrationTest()
         {
+            var peopleChainIntegration = new PeopleChainIntegrationTests();
+            var peopleChainService = new PeopleChainService(
+                    peopleChainIntegration.GetEndpoint(),
+                    new PeopleChainMapping(Substitute.For<ILogger>()),
+                    Substitute.For<ILogger<PeopleChainService>>()
+                    );
+
             _substrateRepository = new PolkadotService(
                     _substrateEndpoint,
                     new PolkadotMapping(Substitute.For<ILogger>()),
-                    Substitute.For<ILogger<PolkadotService>>()
-                    );
+                    Substitute.For<ILogger<PolkadotService>>(),
+                    peopleChainService);
         }
 
         [SetUp]
@@ -25,7 +35,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             _substrateRepository.Storage.BlockHash = null;
         }
 
-        protected override ISubstrateEndpoint GetEndpoint()
+        internal override ISubstrateEndpoint GetEndpoint()
         {
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
 

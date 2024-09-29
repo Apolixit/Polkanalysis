@@ -17,6 +17,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
         public EnumData Twitter { get; set; }
         public EnumData Image { get; set; }
         public BaseVec<BaseTuple<EnumData, EnumData>> Additional { get; set; }
+        public EnumData Github { get; set; }
+        public EnumData Discord { get; set; }
+
 
         public IdentityInfo() { }
 
@@ -46,8 +49,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
                 BuildEnumData(image),
                 additional
             );
-            //var displayEnumData = new EnumData();
-            //displayEnumData.Create(Data.)
 
             return this;
         }
@@ -55,6 +56,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
         public IdentityInfo(EnumData display, EnumData legal, EnumData web, EnumData riot, EnumData email, BaseOpt<FlexibleNameable> pgpFingerprint, EnumData twitter, EnumData image, BaseVec<BaseTuple<EnumData, EnumData>> additional)
         {
             Create(display, legal, web, riot, email, pgpFingerprint, twitter, image, additional);
+        }
+
+        public IdentityInfo(EnumData display, EnumData legal, EnumData web, EnumData matrix, EnumData email, BaseOpt<FlexibleNameable> pgpFingerprint, EnumData twitter, EnumData image, EnumData github, EnumData discord)
+        {
+            Create(display, legal, web, matrix, email, pgpFingerprint, twitter, image, github, discord);
         }
 
         // Return adapter data enum from given string
@@ -127,6 +133,25 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
             TypeSize = Display.TypeSize + Legal.TypeSize + Web.TypeSize + Riot.TypeSize + Email.TypeSize + PgpFingerprint.TypeSize + Twitter.TypeSize + Image.TypeSize + Additional.TypeSize;
         }
 
+        public void Create(EnumData display, EnumData legal, EnumData web, EnumData matrix, EnumData email, BaseOpt<FlexibleNameable> pgpFingerprint, EnumData twitter, EnumData image, EnumData github, EnumData discord)
+        {
+            Display = display;
+            Legal = legal;
+            Web = web;
+            Riot = matrix;
+            Email = email;
+            PgpFingerprint = pgpFingerprint;
+            Twitter = twitter;
+            Image = image;
+            Github = github;
+            Discord = discord;
+            Additional = new BaseVec<BaseTuple<EnumData, EnumData>>();
+
+            Bytes = Encode();
+
+            TypeSize = Display.TypeSize + Legal.TypeSize + Web.TypeSize + Riot.TypeSize + Email.TypeSize + PgpFingerprint.TypeSize + Twitter.TypeSize + Image.TypeSize + Github.TypeSize + Discord.TypeSize;
+        }
+
         public override byte[] Encode()
         {
             var result = new List<byte>();
@@ -140,6 +165,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
             result.AddRange(PgpFingerprint.Encode());
             result.AddRange(Image.Encode());
             result.AddRange(Twitter.Encode());
+
+            if(Github is not null)
+                result.AddRange(Github.Encode());
+            if(Discord is not null)
+                result.AddRange(Discord.Encode());
+
             return result.ToArray();
         }
 

@@ -26,7 +26,7 @@ namespace Polkanalysis.Domain.Integration.Tests
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
         }
 
-        protected abstract ISubstrateEndpoint GetEndpoint();
+        internal abstract ISubstrateEndpoint GetEndpoint();
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test

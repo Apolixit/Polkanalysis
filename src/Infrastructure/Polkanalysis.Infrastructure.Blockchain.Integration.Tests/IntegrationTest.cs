@@ -10,8 +10,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
     /// </summary>
     public abstract class IntegrationTest
     {
-        protected ISubstrateService _substrateRepository;
-        protected ISubstrateEndpoint _substrateEndpoint;
+        protected ISubstrateService _substrateRepository = default!;
+        protected ISubstrateEndpoint _substrateEndpoint = default!;
 
         protected const string NoTestCase = "NO TEST CASE";
         /// <summary>
@@ -27,7 +27,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
                 throw new InvalidOperationException($"{nameof(_substrateEndpoint)} is null. You must provide a valid Substrate endpoint");
         }
 
-        protected abstract ISubstrateEndpoint GetEndpoint();
+        internal abstract ISubstrateEndpoint GetEndpoint();
 
         /// <summary>
         /// Connect to the endpoint at the beggining of test

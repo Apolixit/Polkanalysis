@@ -13,6 +13,8 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Substrate.NetApi.Modules;
 using Substrate.NetApi.Modules.Contracts;
 using System;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
 {
@@ -60,13 +62,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         [SetUp]
         public void Setup()
         {
+            var peopleChainService = new PeopleChainService(
+                    Substitute.For<ISubstrateEndpoint>(),
+                    new PeopleChainMapping(Substitute.For<ILogger>()),
+                    Substitute.For<ILogger<PeopleChainService>>()
+                    );
+
             _polkadotMapping = new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>());
 
             var polkadotRepository = new PolkadotService(
                 Substitute.For<ISubstrateEndpoint>(),
                 new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
-                Substitute.For<ILogger<PolkadotService>>()
-                );
+                Substitute.For<ILogger<PolkadotService>>(),
+                peopleChainService);
 
             // Mock a part of Substrate Client call
             polkadotRepository.PolkadotClient = Substitute.ForPartsOf<SubstrateClientExt>(
@@ -91,17 +99,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
             {
                 SpecVersion = version
             });
-        }
-
-        public void BuildRepository()
-        {
-            var polkadotRepository = new PolkadotService(
-                Substitute.For<ISubstrateEndpoint>(),
-                new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
-                Substitute.For<ILogger<PolkadotService>>()
-                );
-
-            _substrateRepository = polkadotRepository;
         }
 
         /// <summary>

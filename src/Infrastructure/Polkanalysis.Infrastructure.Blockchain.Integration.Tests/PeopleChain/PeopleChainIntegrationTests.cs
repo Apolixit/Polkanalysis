@@ -9,7 +9,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain
 {
     internal class PeopleChainIntegrationTests : IntegrationTest
     {
-        protected PeopleChainIntegrationTests()
+        internal PeopleChainIntegrationTests()
         {
             _substrateRepository = new PeopleChainService(
                     _substrateEndpoint,
@@ -25,12 +25,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain
             _substrateRepository.Storage.BlockHash = null;
         }
 
-        protected override ISubstrateEndpoint GetEndpoint()
+        internal override ISubstrateEndpoint GetEndpoint()
         {
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
 
-            substrateConfigurationMock.BlockchainName.Returns("Polkadot");
-            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://polkadot-rpc.dwellir.com"));
+            substrateConfigurationMock.BlockchainName.Returns("PeopleChain");
+            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://rpc-people-polkadot.luckyfriday.io"));
 
             return substrateConfigurationMock;
         }
