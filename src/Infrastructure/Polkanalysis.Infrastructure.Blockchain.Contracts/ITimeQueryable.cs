@@ -14,6 +14,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
     /// </summary>
     public interface ITimeQueryable
     {
+        /// <summary>
+        /// All storages of the current blockchain
+        /// </summary>
         public IStorage Storage { get; }
 
         /// <summary>

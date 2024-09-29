@@ -8,6 +8,9 @@ using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
+using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.pallet_identity.types;
+using Newtonsoft.Json.Linq;
+using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {
@@ -18,7 +21,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
         public async Task<Registration?> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {
             var accountId32 = await MapAccoundId32Async(account, token);
-            var version = await GetVersionAsync(token);
 
             Registration? res = null;
             var res2 = Map<IType, BaseTuple<Registration, BaseOpt<BaseVec<U8>>>>(await _client.IdentityStorage.IdentityOfAsync(accountId32, token));
@@ -42,6 +44,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
         {
             var accountId32 = await MapAccoundId32Async(account, token);
             return Map<IType, BaseTuple<SubstrateAccount, EnumData>>(await _client.IdentityStorage.SuperOfAsync(accountId32, token));
+        }
+
+        public async Task<AuthorityProperties> UsernameAuthoritiesAsync(SubstrateAccount account, CancellationToken token)
+        {
+            var accountId32 = await MapAccoundId32Async(account, token);
+            return Map<AuthorityPropertiesBase, AuthorityProperties>(await _client.IdentityStorage.UsernameAuthoritiesAsync(accountId32, token));
+        }
+
+        public async Task<SubstrateAccount?> AccountOfUsernameAsync(BaseVec<U8> key, CancellationToken token)
+        {
+            return Map<AccountId32Base, SubstrateAccount>(await _client.IdentityStorage.AccountOfUsernameAsync(key, token));
+        }
+
+        public async Task<BaseTuple<SubstrateAccount, U32>> PendingUsernamesAsync(BaseVec<U8> key, CancellationToken token)
+        {
+            return Map<IType, BaseTuple<SubstrateAccount, U32>>(await _client.IdentityStorage.PendingUsernamesAsync(key, token));
         }
     }
 }

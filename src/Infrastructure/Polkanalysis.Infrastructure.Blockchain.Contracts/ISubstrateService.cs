@@ -10,10 +10,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
 {
     public interface ISubstrateService : ITimeQueryable
     {
+        /// <summary>
+        /// Other chains that this blockchain depends on
+        /// For example, Polkadot depends on parachain like PeopleChain
+        /// </summary>
+        public IEnumerable<string> Dependencies { get; }
         public SubstrateClient AjunaClient { get; }
         public string BlockchainName { get; }
         public Hash GenesisHash { get; }
-        //public IMetadata RuntimeMetadata { get; }
         public RuntimeVersion RuntimeVersion { get; }
 
         public ITimeQueryable At(U32 blockNumber);

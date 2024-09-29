@@ -19,7 +19,7 @@ using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Events;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
 {
-    public class PeopleChainService : ISubstrateService
+    public class PeopleChainService : BlockchainAbstractService
     {
         private SubstrateClientExt? _peopleChainClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
@@ -53,12 +53,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             }
         }
 
-        public SubstrateClient AjunaClient => PeopleChainClient;
+        public override SubstrateClient AjunaClient => PeopleChainClient;
 
-        public string BlockchainName => "PeopleChain";
+        public override string BlockchainName => "PeopleChain";
 
         private IStorage? _polkadotStorage = null;
-        public IStorage Storage
+        public override IStorage Storage
         {
             get
             {
@@ -70,7 +70,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
         }
 
         private IRpc? _rpc = null;
-        public IRpc Rpc
+        public override IRpc Rpc
         {
             get
             {
@@ -81,12 +81,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             }
         }
 
-        public IConstants Constants => throw new NotImplementedException();
+        public override IConstants Constants => throw new NotImplementedException();
 
-        public ICalls Calls => throw new NotImplementedException();
+        public override ICalls Calls => throw new NotImplementedException();
 
         private IEvents? _events = null;
-        public IEvents Events
+        public override IEvents Events
         {
             get
             {
@@ -97,95 +97,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
             }
         }
 
-        public IErrors Errors => throw new NotImplementedException();
+        public override  IErrors Errors => throw new NotImplementedException();
 
-        public Hash GenesisHash => PeopleChainClient.GenesisHash;
+        public override IEnumerable<string> Dependencies => [];
 
-        public async Task<MetaData> GetMetadataAsync(CancellationToken cancellationToken)
-        {
-            var metadataHex = Storage.BlockHash is not null ?
-                await Rpc.State.GetMetaDataAsync(new Hash(Storage.BlockHash), cancellationToken) :
-                await Rpc.State.GetMetaDataAsync(cancellationToken);
-
-            if (metadataHex is null)
-                throw new InvalidOperationException($"Unable to fetch metadata from blockHash = {Storage.BlockHash}");
-
-            var version = MetadataUtils.GetMetadataVersion(metadataHex);
-
-            MetadataV14 v14 = new MetadataV14(metadataHex); ;
-
-            MetaData metadata = v14.ToNetApiMetadata();
-
-            return metadata;
-        }
-
-        public RuntimeVersion RuntimeVersion
-        {
-            get
-            {
-                return AjunaClient.RuntimeVersion;
-            }
-        }
-
-        public async Task CheckBlockchainStateAsync(Action<bool> isConnectedCallback, CancellationToken cancellationToken, int millisecondCheck = 500)
-        {
-            try
-            {
-                while (!cancellationToken.IsCancellationRequested)
-                {
-
-                    isConnectedCallback(PeopleChainClient.IsConnected);
-                    if (!PeopleChainClient.IsConnected)
-                    {
-                        try
-                        {
-                            await PeopleChainClient.ConnectAsync(cancellationToken);
-                        }
-                        catch (System.Exception ex)
-                        {
-                            _logger.LogError(ex, "Error while trying to connect to Polkadot");
-                        }
-                    }
-
-                    await Task.Delay(TimeSpan.FromMilliseconds(millisecondCheck), cancellationToken);
-                }
-            }
-            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-            {
-
-            }
-        }
-
-        public bool IsValidAccountAddress(string address) => AddressExtension.IsValidAccountAddress(address);
-
-        public ITimeQueryable At(BlockNumber blockNumber)
-        {
-            Storage.BlockHash = Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).GetAwaiter().GetResult().Value;
-            return this;
-        }
-
-        public ITimeQueryable At(U32 blockNumber) => At(blockNumber.Value);
-
-        public ITimeQueryable At(uint blockNumber) => At(new BlockNumber(blockNumber));
-
-        public ITimeQueryable At(int blockNumber) => At((uint)blockNumber);
-
-        public ITimeQueryable At(Hash blockHash)
-        {
-            Storage.BlockHash = blockHash.Value;
-            return this;
-        }
-
-        public ITimeQueryable At(string blockHash)
-        {
-            Storage.BlockHash = blockHash;
-            return this;
-        }
-
-        public bool IsConnected() => PeopleChainClient.IsConnected;
-
-        public Task ConnectAsync() => PeopleChainClient.ConnectAsync();
-
-        public Task CloseAsync() => PeopleChainClient.CloseAsync();
+        public override ILogger Logger => _logger;
     }
 }

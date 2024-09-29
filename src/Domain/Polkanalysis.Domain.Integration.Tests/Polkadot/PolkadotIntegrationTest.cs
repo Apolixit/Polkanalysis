@@ -6,6 +6,9 @@ using Polkanalysis.Infrastructure.Database;
 using NUnit.Framework;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
+using Polkanalysis.Domain.Integration.Tests.PeopleChain;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 
 namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 {
@@ -15,19 +18,26 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 
         protected PolkadotIntegrationTest()
         {
+            var peopleChainIntegrationTest = new PeopleChainIntegrationTest();
+            var peopleChainService = new PeopleChainService(
+                peopleChainIntegrationTest.GetEndpoint(), 
+                new PeopleChainMapping(Substitute.For<ILogger>()),
+                Substitute.For<ILogger<PeopleChainService>>());
+
             _substrateService = new PolkadotService(
                     _substrateEndpoint,
                     new PolkadotMapping(Substitute.For<ILogger>()),
-                    Substitute.For<ILogger<PolkadotService>>()
-                    );
+                    Substitute.For<ILogger<PolkadotService>>(),
+                    peopleChainService);
         }
 
-        protected override ISubstrateEndpoint GetEndpoint()
+        public string PolkadotEndpointUri => "wss://polkadot-rpc.dwellir.com";
+        internal override ISubstrateEndpoint GetEndpoint()
         {
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();
 
             substrateConfigurationMock.BlockchainName.Returns("Polkadot");
-            substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://polkadot-rpc.dwellir.com"));
+            substrateConfigurationMock.WsEndpointUri.Returns(new Uri(PolkadotEndpointUri));
 
             return substrateConfigurationMock;
         }
