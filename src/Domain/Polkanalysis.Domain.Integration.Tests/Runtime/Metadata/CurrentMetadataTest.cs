@@ -16,7 +16,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Metadata
         {
             _currentMetaData = new MetadataService(_substrateService,
                                                       _substrateDbContext,
-                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ICoreService>(),
                                                       Substitute.For<ILogger<MetadataService>>());
         }
 

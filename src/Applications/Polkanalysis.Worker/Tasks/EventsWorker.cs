@@ -17,6 +17,7 @@ using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
 using System;
+using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
 
 namespace Polkanalysis.Worker.Tasks
 {
@@ -129,10 +130,10 @@ namespace Polkanalysis.Worker.Tasks
 
                 //await SaveBlockInformationAsync(blockNumber, stoppingToken);
 
-                await SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
+                //await SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
 
-                //await SaveEventsInformationAsync(blockNumber, stoppingToken);
-                
+                await SaveEventsInformationAsync(blockNumber, stoppingToken);
+
             }
             catch (Exception ex)
             {

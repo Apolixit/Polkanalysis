@@ -21,6 +21,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
+        [TestCase(22666089, "1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih")]
         [TestCase(21556495, "1REAJ1k691g5Eqqg9gL7vvZCBG7FCCZ8zgQkZWd4va5ESih")]
         public async Task SubsOf_ShouldWorkAsync(int blockNum, string address)
         {
@@ -29,6 +30,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test, Ignore("No data")]
+        [TestCase(22666089, "168MQ9ZFvQb9Hoe68Vg2Ji5xYuqSmf4agaD5epVnGWaKM2oK")]
         [TestCase(21556495, "168MQ9ZFvQb9Hoe68Vg2Ji5xYuqSmf4agaD5epVnGWaKM2oK")]
         public async Task SuperOf_ShouldWorkAsync(int blockNum, string address)
         {
@@ -37,6 +39,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
+        [TestCase(22666089)]
         [TestCase(21556495)]
         public async Task Registrars_ShouldWorkAsync(int blockNum)
         {

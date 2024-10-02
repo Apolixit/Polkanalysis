@@ -13,9 +13,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.PeopleChain
         {
             _substrateRepository = new PeopleChainService(
                     _substrateEndpoint,
-                    new PeopleChainMapping(Substitute.For<ILogger>()),
+                    new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
                     Substitute.For<ILogger<PeopleChainService>>()
                     );
+        }
+
+        public override async Task ConnectDependenciesAsync()
+        {
+            await Task.CompletedTask;
         }
 
         [SetUp]

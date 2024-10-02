@@ -25,11 +25,13 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
     public class SavedBlocksHandlerTest : UseCaseTest<SavedBlocksHandler, bool, SavedBlocksCommand>
     {
         private IExplorerService _explorerService;
+        private ICoreService _coreService;
 
         [SetUp]
         public void Setup()
         {
             _logger = Substitute.For<ILogger<SavedBlocksHandler>>();
+            _coreService = Substitute.For<ICoreService>();
             _explorerService = Substitute.For<IExplorerService>();
             _explorerService.GetBlockLightAsync(Arg.Any<uint>(), Arg.Any<CancellationToken>()).Returns(
                 new Contracts.Dto.Block.BlockLightDto()
@@ -56,6 +58,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _useCase = new SavedBlocksHandler(_substrateService,
                                               _substrateDbContext,
                                               _explorerService,
+                                              _coreService,
                                               _logger,
                                               Substitute.For<IDistributedCache>());
         }

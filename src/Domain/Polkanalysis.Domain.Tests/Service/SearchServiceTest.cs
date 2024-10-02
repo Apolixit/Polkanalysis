@@ -31,7 +31,7 @@ namespace Polkanalysis.Domain.Tests.Service
             mockDb();
             _searchService = new SearchService(_substrateService,
                                                _substrateDbContext,
-                                               Substitute.For<IExplorerService>(),
+                                               Substitute.For<ICoreService>(),
                                                //Substitute.For<ISearchClient>(),
                                                Substitute.For<ILogger<SearchService>>());
 

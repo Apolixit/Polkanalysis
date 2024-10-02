@@ -41,18 +41,20 @@ namespace Polkanalysis.Domain.UseCase.Monitored
     {
         private readonly ISubstrateService _substrateService;
         private readonly IExplorerService _explorerService;
+        private readonly ICoreService _coreService;
         private readonly SubstrateDbContext _db;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly ILogger<SavedExtrinsicsHandler> logger;
 
         public SavedExtrinsicsHandler(ISubstrateService substrateService, IExplorerService explorerService, SubstrateDbContext db, ILogger<SavedExtrinsicsHandler> logger,
-                                  IDistributedCache cache, ISubstrateDecoding substrateDecode) : base(logger, cache)
+                                  IDistributedCache cache, ISubstrateDecoding substrateDecode, ICoreService coreService) : base(logger, cache)
         {
             _substrateService = substrateService;
             _explorerService = explorerService;
             _db = db;
             this.logger = logger;
             _substrateDecode = substrateDecode;
+            _coreService = coreService;
         }
 
         public override async Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedExtrinsicsCommand request, CancellationToken cancellationToken)
@@ -62,7 +64,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             var (blockData, blockEvents, blockDate) = await WaiterHelper.WaitAndReturnAsync(
                 _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken),
                 _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken),
-                _explorerService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken)
+                _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken)
             );
 
             var filteredExtrinsic = blockData.Block.Extrinsics.ToList();

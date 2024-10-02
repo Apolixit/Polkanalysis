@@ -164,6 +164,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         [Test]
         //[TestCaseSource(nameof(AllBlockVersionTestCases))]
         [TestCase(1)]
+        [TestCase(14007412)]
         [TestCase(20127534)]
         [TestCase(18112436)]
         public async Task EventsAt_ShouldWorkAsync(int blockNumber)

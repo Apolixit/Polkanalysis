@@ -40,7 +40,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
     {
         private IEventsFactory _eventsFactory;
         private IDomainMetrics _domainMetrics;
-        private IExplorerService _explorerService;
+        private ICoreService _coreService;
         private ISubstrateDecoding _substrateDecoding;
 
         [SetUp]
@@ -48,7 +48,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
         {
             _logger = Substitute.For<ILogger<SavedEventsHandler>>();
             _domainMetrics = Substitute.For<IDomainMetrics>();
-            _explorerService = Substitute.For<IExplorerService>();
+            _coreService = Substitute.For<ICoreService>();
             _substrateDecoding = Substitute.For<ISubstrateDecoding>();
 
 
@@ -67,7 +67,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _substrateDbContext,
                                               _substrateDecoding,
                                               _domainMetrics,
-                                              _explorerService);
+                                              _coreService);
         }
 
         /// <summary>

@@ -234,22 +234,6 @@ namespace Polkanalysis.Domain.Contracts.Service
 
         #region Time
         /// <summary>
-        /// Return the datetime from the pallet timestamp
-        /// </summary>
-        /// <param name="blockHash">The hash of the block</param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Return the datetime from the pallet timestamp
-        /// </summary>
-        /// <param name="blockNum">The number of the block</param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task<DateTime> GetDateTimeFromTimestampAsync(uint? blockNum, CancellationToken cancellationToken);
-
-        /// <summary>
         /// Extract block information from the header
         /// </summary>
         /// <param name="header">The header</param>

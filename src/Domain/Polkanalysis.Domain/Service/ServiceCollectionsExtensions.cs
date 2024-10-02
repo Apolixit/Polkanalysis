@@ -17,6 +17,7 @@ namespace Polkanalysis.Domain.Service
     {
         public static IServiceCollection AddSubstrateService(this IServiceCollection services)
         {
+            services.AddTransient<ICoreService, CoreService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IExplorerService, ExplorerService>();
             services.AddTransient<IParachainService, ParachainService>();

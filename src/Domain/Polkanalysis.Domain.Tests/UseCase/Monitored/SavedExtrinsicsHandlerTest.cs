@@ -67,7 +67,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                                               _substrateDbContext,
                                               _logger,
                                               Substitute.For<IDistributedCache>(),
-                                              _substrateDecoding);
+                                              _substrateDecoding, 
+                                              Substitute.For<ICoreService>());
         }
 
         /// <summary>

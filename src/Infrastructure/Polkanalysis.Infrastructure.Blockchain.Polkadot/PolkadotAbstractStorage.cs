@@ -11,6 +11,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Helpers;
 using Polkanalysis.Infrastructure.Blockchain.Common;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -50,6 +51,38 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
         protected PolkadotAbstractStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
             _client = client;
+        }
+
+        /// <summary>
+        /// Get the associated hash from an other chain
+        /// </summary>
+        /// <param name="otherClient"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        protected async Task<Hash> GetAssociatedHashFromOtherChainAsync(SubstrateClient otherClient, CancellationToken token)
+        {
+            Guard.Against.NullOrEmpty(BlockHash, nameof(BlockHash));
+
+            var polkadotBlockDataTask = _client.Chain.GetBlockAsync(new Hash(BlockHash), token);
+            var polkadotCurrentBlockNumTask = _client.Chain.GetBlockAsync(token);
+            var otherChainCurrentBlockNumTask = otherClient.Chain.GetBlockAsync(token);
+            var tasks = new List<Task>()
+            {
+                polkadotBlockDataTask, polkadotCurrentBlockNumTask, otherChainCurrentBlockNumTask
+            };
+
+            await Task.WhenAll(tasks.ToArray());
+
+            var polkadotBlockData = await polkadotBlockDataTask;
+            var polkadotCurrentBlockNum = await polkadotCurrentBlockNumTask;
+            var otherChainCurrentBlockNum = await otherChainCurrentBlockNumTask;
+
+            var deltaBlock = polkadotCurrentBlockNum.Block.Header.Number.Value - polkadotBlockData.Block.Header.Number.Value;
+            var blockFromPeopleChain = otherChainCurrentBlockNum.Block.Header.Number.Value - deltaBlock;
+
+            var peopleChainBlockHash = await otherClient.Chain.GetBlockHashAsync(new BlockNumber((uint)blockFromPeopleChain), token);
+
+            return peopleChainBlockHash;
         }
 
         /// <summary>

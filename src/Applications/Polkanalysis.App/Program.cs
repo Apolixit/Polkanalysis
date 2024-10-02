@@ -37,7 +37,7 @@ builder.Services.AddDbContext<SubstrateDbContext>(options =>
 builder.Services.AddScoped<IApiService, ApiService>();
 builder.Services.AddScoped<ITooltipService, TooltipService>();
 
-builder.Services.AddPolkadotBlockchain("polkadot");
+builder.Services.AddSubstrateBlockchain("polkadot");
 builder.Services.AddEndpoint(builder.Configuration);
 builder.Services.AddSubstrateService();
 builder.Services.AddSubstrateLogic();

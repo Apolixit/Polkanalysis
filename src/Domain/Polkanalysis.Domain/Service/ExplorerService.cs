@@ -41,6 +41,7 @@ namespace Polkanalysis.Domain.Service
     public class ExplorerService : IExplorerService
     {
         private readonly ISubstrateService _substrateService;
+        private readonly ICoreService _coreService;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IAccountService _accountRepository;
         private readonly ILogger<ExplorerService> _logger;
@@ -50,12 +51,14 @@ namespace Polkanalysis.Domain.Service
             ISubstrateService substrateNodeRepository,
             ISubstrateDecoding substrateDecode,
             IAccountService accountRepository,
-            ILogger<ExplorerService> logger)
+            ILogger<ExplorerService> logger,
+            ICoreService coreService)
         {
             _substrateService = substrateNodeRepository;
             _substrateDecode = substrateDecode;
             _accountRepository = accountRepository;
             _logger = logger;
+            _coreService = coreService;
         }
 
         public async Task<SubstrateAccount> GetBlockAuthorAsync(uint blockId, CancellationToken cancellationToken)
@@ -187,7 +190,7 @@ namespace Polkanalysis.Domain.Service
             if (blockData == null)
                 throw new BlockException($"{blockData} for block hash = {blockHash.Value} is null");
 
-            var blockDateTask = GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
+            var blockDateTask = _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
             var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
             var blockAuthorTask = GetBlockAuthorAsync(block, cancellationToken);
 
@@ -230,7 +233,7 @@ namespace Polkanalysis.Domain.Service
             var blockHash = await block.ToBlockHashAsync(_substrateService);
             var blockDetailsTask = _substrateService.Rpc.Chain.GetBlockAsync(blockHash, cancellationToken);
 
-            var currentDateTask = GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
+            var currentDateTask = _coreService.GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
             var eventsCountTask = _substrateService.At(blockHash).Storage.System.EventCountAsync(cancellationToken);
             var blockExecutionPhaseTask = _substrateService.At(blockHash).Storage.System.ExecutionPhaseAsync(cancellationToken);
             var specVersionTask = _substrateService.Rpc.State.GetRuntimeVersionAsync(blockHash.Bytes, cancellationToken);
@@ -428,25 +431,7 @@ namespace Polkanalysis.Domain.Service
             }
         }
 
-        public async Task<DateTime> GetDateTimeFromTimestampAsync(Hash? blockHash, CancellationToken cancellationToken)
-        {
-            var currentTimestamp = blockHash switch
-            {
-                null => await _substrateService.Storage.Timestamp.NowAsync(cancellationToken),
-                _ => await _substrateService.At(blockHash).Storage.Timestamp.NowAsync(cancellationToken)
-            };
-
-            var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(currentTimestamp.Value);
-
-            return dt;
-        }
-
-        public async Task<DateTime> GetDateTimeFromTimestampAsync(uint? blockNum, CancellationToken cancellationToken)
-        {
-            var blockHash = blockNum is null ? null : (await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(blockNum.Value), CancellationToken.None));
-
-            return await GetDateTimeFromTimestampAsync(blockHash, cancellationToken);
-        }
+        
 
         public async Task<BlockLightDto?> GetLastBlockAsync(CancellationToken cancellationToken)
         {

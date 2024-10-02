@@ -21,12 +21,12 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
             var peopleChainIntegrationTest = new PeopleChainIntegrationTest();
             var peopleChainService = new PeopleChainService(
                 peopleChainIntegrationTest.GetEndpoint(), 
-                new PeopleChainMapping(Substitute.For<ILogger>()),
+                new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
                 Substitute.For<ILogger<PeopleChainService>>());
 
             _substrateService = new PolkadotService(
                     _substrateEndpoint,
-                    new PolkadotMapping(Substitute.For<ILogger>()),
+                    new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
                     peopleChainService);
         }

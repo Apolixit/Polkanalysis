@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime
 {
-    [DomainMapping("polkadot_runtime")]
+    [DomainMapping("polkadot_runtime", "people_polkadot_runtime")]
     public enum RuntimeEvent
     {
         System = 0,
@@ -49,7 +49,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntim
         ConvictionVoting = 40,
         Referenda = 41,
         Whitelist = 42,
-        MessageQueue = 43
+        MessageQueue = 43,
+        ParachainSystem = 44
     }
 
     /// <summary>
@@ -99,8 +100,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntim
         ConvictionVoting.Enums.EnumEvent,
         Referenda.Enums.EnumEvent,
         WhiteList.Enums.EnumEvent,
-        MessageQueue.Enums.EnumEvent
-        >
+        MessageQueue.Enums.EnumEvent,
+        CumulusPalletParachainSystem.Enums.EnumEvent>
     {
     }
 }

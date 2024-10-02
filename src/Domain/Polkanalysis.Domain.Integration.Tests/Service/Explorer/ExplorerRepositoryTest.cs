@@ -34,7 +34,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 
             _currentMetaData = new MetadataService(_substrateService,
                                                       _substrateDbContext,
-                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ICoreService>(),
                                                       Substitute.For<ILogger<MetadataService>>());
 
             _accountRepository = new AccountService(_substrateService, _substrateDbContext, Substitute.For<ILogger<AccountService>>(), Substitute.For<IDistributedCache>());
@@ -51,7 +51,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
                 _substrateService,
                 _substrateDecoding,
                 _accountRepository,
-                Substitute.For<ILogger<ExplorerService>>());
+                Substitute.For<ILogger<ExplorerService>>(),
+                Substitute.For<ICoreService>());
         }
     }
 }
