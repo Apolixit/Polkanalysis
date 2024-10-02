@@ -37,17 +37,20 @@ namespace Polkanalysis.Domain.UseCase.Monitored
     {
         private readonly ISubstrateService _substrateService;
         private readonly IExplorerService _explorerService;
+        private readonly ICoreService _coreService;
         private readonly SubstrateDbContext _db;
 
         public SavedBlocksHandler(ISubstrateService substrateService,
                                   SubstrateDbContext db,
                                   IExplorerService explorerService,
+                                  ICoreService coreService,
                                   ILogger<SavedBlocksHandler> logger,
                                   IDistributedCache cache) : base(logger, cache)
         {
             _substrateService = substrateService;
             _db = db;
             _explorerService = explorerService;
+            _coreService = coreService;
         }
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedBlocksCommand request, CancellationToken cancellationToken)
@@ -66,7 +69,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             {
                 BlockchainName = _substrateService.BlockchainName,
                 BlockHash = blockInfo.Hash.Value,
-                BlockDate = await _explorerService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken),
+                BlockDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken),
                 BlockNumber = request.BlockNumber,
                 EventsCount = blockInfo.NbEvents,
                 ExtrinsicsCount = blockInfo.NbExtrinsics,

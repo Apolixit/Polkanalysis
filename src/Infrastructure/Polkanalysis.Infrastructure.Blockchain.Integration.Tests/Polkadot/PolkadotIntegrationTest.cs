@@ -12,20 +12,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
 {
     public abstract class PolkadotIntegrationTest : IntegrationTest
     {
+        private PeopleChainService _peopleChainService = default!;
+
         protected PolkadotIntegrationTest()
         {
             var peopleChainIntegration = new PeopleChainIntegrationTests();
-            var peopleChainService = new PeopleChainService(
+            _peopleChainService = new PeopleChainService(
                     peopleChainIntegration.GetEndpoint(),
-                    new PeopleChainMapping(Substitute.For<ILogger>()),
+                    new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
                     Substitute.For<ILogger<PeopleChainService>>()
                     );
 
             _substrateRepository = new PolkadotService(
                     _substrateEndpoint,
-                    new PolkadotMapping(Substitute.For<ILogger>()),
+                    new PolkadotMapping(Substitute.For<ILogger<PolkadotMapping>>()),
                     Substitute.For<ILogger<PolkadotService>>(),
-                    peopleChainService);
+                    _peopleChainService);
         }
 
         [SetUp]
@@ -43,6 +45,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot
             substrateConfigurationMock.WsEndpointUri.Returns(new Uri("wss://polkadot-rpc.dwellir.com"));
 
             return substrateConfigurationMock;
+        }
+
+        public override async Task ConnectDependenciesAsync()
+        {
+            await _peopleChainService.ConnectAsync();
         }
 
         protected async Task<string> GetBlockHashAsync(int blockNum)

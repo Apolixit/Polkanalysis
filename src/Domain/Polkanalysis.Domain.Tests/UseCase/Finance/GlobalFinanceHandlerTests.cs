@@ -56,7 +56,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Finance
             _explorerService = new ExplorerService(_substrateService,
                                                    Substitute.For<ISubstrateDecoding>(),
                                                    Substitute.For<IAccountService>(),
-                                                   Substitute.For<ILogger<ExplorerService>>());
+                                                   Substitute.For<ILogger<ExplorerService>>(),
+                                                   Substitute.For<ICoreService>());
 
             _useCase = new GlobalFinanceHandler(_financialService, _logger, _explorerService, Substitute.For<IDistributedCache>());
         }

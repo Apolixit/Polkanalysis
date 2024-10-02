@@ -64,7 +64,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository
         {
             var peopleChainService = new PeopleChainService(
                     Substitute.For<ISubstrateEndpoint>(),
-                    new PeopleChainMapping(Substitute.For<ILogger>()),
+                    new PeopleChainMapping(Substitute.For<ILogger<PeopleChainMapping>>()),
                     Substitute.For<ILogger<PeopleChainService>>()
                     );
 

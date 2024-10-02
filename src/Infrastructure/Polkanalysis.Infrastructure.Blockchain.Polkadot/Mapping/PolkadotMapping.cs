@@ -52,7 +52,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
     {
         public IConfigurationProvider ConfigurationProvider => _mapper.ConfigurationProvider;
 
-        public PolkadotMapping(ILogger logger) : base(logger)
+        public PolkadotMapping(ILogger<PolkadotMapping> logger) : base(logger)
         {
             var mapperConfig = new MapperConfiguration(cfg =>
             {

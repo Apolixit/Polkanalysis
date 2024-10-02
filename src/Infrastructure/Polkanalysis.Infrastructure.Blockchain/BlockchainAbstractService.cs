@@ -28,7 +28,27 @@ namespace Polkanalysis.Infrastructure.Blockchain
 
         public ITimeQueryable At(BlockNumber blockNumber)
         {
-            Storage.BlockHash = Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).GetAwaiter().GetResult().Value;
+            var result = Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result ?? Rpc.Chain.GetBlockHashAsync(blockNumber, CancellationToken.None).Result;
+
+            if (result is null)
+            {
+                var currentBlock = Rpc.Chain.GetBlockAsync().Result.Block.Header.Number.Value;
+
+                // Let check if current block is lower than this block
+                if (currentBlock < blockNumber.Value)
+                {
+                    throw new InvalidOperationException($"Block number {blockNumber.Value} is higher than current block number {currentBlock}");
+                }
+                else
+                {
+                    Logger.LogWarning("[{blockChainName}] Unable to get block hash from block number {blockNumber}", BlockchainName, blockNumber);
+                }
+            }
+            else
+            {
+                Storage.BlockHash = result.Value;
+            }
+            
             return this;
         }
 

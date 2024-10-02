@@ -20,15 +20,15 @@ namespace Polkanalysis.Domain.Runtime
     public class MetadataService : IMetadataService
     {
         public readonly ISubstrateService _substrateService;
-        public readonly IExplorerService _explorerService;
+        public readonly ICoreService _coreService;
         public readonly SubstrateDbContext _db;
         private readonly ILogger<MetadataService> _logger;
 
-        public MetadataService(ISubstrateService substrateService, SubstrateDbContext db, IExplorerService explorerService, ILogger<MetadataService> logger)
+        public MetadataService(ISubstrateService substrateService, SubstrateDbContext db, ICoreService coreService, ILogger<MetadataService> logger)
         {
             _substrateService = substrateService;
             _db = db;
-            _explorerService = explorerService;
+            _coreService = coreService;
             _logger = logger;
         }
 
@@ -140,14 +140,14 @@ namespace Polkanalysis.Domain.Runtime
 
             var nextSpecVersion = _db.SpecVersionModels.SingleOrDefault(x => x.BlockStart == specVersionDb.BlockEnd + 1);
             
-            var dateStartSpecVersion = await _explorerService.GetDateTimeFromTimestampAsync(blockStartHash, cancellationToken);
+            var dateStartSpecVersion = await _coreService.GetDateTimeFromTimestampAsync(blockStartHash, cancellationToken);
 
             DateTime? dateStartNextSpecVersion = null;
             if (nextSpecVersion is not null)
             {
                 var blockStartNextSpecVersionHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(nextSpecVersion!.BlockStart), cancellationToken);
 
-                dateStartNextSpecVersion = await _explorerService.GetDateTimeFromTimestampAsync(blockStartNextSpecVersionHash, cancellationToken);
+                dateStartNextSpecVersion = await _coreService.GetDateTimeFromTimestampAsync(blockStartNextSpecVersionHash, cancellationToken);
             }
 
             return new MetadataDto()

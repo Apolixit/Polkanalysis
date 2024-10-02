@@ -14,20 +14,20 @@ namespace Polkanalysis.Domain.Tests.Service
     public class MetadataServiceTest : DomainTestAbstract
     {
         private IMetadataService _metadataService;
-        private IExplorerService _explorerService;
+        private ICoreService _coreService;
         private ISubstrateService _substrateService;
 
         [SetUp]
         public void Setup()
         {
             var logger = Substitute.For<ILogger<MetadataService>>();
-            _explorerService = Substitute.For<IExplorerService>();
+            _coreService = Substitute.For<ICoreService>();
             _substrateService = Substitute.For<ISubstrateService>();
             
             _metadataService = new MetadataService(
                 _substrateService,
                 _substrateDbContext,
-                _explorerService,
+                _coreService,
                 logger
             );
 
@@ -65,7 +65,7 @@ namespace Polkanalysis.Domain.Tests.Service
 
             _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber((uint)1000), Arg.Any<CancellationToken>()).Returns(MockHash);
             _substrateService.Rpc.State.GetMetaDataAsync(MockHash, CancellationToken.None).Returns(MockMetadata1);
-            _explorerService.GetDateTimeFromTimestampAsync(MockHash, CancellationToken.None).Returns(new DateTime(2024, 01, 01));
+            _coreService.GetDateTimeFromTimestampAsync(MockHash, CancellationToken.None).Returns(new DateTime(2024, 01, 01));
 
             var res = await _metadataService.GetMetadataAsync(10, CancellationToken.None);
             Assert.That(res, Is.Not.Null);

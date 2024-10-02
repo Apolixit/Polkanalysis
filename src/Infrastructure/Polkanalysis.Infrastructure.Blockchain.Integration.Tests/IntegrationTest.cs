@@ -29,6 +29,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
 
         internal abstract ISubstrateEndpoint GetEndpoint();
 
+        public abstract Task ConnectDependenciesAsync();
+
         /// <summary>
         /// Connect to the endpoint at the beggining of test
         /// </summary>
@@ -41,6 +43,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests
                 try
                 {
                     await _substrateRepository.ConnectAsync();
+                    await ConnectDependenciesAsync();
                 }
                 catch (Exception ex)
                 {

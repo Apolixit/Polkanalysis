@@ -497,6 +497,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mapping
                 CreateMap<IType, EnumFreezeReason>().ConvertUsing(new EnumConverter<EnumFreezeReason>());
                 CreateMap<IType, EnumRuntimeFreezeReason>().ConvertUsing(new EnumConverter<EnumRuntimeFreezeReason>());
                 CreateMap<IType, EnumRuntimeHoldReason>().ConvertUsing(new EnumConverter<EnumRuntimeHoldReason>());
+                
+                CreateMap<IType, Contracts.Pallet.CumulusPalletParachainSystem.Enums.EnumEvent>().ConvertUsing(new EnumConverter<Contracts.Pallet.CumulusPalletParachainSystem.Enums.EnumEvent>());
             }
         }
         #region Map

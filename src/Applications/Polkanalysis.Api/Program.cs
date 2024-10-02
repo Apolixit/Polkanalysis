@@ -52,7 +52,7 @@ namespace Polkanalysis.Api
                 });
 
                 // For the API, we register Polkadot as singleton
-                builder.Services.AddPolkadotBlockchain("polkadot", registerAsSingleton: true);
+                builder.Services.AddSubstrateBlockchain("polkadot", registerAsSingleton: true);
                 builder.Services.AddHttpClient();
                 builder.Services.AddEndpoint(builder.Configuration, registerAsSingleton: true);
                 builder.Services.AddSubstrateService();

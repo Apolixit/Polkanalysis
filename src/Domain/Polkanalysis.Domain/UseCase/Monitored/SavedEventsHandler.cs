@@ -11,6 +11,7 @@ using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Metrics;
 using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Database;
@@ -43,27 +44,27 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
     public class SavedEventsHandler : Handler<SavedEventsHandler, bool, SavedEventsCommand>
     {
-        private readonly ISubstrateService _polkadotRepository;
+        private readonly ISubstrateService _substrateService;
         private readonly IEventsFactory _eventsFactory;
         private readonly SubstrateDbContext _dbContext;
         private readonly ISubstrateDecoding _substrateDecode;
         private readonly IDomainMetrics _domainMetrics;
-        private readonly IExplorerService _explorerRepository;
+        private readonly ICoreService _coreService;
 
-        public SavedEventsHandler(ISubstrateService polkadotRepository, IEventsFactory eventsFactory, ILogger<SavedEventsHandler> logger, IDistributedCache cache, SubstrateDbContext dbContext, ISubstrateDecoding substrateDecode, IDomainMetrics domainMetrics, IExplorerService explorerRepository) : base(logger, cache)
+        public SavedEventsHandler(ISubstrateService substrateService, IEventsFactory eventsFactory, ILogger<SavedEventsHandler> logger, IDistributedCache cache, SubstrateDbContext dbContext, ISubstrateDecoding substrateDecode, IDomainMetrics domainMetrics, ICoreService coreService) : base(logger, cache)
         {
-            _polkadotRepository = polkadotRepository;
+            _substrateService = substrateService;
             _eventsFactory = eventsFactory;
             _dbContext = dbContext;
             _substrateDecode = substrateDecode;
             _domainMetrics = domainMetrics;
-            _explorerRepository = explorerRepository;
+            _coreService = coreService;
         }
 
         public async override Task<Result<bool, ErrorResult>> HandleInnerAsync(SavedEventsCommand request, CancellationToken cancellationToken)
         {
             // Get events associated at each block
-            var events = await _polkadotRepository.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken);
+            var events = await _substrateService.At(request.BlockNumber).Storage.System.EventsAsync(cancellationToken);
 
             if (events == null)
             {
@@ -72,7 +73,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 return UseCaseError(ErrorResult.ErrorType.NoNeedToProcess, $"No events associated to block num {request.BlockNumber}", ErrorResult.ErrorCriticity.Low);
             }
 
-            var currentDate = await _explorerRepository.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
+            var currentDate = await _coreService.GetDateTimeFromTimestampAsync(request.BlockNumber, cancellationToken);
 
             _logger.LogInformation("[{handler}] Scan block num {blockNumber}, associated events = {eventsCount}", nameof(SavedEventsHandler), request.BlockNumber, events.Value.Length);
 
@@ -133,7 +134,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
             _dbContext.SubstrateErrors.Add(new Infrastructure.Database.Contracts.Model.Errors.SubstrateErrorModel()
             {
-                BlockchainName = _polkadotRepository.BlockchainName,
+                BlockchainName = _substrateService.BlockchainName,
                 BlockNumber = request.BlockNumber.Value,
                 Date = currentDate,
                 TypeError = Infrastructure.Database.Contracts.Model.Errors.TypeErrorModel.Events,
@@ -155,7 +156,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         {
             var model = new EventManagerModel
             {
-                BlockchainName = _polkadotRepository.BlockchainName,
+                BlockchainName = _substrateService.BlockchainName,
                 LastScanBlockId = lastScan,
                 ModuleName = moduleName,
                 ModuleEvent = moduleEvent,
@@ -199,7 +200,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
         {
             var moduleName = eventNode.Module.ToString();
             var eventName = eventNode.Method.ToString();
-            var blockchainName = _polkadotRepository.BlockchainName;
+            var blockchainName = _substrateService.BlockchainName;
 
             var alreadyInserted = await _dbContext.EventManager
                 .FirstOrDefaultAsync(x =>

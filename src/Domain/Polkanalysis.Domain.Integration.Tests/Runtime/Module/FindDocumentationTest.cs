@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             _logger = Substitute.For<ILogger<MetadataService>>();
             _currentMetaData = new MetadataService(_substrateService,
                                                       _substrateDbContext,
-                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ICoreService>(),
                                                       Substitute.For<ILogger<MetadataService>>());
 
             _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());

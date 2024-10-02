@@ -20,7 +20,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         {
             _currentMetadata = new MetadataService(_substrateService,
                                                       _substrateDbContext,
-                                                      Substitute.For<IExplorerService>(),
+                                                      Substitute.For<ICoreService>(),
                                                       Substitute.For<ILogger<MetadataService>>());
             _moduleRepository = new ModuleInformation(_currentMetadata, _substrateService);
         }

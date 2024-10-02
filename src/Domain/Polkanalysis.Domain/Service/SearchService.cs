@@ -24,15 +24,15 @@ namespace Polkanalysis.Domain.Service
     public class SearchService : ISearchService
     {
         private readonly ISubstrateService _substrateService;
-        private readonly IExplorerService _explorerService;
+        private readonly ICoreService _coreService;
         private readonly SubstrateDbContext _db;
         private readonly ILogger<SearchService> _logger;
 
-        public SearchService(ISubstrateService _substrateService, SubstrateDbContext db, IExplorerService explorerService,/* ISearchClient searchClient,*/ ILogger<SearchService> logger)
+        public SearchService(ISubstrateService _substrateService, SubstrateDbContext db, ICoreService coreService,/* ISearchClient searchClient,*/ ILogger<SearchService> logger)
         {
             this._substrateService = _substrateService;
             _db = db;
-            _explorerService = explorerService;
+            _coreService = coreService;
             _logger = logger;
         }
 
@@ -159,7 +159,7 @@ namespace Polkanalysis.Domain.Service
             return new SearchResultDto()
             {
                 ResultType = SearchResultDto.SearchResultType.BlockHash,
-                When = await _explorerService.GetDateTimeFromTimestampAsync(new Hash(hash), token),
+                When = await _coreService.GetDateTimeFromTimestampAsync(new Hash(hash), token),
                 Url = $"block/{res.BlockNumber}",
                 Description = $"This is the hash of the block number {res.BlockNumber}"
             };
@@ -181,7 +181,7 @@ namespace Polkanalysis.Domain.Service
             return new SearchResultDto()
             {
                 ResultType = SearchResultDto.SearchResultType.BlockNumber,
-                When = await _explorerService.GetDateTimeFromTimestampAsync(new Hash(res.BlockHash), token),
+                When = await _coreService.GetDateTimeFromTimestampAsync(new Hash(res.BlockHash), token),
                 Url = $"block/{res.BlockNumber}",
                 Description = $"This is the block number {res.BlockNumber}"
             };

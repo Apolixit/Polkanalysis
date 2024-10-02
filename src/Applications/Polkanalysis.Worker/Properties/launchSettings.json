@@ -6,6 +6,7 @@
     },
     "Polkanalysis.Worker": {
       "commandName": "Project",
+      "commandLineArgs": "peoplechain",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
