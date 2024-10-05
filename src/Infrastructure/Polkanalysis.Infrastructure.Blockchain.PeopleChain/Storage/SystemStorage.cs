@@ -4,6 +4,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.PeopleChain.NetApiExt.Generated;
 using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.frame_system;
 using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.sp_core.crypto;
@@ -21,7 +22,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {
     internal class SystemStorage : PeopleChainAbstractStorage, ISystemStorage
     {
-        public SystemStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        public SystemStorage(SubstrateClientExt client, PeopleChainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
 

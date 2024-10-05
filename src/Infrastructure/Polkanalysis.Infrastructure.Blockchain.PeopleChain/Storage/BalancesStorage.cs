@@ -3,6 +3,7 @@ using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.PeopleChain.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi.Model.Types.Base;
@@ -17,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {
     public class BalancesStorage : PeopleChainAbstractStorage, IBalancesStorage
     {
-        public BalancesStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        public BalancesStorage(SubstrateClientExt client, PeopleChainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
 

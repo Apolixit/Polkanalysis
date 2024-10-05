@@ -9,12 +9,13 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_runtime_common.crowdloan;
 using Ardalis.GuardClauses;
 using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class CrowdloanStorage : PolkadotAbstractStorage, ICrowdloanStorage
     {
-        public CrowdloanStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public CrowdloanStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<U32> EndingsCountAsync(CancellationToken token)
         {

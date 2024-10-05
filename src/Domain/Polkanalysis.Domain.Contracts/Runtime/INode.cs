@@ -9,6 +9,8 @@ namespace Polkanalysis.Domain.Contracts.Runtime
     /// </summary>
     public interface INode
     {
+        INode this[int index] { get; }
+
         /// <summary>
         /// Is this current has been mapped ?
         /// </summary>

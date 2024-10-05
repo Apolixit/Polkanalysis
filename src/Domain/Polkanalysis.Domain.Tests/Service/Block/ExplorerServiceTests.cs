@@ -13,18 +13,21 @@ namespace Polkanalysis.Domain.Tests.Service.Block
         protected IExplorerService _explorerService;
         protected ISubstrateService _substrateService;
         protected ISubstrateDecoding _substrateDecode;
+        protected ICoreService _coreService;
 
         [SetUp]
         public void Setup()
         {
             _substrateService = Substitute.For<ISubstrateService>();
             _substrateDecode = Substitute.For<ISubstrateDecoding>();
+            _coreService = Substitute.For<ICoreService>();
 
             _explorerService = new ExplorerService(
                 _substrateService,
                 _substrateDecode,
                 Substitute.For<IAccountService>(),
-                Substitute.For<ILogger<ExplorerService>>());
+                Substitute.For<ILogger<ExplorerService>>(),
+                _coreService);
 
 
         }

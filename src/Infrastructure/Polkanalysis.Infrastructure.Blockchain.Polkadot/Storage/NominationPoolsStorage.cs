@@ -10,12 +10,13 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_nomination_pools;
 using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class NominationPoolsStorage : PolkadotAbstractStorage, INominationPoolsStorage
     {
-        public NominationPoolsStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public NominationPoolsStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<BondedPoolInner> BondedPoolsAsync(U32 poolId, CancellationToken token)
         {

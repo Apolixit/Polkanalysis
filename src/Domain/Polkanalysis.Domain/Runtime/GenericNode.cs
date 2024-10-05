@@ -33,6 +33,8 @@ namespace Polkanalysis.Domain.Runtime
         }
         public IList<INode> Children { get; set; } = new List<INode>();
 
+        public INode this[int index] => Children[index];
+
         #region Tree props
         public bool IsEmpty => Data == null;
 

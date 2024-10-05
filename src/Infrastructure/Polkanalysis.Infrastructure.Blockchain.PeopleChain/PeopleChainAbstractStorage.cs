@@ -2,6 +2,7 @@
 using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.PeopleChain.NetApiExt.Generated;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
@@ -9,7 +10,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
     public abstract class PeopleChainAbstractStorage : AbstractStorage
     {
         protected readonly SubstrateClientExt _client;
-        protected PeopleChainAbstractStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        protected PeopleChainAbstractStorage(SubstrateClientExt client, PeopleChainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
             _client = client;
         }

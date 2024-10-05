@@ -185,9 +185,10 @@ namespace Polkanalysis.Domain.Runtime
         {
             Guard.Against.Null(blockHash);
 
-            //if (value is BaseEnumType baseEnumValue)
-            if (IsEnumRust(value))
+            if (value is BaseEnumType baseEnumValue)
+            //if (IsEnumRust(value))
             {
+                var xx = value.GetType().GetProperty("Value");
                 var val = value.GetEnumValue();
 
                 if (val == null) throw new ArgumentNullException($"The value element (enum) from {value.TypeName()} is null while visiting node");

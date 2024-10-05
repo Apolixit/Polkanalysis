@@ -25,11 +25,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
                 case "polkadot":
                     RegisterSubstrateService(services, typeof(ISubstrateService), typeof(PolkadotService), registerAsSingleton);
                     RegisterSubstrateService(services, null, typeof(PeopleChainService), registerAsSingleton);
-                    services.AddTransient<IBlockchainMapping, PolkadotMapping>();
+                    //services.AddTransient<IBlockchainMapping, PolkadotMapping>();
+                    services.AddTransient<PolkadotMapping>();
+                    services.AddTransient<PeopleChainMapping>();
                     break;
                 case "peoplechain":
                     RegisterSubstrateService(services, typeof(ISubstrateService), typeof(PeopleChainService), registerAsSingleton);
-                    services.AddTransient<IBlockchainMapping, PeopleChainMapping>();
+                    //services.AddTransient<IBlockchainMapping, PeopleChainMapping>();
+                    services.AddTransient<PeopleChainMapping>();
                     break;
                 default:
                     throw new NotSupportedException($"{blockchainName} is not supported by the application");

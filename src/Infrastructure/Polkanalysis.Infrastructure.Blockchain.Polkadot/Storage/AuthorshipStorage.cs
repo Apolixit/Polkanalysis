@@ -18,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
     /// </summary>
     public class AuthorshipStorage : PolkadotAbstractStorage, IAuthorshipStorage
     {
-        public AuthorshipStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public AuthorshipStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<SubstrateAccount> AuthorAsync(CancellationToken token)
         {

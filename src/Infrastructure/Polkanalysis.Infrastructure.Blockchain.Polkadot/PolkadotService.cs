@@ -10,6 +10,7 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Events;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -18,12 +19,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
         private SubstrateClientExt? _polkadotClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
         private readonly PeopleChainService _peopleChainService;
-        private readonly IBlockchainMapping _blockchainMapping;
+        private readonly PolkadotMapping _blockchainMapping;
         private readonly ILogger<PolkadotService> _logger;
 
         public PolkadotService(
             ISubstrateEndpoint substrateconfiguration,
-            IBlockchainMapping blockchainMapping,
+            PolkadotMapping blockchainMapping,
             ILogger<PolkadotService> logger,
             PeopleChainService peopleChainService)
         {

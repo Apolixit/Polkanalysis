@@ -12,7 +12,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class RegistrarStorage : PolkadotAbstractStorage, IRegistrarStorage
     {
-        public RegistrarStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public RegistrarStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<Id> NextFreeParaIdAsync(CancellationToken token)
         {

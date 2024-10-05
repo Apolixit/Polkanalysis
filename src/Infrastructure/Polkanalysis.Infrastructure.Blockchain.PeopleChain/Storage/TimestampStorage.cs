@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.PeopleChain.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types.Primitive;
 using System;
@@ -13,7 +14,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {
     internal class TimestampStorage : PeopleChainAbstractStorage, ITimestampStorage
     {
-        public TimestampStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        public TimestampStorage(SubstrateClientExt client, PeopleChainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
 
