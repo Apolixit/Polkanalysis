@@ -120,6 +120,36 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
         }
 
         [Test]
+        public void Event_BalanceWithdraw_ShouldBeEncodedAndDecodedCorrectly()
+        {
+            var account = new AccountIdExt();
+            account.Create(Utils.GetPublicKeyFrom(MockAddress));
+
+            var bt = new BaseTuple<AccountIdExt, U128>(account, new U128(10));
+
+            var coreEvent = new Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_balances.pallet.EnumEvent();
+            coreEvent.Create(Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_balances.pallet.Event.Withdraw, bt);
+
+            var enumRuntimeEvent = new Contracts.Core.Maybe<EnumRuntimeEvent>(coreEvent);
+
+            var enumPhase = new EnumPhase();
+            enumPhase.Create(Phase.ApplyExtrinsic, new U32(4));
+
+            var topic = new BaseVec<Hash>(new Hash[0]);
+            var ev = new EventRecord(enumPhase, enumRuntimeEvent, topic);
+
+            var eventDecoded = new EventRecord();
+            eventDecoded.Create(ev.Encode());
+
+            Assert.That(ev.Phase.Value, Is.EqualTo(eventDecoded.Phase.Value));
+            Assert.That(ev.Phase.Value2.As<U32>().Value, Is.EqualTo(eventDecoded.Phase.Value2.As<U32>().Value));
+
+            Assert.That(ev.Event.Core.GetValue(), Is.EqualTo(eventDecoded.Event.Core.GetValue()));
+            Assert.That(ev.Event.Core.GetValue2().As<BaseTuple<AccountIdExt, U128>>().Value[1].As<U128>().Value, 
+                Is.EqualTo(eventDecoded.Event.Core.GetValue2().As<BaseTuple<AccountIdExt, U128>>().Value[1].As<U128>().Value));
+        }
+
+        [Test]
         public void BagListEnum_ShouldBeMapped()
         {
             var account = new AccountIdExt();

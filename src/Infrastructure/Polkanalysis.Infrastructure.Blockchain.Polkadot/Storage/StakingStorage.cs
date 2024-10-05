@@ -12,12 +12,13 @@ using Ardalis.GuardClauses;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking;
 using Substrate.NetApi.Model.Types;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class StakingStorage : PolkadotAbstractStorage, IStakingStorage
     {
-        public StakingStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public StakingStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<ActiveEraInfo> ActiveEraAsync(CancellationToken token)
         {

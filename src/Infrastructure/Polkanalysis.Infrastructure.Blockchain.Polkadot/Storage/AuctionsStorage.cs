@@ -6,6 +6,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
@@ -15,7 +16,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
     /// </summary>
     public class AuctionsStorage : PolkadotAbstractStorage, IAuctionsStorage
     {
-        public AuctionsStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        public AuctionsStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
 

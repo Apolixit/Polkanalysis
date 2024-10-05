@@ -18,6 +18,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 
@@ -27,10 +28,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
     {
         private SubstrateClientExt _polkadotClient;
         private readonly PeopleChainService _peopleChainService;
-        public readonly IBlockchainMapping _mapper;
+        public readonly PolkadotMapping _mapper;
         private readonly ILogger _logger;
 
-        public PolkadotStorage(SubstrateClientExt polkadotClient, IBlockchainMapping mapper, ILogger logger, PeopleChainService peopleChainService)
+        public PolkadotStorage(SubstrateClientExt polkadotClient, PolkadotMapping mapper, ILogger logger, PeopleChainService peopleChainService)
         {
             _polkadotClient = polkadotClient;
             _mapper = mapper;

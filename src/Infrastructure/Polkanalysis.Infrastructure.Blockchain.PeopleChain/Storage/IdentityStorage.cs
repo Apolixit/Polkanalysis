@@ -11,12 +11,13 @@ using Substrate.NET.Utils;
 using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.pallet_identity.types;
 using Newtonsoft.Json.Linq;
 using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.sp_core.crypto;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {
     internal class IdentityStorage : PeopleChainAbstractStorage, IIdentityStorage
     {
-        public IdentityStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public IdentityStorage(SubstrateClientExt client, PeopleChainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<Registration?> IdentityOfAsync(SubstrateAccount account, CancellationToken token)
         {

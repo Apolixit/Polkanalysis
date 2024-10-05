@@ -2,6 +2,7 @@
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.IdentityMigration;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.PeopleChain.NetApiExt.Generated;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {
     internal class IdentityMigrationStorage : PeopleChainAbstractStorage, IIdentityMigrationStorage
     {
-        public IdentityMigrationStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        public IdentityMigrationStorage(SubstrateClientExt client, PeopleChainMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
     }

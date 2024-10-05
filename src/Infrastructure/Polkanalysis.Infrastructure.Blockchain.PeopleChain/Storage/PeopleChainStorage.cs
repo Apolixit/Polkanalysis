@@ -17,6 +17,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 using Polkanalysis.PeopleChain.NetApiExt.Generated;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
@@ -24,10 +25,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
     internal class PeopleChainStorage : IStorage
     {
         private SubstrateClientExt _peopleChainClient;
-        public readonly IBlockchainMapping _mapper;
+        public readonly PeopleChainMapping _mapper;
         private readonly ILogger _logger;
 
-        public PeopleChainStorage(SubstrateClientExt peopleChainClient, IBlockchainMapping mapper, ILogger logger)
+        public PeopleChainStorage(SubstrateClientExt peopleChainClient, PeopleChainMapping mapper, ILogger logger)
         {
             _peopleChainClient = peopleChainClient;
             _mapper = mapper;

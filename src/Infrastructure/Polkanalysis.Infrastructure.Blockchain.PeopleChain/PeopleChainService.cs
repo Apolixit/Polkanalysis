@@ -16,6 +16,7 @@ using Substrate.NET.Metadata.V14;
 using Substrate.NET.Utils.Address;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Events;
+using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
 {
@@ -23,12 +24,12 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
     {
         private SubstrateClientExt? _peopleChainClient;
         private readonly ISubstrateEndpoint _substrateconfiguration;
-        private readonly IBlockchainMapping _blockchainMapping;
+        private readonly PeopleChainMapping _blockchainMapping;
         private readonly ILogger<PeopleChainService> _logger;
 
         public PeopleChainService(
             ISubstrateEndpoint substrateconfiguration,
-            IBlockchainMapping blockchainMapping,
+            PeopleChainMapping blockchainMapping,
             ILogger<PeopleChainService> logger)
         {
             _substrateconfiguration = substrateconfiguration;

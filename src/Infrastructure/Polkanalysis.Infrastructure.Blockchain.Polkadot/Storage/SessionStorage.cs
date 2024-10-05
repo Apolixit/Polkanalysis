@@ -8,12 +8,13 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class SessionStorage : PolkadotAbstractStorage, ISessionStorage
     {
-        public SessionStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public SessionStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<U32> CurrentIndexAsync(CancellationToken token)
         {

@@ -12,12 +12,13 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system;
 using System;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class SystemStorage : PolkadotAbstractStorage, ISystemStorage
     {
-        public SystemStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public SystemStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<AccountInfo> AccountAsync(SubstrateAccount account, CancellationToken token)
         {

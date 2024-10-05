@@ -20,7 +20,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
     /// </summary>
     public class BabeStorage : PolkadotAbstractStorage, IBabeStorage
     {
-        public BabeStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public BabeStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<BaseVec<BaseTuple<PublicSr25519, U64>>> AuthoritiesAsync(CancellationToken token)
         {

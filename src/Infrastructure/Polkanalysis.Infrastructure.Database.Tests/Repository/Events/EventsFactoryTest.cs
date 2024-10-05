@@ -16,7 +16,6 @@ namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Events
         public void Start()
         {
             var substrateNodeRepository = Substitute.For<ISubstrateService>();
-            var mapping = Substitute.For<IBlockchainMapping>();
 
             _serviceProvider = Substitute.For<IServiceProvider>();
             _serviceProvider.GetService(typeof(BalancesDustLostRepository)).Returns(new BalancesDustLostRepository(_substrateDbContext, substrateNodeRepository, Substitute.For<ILogger<BalancesDustLostRepository>>()));

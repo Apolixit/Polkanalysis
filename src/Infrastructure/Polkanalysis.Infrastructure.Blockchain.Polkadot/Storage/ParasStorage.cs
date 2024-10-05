@@ -8,12 +8,13 @@ using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Substrate.NetApi.Model.Types;
 using Ardalis.GuardClauses;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class ParasStorage : PolkadotAbstractStorage, IParasStorage
     {
-        public ParasStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger) { }
+        public ParasStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger) { }
 
         public async Task<BaseVec<Id>> ActionsQueueAsync(U32 key, CancellationToken token)
         {

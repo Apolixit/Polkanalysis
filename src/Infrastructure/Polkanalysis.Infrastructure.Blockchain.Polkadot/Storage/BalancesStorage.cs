@@ -18,7 +18,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
     public class BalancesStorage : PolkadotAbstractStorage, IBalancesStorage
     {
 
-        public BalancesStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        public BalancesStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
         }
 

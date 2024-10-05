@@ -9,13 +9,14 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NetApi.Model.Types;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {
     public class IdentityStorage : PolkadotAbstractStorage, IIdentityStorage
     {
         private readonly PeopleChainService _peopleChainService;
-        public IdentityStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger, PeopleChainService peopleChainService) : base(client, mapper, logger) {
+        public IdentityStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger, PeopleChainService peopleChainService) : base(client, mapper, logger) {
             _peopleChainService = peopleChainService;
         }
 

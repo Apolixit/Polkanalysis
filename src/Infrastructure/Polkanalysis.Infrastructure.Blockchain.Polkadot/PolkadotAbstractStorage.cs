@@ -1,17 +1,11 @@
-﻿using Substrate.NetApi.Model.Types;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
+﻿using Microsoft.Extensions.Logging;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
-using System.Runtime.CompilerServices;
 using Substrate.NetApi;
 using Ardalis.GuardClauses;
 using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
-using Polkanalysis.Infrastructure.Blockchain.Helpers;
 using Polkanalysis.Infrastructure.Blockchain.Common;
-using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
+using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
@@ -48,7 +42,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
             }
         }
 
-        protected PolkadotAbstractStorage(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger) : base(client, mapper, logger)
+        protected PolkadotAbstractStorage(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger) : base(client, mapper, logger)
         {
             _client = client;
         }

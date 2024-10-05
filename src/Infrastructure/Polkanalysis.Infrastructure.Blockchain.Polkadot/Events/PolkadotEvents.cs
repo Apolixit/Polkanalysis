@@ -11,10 +11,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Events
     public partial class PolkadotEvents : IEvents
     {
         protected readonly SubstrateClientExt _client;
-        protected readonly IBlockchainMapping _mapper;
+        protected readonly PolkadotMapping _mapper;
         protected readonly ILogger _logger;
 
-        public PolkadotEvents(SubstrateClientExt client, IBlockchainMapping mapper, ILogger logger)
+        public PolkadotEvents(SubstrateClientExt client, PolkadotMapping mapper, ILogger logger)
         {
             _client = client;
             _mapper = mapper;
