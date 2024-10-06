@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -27,7 +28,7 @@ namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
 
         public IndividualExposure ToCore()
         {
-            return new IndividualExposure(new Domain.Contracts.Core.SubstrateAccount(NominatorAddress),
+            return new IndividualExposure(new SubstrateAccount(NominatorAddress),
                 new BaseCom<U128>(new Substrate.NetApi.CompactInteger(ValueStake)));
         }
 

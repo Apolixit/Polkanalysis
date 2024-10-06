@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Core;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;

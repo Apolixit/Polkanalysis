@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 {
     public class Perbill : BaseType
     {

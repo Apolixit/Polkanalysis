@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
@@ -13,6 +12,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking;
 using Substrate.NetApi.Model.Types;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {

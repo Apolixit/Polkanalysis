@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums;
 using System.Numerics;
@@ -8,6 +7,8 @@ using BalancesExtV9122 = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9122.p
 using BalancesExtV9370 = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_balances;
 using BalancesExtV9430 = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9430.pallet_balances.types;
 using Substrate.NetApi;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Balances
 {
@@ -130,7 +131,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             reason.Create(Reasons.Misc);
 
             var firstResult = new BalanceLock();
-            var name = new Domain.Contracts.Core.Display.NameableSize8();
+            var name = new NameableSize8();
             name.Create(extResult.Value[0].Id.Bytes);
             firstResult.Create(name,
                 new U128(new BigInteger(10000000000)),
@@ -164,7 +165,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
             reason.Create(Reasons.Misc);
 
             var firstResult = new BalanceLock();
-            var name = new Domain.Contracts.Core.Display.NameableSize8();
+            var name = new NameableSize8();
             name.Create(extResult.Value[0].Id.Bytes);
             firstResult.Create(name,
                 new U128(new BigInteger(10000000000)),

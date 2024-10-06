@@ -1,6 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Substrate.NetApi;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.System
@@ -163,6 +163,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
 
         [Test]
         //[TestCaseSource(nameof(AllBlockVersionTestCases))]
+        [TestCase(22666089)]
         [TestCase(1)]
         [TestCase(14007412)]
         [TestCase(20127534)]

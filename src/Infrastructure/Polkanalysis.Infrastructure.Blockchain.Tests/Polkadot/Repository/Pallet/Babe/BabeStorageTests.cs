@@ -2,14 +2,14 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Core.Public;
-using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using BabeConsensusExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_babe;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
 using Substrate.NET.Utils;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Babe
 {

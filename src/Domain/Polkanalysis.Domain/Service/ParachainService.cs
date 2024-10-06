@@ -12,6 +12,7 @@ using Polkanalysis.Domain.Contracts.Dto.Informations;
 using Polkanalysis.Domain.Helper;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -126,7 +127,7 @@ namespace Polkanalysis.Domain.Service
         }
         public async Task<ParachainDto> GetParachainDetailAsync(uint parachainId, CancellationToken cancellationToken)
         {
-            var paraId = new Contracts.Core.Id(new U32(parachainId));
+            var paraId = new Id(new U32(parachainId));
             var accountRegistar = await _substrateNodeRepository.Storage.Registrar.ParasAsync(paraId, cancellationToken);
 
             var owner = await _accountRepository.GetAccountIdentityAsync(accountRegistar.Manager, cancellationToken);
@@ -208,7 +209,7 @@ namespace Polkanalysis.Domain.Service
             //var ids = _modelBuilder.CreateTuppleIndex(crowdloanId);
             var chainInfo = await _substrateNodeRepository.Rpc.System.PropertiesAsync(cancellationToken);
 
-            var crowdloanDetail = await _substrateNodeRepository.Storage.Crowdloan.FundsAsync(new Contracts.Core.Id(crowdloanId), cancellationToken);
+            var crowdloanDetail = await _substrateNodeRepository.Storage.Crowdloan.FundsAsync(new Id(crowdloanId), cancellationToken);
 
             BlockLightDto? lastBlockContribution = crowdloanDetail.LastContribution.Value switch
             {

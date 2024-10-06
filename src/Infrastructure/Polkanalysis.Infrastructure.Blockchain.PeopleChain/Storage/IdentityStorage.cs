@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
@@ -12,6 +11,7 @@ using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.pallet_identity.t
 using Newtonsoft.Json.Linq;
 using Polkanalysis.PeopleChain.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain.Storage
 {

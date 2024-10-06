@@ -48,6 +48,18 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         }
 
         [Test]
+        [TestCase(Infrastructure.Blockchain.Contracts.Pallet.System.Enums.Event.ExtrinsicFailed)]
+        [TestCase(Infrastructure.Blockchain.Contracts.Core.Error.DispatchError.Module)]
+        public void FindProperty_WhenValidEvent_ShouldReturnProperties(object e)
+        {
+            var property = _palletBuilder.FindProperty((Enum)e);
+
+            Assert.That(property, Is.Not.Null);
+            Assert.That(property[0].Name, Is.Not.Null);
+            Assert.That(property[0].Param, Is.Not.Null);
+        }
+
+        [Test]
         public void FindProperty_WhenValidEvent_StateChanged_ShouldReturnProperties()
         {
             var property = _palletBuilder.FindProperty(Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums.Event.StateChanged);

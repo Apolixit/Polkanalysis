@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Financial;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 

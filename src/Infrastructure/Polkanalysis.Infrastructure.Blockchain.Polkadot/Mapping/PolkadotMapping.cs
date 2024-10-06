@@ -1,25 +1,17 @@
 ﻿using AutoMapper;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types;
-using Polkanalysis.Domain.Contracts.Core.Display;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
-using Polkanalysis.Domain.Contracts.Core.Empty;
-using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.primitive_types;
-using Polkanalysis.Domain.Contracts.Core.Signature;
 using Polkanalysis.Infrastructure.Blockchain.Exceptions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Microsoft.Extensions.Logging;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
-using Polkanalysis.Domain.Contracts.Core.Multi;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools;
@@ -31,11 +23,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using System.Diagnostics;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
-using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
-using Polkanalysis.Domain.Contracts.Core.Enum;
-using Polkanalysis.Domain.Contracts.Core.Error;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
@@ -45,6 +33,14 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_staking;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.pallet_balances.types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Empty;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Multi;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Signature;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 {
@@ -86,7 +82,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             _mapper = mapperConfig.CreateMapper();
         }
 
-        
+
 
         public class BytesProfile : Profile
         {
@@ -225,7 +221,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             }
         }
 
-        
+
         public class PolkadotBaseTypeProfile : BaseTypeProfile
         {
             public PolkadotBaseTypeProfile()
@@ -392,7 +388,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
                     destination.Amount = source.Amount;
 
-                    if(source.Id is not null)
+                    if (source.Id is not null)
                         destination.Id = context.Mapper.Map<BaseTuple>(source.Id);
 
                     if (source.Id1 is not null)
@@ -908,6 +904,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_runtime.generic.digest.DigestBase, Digest>();
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system.EventRecordBase, EventRecord>().ConvertUsing(new EventRecordConverter());
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_support.dispatch.DispatchInfoBase, DispatchInfo>();
+
+                CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_runtime.ModuleErrorBase, ModuleError>().ConvertUsing(new ModuleErrorConverter());
                 ////CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>().ForMember(o => o.Value2, m => m.MapFrom(s => s.Value2));
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.polkadot_runtime.EnumRuntimeEvent, EnumRuntimeEvent>();
 
@@ -927,6 +925,21 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
 
                 CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system.LastRuntimeUpgradeInfoBase, LastRuntimeUpgradeInfo>();
                 //CreateMap<Polkanalysis.Polkadot.NetApiExt.Generated.Model.frame_system.EventRecord, EventRecord>().ConvertUsing(typeof(EventRecordConverter));
+            }
+
+            public class ModuleErrorConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_runtime.ModuleErrorBase, ModuleError>
+            {
+                public ModuleError Convert(Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_runtime.ModuleErrorBase source, ModuleError destination, ResolutionContext context)
+                {
+                    destination = new ModuleError();
+                    if (source == null) return destination;
+
+                    var errors = source.Error != null ? [source.Error] : source.Error1.Value;
+
+                    destination = new ModuleError(source.Index, errors);
+
+                    return destination;
+                }
             }
 
             public class EventRecordConverter : ITypeConverter<Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system.EventRecordBase, EventRecord>
@@ -1101,7 +1114,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             }
         }
 
-        
+
 
         public class H256Converter : ITypeConverter<H256Base, Hash>
         {
@@ -1163,6 +1176,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping
             }
         }
 
-        
+
     }
 }

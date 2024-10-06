@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo
 {
     [DomainMapping("frame_support/weights")]
     public enum Pays

@@ -1,13 +1,13 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Core.Error;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
 
-namespace Polkanalysis.Domain.Contracts.Core.Enum
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Enum
 {
     [DomainMapping("")]
     public enum Result
@@ -20,8 +20,8 @@ namespace Polkanalysis.Domain.Contracts.Core.Enum
     /// <summary>
     /// >> 32 - Variant[Result]
     /// </summary>
-    public sealed class EnumResult : BaseEnumExt<Result, 
-        BaseTuple, 
+    public sealed class EnumResult : BaseEnumExt<Result,
+        BaseTuple,
         EnumDispatchError>
     {
     }

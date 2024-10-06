@@ -6,7 +6,7 @@ using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using NSubstitute;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Distributed;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service
 {

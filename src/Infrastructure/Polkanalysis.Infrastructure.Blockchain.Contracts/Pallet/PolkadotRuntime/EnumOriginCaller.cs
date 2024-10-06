@@ -1,6 +1,5 @@
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain.Origin.Enums;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 
@@ -27,13 +26,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntim
     /// >> 256 - Variant[polkadot_runtime.OriginCaller]
     /// </summary>
     public sealed class EnumOriginCaller : BaseEnumExt<OriginCaller,
-        Domain.Contracts.Core.DispatchInfo.EnumRawOrigin, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
-        BaseVoid, BaseVoid, BaseVoid, EnumRawOrigin, 
-        EnumRawOrigin, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
+        Core.DispatchInfo.EnumRawOrigin, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
+        BaseVoid, BaseVoid, BaseVoid, Core.DispatchInfo.EnumRawOrigin,
+        Core.DispatchInfo.EnumRawOrigin, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
         BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
         BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
         BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
-        Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Collective.Enums.EnumRawOrigin, BaseVoid, BaseVoid, BaseVoid, BaseVoid,
+        Collective.Enums.EnumRawOrigin, BaseVoid, BaseVoid, BaseVoid, BaseVoid,
         BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
         BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 
         BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, BaseVoid, 

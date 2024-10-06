@@ -1,20 +1,20 @@
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
 
-namespace Polkanalysis.Domain.Contracts.Core.Multi
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Multi
 {
     [DomainMapping("sp_runtime")]
     public enum MultiSigner
     {
-        
+
         Ed25519 = 0,
-        
+
         Sr25519 = 1,
-        
+
         Ecdsa = 2,
     }
-    
+
     /// <summary>
     /// >> 417 - Variant[sp_runtime.MultiSigner]
     /// </summary>

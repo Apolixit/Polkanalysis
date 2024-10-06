@@ -26,7 +26,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());
         }
 
-        [Test, Ignore("Todo debug algo")]
+        [Test]
         [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call.set)]
         [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Event.Endowed)]
         [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.Event.Blacklisted)]
@@ -36,15 +36,15 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             Assert.That(_palletBuilder.FindDocumentation((Enum)e), Is.Not.Null);
         }
 
-        [Test, Ignore("Todo debug algo")]
+        [Test]
         [TestCase(typeof(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call))]
         public void FindDocumentation_EnumType_ShouldSuceed(Type e)
         {
             Assert.That(_palletBuilder.FindDocumentation(e), Is.Not.Null);
         }
 
-        [Test, Ignore("Todo debug algo")]
-        public void FindDocumentation_PalletTimestampEventSet_ShouldSuceed()
+        [Test]
+        public void FindNodeType_PalletTimestampEventSet_ShouldSuceed()
         {
             var nodeTypeGeneric = _palletBuilder.FindNodeType(typeof(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call));
             Assert.That(nodeTypeGeneric, Is.Not.Null);
@@ -52,12 +52,13 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             var nodeTypeExplicit = _palletBuilder.FindNodeType(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call.set.GetType());
             Assert.That(nodeTypeExplicit, Is.Not.Null);
 
-            Assert.That(nodeTypeExplicit, Is.EqualTo(nodeTypeGeneric));
+            Assert.That(nodeTypeExplicit.Id, Is.EqualTo(nodeTypeGeneric.Id));
 
             Assert.That(nodeTypeGeneric.Docs, Is.Not.Null);
         }
 
         [Test]
+        [TestCase(typeof(Infrastructure.Blockchain.Contracts.Core.Error.DispatchError))]
         [TestCase(typeof(Infrastructure.Blockchain.Contracts.Pallet.Democracy.PriorLock))]
         [TestCase(typeof(Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedXcm))]
         //[TestCase(typeof(Polkanalysis.Polkadot.NetApiExt.Generated.SubstrateClientExt))]

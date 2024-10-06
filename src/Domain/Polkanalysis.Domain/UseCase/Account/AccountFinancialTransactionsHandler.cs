@@ -3,7 +3,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Common;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto;
 using Polkanalysis.Domain.Contracts.Dto.Balances;
 using Polkanalysis.Domain.Contracts.Dto.Financial;

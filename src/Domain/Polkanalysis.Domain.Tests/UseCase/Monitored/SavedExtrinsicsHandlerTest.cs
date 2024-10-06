@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
 using Polkanalysis.Domain.Contracts.Runtime;

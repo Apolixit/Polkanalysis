@@ -1,5 +1,5 @@
-﻿using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Dto.Financial;
+﻿using Polkanalysis.Domain.Contracts.Dto.Financial;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Contracts.Service
 {

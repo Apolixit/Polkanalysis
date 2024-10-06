@@ -1,11 +1,11 @@
-﻿using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.ComponentModel.DataAnnotations.Schema;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Database.Contracts.Model.Staking
 {

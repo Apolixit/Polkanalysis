@@ -5,7 +5,7 @@ using Substrate.NET.Utils;
 using System.Text;
 using Substrate.NetApi.Model.Types;
 
-namespace Polkanalysis.Domain.Contracts.Core.Display
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display
 {
     /// <summary>
     /// This class represent something which can be displayed.

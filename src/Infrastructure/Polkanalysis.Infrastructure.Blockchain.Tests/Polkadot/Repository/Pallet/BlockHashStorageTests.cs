@@ -1,7 +1,7 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using System;
 using System.Collections.Generic;

@@ -3,13 +3,14 @@ using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Core.Enum;
 using Polkanalysis.Domain.Contracts.Runtime.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using System.Numerics;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Enum;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -59,11 +60,11 @@ namespace Polkanalysis.Domain.Runtime
                     CategoryName = "Account",
                     Mapping = new List<IMappingElement>() { new MappingElementEnumRuntimeEvent() }
                 },
-                //new EventMappingElem()
-                //{
-                //    CategoryName = "Account",
-                //    Mapping = new List<IMappingElement>() { new MappingElementAccount() }
-                //},
+                new EventMappingElem()
+                {
+                    CategoryName = "Nameable",
+                    Mapping = new List<IMappingElement>() { new MappingElementNameable() }
+                },
 
                 new EventMappingElem()
                 {
@@ -219,6 +220,30 @@ namespace Polkanalysis.Domain.Runtime
     public class MappingElementHashByteArray : IMappingElement
     {
         //[SubstrateNodeType(TypeDefEnum.Array)]
+        public Type ObjectType => typeof(BaseVec<U8>);
+        public bool IsIdentified => true;
+
+        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((BaseVec<U8>)input).Bytes);
+    }
+
+    public class MappingElementNameable : IMappingElement
+    {
+        public Type ObjectType => typeof(Nameable);
+        public bool IsIdentified => true;
+
+        dynamic IMappingElement.ToHuman(dynamic input) => ((Nameable)input).Display();
+    }
+
+    public class MappingElementFlexibleNameable : IMappingElement
+    {
+        public Type ObjectType => typeof(BaseVec<U8>);
+        public bool IsIdentified => true;
+
+        dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((BaseVec<U8>)input).Bytes);
+    }
+
+    public class MappingElementNameableSize : IMappingElement
+    {
         public Type ObjectType => typeof(BaseVec<U8>);
         public bool IsIdentified => true;
 

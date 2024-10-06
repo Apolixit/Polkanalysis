@@ -5,25 +5,28 @@ using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Newtonsoft.Json.Linq;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Core.Random;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 
-namespace Polkanalysis.Domain.Contracts.Core
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
 {
+    [DomainMapping("sp_core/crypto >> AccountId32")]
     public class SubstrateAccount : BaseType
     {
         // TODO : override Equals !
-        public SubstrateAccount() {
+        public SubstrateAccount()
+        {
             TypeSize = 32;
         }
         public SubstrateAccount(string address) : this(Utils.GetPublicKeyFrom(address))
         {
-            
+
         }
 
         public SubstrateAccount(U8[] value) : this(value.ToBytes()) { }
@@ -53,7 +56,7 @@ namespace Polkanalysis.Domain.Contracts.Core
 
         public override bool Equals(object obj)
         {
-            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            if (obj == null || !GetType().Equals(obj.GetType()))
                 return false;
             else
             {

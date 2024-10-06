@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Error
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error
 {
     [DomainMapping("sp_runtime")]
     public enum DispatchError
@@ -42,19 +42,19 @@ namespace Polkanalysis.Domain.Contracts.Core.Error
     /// <summary>
     /// >> 24 - Variant[sp_runtime.DispatchError]
     /// </summary>
-    public sealed class EnumDispatchError : BaseEnumExt<DispatchError, 
-        BaseVoid, 
-        BaseVoid, 
-        BaseVoid, 
-        ModuleError, 
-        BaseVoid, 
-        BaseVoid, 
-        BaseVoid, 
-        EnumTokenError, 
-        EnumArithmeticError, 
-        EnumTransactionalError, 
-        BaseVoid, 
-        BaseVoid, 
+    public sealed class EnumDispatchError : BaseEnumExt<DispatchError,
+        BaseVoid,
+        BaseVoid,
+        BaseVoid,
+        ModuleError,
+        BaseVoid,
+        BaseVoid,
+        BaseVoid,
+        EnumTokenError,
+        EnumArithmeticError,
+        EnumTransactionalError,
+        BaseVoid,
+        BaseVoid,
         BaseVoid>
     {
     }

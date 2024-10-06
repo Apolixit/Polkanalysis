@@ -1,6 +1,5 @@
 ﻿using Substrate.NetApi;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Exception;
 using Polkanalysis.Domain.Contracts.Service;
@@ -14,6 +13,7 @@ using Polkanalysis.Domain.Contracts.Common;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using Polkanalysis.Domain.Internal;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Service
 {

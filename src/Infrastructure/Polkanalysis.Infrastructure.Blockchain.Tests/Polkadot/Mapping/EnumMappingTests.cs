@@ -6,8 +6,8 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {

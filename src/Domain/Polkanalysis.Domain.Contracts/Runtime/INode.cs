@@ -10,6 +10,7 @@ namespace Polkanalysis.Domain.Contracts.Runtime
     public interface INode
     {
         INode this[int index] { get; }
+        List<INode> this[string name] { get; }
 
         /// <summary>
         /// Is this current has been mapped ?

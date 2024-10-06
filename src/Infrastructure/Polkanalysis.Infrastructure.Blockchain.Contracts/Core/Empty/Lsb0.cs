@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Empty
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Empty
 {
     public class Lsb0 : BaseType
     {

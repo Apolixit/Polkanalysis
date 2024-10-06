@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Polkanalysis.Domain.Contracts.Core.Display
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display
 {
     public class DoubleEncoded : BaseType
     {
@@ -22,7 +22,7 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
         public override void Decode(byte[] byteArray, ref int p)
         {
             var start = p;
-            Encoded = new Substrate.NetApi.Model.Types.Base.BaseVec<Substrate.NetApi.Model.Types.Primitive.U8>();
+            Encoded = new BaseVec<U8>();
             Encoded.Decode(byteArray, ref p);
             TypeSize = p - start;
         }

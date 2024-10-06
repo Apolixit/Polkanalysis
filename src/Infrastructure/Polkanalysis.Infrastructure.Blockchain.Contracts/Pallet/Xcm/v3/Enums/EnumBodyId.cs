@@ -6,7 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;

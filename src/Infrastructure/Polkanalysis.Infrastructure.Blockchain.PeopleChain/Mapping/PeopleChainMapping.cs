@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
-using Polkanalysis.Domain.Contracts.Core.Display;
-using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Balances;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;

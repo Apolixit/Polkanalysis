@@ -5,9 +5,9 @@ using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Logs;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Contracts.Service
 {

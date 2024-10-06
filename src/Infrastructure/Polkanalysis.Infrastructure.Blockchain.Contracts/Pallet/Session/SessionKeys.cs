@@ -1,10 +1,10 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Core.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session
 {

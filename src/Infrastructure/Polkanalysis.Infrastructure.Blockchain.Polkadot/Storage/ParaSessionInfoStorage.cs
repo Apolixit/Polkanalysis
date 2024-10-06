@@ -1,13 +1,13 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {

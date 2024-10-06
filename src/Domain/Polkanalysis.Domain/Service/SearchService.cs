@@ -2,7 +2,7 @@
 using Ardalis.GuardClauses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Search;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Primary.Search.SearchData;

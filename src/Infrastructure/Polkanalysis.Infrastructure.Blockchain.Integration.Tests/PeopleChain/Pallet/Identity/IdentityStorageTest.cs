@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types.Base;

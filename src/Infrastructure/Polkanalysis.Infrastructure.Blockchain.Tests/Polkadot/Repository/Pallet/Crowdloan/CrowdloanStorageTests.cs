@@ -1,14 +1,14 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Crowdloan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Polkanalysis.Domain.Contracts.Core.Multi;
 using CrowdloanExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_common.crowdloan;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Multi;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Crowdloan
 {

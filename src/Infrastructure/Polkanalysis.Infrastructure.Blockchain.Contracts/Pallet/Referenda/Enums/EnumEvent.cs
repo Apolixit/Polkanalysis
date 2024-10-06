@@ -1,4 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Core;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Support.Enum;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;

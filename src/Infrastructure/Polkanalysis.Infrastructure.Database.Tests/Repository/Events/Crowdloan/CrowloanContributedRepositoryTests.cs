@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Polkanalysis.Domain.Contracts.Common.Search;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Auctions;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Crowdloan;
