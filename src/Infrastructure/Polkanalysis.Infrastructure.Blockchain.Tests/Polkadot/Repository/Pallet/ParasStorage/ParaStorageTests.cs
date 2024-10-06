@@ -1,12 +1,12 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Paras.Enums;
 using RuntimeParachainsExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime_parachains.paras;
 using ParachainPrimitivesExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives;
 using PrimitivesV2Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_primitives.v2;
 using Substrate.NetApi;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParasStorage
 {

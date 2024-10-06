@@ -1,4 +1,5 @@
-﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Enum;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 using Substrate.NetApi.Model.Types.Base;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.WhiteList.Enum
     /// 			
     /// </summary>
     public sealed class EnumEvent : BaseEnumExt<Event, 
-        Hash, Hash, BaseTuple<Hash, Domain.Contracts.Core.Enum.EnumResult>>
+        Hash, Hash, BaseTuple<Hash, EnumResult>>
     {
     }
 }

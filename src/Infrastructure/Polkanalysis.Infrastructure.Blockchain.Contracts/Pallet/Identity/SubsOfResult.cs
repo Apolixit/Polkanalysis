@@ -2,8 +2,8 @@
 using Substrate.NetApi.Model.Types.Primitive;
 using Newtonsoft.Json.Linq;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Core;
 using System.Numerics;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
 {

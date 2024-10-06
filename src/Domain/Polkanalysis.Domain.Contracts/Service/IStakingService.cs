@@ -1,11 +1,11 @@
-﻿using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Dto.Era;
+﻿using Polkanalysis.Domain.Contracts.Dto.Era;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Era;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Nominator;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Pool;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Reward;
 using Polkanalysis.Domain.Contracts.Dto.Staking.Validator;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Contracts.Service
 {

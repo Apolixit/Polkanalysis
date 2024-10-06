@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using Substrate.NetApi;
 using Substrate.NET.Utils;
 using Polkanalysis.Domain.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.Staking
 {

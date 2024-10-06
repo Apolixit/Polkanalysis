@@ -1,12 +1,12 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.Display;
-using Polkanalysis.Domain.Contracts.Core.Public;
-using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
 using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
 using RuntimeExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_runtime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Session
 {

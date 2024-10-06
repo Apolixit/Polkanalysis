@@ -1,6 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Primitive;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

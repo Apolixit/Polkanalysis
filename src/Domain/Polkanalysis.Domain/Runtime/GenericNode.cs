@@ -34,6 +34,7 @@ namespace Polkanalysis.Domain.Runtime
         public IList<INode> Children { get; set; } = new List<INode>();
 
         public INode this[int index] => Children[index];
+        public List<INode> this[string name] => (Find(name) ?? new List<INode>()).ToList();
 
         #region Tree props
         public bool IsEmpty => Data == null;

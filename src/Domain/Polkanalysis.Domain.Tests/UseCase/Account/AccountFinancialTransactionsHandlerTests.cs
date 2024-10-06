@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.User;
 using Polkanalysis.Domain.Contracts.Primary.Accounts;
 using Polkanalysis.Domain.Contracts.Primary.Explorer.Block;

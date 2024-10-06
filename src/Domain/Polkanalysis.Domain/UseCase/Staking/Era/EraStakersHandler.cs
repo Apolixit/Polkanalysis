@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 using Polkanalysis.Domain.Contracts.Primary.Staking.Eras;
 using Polkanalysis.Domain.Contracts.Secondary;
@@ -15,6 +14,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using FluentValidation;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Events;
 using System.Threading;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.UseCase.Staking.Era
 {

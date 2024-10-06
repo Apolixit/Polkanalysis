@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
@@ -7,16 +6,17 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using Polkanalysis.Infrastructure.Blockchain.Exceptions;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using System.Diagnostics;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
-using Polkanalysis.Domain.Contracts.Core.Enum;
-using Polkanalysis.Domain.Contracts.Core.Error;
-using Polkanalysis.Domain.Contracts.Core.Multi;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Multi;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Enum;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Mapping
 {
@@ -802,9 +802,16 @@ namespace Polkanalysis.Infrastructure.Blockchain.Mapping
                 if (source.Value == null) return destination;
                 IList<T2> list = new List<T2>();
 
+#if DEBUG
+                var index = 0;
+#endif
                 foreach (var val in source.Value)
                 {
                     list.Add(context.Mapper.Map<T1, T2>(val));
+
+#if DEBUG
+                                       index++;
+#endif
                 }
 
                 destination.Create(list.ToArray());

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Domain.Contracts.Secondary.Repository;
@@ -17,6 +16,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Database.Tests.Repository.Staking
 {

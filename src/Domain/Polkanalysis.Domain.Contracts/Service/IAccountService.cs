@@ -1,7 +1,7 @@
 ﻿using Polkanalysis.Domain.Contracts.Common;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Balances;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Domain.Contracts.Service
 {

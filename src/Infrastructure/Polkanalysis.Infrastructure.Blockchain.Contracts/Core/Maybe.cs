@@ -83,7 +83,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
             result.AddRange(HasBeenMapped.Encode());
             result.AddRange(CoreAssemblyName.Encode());
             result.AddRange(CoreTypeName.Encode());
-            result.AddRange(Core.Encode());
+            //result.AddRange(Core.Encode());
 
             if (HasBeenMapped)
             {
@@ -106,11 +106,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
             CoreTypeName = new Str();
             CoreTypeName.Decode(byteArray, ref p);
 
-            Assembly assembly = Assembly.Load(CoreAssemblyName.Value);
-            Type? enumType = assembly.GetType(CoreTypeName.Value);
+            //Assembly assembly = Assembly.Load(CoreAssemblyName.Value);
+            //Type? enumType = assembly.GetType(CoreTypeName.Value);
 
-            Core = (IType?)Activator.CreateInstance(enumType);
-            Core.Decode(byteArray, ref p);
+            //Core = (IType?)Activator.CreateInstance(enumType);
+            //Core.Decode(byteArray, ref p);
 
             if(HasBeenMapped)
             {

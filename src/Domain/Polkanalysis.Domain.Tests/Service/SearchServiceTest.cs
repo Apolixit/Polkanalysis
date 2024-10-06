@@ -1,7 +1,7 @@
 ﻿using Algolia.Search.Clients;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Tests.Abstract;

@@ -1,13 +1,13 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
-using Polkanalysis.Domain.Contracts.Core.Error;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums
 {

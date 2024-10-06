@@ -1,7 +1,7 @@
 ﻿using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Substrate.NetApi.Model.Types.Base;
 
-namespace Polkanalysis.Domain.Contracts.Core.DispatchInfo
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo
 {
     public class DispatchInfo : BaseType
     {

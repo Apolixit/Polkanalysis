@@ -6,7 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using Polkanalysis.Domain.Contracts.Core.Display;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Xcm.v3.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;

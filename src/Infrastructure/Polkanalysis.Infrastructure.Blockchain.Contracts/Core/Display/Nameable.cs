@@ -3,7 +3,7 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Substrate.NET.Utils;
 using System.Text;
 
-namespace Polkanalysis.Domain.Contracts.Core.Display
+namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display
 {
     public abstract class Nameable : BaseType
     {
@@ -19,7 +19,7 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
 
         public virtual string Display()
         {
-            return System.Text.Encoding.Default.GetString(Value.ToBytes());
+            return Encoding.Default.GetString(Value.ToBytes());
         }
 
         public override byte[] Encode()
@@ -36,7 +36,7 @@ namespace Polkanalysis.Domain.Contracts.Core.Display
             for (var i = 0; i < array.Length; i++) { var t = new U8(); t.Decode(byteArray, ref p); array[i] = t; };
             var bytesLength = p - start;
             Bytes = new byte[bytesLength];
-            System.Array.Copy(byteArray, start, Bytes, 0, bytesLength);
+            Array.Copy(byteArray, start, Bytes, 0, bytesLength);
             Value = array;
         }
     }

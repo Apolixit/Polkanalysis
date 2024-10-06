@@ -11,11 +11,9 @@ using Polkanalysis.Domain.Contracts.Dto;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Adapter.Block;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using Polkanalysis.Domain.Contracts.Core.Display;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Substrate.NET.Utils;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe;
 using Ardalis.GuardClauses;
 using Polkanalysis.Domain.Helper;
@@ -23,18 +21,12 @@ using Polkanalysis.Domain.Contracts.Dto.Logs;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
-using System.Threading;
-using Polkanalysis.Domain.Helper.Enumerables;
 using Polkanalysis.Domain.Runtime;
-using Newtonsoft.Json.Linq;
-using Substrate.NetApi.Model.Types;
-using Polkanalysis.Domain.Contracts.Core.Random;
-using Polkanalysis.Domain.Contracts.Core.DispatchInfo;
-using Polkanalysis.Domain.Contracts.Core.Error;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums;
 using Polkanalysis.Domain.Contracts.Dto.User;
-using Algolia.Search.Models.Common;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -412,7 +404,7 @@ namespace Polkanalysis.Domain.Service
             {
                 case DispatchError.Module:
                     var moduleError = (ModuleError)dispatchError.Value2;
-                    return $"{dispatchError.Value};{(RuntimeEvent)moduleError.Index.Value};{moduleError.Index.Value};{Utils.Bytes2HexString(moduleError.Error.ToBytes())}";
+                    return $"{dispatchError.Value};{(RuntimeEvent)moduleError.Index.Value};{moduleError.Index.Value};{Utils.Bytes2HexString(moduleError.Error.Value.ToBytes())}";
 
                 case DispatchError.Token:
                     var enumTokenError = (EnumTokenError)dispatchError.Value2;

@@ -1,11 +1,12 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
-using Polkanalysis.Domain.Contracts.Core.Public;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.ParaSessionInfo;
 using PrimitiveV2Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_primitives.v2;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.ParaSessionInfo
 {
@@ -123,7 +124,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Palle
 
             var expectedResult = new SessionInfo(
                 new BaseVec<U32>(new U32[] { new U32(144), new U32(81) }),
-                new Domain.Contracts.Core.Random.Hexa("0xd385f13394068e87b0cf39c525782df628ea9a5d41364914cae4a951eb7c3359"),
+                new Hexa("0xd385f13394068e87b0cf39c525782df628ea9a5d41364914cae4a951eb7c3359"),
                 new U32(6),
                 new BaseVec<PublicSr25519>(new PublicSr25519[] {
                     new PublicSr25519("0xdc23d2e5dd85889560c2c3dc197cb19e0b2e2698ee79a4aea14234a0ee823a3d"),

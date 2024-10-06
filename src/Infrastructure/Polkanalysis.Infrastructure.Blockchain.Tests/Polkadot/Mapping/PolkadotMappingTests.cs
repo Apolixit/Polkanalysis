@@ -2,7 +2,6 @@
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using AutoMapper;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.NominationPools.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
@@ -10,11 +9,12 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using NSubstitute;
 using Microsoft.Extensions.Logging;
 using SpCoreExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto;
-using Polkanalysis.Domain.Contracts.Core.Public;
 using BabeConsensusExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_consensus_babe;
 using Substrate.NET.Utils;
 using Substrate.NetApi.Model.Types;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Mapping
 {

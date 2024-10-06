@@ -188,12 +188,11 @@ namespace Polkanalysis.Domain.Runtime
             if (value is BaseEnumType baseEnumValue)
             //if (IsEnumRust(value))
             {
-                var xx = value.GetType().GetProperty("Value");
                 var val = value.GetEnumValue();
 
                 if (val == null) throw new ArgumentNullException($"The value element (enum) from {value.TypeName()} is null while visiting node");
 
-                var doc = _palletBuilder.FindDocumentation(val);
+                var doc = _palletBuilder.FindDocumentation(val, blockHash);
 
                 var AddDataToNode = (INode node) =>
                 {
@@ -301,10 +300,11 @@ namespace Polkanalysis.Domain.Runtime
                 };
 
                 //node = AddDataToNode(node);
-                if (node.IsEmpty)
-                    node = AddDataToNode(node);
-                else
-                    node.AddChild(AddDataToNode(new GenericNode()));
+                node = AddDataToNode(node);
+                //if (node.IsEmpty)
+                //    node = AddDataToNode(node);
+                //else
+                //    node.AddChild(AddDataToNode(new GenericNode()));
             }
         }
 
@@ -323,19 +323,30 @@ namespace Polkanalysis.Domain.Runtime
                 if (valueArray == null)
                     throw new ArgumentException($"{nameof(valueArray)} GetValueArray() is null");
 
+                string name = value.GetType().Name;
+                if (value.GetType().Name.StartsWith("BaseVec")) name = "Vec";
+                else if (value.GetType().Name.StartsWith("BaseTuple")) name = "Tuple";
+                node.AddName($"{name}<{string.Join(", ", valueArray.Select(x => x.GetType().Name))}>");
+                node.AddData(value);
+
                 foreach (IType currentValue in valueArray)
                 {
-                    if (currentValue.GetType().IsGenericType)
-                    {
-                        var childNode = new GenericNode().AddData(currentValue);
-                        node.AddChild(childNode);
+                    var childNode = new GenericNode().AddData(currentValue);
+                    node.AddChild(childNode);
 
-                        VisitNode(childNode, currentValue, blockHash);
-                    }
-                    else
-                    {
-                        VisitNode(node, currentValue, blockHash);
-                    }
+                    VisitNode(childNode, currentValue, blockHash);
+
+                    //if (currentValue.GetType().IsGenericType)
+                    //{
+                    //    var childNode = new GenericNode().AddData(currentValue);
+                    //    node.AddChild(childNode);
+
+                    //    VisitNode(childNode, currentValue, blockHash);
+                    //}
+                    //else
+                    //{
+                    //    VisitNode(node, currentValue, blockHash);
+                    //}
                 }
             } else
             {

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Scan.Mapping;
 
 namespace Polkanalysis.Domain.Runtime.Module
 {
@@ -146,7 +147,7 @@ namespace Polkanalysis.Domain.Runtime.Module
 
         public IType? BuildEvent(MetaData metadata, string palletName, Method method)
         {
-            
+
             return BuildGeneric(metadata, palletName, method, TypeBuilder.Event);
         }
         public IType? BuildEvent(Hash blockHash, string palletName, Method method)
@@ -186,49 +187,70 @@ namespace Polkanalysis.Domain.Runtime.Module
                 throw new ArgumentException($"{nameof(type.FullName)} is null (type = {type.Name})");
 
             var splittedNamespace = type.FullName.Split(".");
-            IList<string> arguments = new List<string>();
 
-            //Let's use the new pattern matching !
-            if (splittedNamespace is [
-                    "Polkanalysis",
-                    "Infrastructure",
-                    "Blockchain",
-                    "Contracts",
-                    "Pallet",
-                    ..
-                ])
+            NodeType? nodeType = null;
+            if (splittedNamespace is ["Polkanalysis", "Infrastructure", "Blockchain", "Contracts", ..])
             {
-                arguments = splittedNamespace.Skip(5).ToList();
-
-                var palletName = ParseComplexPalletName(arguments[0]);
-
-                arguments[0] = palletName.ToLowerInvariant() == "system" ? "frame_system" : $"pallet_{palletName.ToLowerInvariant()}";
-                arguments[1] = $"pallet";
-
-                NodeType? nodeType = null;
-                nodeType = metadata.NodeMetadata.Types
-                    .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
-
-                if (nodeType is null)
-                {
-                    arguments.Insert(1, "pallet"); // Sorry ...
-
-                    nodeType = metadata.NodeMetadata.Types
-                    .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
-                }
-
-                return nodeType;
+                nodeType = nodeTypeFromPolkanalysisInfrastructure(type, metadata);
+            } else if(splittedNamespace is ["Polkanalysis", _ , "NetApiExt", "Generated", "Model", ..])
+            {
+                nodeType = nodeTypeFromNetApiExt(type, metadata);
             }
+
+            if (nodeType is not null)
+                return nodeType;
+
+            throw new InvalidOperationException($"Unable to find node type for type {type.FullName}");
+        }
+
+        private NodeType? nodeTypeFromNetApiExt(Type type, MetaData metadata)
+        {
+            var splittedNamespace = type.FullName!.Split(".");
+            List<string> arguments = new List<string>();
+            arguments = splittedNamespace.Skip(6).ToList();
+
+            NodeType nodeType = metadata.NodeMetadata.Types
+                .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
+
+            return nodeType;
+        }
+
+        private NodeType? nodeTypeFromPolkanalysisInfrastructure(Type type, MetaData metadata)
+        {
+            var customAttribute = type.GetCustomAttribute<DomainMappingAttribute>();
+            if (customAttribute is null) return null;
+
+            List<string> arguments = customAttribute.ExtractAsList(type.Name);
+
+            //arguments = splittedNamespace.Skip(5).ToList();
+
+            //var palletName = ParseComplexPalletName(arguments[0]);
+            //arguments[0] = palletName.ToLowerInvariant() == "system" ? "frame_system" : $"pallet_{palletName.ToLowerInvariant()}";
+            //arguments[1] = $"pallet";
+
+            NodeType? nodeType = null;
+            nodeType = metadata.NodeMetadata.Types
+                .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
+
+            if (nodeType is null)
+            {
+                arguments.Insert(1, "pallet"); // Sorry ...
+
+                nodeType = metadata.NodeMetadata.Types
+                .FirstOrDefault(t => t.Value.Path != null && t.Value.Path.SequenceEqual(arguments)).Value;
+            }
+
+            if (nodeType is not null)
+                return nodeType;
 
             return null;
         }
+
         public NodeType? FindNodeType(Type type, Hash? blockHash = null)
         {
             MetaData metadata = getMetadataOrDefault(blockHash);
             return FindNodeType(type, metadata);
         }
-
-        
 
         public NodeType? FindNodeType(IType type, Hash? blockHash = null)
         {
@@ -256,7 +278,7 @@ namespace Polkanalysis.Domain.Runtime.Module
             return FindDocumentation(nodeType);
         }
 
-        public string? FindDocumentation(Type type, Hash? blockHash = null) 
+        public string? FindDocumentation(Type type, Hash? blockHash = null)
             => FindDocumentation(type, getMetadataOrDefault(blockHash));
 
         public string? FindDocumentation(IType type, MetaData metadata)
@@ -268,7 +290,7 @@ namespace Polkanalysis.Domain.Runtime.Module
         }
 
 
-        public string? FindDocumentation(IType type, Hash? blockHash = null) 
+        public string? FindDocumentation(IType type, Hash? blockHash = null)
             => FindDocumentation(type, getMetadataOrDefault(blockHash));
 
         public string? FindDocumentation(Enum type, MetaData metadata)
@@ -287,7 +309,7 @@ namespace Polkanalysis.Domain.Runtime.Module
             return null;
         }
 
-        public string? FindDocumentation(Enum type, Hash? blockHash = null) 
+        public string? FindDocumentation(Enum type, Hash? blockHash = null)
             => FindDocumentation(type, getMetadataOrDefault(blockHash));
 
         public TypeProperty[]? FindProperty(Enum type, MetaData metadata)
@@ -301,7 +323,7 @@ namespace Polkanalysis.Domain.Runtime.Module
             {
                 var variantType = nodeTypeVariant.Variants
                     .FirstOrDefault(x => x.Name == type.ToString());
-                if (variantType == null || variantType.Docs == null) return null;
+                if (variantType == null) return null;
 
                 if (variantType.TypeFields is null) return new List<TypeProperty>().ToArray();
 

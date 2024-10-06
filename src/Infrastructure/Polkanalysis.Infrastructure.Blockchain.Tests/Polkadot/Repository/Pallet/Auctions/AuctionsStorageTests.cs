@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using NSubstitute;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Auctions;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base;
 using System.Numerics;
@@ -10,6 +9,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.polkadot_parachain.p
 
 using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
 using IdExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.polkadot_parachain.primitives.Id;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Auctions
 {

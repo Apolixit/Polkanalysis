@@ -1,8 +1,8 @@
 ﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Core.Display;
 using System.Text;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity.Enums;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Identity
 {

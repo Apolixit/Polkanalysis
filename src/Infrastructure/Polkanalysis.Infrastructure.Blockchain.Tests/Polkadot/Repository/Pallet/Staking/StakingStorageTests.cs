@@ -1,12 +1,12 @@
 ﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Staking.Enums;
 using AccountId32Ext = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_core.crypto.AccountId32;
 using SpArithmeticExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.sp_arithmetic.per_things;
 using StakingExt = Polkanalysis.Polkadot.NetApiExt.Generated.Model.v9370.pallet_staking;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.Staking
 {

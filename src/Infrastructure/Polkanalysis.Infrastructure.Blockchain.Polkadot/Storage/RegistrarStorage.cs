@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Registrar;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Polkadot.NetApiExt.Generated;

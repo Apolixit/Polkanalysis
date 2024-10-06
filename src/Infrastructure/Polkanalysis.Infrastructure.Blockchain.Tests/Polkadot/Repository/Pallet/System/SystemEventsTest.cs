@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using NSubstitute;
@@ -13,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntimeParachain;
 using Substrate.NET.Utils;
 using Newtonsoft.Json.Linq;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Tests.Polkadot.Repository.Pallet.System
 {

@@ -1,14 +1,4 @@
-﻿using Polkanalysis.Domain.Contracts.Core.Public;
-using Polkanalysis.Domain.Contracts.Dto.Era;
-using Polkanalysis.Domain.Contracts.Dto.Staking;
-using Polkanalysis.Domain.Contracts.Dto.User;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Session;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Polkanalysis.Domain.Contracts.Dto.User;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Staking.Validator
 {

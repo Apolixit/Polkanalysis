@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using OperationResult;
-using Polkanalysis.Domain.Contracts.Core;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Dto.Stats;
 using Polkanalysis.Domain.Contracts.Primary.Result;
 

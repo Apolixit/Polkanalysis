@@ -1,7 +1,6 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Core;
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi.Model.Types;
 using Substrate.NetApi;
@@ -13,6 +12,7 @@ using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.sp_core.crypto;
 using Polkanalysis.Polkadot.NetApiExt.Generated.Model.vbase.frame_system;
 using System;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot.Storage
 {

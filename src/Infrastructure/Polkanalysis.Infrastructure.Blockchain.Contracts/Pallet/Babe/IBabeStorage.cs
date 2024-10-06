@@ -1,10 +1,10 @@
 ﻿using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
-using Polkanalysis.Domain.Contracts.Core.Public;
-using Polkanalysis.Domain.Contracts.Core.Random;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Sp;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Random;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Public;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.Babe
 {

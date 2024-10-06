@@ -5,6 +5,7 @@ using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Tests.Abstract;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Database;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events.Balances;
 using System;
@@ -53,7 +54,7 @@ namespace Polkanalysis.Domain.Tests.Service
         public async Task GetAccountTransactionsAsync_ForBobTransaction_ShouldSucceedAsync(DateTime? from, DateTime? to, int nbTotalTransaction, int nbReceivedTransaction, int nbSendTransaction)
         {
             // Get all Bob transactions
-            var result = (await _financialService.GetAccountTransactionsAsync(new Contracts.Core.SubstrateAccount(Bob.ToString()), from, to, CancellationToken.None)).ToList();
+            var result = (await _financialService.GetAccountTransactionsAsync(new SubstrateAccount(Bob.ToString()), from, to, CancellationToken.None)).ToList();
 
             Assert.That(result.Count, Is.EqualTo(nbTotalTransaction));
 

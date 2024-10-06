@@ -2,10 +2,10 @@
 using Polkanalysis.Polkadot.NetApiExt.Generated;
 using Substrate.NetApi;
 using Ardalis.GuardClauses;
-using Polkanalysis.Domain.Contracts.Core;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Infrastructure.Blockchain.Common;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Polkadot
 {
