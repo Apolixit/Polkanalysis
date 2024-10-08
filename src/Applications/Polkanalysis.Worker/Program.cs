@@ -20,6 +20,7 @@ using Polkanalysis.Infrastructure.Blockchain.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Polkanalysis.Worker.Metrics;
 using FluentValidation;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 Microsoft.Extensions.Logging.ILogger? logger = null;
 
@@ -54,6 +55,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddSubstrateBlockchain(blockchainName.ToLower(), true);
     services.AddDatabase();
     services.AddSubstrateLogic();
+    services.AddSubstrateNodeBuilder();
 
     services.AddOpentelemetry(logger!,
         "Polkanalysis.Worker",

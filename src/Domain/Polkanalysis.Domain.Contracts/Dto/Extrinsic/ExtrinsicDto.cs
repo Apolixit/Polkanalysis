@@ -1,8 +1,4 @@
-﻿using Substrate.NetApi.Model.Types.Base;
-using Polkanalysis.Domain.Contracts.Dto.Block;
-using Polkanalysis.Domain.Contracts.Dto.User;
-using Polkanalysis.Domain.Contracts.Runtime;
-using System.Diagnostics;
+﻿using Polkanalysis.Domain.Contracts.Dto.User;
 
 namespace Polkanalysis.Domain.Contracts.Dto.Extrinsic
 {

@@ -2,11 +2,33 @@
 using NUnit.Framework;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Substrate.NetApi;
+using Ardalis.GuardClauses;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using NSubstitute;
+using Microsoft.Extensions.Logging;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.System
 {
     public class SystemStorageTests : PolkadotIntegrationTest
     {
+        protected ISubstrateDecoding _substrateDecoding = default!;
+
+        [SetUp]
+        public void Start()
+        {
+            _substrateDecoding = new SubstrateDecoding(
+                new EventNodeMapping(),
+                _substrateRepository,
+                new PalletBuilder(
+                    _substrateRepository,
+                    Substitute.For<ILogger<PalletBuilder>>()),
+                Substitute.For<ILogger<SubstrateDecoding>>());
+        }
+
         [Test]
         [TestCase(1, "12H7nsDUrJUSCQQJrTKAFfyCWSactiSdjoVUixqcd9CZHTGt")]
         [TestCase(29232, "12zSBXtK9evQRCG9Gsdr72RbqNzbNn2Suox2cTfugCLmWjqG")]
@@ -174,6 +196,50 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        [TestCase(22666089)]
+        public async Task EventsAt_ThenDecodeAsNode_ShouldWorkAsync(int blockNumber)
+        {
+            var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
+
+            Assert.That(res, Is.Not.Null);
+        }
+
+        [Test]
+        [TestCase(22666089)]
+        [CancelAfter(RepositoryMaxTimeout)]
+        public async Task EventsAsNode_ShouldWorkAsync(int blockNumber)
+        {
+            var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
+
+            var result = new List<IEventNode>();
+            foreach (var ev in res.Value)
+            {
+                var eventNode = _substrateDecoding.DecodeEvent(ev);
+
+                Assert.That((int)eventNode.Module, Is.GreaterThanOrEqualTo(0));
+                Assert.That(eventNode.Method.ToString(), Is.Not.Empty);
+                Assert.That(eventNode.EventData, Is.Not.Null);
+                Assert.That(eventNode.EventData.IsLeaf, Is.False);
+            }
+        }
+
+        [Test]
+        public async Task ExtrinsicFailedAsNode_ShouldWorkAsync()
+        {
+            var res = await _substrateRepository.At(22666089).Storage.System.EventsAsync(CancellationToken.None);
+
+            var eventNode = _substrateDecoding.DecodeEvent(res.Value[56]);
+
+            Assert.That(eventNode.Module.ToString(), Is.EqualTo("System"));
+            Assert.That(eventNode.Method.ToString(), Is.EqualTo("ExtrinsicFailed"));
+            Assert.That(eventNode["ExtrinsicFailed"], Is.Not.Null);
+
+            Assert.That(eventNode["ExtrinsicFailed"][0].Name, Is.EqualTo("dispatch_error"));
+            Assert.That(eventNode["ExtrinsicFailed"][0][0].Name, Is.EqualTo("Module"));
+            Assert.That(eventNode["ExtrinsicFailed"][1].Name, Is.EqualTo("dispatch_info"));
         }
 
         [Test]

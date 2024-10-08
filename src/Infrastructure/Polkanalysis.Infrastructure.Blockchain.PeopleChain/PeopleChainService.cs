@@ -103,5 +103,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.PeopleChain
         public override IEnumerable<string> Dependencies => [];
 
         public override ILogger Logger => _logger;
+        public override string NetApiExtAssembly => "Polkanalysis.PeopleChain.NetApiExt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+        public override string NetApiExtModelNamespace => "Polkanalysis.PeopleChain.NetApiExt.Generated.Model";
     }
 }

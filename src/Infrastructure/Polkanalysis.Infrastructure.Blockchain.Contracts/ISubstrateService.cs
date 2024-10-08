@@ -15,6 +15,8 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         /// For example, Polkadot depends on parachain like PeopleChain
         /// </summary>
         public IEnumerable<string> Dependencies { get; }
+        public string NetApiExtAssembly { get; }
+        public string NetApiExtModelNamespace { get; }
         public SubstrateClient AjunaClient { get; }
         public string BlockchainName { get; }
         public Hash GenesisHash { get; }

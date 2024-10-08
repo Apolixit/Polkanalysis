@@ -1,14 +1,15 @@
-﻿using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Runtime;
+﻿using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.DispatchInfo;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
+using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
 {
@@ -26,8 +27,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Errors
             _substrateDecode = new SubstrateDecoding(
                 new EventNodeMapping(),
                 _substrateService,
-                new PalletBuilder(_substrateService, currentMetadata, Substitute.For<ILogger<PalletBuilder>>()),
-                currentMetadata,
+                new PalletBuilder(_substrateService, Substitute.For<ILogger<PalletBuilder>>()),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 

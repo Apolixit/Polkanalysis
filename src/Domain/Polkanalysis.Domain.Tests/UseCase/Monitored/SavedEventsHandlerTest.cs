@@ -8,7 +8,6 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Infrastructure.Database.Repository;
 using Polkanalysis.Infrastructure.Database.Repository.Events.Balances;
 using Polkanalysis.Infrastructure.Database.Repository.Events.System;
@@ -18,6 +17,7 @@ using NSubstitute.ReturnsExtensions;
 using static Polkanalysis.Domain.Contracts.Primary.Result.ErrorResult;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Errors;
 using Polkanalysis.Domain.Contracts.Metrics;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {
