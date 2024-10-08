@@ -7,7 +7,6 @@ using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Runtime;
 using Polkanalysis.Domain.Service;
@@ -25,6 +24,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Domain.Tests.UseCase.Monitored
 {

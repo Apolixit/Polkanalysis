@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Runtime\Block\**" />
+    <EmbeddedResource Remove="Runtime\Block\**" />
+    <None Remove="Runtime\Block\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -39,14 +45,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Runtime\Block\" />
-    <Folder Include="Runtime\Metadata\" />
+    <ProjectReference Include="..\..\Core\Polkanalysis.Abstract.Tests\Polkanalysis.Abstract.Tests.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Polkanalysis.Infrastructure.Blockchain\Polkanalysis.Infrastructure.Blockchain.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Polkanalysis.Abstract.Tests\Polkanalysis.Abstract.Tests.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Domain.Contracts\Polkanalysis.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Polkanalysis.Domain\Polkanalysis.Domain.csproj" />
+    <Folder Include="Runtime\" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 using ApexCharts;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Microsoft.FluentUI.AspNetCore.Components.Components.Tooltip;
-using static Azure.Core.HttpHeader;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +41,7 @@ builder.Services.AddSubstrateBlockchain("polkadot");
 builder.Services.AddEndpoint(builder.Configuration);
 builder.Services.AddSubstrateService();
 builder.Services.AddSubstrateLogic();
+builder.Services.AddSubstrateNodeBuilder();
 builder.Services.AddMediatRAndPipelineBehaviors();
 builder.Services.AddDatabase();
 

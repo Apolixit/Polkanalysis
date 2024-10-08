@@ -1,15 +1,16 @@
-﻿using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Domain.Runtime;
+﻿using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Microsoft.Extensions.Caching.Distributed;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
 {
@@ -29,7 +30,6 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         {
             _palletBuilder = new PalletBuilder(
                 _substrateService,
-                _currentMetaData,
                 Substitute.For<ILogger<PalletBuilder>>());
 
             _currentMetaData = new MetadataService(_substrateService,
@@ -44,9 +44,9 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
                 _substrateService,
                 new PalletBuilder(
                     _substrateService,
-                    _currentMetaData, Substitute.For<ILogger<PalletBuilder>>()),
-                _currentMetaData,
+                    Substitute.For<ILogger<PalletBuilder>>()),
                 Substitute.For<ILogger<SubstrateDecoding>>());
+
             _explorerRepository = new ExplorerService(
                 _substrateService,
                 _substrateDecoding,

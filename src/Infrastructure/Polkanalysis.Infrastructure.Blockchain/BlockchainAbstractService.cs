@@ -17,6 +17,8 @@ namespace Polkanalysis.Infrastructure.Blockchain
     {
         public abstract ILogger Logger { get; }
         public abstract IEnumerable<string> Dependencies { get; }
+        public abstract string NetApiExtAssembly { get; }
+        public abstract string NetApiExtModelNamespace { get; }
         public abstract SubstrateClient AjunaClient { get; }
         public abstract string BlockchainName { get; }
         public abstract IStorage Storage { get; }
@@ -84,6 +86,8 @@ namespace Polkanalysis.Infrastructure.Blockchain
                 return AjunaClient.RuntimeVersion;
             }
         }
+
+        
 
         /// <summary>
         /// Check every 'millisecondCheck' if we are connected to blockchain and call the callback method with status

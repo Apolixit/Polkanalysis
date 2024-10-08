@@ -5,11 +5,11 @@ using Substrate.NetApi.Model.Types.Primitive;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Contracts.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
                                                       Substitute.For<ICoreService>(),
                                                       Substitute.For<ILogger<MetadataService>>());
 
-            _palletBuilder = new PalletBuilder(_substrateService, _currentMetaData, Substitute.For<ILogger<PalletBuilder>>());
+            _palletBuilder = new PalletBuilder(_substrateService, Substitute.For<ILogger<PalletBuilder>>());
         }
 
         [Test]

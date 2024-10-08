@@ -6,9 +6,9 @@ using Polkanalysis.Domain.Contracts.Dto.Block;
 using Polkanalysis.Domain.Contracts.Dto.Common;
 using Polkanalysis.Domain.Contracts.Dto.Event;
 using Polkanalysis.Domain.Contracts.Dto.Extrinsic;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Substrate.NetApi;
 using Polkanalysis.Domain.Contracts.Dto.User;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 
 namespace Polkanalysis.Domain.Runtime
 {

@@ -9,6 +9,7 @@ using Polkanalysis.Infrastructure.Blockchain.Polkadot.Mapping;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain;
 using Polkanalysis.Domain.Integration.Tests.PeopleChain;
 using Polkanalysis.Infrastructure.Blockchain.PeopleChain.Mapping;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Domain.Integration.Tests.Polkadot
 {

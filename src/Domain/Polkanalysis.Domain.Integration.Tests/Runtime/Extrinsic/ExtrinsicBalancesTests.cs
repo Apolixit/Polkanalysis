@@ -1,12 +1,13 @@
 ﻿using Substrate.NetApi.Model.Extrinsics;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Runtime;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
 {
@@ -29,8 +30,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Extrinsic
                 _substrateService,
                 new PalletBuilder(
                     _substrateService,
-                    _currentMetaData, Substitute.For<ILogger<PalletBuilder>>()),
-                _currentMetaData,
+                    Substitute.For<ILogger<PalletBuilder>>()),
                 Substitute.For<ILogger<SubstrateDecoding>>());
         }
 

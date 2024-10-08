@@ -8,6 +8,7 @@ using Polkanalysis.Domain.Service;
 using Polkanalysis.Infrastructure.Database;
 using Serilog;
 using Microsoft.FluentUI.AspNetCore.Components;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.WebApp
 {
@@ -43,6 +44,7 @@ namespace Polkanalysis.WebApp
             builder.Services.AddSubstrateService();
             builder.Services.AddDatabase();
             builder.Services.AddSubstrateLogic();
+            builder.Services.AddSubstrateNodeBuilder();
             builder.Services.AddMediatRAndPipelineBehaviors();
 
             var app = builder.Build();

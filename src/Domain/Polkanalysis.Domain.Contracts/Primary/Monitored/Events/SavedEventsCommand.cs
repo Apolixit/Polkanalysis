@@ -1,9 +1,6 @@
 ﻿using MediatR;
 using OperationResult;
 using Polkanalysis.Domain.Contracts.Primary.Result;
-using Polkanalysis.Domain.Contracts.Runtime;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
-using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.System.Enums;
 using Substrate.NetApi.Model.Types.Base;
 
 namespace Polkanalysis.Domain.Contracts.Primary.Monitored.Events

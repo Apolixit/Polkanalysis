@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Substrate.NetApi.Model.Types.Base;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
@@ -18,6 +17,7 @@ using Polkanalysis.Domain.Contracts.Primary.Monitored.Blocks;
 using Polkanalysis.Domain.Contracts.Primary.Monitored.Extrinsics;
 using System;
 using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 
 namespace Polkanalysis.Worker.Tasks
 {

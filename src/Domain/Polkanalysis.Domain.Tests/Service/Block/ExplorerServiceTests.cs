@@ -1,10 +1,10 @@
 ﻿using NSubstitute;
-using Polkanalysis.Domain.Contracts.Runtime;
 using Polkanalysis.Domain.Contracts.Dto;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Domain.Service;
 using Polkanalysis.Domain.Contracts.Service;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
+using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
 
 namespace Polkanalysis.Domain.Tests.Service.Block
 {

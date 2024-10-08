@@ -12,6 +12,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Database.Extensions;
 using Polkanalysis.Common.Monitoring.Opentelemetry;
 using Polkanalysis.Infrastructure.Blockchain.Polkadot;
+using Polkanalysis.Infrastructure.Blockchain.Runtime;
 
 namespace Polkanalysis.Api
 {
@@ -58,6 +59,7 @@ namespace Polkanalysis.Api
                 builder.Services.AddSubstrateService();
                 builder.Services.AddDatabase();
                 builder.Services.AddSubstrateLogic();
+                builder.Services.AddSubstrateNodeBuilder();
                 builder.Services.AddMediatRAndPipelineBehaviors();
 
                 builder.Services.AddCors(options =>
