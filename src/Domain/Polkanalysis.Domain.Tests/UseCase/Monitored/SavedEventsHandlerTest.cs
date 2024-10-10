@@ -218,8 +218,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
             _substrateService.At(Arg.Any<BlockNumber>()).Storage.System.EventsAsync(CancellationToken.None).Returns(
                 new BaseVec<EventRecord>([killedAccountEvent, newAccountEvent]));
 
-            _substrateDecoding.DecodeEvent(killedAccountEvent).Returns(killedAccountNode);
-            _substrateDecoding.DecodeEvent(newAccountEvent).Returns(newAccountNode);
+            _substrateDecoding.DecodeEventAsync(killedAccountEvent, CancellationToken.None).Returns(killedAccountNode);
+            _substrateDecoding.DecodeEventAsync(newAccountEvent, CancellationToken.None).Returns(newAccountNode);
 
             var command = new SavedEventsCommand(new BlockNumber(1));
 

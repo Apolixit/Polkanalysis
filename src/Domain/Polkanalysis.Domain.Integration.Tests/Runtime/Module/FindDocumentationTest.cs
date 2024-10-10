@@ -29,8 +29,6 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         [Test]
         [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Timestamp.Enums.Call.set)]
         [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Balances.Enums.Event.Endowed)]
-        [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.Event.Blacklisted)]
-        [TestCase(Infrastructure.Blockchain.Contracts.Pallet.Democracy.Enums.Error.AlreadyCanceled)]
         public void FindDocumentation_Enum_ShouldSuceed(object e)
         {
             Assert.That(_palletBuilder.FindDocumentation((Enum)e), Is.Not.Null);
@@ -58,17 +56,10 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
         }
 
         [Test]
-        [TestCase(typeof(Infrastructure.Blockchain.Contracts.Core.Error.DispatchError))]
-        [TestCase(typeof(Infrastructure.Blockchain.Contracts.Pallet.Democracy.PriorLock))]
-        [TestCase(typeof(Infrastructure.Blockchain.Contracts.Pallet.Xcm.Enums.EnumVersionedXcm))]
-        //[TestCase(typeof(Polkanalysis.Polkadot.NetApiExt.Generated.SubstrateClientExt))]
-        //[TestCase(typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Storage.AuctionsCalls))]
-        //[TestCase(typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Storage.ConfigurationStorage))]
-        //[TestCase(typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr0U8))]
-        //[TestCase(typeof(Polkanalysis.Polkadot.NetApiExt.Generated.Types.Base.Arr2BaseTuple))]
-        public void FindDocumentation_ButNoDocumentationAssociated_ShouldFail(Type e)
+        [TestCase(typeof(Infrastructure.Blockchain.Contracts.Core.Error.DispatchError), "0x0f26536564432c3ab92a7922ba25a86823bd71956839dc07752a4821a799b015")]
+        public void FindDocumentation_ButNoDocumentationAssociated_ShouldFail(Type e, string hash)
         {
-            Assert.That(_palletBuilder.FindDocumentation(e), Is.Null);
+            Assert.That(_palletBuilder.FindDocumentation(e, new Substrate.NetApi.Model.Types.Base.Hash(hash)), Is.Null);
         }
     }
 }

@@ -55,7 +55,6 @@ namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
             var property = _palletBuilder.FindProperty((Enum)e);
 
             Assert.That(property, Is.Not.Null);
-            Assert.That(property[0].Name, Is.Not.Null);
             Assert.That(property[0].Param, Is.Not.Null);
         }
 

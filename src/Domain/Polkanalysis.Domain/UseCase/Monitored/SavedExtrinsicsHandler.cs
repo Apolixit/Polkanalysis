@@ -72,15 +72,16 @@ namespace Polkanalysis.Domain.UseCase.Monitored
             foreach (var extrinsic in filteredExtrinsic)
             {
                 var extrinsicIndex = (uint)filteredExtrinsic.IndexOf(extrinsic);
-                INode extrinsicDecode = default!;
 
                 try
                 {
-                    extrinsicDecode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
-                    var status = _explorerService.GetExtrinsicsStatus(blockEvents, (int)extrinsicIndex);
-                    var fees = await _explorerService.GetExtrinsicsFeesAsync(blockEvents, (int)extrinsicIndex, cancellationToken);
-                    var lifetime = _explorerService.GetExtrinsicsLifetime(request.BlockNumber, extrinsic);
-                    
+                    var (extrinsicDecode, status, fees, lifetime) = await WaiterHelper.WaitAndReturnAsync(
+                        _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken),
+                        _explorerService.GetExtrinsicsStatusAsync(blockEvents, (int)extrinsicIndex, cancellationToken),
+                        _explorerService.GetExtrinsicsFeesAsync(blockEvents, (int)extrinsicIndex, cancellationToken),
+                        _explorerService.GetExtrinsicsLifetimeAsync(request.BlockNumber, extrinsic, cancellationToken)
+                        );
+
                     EraLifetimeModel? lifetimeEntry = HandleLifetimeEntry(lifetime);
 
                     _db.ExtrinsicsInformation.Add(new Infrastructure.Database.Contracts.Model.Extrinsics.ExtrinsicsInformationModel()
@@ -137,7 +138,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
                 lifetimeEntry = _db.EraLifetime.FirstOrDefault(x => x.IsImmortal == lifetime.IsImmortal && x.StartBlock == lifetime.FromBlock && x.EndBlock == lifetime.ToBlock);
                 if (lifetimeEntry is null)
                 {
-                    lifetimeEntry = new Infrastructure.Database.Contracts.Model.Staking.EraLifetimeModel()
+                    lifetimeEntry = new EraLifetimeModel()
                     {
                         BlockchainName = _substrateService.BlockchainName,
                         IsImmortal = lifetime.IsImmortal,

@@ -30,9 +30,9 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// <param name="hex"></param>
         [Test, Ignore("Add version")]
         [TestCase("0x00020000002000B72301EEEF1DCF828B9D361323ADBCE10333AC6A12D7390F5E34659C5DAF702BA1BC82090000000000000000000000000000000000000000000000000000000000")]
-        public void TransactionPayment_TransactionFeePaid_ShouldBeParsed(string hex)
+        public async Task TransactionPayment_TransactionFeePaid_ShouldBeParsedAsync(string hex)
         {
-            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            var nodeResult = await _substrateDecode.DecodeEventAsync(hex, CancellationToken.None);
             PrerequisiteEvent(nodeResult);
 
             Assert.That(nodeResult.Module, Is.EqualTo(PolkadotRuntime.RuntimeEvent.TransactionPayment));

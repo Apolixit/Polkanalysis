@@ -57,12 +57,12 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         {
             var events = await _substrateService.At(blockHash).Storage.System.EventsAsync(CancellationToken.None);
 
-            var filteredEvent = _explorerRepository.FindEvent(events, runtimeEvent, eventEnum);
+            var filteredEvent = await _explorerRepository.FindEventAsync(events, runtimeEvent, eventEnum, CancellationToken.None);
 
             Assert.That(filteredEvent, Is.Not.Null);
             Assert.That(filteredEvent.Count(), Is.EqualTo(1));
 
-            var nodeEvent = _substrateDecoding.DecodeEvent(Utils.Bytes2HexString(filteredEvent.First().Encode()));
+            var nodeEvent = await _substrateDecoding.DecodeEventAsync(Utils.Bytes2HexString(filteredEvent.First().Encode()), CancellationToken.None);
 
             Assert.That(nodeEvent.Module, Is.EqualTo(runtimeEvent));
             Assert.That(nodeEvent.Method, Is.EqualTo(eventEnum));
