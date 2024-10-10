@@ -28,16 +28,16 @@ namespace Polkanalysis.SubstrateDecode.Test.Node
         [Test]
         public void EmptyInput_ShouldThrowException()
         {
-            Assert.Throws<ArgumentNullException>(() => _decode.DecodeEvent(string.Empty));
-            Assert.Throws<InvalidOperationException>(() => _decode.DecodeEvent("0x00"));
-            Assert.Throws<InvalidOperationException>(() => _decode.DecodeEvent("I am a bad input"));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await _decode.DecodeEventAsync(string.Empty, CancellationToken.None));
+            Assert.ThrowsAsync<InvalidOperationException>(async () => await _decode.DecodeEventAsync("0x00", CancellationToken.None));
+            Assert.ThrowsAsync<InvalidOperationException>(async () => await _decode.DecodeEventAsync("I am a bad input", CancellationToken.None));
         }
 
         [Test]
-        public void EmptyType_ShouldHaveEmptyNode()
+        public async Task EmptyType_ShouldHaveEmptyNode()
         {
             IType emptyType = new U32();
-            var node = _decode.Decode(emptyType);
+            var node = await _decode.DecodeAsync(emptyType, CancellationToken.None);
 
             Assert.That(node, Is.Not.Null);
             Assert.That(node.IsEmpty, Is.False);

@@ -167,7 +167,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="palletName">The name of the pallet</param>
         /// <param name="eventName">The name of the event</param>
         /// <returns></returns>
-        IEnumerable<EventRecord> FindEvent(BaseVec<EventRecord> events, RuntimeEvent palletName, Enum eventName);
+        Task<IEnumerable<EventRecord>> FindEventAsync(BaseVec<EventRecord> events, RuntimeEvent palletName, Enum eventName, CancellationToken token);
 
         /// <summary>
         /// Subscribe to a specific event
@@ -247,7 +247,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="events">The list of events</param>
         /// <param name="extrinsicIndex">The index of the extrinsic</param>
         /// <returns></returns>
-        ExtrinsicStatusDto GetExtrinsicsStatus(EventRecord[] events, int extrinsicIndex);
+        Task<ExtrinsicStatusDto> GetExtrinsicsStatusAsync(EventRecord[] events, int extrinsicIndex, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get the fees of the extrinsics
@@ -257,7 +257,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<double?> GetExtrinsicsFeesAsync(EventRecord[] events, int extrinsicIndex, CancellationToken cancellationToken);
-        LifetimeDto? GetExtrinsicsLifetime(uint blockNumber, Extrinsic extrinsic);
+        Task<LifetimeDto?> GetExtrinsicsLifetimeAsync(uint blockNumber, Extrinsic extrinsic, CancellationToken cancellationToken);
         #endregion
     }
 }

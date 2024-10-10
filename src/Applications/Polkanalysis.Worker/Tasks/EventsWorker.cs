@@ -130,9 +130,9 @@ namespace Polkanalysis.Worker.Tasks
 
                 //await SaveBlockInformationAsync(blockNumber, stoppingToken);
 
-                //await SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
+                await SaveExtrinsicInformationAsync(blockNumber, stoppingToken);
 
-                await SaveEventsInformationAsync(blockNumber, stoppingToken);
+                //await SaveEventsInformationAsync(blockNumber, stoppingToken);
 
             }
             catch (Exception ex)

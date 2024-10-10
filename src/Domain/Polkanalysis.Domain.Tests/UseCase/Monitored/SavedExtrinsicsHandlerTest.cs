@@ -115,9 +115,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Monitored
                 new BaseVec<EventRecord>([killedAccountEvent])
             );
 
-            _explorerService.GetExtrinsicsStatus(Arg.Any<EventRecord[]>(), Arg.Any<int>()).Returns(Contracts.Dto.Extrinsic.ExtrinsicStatusDto.Success());
+            _explorerService.GetExtrinsicsStatusAsync(Arg.Any<EventRecord[]>(), Arg.Any<int>(), CancellationToken.None).Returns(Contracts.Dto.Extrinsic.ExtrinsicStatusDto.Success());
             _explorerService.GetExtrinsicsFeesAsync(Arg.Any<EventRecord[]>(), Arg.Any<int>(), CancellationToken.None).ReturnsNull();
-            _explorerService.GetExtrinsicsLifetime(Arg.Any<uint>(), mockExtrinsic).Returns(new Contracts.Dto.Extrinsic.LifetimeDto()
+            _explorerService.GetExtrinsicsLifetimeAsync(Arg.Any<uint>(), mockExtrinsic, CancellationToken.None).Returns(new Contracts.Dto.Extrinsic.LifetimeDto()
             {
                 IsImmortal = false,
                 FromBlock = 1,

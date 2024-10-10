@@ -10,6 +10,7 @@ using NSubstitute;
 using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.System
 {
@@ -213,12 +214,19 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         public async Task EventsAsNode_ShouldWorkAsync(int blockNumber)
         {
             var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
+            var metadata = await _substrateRepository.At(blockNumber).GetMetadataAsync(CancellationToken.None).ConfigureAwait(false);
 
-            var result = new List<IEventNode>();
+            var tasked = new List<Task<IEventNode>>();
+            
             foreach (var ev in res.Value)
             {
-                var eventNode = _substrateDecoding.DecodeEvent(ev);
+                tasked.Add(_substrateDecoding.DecodeEventAsync(ev, metadata, CancellationToken.None));
+            }
 
+            await Task.WhenAll(tasked);
+            foreach(var task in tasked)
+            {
+                var eventNode = await task;
                 Assert.That((int)eventNode.Module, Is.GreaterThanOrEqualTo(0));
                 Assert.That(eventNode.Method.ToString(), Is.Not.Empty);
                 Assert.That(eventNode.EventData, Is.Not.Null);
@@ -231,7 +239,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         {
             var res = await _substrateRepository.At(22666089).Storage.System.EventsAsync(CancellationToken.None);
 
-            var eventNode = _substrateDecoding.DecodeEvent(res.Value[56]);
+            var eventNode = await _substrateDecoding.DecodeEventAsync(res.Value[56], CancellationToken.None);
 
             Assert.That(eventNode.Module.ToString(), Is.EqualTo("System"));
             Assert.That(eventNode.Method.ToString(), Is.EqualTo("ExtrinsicFailed"));

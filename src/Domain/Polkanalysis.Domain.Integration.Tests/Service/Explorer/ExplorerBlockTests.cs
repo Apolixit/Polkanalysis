@@ -27,7 +27,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
         public async Task GetExtrinsicStatus_WithError_ShouldBuildValidDtoAsync(int blockId, int extrinsicId)
         {
             var events = await _substrateService.At(blockId).Storage.System.EventsAsync(CancellationToken.None);
-            var extrinsicStatus = _explorerRepository.GetExtrinsicsStatus(events, extrinsicId);
+            var extrinsicStatus = await _explorerRepository.GetExtrinsicsStatusAsync(events, extrinsicId, CancellationToken.None);
 
             Assert.That(extrinsicStatus.Status, Is.EqualTo(Contracts.Dto.Extrinsic.ExtrinsicStatusDto.ExtrinsicStatus.Failed));
         }
@@ -39,7 +39,7 @@ namespace Polkanalysis.Domain.Integration.Tests.Service.Explorer
             var blockHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new Substrate.NetApi.Model.Types.Base.BlockNumber((uint)blockId), CancellationToken.None);
             var blockDetails = await _substrateService.Rpc.Chain.GetBlockAsync(blockHash, CancellationToken.None);
 
-            var res = _explorerRepository.GetExtrinsicsLifetime((uint)blockId, blockDetails.Block.Extrinsics[extrinsicId]);
+            var res = await _explorerRepository.GetExtrinsicsLifetimeAsync((uint)blockId, blockDetails.Block.Extrinsics[extrinsicId], CancellationToken.None);
 
             Assert.That(res.IsImmortal, Is.False);
         }

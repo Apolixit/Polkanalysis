@@ -296,7 +296,7 @@ namespace Polkanalysis.Domain.Service
             return blockDto;
         }
 
-        public LifetimeDto? GetExtrinsicsLifetime(uint blockNumber, Extrinsic extrinsic)
+        public async Task<LifetimeDto?> GetExtrinsicsLifetimeAsync(uint blockNumber, Extrinsic extrinsic, CancellationToken cancellationToken)
         {
             if(extrinsic.Era is null) return null;
 
@@ -350,7 +350,7 @@ namespace Polkanalysis.Domain.Service
         /// <param name="events"></param>
         /// <param name="extrinsicIndex"></param>
         /// <returns></returns>
-        public ExtrinsicStatusDto GetExtrinsicsStatus(EventRecord[] events, int extrinsicIndex)
+        public async Task<ExtrinsicStatusDto> GetExtrinsicsStatusAsync(EventRecord[] events, int extrinsicIndex, CancellationToken cancellationToken)
         {
             IEnumerable<EventRecord> eventLinkedToCurrentExtrinsic = getEventsLinkedToExtrinsic(events, extrinsicIndex);
 
@@ -358,7 +358,7 @@ namespace Polkanalysis.Domain.Service
             {
                 if (systemEvent.Event.Value is null) continue;
 
-                var decode = _substrateDecode.DecodeEvent(systemEvent);
+                //var decode = await _substrateDecode.DecodeEventAsync(systemEvent, cancellationToken);
                 if (systemEvent.Event.Value!.Value == RuntimeEvent.System)
                 {
                     var systemEventValue = systemEvent.Event.Value!.Value2.GetValue<Event>();
@@ -491,7 +491,7 @@ namespace Polkanalysis.Domain.Service
 
             foreach (var ev in eventsList)
             {
-                var eventNode = _substrateDecode.DecodeEvent(ev);
+                var eventNode = await _substrateDecode.DecodeEventAsync(ev, cancellationToken);
 
                 eventsDto.Add(
                     ModelBuilder.BuildEventDto(
@@ -538,7 +538,7 @@ namespace Polkanalysis.Domain.Service
                 var extrinsicFromEncoded = new Extrinsic(hexExtrinsic, ChargeTransactionPayment.Default());
                 var isEqual = extrinsic.ToString().ToLower().Equals(extrinsicFromEncoded.ToString().ToLower());
 #endif
-                var extrinsicNode = await _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken);
+                
 
                 //var (callModule, callEvent) = _substrateDecode.GetCallFromExtrinsic(extrinsic, blockHash);
                 var extrinsicIndex = (uint)blockDetails.Block.Extrinsics.ToList().IndexOf(extrinsic);
@@ -546,9 +546,11 @@ namespace Polkanalysis.Domain.Service
                 if(extrinsic.Account is not null)
                     caller = await _accountRepository.GetAccountDetailAsync(extrinsic.Account.Value, cancellationToken);
 
-                var lifetime = GetExtrinsicsLifetime(blockNumber, extrinsic);
-                var fees = await GetExtrinsicsFeesAsync(events, (int)extrinsicIndex, cancellationToken);
-                var status = GetExtrinsicsStatus(events, (int)extrinsicIndex);
+                var (extrinsicNode, fees, status, lifetime) = await WaiterHelper.WaitAndReturnAsync(
+                    _substrateDecode.DecodeExtrinsicAsync(extrinsic, blockHash, cancellationToken),
+                    GetExtrinsicsFeesAsync(events, (int)extrinsicIndex, cancellationToken),
+                    GetExtrinsicsStatusAsync(events, (int)extrinsicIndex, cancellationToken),
+                    GetExtrinsicsLifetimeAsync(blockNumber, extrinsic, cancellationToken));
 
                 extrinsicsDto.Add(
                     new ExtrinsicDto()
@@ -628,7 +630,7 @@ namespace Polkanalysis.Domain.Service
             {
                 var e = ModelBuilder.BuildEventDto(
                     extrinsicDto.BlockNumber,
-                    _substrateDecode.DecodeEvent(eventLinked),
+                    await _substrateDecode.DecodeEventAsync(eventLinked, cancellationToken),
                     (uint)events.IndexOf(eventLinked),
                     extrinsicDto.Index);
                 eventsLinkedDto.Add(e);
@@ -679,7 +681,7 @@ namespace Polkanalysis.Domain.Service
             var events = (await _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken)).Value.ToList();
 
             var selectedEvent = events[(int)eventIndex];
-            var eventNode = _substrateDecode.DecodeEvent(selectedEvent);
+            var eventNode = await _substrateDecode.DecodeEventAsync(selectedEvent, cancellationToken);
 
             return ModelBuilder.BuildEventDto(
                     blockNumber,
@@ -688,27 +690,27 @@ namespace Polkanalysis.Domain.Service
                     GetExtrinsicIndexFromEvent(selectedEvent));
         }
 
-        public IEnumerable<EventRecord> FindEvent(
-            BaseVec<EventRecord> events,
-            RuntimeEvent palletName,
-            Enum eventName)
+        public async Task<IEnumerable<EventRecord>> FindEventAsync(BaseVec<EventRecord> events,RuntimeEvent palletName, Enum eventName, CancellationToken token)
         {
+            var eventsFiltered = new List<EventRecord>();
             foreach (var ev in events.Value)
             {
-                var eventNode = _substrateDecode.DecodeEvent(ev);
+                var eventNode = await _substrateDecode.DecodeEventAsync(ev, token);
                 if (eventNode.Module.ToString() == palletName.ToString() &&
                 eventNode.Method.ToString() == eventName.ToString())
                 {
-                    yield return ev;
+                    eventsFiltered.Add(ev);
                 }
             }
+
+            return eventsFiltered;
         }
 
         public async Task SubscribeSpecificEventAsync(RuntimeEvent palletName, Enum eventName, Action<EventRecord> callback, CancellationToken token)
         {
             await _substrateService.Events.SubscribeEventsAsync((events) =>
             {
-                FindEvent(events, palletName, eventName)
+                FindEventAsync(events, palletName, eventName, token).Result
                 .ToList()
                 .ForEach(ev => callback(ev));
             }, token);

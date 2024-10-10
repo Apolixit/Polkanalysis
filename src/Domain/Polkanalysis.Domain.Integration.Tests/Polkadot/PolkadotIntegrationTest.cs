@@ -32,7 +32,8 @@ namespace Polkanalysis.Domain.Integration.Tests.Polkadot
                     peopleChainService);
         }
 
-        public string PolkadotEndpointUri => "wss://polkadot-rpc.dwellir.com";
+        //public string PolkadotEndpointUri => "wss://polkadot.api.onfinality.io/public-ws";
+        public string PolkadotEndpointUri => "wss://polkadot.api.onfinality.io/public-ws";
         internal override ISubstrateEndpoint GetEndpoint()
         {
             var substrateConfigurationMock = Substitute.For<ISubstrateEndpoint>();

@@ -85,7 +85,7 @@ namespace Polkanalysis.Domain.Tests.Node
         [Test]
         [TestCase("0x00010000000000384A7AFE72000000020000")]
         [Ignore("To JSON debug")]
-        public void CreateNode_EventTimestamp_ShouldBeParsedToJson(string hex)
+        public async Task CreateNode_EventTimestamp_ShouldBeParsedToJson(string hex)
         {
             var decode = new SubstrateDecoding(
                 new EventNodeMapping(),
@@ -97,7 +97,7 @@ namespace Polkanalysis.Domain.Tests.Node
             //enumTimestamp.Create(hex);
             var ev = new EventRecord();
             ev.Create(hex);
-            var nodeResult = decode.Decode(ev);
+            var nodeResult = await decode.DecodeAsync(ev, CancellationToken.None);
 
             var json = nodeResult.ToJson();
             Assert.That(json, Is.Not.Null);
@@ -129,7 +129,7 @@ namespace Polkanalysis.Domain.Tests.Node
         [Test]
         [Ignore("To JSON debug")]
         [TestCase("0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da942a9602fb314fb8ece26eb5e685d5d95e45dda4a3ac186e2ac54d8aed98db9dbdfff54087b96414057ad263ca02bfb96")]
-        public void CreateNode_AccountInfo_ShouldBeParsedToJson(string hex)
+        public async Task CreateNode_AccountInfo_ShouldBeParsedToJsonAsync(string hex)
         {
             var decode = new SubstrateDecoding(
                 new EventNodeMapping(),
@@ -139,7 +139,7 @@ namespace Polkanalysis.Domain.Tests.Node
 
             var accountInfo = new AccountInfo();
             accountInfo.Create(hex);
-            var nodeResult = decode.Decode(accountInfo);
+            var nodeResult = await decode.DecodeAsync(accountInfo, CancellationToken.None);
 
             var json = nodeResult.ToJson();
             Assert.That(json, Is.Not.Null);

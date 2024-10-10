@@ -91,7 +91,7 @@ namespace Polkanalysis.Domain.UseCase.Monitored
 
                 try
                 {
-                    var eventNode = _substrateDecode.DecodeEvent(ev);
+                    var eventNode = await _substrateDecode.DecodeEventAsync(ev, cancellationToken);
                     var eventFound = _eventsFactory.TryFind(eventNode.Module, eventNode.Method);
 
                     // Is this event has to be insert in database ?

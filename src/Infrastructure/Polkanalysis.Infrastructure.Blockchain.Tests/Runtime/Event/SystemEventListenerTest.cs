@@ -30,9 +30,9 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// <param name="hex"></param>
         [Test]
         [TestCase("0x00010000000000384A7AFE72000000020000")]
-        public void System_ExtrinsicSuccess_1_ShouldBeParsed(string hex)
+        public async Task System_ExtrinsicSuccess_1_ShouldBeParsedAsync(string hex)
         {
-            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            var nodeResult = await _substrateDecode.DecodeEventAsync(hex, CancellationToken.None);
             PrerequisiteEvent(nodeResult);
 
             //IEventNode eventNode = (IEventNode)nodeResult.Children[1];
@@ -73,9 +73,9 @@ namespace Polkanalysis.Domain.Tests.Runtime.Event
         /// </summary>
         /// <param name="hex"></param>
         [TestCase("0x00000000000000001C6C0900000000020000")]
-        public void System_ExtrinsicSuccess_ShouldBeParsed(string hex)
+        public async Task System_ExtrinsicSuccess_ShouldBeParsedAsync(string hex)
         {
-            var nodeResult = _substrateDecode.DecodeEvent(hex);
+            var nodeResult = await _substrateDecode.DecodeEventAsync(hex, CancellationToken.None);
             PrerequisiteEvent(nodeResult);
 
             //IEventNode eventNode = (IEventNode)nodeResult.Children[1];

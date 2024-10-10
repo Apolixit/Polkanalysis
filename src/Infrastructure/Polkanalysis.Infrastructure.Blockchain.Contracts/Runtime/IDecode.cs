@@ -16,22 +16,22 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime
         /// </summary>
         /// <param name="ev"></param>
         /// <returns></returns>
-        INode Decode(IType elem, Hash? blockHash = null);
+        Task<INode> DecodeAsync(IType elem, CancellationToken cancellationToken, Hash? blockHash = null);
 
         /// <summary>
         /// Build a tree from an event hexadecimal representation
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        IEventNode DecodeEvent(string hex, Hash? blockHash = null);
+        Task<IEventNode> DecodeEventAsync(string hex, CancellationToken cancellationToken, Hash? blockHash = null);
 
         /// <summary>
         /// Build a tree from an event
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        IEventNode DecodeEvent(EventRecord ev, Hash? blockHash = null);
-        IEventNode DecodeEvent(EventRecord ev, MetaData metadata);
+        Task<IEventNode> DecodeEventAsync(EventRecord ev, CancellationToken cancellationToken, Hash? blockHash = null);
+        Task<IEventNode> DecodeEventAsync(EventRecord ev, MetaData metadata, CancellationToken cancellationToken);
 
         /// <summary>
         /// Build a tree from an extrinsic hexadecimal representation
@@ -46,7 +46,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime
         /// <param name="hex"></param>
         /// <returns></returns>
         Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken cancellationToken);
-        INode DecodeExtrinsic(Extrinsic extrinsic, MetaData metadata);
+        Task<INode> DecodeExtrinsicAsync(Extrinsic extrinsic, MetaData metadata, CancellationToken cancellationToken);
 
 
         /// <summary>
@@ -54,14 +54,14 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        INode DecodeLog(IEnumerable<string> logs, Hash? blockHash = null);
+        Task<INode> DecodeLogAsync(IEnumerable<string> logs, CancellationToken cancellationToken, Hash? blockHash = null);
 
         /// <summary>
         /// Build a tree from log enum
         /// </summary>
         /// <param name="hex"></param>
         /// <returns></returns>
-        INode DecodeLog(IEnumerable<EnumDigestItem> logs, Hash? blockHash = null);
+        Task<INode> DecodeLogAsync(IEnumerable<EnumDigestItem> logs, CancellationToken cancellationToken, Hash? blockHash = null);
         //Task<(string callModule, string callEvent)> GetCallFromExtrinsicAsync(Extrinsic extrinsic, Hash blockHash, CancellationToken token);
     }
 }
