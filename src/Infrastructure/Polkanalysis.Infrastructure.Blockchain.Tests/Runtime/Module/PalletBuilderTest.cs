@@ -2,12 +2,15 @@
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Polkanalysis.Domain.Contracts.Service;
+using Polkanalysis.Infrastructure.Blockchain.Common.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Runtime.Module;
+using Polkanalysis.Infrastructure.Blockchain.Tests;
 using Substrate.NetApi.Model.Extrinsics;
 using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Types.Base;
+using System.Threading;
 
 namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
 {
@@ -23,6 +26,9 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
         {
             _substrateService = Substitute.For<ISubstrateService>();
 
+            _substrateService.Rpc.State.GetMetaDataAsync(CancellationToken.None).Returns(TestsConstants.MetadataHexV1003000);
+            _substrateService.Rpc.State.GetMetaDataAsync(Arg.Any<Hash>(), CancellationToken.None).Returns(TestsConstants.MetadataHexV1003000);
+
             //var mockClient = Substitute.For<SubstrateClientExt>(default, default);
             //var mockClient = Substitute.For<ISubstrateClientRepository>();
             //_substrateRepository.Api.Returns(mockClient);
@@ -34,7 +40,7 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
         [Test]
         public void Build_InvalidPalletName_ShouldFailed()
         {
-            _currentMetaData.GetPalletModuleByNameAsync(Arg.Any<Hash>(), Arg.Any<string>(), CancellationToken.None).ReturnsNull();
+            _currentMetaData.GetPalletModuleByNameAsync(Arg.Any<string>(), CancellationToken.None).ReturnsNull();
             var mockMethod = Substitute.For<Method>((byte)0, (byte)0);
 
             Assert.Throws<ArgumentException>(() => _palletBuilder.BuildCall(MockHash, "WrongName", mockMethod));
@@ -46,17 +52,12 @@ namespace Polkanalysis.Infrastructure.DirectAccess.Test.Runtime
         public void Build_InvalidMethodParameter_ShouldFailed()
         {
             // Just mock a random pallet module, in order to bypass the if( != null)
-            _currentMetaData.GetPalletModuleByNameAsync(Arg.Any<Hash>(), Arg.Any<string>(), CancellationToken.None).Returns(new PalletModule());
+            _currentMetaData.GetPalletModuleByNameAsync(Arg.Any<string>(), CancellationToken.None).Returns(new PalletModule());
 
             var mockMethod = Substitute.For<Method>((byte)0, (byte)0);
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall(MockHash, "Balances", null));
-            //Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall("Balances", new Method(0, 0, null)));
-
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent(MockHash, "Balances", null));
-            //Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent("Balances", new Method(0, 0, null)));
-
-            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError(MockHash, "Balances", null));
-            //Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError("Balances", new Method(0, 0, null)));
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildCall(MockHash, "Balances", null!));
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildEvent(MockHash, "Balances", null!));
+            Assert.Throws<ArgumentNullException>(() => _palletBuilder.BuildError(MockHash, "Balances", null!));
         }
 
         [Test]

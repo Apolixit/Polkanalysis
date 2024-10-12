@@ -100,26 +100,41 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
 
         public string ToJson()
         {
-            var res = JsonSerializer.Serialize(ToDictionnary());
-            return res;
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(ToDictionnary(), options);
+            //var res = JsonSerializer.Serialize(ToDictionnary());
+            //return res;
         }
 
         public Dictionary<string, object> ToDictionnary()
         {
-            var dictionnary = new Dictionary<string, object>();
+            if (this.HumanData is null) throw new InvalidOperationException("HumanData is null");
 
-            if (Children.Count > 0)
+            var output = new Dictionary<string, object>();
+            if (this.DataType is not null)
             {
-                dictionnary.Add(
-                    Name,
-                    Children.Select(x => x.ToDictionnary()));
+                output.Add("type", this.DataType.Name);
+                output.Add("documentation", this.Documentation);
+                output.Add("name", this.Name);
+                output.Add("value", this.HumanData!.ToString());
             }
-            else
+            
+            if(Children.Count > 0)
             {
-                dictionnary.Add(Name, HumanData);
+                if(Children.Count == 1)
+                {
+                    output["value"] = Children[0].HumanData!.ToString();
+                } else
+                {
+                    output.Add("", Children.Select(x => x.ToDictionnary()));
+                }
             }
 
-            return dictionnary;
+            return output;
         }
 
         public KeyValuePair<string, object> ToKeyValuePair()

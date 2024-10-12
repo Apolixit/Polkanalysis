@@ -27,6 +27,7 @@ using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Error;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Core.Display;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime;
+using Polkanalysis.Domain.Helper.Enumerables;
 
 namespace Polkanalysis.Domain.Service
 {
@@ -481,25 +482,35 @@ namespace Polkanalysis.Domain.Service
         protected async Task<IEnumerable<EventDto>> GetEventsAsync(BlockParameterLike block, CancellationToken cancellationToken)
         {
             var blockHash = await block.ToBlockHashAsync(_substrateService);
-            var (events, blockNumber) = await WaiterHelper.WaitAndReturnAsync(
+            var (events, blockNumber, metadata) = await WaiterHelper.WaitAndReturnAsync(
                 _substrateService.At(blockHash).Storage.System.EventsAsync(cancellationToken),
-                block.ToBlockNumberAsync(_substrateService));
+                block.ToBlockNumberAsync(_substrateService),
+                _substrateService.At(blockHash).GetMetadataAsync(CancellationToken.None));
 
             var eventsList = events.Value.ToList();
 
             var eventsDto = new List<EventDto>();
 
-            foreach (var ev in eventsList)
-            {
-                var eventNode = await _substrateDecode.DecodeEventAsync(ev, cancellationToken);
+            var eventsWithNode = await eventsList.ExtendWith(ev => _substrateDecode.DecodeEventAsync(ev, metadata, cancellationToken))
+                .WaitAllAndGetResultAsync();
 
-                eventsDto.Add(
+            foreach (var item in eventsWithNode)
+            {
+                var index = (uint)eventsList.IndexOf(item.Item1);
+                try
+                {
+                    eventsDto.Add(
                     ModelBuilder.BuildEventDto(
                         blockNumber,
-                        eventNode,
-                        (uint)eventsList.IndexOf(ev),
-                        GetExtrinsicIndexFromEvent(ev))
+                        item.Item2,
+                        index,
+                        GetExtrinsicIndexFromEvent(item.Item1))
                     );
+                } catch(Exception ex)
+                {
+                    _logger.LogError(ex, $"Error while processing event num {index}");
+                }
+                
             }
 
             return eventsDto;

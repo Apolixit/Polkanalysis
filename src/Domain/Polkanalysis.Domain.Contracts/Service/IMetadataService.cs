@@ -3,6 +3,7 @@ using Polkanalysis.Domain.Contracts.Dto.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NET.Metadata.V14;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 
 namespace Polkanalysis.Domain.Contracts.Service
 {
@@ -26,7 +27,6 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="moduleIndex"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<PalletModule> GetPalletModuleByIndexAsync(Hash blockHash, byte moduleIndex, CancellationToken cancellationToken);
         public Task<PalletModule> GetPalletModuleByIndexAsync(byte moduleIndex, CancellationToken cancellationToken);
 
         /// <summary>
@@ -34,9 +34,7 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// </summary>
         /// <param name="palletName"></param>
         /// <returns></returns>
-        public Task<PalletModule> GetPalletModuleByNameAsync(Hash blockHash, string palletName, CancellationToken cancellationToken);
         public Task<PalletModule> GetPalletModuleByNameAsync(string palletName, CancellationToken cancellationToken);
-        public PalletModule GetPalletModuleByName(MetaData metadata, string palletName, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get current MetaData node type from type id
@@ -97,5 +95,36 @@ namespace Polkanalysis.Domain.Contracts.Service
         /// <param name="nodeType"></param>
         /// <returns></returns>
         public string WriteNodeArray(NodeTypeArray nodeType);
+
+        /// <summary>
+        /// Set the metadata instance to work on
+        /// </summary>
+        /// <param name="metaData"></param>
+        void SetMetadata(MetaData metaData);
+
+        public Task<ModuleDetailDto> GetModuleDetailAsync(string palletName, CancellationToken cancellationToken);
+        #region Details
+        public Task<List<ModuleCallsDto>> GetModuleCallsAsync(string palletName, CancellationToken cancellationToken);
+
+        public Task<List<ModuleEventsDto>> GetModuleEventsAsync(string palletName, CancellationToken cancellationToken);
+
+        public Task<List<ModuleConstantsDto>> GetModuleConstantsAsync(string palletName, CancellationToken cancellationToken);
+
+        public Task<List<ModuleStorageDto>> GetModuleStorageAsync(string palletName, CancellationToken cancellationToken);
+
+        public Task<List<ModuleErrorsDto>> GetModuleErrorsAsync(string palletName, CancellationToken cancellationToken);
+        #endregion
+
+        /// <summary>
+        /// Number of call to this module between two date
+        /// </summary>
+        /// <param name="moduleId"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<int> GetNbCallAsync(string moduleId, DateTime from, DateTime to, CancellationToken cancellationToken);
+
+        public Task<IEnumerable<SpecVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken);
     }
 }

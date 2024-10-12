@@ -13,15 +13,15 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
     public class ModuleDetailUseCaseTest : 
         UseCaseTest<RuntimeModuleDetailHandler, ModuleDetailDto, RuntimeModuleDetailQuery>
     {
-        private IModuleInformationService _moduleRepository;
+        private IMetadataService _metadataService;
 
         [SetUp]
         public void Setup()
         {
             _logger = Substitute.For<ILogger<RuntimeModuleDetailHandler>>();
-            _moduleRepository = Substitute.For<IModuleInformationService>();
+            _metadataService = Substitute.For<IMetadataService>();
 
-            _useCase = new RuntimeModuleDetailHandler(_logger, _moduleRepository, Substitute.For<IDistributedCache>());
+            _useCase = new RuntimeModuleDetailHandler(_logger, _metadataService, Substitute.For<IDistributedCache>());
             //base.Setup();
         }
 
@@ -32,8 +32,8 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         [Test]
         public async Task ModuleDetailUseCaseWithValidModuleName_ShouldSucceedAsync()
         {
-            _moduleRepository.GetModuleDetail(Arg.Is("System")).Returns(Substitute.For<ModuleDetailDto>());
-            var result = await _useCase.HandleInnerAsync(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
+            _metadataService.GetModuleDetailAsync(Arg.Is("System"), CancellationToken.None).Returns(Substitute.For<ModuleDetailDto>());
+            var result = await _useCase!.HandleInnerAsync(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
 
             Assert.That(result.IsSuccess, Is.True);
             Assert.That(result.Value, Is.Not.Null);
@@ -46,7 +46,7 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         
         public async Task ModuleDetailUseCaseWithEmptyModuleName_ShouldFailedAsync()
         {
-            var result = await _useCase.HandleInnerAsync(new RuntimeModuleDetailQuery(string.Empty), CancellationToken.None);
+            var result = await _useCase!.HandleInnerAsync(new RuntimeModuleDetailQuery(string.Empty), CancellationToken.None);
 
             Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);
@@ -61,9 +61,9 @@ namespace Polkanalysis.Domain.Tests.UseCase.Module
         
         public async Task ModuleDetailUseCaseReturnNullDto_ShouldFailedAsync()
         {
-            _moduleRepository.GetModuleDetail(Arg.Any<string>()).ReturnsNull();
+            _metadataService.GetModuleDetailAsync(Arg.Any<string>(), CancellationToken.None).ReturnsNull();
 
-            var result = await _useCase.HandleInnerAsync(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
+            var result = await _useCase!.HandleInnerAsync(new RuntimeModuleDetailQuery("System"), CancellationToken.None);
 
             Assert.That(result.IsError, Is.True);
             Assert.That(result.Value, Is.Null);

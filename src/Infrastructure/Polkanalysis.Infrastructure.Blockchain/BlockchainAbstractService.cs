@@ -7,6 +7,7 @@ using Substrate.NET.Metadata.Service;
 using Substrate.NET.Metadata.V14;
 using Substrate.NET.Utils.Address;
 using Substrate.NetApi;
+using Substrate.NetApi.Model.Meta;
 using Substrate.NetApi.Model.Rpc;
 using Substrate.NetApi.Model.Types.Base;
 using Substrate.NetApi.Model.Types.Primitive;
@@ -142,6 +143,13 @@ namespace Polkanalysis.Infrastructure.Blockchain
             if (metadataHex is null)
                 throw new InvalidOperationException($"Unable to fetch metadata from blockHash = {Storage.BlockHash}");
 
+            MetaData metadata = GetMetadataFromHex(metadataHex);
+
+            return metadata;
+        }
+
+        public MetaData GetMetadataFromHex(string metadataHex)
+        {
             var version = MetadataUtils.GetMetadataVersion(metadataHex);
 
             MetadataV14? v14 = null;
@@ -176,7 +184,6 @@ namespace Polkanalysis.Infrastructure.Blockchain
             }
 
             Substrate.NetApi.Model.Meta.MetaData metadata = v14.ToNetApiMetadata();
-
             return metadata;
         }
     }

@@ -1,37 +1,29 @@
 ﻿using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NUnit.Framework;
-using Polkanalysis.Domain.Runtime.Module;
 using Polkanalysis.Domain.Runtime;
-using Polkanalysis.Domain.Contracts.Secondary;
 using Polkanalysis.Domain.Integration.Tests.Polkadot;
 using Polkanalysis.Domain.Contracts.Service;
-using Polkanalysis.Infrastructure.Blockchain.Contracts;
 
 namespace Polkanalysis.Domain.Integration.Tests.Runtime.Module
 {
     public class ModuleInformationTest : PolkadotIntegrationTest
     {
-        private IModuleInformationService _moduleRepository;
-        private IMetadataService _currentMetadata;
+        private IMetadataService _metadataService;
 
         [SetUp]
         public void Setup()
         {
-            _currentMetadata = new MetadataService(_substrateService,
+            _metadataService = new MetadataService(_substrateService,
                                                       _substrateDbContext,
                                                       Substitute.For<ICoreService>(),
                                                       Substitute.For<ILogger<MetadataService>>());
-            _moduleRepository = new ModuleInformation(_currentMetadata, _substrateService);
         }
 
         [Test, CancelAfter(2000)]
         public async Task Module_PalletBalances_ShouldWorkAsync()
         {
-            var metadata = await _substrateService.GetMetadataAsync(CancellationToken.None);
-            var balanceModuleFromCurrentMetadata = metadata.NodeMetadata.Modules.FirstOrDefault(x => x.Value.Name == "balances");
-
-            var res = _moduleRepository.GetModuleDetail("balances");
+            var res = await _metadataService.GetModuleDetailAsync("balances", CancellationToken.None);
 
             Assert.That(res, Is.Not.Null);
 

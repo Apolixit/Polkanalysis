@@ -75,6 +75,11 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Core
             return ToPolkadotAddress();
         }
 
+        public string ToPublicKey()
+        {
+            return Utils.Bytes2HexString(Utils.GetPublicKeyFrom(ToStringAddress()));
+        }
+
         public string ToStringAddress(short ss58 = 42)
         {
             return Utils.GetAddressFrom(Encode(), ss58);

@@ -12,5 +12,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime
         public RuntimeEvent Module { get; }
         public Enum Method { get; }
         public INode EventData { get; }
+        public string ToParameterJson();
     }
 }

@@ -11,15 +11,15 @@ namespace Polkanalysis.Domain.UseCase.Runtime
 {
     public class RuntimeModulesHandler : Handler<RuntimeModulesHandler, IEnumerable<ModuleDetailDto>, RuntimeModulesQuery>
     {
-        private readonly IModuleInformationService _moduleService;
+        private readonly IMetadataService _metadataService;
         private readonly ISubstrateService _substrateService;
 
         public RuntimeModulesHandler(
             ILogger<RuntimeModulesHandler> logger,
             ISubstrateService substrateRepository,
-            IModuleInformationService moduleRepository, IDistributedCache cache) : base(logger, cache)
+            IMetadataService metadataService, IDistributedCache cache) : base(logger, cache)
         {
-            _moduleService = moduleRepository;
+            _metadataService = metadataService;
             _substrateService = substrateRepository;
         }
 
@@ -29,7 +29,7 @@ namespace Polkanalysis.Domain.UseCase.Runtime
 
             List<Task<ModuleDetailDto>> modulesTask = new();
             foreach ( var module in metadata.NodeMetadata.Modules) {
-                modulesTask.Add(Task.Run(() => _moduleService.GetModuleDetail(module.Value.Name)));
+                modulesTask.Add(_metadataService.GetModuleDetailAsync(module.Value.Name, cancellationToken));
             }
 
             var modules = (IEnumerable<ModuleDetailDto>)await Task.WhenAll( modulesTask );
