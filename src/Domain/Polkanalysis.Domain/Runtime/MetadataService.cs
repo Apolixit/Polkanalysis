@@ -14,6 +14,10 @@ using System.Threading;
 using Polkanalysis.Infrastructure.Database;
 using System.Diagnostics.CodeAnalysis;
 using Ardalis.GuardClauses;
+using Polkanalysis.Domain.Contracts.Secondary.Repository.Models;
+using Polkanalysis.Infrastructure.Database.Contracts.Model.Version;
+using Substrate.NetApi;
+using Polkanalysis.Domain.Contracts.Dto.Module.SpecVersion;
 
 namespace Polkanalysis.Domain.Runtime
 {
@@ -30,6 +34,24 @@ namespace Polkanalysis.Domain.Runtime
             _db = db;
             _coreService = coreService;
             _logger = logger;
+        }
+
+        private MetaData? _metadata;
+        public MetaData MetaData
+        {
+            get
+            {
+                if (_metadata == null)
+                {
+                    _metadata = _substrateService.GetMetadataAsync(CancellationToken.None).Result;
+                }
+                return _metadata;
+            }
+        }
+
+        public void SetMetadata(MetaData metaData)
+        {
+            _metadata = metaData;
         }
 
         public uint NodeVersion => _substrateService.RuntimeVersion.SpecVersion;
@@ -127,50 +149,65 @@ namespace Polkanalysis.Domain.Runtime
             // Fetch the metadata version from the database
             var specVersionDb = _db.SpecVersionModels.SingleOrDefault(x => x.SpecVersion == specVersion);
 
-            if(specVersionDb is null)
+            if (specVersionDb is null)
             {
                 _logger.LogError("Unable to find metadata for spec version {specVersion} in the database", specVersion);
+                return null;
             }
 
-            var blockStartHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(specVersionDb!.BlockStart), cancellationToken);
-            var metadataHex = await _substrateService.Rpc.State.GetMetaDataAsync(blockStartHash, cancellationToken);
+            return buildMetadataDtoFromDb(specVersionDb);
+        }
+
+        /// <summary>
+        /// Build the DTO from Database instance
+        /// </summary>
+        /// <param name="specVersionDb"></param>
+        /// <returns></returns>
+        private MetadataDto buildMetadataDtoFromDb(SpecVersionModel specVersionDb)
+        {
+            string metadataHex = specVersionDb.Metadata;
 
             // Get the metadata from the node with his block number
-            var metadata = await _substrateService.At(blockStartHash).GetMetadataAsync(cancellationToken);
-
+            var metadata = _substrateService.GetMetadataFromHex(metadataHex);
             var nextSpecVersion = _db.SpecVersionModels.SingleOrDefault(x => x.BlockStart == specVersionDb.BlockEnd + 1);
-            
-            var dateStartSpecVersion = await _coreService.GetDateTimeFromTimestampAsync(blockStartHash, cancellationToken);
 
-            DateTime? dateStartNextSpecVersion = null;
-            if (nextSpecVersion is not null)
-            {
-                var blockStartNextSpecVersionHash = await _substrateService.Rpc.Chain.GetBlockHashAsync(new BlockNumber(nextSpecVersion!.BlockStart), cancellationToken);
+            var dateStartSpecVersion = specVersionDb.BlockStartDateTime;
 
-                dateStartNextSpecVersion = await _coreService.GetDateTimeFromTimestampAsync(blockStartNextSpecVersionHash, cancellationToken);
-            }
+            DateTime? dateStartNextSpecVersion = specVersionDb.BlockEndDateTime;
 
             return new MetadataDto()
             {
                 Origin = metadata.Origin,
                 Magic = metadata.Magic,
                 Hex = metadataHex,
-                SpecVersion = specVersion,
+                SpecVersion = specVersionDb.SpecVersion,
                 Duration = (dateStartNextSpecVersion ?? DateTime.UtcNow) - dateStartSpecVersion,
                 MajorVersion = MetadataUtils.GetMetadataVersion(metadataHex),
                 NbPallets = metadata.NodeMetadata.Modules.Count,
             };
         }
 
-        public Task<IEnumerable<MetadataDto>> GetAllMetadataInfoAsync(CancellationToken cancellationToken)
+        /// <summary>
+        /// Return all the metadata from the database
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<MetadataDto>> GetAllMetadataInfoAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = new List<MetadataDto>();
+
+            foreach(var specVersionDb in _db.SpecVersionModels)
+            {
+                result.Add(buildMetadataDtoFromDb(specVersionDb));
+            }
+
+            return result;
         }
 
         public NodeType GetPalletType(uint typeId)
         {
             NodeType? nodeType = null;
-            _substrateService.GetMetadataAsync(CancellationToken.None).Result.NodeMetadata.Types.TryGetValue(typeId, out nodeType);
+            MetaData.NodeMetadata.Types.TryGetValue(typeId, out nodeType);
 
             if (nodeType == null)
             {
@@ -181,19 +218,27 @@ namespace Polkanalysis.Domain.Runtime
             return (NodeType)nodeType;
         }
 
-        public Task<MetadataDto> GetMetadataAsync(int specVersion, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Get module from his index from current metadata
+        /// </summary>
+        /// <param name="moduleIndex"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<PalletModule> GetPalletModuleByIndexAsync(byte moduleIndex, CancellationToken cancellationToken)
         {
-            return await GetPalletModuleByIndexAsync(await _substrateService.Rpc.Chain.GetBlockHashAsync(cancellationToken), moduleIndex, cancellationToken);
+            return GetPalletModuleByIndex(MetaData, moduleIndex);
         }
 
-        public async Task<PalletModule> GetPalletModuleByIndexAsync(Hash blockHash, byte moduleIndex, CancellationToken cancellationToken)
+        /// <summary>
+        /// Get mod from his index from given metadata
+        /// </summary>
+        /// <param name="metadata"></param>
+        /// <param name="moduleIndex"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="KeyNotFoundException"></exception>
+        private PalletModule GetPalletModuleByIndex(MetaData metadata, byte moduleIndex)
         {
-            var metadata = await _substrateService.At(blockHash).GetMetadataAsync(cancellationToken);
             var pallet = metadata.NodeMetadata.Modules[moduleIndex];
 
             if (pallet == null)
@@ -205,12 +250,26 @@ namespace Polkanalysis.Domain.Runtime
             return pallet;
         }
 
+        /// <summary>
+        /// Get module by this name from current metadata
+        /// </summary>
+        /// <param name="palletName"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<PalletModule> GetPalletModuleByNameAsync(string palletName, CancellationToken cancellationToken)
         {
-            return await GetPalletModuleByNameAsync(await _substrateService.Rpc.Chain.GetBlockHashAsync(cancellationToken), palletName, cancellationToken);
+            return GetPalletModuleByNameInternal(MetaData, palletName);
         }
 
-        public PalletModule GetPalletModuleByName(MetaData metadata, string palletName, CancellationToken cancellationToken)
+        /// <summary>
+        /// Get module by this name from given metadata
+        /// </summary>
+        /// <param name="metadata"></param>
+        /// <param name="palletName"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private PalletModule GetPalletModuleByNameInternal(MetaData metadata, string palletName)
         {
             var pallet = metadata.NodeMetadata.Modules.FirstOrDefault(p => p.Value.Name.ToLower() == palletName.ToLower()).Value;
             if (pallet == null)
@@ -222,12 +281,255 @@ namespace Polkanalysis.Domain.Runtime
             return pallet;
         }
 
-        public async Task<PalletModule> GetPalletModuleByNameAsync(Hash blockHash, string palletName, CancellationToken cancellationToken)
+        #region Calls
+        public async Task<List<ModuleCallsDto>> GetModuleCallsAsync(string palletName, CancellationToken cancellationToken)
+            => GetModuleCallsInternal(GetPalletModuleByNameInternal(MetaData, palletName));
+
+        public List<ModuleCallsDto> GetModuleCallsInternal(PalletModule palletModule)
         {
-            Guard.Against.NullOrEmpty(palletName, nameof(palletName));
-            var metadata = await _substrateService.At(blockHash).GetMetadataAsync(cancellationToken);
-            
-            return GetPalletModuleByName(metadata, palletName, cancellationToken);
+            if (palletModule == null)
+                throw new ArgumentNullException($"{palletModule}");
+
+            var moduleCallsDto = new List<ModuleCallsDto>();
+            if (palletModule.Calls != null)
+            {
+                var nodeTypeCalls = GetPalletType(palletModule.Calls.TypeId);
+
+                if (nodeTypeCalls is NodeTypeVariant moduleCalls)
+                {
+                    if (moduleCalls.Variants == null)
+                    {
+                        // TODO : warning log -> weird behavior
+                        return moduleCallsDto;
+                        //throw new InvalidOperationException($"Module variant calls from module {palletModule.Name} are null");
+                    }
+
+                    foreach (var moduleCall in moduleCalls.Variants)
+                    {
+                        var callDto = new ModuleCallsDto()
+                        {
+                            Name = moduleCall.Name,
+                            Documentation = ModelBuilder.BuildDocumentation(moduleCall.Docs),
+                            Lookup = moduleCall.Index,
+                            NbParameter = moduleCall.TypeFields != null ? moduleCall.TypeFields.Length : 0,
+                            Arguments = moduleCall.TypeFields != null ? moduleCall.TypeFields.Select(BuildTypeField).ToList() : null,
+                        };
+                        moduleCallsDto.Add(callDto);
+                    }
+                }
+                else
+                    throw new InvalidCastException($"Module calls from module {palletModule.Name} cannot be casted to NodeTypeVariant");
+            }
+
+            return moduleCallsDto;
+        }
+        #endregion
+
+        #region Events
+        public async Task<List<ModuleEventsDto>> GetModuleEventsAsync(string palletName, CancellationToken cancellationToken)
+                => GetModuleEventsInternal(GetPalletModuleByNameInternal(MetaData, palletName));
+
+        private List<ModuleEventsDto> GetModuleEventsInternal(PalletModule palletModule)
+        {
+            if (palletModule == null)
+                throw new ArgumentNullException($"{palletModule}");
+
+            var moduleEventsDto = new List<ModuleEventsDto>();
+            if (palletModule.Events != null)
+            {
+                var nodeTypeEvent = GetPalletType(palletModule.Events.TypeId);
+
+                if (nodeTypeEvent is NodeTypeVariant moduleEvents)
+                {
+                    if (moduleEvents.Variants == null)
+                    {
+                        // TODO : warning log -> weird behavior
+                        return moduleEventsDto;
+                        //throw new InvalidOperationException($"Module variant events from module {palletModule.Name} are null");
+                    }
+
+                    foreach (var moduleEvent in moduleEvents.Variants)
+                    {
+                        var callDto = new ModuleEventsDto()
+                        {
+                            Name = moduleEvent.Name,
+                            Documentation = ModelBuilder.BuildDocumentation(moduleEvent.Docs),
+                            Lookup = moduleEvent.Index,
+                            Arguments = moduleEvent.TypeFields != null ? moduleEvent.TypeFields.Select(tf => BuildTypeField(tf)).ToList() : null
+                        };
+
+                        moduleEventsDto.Add(callDto);
+                    }
+                }
+                else
+                    throw new InvalidCastException($"Module calls from module {palletModule.Name} cannot be casted to NodeTypeVariant");
+            }
+
+            return moduleEventsDto;
+        }
+        #endregion
+
+        #region Constants
+        public async Task<List<ModuleConstantsDto>> GetModuleConstantsAsync(string palletName, CancellationToken cancellationToken)
+                => GetModuleConstantsInternal(GetPalletModuleByNameInternal(MetaData, palletName));
+
+        public List<ModuleConstantsDto> GetModuleConstantsInternal(PalletModule palletModule)
+        {
+            if (palletModule == null)
+                throw new ArgumentNullException($"{palletModule}");
+
+            var moduleConstantsDto = new List<ModuleConstantsDto>();
+            if (palletModule.Constants != null)
+            {
+                foreach (var constant in palletModule.Constants)
+                {
+                    //var testType = _currentMetaData.GetPalletType(constant.TypeId);
+
+                    var moduleConstant = new ModuleConstantsDto()
+                    {
+                        Name = constant.Name,
+                        Type = WriteType(constant.TypeId),
+                        Documentation = ModelBuilder.BuildDocumentation(constant.Docs),
+                        Value = Utils.Bytes2HexString(constant.Value)
+                    };
+
+                    // TODO: add a mapping with NodePrimitive ?
+                    //var mapping = new EventMapping();
+                    //mapping.Search()
+                    moduleConstantsDto.Add(moduleConstant);
+                }
+            }
+
+            return moduleConstantsDto;
+        }
+        #endregion
+
+        #region Storage
+        public async Task<List<ModuleStorageDto>> GetModuleStorageAsync(string palletName, CancellationToken cancellationToken)
+                => GetModuleStorageInternal(GetPalletModuleByNameInternal(MetaData, palletName));
+
+        public List<ModuleStorageDto> GetModuleStorageInternal(PalletModule palletModule)
+        {
+            if (palletModule == null)
+                throw new ArgumentNullException($"{palletModule}");
+
+            var modulesDto = new List<ModuleStorageDto>();
+            if (palletModule.Storage != null && palletModule.Storage.Entries != null)
+            {
+                foreach (var entry in palletModule.Storage.Entries)
+                {
+                    var storage = new ModuleStorageDto()
+                    {
+                        Name = entry.Name,
+                        Documentation = ModelBuilder.BuildDocumentation(entry.Docs),
+                        StorageModifier = entry.Modifier switch
+                        {
+                            Storage.Modifier.Default => StorageModifier.Default,
+                            Storage.Modifier.Optional => StorageModifier.Optional,
+                        },
+                        Default = Utils.Bytes2HexString(entry.Default),
+                        StorageType = entry.StorageType switch
+                        {
+                            Storage.Type.Map => StorageType.Map,
+                            Storage.Type.Plain => StorageType.Plain,
+                            Storage.Type.NMap => StorageType.NMap,
+                            Storage.Type.DoubleMap => StorageType.DoubleMap,
+                        }
+                    };
+                    modulesDto.Add(storage);
+                }
+
+            }
+
+            return modulesDto;
+        }
+        #endregion
+
+        #region Errors
+        public async Task<List<ModuleErrorsDto>> GetModuleErrorsAsync(string palletName, CancellationToken cancellationToken)
+                => GetModuleErrorsInternal(GetPalletModuleByNameInternal(MetaData, palletName));
+
+        public List<ModuleErrorsDto> GetModuleErrorsInternal(PalletModule palletModule)
+        {
+            if (palletModule == null)
+                throw new ArgumentNullException($"{palletModule}");
+
+            var modulesDto = new List<ModuleErrorsDto>();
+            if (palletModule.Errors != null)
+            {
+                var nodeType = GetPalletType(palletModule.Errors.TypeId);
+
+                if (nodeType is NodeTypeVariant nodeTypeVariant)
+                {
+                    if (nodeTypeVariant.Variants == null)
+                    {
+                        // TODO : warning log -> weird behavior
+                        return modulesDto;
+                        //throw new InvalidOperationException($"Module variant errors from module {palletModule.Name} are null");
+                    }
+
+                    foreach (var typeVariant in nodeTypeVariant.Variants)
+                    {
+                        modulesDto.Add(new ModuleErrorsDto()
+                        {
+                            Name = typeVariant.Name,
+                            Documentation = ModelBuilder.BuildDocumentation(typeVariant.Docs),
+                        });
+                    }
+                }
+                else
+                    throw new InvalidCastException($"Module calls from module {palletModule.Name} cannot be casted to NodeTypeVariant");
+            }
+
+            return modulesDto;
+        }
+        #endregion
+
+        #region Details
+        public async Task<ModuleDetailDto> GetModuleDetailAsync(string palletName, CancellationToken cancellationToken)
+            => GetModuleDetailInternal(GetPalletModuleByNameInternal(MetaData, palletName));
+
+        private ModuleDetailDto GetModuleDetailInternal(PalletModule palletModule)
+        {
+            if (palletModule == null)
+                throw new ArgumentNullException($"{palletModule}");
+
+            var moduleDetail = new ModuleDetailDto()
+            {
+                Information = new ModuleInfoDto()
+                {
+                    PalletName = palletModule.Name,
+                    Documentation = string.Empty,
+                }
+            };
+
+            moduleDetail.Calls = GetModuleCallsInternal(palletModule);
+            moduleDetail.Events = GetModuleEventsInternal(palletModule);
+            moduleDetail.Constants = GetModuleConstantsInternal(palletModule);
+            moduleDetail.Storage = GetModuleStorageInternal(palletModule);
+            moduleDetail.Errors = GetModuleErrorsInternal(palletModule);
+
+
+            return moduleDetail;
+        }
+        #endregion
+
+        public Task<int> GetNbCallAsync(string moduleName, DateTime from, DateTime to, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<SpecVersionDto>> GetRuntimeVersionsAsync(CancellationToken cancellationToken)
+        {
+            var runtimeVersionsDto = new List<SpecVersionDto>();
+
+            var runtimeVersionDto = new SpecVersionDto()
+            {
+                SpecVersion = _substrateService.RuntimeVersion.SpecVersion
+            };
+
+            runtimeVersionsDto.Add(runtimeVersionDto);
+            return runtimeVersionsDto;
         }
     }
 }

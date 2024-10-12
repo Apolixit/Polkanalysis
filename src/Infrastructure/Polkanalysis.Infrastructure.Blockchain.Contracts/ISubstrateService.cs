@@ -5,6 +5,7 @@ using Substrate.NetApi.Model.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Rpc;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Common;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Contracts;
+using Substrate.NetApi.Model.Meta;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Contracts
 {
@@ -55,5 +56,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Contracts
         /// <param name="address"></param>
         /// <returns></returns>
         bool IsValidAccountAddress(string address);
+        MetaData GetMetadataFromHex(string metadataHex);
     }
 }

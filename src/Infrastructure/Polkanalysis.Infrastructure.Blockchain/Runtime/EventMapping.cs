@@ -58,7 +58,7 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
                 new EventMappingElem()
                 {
                     CategoryName = "Account",
-                    Mapping = new List<IMappingElement>() { new MappingElementEnumRuntimeEvent() }
+                    Mapping = new List<IMappingElement>() { new MappingElementEnumRuntimeEvent(), new MappingElementAccount() }
                 },
                 new EventMappingElem()
                 {
@@ -250,17 +250,13 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
         dynamic IMappingElement.ToHuman(dynamic input) => Utils.Bytes2HexString(((BaseVec<U8>)input).Bytes);
     }
 
-    //public class MappingElementAccount : IMappingElement
-    //{
-    //    public Type ObjectType => typeof(SubstrateAccount);
-    //    public bool IsIdentified => true;
+    public class MappingElementAccount : IMappingElement
+    {
+        public Type ObjectType => typeof(SubstrateAccount);
+        public bool IsIdentified => true;
 
-    //    dynamic IMappingElement.ToHuman(dynamic input) => new
-    //    {
-    //        PublicKey = Utils.GetPublicKeyFrom(AccountHelper.BuildAddress((SubstrateAccount)input)),
-    //        Ss58Address = AccountHelper.BuildAddress((AccountId32)input)
-    //    };
-    //}
+        dynamic IMappingElement.ToHuman(dynamic input) => ((SubstrateAccount)input).ToStringAddress();
+    }
 
     //public class MappingElementAccount : IMappingElement
     //{

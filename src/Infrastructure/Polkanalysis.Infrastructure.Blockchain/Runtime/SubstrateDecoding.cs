@@ -200,7 +200,10 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
                 {
                     for (int i = 0; i < childNode.Children.Count; i++)
                     {
-                        childNode.Children[i].AddName(props[i].Name);
+                        if(string.IsNullOrEmpty(childNode.Children[i].Name) && !string.IsNullOrEmpty(props[i].Name))
+                        {
+                            childNode.Children[i].AddName(props[i].Name);
+                        }
                     }
                 }
 
@@ -224,34 +227,62 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
                 return;
 
             var mapper = _mapping.Search(value.GetType());
-            if (!mapper.IsIdentified && value.GetType().IsGenericType)
+            if (!mapper.IsIdentified)
             {
-                await VisitNodeGenericAsync(node, value, metaData, cancellationToken);
-            }
-            else if (!mapper.IsIdentified)
-            {
-                var properties = value.GetType().GetProperties();
-                List<Task> propsTaks = new List<Task>();
-                foreach (var property in properties)
+                if(value.GetType().IsGenericType)
                 {
-                    var prp = value.GetValue(property.Name);
-                    if (prp is IType prpType)
-                    {
-                        var childNode = new GenericNode()
-                            .AddData(prpType)
-                            .AddName(property.Name);
-                        node.AddChild(childNode);
-
-                        propsTaks.Add(VisitNodeAsync(childNode, prpType, metaData, cancellationToken));
-                    }
+                    await VisitNodeGenericAsync(node, value, metaData, cancellationToken);
                 }
-                await Task.WhenAll(propsTaks);
+                else
+                {
+                    var properties = value.GetType().GetProperties();
+                    List<Task> propsTaks = new List<Task>();
+                    foreach (var property in properties)
+                    {
+                        var prp = value.GetValue(property.Name);
+                        if (prp is IType prpType)
+                        {
+                            var childNode = new GenericNode()
+                                .AddData(prpType)
+                                .AddName(property.Name);
+                            node.AddChild(childNode);
+
+                            propsTaks.Add(VisitNodeAsync(childNode, prpType, metaData, cancellationToken));
+                        }
+                    }
+                    await Task.WhenAll(propsTaks);
+                }
+
+                // No children, we need to put something into HumanData
+                if (node.IsLeaf && node.HumanData is null)
+                    node.AddHumanData(value!.ToString());
             }
             else
             {
-                node.AddData(value)
-                    .AddContext(mapper)
-                    .AddHumanData(mapper.ToHuman(value));
+                var AddDataToNode = (INode node) =>
+                {
+                    node
+                        .AddData(value)
+                        .AddContext(mapper)
+                        .AddHumanData(mapper.ToHuman(value));
+
+                    return node;
+                };
+
+                //var childNode = new GenericNode()
+                //            .AddData(value)
+                //            .AddContext(mapper)
+                //            .AddHumanData(mapper.ToHuman(value));
+                //node.AddChild(childNode);
+
+                //node.AddData(value)
+                //    .AddContext(mapper)
+                //    .AddHumanData(mapper.ToHuman(value));
+
+                if (node.IsEmpty)
+                    node = AddDataToNode(node);
+                else
+                    node.AddChild(AddDataToNode(new GenericNode()));
             }
         }
 

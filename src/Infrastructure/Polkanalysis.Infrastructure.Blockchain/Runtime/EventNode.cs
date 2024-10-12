@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Runtime
@@ -67,6 +68,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Runtime
             var runtimeEvent = globalEvent.Children[0];
 
             return runtimeEvent;
+        }
+
+        public string ToParameterJson()
+        {
+            var method = this[Method.ToString()]!;
+
+            var output = new List<Dictionary<string, object>>();
+            foreach (var child in method.Children)
+            {
+                output.Add(child.ToDictionnary());
+            }
+
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(output, options);
         }
 
         private INode? _eventData = null;

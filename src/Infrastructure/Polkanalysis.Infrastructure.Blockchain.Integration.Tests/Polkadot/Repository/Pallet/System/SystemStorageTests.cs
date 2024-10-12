@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Runtime.Module;
 using Polkanalysis.Infrastructure.Blockchain.Contracts.Pallet.PolkadotRuntime;
 using Polkanalysis.Infrastructure.Database.Contracts.Model.Events;
+using System.Text;
 
 namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repository.Pallet.System
 {
@@ -201,15 +202,6 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
 
         [Test]
         [TestCase(22666089)]
-        public async Task EventsAt_ThenDecodeAsNode_ShouldWorkAsync(int blockNumber)
-        {
-            var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
-
-            Assert.That(res, Is.Not.Null);
-        }
-
-        [Test]
-        [TestCase(22666089)]
         [CancelAfter(RepositoryMaxTimeout)]
         public async Task EventsAsNode_ShouldWorkAsync(int blockNumber)
         {
@@ -235,6 +227,24 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
         }
 
         [Test]
+        [TestCase(20681308)]
+        [CancelAfter(RepositoryMaxTimeout)]
+        public async Task EventsAsNode_DebugBug_ShouldWorkAsync(int blockNumber)
+        {
+            var res = await _substrateRepository.At(blockNumber).Storage.System.EventsAsync(CancellationToken.None);
+            var metadata = await _substrateRepository.At(blockNumber).GetMetadataAsync(CancellationToken.None);
+
+            var decoded0 = await _substrateDecoding.DecodeEventAsync(res.Value[48], metadata, CancellationToken.None);
+            var decoded = await _substrateDecoding.DecodeEventAsync(res.Value[49], metadata, CancellationToken.None);
+
+            Assert.That((int)decoded.Module, Is.GreaterThan(0));
+            Assert.That(decoded.Method.ToString(), Is.Not.Null);
+
+            var json = decoded.ToParameterJson();
+            Assert.That(json, Is.Not.Null);
+        }
+
+        [Test]
         public async Task ExtrinsicFailedAsNode_ShouldWorkAsync()
         {
             var res = await _substrateRepository.At(22666089).Storage.System.EventsAsync(CancellationToken.None);
@@ -248,6 +258,9 @@ namespace Polkanalysis.Infrastructure.Blockchain.Integration.Tests.Polkadot.Repo
             Assert.That(eventNode["ExtrinsicFailed"][0].Name, Is.EqualTo("dispatch_error"));
             Assert.That(eventNode["ExtrinsicFailed"][0][0].Name, Is.EqualTo("Module"));
             Assert.That(eventNode["ExtrinsicFailed"][1].Name, Is.EqualTo("dispatch_info"));
+
+            var json = eventNode.ToParameterJson();
+            Assert.That(json, Is.Not.Null);
         }
 
         [Test]
